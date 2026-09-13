@@ -573,6 +573,22 @@ describe("103.1.b — Domain Identity at click time (#212)", () => {
    * "Cards in the Rune Deck must be of the Domain Identity of your Champion Legend". The button may not
    * cite a different rule from the one the checklist would cite for the same card.
    */
+  /**
+   * 103.4.b, "Subject to Domain Identity if applicable", is the battlefields' own paragraph and it
+   * bites NOTHING today — for a measured reason, not an assumed one. Two docblocks now lean on that
+   * (`identityCap` here and `identityRule` in src/build.ts), so the day a set prints a battlefield
+   * carrying a domain, this goes red and says so rather than leaving both of them silently wrong.
+   */
+  it("has no battlefield that Domain Identity could reach (103.4.b, 'if applicable')", () => {
+    const fields = cards.cards.filter((c) => c.type.includes("battlefield"));
+    expect(cards.cards.length).toBeGreaterThan(1000);       // non-vacuity: the sweep has a haystack
+    expect(fields.length).toBe(66);
+    expect(new Set(fields.map((c) => c.name)).size).toBe(66);
+    expect(fields.filter((c) => c.domains.length > 0)).toEqual([]);
+    // And the gate agrees: a battlefield is never refused, whatever the legend's domains are.
+    for (const f of fields.slice(0, 12)) expect(capOf(ornn(), f.base, cards).offIdentity, f.base).toBe(false);
+  });
+
   it("cites the Rune Deck's own paragraph for a rune", () => {
     const fury = poolOf(cards).find((c) => c.type.includes("rune") && c.domains.includes("fury"))!;
     const cap = capOf(ornn(), fury.base, cards);

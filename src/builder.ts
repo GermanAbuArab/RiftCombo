@@ -161,7 +161,13 @@ export function zoneOf(card: Card): DeckZone {
   return "main";
 }
 
-/** 103.1.b.1: a card is inside the identity when every domain it indicates is one of the legend's. */
+/**
+ * 103.1.b.1 states the rule — "Cards included in your deck must abide by your Domain Identity" — and
+ * 103.1.b.3 and 103.1.b.4 are the TEST this implements: a single-domain card is permitted in the
+ * matching identity, and one with more than one domain "is permitted only in a Domain Identity that
+ * contains all of the indicated Domains on that card", which is the `every`. A card indicating NO
+ * domain therefore passes every identity, vacuously — all 66 battlefield printings are in that case.
+ */
 export const inIdentity = (card: Card, identity: readonly Domain[]): boolean =>
   card.domains.every((d) => identity.includes(d));
 
@@ -297,7 +303,13 @@ export interface Cap {
  * The paragraph cited is the one the Construction checklist would cite for the same card, because the
  * button may not disagree with the checklist: the Rune Deck has its own row, so a rune is refused
  * under 103.3.a.1 ("Cards in the Rune Deck must be of the Domain Identity of your Champion Legend")
- * and everything else under 103.1.b.
+ * and everything else under 103.1.b. Battlefields have a third paragraph of their own, 103.4.b —
+ * "Subject to Domain Identity if applicable" — and it never fires here for a measured reason rather
+ * than an assumed one: measured 2026-09-13 over all 1189 printings, the 66 battlefields (66 distinct
+ * names, two of them tokens) indicate NO domain between them, so `inIdentity` passes them vacuously
+ * under 103.1.b.4. The "if applicable" is doing the same work in the rules text, and the day a set
+ * prints a battlefield with a domain, 103.4.b goes live here — `test/builder.test.ts` pins the count
+ * so that day arrives as a red test rather than as a silently wrong docblock.
  *
  * The SIDEBOARD is refused too, which preserves what the pool cell already did and is not a guess:
  * Tournament Rules 403.4 exchanges a sideboard card "1 for 1 with Main Deck cards" and 403.4.b says a
@@ -547,8 +559,12 @@ export function removeCard(deck: Deck, base: string, cards: CardIndex): Deck {
 export function championCapOf(deck: Deck, base: string, cards: CardIndex): Cap {
   const card = cards.get(base);
   if (!card) return { held: 0, max: 0, full: true, offIdentity: false, why: "Not a card in this pool.", badge: "Not in the pool" };
-  // 103.2.a.1 puts the Chosen Champion in the Champion Zone from the Main Deck before play.
-  if (zoneOf(card) !== "main") return { held: 0, max: 0, full: true, offIdentity: false, why: "The Chosen Champion is a Main Deck card (103.2.a.1).", badge: "Main Deck only" };
+  // 103.2 is the paragraph that makes it a Main Deck card, and it is worth reading rather than
+  // paraphrasing: "A Main Deck of at least 40 cards: A Chosen Champion Unit, as well as Units, Gear,
+  // and Spells". So 103.2 supplies BOTH halves of what a Chosen Champion is — a Main Deck card and a
+  // unit — and 103.2.a.1 only says where it is placed at the start of the game, which is a different
+  // question. Tournament Rules 402.1 counts it inside the 40 from the registration side.
+  if (zoneOf(card) !== "main") return { held: 0, max: 0, full: true, offIdentity: false, why: "The Chosen Champion is a Main Deck card (103.2).", badge: "Main Deck only" };
   const held = copiesOf(deck, base);
   const offDomain = identityCap(deck, card, cards, "main");
   if (offDomain) return offDomain;
@@ -569,7 +585,7 @@ export function championCapOf(deck: Deck, base: string, cards: CardIndex): Cap {
 
 /**
  * Designate the Chosen Champion. It is a Main Deck card, and Tournament Rules 402.1 counts it inside
- * the 40 ("40 cards including a chosen champion"), so designating one that is not in the list yet
+ * the 40 ("40 cards (including a chosen champion)"), so designating one that is not in the list yet
  * puts a copy there. Clearing the designation leaves the copies alone: the card is still playable.
  */
 export function setChampion(deck: Deck, base: string | null, cards: CardIndex): Deck {

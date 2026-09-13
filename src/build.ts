@@ -257,8 +257,17 @@ function battlefieldRule(deck: Deck, cards: CardIndex): BuildRule {
 }
 
 /**
- * 103.1.b.1: cards included in your deck must abide by your Domain Identity. Runes have their own row
- * (103.3.a.1), so this one reads the Main Deck and the battlefields.
+ * 103.1.b.1: "Cards included in your deck must abide by your Domain Identity", with 103.1.b.3 and
+ * 103.1.b.4 as the test — a card with more than one domain "is permitted only in a Domain Identity
+ * that contains all of the indicated Domains on that card". Runes have their own row (103.3.a.1), so
+ * this one reads the Main Deck and the battlefields.
+ *
+ * The battlefields are here under 103.4.b, "Subject to Domain Identity if applicable", which is the
+ * paragraph this row is implementing for that zone and which was cited nowhere in the code until now
+ * — diagnosed by #187 on 2026-09-07 and unapplied since. It bites nothing today, and for a measured
+ * reason rather than an assumed one: measured 2026-09-13 over all 1189 printings, the 66 battlefields
+ * (66 distinct names, two of them tokens) indicate NO domain between them, so `identityOf` passes them
+ * vacuously. The clause the rules themselves hedge with is "if applicable".
  */
 function identityRule(deck: Deck, cards: CardIndex): BuildRule {
   const base = { rule: "103.1.b", label: "Domain Identity" };

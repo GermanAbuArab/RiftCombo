@@ -231,7 +231,7 @@ export function deckToText(entries: readonly DeckEntry[], cards: CardIndex): str
  * A Piltover Archive deck code for a parsed list. The codec takes one flat array for everything that is
  * not a sideboard — legend, runes and battlefields included — plus the Chosen Champion separately, and it
  * counts that champion as a Main Deck card on the way back out. `deck.main` already holds it (see
- * `normalizeDeck`, and Tournament Rules 402.1's "40 cards including a chosen champion"), so the one copy
+ * `normalizeDeck`, and Tournament Rules 402.1's "40 cards (including a chosen champion)"), so the one copy
  * in the champion slot is taken out of the array here or it would come back doubled. Extra copies of the
  * same card stay, which is exactly what 103.2.b.1 allows.
  */
