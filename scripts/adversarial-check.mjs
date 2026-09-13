@@ -65,11 +65,19 @@
 //      are impossible by a wide margin, so the gated answer is the true one on every row and the
 //      lower arm is loose for a known artifact rather than for a modelling gap.
 //
-//      The model DOES still flatten one nesting, conservatively: `lux-infinite-power` is itself an
-//      engine that NEEDS `infinite-energy`, so its own six Energy ought to be free once
+//      THE ONE NESTING THE MODEL FLATTENS IS MEASURED INERT, NOT ASSUMED TO BE. `lux-infinite-power`
+//      is itself an engine that NEEDS `infinite-energy`, so its own six Energy ought to be free once
 //      `lux-infinite-energy` ignites, and every fuel producer is charged rune prices instead. That
-//      can only over-charge, and on these five rows the arithmetic above shows it changes nothing.
-//      Unflattening it needs a per-stage ignition order; it is the next thing here.
+//      can only over-charge. Measured in .scratch-gap/probe-stage-flatten.mjs with an independent
+//      search: EIGHT rows have a closure containing a fuel producer that itself needs fuel, and the
+//      flattened engine and the stage-0 engine complete on the SAME turn for all eight - E13 already
+//      passes T3's cumulative ceiling of 12, so the extra E4 changes nothing.
+//
+//      The honest denominator is ONE, not eight: all eight rows share the same closure
+//      (`lux-infinite-energy` + `lux-infinite-power`), which is the only multi-stage fuel chain in
+//      the catalogue. So this is one measurement, not eight confirmations. IT REOPENS the moment a
+//      closure exists whose stage-1 engine costs enough to push the completion past stage 0's turn,
+//      and the probe is the check to re-run.
 //
 //      ORDERING IS MODELLED AS OF 2026-09-13 AND IT MOVES NOTHING, WHICH IS THE RESULT. `deployTurn`
 //      used to ask only whether every cost was PAYABLE by turn N; an [Equip] is not merely a second

@@ -255,11 +255,24 @@ re-selected the fuel producers itself and swept up every fuel entry in the catal
 intersected the row's needs. The verdict was unchanged and the number was garbage — which is exactly
 why it now reads the closure out of the clock's own printed row.
 
-The model does still flatten one nesting, conservatively: `lux-infinite-power` is itself an engine
-that **needs** `infinite-energy`, so its own six Energy ought to be free once `lux-infinite-energy`
-ignites, and every fuel producer is charged rune prices instead. That can only over-charge, and on
-these five rows the arithmetic above shows it changes nothing. Unflattening it needs a per-stage
-ignition order.
+### The one nesting the model flattens, measured rather than assumed
+
+`lux-infinite-power` is itself an engine that **needs** `infinite-energy`, so its own six Energy
+ought to be free once `lux-infinite-energy` ignites; the model charges every fuel producer at rune
+prices instead. That can only over-charge, and the question is whether it over-charges by anything
+that reaches a printed turn.
+
+`.scratch-gap/probe-stage-flatten.mjs` answers it with an independent breadth-first search: **eight
+rows** have a closure containing a fuel producer that itself needs fuel, and for all eight the
+flattened engine and the stage-0 engine complete on the **same turn**. The reason is arithmetic
+rather than luck — stage 0 alone is E13 + 1 Power and T3's cumulative ceiling is 12, so the whole
+closure already lands on T4 and the extra E4 buys nothing.
+
+**The honest denominator is ONE, not eight.** All eight rows share the same closure
+(`lux-infinite-energy` + `lux-infinite-power`), which is the only multi-stage fuel chain in the
+catalogue — so this is one measurement, not eight confirmations. It **reopens** the moment a closure
+exists whose stage-1 engine costs enough to push completion past stage 0's turn, and the probe is the
+check to re-run. Until then a per-stage ignition order is code with nothing to do.
 
 **The reason to default it ON is a comparison of errors, not a preference.** Leaving it off keeps a
 known **nine-turn** error on `bottled-constellation-time-warp` in preference to a bounded **one-turn**
