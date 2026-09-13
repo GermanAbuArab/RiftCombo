@@ -896,7 +896,7 @@ each other's condition. Two paragraphs decide the pair:
 > **807.1.d.** *"Being an attacker means the Unit has gained the Attacker designation during Combat."*
 
 With **323.9** (*"Mark a Combat as Staged at each Battlefield that Contested was applied to that have
-units present controlled by opposing players"*), that is the project's empty-battlefield trap arriving
+Units present controlled by opposing players"*), that is the project's empty-battlefield trap arriving
 from the [Assault] side: **walking into an unoccupied battlefield takes it through 344.2's Showdown
 with no Combat, no Attacker designation and no damage step**, so both cards are printed Might 3 on
 exactly the board every token and evacuation line is built for.
