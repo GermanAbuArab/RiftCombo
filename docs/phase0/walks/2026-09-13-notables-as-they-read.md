@@ -1763,3 +1763,49 @@ That is the **fourth** unstated exposure this walk has found on one entry — no
 condition that is a gear (§13); the pre-repair Flurry paragraph, since corrected (§20); no counter
 note on its E10 + 4 Power enabler (§27); and now an enabler that arms the opponent. **Each was found
 by a different sweep, which is the argument for running several.**
+
+---
+
+## 30. A loop's interactability is the number of spells in its pass, and it ranges **0 to 4**
+
+§28 established that a loop running inside its controller's own Main Phase gives the opponent no
+board window — 806.1.c.1 keeps `[Action]` removal out, and §24's two Reaction-speed answers are a
+Might-3-capped bounce and a symmetric one. **So the opponent's windows are the ones the loop opens
+itself**, and 359.3.c guarantees one before every spell.
+
+**Predicate: the spells in each INFINITE's `uses` — a FLOOR on the guaranteed windows a pass opens,
+not a count**, because a triggered ability also creates a Closed State (401.1) and those are not
+counted here.
+
+```
+4  gemdragon-henge-vi-blind-fury     Dancing Grenade E2P1 | Detonate E1P1 | Show of Strength E2P1 | Confront E2
+3  jhin-virtuoso-ekko-malzahar-vi    Upstage Comedy E2 | Consult the Past E4 | Progress Day E6P1
+3  lady-luminosity-loop-comet        Falling Comet E5 | Shadow's Call E2 | Sacrifice E1
+2  lux-infinite-energy · renata-mastermind-points · garen-fiora-malzahar-facebreaker-recruits
+1  seven entries
+0  pursuer-herald-recruits
+```
+
+**`pursuer-herald-recruits` is the only INFINITE that opens no guaranteed window at all.** Its three
+`uses` are two units and a gear (`OGN-177`, `SFD-171`, `SFD-153`), and 337.2 resolves every one of
+them immediately — *"If, after finalizing the Chain Item, that item is a Unit, Gear, or an ability
+that Adds resources, it resolves immediately."* **And it is the one INFINITE legality drops at match
+time**, because `OGN-177 Stealthy Pursuer` is banned — CLAUDE.md already records that. **The least
+interactable loop in the catalogue is the one nobody can bring.**
+
+**At the other end, `gemdragon-henge-vi-blind-fury` opens four**, and its own steps make all four
+load-bearing — Dancing Grenade kills the six Dragons, Detonate kills the Henge, Show of Strength draws
+the deck, Confront draws it back. **Countering any one of the four breaks the pass.**
+
+**And that inverts §16.** That loop is one of the four whose gear engine carries **no Equipment tag**,
+so `SFD-011 Angle Shot` — the only Reaction-speed gear answer — cannot touch its `SFD-117 Ancient
+Henge` at all, and every other gear answer has to be cast on the opponent's own turn. **The loop that
+is hardest to answer on the BOARD is the easiest to answer on the CHAIN**, and the two facts are
+measured by different sweeps that happen to meet on one entry.
+
+**The general shape, stated once:** an INFINITE's board exposure and its chain exposure move
+independently. `pursuer-herald-recruits` has neither and is banned; `gemdragon-henge-vi-blind-fury`
+has a hard board and a soft chain; the seven at one spell per pass are the ordinary case, and a single
+held counter costs them one pass rather than the loop — which is why §28's Abandon point matters
+(425.1.b sends the countered card to the trash, where a Forge recycles it, so the counter buys a pass
+and not a win).
