@@ -222,7 +222,9 @@ describe("the four plays as they are actually written", () => {
   it("finds every cross-link between the plays and resolves it to a route", () => {
     const slugs = new Set(plays.map((p) => p.slug));
     const links = plays.flatMap((p) => [...p.markdown.matchAll(/\]\(([^)\s]+)\)/g)].map((m) => m[1]!));
-    expect(links.length, "the plays stopped cross-linking — is the .md rewrite still needed?").toBe(3);
+    // A FLOOR, not a pin: the guard exists so `resolvePlayHref` cannot become dead code if the
+    // corpus stops cross-linking, and every play added after #206 may legitimately add a link.
+    expect(links.length, "the plays stopped cross-linking — is the .md rewrite still needed?").toBeGreaterThanOrEqual(3);
     for (const href of links) expect(resolvePlayHref(href, slugs), href).toMatch(/^#\/plays\//);
   });
 });

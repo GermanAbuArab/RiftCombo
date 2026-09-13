@@ -188,10 +188,17 @@ describe("which entry a play is about", () => {
     return mod;
   };
 
+  /**
+   * Every id in this list must include the real SUBJECT of each play in the corpus. `subjectOf`
+   * intersects the ids a play names with the ids the catalogue holds and takes the first survivor,
+   * so an under-populated fixture does not merely fail to find a subject - it promotes whichever
+   * DIGRESSION happens to be in the list, which is the exact error the test below exists to catch.
+   */
   const ALL = [
     "yasuo-windrider-ride-the-wind-chain",
     "ivern-ride-the-wind-double-conquer",
     "tryndamere-brambleback-conquer",
+    "renata-mastermind-points",
     "gutter-palace-keeper-time-warp",
     "time-warp-hold-burst",
     "grand-plaza-recruit-vanguard",
