@@ -981,3 +981,81 @@ count can be broken **upward** as well as downward, which no Plaza line can be.
 **One line the Guide view could carry, if `web/` ever wants it** (that file is rc-builder's, so this
 is a suggestion and not a change): *"Two cards in Riftbound say you win the game. One is a
 battlefield and cannot be removed; one is a gear and dies to one Energy."*
+
+---
+
+## 18. The unit row closes the taxonomy — **no payoff unit in this catalogue opens a window when it lands**
+
+The unit row is the biggest (36 finishers, 38 `payoff` rows, **12 distinct payoff units**) and it is
+the one where naming an answer is useless: a unit is answerable by the whole removal suite. The
+question the taxonomy makes askable instead is about **when the opponent first gets priority.**
+
+```
+337.2.  If, after finalizing the Chain Item, that item is a Unit, Gear, or an ability that Adds
+        resources, it resolves immediately—Move to Step 4: Resolve.
+401.1.  Add a Pending Item to the chain representing the Ability … Notably, although this Chain Item
+        will not have a card representing it, this will create a Closed State.
+312.2.c. When the turn is in a Closed State, all pending chain items finish being finalized …
+```
+
+**A unit with no triggered ability resolves immediately and hands the opponent nothing** (337.2). A
+unit whose ability fires **on play** does the opposite: 401.1 makes that ability's chain item create a
+Closed State, and 312.2.c hands out priority in it — **the body opens the window its own play never
+would.** So the question is not *has it a trigger* but *does the trigger fire on arrival*.
+
+**Measured: 33 of the 38 payoff rows carry a triggered ability, and ZERO of the 12 distinct payoff
+units fire one on arrival.** Their triggers are on conquer, hold, attack, move or death — every one
+of them **after** the body is established. `SFD-088 Renata Glasc, Mastermind` has no triggered ability
+at all, only two activated ones and a static restriction.
+
+### Two predicate corrections, both caught before reporting, and the second inverted the answer
+
+**First**, a `\bWhen\b`-based test called `OGN-239 Machine Evangel` and `SFD-021 Ferrous Forerunner`
+trigger-less. Both print **`[Deathknell]`**, which 808.1.c makes *"functionally short for 'When I die,
+[Effect].'"* — their only literal *When* is in the reminder text the sweep strips. **They were in the
+right bucket for the wrong reason**, which is worse than being in the wrong one, because it would
+have shipped as a measurement.
+
+**Second, and it changed the result.** A play-trigger predicate returned exactly one hit —
+`UNL-177 Ivern, Friend to All`, *"**As you play me**, choose Bird, Cat, Dog, or Poro."* Read against
+the rules, that is not a trigger at all:
+
+```
+369.1.      A Replacement Effect can usually be identified by the presence of the terms "as," "would,"
+            or "instead."
+370.1.b.1.  In the case of Replacement Effects that describe a game action to occur "as" an event
+            occurs, the described event is replaced by that same event plus the game action being
+            performed.
+              Example: Undertitan is a unit that reads in part "As I'm revealed from your deck,
+              [Add] [2]." …
+```
+
+**A replacement creates no Chain Item, so it opens no window** — and Riot's worked example for that
+exact wording is `SFD-175 Undertitan`, the card CLAUDE.md already records a shipped entry calling a
+trigger twice. **So the honest figure is ZERO of twelve, not one**, and the corrected answer is
+cleaner than the one the predicate gave. **Sixth predicate overstatement in this walk, and the first
+where reading made the finding stronger instead of smaller.**
+
+### The taxonomy, closed
+
+| payoff | answerable? | window on arrival |
+|---|---|---|
+| **unit** | yes, by the whole removal suite | **none** — 0 of 12 fire on play (337.2) |
+| **gear** | yes, 15 printings, 6 domains (§13) | **none** (337.2) |
+| **battlefield** | **no** — 170.3, 170.4, 185.2.e (§14) | — |
+| **spell** | yes, 11 counters (§15) | **guaranteed by 359.3.c**, costs unrefunded (425.1.c) |
+
+**Three of the four rows give the opponent no window at the payoff at all, and one gives them a
+window the rules guarantee.** Every answer to a unit, a gear or a battlefield must be found on the
+opponent's own turn, or in a window some *other* card opened. Only a spell payoff is answered at the
+moment it is played.
+
+### And it lands back on §1
+
+`UNL-177 Ivern` is the only payoff unit whose text touches the play event at all, and the reason it
+still opens no window is 369.1 — a replacement, not a trigger. **His exposure is entirely at the other
+end**: §1 established that his four-tag clause follows the effect verb and is therefore an **Effect**
+clause under 383.2.a.1, checked on resolution, so a tag body removed **in response to his scoring
+trigger** blanks the whole Score. **He is the one payoff unit in the catalogue whose payoff can be
+answered after it has already triggered, and the 2026-09-13 notable on seven entries said the
+opposite.** The walk opened there and closes there.
