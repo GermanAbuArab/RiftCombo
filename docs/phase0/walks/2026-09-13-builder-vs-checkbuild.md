@@ -628,3 +628,35 @@ population is two — `UNL-088 Gutter Palace`, whose text is self-contained and 
 only one-card finisher, and `OGN-293 The Grand Plaza`, which pays for seven bodies at a battlefield and
 therefore cannot be written small. There the class and the size are the same fact. Whether that
 generalises to BURST and CHAIN is unmeasured.
+
+
+### The floor is a game fact; the median is an authoring fact
+
+The ALT_WIN observation above — that the class and the size are the same fact there — turned out to
+generalise, and BURST is the case where it can be checked rather than observed.
+
+**Every card in the pool that scores a point scores exactly ONE.** Measured over all 1189 printings:
+twenty names gain a point or win the game, and of those that name a number, every one says *score 1
+point* or *gains 1 point*. None says two. With 103.2.b capping a name at three copies, **a point card
+alone tops out at three points in one scoring event** — and the three trigger multipliers the pool
+prints (`OGN-236 Karthus, Eternal`, `UNL-029 Red Brambleback`, `UNL-087 Blue Sentinel`) score no points
+themselves, nor does `SFD-059 Svellsongur`. **No card is both a point source and a multiplier.**
+
+So eight points in one event requires a payoff AND a multiplier, and **two distinct names is a hard
+floor for BURST, forced by the pool rather than chosen.** The catalogue sits on it: **8 of the 23 BURST
+entries are two-card**, all the same shape — one point card at 2-3 copies times one multiplier at 2-3 —
+and `nasus-svellsongur-conquer-burst` reaches NINE points on two cards and four copies.
+
+| BURST size | entries |
+|---|---|
+| 2 cards | 8 |
+| 3 | 11 |
+| 4 | 3 |
+| 5 | 1 |
+
+**That is the honest form of the size-by-class finding.** The FLOOR of each class is a fact about the
+game — ALT_WIN 1 because `UNL-088 Gutter Palace` is self-contained, BURST 2 because no card is both
+payoff and multiplier. The MEDIAN is a fact about the catalogue, since eleven BURSTs were written at
+three cards when the floor is two. Both of the corpus artifacts ride on the median, not the floor, and
+so does the claim that finishers are "bigger" — which is why it is stated here as a fact about the
+catalogue and not about the game.
