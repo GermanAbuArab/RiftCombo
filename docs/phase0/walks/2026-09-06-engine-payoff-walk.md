@@ -1584,7 +1584,7 @@ Azir's only real service is moving tokens that cannot walk — `143.4` makes the
 | reaches | anywhere a token can Standard-move (144.4.a) | only the battlefield he is attacking |
 | cost | E4 + 1 Order Power, once | E4, plus 1 Energy + 1 Order Power of [Accelerate] to act the turn he lands |
 
-And `144.3` — *"Players may perform multiple Units standard move simultaneously. This is treated as one
+And `144.3` — *"Players may perform multiple Units' standard move simultaneously. This is treated as one
 game action performed on multiple Units"* (144.3.a: shared destination) — means a **ready** swarm needs no
 bulk mover at all. Tokens banked on an earlier turn are readied by `315.1.b` anyway.
 

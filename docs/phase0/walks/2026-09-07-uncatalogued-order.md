@@ -770,7 +770,7 @@ inventory); the two Order Runes (§18, 164.2 + 161.2.a).
   `SFD-156 Laurent Duelist`, `OGS-016 Vanguard Attendant`, `UNL-154 Crimson Pigeons`,
   `OGN-217 Trifarian Gloryseeker` **is now walked**, so this group is **4**. The one lead still
   worth an hour is Crimson Pigeons (*"+2 :rb_might: while I'm attacking with another unit"*) under
-  **144.3** (*"Players may perform multiple Units standard move simultaneously. This is treated as
+  **144.3** (*"Players may perform multiple Units' standard move simultaneously. This is treated as
   one game action"*), which makes the condition nearly free — and then against
   `UNL-187 Piltover Enforcer`, a Fury/Order **legend** that pays for 3+ excess damage. Note before
   walking it: a stun does **not** create excess damage (423.1.c leaves the kill price at full Might)
