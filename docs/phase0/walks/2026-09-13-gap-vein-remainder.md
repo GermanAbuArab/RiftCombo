@@ -577,3 +577,56 @@ and one live tool bug.** The yield per row falls only slightly from the 10+ band
 (26/38, 22/36, 13/25) but **the composition changes**: step headings, section stubs and block parents
 go from none to eight of twenty-five. That, not the citation count, is the signal. **I would work
 the 6 band and stop there**, and I would expect the 5 band to be mostly parents and parameters.
+
+---
+
+# FOURTH SLICE — the 6-citation band, and the vein is called
+
+43 rows. I checked my own §3E composition claim rather than assert it, sampling 13 of the 43.
+**It holds, and harder than I said**: `000` *"Golden and Silver Rules"*, `103.4` *"Battlefields"*,
+`179` *"Tokens"* are section headings; `115` is setup (*"Determine Turn Order using any fair random
+method"*); `809.1.b` (*"It is formatted as 'Deflect [X]'"*) and `812.1.b` (where a Legion clause
+starts and ends) are format notes; `730.1` (*"To Gain XP, increase the value of XP marked on the
+Player"*) is the definitional mirror of the carried 730.2; and `356.1.b`, `308.1`, `431.3` and
+`359.3.e.14` are **parents of children I have already proposed in slices 1–3**. That is **eight of
+thirteen sampled with no independent content**, against zero in the 10+ band.
+
+**I am stopping the vein here** rather than grinding 43 rows for a handful. Two things come out of
+the band and I would not want them lost:
+
+- **356.4.f** (6) — *"Discounts can reduce additional costs, **including to 0**."* This is the setup
+  for 356.4.f.1 in §3A and **strengthens it**: the discount genuinely reaches the additional cost
+  and zeroes it, and the payoff fires anyway because the player *decided* to pay. Apply the two
+  together as one bullet.
+
+- **369.2** (6) — ***"Some Game Actions are themselves Replacement Effects. Example: Burning Out is a
+  replacement effect. Example: Preventing Damage is a replacement effect."*** Cited zero times in
+  `CLAUDE.md`. **This is a LEAD, not a finding, and I am deliberately not deriving it** — it puts
+  Burn Out and Prevent under the whole 370–373 machinery the file already carries for Zhonya's
+  Hourglass and Soraka (370.2's once-per-event cap, 373's controller ordering, 373.2's one-sequence
+  limit), and the loop ledger has never asked what that means. It was already flagged as the next
+  row in rc-walk-mid's 2026-09-09 handoff (*"a Burn Out cannot be responded to, which the whole loop
+  ledger has never asked"*) and is still open. Two honest observations to hand on with it: 431.3
+  makes each re-attempt a **fresh event**, so 370.2 does not obviously cap the 431.3.a cascade; and
+  the file currently describes Prevent as *"a different mechanism from the would-die replacements of
+  #119"*, which is true of the timing and slightly loose as a classification, since 369.2 says both
+  are replacements. **Somebody should walk this properly; I did not.**
+
+A third, parked rather than proposed: **469.1.a** (6) disqualifies a teammate's controlled
+battlefields from being Conquered by your team in 2v2 — real content, but 2v2 is blocked on the
+representation decision (`matchDeck` reads one list, 489.2 puts two decks on a team).
+
+## FINAL TALLY
+
+| band | rows | real | correctly absent | folds |
+|---|---:|---:|---:|---:|
+| 10+ | 38 | 26 | 1 | — |
+| 9 and 8 | 36 | 22 | 8 | 6 |
+| 7 | 25 | 13 | 8 | 4 |
+| 6 | 43 | sampled 13 of 43; 8 of 13 have no independent content | | |
+
+**99 rows fully disposed, 61 real gaps, 17 measured non-gaps, one live tool bug (§0), two of my own
+base-code slips caught by a pre-commit grep over every card name cited** (`OGN-289` written as
+`OGN-288`; `SFD-109` written as `SFD-200`). Both were typed rather than measured, which is the
+defect class this project pays for most often, and **one cheap grep over the card names in a draft
+catches it** — worth making a standing pre-commit step for any lane that names cards.
