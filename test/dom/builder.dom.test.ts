@@ -345,6 +345,114 @@ describe("103.1.b — the pool cell and the deck row give one answer (#212)", ()
 });
 
 /**
+ * The two rules the editor gained on 2026-09-13 that a CLICK did not reach. This file exists because
+ * enforcement rides on a rendered `aria-disabled` that the handler reads back, so a template change
+ * can switch a rule off with every `src/` test still green (#138) — and a source-text pin is no
+ * substitute, as the a11y measurement the same day showed: the one whole-statement pin in that file
+ * had to be rewritten twice because a CORRECT rewording broke it. So every rule the cell can report
+ * wants a click.
+ */
+describe("the two rules added on 2026-09-13 that only the model had seen", () => {
+  /**
+   * 103.3.a.1 — "Cards in the Rune Deck must be of the Domain Identity of your Champion Legend". The
+   * Rune Deck has its own checklist row, so `identityCap` cites that paragraph for a rune and 103.1.b
+   * for everything else: the button may not name a different rule from the one the checklist would
+   * name for the same card. Nothing clicked it until now.
+   */
+  it("refuses an off-domain rune under the Rune Deck's own paragraph", async () => {
+    await mount("Legend\n1 Fire Below the Mountain\n");      // calm + mind
+    allDomains();
+    setZone("runes");
+    await search("Fury Rune");
+    const cell = cellNamed("Fury Rune")!;
+    const button = cell.querySelector<HTMLButtonElement>(".pool-add")!;
+    expect(button.getAttribute("aria-disabled")).toBe("true");
+    expect(button.getAttribute("title")).toContain("103.3.a.1");
+    expect(button.getAttribute("title")).not.toContain("103.1.b");
+    expect(cell.classList.contains("off")).toBe(true);
+    button.click();
+    expect(edits).toEqual([]);
+
+    // The control: a rune INSIDE the identity is offered and taken, so the zone is not simply shut.
+    await search("Calm Rune");
+    const ok = cellNamed("Calm Rune")!.querySelector<HTMLButtonElement>(".pool-add")!;
+    expect(ok.getAttribute("aria-disabled")).toBe("false");
+    ok.click();
+    expect(edits).toHaveLength(1);
+  });
+
+  /**
+   * 103.2.a.2 through the DECK ROW, which is the one champion button a pool filter cannot cover: the
+   * Champion zone draws only units carrying the tag, so an off-tag card can never be clicked there,
+   * but a row in the deck column is drawn for whatever the list holds. `rowHtml` used to repeat the
+   * tag test and now asks `championCapOf`, so this pins the rewiring rather than the old copy.
+   */
+  it("offers Champion on a row only where the model would take it", async () => {
+    // Annie, Stubborn carries the Annie tag; Clockwork Keeper does not. Both are calm + mind, so
+    // Domain Identity cannot be what separates them, and Tibbers is on-tag but Signature (103.2.d.3).
+    await mount("Legend\n1 Dark Child - Starter\n\nMain Deck\n1 Annie, Stubborn\n1 Clockwork Keeper\n1 Tibbers\n");
+    // The ROW is looked up separately and asserted to exist, so a card that never got drawn fails
+    // loudly instead of reading as "no Champion link" and passing the test it was meant to fail.
+    const champLink = (name: string) => {
+      const r = rowNamed(name);
+      expect(r, `${name} has a row at all`).toBeTruthy();
+      return r!.querySelector(".drow-champ");
+    };
+    expect(champLink("Annie, Stubborn"), "on-tag unit").not.toBeNull();
+    expect(champLink("Clockwork Keeper"), "off-tag unit (103.2.a.2)").toBeNull();
+    expect(champLink("Tibbers"), "on-tag but Signature (103.2.d.3)").toBeNull();
+
+    // And taking the one that is offered designates it.
+    (champLink("Annie, Stubborn") as HTMLButtonElement).click();
+    expect(zoneCount("Champion")).toBe("1/1");
+  });
+});
+
+/**
+ * The two caps this file BADGED but never CLICKED. `103.4.c` had a test asserting the cell reads
+ * "1 of 1" and none asserting the button refuses, and `103.3.a`'s twelve runes had no DOM test at
+ * all — so on both, a template change could have left the badge painted and the click working.
+ * Reading the badge and taking the click are two different claims.
+ */
+describe("the caps that were badged but never clicked", () => {
+  it("refuses a second battlefield of a name the list already holds (103.4.c)", async () => {
+    await mount(fixture("lux.txt"));
+    setZone("battlefields");
+    const zone = [...document.querySelectorAll<HTMLElement>(".dzone")]
+      .find((z) => z.querySelector(".dzone-head")?.textContent?.startsWith("Battlefields"))!;
+    const held = zone.querySelector(".drow-name")!.textContent!;
+    const cell = cellNamed(held)!;
+    const button = cell.querySelector<HTMLButtonElement>(".pool-add")!;
+    expect(cell.querySelector(".pool-full")!.textContent).toBe("1 of 1");
+    expect(button.getAttribute("aria-disabled")).toBe("true");
+    expect(button.getAttribute("aria-label")).toContain("103.4.c");
+    button.click();
+    expect(edits).toEqual([]);
+    expect(zoneCount("Battlefields")).toBe("3/3");
+    // And the row's own `+` agrees, which is the half #212 was about.
+    expect(rowPlus(held).getAttribute("aria-disabled")).toBe("true");
+  });
+
+  it("refuses a thirteenth rune (103.3.a)", async () => {
+    await mount(fixture("lux.txt"));                 // a tournament list, so the Rune Deck is full
+    expect(zoneCount("Runes")).toBe("12/12");
+    setZone("runes");
+    const zone = [...document.querySelectorAll<HTMLElement>(".dzone")]
+      .find((z) => z.querySelector(".dzone-head")?.textContent?.startsWith("Runes"))!;
+    const held = zone.querySelector(".drow-name")!.textContent!;
+    const cell = cellNamed(held)!;
+    const button = cell.querySelector<HTMLButtonElement>(".pool-add")!;
+    expect(cell.querySelector(".pool-full")!.textContent).toBe("12 of 12");
+    expect(button.getAttribute("aria-disabled")).toBe("true");
+    expect(button.getAttribute("aria-label")).toContain("103.3.a");
+    button.click();
+    expect(edits).toEqual([]);
+    expect(zoneCount("Runes")).toBe("12/12");
+    expect(rowPlus(held).getAttribute("aria-disabled")).toBe("true");
+  });
+});
+
+/**
  * 825.3.a at click time (#210). Same shape as #212 above and for the same reason: both buttons are
  * read, because the cap lives in `capOf` and a test of the pool alone would not see the deck row.
  */
