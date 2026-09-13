@@ -304,7 +304,8 @@ export interface Cap {
  * player "may not change their Runes, Legend, or Battlefields at any point after deck registration",
  * so the identity a sideboard card would be swapped into is fixed for the whole match. `identityRule`
  * does NOT read the sideboard today, which makes the button stricter than the checklist there; that is
- * a gap in the checklist rather than a licence to loosen the button, and it is filed as its own issue.
+ * a gap in the checklist rather than a licence to loosen the button, and it is filed as #215 — the only
+ * disagreement left between the two after the tier audit of 2026-09-13 (§7 of the same walk).
  */
 function identityCap(deck: Deck, card: Card, cards: CardIndex, zone: DeckZone | "sideboard"): Cap | null {
   if (!deck.legend) return null;
