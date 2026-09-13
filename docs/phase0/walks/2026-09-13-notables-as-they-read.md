@@ -1426,3 +1426,68 @@ defender must first be in a combat to have. The spell row is the opposite in eve
 the entries talk about **sweeps** (`OGN-133` and the twenty) and about **gear removal** (§13) because
 those are the answers that exist. Single-target removal at Reaction speed is not a thing an opponent
 holds in this format, and the catalogue's silence about it is correct.
+
+---
+
+## 25. Correcting my own §15, and the one card that answers the window
+
+**§15 said *"11 finishers have a spell in a `payoff` role, and NONE of them contains the word
+`counter`."* That was true at the sha it was measured against (`1f12d61`) and is now false: six of the
+eleven contain it.** The cause is not drift by another lane — **it is §15's own finding being
+applied.** The six are exactly the Time Warp family, and the notable they now carry is the §15
+argument in its own words, crediting #200. **A count of entries is perishable, and this one was made
+perishable by the repair it asked for**; it is corrected here rather than left standing, per the
+standing rule that the durable half is the rule and never the count.
+
+**What the correction exposed is the useful part: the repair reached the six Time Warp lines and not
+the other five.** Those five carry a spell payoff that is not `OGN-122`, and were outside the
+application:
+
+```
+arise-sand-soldiers-plaza            SFD-198 Arise!              E6 + 1 Power
+lady-luminosity-loop-comet           OGN-085 Falling Comet       E5
+desert-call-vi-sand-soldier-plaza    SFD-031 Desert's Call       E2
+yasuo-windrider-ride-the-wind-chain  OGN-173 Ride the Wind       E2 + 1 Power
+keeper-of-masks-flurry-plaza-window  UNL-044 Flurry of Feathers  E4 + 2 Power
+```
+
+All five now carry it (`1e75d4e`, under rc-manager8's handover).
+
+### The pool holds exactly ONE answer to the window, and it is mono-Mind
+
+**Predicate: corpus lines containing `can't be countered` or `cannot be countered`. Two hits, both
+read.**
+
+```
+VEN-015 | Decree of Rage        | Fury | E1 P1 | [Action] This can't be countered. Deal 4 to an enemy Calm unit.
+VEN-069 | Mel, Newly Awakened   | Mind | E4 P1 M4 | …[Empower] :rb_energy_3:  [Empowered][>] Your spells and abilities can't be countered…
+```
+
+`VEN-015` protects **only itself**. **`VEN-069 Mel, Newly Awakened` is the only card in the pool that
+makes your OTHER spells uncounterable, and she is mono-Mind** — with 441.2 making Empowered *"a state
+for Game Objects on the board"*, so once armed (E4 + 1 Power for the body, then `[Empower]` E3) it is
+permanent.
+
+**And mono-Mind is the perfect fit for the row's dominant member by construction**: `OGN-122 Time
+Warp` is Mind, so 103.1.b forces Mind into the identity of every Time Warp line, and Mel is therefore
+**always legal beside it**. Of the five non-Time-Warp payoffs she is legal in two —
+`lady-luminosity-loop-comet` (mind/order) and `keeper-of-masks-flurry-plaza-window` (mind/calm) — and
+103.1.b keeps her out of the other three, **which therefore have no counter-proofing available at
+all**. Each of the five now says which case it is.
+
+### The chain closes, and the cheapest payoffs are the worst off
+
+| link | members |
+|---|---|
+| a spell payoff gets a window | **guaranteed**, 359.3.c |
+| answers to it | **11 counters, every one `[Reaction]`; Calm prints five** |
+| protection from those | **one card**, `VEN-069 Mel`, mono-Mind |
+| answer to the protection | she is a Might-4 unit, and per §24 the pool's only Reaction-speed answers are two bounces — `OGN-169 Gust` is gated at Might 3 or less and cannot reach her, leaving `UNL-128 Star-Crossed` (Chaos, E3 P1, symmetric) |
+
+**And size is protection here, which inverts the usual reading.** `OGN-045 Defy` (≤4 Energy and ≤1
+rainbow) and `VEN-152 Rebuttal` (≤4 Energy) are priced out by `SFD-198 Arise!` at E6 and `OGN-085
+Falling Comet` at E5 — while the three cheap payoffs sit inside Rebuttal's range, and **Rebuttal is
+not a counter against them**: *"You may pay :rb_rune_rainbow:. If you do, **gain control of it and you
+may make new choices for it.** Otherwise, counter it."* Against `Desert's Call`, `Ride the Wind` and
+`Flurry of Feathers` the opponent does not have to deny the line — **they can take it**, which against
+`keeper-of-masks-flurry-plaza-window` means taking the four Birds the whole win condition is counting.
