@@ -582,8 +582,22 @@ export function renderGraph(host: HTMLElement, hits: Hit[], layout: Layout, ctx:
         const t = el("text", { class: "route-label", x: ROUTE_W / 2, y: 62, "text-anchor": "middle" });
         lines.forEach((ln, i) => t.append(el("tspan", { x: ROUTE_W / 2, dy: i === 0 ? 0 : 17 }, ln)));
         g.append(t);
-        g.append(el("text", { class: "route-class", x: ROUTE_W / 2, y: h - 12, "text-anchor": "middle" }, `${c.class.replace("_", " ")}${c.status === "verified" ? "" : " · " + c.status.toUpperCase()}`));
-        g.append(el("title", {}, c.name));
+        /**
+         * A body the line needs that no card supplies (`Combo.anyBodies`). Stated on the node
+         * whether or not this list is short of it, for the same reason the drawer states it: the
+         * diagram is a CARD graph, so the requirement has no node of its own without inventing a
+         * card, and the check behind it only counts unit cards while the requirement is usually
+         * about WHERE a body stands. A route drawn with every card node satisfied and nothing else
+         * said is the defect this field exists to end, in the one surface that still said it.
+         *
+         * It rides the class line rather than becoming a badge, because it is a property of the
+         * line and not of this deck, and because a badge would need CSS that does not exist.
+         */
+        const bodies = c.anyBodies ? ` · NEEDS ${c.anyBodies.count} MORE ${c.anyBodies.count === 1 ? "UNIT" : "UNITS"}` : "";
+        g.append(el("text", { class: "route-class", x: ROUTE_W / 2, y: h - 12, "text-anchor": "middle" }, `${c.class.replace("_", " ")}${c.status === "verified" ? "" : " · " + c.status.toUpperCase()}${bodies}`));
+        // Every node is a tab stop, so the requirement has to reach the accessible name too (#78);
+        // the node's own label is truncated by width and the title is where the sentence fits.
+        g.append(el("title", {}, c.anyBodies ? `${c.name} — needs ${c.anyBodies.count} more unit${c.anyBodies.count === 1 ? "" : "s"}: ${c.anyBodies.note}` : c.name));
       });
     }
   }
