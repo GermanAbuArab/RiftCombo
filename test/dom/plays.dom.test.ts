@@ -73,7 +73,19 @@ describe("a play rendered", () => {
     }
   });
 
-  /** The one a reader would see: a marker left in the text is a construct the renderer walked past. */
+  /**
+   * The one a reader would see: a marker left in the text is a construct the renderer walked past.
+   *
+   * WIDENING THIS TO A SINGLE ASTERISK IS A REAL AND UNFINISHED IMPROVEMENT — see the handoff in
+   * `docs/phase0/walks/2026-09-13-ordering-in-the-turn-clock.md`. `parseInline` closes a `*` emphasis
+   * at the NEXT `*`, which is the first half of a nested `**`, so **bold inside an italic quotation
+   * never parses** and the italic's own markers reach the reader. The rendered text then holds single
+   * asterisks and no double ones, which is exactly what this pattern cannot see. Widened on
+   * 2026-09-13 it found FOUR live defects across the corpus in as many minutes (all now repaired);
+   * it was reverted only because the session was stood down mid-sweep, not because it was wrong.
+   * Whoever finishes it: remove `code` alongside `pre` first, because 45 printings carry an alt-art
+   * base code ending in `*` and a play quoting one would trip a bare asterisk check correctly.
+   */
   it("leaves no raw markdown marker in the rendered text", async () => {
     for (const p of PLAYS) {
       const host = await open(`#/plays/${p.slug}`);

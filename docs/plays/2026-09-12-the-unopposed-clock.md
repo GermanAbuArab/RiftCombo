@@ -87,8 +87,8 @@ already where it wants to die.
 
 ### Breaks to
 
-- **`OGN-133 Flurry of Blades` — Body, E1: *"[Reaction] (Play any time, even before spells and
-  abilities resolve.) Deal 1 to all units at battlefields."*** One Energy kills BOTH Sentries at once
+- **`OGN-133 Flurry of Blades` — Body, E1** — *"[Reaction] (Play any time, even before spells and
+  abilities resolve.) Deal 1 to all units at battlefields."* One Energy kills BOTH Sentries at once
   (143.2.a: marked damage at or above Might kills, and they are Might 1), and because it is
   [Reaction] it lands inside the Showdown that the first move opened (345/346 give both players
   Focus and priority there, 813.1.c.1 admits a [Reaction] in any Closed State). It is the single

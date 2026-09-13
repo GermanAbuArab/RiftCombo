@@ -83,7 +83,7 @@ wins**, because the condition is *exactly*:
 
 - **Kill one of the four.** Any removal. 3 units, and the Palace's own dial cannot answer it, because
   381 makes that an Activated Ability on your own turn only.
-- **`OGN-133 Flurry of Blades` — Body, E1, [Reaction], *"Deal 1 to all units at battlefields."*** The
+- **`OGN-133 Flurry of Blades` — Body, E1, [Reaction]** — *"Deal 1 to all units at battlefields."* The
   Bird tokens are Might 1 (187.7), so one Energy takes every Bird off the board at once. Against the
   board in §2 that is two Birds gone: 2 units. [Deflect] is no help, because 355.10.d makes a
   deal-to-all untargeted and 809.1.c charges only for choosing.

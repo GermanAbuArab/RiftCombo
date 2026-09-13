@@ -147,7 +147,7 @@ and what he buys with them is the turn.
 The seven bodies have to survive from your T3 Conquer to your T4 Beginning Phase. That is the whole
 exposure, and it is where this line is actually decided.
 
-- **`OGN-133 Flurry of Blades` — Body, E1, [Reaction], *"Deal 1 to all units at battlefields."*** One
+- **`OGN-133 Flurry of Blades` — Body, E1, [Reaction]** — *"Deal 1 to all units at battlefields."* One
   Energy answers seven Might-1 Recruits, because 143.2.a kills on marked damage at or above Might and
   370.1.a.2 makes them die simultaneously. **This is why §4 spends E4 + 1 Power on the Rage Amplifier
   before passing the turn**, and it is the single most important line of the play.

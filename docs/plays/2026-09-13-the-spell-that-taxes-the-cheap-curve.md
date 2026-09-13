@@ -127,9 +127,9 @@ free-win line of the format at a rate the rune curve pays for.
 - **A four-drop.** Killing a Might-4 body still kills it, but `387.1`'s condition fails and the spell
   **stays in the trash with no replay** — the chain ends and the next kill is a fresh E4 + 1 Power.
   Per §1 that costs the opponent two turns of curve to set up, which is the trade the play is about.
-- **Bodies kept at base.** The spell reads *"a unit **at a battlefield**"*. A body at base is
+- **Bodies kept at base.** The spell reads *"a unit at a battlefield"* — **at a battlefield** is the whole clause. A body at base is
   untouchable — but a body at base is also not Holding anything, which is the point.
-- **`SFD-105 Ruin Runner`-style *"can't be chosen"***, which `054.1` makes absolute where Deflect is
+- **`SFD-105 Ruin Runner`-style** *"can't be chosen"*, which `054.1` makes absolute where Deflect is
   only a price.
 - **Your own clock.** Fury/Chaos prints no Energy-1 body, so **your** Hold curve is turn 6, and this
   line does nothing to shorten it. You are buying time, not points, and something else has to spend

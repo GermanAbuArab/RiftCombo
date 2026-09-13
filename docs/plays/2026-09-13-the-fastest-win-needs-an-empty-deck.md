@@ -249,7 +249,7 @@ Rally the Troops, Lecturing Yordle. Board: the Sentry at Shadow Temple, Fiora, t
 
 ## 6. Breaks to
 
-- **`OGN-133 Flurry of Blades` — Body, E1, [Reaction], *"Deal 1 to all units at battlefields."*** The
+- **`OGN-133 Flurry of Blades` — Body, E1, [Reaction]** — *"Deal 1 to all units at battlefields."* The
   Sentry is Might 1. Killing it strips Control of Shadow Temple at the next Cleanup (323.6), which
   takes **the mill, the Hold points and the place Renata has to stand**, all for one Energy. The
   entry declares `zone: BASE` on nothing here, so this is the catalogue's known hole arriving in the
@@ -301,7 +301,7 @@ location gate, and `prerequisites` is never read at all.** So:
   *"Use my abilities only while I'm at a battlefield"* — `renata-mastermind-points`,
   `renata-bubble-bot-ready`, `jayce-mesmerize-renata`, `jhin-virtuoso-ekko-malzahar-vi`. With 355.2.a
   that is a requirement to **control a battlefield**, which is precisely what a stall removes.
-- **Two more** are `UNL-088 Gutter Palace`: *"if you have exactly 4 cards in hand and exactly **4
+- **Two more** are `UNL-088 Gutter Palace`: *"if you have exactly 4 cards in hand and exactly 4
   units at battlefields**, you win the game."* Not a control requirement, but not board-independent
   either.
 - **One** (`lux-infinite-power`) scores no points at all; it is fuel.

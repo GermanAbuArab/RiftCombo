@@ -542,3 +542,102 @@ a direction.** A later push chain exited non-zero because `origin/work` had move
 inspection `HEAD` and `origin/work` were **identical**: another lane had committed on top of mine and
 pushed, carrying my commit with it. **On a shared branch, "my push failed" and "my work is not
 pushed" are different claims**, and only a per-sha ancestry test tells them apart.
+
+---
+
+# HANDOFF — rc-synth3, 2026-09-13, end of day
+
+**This supersedes any earlier handoff of this lane.** Written into a committed document on purpose:
+`/tmp` does not survive a reboot and a maestro tab id stops meaning anything the moment the session
+behind it is spent.
+
+## What I own
+
+`scripts/adversarial-check.mjs`, `docs/plays/`, this walk document, and `.scratch-gap/` (gitignored,
+inherited). **Do not edit `data/combos.json`, `data/synergies.json`, `CLAUDE.md` or `docs/status.md`**
+— all four are the manager's, and a lane that needs one asks for a formal handover and hands it back
+in those words. `src/` and `web/` belong to rc-builder and rc-schema.
+
+## What to read first, and what to skip
+
+Read **§1–§5** (the ordering model and why its null is a result) and **§9–§10** (pricing an engine's
+own output, and the board requirements the clock cannot see). Those are the load-bearing half.
+**§6–§8 are scaffolding** — a refuted play diagnosis, a citation, and four lessons — skip unless you
+are re-deriving something. **§11–§14** are readings and process and can be read in any order.
+
+## The state of the instrument
+
+All eight modes exit 0, plus `--selftest`, `--no-ignition` and `--ignition-nogate`. Every documented
+gap is now either closed or measured:
+
+- **Ordering** (an `[Equip]` cannot precede its gear, 818.1 + 380) — modelled exactly, moves **zero**
+  of the 31 rows that carry a linked cost, proven visible by `--selftest` and bounded by
+  `--strict-ordering`, which moves six.
+- **An engine's own output** — priced, ON by default, `--no-ignition` reproduces the old table byte for
+  byte. Eleven rows moved, all earlier; the headline went 45 → **38 of 80** unopposed and 6 → **4**
+  contested.
+- **The stage flattening** — measured inert, denominator **one**, with its reopen condition in §9.
+- **Board requirements** — documented and deliberately **not** deducted, §10.
+
+Three hand-walked reference points are pinned in `test/turn-clock.test.ts`, and it has 9 tests.
+
+## What is open — what I would do next
+
+1. **Finish the single-asterisk widening of the plays marker test.** `test/dom/plays.dom.test.ts`'s
+   *"leaves no raw markdown marker"* catches `**` and not a lone `*`, which is exactly the shape a
+   nested emphasis leaves behind. **Widened, it found four live defects across the corpus in minutes**
+   — all four are repaired in this commit — and it was reverted only because the stand-down arrived
+   mid-sweep. The docblock in that test carries the instructions. Remove `code` alongside `pre` first.
+2. **The `shen-sentinel-time-warp-chain` twin**, routed to rc-kw2 with its objection (§11).
+
+## What I deliberately refused, with the reason
+
+- **A per-stage ignition order.** Measured inert on the only multi-stage chain in the catalogue (§9),
+  so it would be code with nothing to do. Reopens only if a closure gains a stage-1 engine costing
+  enough to push completion past stage 0.
+- **Deducting the twelve-rune floor from the ten Lux rows.** The requirement lives in prose, and a
+  prose predicate for it overstates in both directions (§10). Deducting from that is a guess wearing
+  a number; the **row set** is exact and is stated instead.
+- **Modelling the `[Equip]` carrier.** Inert on all 79 rows where it is expressible, and on the 80th
+  it would mean inventing a decklist (§5).
+- **Shipping the conquer-rate audit as a test.** Prose-grounded, needed two narrowings, found nothing
+  — the prose signature exactly (§13).
+- **"Spells are cast, not deployed."** Already tried and rejected by this project; §4 of
+  `docs/plays/2026-09-13-the-elegance-is-the-slowness.md` is a second independent argument for the
+  same refusal.
+
+## The predicate traps I hit, named
+
+- **A prose predicate for a defect matches the entries that got it RIGHT**, because stating a
+  constraint correctly uses the same vocabulary as violating it. 37 of 44 flagged; almost all were
+  good work (§13).
+- **A new BOUND is always looser than it looks, and the looseness usually has a nameable cause.** My
+  sandwich disagreed on five rows and the whole gap was the readiness `+1`, not the restriction (§9).
+- **Re-deriving a closure instead of reading the one the instrument used** gave an engine of E158
+  where the truth is E17 — verdict unchanged, number garbage (§9).
+- **Excluding a card type is a predicate choice.** Dropping battlefields hid `VEN-165 Shadow Temple`,
+  the cheapest deck-emptier in the pool, from the play that is about deck-emptying.
+- **A detector that strips code spans creates its own `***` false positives** — `**`code`**` becomes
+  `****`. That is why the last sweep of this session could not be trusted and the widening was
+  reverted rather than forced.
+- **Bold may never sit inside an italic quotation**, and bold that ends where an italic ends leaves a
+  `***` run that leaks one marker. Both reach the live site.
+
+## Numbers I am quoting, with predicate and date
+
+All measured **2026-09-13** at catalogue **766**. A rule does not rot; these do.
+
+| number | predicate |
+|---|---|
+| **38 of 80** slower than the unopposed curve, **4 of 80** slower than the contested one | `npm run adversarial -- --turns`, engine-output pricing ON |
+| **31 of 80** carry a linked `[Equip]` cost; ordering moves **0** | the non-vacuity line the same command prints |
+| **6** rows move under `--strict-ordering`; headline 38 → 41 | forbidding the same turn, which 359.2.d refutes |
+| **75 of 80** agree between `--ignition` and `--ignition-nogate`; the 5 are the readiness `+1` | §9, settled row by row in `.scratch-gap/probe-readiness-residual.mjs` |
+| **10** rows printed before their own twelve-rune floor | closure contains `lux-infinite-energy`, which declares it verbatim |
+| **35** Hold-triggered free non-point cards against **22** conquer-only | §12, folded by name, legends excluded |
+| **9** Mind/Order names remove more than one card from their own Main Deck | `docs/plays/2026-09-13-the-setup-nobody-prices.md` |
+
+## Outstanding with other people
+
+Nothing of mine is in flight with anyone. The twin lead is with **rc-kw2**; `108.5.d` and the two
+framing bullets are with **rc-manager8**, who confirmed taking them.
