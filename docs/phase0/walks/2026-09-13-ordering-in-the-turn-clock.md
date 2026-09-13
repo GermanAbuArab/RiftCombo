@@ -177,10 +177,14 @@ not citations. Now in the script header beside the optimism it explains.
 2. **Measure how close a null is to flipping.** *"It moves nothing"* and *"it moves nothing, and one
    paragraph stricter it moves six"* are different facts, and only the second says where the
    catalogue actually sits.
-3. **A hand table is an instrument too, and it can be suboptimal without being illegal.** The way to
+3. **A disagreement between two bounds is a question about what the difference is MADE OF, not a
+   number to publish.** I sent a five-row residual to the manager and then found the whole gap was
+   the readiness turn, with the completion turn identical under both arms. Instrument the
+   disagreement before reporting its size.
+4. **A hand table is an instrument too, and it can be suboptimal without being illegal.** The way to
    read a disagreement between a hand walk and an allocator is not to assume the allocator is missing
    a rule. Write the second algorithm.
-4. **The representation can already contain the constraint.** The expensive-sounding change was four
+5. **The representation can already contain the constraint.** The expensive-sounding change was four
    lines because two costs that must be ordered were already two counted types.
 
 ---
@@ -216,14 +220,46 @@ bound is a **sandwich**:
 - `--ignition-nogate` discounts without gating, so a card may be bought early at a price lower than it
   would really pay → **≤** the truth.
 
-They **agree on 75 of 80 rows**, which pins the truth exactly there. The five they do not —
+They **agree on 75 of 80 rows**, which pins the truth exactly there.
+
+### The five they do not agree on are not a residual, and I reported them as one
+
 `jayce-mesmerize-renata`, `lux-infinite-power`, `renata-bubble-bot-ready`,
-`renata-mastermind-points`, `swain-double-conquer` — are each **T5 gated against T4 ungated**, so
-those five are T4 or T5 and the table prints the later. All five are one shape: `lux-infinite-power`
-is itself an engine that **needs** `infinite-energy`, so its own six Energy should be free once
-`lux-infinite-energy` ignites, and the model flattens that nesting by charging every fuel producer at
-rune prices. The flattening is conservative — it can only over-charge — and unflattening it needs a
-per-stage ignition order, which is deliberately not guessed at.
+`renata-mastermind-points`, `swain-double-conquer` read **T5 gated against T4 ungated**, and I sent
+that to the manager as a five-row residual of ±1 turn before checking what the difference was made
+of. It is not the restriction at all.
+
+Instrumented, **`d.all` is 4 under both arms** — the completion turn is identical — and only `d.unit`
+differs, 4 against 3. The whole gap is the readiness `+1` that 143.4 charges a unit landing on the
+final turn. The nogate arm dodges it by *"paying"* a **free** post cost on an early turn, and the
+real game never offers that: before ignition the unit costs its printed Energy.
+
+Settled independently in `.scratch-gap/probe-readiness-residual.mjs` on the necessary condition — to
+avoid the `+1`, every post unit must land before the completion turn, so the **engine and every post
+unit** must be paid at printed price by then:
+
+| row | engine | post units | ceiling through T4 |
+|---|---:|---:|---:|
+| `jayce-mesmerize-renata` | E17 | E11 | **E20** |
+| `lux-infinite-power` | E17 | E8 | E20 |
+| `renata-bubble-bot-ready` | E17 | E8 | E20 |
+| `renata-mastermind-points` | E17 | E8 | E20 |
+| `swain-double-conquer` | E17 | E24 | E20 |
+
+The ceiling is itself generous — it assumes no Power is ever spent, and 161.2.b removes a rune that
+is. Five of five impossible by a wide margin, so **the gated answer is the true one on every row**
+and the lower arm is loose for a known artifact rather than for a modelling gap.
+
+That probe's own first version reported the engine at **E158** where the truth is E17, because it
+re-selected the fuel producers itself and swept up every fuel entry in the catalogue whose `produces`
+intersected the row's needs. The verdict was unchanged and the number was garbage — which is exactly
+why it now reads the closure out of the clock's own printed row.
+
+The model does still flatten one nesting, conservatively: `lux-infinite-power` is itself an engine
+that **needs** `infinite-energy`, so its own six Energy ought to be free once `lux-infinite-energy`
+ignites, and every fuel producer is charged rune prices instead. That can only over-charge, and on
+these five rows the arithmetic above shows it changes nothing. Unflattening it needs a per-stage
+ignition order.
 
 **The reason to default it ON is a comparison of errors, not a preference.** Leaving it off keeps a
 known **nine-turn** error on `bottled-constellation-time-warp` in preference to a bounded **one-turn**

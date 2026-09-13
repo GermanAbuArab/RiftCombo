@@ -44,22 +44,32 @@
 //      all EARLIER, and that row moves T5 -> T4, matching the hand walk that reported the defect.
 //      `--no-ignition` reproduces the old table exactly.
 //
-//      WHAT IT COSTS, bounded by a SANDWICH rather than asserted. The gate forbids buying a
+//      WHAT IT COSTS, bounded by a SANDWICH and then settled to ZERO. The gate forbids buying a
 //      post-ignition card early at full price, which can only push a row LATER than the truth.
 //      `--ignition-nogate` keeps the discount and drops the gate, letting a card be bought early
-//      cheaper than it really would be, which can only pull a row EARLIER than the truth. So the
-//      truth is pinned between them, and they AGREE on 75 of 80 rows. The five they do not are
-//      `jayce-mesmerize-renata`, `lux-infinite-power`, `renata-bubble-bot-ready`,
-//      `renata-mastermind-points` and `swain-double-conquer`, each T5 gated against T4 ungated - so
-//      those five are T4 or T5 and this table prints the LATER of the two. They are all the same
-//      shape: `lux-infinite-power` is itself an engine that NEEDS `infinite-energy`, so its own six
-//      Energy should be free once `lux-infinite-energy` ignites, and the model flattens that nesting
-//      by charging every fuel producer at rune prices. That is a conservative flattening - it can
-//      only over-charge - and unflattening it needs a per-stage ignition order, which is the next
-//      thing here and is deliberately not guessed at.
+//      cheaper than it really would be, which can only pull a row EARLIER. So the truth is pinned
+//      between them, and they AGREE on 75 of 80 rows.
 //
-//      So the INFINITE column is no longer the over-estimate it was, and it is still not a floor:
-//      five rows may be one turn early and the header says which.
+//      THE FIVE THEY DO NOT AGREE ON ARE NOT A RESIDUAL, AND THE FIRST VERSION OF THIS NOTE SAID
+//      THEY WERE. `jayce-mesmerize-renata`, `lux-infinite-power`, `renata-bubble-bot-ready`,
+//      `renata-mastermind-points` and `swain-double-conquer` have the SAME completion turn under
+//      both arms - `d.all` is 4 either way - and differ only in `d.unit`, i.e. entirely in the
+//      readiness `+1` that 143.4 charges a unit landing on the final turn. The nogate arm dodges it
+//      by "paying" a FREE post cost on an early turn, which the real game never offers: before
+//      ignition that unit costs its printed Energy.
+//
+//      Settled independently in .scratch-gap/probe-readiness-residual.mjs, which asks the necessary
+//      condition - to avoid the `+1` every post UNIT must land before the completion turn, so the
+//      engine AND every post unit must be paid at printed price by then. Engine E17 against a
+//      ceiling of E20 through T4 leaves 3 Energy, and the post units want between 8 and 24. All five
+//      are impossible by a wide margin, so the gated answer is the true one on every row and the
+//      lower arm is loose for a known artifact rather than for a modelling gap.
+//
+//      The model DOES still flatten one nesting, conservatively: `lux-infinite-power` is itself an
+//      engine that NEEDS `infinite-energy`, so its own six Energy ought to be free once
+//      `lux-infinite-energy` ignites, and every fuel producer is charged rune prices instead. That
+//      can only over-charge, and on these five rows the arithmetic above shows it changes nothing.
+//      Unflattening it needs a per-stage ignition order; it is the next thing here.
 //
 //      ORDERING IS MODELLED AS OF 2026-09-13 AND IT MOVES NOTHING, WHICH IS THE RESULT. `deployTurn`
 //      used to ask only whether every cost was PAYABLE by turn N; an [Equip] is not merely a second
@@ -353,7 +363,15 @@ function deployTurnUncached(types, costs) {
   // 50 seconds against 4.6 before. Lowered to 2e5, which keeps it near 5 and sends only the very
   // largest rows to the greedy pass - and the header PRINTS how many, so a row priced by the defect
   // #205 removed can never be read as exact. Raise it if this ever runs somewhere without a clock.
-  if (space > (Number(process.env.RC_GUARD) || 2e5)) { greedyFallbacks++; if (process.env.RC_FB) console.error("FALLBACK space=" + space + " dim=" + dim); const g = greedyTurn(costs); return { all: g, unit: g }; }
+  // RC_GUARD raises the ceiling for a one-off measurement; RC_FB names the rows that hit it. At 2e6
+  // every row is exact and the table takes 44 seconds, which is why the default is 2e5 and why the
+  // header prints how many rows the fallback priced.
+  if (space > (Number(process.env.RC_GUARD) || 2e5)) {
+    greedyFallbacks++;
+    if (process.env.RC_FB) console.error(`FALLBACK space=${space} dim=${dim}`);
+    const g = greedyTurn(costs);
+    return { all: g, unit: g };
+  }
   const FULL = space - 1;                       // every count at its maximum
 
   let curR = new Int8Array(space).fill(-1);     // runes on board, -1 = state unreachable
@@ -865,6 +883,11 @@ for (const { e, domains: ownDomains, cards: ownCards } of entries) {
   const d = deployTurn(finalCosts);
   const gated = beginningPhaseGated(e) || (consumer ? beginningPhaseGated(consumer) : false);
   const pays = d.all === Infinity ? Infinity : d.all + ((d.unit === d.all && d.unit !== 0) || gated ? 1 : 0);
+  // RC_DBG=<id>,<id> prints the parts a row's turn is made of. This is how the five-row gap between
+  // --ignition and --ignition-nogate turned out to be the readiness `+1` and not a residual: `all`
+  // was identical under both arms and only `unit` moved.
+  if (process.env.RC_DBG && process.env.RC_DBG.split(",").includes(e.id))
+    console.error(`DBG ${e.id} all=${d.all} unit=${d.unit} gatedPayoff=${gated} pays=${pays} postUnits=${finalCosts.filter((c)=>c.gated&&c.unit).length} costs=${JSON.stringify(finalCosts.map((c)=>`${c.e}/${c.p}${c.unit?"U":""}${c.gated?"*":""}`))}`);
   const note = [usesBanned(e) && "BANNED in constructed", fuel && `fuel: + ${fuel}`,
                 via && `payoff: + ${via}`].filter(Boolean).join("; ");
   // Baseline AND the printed identity both read the MERGED set: the deck you would actually build

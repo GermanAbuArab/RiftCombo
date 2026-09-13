@@ -127,9 +127,14 @@ describe("the allocator's ordering constraint", () => {
    * The engine-output discount is a RESTRICTION as well as a discount — a post-ignition card may not
    * be bought before the loop is running — and a restriction can only push a row later than the
    * truth. `--ignition-nogate` drops the gate while keeping the discount, which can only pull a row
-   * earlier than the truth, so the two bound it. This asserts the sandwich is still tight nearly
-   * everywhere; if a change widens it, the number in the header is stale and the rows it names are
-   * wrong.
+   * earlier than the truth, so the two bound it.
+   *
+   * They agree on 75 of 80. The five that differ are NOT a residual: `d.all` is identical under both
+   * arms and only `d.unit` moves, so the entire gap is the readiness `+1` of 143.4, which the nogate
+   * arm dodges by "paying" a free post cost early — something the real game never offers, because
+   * before ignition that unit costs its printed Energy. Settled row by row in
+   * `.scratch-gap/probe-readiness-residual.mjs`. This assertion is the tripwire: if a change widens
+   * the disagreement past that handful, the header's account of it is stale.
    */
   it("keeps the ignition sandwich tight on all but a handful of rows", () => {
     const loose = execFileSync("node", ["scripts/adversarial-check.mjs", "--turns", "--ignition-nogate"], {
