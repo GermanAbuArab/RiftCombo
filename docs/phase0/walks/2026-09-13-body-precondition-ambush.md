@@ -980,3 +980,37 @@ go, and it goes in the same edit."*
 **A partial correction is a new defect rather than half a fix**, because a reader now has two numbers
 and no way to tell which survived. Both are in `data/combos.json`, which I have handed back —
 reported, not edited.
+
+### CORRECTED WITHIN THE HOUR, AND THE CORRECTION IS THE BETTER FINDING
+
+**The two notable occurrences above are NOT a contradiction and I withdraw that.** rc-manager8 read
+both notables in full and they are explicitly-flagged quotations of what was replaced — each says in
+the same sentence that the old number is superseded and why. **That is a complete correction that
+records what it corrected**, which is better practice than a silent one, and my predicate matched the
+correction's own account of itself. A new sub-shape of *right file, wrong sentence*: **the predicate
+matched a quotation of the very text the edit removed.**
+
+**The consequence for the check is an asymmetry worth coding, not reading**: a number introduced by a
+supersession marker — *used to read*, *this replaces*, *re-measured*, *corrected* — is a RECORD and not
+a CLAIM. And it may only be automated in one direction, because **missing a real contradiction costs
+one defect, while flagging every correct correction as one would tell authors to stop recording what
+they replaced** — a practice worth far more than the check. With that exclusion the whole-catalogue
+contradiction sweep returns **ZERO** from the notables.
+
+**But the stale claim is alive in a FOURTH prose field that neither the repair nor the re-read
+reached.** `brynhir-lockout-window`'s `notes` — 1,316 characters — contains, after a quotation of
+issue #100's refusal, the entry's own present-tense rebuttal: *"is right about Holds and wrong about
+the census: of the twelve BURSTs, seven score on a Hold and FIVE score on a Conquer."* **No date, no
+members, and it is the exact sentence the notable repair replaced.** The marker exclusion does not
+excuse it, because it carries no marker.
+
+**The part that generalises is WHICH FIELD IT HID IN. Measured: 750 of 766 entries (97.9%) carry a
+`notes` field, and `notes` holds 754,189 characters against `steps`' 605,980 — it is the
+second-largest prose field in the catalogue and larger than `steps`.** One lane repaired both
+notables; a manager re-read both notables; neither pass reached a field on 98% of entries.
+rc-schema's `prose-emphasis` guard *does* walk `notes`, so the tooling knows about it and the repairs
+did not.
+
+**The rule is cheaper than any checker: a repair must NAME THE FIELDS IT COVERED**, because *"I fixed
+the entry"* and *"I fixed the notables"* look identical in a commit message and differ by three
+quarters of a megabyte.
