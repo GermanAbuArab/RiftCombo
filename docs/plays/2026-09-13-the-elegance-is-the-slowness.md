@@ -112,7 +112,19 @@ the one identity that prints an infinite-Energy engine. Measured: the union of t
 `needs` on one row so the matcher can route a loop into the window, both rows cross-referencing — is
 legal here and absent.
 
-**And the objection belongs with the lead.** A Lux shell has to empty a 39-card Main Deck, which
-[the setup nobody prices](2026-09-13-the-setup-nobody-prices.md) costs at roughly twenty-four slots of
-net-positive draw. Whether four more cards fit in that list is the question a walker answers before
-writing the twin, and it is not one the clock can answer.
+**And the objection belongs with the lead — but it is smaller than I first wrote it, and the
+correction is the useful half.** A Lux shell has to empty a 39-card Main Deck, and
+[the setup nobody prices](2026-09-13-the-setup-nobody-prices.md) shows there are two routes to that.
+I attached the **draw** route's price — roughly twenty-four slots of net-positive draw — as the reason
+four more cards might not fit. **That is the wrong route to quote here.** The cheapest emptier is
+`VEN-165 Shadow Temple`, a **battlefield**, and 103.4 keeps battlefields out of the Main Deck's forty
+entirely, so on the Temple route the emptying costs **no deck slots at all**. This line needs no
+particular battlefield, so unlike `grand-plaza-loop-time-warp` it can simply bring the Temple — and
+room is not the problem.
+
+**What a walker should check instead is the interaction the Temple creates**, which is sharper and
+which I am not going to settle from outside `data/combos.json`: the Temple's burn carries no *"may"*,
+so once the deck is empty every Hold is a `[Burn 3]` into an empty deck, which 431.1.b turns into a
+Burn Out — and 431.2.c hands an opponent a point each time. A three-Hold chain would be giving away
+three points while taking nine, and 194.2 asks for *"more points than any other player"*. That is an
+arithmetic question about one board, which is exactly what a walk is for.
