@@ -48,6 +48,9 @@ http.server 8788`, que alcanza para todo menos la ruta `/api/deck-url`.
 **El deploy es un push a master**: Vercel está conectado al repo y construye desde el árbol
 committeado. `public/` es artefacto de build de `web/` — no se edita a mano.
 
+> ⚠️ No hay ambiente de staging: cualquier push a `master` deploya a producción de inmediato, y el
+> único proyecto Supabase configurado también es el de producción.
+
 ## Cuentas
 
 Todo el sitio está detrás del login con Google. Dos valores públicos lo configuran, desde

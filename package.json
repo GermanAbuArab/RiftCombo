@@ -19,6 +19,9 @@
     "adversarial": "node scripts/adversarial-check.mjs"
   },
   "license": "MIT",
+  "engines": {
+    "node": ">=22"
+  },
   "dependencies": {
     "@piltoverarchive/riftbound-deck-codes": "^1.4.0",
     "@supabase/supabase-js": "^2.115.0"

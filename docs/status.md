@@ -159,6 +159,9 @@ tree** and goes to production. Check it with `npx vercel ls riftcombo`. `npx ver
 still exists but uploads the working tree, which twice published another session's uncommitted files:
 it is a fallback, not the normal path.
 
+> ⚠️ There is no staging environment: any push to `master` deploys to production immediately, and the
+> only configured Supabase project is also the production one.
+
 **Since 2026-09-06, sessions push to `work` and only the orchestrator pushes `master`** — see
 CLAUDE.md's "Deploy quota" bullet for the full rule (Vercel's Hobby cap is 100 deployments/day, scoped
 to the whole account, and it has been spent more than once). Re-run `npx vercel inspect
