@@ -662,3 +662,80 @@ kind of thing only its own arithmetic can say.
 I did not re-walk the thirteen that name an answer beyond reading the matched sentence in each, and I
 did not verify the full eleven-counter census — my predicate was `Counter a spell` and returned seven.
 Both numbers are stated with their predicates so the next reader can widen either in one command.
+
+---
+
+## 14. The mirror of lead 3 — **what can be removed AT the payoff is a four-line taxonomy, and three of its four rules are cited by nothing**
+
+§5 and §13 are both instances of one question a finisher should answer and usually does not: **can the
+opponent remove the thing that pays?** Sorting the 80 finishers by the card TYPE in their `payoff`
+role turns that into a short table with a rule behind every row. (`Card.type` is an ARRAY; a
+`=== "unit"` test returns zero for every card in the pool.)
+
+**80 finishers, 10 with no `payoff` row at all. Payoff card types: unit 31, gear 12, battlefield 12,
+spell 5, and 10 across mixed rows** (`battlefield+gear` 1, `spell+unit` 2, `gear+unit` 3,
+`battlefield+spell` 3, `gear+spell` 1). Widening the role filter to `payoff|battlefield` gives
+**29 finishers carrying a battlefield card**.
+
+| payoff is a… | can it be removed? | rule | pool |
+|---|---|---|---|
+| **unit** | yes — damage or a kill instruction | 143.2.a, 428.1 | the whole removal suite |
+| **gear** | yes — kill, bounce, or **detach** | — | **15 enemy-facing printings, every domain** (§13) |
+| **battlefield** | **not killed, not moved, not recycled** — only **REPLACED** | **170.3, 170.4, 185.2.e**; 170.7 still makes it targetable | **exactly ONE card** |
+| **legend** | **cannot be killed**; a Champion Legend cannot even leave its zone | **174.3**, 107.4.d | — |
+
+```
+170.3.  Battlefields cannot be Killed during the course of regular play.
+170.4.  Battlefields cannot be Moved.
+170.7.  Battlefields can be targeted by spells or game effects.
+174.3.  Legends cannot be Killed during the course of regular play.
+185.2.e. Tokens inherit the recycle destination of their type.
+           Example: … Token battlefields and legends can't be [recycled].
+```
+
+**All five are cited ZERO times by `data/combos.json`.** That is not a debt in the §13 sense — it is
+the **explanation of a pattern the catalogue already exhibits and never states**. Every Plaza entry's
+threat discussion is about the **bodies** and about **Control** (323.6, 190.6.d), and never about the
+Plaza, and the reason is 170.3 with 170.4: there is nothing to say, because nothing kills a
+battlefield. A battlefield payoff is the one payoff class with no removal answer at all.
+
+**The single exception, swept rather than assumed.** Predicate: corpus lines matching
+`(replace|swap|remove|banish|return)` within 60 characters of `battlefield`, **11 hits, all read**.
+Ten of the eleven return or banish a **unit** *at* a battlefield (`OGN-169`, `OGN-172`, `OGN-188`,
+`SFD-138`, `SFD-145`, `UNL-021`, `UNL-184`, `UNL-185`, `VEN-110`) or are the Brush's own swap-back
+(`UNL-T03`). **One acts on the battlefield itself:**
+
+```
+UNL-195 | Green Father | Legend | Calm/Order | When you conquer or hold, you may exhaust me to
+replace that battlefield with a Brush battlefield token.
+```
+
+**438.5** — *"The card or token that is Replaced is placed in **Banishment**"* — with 438.5.a keeping
+it *"Replaced and not Banished"*, so 108.6.c's no-return rule does not bite, and 438.7.b/438.7.b.1
+governing the swap back. He is a **legend**, so he costs no deck slot.
+
+**The careful statement, because the obvious one over-claims.** His trigger reads *"that
+battlefield"* — the one **he** conquered or held — so he cannot reach your Plaza until he has taken
+it, and by then 190.6.d has already blanked its text for you. What the replacement changes is not
+the loss but the **recovery**: the Plaza leaves the board into Banishment, and the Brush's swap-back
+(*"When you score here, you may replace this with the battlefield it replaced"*) is the **Brush's
+own** ability, which 190.6.a gives to **its Controller**. So you get the Plaza back only by
+conquering the Brush and then scoring there — **a delay measured in turns, not a permanent loss**,
+and for that whole time the win condition is not on the board.
+
+**Nothing in the catalogue says this. Zero of the 29 battlefield-payoff finishers name Green Father
+as a threat** — and the check nearly reported otherwise, which is worth recording. A first pass
+flagged **78 entries as "naming Green Father"**; opened, **every one of the three battlefield-payoff
+hits is a false positive**: `noxian-drummer-eye-svellsongur-plaza` and `corina-svellsongur-plaza`
+name him in the `easy[0]` **legend census** (*"Legend domains cover Calm and Order — … Green Father
+(UNL-195) …"*), and `keeper-of-masks-flurry-plaza-window` names him only to establish that the Brush
+is **Calm/Order and therefore illegal** in a Calm/Mind shell. **Right file, wrong sentence, three
+times out of three.** The catalogue does hold the mechanic — `green-father-brush-ultrasoft-poro-birds`
+works the replacement out in full, with 438's own worked example and a caution that there are **two**
+Green Father base codes (`UNL-195`, `UNL-233`) — but it is catalogued as a **tool** and never pointed
+at the 29 lines it answers.
+
+**Why this is worth a note rather than 29 notes.** A gear payoff has fifteen answers in six domains
+and the entry should name the cheapest; a battlefield payoff has **one**, it is a legend, it costs the
+opponent a conquer first, and it delays rather than destroys. **That is one sentence, true of all 29,
+and the taxonomy is what makes it one sentence instead of an audit.**
