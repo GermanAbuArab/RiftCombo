@@ -132,3 +132,53 @@ the job it is kept for.
 **SO THE REVISED ORDER IS: C1 (shipped), then C4, then C3 as a probe.** C4 — does `produces` match
 the steps — is now the next candidate: it is mechanical, it needs no prose beyond a tag comparison,
 and **it is unmeasured, so I am not claiming a yield for it in advance.**
+
+---
+
+## 6. C4 RUN TO COMPLETION TOO: **A SECOND MEASURED NEAR-EMPTY, AND IT NEEDED FOUR NARROWINGS**
+
+`produces` is what `generateVariants` routes on, so a tag the steps never deliver mis-wires the GRAPH
+where a `uses` defect mis-wires the MATCHER. **15 of the 19 tags have a checkable signature** — the
+four vague ones (`resource-engine`, `card-advantage-engine`, `tempo-denial`, `board-protection`) are
+deliberately NOT checked, because a predicate for them would be a guess about wording. **496 tag
+instances checked. 20 → 10 → 4 → zero confirmed defects.**
+
+**Every narrowing was my signature being narrower than the catalogue's vocabulary, and each one is
+worth naming because it is the same failure four times:**
+
+1. **The pool NAMES its tokens rather than saying "token"** — `lux-infinite-energy` produces
+   `token-body-engine` and its steps say *"Recruit"*. Widened to Recruit, Sprite, Bird, Mech, Gold,
+   Sand Soldier, Reflection, Tentacle, Spiderling.
+2. **A BLOODLESS conquer is described by its rules vocabulary**, not by the verb — 348.2.a, Showdown,
+   466.5.
+3. **Removal in this pool is usually DAMAGE**, which says neither *"kill"* nor *"remove"* — eight of
+   the ten survivors at that stage were `repeatable-removal` entries that deal damage.
+4. **And the last four were still mine**: `maduli-the-list-might-gate` conquers by ATTACKING
+   (*"one gated attack per Chaos Power"*), `faefolk-star-spring-drag` removes by FORCED REPOSITION,
+   `ezreal-marai-spire-free-repeat` tags what the engine POWERS rather than what its steps do.
+
+**So C4 is a probe, not a test, by the same standing rule that demoted C2 — it needed its third and
+fourth narrowing, and there is no rule that decides whether a tag matches a paragraph.**
+
+**One observation, offered as a vocabulary question and NOT as a defect:**
+`void-drone-sarcophagus-zone-discount` carries `token-body-engine` while what it replays from
+Banishment are ordinary UNITS, not tokens. Either the tag means "a body faucet" and the name is
+loose, or it means what it says and this is a mis-tag. **That is a question for whoever owns the tag
+vocabulary, and one entry is not evidence of a pattern.**
+
+## 7. WHERE THE SCOPE ENDS UP, HAVING RUN TWO OF THE FIVE
+
+| check | grounded in | result |
+|---|---|---|
+| **C1 can it start** | **RULES** (190.1, 190.6.d) | **14 entries, shipped to rc-schema** |
+| C2 can it repeat | rules + a PROSE question | **measured empty**, 6 read, 3 correct, 3 instrument faults |
+| C4 does `produces` match | prose only | **measured near-empty**, 4 narrowings, 1 vocabulary question |
+| C3 does it return to its start | prose only | not run |
+| C5 what kills it | prose only | not run |
+
+**The pattern across all three that have been run is the one this fleet recorded this afternoon and
+it now has a third instance: THE ONE CHECK GROUNDED IN A RULE FOUND FOURTEEN DEFECTS AND NEEDED ONE
+NARROWING; THE TWO GROUNDED IN PROSE FOUND NOTHING AND NEEDED THREE AND FOUR.** That is not an
+argument that engines are clean — C3 and C5 are unrun and both are prose-grounded, so I expect them
+to behave the same way. **It is an argument that the useful question to ask of any proposed check is
+"what RULE decides this", and to stop when the answer is "none".**
