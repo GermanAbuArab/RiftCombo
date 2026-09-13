@@ -630,3 +630,85 @@ base-code slips caught by a pre-commit grep over every card name cited** (`OGN-2
 `OGN-288`; `SFD-109` written as `SFD-200`). Both were typed rather than measured, which is the
 defect class this project pays for most often, and **one cheap grep over the card names in a draft
 catches it** — worth making a standing pre-commit step for any lane that names cards.
+
+---
+
+# FIFTH SLICE — walking 369.2, the lead I refused to derive in §4
+
+I filed 369.2 as a lead and said somebody should walk it. Nobody else was going to, and it had been
+open in rc-walk-mid's handoff since **2026-09-09** (*"a Burn Out cannot be responded to"*, a row whose
+consequence the loop ledger had never asked about), so I walked it. **Four results, one of them a non-finding.**
+
+**369.2** (catalogue 6, `CLAUDE.md` 0): *"Some Game Actions are themselves Replacement Effects.
+Example: Burning Out is a replacement effect.​ Example: Preventing Damage is a replacement effect."*
+
+## 5A. PREVENT IS A REPLACEMENT, SAID TWICE, AND THIS FILE HAS NEITHER SENTENCE
+
+**437.2** (uncited) says it inside the Prevent block itself: *"When damage is Prevented, it is
+replaced with an event where it deals that much damage reduced by the Prevent Value tracked on the
+Unit specifically."* So `CLAUDE.md`'s *"a different mechanism from the heal/exhaust/recall shield of
+808.1.d.1"* is **right about the timing and imprecise about the kind — both are Replacement
+Effects, and they differ in WHICH EVENT they replace**: 437.2 replaces the **damage** event with a
+smaller one, Zhonya's Hourglass replaces the **death** event. **That is the real reason 437.4
+generates no kill event** — not that Prevent is a different species of shield, but that the damage
+that would have caused the death was never dealt. Read with **437.3** (§2, the depleting Prevent
+Value) the family is complete: replace the damage event, reduce the tracked value, repeat on the
+next event until it is spent.
+
+## 5B. 370.2 DOES NOT CAP THE BURN-OUT CASCADE, AND I CHECKED RATHER THAN ASSUMED
+
+The obvious worry, and the reason this needed walking: **370.2** reads *"A Replacement Effect can
+only be applied once to an event, or to any Game Actions or events that replace that event"* — which
+read carelessly would cap the 431.3.a death spiral at one Burn Out. **It does not, on three
+independent grounds, all verbatim:**
+
+1. **431.3**: *"When they attempt to perform the original action **again**, it will cause another
+   Burn Out."* The re-attempt is a NEW qualifying event, not a replacement of the old one.
+2. **431.1.a** sequences it explicitly: *"they will Draw as many as possible, perform this action,
+   **then Draw the remaining amount instructed**"* — and that remaining draw again exceeds an empty
+   deck, qualifying afresh under 431.1.
+3. **431.3.b** — *"Points gained after the first Burn Out being processed **in sequence** cannot be
+   replaced or prevented by any means"* — is written on the assumption that a sequence exists, and
+   is itself phrased in replacement vocabulary (it exists to stop OTHER replacements reaching the
+   point gain), which is corroboration that the whole apparatus is the 369–373 one.
+
+**So the loop ledger is unaffected and 431.3.a stands as written.** The §4 observation is now
+confirmed rather than open. Riot's 370.2 example (two `Zhonya's Hourglass` on one death) is about a
+chain of events each replacing the last **within one execution**, which a re-attempted draw is not.
+
+## 5C. NEITHER CAN BE RESPONDED TO — THE QUESTION rc-walk-mid LEFT OPEN
+
+**369**: *"Replacement Effects intercede during the execution of a Game Effect and alter its
+execution."* Nothing in 369–373 creates a Chain Item, and the replacement happens **inside** an
+execution that is already under way, so no priority window opens between the original event and the
+replaced one. **A Burn Out cannot be answered, and neither can a Prevent.** Stated with its limit:
+the rules do not say this for replacements in the words 446.3.c uses for Moving (*"Moving does not
+use the Chain, nor is it able to be Reacted to"*) — **it follows from 369 placing the effect inside
+an execution plus the absence of any chain item, and I am recording the derivation rather than
+claiming a paragraph that says it outright.**
+
+## 5D. 372 IS AN ORDERING RULE THIS FILE DOES NOT HAVE, AND IT IS NOT 373
+
+**372** (uncited): *"If more than one Replacement Effect applies to the same event being executed,
+then the controller of the object being acted on determines the order the Replacement Effects will
+apply."* That is a **different question from 373**, which §3 proposes: **372 is ONE event with
+several replacements, ordered by the controller of the OBJECT** — so on an enemy unit, **they**
+order your replacements — while **373 is SEVERAL simultaneous events, with each controller ordering
+their own.** The two are one paragraph apart and answer opposite questions; carrying 373 without 372
+would leave the more common case out.
+
+## 5E. THE NON-FINDING, REPORTED AS ONE
+
+**371 / 371.1** (*"Some Replacement Effects will begin with 'once each turn,' or 'N times each
+turn.'"* … *"These Replacement Effects may only be applied to the specified number of events each
+turn"*). Measured over
+`corpus_flat.txt` for a per-turn limiter co-occurring with a replacement word (`as` / `would` /
+`instead`): **exactly ONE card**, `UNL-086 Zilean, Time Mage` — *"Once each turn, if you **would**
+play a token unit while I'm at a battlefield, you may play that token and an additional copy of it
+**instead**."* It is catalogued as `leblanc-zilean-reflection-doubling`, and **that entry already
+cites 371.1 and already states the once-per-turn cap in its own words.** No defect; the work was more
+careful than the check. What the entry does NOT have is the **replacement framing** — it cites no
+paragraph of 369–373 beyond 371.1 — so the two consequences of Zilean's doubling being a
+Replacement Effect are unstated there: **the opponent cannot respond to the doubling** (§5C, no chain
+item) and **372 decides its order** against any other replacement on the same token play. That is a
+citation upgrade for an entry lane, not something I can apply from here.
