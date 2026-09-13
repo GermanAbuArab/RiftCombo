@@ -530,3 +530,37 @@ measured on **8,307** lists at a catalogue of about 180 on 2026-09-06, and this 
 published *top decks*, a winner-biased subset — at a catalogue of 766. Two different populations and a
 catalogue four times larger, both pushing the same way. Quoting one against the other would be the
 predicate error this project keeps paying for.
+
+
+### planDeck: "two cards from a finisher" is two entries, not a deckbuilding fact
+
+The inverse question, and the third instrument to meet the corpus: not *which lines does this list
+complete* but *what would it cost to complete one*. `planDeck` computes exactly that and had never been
+pointed at the 222.
+
+Every list is priced (0 with no legend, 0 where no finisher is legal under their identity), and the
+**median distance to the nearest finisher is 2 cards** — 7 lists already hold one, 141 are within 1-2,
+24 within 3-4, 35 within 5-6, 15 at 7+.
+
+**That number is an artifact and the hits say so.** Of the 146 lists whose nearest finisher costs two
+or fewer:
+
+| nearest finisher | class | cards | lists |
+|---|---|---|---|
+| `gutter-palace` | ALT_WIN | **1** | 69 |
+| `flurry-of-feathers-grand-plaza-win` | ALT_WIN | 2 | 52 |
+| `plaza-armory-miss-fortune` | ALT_WIN | 3 | 7 |
+| `vanguard-captain-manufactor-plaza` | ALT_WIN | 3 | 7 |
+| `brambleback-trinity-skyfall-conquer` | BURST | 3 | 3 |
+
+**121 of those 146 are reaching one of TWO colourless ALT_WIN lines**, both battlefield-based and so
+addable to almost any deck. So the median says the catalogue contains two very cheap colourless
+finishers — it says nothing about how close a real deck is to a finisher it would actually want.
+
+**One observation for whoever owns `planDeck` and `bodies.ts`, offered as an observation and not a
+defect claim**, because the field is not this lane's: the cheapest route the panel would offer to
+**69 of 222 registered lists** is `gutter-palace`, priced at ONE card. Its `anyBodies` count is 1, and
+the requirement its own note quotes is *"if you have exactly 4 cards in hand and exactly 4 units at
+battlefields, you win the game"* — a board STATE with two exactness conditions, which a count of bodies
+cannot express. The price is honest about what `anyBodies` measures and the note carries the text; what
+is worth knowing is that the panel's top recommendation for a third of all real lists is that line.
