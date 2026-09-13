@@ -783,6 +783,107 @@ describe("the Chosen Champion at click time (103.2.a.2, 103.2.d.3)", () => {
   });
 });
 
+/**
+ * THE IMPORT PATH, which passes through none of the caps by design: a list arriving by paste, deck code
+ * or Piltover Archive import goes `loadDeck` -> `canonicalizeDeck` and never near `capOf`. That is
+ * right — a pasted list is the player's, and silently "fixing" it would be the worst outcome of all,
+ * because the checklist would then certify a list the player does not have. So the contract for an
+ * already-illegal list is three things, and this pins all three: it arrives INTACT, the checklist
+ * reports every break, and no button can make it worse.
+ *
+ * The fixture is illegal nine ways at once: off-domain card, off-tag champion, under 40 with an
+ * unreadable line, four of a name, two of a Unique name, five Signature cards, thirteen runes, four
+ * battlefields, and a banned card.
+ */
+describe("a list that arrives already illegal (the import path)", () => {
+  const ILLEGAL = `Legend
+1 Fire Below the Mountain
+
+Champion
+1 Clockwork Keeper
+
+Battlefields
+1 The Grand Plaza
+1 Aspirant's Climb
+1 Back-Alley Bar
+1 Power Nexus
+
+Runes
+7 Calm Rune
+6 Mind Rune
+
+Main Deck
+2 Forgefire Cape
+1 Rabadon's Deathcrown
+1 Shurelya's Requiem
+1 Fox-Fire
+4 Charm
+1 Blazing Scorcher
+2 Some Totally Unknown Card Name
+`;
+  const imported = () => canonicalizeDeck(loadDeck(ILLEGAL, cards), cards);
+
+  it("arrives intact — nothing is silently clamped on the way in", () => {
+    const deck = imported();
+    expect(deck.main[CAPE]).toBe(2);              // 825.3.a says one
+    expect(deck.main["OGN-043"]).toBe(4);         // 103.2.b says three
+    expect(deck.main["OGN-001"]).toBe(1);         // outside calm + mind
+    expect(zoneCounts(deck).battlefields).toBe(4);// 103.4.a says three
+    expect(zoneCounts(deck).runes).toBe(13);      // 103.3.a says twelve
+    // And the line the card index could not read is still the player's (#135).
+    expect(deck.unresolved).toEqual([{ raw: "Some Totally Unknown Card Name", count: 2, section: "main" }]);
+  });
+
+  it("is reported break by break, each under its own paragraph", () => {
+    const rules = checkBuild(imported(), cards, "constructed").rules;
+    const failed = new Set(rules.filter((r) => r.status === "fail").map((r) => r.rule));
+    for (const id of [
+      "103.1.b",                          // Blazing Scorcher is mono-fury
+      "103.2.a.2",                        // Clockwork Keeper is not tagged Ornn
+      "103.2 · Tournament Rules 601.1.b", // under 40, and one line unreadable
+      "103.2.b",                          // 4x Charm
+      "825.3.a · 825.3.b",                // 2x Forgefire Cape
+      "103.2.d",                          // five Signature cards
+      "103.3.a · 103.3.a.1",              // thirteen runes
+      "103.4.a · 103.4.c",                // four battlefields
+      "103.2.e",                          // Aspirant's Climb is banned
+    ]) expect(failed.has(id), id).toBe(true);
+    // Non-vacuity in the other direction: the legend itself is fine, so not every row simply fails.
+    expect(rules.find((r) => r.rule === "103.1")!.status).toBe("pass");
+  });
+
+  it("cannot be made worse by any button", () => {
+    const deck = imported();
+    const main = zoneCounts(deck).main;
+    for (const [what, next] of [
+      ["a third Unique copy", addCard(deck, CAPE, cards)],
+      ["a fifth of a name", addCard(deck, "OGN-043", cards)],
+      ["a second off-domain card", addCard(deck, "OGN-001", cards)],
+      ["designating the off-tag champion", setChampion(deck, "OGN-044", cards)],
+    ] as const) expect(zoneCounts(next).main, what).toBe(main);
+    expect(zoneCounts(addCard(deck, "OGN-089", cards)).runes).toBe(13);    // no fourteenth rune
+    expect(zoneCounts(addCard(deck, PLAZA, cards)).battlefields).toBe(4);  // no fifth battlefield
+  });
+
+  /**
+   * And it survives being written back out. `builderText` is what the site stores, so a list that lost
+   * a card by being opened in the editor would lose it permanently — compared by CONTENT here, because
+   * a first pass compared `JSON.stringify` of the two bags, which is key-ORDER sensitive, and reported
+   * a loss that was not there.
+   */
+  it("survives a round trip through the editor unchanged", () => {
+    const deck = imported();
+    const back = canonicalizeDeck(loadDeck(builderText(deck, cards), cards), cards);
+    const norm = (b: Record<string, number>) => Object.entries(b).sort(([a], [c]) => a.localeCompare(c));
+    for (const k of ["main", "battlefields", "runes", "sideboard"] as const) {
+      expect(norm(back[k]), k).toEqual(norm(deck[k]));
+    }
+    expect(back.legend).toBe(deck.legend);
+    expect(back.champion).toBe(deck.champion);
+    expect(back.unresolved).toEqual(deck.unresolved);
+  });
+});
+
 describe("folding a reprint split across two bases (#104)", () => {
   it("merges both bags onto the canonical base", () => {
     const deck = canonicalizeDeck({ ...emptyDeck(), main: { [VI]: 2, [VI_VEN]: 1 } }, cards);
