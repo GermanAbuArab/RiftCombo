@@ -83,3 +83,52 @@ constraint, not an accident of tooling.**
 **And the honest limit: C1 and C2 together check that an engine can START and can REPEAT. Neither
 checks that what it produces is WORTH anything.** That is the judgement `terminatesIn` is supposed to
 carry, no rule decides it, and I would not pretend a predicate can.
+
+---
+
+## 5. C2 RUN TO COMPLETION THE SAME HOUR IT WAS PROPOSED: **A MEASURED EMPTY, AND THE REASON IS THE FINDING**
+
+All six candidates read. **Zero defects.** Three are correct and three are false positives, and both
+halves are informative.
+
+**The three that are CORRECT each name the sanctioned escape IN THEIR OWN STEPS:**
+
+- `dominus-xerath-henge-removal` — `VEN-142 Dominus` grants *"2 rainbow Power: Ready me"*, and step 5
+  states the ordering outright: *"415.1: he must be exhausted for it to do anything, so the order is
+  always fire, then ready"*.
+- `the-boss-showstopper-redeploy` — step 3: *"'When you conquer, ready me' readies The Boss, so the
+  shield is armed again this turn."*
+- `scrutinizing-sergeant-blood-rose-xp-spike` — step 4: *"Spend 3 XP and exhaust Blood Rose to ready
+  a unit — a second Standard Move (144.2) or a second activation of any exhaust ability on the
+  board."*
+
+**The three FALSE POSITIVES are two distinct instrument faults, and naming them is what the next
+person needs:**
+
+1. ***"repeat for as long as"* IS A SUSTAIN PHRASE, NOT A WITHIN-TURN RATE CLAIM.**
+   `last-rites-lunar-boon-trash-recursion` and `blade-ruined-king-detach-recovery` repeat ACROSS
+   TURNS — conquer, then hold at the next Beginning Phase. My `WITHIN` regex could not tell "repeat
+   within this turn" from "repeat indefinitely".
+2. **THE EXHAUST MAY BE ON A CARD THAT IS NOT THE REPEATED ABILITY.**
+   `last-rites-stack-arena-reanimator` fires four times in one Beginning Phase, but those are
+   TRIGGERED abilities appended by 434.1.c — and 381 and 415.3.a govern ACTIVATED abilities, so the
+   once-per-turn rule never applied to it. My test asked whether ANY `uses` card contains an exhaust
+   symbol, which is not the same question.
+
+**THE CORRECTION TO MY OWN SCOPE, MADE WITHIN THE HOUR: C2 IS LESS RULES-GROUNDED THAN I CLAIMED.**
+The RULE half is solid — 381 with 415.3.a makes an exhaust-costed activated ability once per turn.
+But **"which ability is the one being repeated" is a PROSE question**, and that is the half that
+produced both faults. By this file's own standard — *when a prose predicate needs its third
+narrowing, stop tuning it and ask whether a rule decides the same question* — **C2 has reached its
+third narrowing and should not be ship as a test.** It was worth running; it is not worth automating.
+
+**AND THE EMPTY EXPLAINS ITSELF, WHICH IS THE ONLY KIND OF EMPTY WORTH REPORTING.** The within-turn
+repeat is a claim these authors already knew they had to justify, because `CLAUDE.md` carries the
+once-per-turn rule prominently — 381, 415.3.a, and the measured eleven cards. **Three of six entries
+name their readier unprompted, in the step where it matters. The defect is not in the catalogue
+because the rule is in the file**, which is the first direct evidence I have seen that the file does
+the job it is kept for.
+
+**SO THE REVISED ORDER IS: C1 (shipped), then C4, then C3 as a probe.** C4 — does `produces` match
+the steps — is now the next candidate: it is mechanical, it needs no prose beyond a tag comparison,
+and **it is unmeasured, so I am not claiming a yield for it in advance.**
