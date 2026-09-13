@@ -1,3 +1,4 @@
+import { bodyCheck, type BodyShortfall } from "./bodies.js";
 import type { CardIndex } from "./cards.js";
 import { CLASS_RANK } from "./combos.js";
 import type { Deck, Domain, Format, Variant } from "./types.js";
@@ -13,7 +14,14 @@ export interface Addition {
 export interface Route {
   variant: Variant;
   add: Addition[];
-  /** Total copies to add. 0 means the list already has the line. */
+  /**
+   * Bodies the line needs that no card supplies and this list cannot cover — the whole reason the
+   * panel could not name what was missing. `add` rows are keyed on a base code and this names no
+   * card, so it rides beside them; its `count` IS folded into `cost`, so the ranking below prices
+   * the line at its real distance.
+   */
+  addBodies?: BodyShortfall;
+  /** Total copies to add, bodies included. 0 means the list already has the line. */
   cost: number;
   /** Distinct ingredient cards the list already holds. */
   havePieces: number;
@@ -64,6 +72,7 @@ export function planDeck(deck: Deck, variants: Variant[], cards: CardIndex, opts
   }
   owned.set(deck.legend, 1);
 
+  const bodies = bodyCheck(deck, cards);
   const priced: Route[] = [];
   const pieces = new Set<string>();
   for (const v of variants) {
@@ -85,10 +94,17 @@ export function planDeck(deck: Deck, variants: Variant[], cards: CardIndex, opts
       if (have < need) add.push({ card, quantity: need - have });
     }
     add.sort((a, b) => b.quantity - a.quantity || (cards.get(a.card)?.name ?? a.card).localeCompare(cards.get(b.card)?.name ?? b.card));
+    const short = bodies(v);
+    const addBodies = short && short.count > 0 ? short : undefined;
     priced.push({
       variant: v,
       add,
-      cost: add.reduce((n, a) => n + a.quantity, 0),
+      addBodies,
+      // Bodies count toward the price because they are cards the list has to find room for, and
+      // because `have` below is the `cost === 0` bucket: without this a line the deck cannot run
+      // would still be reported as one it already has, which is the defect in the panel built to
+      // name what is missing.
+      cost: add.reduce((n, a) => n + a.quantity, 0) + (addBodies?.count ?? 0),
       havePieces: bases.length - add.length,
       totalPieces: bases.length,
       battlefieldCopies: add.reduce((n, a) => n + (cards.get(a.card)?.type.includes("battlefield") ? a.quantity : 0), 0),

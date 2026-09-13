@@ -92,6 +92,62 @@ export interface Source {
   accessed?: string;
 }
 
+/**
+ * A body the line needs that NO CARD CAN SUPPLY BY NAME — the schema half of the defect class found
+ * on 2026-09-13 (#165 repair, rc-synth2's two ALT_WINs, rc-gap's sweep).
+ *
+ * An entry's prose kept stating a requirement its own `uses` did not name — *"Get three of your
+ * units onto The Grand Plaza"*, *"Have a friendly unit at a battlefield besides the Apothecary"* —
+ * so `matchDeck` reported the line COMPLETE for a board that cannot run it and `planDeck` could
+ * never say what was missing. Verified through the matcher: a deck of `3x UNL-044` and one
+ * `OGN-293`, **with no units in it at all**, came back with `flurry-of-feathers-grand-plaza-win`
+ * included, and the site's word for that is *"you win the game"*.
+ *
+ * `CLAUDE.md`'s rule is *"a body the condition requires is a use at quantity 1, role `enabler`"*,
+ * and the #165 repair did exactly that. It cannot work here: The Grand Plaza counts ANY seven
+ * units, and `UNL-088 Gutter Palace` prints *"exactly 4 cards in hand and exactly 4 units at
+ * battlefields"* naming no card at all — so pinning named bodies into `uses` would invent a
+ * decklist and make the entry match only the decks holding those cards. `Ingredient` is keyed on a
+ * base code and has no way to say "any N bodies". This is that missing way.
+ *
+ * WHAT IT DELIBERATELY DOES NOT MODEL. Four of the eleven requirements are RELATIONAL — *"besides
+ * the Apothecary"*, *"a spare unit"*, *"at a different location"*, *"wherever the fight is going to
+ * be"* — and none of them is a `Zone`. There is no field for them and that is a decision, not an
+ * omission: **the matcher reads a DECKLIST, never a board**, so it cannot know where a body stands
+ * or which card it is standing beside, and a structured field nothing can read is the
+ * phrase-in-a-notable defect again with a JSON key on it. The relation lives in `note`, verbatim,
+ * where a reader can check it. For the same reason there is no `zone`: it would carry *"at a
+ * battlefield"* and silently drop *"besides me"*, which reads as if the zone were the whole
+ * requirement.
+ *
+ * AND THERE IS NO SEVERITY FLAG. Eleven entries were read and in every one the missing body is the
+ * whole line, not tempo: `OGN-108 Convergent Mutation` says *"another friendly unit"* in its own
+ * text, `434.1.g` makes the Aphelios cycle's re-attach do nothing without a second carrier, and
+ * `svellsongur-faefolk-mass-evacuation` produces no `conquer-engine` at all. A body that is NOT
+ * required is not a requirement, and the catalogue already has the right home for one:
+ * `sprite-queen-dusk-rose-lab-shard-undoing` says outright that its second body *"is a deckbuilding
+ * choice, not a requirement"*, in prose. A `blocking: false` would mean "a requirement that is not
+ * required" and would hand the next author a switch to defuse the check — the defect returning with
+ * permission.
+ */
+export interface BodyRequirement {
+  /**
+   * Unit CARDS the line needs beyond the ones in `uses`, for ONE execution. Tokens the line's own
+   * cards play are already netted out by the author: `flurry-of-feathers-grand-plaza-win` needs
+   * seven at the Plaza, `UNL-044` supplies four Birds, and the count here is 3. A rate statement
+   * (*"repeat on a DIFFERENT unbuffed Might-4 body"*) is not a requirement and does not raise it.
+   */
+  count: number;
+  /**
+   * The requirement in the entry's own words, quoted rather than paraphrased. `apothecary-
+   * pridestalker-buff`'s is *"Have a friendly unit at a battlefield besides the Apothecary you are
+   * about to play"* — a board precondition with no counting word in it, which three separate
+   * machine predicates missed and a reader found. A normalised paraphrase is exactly what loses the
+   * cases a regex could not see in the first place, so this field carries the sentence.
+   */
+  note: string;
+}
+
 /** AUTHORED. One entry per reviewed combo. Combos compose through needs/produces into a DAG. */
 export interface Combo {
   id: string;
@@ -105,6 +161,8 @@ export interface Combo {
   removes?: string[];
   /** Optional: only these legends (base codes) work, e.g. a Signature requirement. */
   legends?: string[];
+  /** Optional: bodies the line needs that no card in `uses` supplies. See `BodyRequirement`. */
+  anyBodies?: BodyRequirement;
   prerequisites: { easy: string[]; notable: string[] };
   steps: string[];
   netPerIteration?: string;
@@ -126,6 +184,13 @@ export interface Variant {
   /** Union of ingredient domains. Length > 2 means no legend can run it. */
   domains: Domain[];
   legends?: string[];
+  /**
+   * Merged `anyBodies` of every combo this variant flattens. `count` is the MAX rather than the
+   * sum, for the same reason `generateVariants` merges card multisets with `max()`: the same
+   * physical bodies serve both halves of a line within one turn. `notes` keeps every contributing
+   * sentence, because the reader has to be able to check each one against its own entry.
+   */
+  anyBodies?: { count: number; notes: string[] };
 }
 
 export interface Deck {

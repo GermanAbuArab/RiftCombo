@@ -21,6 +21,15 @@ export function validateCombos(combos: Combo[], features: Feature[], cards: Card
     if (c.class === "INFINITE" && !c.steps.some((s) => /repeat/i.test(s))) {
       errors.push(`${c.id}: INFINITE combos must have a step that says "repeat"`);
     }
+    // An `anyBodies` with no count is a requirement that costs nothing, and one with no note is a
+    // requirement a reader cannot check — either is the phrase-in-a-notable defect with a JSON key
+    // on it, which is the thing this field exists to end.
+    if (c.anyBodies) {
+      if (!Number.isInteger(c.anyBodies.count) || c.anyBodies.count < 1) {
+        errors.push(`${c.id}: anyBodies.count must be an integer >= 1`);
+      }
+      if (!c.anyBodies.note?.trim()) errors.push(`${c.id}: anyBodies.note must quote the requirement`);
+    }
   }
   return errors;
 }
@@ -53,7 +62,18 @@ export function generateVariants(combos: Combo[], cards: CardIndex, maxDepth = 3
     producers.get(f)!.push(c);
   }
 
-  interface Partial { comboIds: string[]; cards: Record<string, number>; produces: Set<string>; status: ComboStatus; cls: ComboClass; legends?: string[] }
+  interface Partial { comboIds: string[]; cards: Record<string, number>; produces: Set<string>; status: ComboStatus; cls: ComboClass; legends?: string[]; anyBodies?: { count: number; notes: string[] } }
+
+  /**
+   * Merge two body requirements. `count` is the MAX, matching how the card multisets merge one
+   * block down and for the same reason: the same physical bodies serve both halves of a line within
+   * one turn, so summing would charge the deck twice for one board. `notes` keeps both sentences —
+   * a reader has to be able to check each against the entry that wrote it.
+   */
+  const bothBodies = (a?: { count: number; notes: string[] }, b?: { count: number; notes: string[] }) => {
+    if (!a || !b) return a ?? b;
+    return { count: Math.max(a.count, b.count), notes: [...new Set([...a.notes, ...b.notes])] };
+  };
 
   const domainsOfPool = (pool: Record<string, number>) =>
     [...new Set(Object.keys(pool).flatMap((b) => cards.domainsOf(b)))] as Domain[];
@@ -78,6 +98,7 @@ export function generateVariants(combos: Combo[], cards: CardIndex, maxDepth = 3
       status: combo.status,
       cls: combo.class,
       legends: combo.legends,
+      anyBodies: combo.anyBodies ? { count: combo.anyBodies.count, notes: [combo.anyBodies.note] } : undefined,
     };
     if (!runnable(self.cards)) return [];
     let partials: Partial[] = [self];
@@ -101,6 +122,7 @@ export function generateVariants(combos: Combo[], cards: CardIndex, maxDepth = 3
               status: worst(p.status, sub.status),
               cls: CLASS_RANK[p.cls] >= CLASS_RANK[sub.cls] ? p.cls : sub.cls,
               legends,
+              anyBodies: bothBodies(p.anyBodies, sub.anyBodies),
             });
           }
         }
@@ -115,7 +137,11 @@ export function generateVariants(combos: Combo[], cards: CardIndex, maxDepth = 3
   for (const combo of combos) {
     if (combo.status === "refuted") continue;
     for (const p of expand(combo, 0, new Set())) {
-      const key = Object.entries(p.cards).sort().map(([k, v]) => `${k}x${v}`).join("+") + "|" + [...p.produces].sort().join(",");
+      // The body requirement is part of what a variant IS: two flattenings over the same cards that
+      // demand different numbers of spare bodies are different answers, and folding them together
+      // would let the cheaper one hide the dearer one.
+      const key = Object.entries(p.cards).sort().map(([k, v]) => `${k}x${v}`).join("+") + "|" + [...p.produces].sort().join(",")
+        + "|" + (p.anyBodies ? `b${p.anyBodies.count}` : "");
       if (seenKeys.has(key)) continue;
       seenKeys.add(key);
       const domains = domainsOfPool(p.cards);
@@ -128,6 +154,7 @@ export function generateVariants(combos: Combo[], cards: CardIndex, maxDepth = 3
         status: p.status,
         domains,
         legends: p.legends,
+        anyBodies: p.anyBodies,
       });
     }
   }

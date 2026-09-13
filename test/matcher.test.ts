@@ -40,10 +40,29 @@ describe("authored combos", () => {
     // variants are being composed, so the guard at src/matcher.ts:55 fires on nothing — that is
     // what this asserts, and it is why the guard may stay as a cheap safety net.
     expect(variants.filter((v) => v.domains.length > 2).map((v) => v.id)).toEqual([]);
-    // Every entry the catalogue authors is inside one identity, so no authored line was hidden:
-    // the 134 dropped were all compositions, never a variant standing on a single combo.
+  });
+
+  /**
+   * MOVED OUT OF THE TEST ABOVE, 2026-09-13, and not otherwise changed. The assertion has guarded
+   * the catalogue since #64 but it lived as a second line inside a test named for how variants are
+   * COMPOSED, so a third domain folded into a single authored entry would have failed under the
+   * message "never compose a variant no legend could run", and nobody looking for this invariant
+   * could find it — rc-manager7 and rc-gap both measured it as unguarded on the day it was in fact
+   * being guarded here.
+   *
+   * Deliberately NOT duplicated with a non-legend variant of the same predicate, which was proposed
+   * the same day. It would be strictly weaker: a legend's own two domains define the identity
+   * rather than consume it, so dropping legend rows can only ever lower the union. Measured over
+   * the 766 live entries and 1,898 `uses` rows (115 of them legends), both predicates return 0, and
+   * the one below is the superset.
+   */
+  it("keeps every authored entry inside one legend's two domains (103.1.b)", () => {
+    // 103.1.b.4 only admits a card into an identity that holds all of that card's domains, and
+    // every legend in the pool has exactly two — so a pool spanning three is one no deck can build.
     expect(combos.filter((c) => c.status !== "refuted")
       .filter((c) => new Set(c.uses.flatMap((u) => cards.domainsOf(u.card))).size > 2)).toEqual([]);
+    // A probe that silently reads nothing passes. Assert the population it walked.
+    expect(combos.flatMap((c) => c.uses).length).toBeGreaterThan(1800);
   });
 
   it("does not emit a variant for a combo whose needs cannot be satisfied", () => {

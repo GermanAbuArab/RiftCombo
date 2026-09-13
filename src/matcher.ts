@@ -1,9 +1,18 @@
+import { bodyCheck, type BodyShortfall } from "./bodies.js";
 import type { CardIndex } from "./cards.js";
 import type { Deck, Domain, Format, LegalityEntry, Variant } from "./types.js";
 
 export interface Hit {
   variant: Variant;
   missing: { card: string; quantity: number }[];
+  /**
+   * Bodies the line needs that no card supplies, still to be added — the `anyBodies` half of
+   * `missing`. It is a separate channel because a `missing` row is keyed on a base code and this
+   * requirement names no card; putting a synthetic code in there would make the UI look up a card
+   * that does not exist. Its `count` IS folded into `missingCount`, so the buckets below and the
+   * caller's distance cap see the real distance.
+   */
+  missingBodies?: BodyShortfall;
   missingCount: number;
   /** Ingredient cards outside the deck legend's domain identity. */
   offDomain: string[];
@@ -48,6 +57,7 @@ export function matchDeck(deck: Deck, variants: Variant[], cards: CardIndex, opt
   }
   if (deck.legend) owned.set(deck.legend, 1);
 
+  const bodies = bodyCheck(deck, cards);
   const legendDomains = deck.legend ? new Set<Domain>(cards.domainsOf(deck.legend)) : null;
   const inIdentity = (base: string) => !legendDomains || cards.domainsOf(base).every((d) => legendDomains.has(d));
 
@@ -63,8 +73,15 @@ export function matchDeck(deck: Deck, variants: Variant[], cards: CardIndex, opt
       const have = owned.get(base) ?? 0;
       if (have < need) { missing.push({ card: base, quantity: need - have }); missingCount += need - have; }
     }
+    // Bodies no card names, priced before the distance cap: a line needing three spare units in a
+    // list with none is three cards away, and letting it through as "complete" is exactly the
+    // defect (a deck of ONE battlefield card matched `power-nexus-rune-recycle-any-identity`).
+    const short = bodies(v);
+    const missingBodies = short && short.count > 0 ? short : undefined;
+    if (missingBodies) missingCount += missingBodies.count;
     if (missingCount > maxMissing) continue;
     // A near miss needs at least one piece in hand; otherwise every 1–2 card combo is "almost" in every deck.
+    // A body shortfall does not change that: the pieces in question are still cards.
     const ownedPieces = Object.keys(v.cards).filter((b) => (owned.get(b) ?? 0) > 0).length;
     if (missingCount > 0 && ownedPieces === 0) continue;
 
@@ -77,6 +94,7 @@ export function matchDeck(deck: Deck, variants: Variant[], cards: CardIndex, opt
     const hit: Hit = {
       variant: v,
       missing,
+      missingBodies,
       missingCount,
       offDomain: [...ownedOff, ...missingOff],
       illegal: Object.keys(v.cards).map((b) => cards.legality(b, opts.format)).filter((e): e is LegalityEntry => !!e),

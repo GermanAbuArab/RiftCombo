@@ -438,6 +438,24 @@ const cardThumb = (base: string, name: string, src: string | null) =>
   `<button type="button" class="card-thumb" data-view="${esc(base)}" aria-label="Read ${esc(name)}">${
     src ? `<img src="${esc(src)}" alt="" loading="lazy">` : ""}</button>`;
 
+/**
+ * The bodies a line needs that no card names (`Combo.anyBodies`). It rides in the same list as the
+ * card rows because it costs the same thing — deck slots — and the empty first cell keeps it in the
+ * `.card-row` grid without a thumbnail there is no card to draw.
+ *
+ * It prints the requirement VERBATIM, because the part of it a machine can check is the smallest
+ * part: `src/bodies.ts` can only ask whether the list holds enough unit cards, while the entries
+ * say things like *"at a battlefield besides the Apothecary"* and *"at a different location"*, which
+ * are facts about a board no decklist carries. Showing the sentence is what makes the gap between
+ * the check and the requirement visible to the person who can act on it.
+ */
+const bodyRow = (b: { count: number; notes: string[] }) => `<div class="card-row">
+  <span></span>
+  <div><div class="cname">${b.count} more unit${b.count === 1 ? "" : "s"} of your own</div>
+    <div class="csub">${esc(b.notes.join(" \u00b7 "))}</div></div>
+  <span class="have short">+${b.count}</span>
+</div>`;
+
 const addRow = (a: { card: string; quantity: number }) => {
   const card = cards.get(a.card)!;
   const src = thumb(card.image, 120);
@@ -495,6 +513,8 @@ function banRow(r: DeckRestriction): string {
 function leadFootnote(r: Route): string {
   const parts: string[] = [];
   if (r.havePieces > 0) parts.push(`You already have <strong>${r.havePieces} of ${r.totalPieces}</strong> pieces.`);
+  // Bodies are deck slots like any other card, so they belong in the "cards in means cards out"
+  // arithmetic rather than beside it.
   const deckCopies = r.cost - r.battlefieldCopies;
   if (deckCopies > 0) parts.push(`${deckCopies} card${deckCopies === 1 ? "" : "s"} in means ${deckCopies} out.`);
   if (r.battlefieldCopies > 0) {
@@ -544,7 +564,7 @@ function renderPlan() {
           </div>
           <span class="pill plan-cost">+${lead.cost} CARD${lead.cost === 1 ? "" : "S"}</span>
         </div>
-        <div class="plan-adds">${lead.add.map(addRow).join("")}</div>
+        <div class="plan-adds">${lead.add.map(addRow).join("")}${lead.addBodies ? bodyRow(lead.addBodies) : ""}</div>
         <p class="plan-foot">${leadFootnote(lead)}</p>
       </div></section>`);
 
@@ -738,8 +758,14 @@ function renderTray(all: Hit[], shown: Hit[]) {
     b.type = "button"; b.className = "chip"; b.dataset.combo = primary.id;
     const meta = hit.illegal.length
       ? `<span class="chip-meta illegal">${esc(hit.illegal.map((e) => `${e.name} ${e.status} in ${fmt()}`).join(" · "))}</span>`
-      : hit.missing.length
-        ? `<span class="chip-meta">MISSING ${esc(hit.missing.map((m) => `${m.quantity}× ${name(m.card)}`).join(", "))}</span>`
+      : hit.missing.length || hit.missingBodies
+        // A body the line needs and no card supplies is missing in exactly the sense this line
+        // means, so it is said here and in the same words. Before it was, a deck of ONE battlefield
+        // card read as a complete ALT_WIN and the chip's own outcome said "you win the game".
+        ? `<span class="chip-meta">MISSING ${esc([
+            ...hit.missing.map((m) => `${m.quantity}× ${name(m.card)}`),
+            ...(hit.missingBodies ? [`${hit.missingBodies.count}× any unit`] : []),
+          ].join(", "))}</span>`
         : `<span class="chip-meta">${esc(classLabel(v.class))}${v.status === "verified" ? " · VERIFIED" : " · " + v.status.toUpperCase()}</span>`;
     // A BURST is one scoring event reaching 8, and 8 is the Victory Score of Constructed alone
     // (194.3, 489.3). Under the 2v2 toggle the same line is three points short, and saying nothing
@@ -875,8 +901,16 @@ function showDetail(id: string | null) {
       : "";
   };
 
+  // Stated whether or not this list is short of it: the check in `src/bodies.ts` only counts unit
+  // cards, and the requirement it stands for is usually about WHERE a body is — so a reader holding
+  // ten units still has to be told the line wants one at a battlefield besides the Apothecary.
+  const bodiesOf = (c: Combo) => c.anyBodies
+    ? `<h3>Bodies no card supplies</h3><p class="net">${esc(c.anyBodies.note)}</p>`
+    : "";
+
   const body = (c: Combo) => `
     ${c.prerequisites.notable.length ? `<h3>Prerequisites</h3><ul>${c.prerequisites.notable.map((s) => `<li>${esc(s)}</li>`).join("")}</ul>` : ""}
+    ${bodiesOf(c)}
     <h3>Steps</h3><ol>${c.steps.map((s) => `<li>${esc(s)}</li>`).join("")}</ol>
     ${c.netPerIteration ? `<h3>Per iteration</h3><p class="net">${esc(c.netPerIteration)}</p>` : ""}
     ${c.terminatesIn ? `<h3>How it ends</h3><p class="ends">${esc(c.terminatesIn)}</p>` : ""}
