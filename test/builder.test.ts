@@ -592,6 +592,40 @@ describe("103.1.b — Domain Identity at click time (#212)", () => {
     expect(addCard(ornn(), LADY, cards).legend).toBe(LADY);
   });
 
+  /**
+   * The consequence of that, pinned because it is the thing a reader would worry about: a one-click
+   * legend swap on a BUILT deck can invalidate most of the list at once. It is still right, and the
+   * last assertion is why — the one click reaches exactly the state the old two-step route reached,
+   * since a player who could not click the new legend simply removed the old one first and then
+   * clicked it. The refusal bought nothing and cost a step.
+   *
+   * What the swap must NOT do is drop anything, because then the checklist would certify a list the
+   * player does not have. It drops nothing, both identity rows report the breakage under their own
+   * paragraphs, the `+` refuses the now-off-domain cards, and Auto runes repairs the Rune Deck.
+   */
+  it("swaps the legend on a built deck without dropping a card, and says what broke", () => {
+    const built: Deck = {
+      ...emptyDeck(),
+      legend: ORNN_LEGEND,                                        // calm + mind
+      runes: { [poolOf(cards).find((c) => c.type.includes("rune") && c.domains.includes("calm"))!.base]: 12 },
+      main: { "OGN-043": 3, [CAPE]: 1 },
+    };
+    const NEW_LEGEND = "OGN-251";                                 // Loose Cannon, fury + chaos
+    const swapped = addCard(built, NEW_LEGEND, cards);
+    expect(swapped.legend).toBe(NEW_LEGEND);
+    expect(zoneCounts(swapped).main).toBe(zoneCounts(built).main);
+    expect(zoneCounts(swapped).runes).toBe(zoneCounts(built).runes);
+
+    const rules = checkBuild(swapped, cards, "constructed").rules;
+    expect(rules.find((r) => r.rule === "103.1.b")!.status).toBe("fail");
+    expect(rules.find((r) => r.rule.startsWith("103.3.a"))!.detail).toContain("103.3.a.1");
+    expect(capOf(swapped, "OGN-043", cards).offIdentity).toBe(true);
+    expect(autoRunes(swapped, cards).runes).not.toEqual(swapped.runes);
+
+    // The justification for allowing the click at all: it is the old route in one step, not a new one.
+    expect(addCard(removeCard(built, ORNN_LEGEND, cards), NEW_LEGEND, cards)).toEqual(swapped);
+  });
+
   it("judges nothing until a legend is named, exactly as identityRule does", () => {
     const cap = capOf(emptyDeck(), OFF, cards);
     expect(cap.offIdentity).toBe(false);
