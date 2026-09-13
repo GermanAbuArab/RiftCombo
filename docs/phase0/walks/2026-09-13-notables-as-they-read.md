@@ -558,3 +558,107 @@ tense (2), printed Might ≠ board Might (1) — and the eight split into three 
 with the shape of the loss differing in every one: total for Daisy and the Svellsongur carriers,
 partial for Friendship, windowed for Ravenbloom. **There is no uniform sentence that is true of all
 eight**, which is the answer to the question the lead was really asking.
+
+---
+
+## 13. Lead 3 — **the gear answer, generalised: two finishers whose payoff IS the gear still name nothing**
+
+§5 found that no Gutter Palace entry named gear removal while the win condition is a gear. The
+general question is: **which finishers have a `payoff` that is itself a gear, and do they name what
+kills it?** Measured at `origin/master` **`1f12d61`**, i.e. *after* the manager's repair of §1 to §5,
+so this is the current state and not the state I audited.
+
+**The answer set, swept rather than quoted.** Predicate: corpus lines matching
+`(kills?|banish(es)?|return|detach)` within 60 characters of `gear` **or** `Equipment` — plural verbs
+included per the `kills`-vs-`kill` trap this project already records, reminder text NOT stripped so
+every hit is read. **22 + 3 raw hits, all read**, self-facing and trash-recursion rows removed
+(`OGN-113`, `OGN-181`, `SFD-035`, `SFD-044`, `SFD-061`, `SFD-084`, `VEN-067`, `VEN-089` all act on
+your own gear or on your trash). **Fifteen enemy-facing printings remain**, and **every domain prints
+at least one**:
+
+```
+Fury   OGN-022 Thermo Beam   SFD-005 Detonate   VEN-003 Brittle Steel   SFD-011 Angle Shot
+Calm   OGN-056 Adaptatron    SFD-032 Disarming Rake
+Chaos  OGN-179 Acceptable Losses   SFD-135 Factory Recall   SFD-147 Downwell
+Order  OGN-224 Salvage       SFD-160 Zaun Punk   VEN-131 Decree of Unity
+Mind   SFD-074 Pickpocket    SFD-077 Rocket Barrage
+Body   VEN-080 Noxian Demolitionist
+```
+
+**The `Equipment` half of the noun matters and a `gear` predicate cannot see it.** `SFD-011 Angle
+Shot` (Fury, **E2, `[Reaction]`**) reads *"Choose a unit and an Equipment with the same controller.
+… **detach** that Equipment from that unit. Draw 1."* — the shared controller need not be you, so at
+Reaction speed it takes the Might Bonus (137.3.a) and the appended Effect Text (718.3, 719.1) off an
+enemy carrier **without killing anything**, and cantrips. It is the only Reaction-speed answer to an
+attached Equipment in the pool, and it says `Equipment` where every other row says `gear`.
+
+**Result: 17 finishers have a gear in a `payoff` role; 15 name an answer, 2 do not.** The thirteen
+that already did were opened and read rather than trusted — the Trinity Force family carries a full
+worked notable naming six unconditional enemy-facing answers with their domains *and* their timing
+(*"Thermo Beam and Salvage are [Action] … Detonate and Brittle Steel are plain spells, and 155
+confines a spell to an Open State outside of Showdowns on its controller's turn"*). That is real
+coverage, not a regex artifact.
+
+### `bottled-constellation-time-warp` — the credential and the hole are the same fact
+
+Payoff `VEN-067 Bottled Constellation`: **Gear, Mind, E10 P2**. Two notables, the thinnest finisher
+in this pass. `terminatesIn: "9 points, opponent never acts"`.
+
+CLAUDE.md records this entry twice: it is **the only finisher in the catalogue that both scores and
+needs nothing whatever from the board**, and it is **the slowest row the turn clock produces, T13
+against a T6 baseline**. Put those together and the gap is sharp: *"opponent never acts"* is true of
+the finishing sequence and false of the **twelve turns it takes to deploy three Constellations at
+E10 + 2 Power each**. Board-independence is exactly what makes the gear the only thing worth
+answering — there is nothing on the board to attack — and the cheapest answer in the pool is
+`SFD-005 Detonate` at **E1 + 1 Fury Power**, which also draws the Constellation's controller two
+cards. The entry names nothing.
+
+### `gutter-palace-keeper-time-warp` — it looked for answers, and looked at the bodies
+
+Six notables, and **careful ones**: `notable[4]` works out that 323.7 and 466.5.c send the hidden
+Keeper to the trash if the battlefield changes hands, and `notable[5]` names `OGN-133 Flurry of
+Blades` against the Might-1 bodies. **It answers the body question and never asks the gear question,**
+while `UNL-088 Gutter Palace` is the win condition and is a gear. Same E1 + 1 Fury Power.
+
+**And its `notable[5]` is the pre-repair text, still live.** It is byte-for-byte the paragraph the
+manager replaced on `keeper-of-masks-flurry-plaza-window` today, and **two of its three named repairs
+are illegal here too**, for the same reason in a different identity. The entry's own `easy` says
+*"Domain is Mind + Chaos"*, and measured over `cards.json`:
+
+| named repair | domains | legal in Mind/Chaos? |
+|---|---|---|
+| `UNL-077 Soul Shepherd` | mind | **yes** — and repairs nothing: it reads *"Your **token** units have +1"*, and the bodies are `UNL-081 Keeper of Masks` (a unit **card**, printed M1) plus two Reflections at 0 Might (187.6), so the Keeper never moves and the Reflections reach M1 and still die to 1 damage (143.2.a) |
+| `OGN-266 Siphon Power` | mind, **order** | **no** — a third domain under 103.1.b |
+| `UNL-T03 Brush` | Green Father's token; he is calm/**order** | **no** — a third domain |
+
+**Diagnosed, corrected on the sibling this morning, unapplied here.**
+
+**Unlike the Calm/Mind sibling, this identity does have answers — and the `exactly` clause makes one
+of them cost a body slot.** `UNL-147 Baron Nashor` is **mono-Chaos**, *"Other friendly units have +2
+:rb_might:"* board-wide, which puts the Keeper at M3 and both Reflections at M2, out of Flurry's
+range entirely. But the Palace asks for *"**exactly** 4 units at battlefields"* and Baron *"enters
+there"* at the Baron Pit, which 187.9 makes a battlefield — **so he is a fifth body and breaks the
+count unless the pre-existing unit is dropped.** That is §3's overshoot property biting the repair
+rather than the line.
+
+**The body-count-neutral answer is a counter, and it is two cards.** Predicate: corpus lines
+containing `Counter a spell` — **7 printings** (narrower than the eleven-counter figure CLAUDE.md
+records, which includes the `spell or ability` wording; stated so the numbers are not confused). Of
+the seven, exactly two are legal in Mind/Chaos and both are **mono-Chaos, E2, `[Reaction]`**:
+`SFD-136 Hard Bargain` (*"Counter a spell unless its controller pays 2 Energy"* — a tax, not a hard
+counter) and `UNL-131 Abandon` (*"Counter a spell. Return it to its owner's hand instead of putting
+it in their trash. [Predict]"*). All four Prevent cards in the pool are out of this identity, so
+Prevent is empty here as it was on the sibling.
+
+**And the entry's own rune ledger says what holding one costs.** Its `notable[1]` budgets the
+finishing turn to the rune: twelve runes exhausted for 12 Energy, one recycled for Ekko's Power,
+Ekko's Deathknell readying the remaining eleven for a second 11 — *"The turn costs 22 Energy and 6
+Power … **One Energy is left over.**"* **Abandon costs two.** So the protection is not a spare card,
+it is a restructured ledger — which is precisely the sentence the entry is missing and precisely the
+kind of thing only its own arithmetic can say.
+
+### What this does not claim
+
+I did not re-walk the thirteen that name an answer beyond reading the matched sentence in each, and I
+did not verify the full eleven-counter census — my predicate was `Counter a spell` and returned seven.
+Both numbers are stated with their predicates so the next reader can widen either in one command.
