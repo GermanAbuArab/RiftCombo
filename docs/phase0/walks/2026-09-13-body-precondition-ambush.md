@@ -886,3 +886,48 @@ answer-set bug was the same class arriving from the answer side rather than the 
 piece of evidence is, but WHETHER THAT CARD CAN PLAY THE ROLE THE CHECK IS COUNTING IT FOR.** An
 Ambusher cannot be its own precondition; a friendly-only detacher cannot answer an opponent; a unit in
 the trash cannot stand at a battlefield. Three different reasons, one question.
+
+---
+
+## 20. THE CLASS AIMED AT SHIPPED CODE: ONE CITATION DEFECT, AND THE REST IS SOUND
+
+The class asks whether a check counts something that cannot play the role counted. Aimed at `src/`
+and `scripts/` rather than at the catalogue, the two candidates are the **legend** (107.4.b puts the
+Legend Zone at no location, so a legend can never be the body that establishes Control under 190.1)
+and the **battlefield** (485.5 makes it one of three, at random).
+
+**Both are handled correctly in the code, and one comment cites the wrong paragraph for it.**
+
+### `src/bodies.ts` argues from the paragraph that says the opposite
+
+The module is careful and its `isUnit` is type-based, so a legend — whose `type` is `["legend"]` —
+can never be counted as a body. But its comment justifies that with **107.4.c**, which reads *"The
+Champion Legend here is a Game Object."* **That is the paragraph that makes a legend look MOST like a
+body**, not least. The two that actually make it impossible are its neighbours:
+
+- **107.4.b** — *"This is not a location."*
+- **107.4.d** — *"The Champion Legend cannot be removed, moved, or displaced from this zone."*
+
+**107.4.d is the sharpest for this purpose**: a body that can never leave its zone can never walk to a
+battlefield, so it can never be the body any `anyBodies` requirement wants. The conclusion in the code
+is right and doubly safe; the citation under it is one paragraph off, and it is the same class this
+document has now found four times — **the consequence is carried and the rule that produces it is
+not**, here in its sharpest form, because the cited paragraph argues the other way.
+
+`src/bodies.ts` is rc-schema's; routed rather than edited.
+
+### Everything else is sound, and one scope note
+
+`scripts/adversarial-check.mjs:247` excludes battlefields from the opponent's answer set with the
+right reason in its own comment — *"485.5 selects one battlefield at random"* — and 485.5 reads
+*"Each player randomly selects one (1) of their three (3) Battlefields."* **Scope note, not a
+defect**: 486.5 makes it a free CHOICE in game 1 of a Match (*"Each player selects one…"*, with the
+used ones removed for the rest of the match), so in that game a battlefield answer IS reliably
+available. The exclusion therefore under-counts the opponent's options — which for a check that hunts
+UNANSWERED holes is the conservative direction, so it over-reports rather than hides. `src/plan.ts`
+tracks `battlefieldCopies` because a recommendation consumes one of the three slots. `src/deck.ts`
+routes legends and battlefields to their own bags, so neither can reach `deck.main`.
+
+**A class that only ever confirms itself is a story** — rc-manager8's phrase. Aimed at code nobody
+here wrote for this purpose, it found one citation and confirmed the rest, which is the right shape
+for a result.
