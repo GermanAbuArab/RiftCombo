@@ -8,7 +8,16 @@ const blob=fs.readFileSync("data/combos.json","utf8")+fs.readFileSync("data/syne
 const CL=fs.readFileSync("CLAUDE.md","utf8");
 const R=fs.readFileSync("data/Riftbound-Core-Rules-2026-07-16.txt","utf8");
 const heads=[...new Set((R.match(/(^|[\s\f])(\d{3}(?:\.[0-9a-z]+)*)\.[\s\f]/gm)||[]).map(m=>m.trim().replace(/\.$/,"")))];
-const cnt=(h,s)=>{const re=new RegExp("(?<![0-9.])"+h.replace(/\./g,"\\.")+"(?![0-9])","g");return (s.match(re)||[]).length;};
+// The counter has three exclusions and every one of them was paid for. Do not simplify it.
+//  -  excludes a preceding HYPHEN: without it "304" matches the collector number OGN-304.
+//  -  excludes a preceding "#":    without it "153" matches the issue number #153 (131 false hits).
+//  -  excludes a following LETTER or DOT: without it a parent absorbs its whole block, so "417"
+//     reports 108 while being cited bare zero times.
+// The dot exclusion also fixes a FALSE NEGATIVE that matters more than the ranking: CLAUDE.md
+// carrying 419.4.a.1 used to read as carrying 419.4.a, so 16 real gaps were suppressed and never
+// printed - i.e. the tool was blind to the exact "exception carried, rule absent" shape it exists
+// to find, because a parent is always hidden by its own child.
+const cnt=(h,s)=>{const re=new RegExp("(?<![-#0-9.])"+h.replace(/\./g,"\\.")+"(?![0-9a-z.])","g");return (s.match(re)||[]).length;};
 const MIN=Number(process.argv[2]||10);
 console.log(`# minCitations = ${MIN}`);
 const rows=[];
