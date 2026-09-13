@@ -1059,3 +1059,86 @@ clause under 383.2.a.1, checked on resolution, so a tag body removed **in respon
 trigger** blanks the whole Score. **He is the one payoff unit in the catalogue whose payoff can be
 answered after it has already triggered, and the 2026-09-13 notable on seven entries said the
 opposite.** The walk opened there and closes there.
+
+---
+
+## 19. The 23 Plaza entries against the one-damage sweep — **clean, and one live defect found by sampling**
+
+rc-manager8's brief, run over the closed population §17 produced. **23 entries use `OGN-293`, all 23
+are ALT_WIN.**
+
+### The first number overstated, and by exactly the sanctioned exception
+
+A naive pass — *does each of the 23 name a domain-legal static +Might?* — reports **2 failures**:
+`spiderling-swarm-grand-plaza` and `dragonstorm-confront-grand-plaza`. **Both are false.** Neither
+needs a fix, because neither has a Might-1 garrison, and each says so in its own steps
+(*"Each Spiderling is now 1 + 6 = 7 Might"*; the Dragonstorm bodies measured at Might 3 to 10).
+**The exception the instrument forgot is the simplest one available: a garrison that is already out
+of range.**
+
+**Eight of the 23 are not exposed at all**, and every one of the eight carries the deciding Might in
+its own prose or in a token rule, never in a `uses` row (185: a token can never be one):
+
+| entry | garrison | why it is out of range |
+|---|---|---|
+| `spiderling-swarm-grand-plaza` | Spiderlings **M7** each | its step 3 |
+| `sprite-mother-burst-leblanc-plaza` | Sprites **M3** (187.2) | its step 5, *"21 damage minimum, not 7"* |
+| `svellsongur-trevor-leblanc-plaza` | Sprites **M3** | its step 4 |
+| `leblanc-bashful-bloom-trevor-plaza` | Sprites M3 + Trevor M3 + LeBlanc M4 | 187.2 |
+| `dragonstorm-confront-grand-plaza` | played bodies **M3–10** | its own words |
+| `arise-sand-soldiers-plaza` | Sand Soldiers **M2** (187.3) | its step 3 says so outright |
+| `desert-call-vi-sand-soldier-plaza` | Sand Soldiers **M2** | its own step |
+| `ferrous-forerunner-karthus-mech-plaza` | Mech tokens **M3** (187.4) | its own step |
+
+### The fifteen that are exposed: **15 of 15 answer the question**
+
+Every one either names a domain-legal static +Might grant, or states plainly that its legal one does
+not clear the bar. Identity computed as the union of `cards.json` domains over `uses[].card`, capped
+at two by 103.1.b; the three battlefield grants (`OGN-294`, `UNL-T03`, `VEN-159`) are excluded a
+priori, because 485.4.a with 103.4.c make them mutually exclusive with the Plaza itself.
+
+- Eleven carry a *"THE IDENTITY DOES HOLD AN ANSWER"* notable listing the legal members for that
+  identity with their scopes.
+- `noxian-drummer-eye-svellsongur-plaza`, `corina-svellsongur-plaza` and `plaza-armory-miss-fortune`
+  carry yesterday's Garen/Darius notable (§1–§2).
+- `ready-recruits-grand-plaza` is the most careful: it names `VEN-018 Rage Amplifier` for Fury **and
+  notes that `UNL-077` is Mind and therefore narrows an all-Order line to Mind/Order**.
+- **`keeper-of-masks-flurry-plaza-window` is the negative case done right**: its one legal fix
+  (`UNL-077`) is named *and refuted* — *"The one that is legal does not clear the bar."*
+
+**So the check is clean, and it explains itself**: the Plaza family's only exposure is its bodies
+(§17: 170.3 and 170.4 put the battlefield beyond removal), which is precisely the thing these entries
+have been audited for, repeatedly.
+
+### The live defect: `VEN-130 Aurok General` is offered without its scope, twice
+
+```
+VEN-130 | Aurok General | Unit | Order | E5 M5 | [Empower] 3 Energy + 1 Order rune.
+                                                [Empowered] > Your units that are [Empowered] have +2 Might.
+```
+
+Eleven Plaza notables use one sentence template. In **nine** of them every scoped member carries its
+scope — *"`SFD-089 Rumble, Scrapper` +1 **(Mech bodies only)**"*, *"`UNL-077 Soul Shepherd` +1
+**(token bodies only)**"*. In **two**, `VEN-130 Aurok General +2` is listed **with no scope at all**,
+inside a clause headed **"THE IDENTITY DOES HOLD AN ANSWER"**:
+
+- **`zed-clone-eye-recruits`** `notable[5]` — garrison is **Recruit tokens**
+- **`ferrous-forerunner-karthus-mech-plaza`** `notable[10]` — garrison is **Mech tokens**
+
+**It reaches zero of either garrison.** Two gates, both printed: Aurok's static is itself gated on
+`[Empowered]`, costing a further E3 + 1 Order Power on top of an E5 M5 body; and the +2 reaches only
+*"your units that are **[Empowered]**"*, while **441.1** makes Empowering *"the act of rendering one
+or more Game Objects Empowered"* — something a card must **do** to each body. **A Recruit token and a
+Mech token are never Empowered**, so the grant applies to nothing. Domain legality is not the problem
+(Aurok is mono-Order and both identities contain order); the card simply cannot do the job.
+
+CLAUDE.md already excludes it in those words — *"`VEN-130 Aurok General` reaches only Empowered
+units, which a Recruit never is"* — so this is **diagnosed-and-unapplied** in two entries, and the
+tell is visible on the page: **the same sentence caveats two of its three members and not the third.**
+
+`zed-clone-eye-recruits` still has two working answers (`OGS-013` +1, `UNL-147` +2) and loses only the
+third. `ferrous-forerunner-karthus-mech-plaza` needed no answer at all (Mech tokens are M3), and of
+the three it lists, `VEN-018 Rage Amplifier` is genuinely legal and genuinely works — Fury, and that
+identity is fury+order — so it keeps one real answer and one dead one.
+
+**`data/combos.json` is rc-manager8's; this is a report, not a change.**
