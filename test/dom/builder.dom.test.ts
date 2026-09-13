@@ -7,6 +7,8 @@
 import { readFileSync } from "node:fs";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 import { loadCardIndex } from "../../src/load.js";
+import { loadDeck } from "../../src/deck.js";
+import { canonicalizeDeck, capOf, sideboardCapOf } from "../../src/builder.js";
 
 const cards = loadCardIndex();
 // `import.meta.url` is a page URL under happy-dom, not a file one, so fixtures are read from the
@@ -539,6 +541,98 @@ describe("103.2.e — marked, never blocked, and the mark follows the format (#2
     expect(edits).toHaveLength(1);
     // And the checklist is the authority that still reports it, which is what makes the tier safe.
     expect(document.querySelector(".bld-check-n")!.textContent).not.toBe("Legal");
+  });
+});
+
+/**
+ * #212 WAS AN ASYMMETRY, not a missing rule: the pool cell knew about Domain Identity and the deck row
+ * did not, so the same rule was enforced or not depending on which of two buttons the player pressed.
+ * Every test above asks whether a RULE is enforced. This asks the question that would have caught the
+ * issue in the first place, and asks it of the whole board at once rather than rule by rule:
+ *
+ *   for EVERY row the deck column draws, does its `+` refuse exactly when the model refuses?
+ *
+ * Stated as one invariant it covers every rule the cap can report, including the ones nobody has
+ * thought to write a case for, and it keeps covering them when a rule is added. The fixture is built
+ * to put several different caps on the board at once, so the sweep is not vacuously comparing a column
+ * of falses — the assertions below count how many rows were actually FULL.
+ */
+describe("both buttons, for every rule at once: the deck row agrees with the model (#212)", () => {
+  const EDGES = `Legend
+1 Fire Below the Mountain
+
+Champion
+1 Clockwork Keeper
+
+Battlefields
+1 The Grand Plaza
+1 Back-Alley Bar
+1 Power Nexus
+
+Runes
+6 Calm Rune
+6 Mind Rune
+
+Main Deck
+3 Charm
+1 Forgefire Cape
+1 Rabadon's Deathcrown
+1 Shurelya's Requiem
+1 Blazing Scorcher
+
+Sideboard
+1 Clockwork Keeper
+`;
+
+  it("gives the same answer as capOf on every row, for whatever rule binds there", async () => {
+    await mount(EDGES);
+    const deck = canonicalizeDeck(loadDeck(EDGES, cards), cards);
+    const rows = [...document.querySelectorAll<HTMLElement>(".drow")];
+    expect(rows.length).toBeGreaterThan(8);                     // non-vacuity: a real board
+
+    let compared = 0, full = 0;
+    for (const r of rows) {
+      const base = r.dataset["base"]!;
+      const plus = r.querySelector<HTMLButtonElement>('[data-b="add"]');
+      const side = r.querySelector<HTMLButtonElement>('[data-b="side-add"]');
+      const button = plus ?? side;
+      if (!button) continue;                                    // the legend row draws no plus
+      const cap = side ? sideboardCapOf(deck, base, cards) : capOf(deck, base, cards);
+      const refused = button.getAttribute("aria-disabled") === "true";
+      expect(refused, `${base} ${cards.get(base)?.name}: row says ${refused}, model says ${cap.full}`).toBe(cap.full);
+      if (cap.full) {
+        // And when it refuses it must SAY why, or the player is told no with no reason.
+        expect(button.getAttribute("title"), `${base} has a reason`).toBeTruthy();
+        full++;
+      }
+      compared++;
+    }
+    // Non-vacuity both ways: the sweep saw most of the board, and several rows really were full.
+    expect(compared).toBeGreaterThan(8);
+    expect(full).toBeGreaterThan(3);
+  });
+
+  /**
+   * The same question for the POOL side of the pair, on the cards the board above makes interesting.
+   * Together the two assert what #212 is really about: one model, two buttons, one answer.
+   */
+  it("gives the same answer as the pool cell for the same card", async () => {
+    await mount(EDGES);
+    const deck = canonicalizeDeck(loadDeck(EDGES, cards), cards);
+    allDomains();
+    for (const name of ["Charm", "Forgefire Cape", "Blazing Scorcher"]) {
+      await search(name);
+      const cell = cellNamed(name);
+      expect(cell, `${name} is drawn in the pool`).toBeTruthy();
+      const cellBtn = cell!.querySelector<HTMLButtonElement>(".pool-add")!;
+      const rowBtn = rowPlus(name);
+      expect(cellBtn.getAttribute("aria-disabled"), name).toBe("true");
+      expect(rowBtn.getAttribute("aria-disabled"), name).toBe("true");
+      // Not merely both refusing: refusing for the SAME stated reason.
+      expect(cellBtn.getAttribute("title"), name).toBe(rowBtn.getAttribute("title"));
+      const base = rowNamed(name)!.dataset["base"]!;
+      expect(capOf(deck, base, cards).why).toBe(cellBtn.getAttribute("title"));
+    }
   });
 });
 
