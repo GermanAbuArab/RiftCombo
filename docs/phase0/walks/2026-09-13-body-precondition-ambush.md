@@ -1082,3 +1082,24 @@ rc-schema: walk every string value and exclude by name, so a new field is covere
 to be opted out deliberately. On `synergies.json` that inversion would change nothing and cost
 nothing; on `combos.json` it would have covered `uses[].note` from the day it existed and
 `anyBodies.note` from the hour it was created.
+
+### The repo already contains both patterns, and the safe one is shipped
+
+The recommendation is not a preference — **`test/rule-refs.test.ts` already does it the safe way, two
+files over.** Its `collect()` walks every string in every node with no field filter at all:
+
+```
+const walk = (node, id, path) => {
+  if (typeof node === "string") { for (const ref of node.match(REF) ?? []) hits.push(...) }
+  else if (Array.isArray(node)) node.forEach((v, i) => walk(v, id, `${path}[${i}]`));
+  else if (node && typeof node === "object") for (const [k, v] of Object.entries(node)) walk(v, ...);
+};
+```
+
+**So rule references in `uses[].note` ARE checked and quoted passages in the same field are not** —
+same file, same 440,413 characters, two guards, one of which sees them. `rule-refs` will also cover
+any field the schema grows without anyone touching it, which is precisely what `prose-emphasis` cannot
+do and what let `anyBodies.note` be born outside its coverage.
+
+**Two patterns for one problem in one repo, and only one fails safe.** That is a stronger argument
+than any I could make from first principles, and it is the one to hand the schema owner.
