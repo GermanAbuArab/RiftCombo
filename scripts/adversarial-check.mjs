@@ -228,7 +228,12 @@ function deployTurnUncached(costs) {
   const stride = new Array(dim);
   let space = 1;
   for (let i = 0; i < dim; i++) { stride[i] = space; space *= types[i].n + 1; }
-  if (space > 2e6) { greedyFallbacks++; const g = greedyTurn(costs); return { all: g, unit: g }; }
+  // Pricing [Equip] (2026-09-13) added a second cost per Equipment and pushed the biggest closures
+  // past what an exact search can do in a test that runs on every commit: at 2e6 the whole table took
+  // 50 seconds against 4.6 before. Lowered to 2e5, which keeps it near 5 and sends only the very
+  // largest rows to the greedy pass - and the header PRINTS how many, so a row priced by the defect
+  // #205 removed can never be read as exact. Raise it if this ever runs somewhere without a clock.
+  if (space > 2e5) { greedyFallbacks++; const g = greedyTurn(costs); return { all: g, unit: g }; }
   const FULL = space - 1;                       // every count at its maximum
 
   let curR = new Int8Array(space).fill(-1);     // runes on board, -1 = state unreachable
@@ -450,17 +455,63 @@ const domainsOfSet = (set) => {
   for (const b of Object.keys(set)) for (const x of (byBase.get(b)?.domains || [])) d.add(x);
   return d;
 };
+/**
+ * The [Equip] cost, which is a SECOND cost the printed `energy`/`power` fields cannot see.
+ * 818.1 makes Equip an Activated Ability with its own cost, so a line that attaches three Svellsongur
+ * pays E3 + 3 Calm Power that this table charged nothing for until 2026-09-13
+ * (docs/plays/2026-09-13-the-entry-the-clock-condemned-hardest.md — it was worth a whole turn there).
+ * 32 of the 80 finishers were under-priced by it.
+ *
+ * Parsed, not approximated. Of the 107 gear names, 39 print an [Equip] cost and **35 parse to pure
+ * Energy and rune symbols** — which reproduces CLAUDE.md's independent count of 29 one-rune plus 6
+ * Energy-and-rune exactly. The other FOUR are named here rather than guessed at, and each is charged
+ * its MANA part only, because this table is an optimistic LOWER BOUND and must never over-charge:
+ *   SFD-150 Last Rites            1 rune + "Recycle 2 cards from your trash"  -> 1 Power
+ *   SFD-178 Blade of the Ruined King  1 rune + "Kill a friendly unit"         -> 1 Power
+ *   UNL-158 Shepherd's Heirloom   "Spend 1 XP", no mana at all                -> nothing
+ *   UNL-188 Hextech Gauntlets     E3 + rainbow, Energy "reduced by the Might of the unit you
+ *                                 choose" and floored at 0 by 356.6, so any 3+ Might carrier
+ *                                 attaches it for the rainbow alone                -> 1 Power
+ */
+const EQUIP_MANA_ONLY = { "UNL-188": { e: 0, p: 1 } };
+function equipCost(c) {
+  const t = `${c.text || ""} ${c.effect || ""}`;
+  if (!/\[Equip\]/i.test(t)) return null;
+  if (/\[Quick-Draw\]/i.test(t)) return null;     // 819.1.d attaches on play; no Equip cost is determined
+  if (EQUIP_MANA_ONLY[c.base]) return EQUIP_MANA_ONLY[c.base];
+  const m = t.match(/\[Equip\]\s*([^(\[]*)/i);
+  if (!m) return null;
+  return {
+    e: [...m[1].matchAll(/:rb_energy_(\d+):/g)].reduce((a, x) => a + Number(x[1]), 0),
+    p: [...m[1].matchAll(/:rb_rune_[a-z]+:/g)].length,
+  };
+}
+
 /** THE ONLY cost builder. #205 shipped a defect because there were two and one was patched. */
 const costsOfSet = (set) => {
   const out = [];
+  const equips = [];
+  // 821.1.c: [Weaponmaster] attaches one of your Equipment "for one rainbow less", so the cheapest
+  // single attach in the set is free. Skipping it entirely keeps this a lower bound.
+  const weaponmaster = Object.keys(set).some((b) => {
+    const c = byBase.get(b);
+    return c && /\[Weaponmaster\]/i.test(`${c.text || ""} ${c.effect || ""}`);
+  });
   for (const [b, q] of Object.entries(set)) {
     const c = byBase.get(b);
     if (!c || c.type.includes("legend") || c.type.includes("battlefield")) continue;
     // 143.4 exhausts UNITS only, so only a unit costs a readiness turn.
-    for (let i = 0; i < q; i++)
+    for (let i = 0; i < q; i++) {
       out.push({ e: c.energy || 0, p: c.power || 0, unit: c.type.includes("unit") });
+      const eq = equipCost(c);
+      if (eq && (eq.e || eq.p)) equips.push({ e: eq.e, p: eq.p, unit: false });
+    }
   }
-  return out;
+  if (weaponmaster && equips.length) {
+    equips.sort((a, b2) => a.e + a.p - (b2.e + b2.p));
+    equips.shift();
+  }
+  return out.concat(equips);
 };
 
 /**
@@ -706,6 +757,15 @@ if (emit) {
 }
 
 // ---------------------------------------------------------------- --stalled
+// THREE BOARD STATES, NOT TWO - the frame this pass needs and did not have until 2026-09-13.
+//   hold BOTH battlefields : the free curve is 2 a turn and wins on T5-T6. No finisher is wanted.
+//   hold ONE               : 1 a turn, 8 on T9 in every identity. THE ORDINARY GAME, and the board a
+//                            finisher is actually for - including a Hold-gated one, which is at its
+//                            BEST here (docs/plays/2026-09-13-the-entry-the-clock-condemned-hardest.md).
+//   hold NONE              : only the ATTACK and CONQUER shapes live; a Hold payoff is off.
+// "A stall" was being used for the third state while the buckets were read against the first, which
+// is how a label came to say a Hold line dies to the very thing it is for.
+//
 // rc-manager5's third question: if a BURST earns its slot only where the Hold curve has STALLED,
 // then the honest test is not "how many points" but "does this line still work after it has been
 // stalled". What stalls the curve is an opponent taking or denying your battlefields - and that same
@@ -808,7 +868,7 @@ if (stalled) {
   const label = {
     attack: "ALIVE WHERE THE CURVE STALLS. The printed text needs the Attacker designation, which 807.1.d and 323.9 make impossible without an enemy garrison. Dead on an empty board, alive on a contested one - the shape a finisher should have.",
     conquer: "SURVIVES A STALL. Scores on a Conquer, and a battlefield the opponent took is a Conquer target, so the stall does not switch it off.",
-    hold: "DIES WITH THE CURVE. Scores on a Hold, which needs battlefields you ALREADY control - so the stall that makes this line necessary is the same stall that switches it off.",
+    hold: "NEEDS ONE BATTLEFIELD, AND IS AT ITS BEST WITH EXACTLY ONE. Scores on a Hold, which needs a battlefield you ALREADY control. There are THREE board states and this bucket only dies on the third: hold BOTH and the free curve wins on T5-T6 without you, so the line is redundant; hold ONE and the free curve pays 1 a turn and does not reach 8 until T9, which is where a Hold finisher is worth its slot; hold NONE and it is switched off. The earlier label said 'the stall that makes this line necessary is the same stall that switches it off', which is true of a TOTAL stall and false of the ordinary contested game.",
     located: "LOCATION-GATED. The card's OWN abilities are switched off unless it stands at a battlefield, and 355.2.a makes that one you CONTROL - so a stall takes it away exactly as it takes away a Hold. These read as board-independent to a hold/conquer/attack predicate and are not.",
     independent: "BOARD-INDEPENDENT. No Hold, no Conquer and no attack in the printed text, so nothing about the board switches it off.",
   };
