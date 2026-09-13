@@ -347,3 +347,133 @@ card** — `UNL-082 Lillia, Fae Fawn` (359.3.f.3), `OGN-246 Viktor, Leader` (383
 
 Probes: `.scratch-gap/all43.mjs`, `.scratch-gap/extract.mjs`, `.scratch-gap/family.mjs`,
 `.scratch-gap/suppress.mjs` (gitignored, on disk).
+
+---
+
+# SECOND SLICE — the 8-and-9 citation band (36 rows), same day
+
+The 10+ band is exhausted, so I took the next one rather than stop. `.scratch-gap/band.mjs 8 9`
+prints **36 rows** (13 at 9 citations, 23 at 8) not carried by `CLAUDE.md`. Band sizes for planning:
+43 at 10+, 56 at 9+, 79 at 8+, 104 at 7+, 147 at 6+, 190 at 5+.
+
+**Yield stays high: 22 real gaps, 8 correctly absent, 6 folded into a bullet above.** Precision has
+not fallen off the way the orphan-neighbour probe's did, because this join is exact.
+
+## 2A. REAL — the seven I would apply from this band
+
+- **446.3.c** (8) — *"Moving does not use the Chain, nor is it able to be Reacted to."* CLAUDE.md
+  runs a large movement and evacuation apparatus and reasons about response windows constantly
+  (323.10, 323.13, *"only a Triggered Ability reaches that window"*, *"after a plain move the very
+  next Cleanup stages the Combat with no gap"*). **This is the sentence under all of it** and the
+  file does not have it: the move itself is unrespondable, so the only window is whatever trigger
+  the move fires.
+
+- **308.1.a** (8) — *"Only cards and abilities with the Action or Reaction keywords can be played or
+  activated in a Showdown State."* The file derives this again and again from 358.4, 806.1.c.1,
+  813.1.c.1 and the 331.1.a / 343.1.a pair. **One sentence covers it**, and it is the paragraph the
+  #187 batch-25 correction (the withdrawn lock-out remedy) was reasoning around.
+
+- **811.2** (8) — *"Abilities and instructions of hidden cards other than the choices listed above
+  function as normal"*, worked with `OGN-053 Stand United` — **another pool card Riot names** — where
+  the first half must choose at the hidden battlefield and **the second half reaches the whole board.** This is the POSITIVE statement of the
+  file's own *"811.1.d binds the HIDDEN CARD and never the watcher"* and of the Tideturner escape —
+  both of which it currently derives card by card. Pairs with **811.1.d.3** (9), the third member of
+  a trio whose first two the file cites heavily: *"If a hidden spell or a play effect of a hidden
+  permanent causes you to play a unit, you must choose to play that unit at that battlefield"* —
+  which is exactly what `OGN-107 Ava Achiever` is doing when she says *"If it's a unit, play it
+  here."*
+
+- **816.3** (9) — *"Temporary, and whether or not a permanent has Temporary, is a characteristic of
+  the permanent and may be checked or referenced by other Game Effects."* **Measured: ELEVEN cards
+  read it** — `OGN-094 Sprite Call`, `OGN-106 Sprite Mother`, `UNL-048 Trevor Snoozebottom`,
+  `UNL-069 Sprite Burst`, `UNL-076 Petal Pixie`, `UNL-078 Sprite Fountain`, `UNL-082 Lillia, Fae
+  Fawn`, `UNL-083 Smoke and Mirrors`, `UNL-084 Sprite Queen`, `UNL-189 Bashful Bloom`,
+  `UNL-208 Black Flame Altar`. `UNL-189` prices itself off the count (*"costs 1 Energy less for each
+  friendly unit with [Temporary]"*). Joins the characteristic family with the carried 807.3 —
+  and **813.5.b** (8) is the third member (*"Whether or not a Spell has Reaction is a characteristic
+  … may be checked"*), with exactly one live case, `VEN-160 Mystic Vortex`, whose own reminder
+  *"(Hidden cards have [Reaction].)"* corroborates the carried 811.6 from the card side.
+
+- **429.3.a** (9) — *"When an Add ability is activated in this way, it immediately finalizes and
+  resolves, **even during the resolution of spells and abilities**."* The companion to 444.2.c, the
+  paragraph behind #200 batch 4's reopening. 444.2.c says the instruction to pay is a window;
+  **429.3.a says the Add resolves mid-resolution**, which is wider and is what makes the whole
+  "check whether the runes are simply still on the board" class work.
+
+- **373** (9) — *"If more than one event occurs simultaneously that Replacement Effects could apply
+  to, each event is treated separately and individually … and Replacement Effects with the same
+  controller are applied in the order of their controller's choosing."* Worked example: two of your
+  units die in one Cleanup under `Zhonya's Hourglass` and **you choose which death to save.** The
+  file carries 373.1 (turn order) and 373.2 (one replacement covers one sequence — the Soraka fork);
+  373 is the ordering half and completes that picture.
+
+- **437.3** (9) — *"reduce the Prevent Value being tracked on the Unit … by the prevented amount."*
+  **Prevent is a depleting POOL, not a standing shield** — a Prevent 3 eats three damage in total,
+  not three per instance. The file carries 437.4, 437.5 and 437.6.a and never the depletion.
+  **715.4.a** (8) is its companion and names a card the file already carries: reduction counts the
+  Bonus Damage in the total, worked with `OGN-296 Void Gate`, so Prevent 3 against a 3-damage spell
+  at the Gate still lets **1** through.
+
+## 2B. REAL — moderate (10 more, each one line)
+
+**135.2.b.3** (8): an *"as you play me"* additional-cost instruction **is not executed again by
+[Repeat]**, because the Repeat execution happens at resolution, after that instruction has already
+run — an excludes fact over the 17 as-an-additional-cost cards the file lists. ·
+**356.2.a.1** (9): the **discriminator** between mandatory and optional additional costs — mandatory
+ones *"use the phrase 'as an additional cost' and don't include the word 'may'"*; the file's
+#187 batch-22 bullet classifies 17 cards and cites 356.2.b only. ·
+**359.3.e.5** (8): an illegal target is unaffected **and the rest of the spell still happens** — the
+rule under "a cantrip removal still cantrips", with three worked examples, one naming
+`OGN-213 Hidden Blade` and `OGN-199 Tideturner` together. ·
+**359.3.e.11** (8): *"Instructions that can be partially followed are followed as much as possible
+and ignored otherwise"* — **this is the GENERAL form of 422.4 in §2 above, and 422.4 should be
+applied as its discard instance rather than on its own.** ·
+**820.3.a** (9): *"Regardless of the number of times a spell's instructions are executed with this
+keyword, it is only **Played** once"* — so [Repeat] never feeds [Legion], *"cards played this turn"*
+or any play-watcher twice. ·
+**829.1.b.2** (9): a Flow replay *"does not change the timing at which it can be played, nor any
+permissions … aside from the zone"* — a non-Reaction Flow spell is still Main-Phase only. Pairs
+with the 356.1.a Flow finding above. ·
+**424.1.a.1** (8): *"Other cards, **including the card being revealed**, can reference the act of
+being Revealed"* — the permission under the whole `SFD-175 Undertitan` *"as you look at or reveal
+me"* family the file has a bullet on. ·
+**812.1.b.1** (8): [Legion] long form, *"If you have played another card this turn, this card gains
+'[Text]'"* — a conditional GRANT, the same shape as 824.1.b.1 for [Level] above. ·
+**377.2.a** (9): a *"using an activated ability"* trigger condition is fulfilled **when the ability
+resolves**. Measured: exactly ONE card, `SFD-075 Prize of Progress`, which the file already names. ·
+**805.2.a** (8): *"Accelerate costs cannot be paid while the unit is on the board, only as part of
+the steps of playing a card"* — closes the obvious question against the carried 805.1.a.1 / 805.6.
+
+Smaller still, worth folding rather than their own bullets: **312.2.d** (8) folds into the 312.2.b
+bullet above to complete that list of four priority grants; **814.1.d** (8) folds into 814.1.d.1;
+**378** (9) and **813.4.b** (9) and **822.1.c** (9) and **424.3.a.1** (8) and **811.5.a** (8) and
+**489.5.c.1** (8) are mechanism or seating detail under parents the file already carries.
+
+## 2C. CORRECTLY ABSENT — MEASURED (8)
+
+- **141** (*"Unit is:"*), **489.1** (*"4 Players"*), **192** (controller context interchangeable) and
+  **383.4.a.1** (*"commonly structured as 'When you play me…'"*, which is 053.1 / 053.2 restated and
+  carried) — headings, parameters and wording notes with no card reading them.
+- **383.3.a.2** (8) — *"If the controller … chooses not to perform that Triggered Ability during
+  finalization, it is removed from the chain and considered to have not triggered."* **The file
+  already carries this at 383.3.e.2**, explicitly, including the once-per-turn consequence and the
+  measurement that none of the pool's four *"once each turn"* cards has the shape. Sibling duplicate.
+- **472** (8) — the win check at a Cleanup. #207 carried **323.1** yesterday as Task 1 of every
+  Cleanup, with 194.2's two-part test; 472 is the same statement from the Scoring section.
+- **441.1.c.1** (8) — *"Some effects may grant a Game Object permission to be Empowered multiple
+  times. Such an effect ignores this restriction."* **Measured: ZERO cards in the pool do**, so it is
+  a dead slot today. It is nonetheless the **exact twin of 426.1.b.2**, which the file carries as the
+  rules' own licensed slot for Lee Sin's multi-buff exception — so the honest note is about Riot's
+  PATTERN (the restriction blocks 441.1.b/c and the rules keep an exception slot beside it), not
+  about a line anyone can build.
+- **818.4** (8) — *"Multiple instances of Equip … can each be activated separately."* **Measured: 50
+  `[Equip]` occurrences in the corpus and ZERO cards carrying two.** Dead letter, like 434.5's
+  exhausted-Equipment example the file already records as dead letter.
+
+## 2D. WHAT THE NEXT LANE SHOULD KNOW
+
+The 7-citation band adds 25 more rows and 6-and-5 add 86 between them. **The pair-halves pattern from
+§4 holds in this band too** (811.1.d.1/.d.2 against .d.3, 807.3 against 816.3 and 813.5.b, 437.4
+against 437.3, 373.1/373.2 against 373, 444.2.c against 429.3.a), which is the reason the join keeps
+paying at a lower citation count than an orphan-neighbour probe would: **the tool is not ranking
+importance, it is finding asymmetry, and asymmetry does not thin out with frequency.**
