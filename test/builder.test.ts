@@ -2,7 +2,7 @@ import { readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
 import { loadCardIndex } from "../src/load.js";
 import type { Deck } from "../src/types.js";
-import { ANY_NUMBER, UNIQUE, checkBuild } from "../src/build.js";
+import { ANY_NUMBER, UNIQUE, championTagOf, checkBuild } from "../src/build.js";
 import { loadDeck } from "../src/deck.js";
 import {
   addCard,
@@ -12,6 +12,7 @@ import {
   canonicalBase,
   canonicalizeDeck,
   capOf,
+  championCapOf,
   copiesOf,
   costCurve,
   emptyDeck,
@@ -637,6 +638,116 @@ describe("103.1.b — Domain Identity at click time (#212)", () => {
     expect(checked).toBe(poolOf(cards).filter((c) => !c.type.includes("legend")).length);
     expect(refused).toBeGreaterThan(100);
     expect(allowed).toBeGreaterThan(100);
+  });
+});
+
+/**
+ * 103.2.a.2 and 103.2.d.3 at click time. The census named TWO rules living in `web/builder.ts` and in
+ * no model — Domain Identity and the champion tag — and #212 moved the first. This is the second, and
+ * with it 103.2.d.3, because `setChampion` never consulted `capOf` at all: the Champion button had the
+ * same shape of defect as the `+`, one step less reachable because the pool zone filters its cells.
+ *
+ * The player-facing half is the opposite direction, and it is the one that shipped a wrong refusal: a
+ * Champion click DESIGNATES rather than adds, so a full copy cap must NOT refuse it.
+ */
+describe("the Chosen Champion at click time (103.2.a.2, 103.2.d.3)", () => {
+  const ANNIE_LEGEND = "OGS-017";   // Dark Child - Starter, champion tag Annie
+  const STUBBORN = "OGS-010";       // Annie, Stubborn — unit, tagged Annie, not Signature
+  const TIBBERS = "OGS-018";        // Tibbers — unit, tagged Annie, SIGNATURE
+  const annie = (): Deck => ({ ...emptyDeck(), legend: ANNIE_LEGEND });
+
+  /**
+   * The defect this fix is really for: three copies of your own champion candidate is the ORDINARY
+   * build, and the cell refused the designation with "3 of 3 · a Main Deck takes three of a name
+   * (103.2.b)" — a cap answering a question nobody asked, since designating adds nothing when the
+   * copies are already there. Measured on the live editor before the change.
+   */
+  it("designates a champion the list already holds a playset of", () => {
+    let deck = annie();
+    for (let i = 0; i < 3; i++) deck = addCard(deck, STUBBORN, cards);
+    expect(capOf(deck, STUBBORN, cards).full, "the copy cap IS full — that is the point").toBe(true);
+    expect(championCapOf(deck, STUBBORN, cards).full).toBe(false);
+    const after = setChampion(deck, STUBBORN, cards);
+    expect(after.champion).toBe(STUBBORN);
+    expect(after.main[STUBBORN]).toBe(3);        // designating moved no copies
+  });
+
+  /**
+   * And it still binds where the list holds NO copy of that card, because there the designation really
+   * does add one. 103.2.b counts a NAME, so three of one printing bar a designation of another.
+   */
+  it("refuses a designation that would add a fourth copy of a name", () => {
+    let deck: Deck = { ...emptyDeck(), legend: LADY };
+    for (let i = 0; i < 3; i++) deck = addCard(deck, LUX, cards);
+    const other = otherBasesOf(cards, LUX)[0];
+    if (!other) return;                          // only meaningful while Lux has a second printing
+    expect(copiesOf(deck, other)).toBe(0);
+    expect(championCapOf(deck, other, cards).full).toBe(true);
+    expect(setChampion(deck, other, cards).champion).toBeNull();
+  });
+
+  it("refuses a Signature card, which is 103.2.d.3's own worked example", () => {
+    const cap = championCapOf(annie(), TIBBERS, cards);
+    expect(cap).toMatchObject({ full: true, badge: "Signature" });
+    expect(cap.why).toContain("103.2.d.3");
+    expect(setChampion(annie(), TIBBERS, cards).champion).toBeNull();
+  });
+
+  it("refuses a unit that does not carry the legend's champion tag (103.2.a.2)", () => {
+    const offTag = poolOf(cards).find(
+      (c) => zoneOf(c) === "main" && c.type.includes("unit") && !c.signature && !c.tags.includes("Annie")
+        && c.domains.length > 0 && c.domains.every((d) => cards.domainsOf(ANNIE_LEGEND).includes(d)),
+    )!;
+    const cap = championCapOf(annie(), offTag.base, cards);
+    expect(cap).toMatchObject({ full: true, badge: "Not Annie" });
+    expect(cap.why).toContain("103.2.a.2");
+    expect(setChampion(annie(), offTag.base, cards).champion).toBeNull();
+  });
+
+  it("refuses an off-domain card before it asks about the tag", () => {
+    const off = poolOf(cards).find(
+      (c) => zoneOf(c) === "main" && c.domains.length > 0
+        && !c.domains.every((d) => cards.domainsOf(ANNIE_LEGEND).includes(d)),
+    )!;
+    const cap = championCapOf(annie(), off.base, cards);
+    expect(cap.offIdentity).toBe(true);
+    expect(setChampion(annie(), off.base, cards).champion).toBeNull();
+  });
+
+  /**
+   * The "unit" half of 103.2.a.2 is REAL and is currently unreachable as the reported reason, which is
+   * worth knowing rather than discovering by rewriting the test. Measured 2026-09-13: 48 main-deck
+   * non-unit cards carry a champion tag and ALL 48 are Signature cards, so 103.2.d.3 always answers
+   * first. The clause stays because it is the rule; this pins why nobody ever sees it.
+   */
+  it("has no non-unit champion candidate to refuse, because every tagged non-unit is Signature", () => {
+    const tags = new Set<string>();
+    for (const c of cards.cards) if (c.type.includes("legend")) {
+      const t = championTagOf(c.base, cards);
+      if (t) tags.add(t);
+    }
+    expect(tags.size).toBeGreaterThan(40);                       // non-vacuity
+    const taggedNonUnits = poolOf(cards).filter(
+      (c) => zoneOf(c) === "main" && !c.type.includes("unit") && c.tags.some((t) => tags.has(t)),
+    );
+    expect(taggedNonUnits.length).toBeGreaterThan(0);            // non-vacuity
+    expect(taggedNonUnits.filter((c) => !c.signature)).toEqual([]);
+  });
+
+  /**
+   * With no legend there is no tag to compare against, so the model judges nothing — exactly as
+   * `championRule` reports `unknown` rather than guessing. The UI does not OFFER the button in that
+   * state, which is a separate and deliberate decision made in `web/builder.ts`.
+   */
+  it("judges nothing until a legend is named", () => {
+    expect(championCapOf(emptyDeck(), STUBBORN, cards).full).toBe(false);
+    expect(setChampion(emptyDeck(), STUBBORN, cards).champion).toBe(STUBBORN);
+  });
+
+  it("agrees with the Construction checklist on the deck it produces", () => {
+    const deck = setChampion(annie(), STUBBORN, cards);
+    const row = checkBuild(deck, cards, "constructed").rules.find((r) => r.rule === "103.2.a.2")!;
+    expect(row.status).toBe("pass");
   });
 });
 

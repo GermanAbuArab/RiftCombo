@@ -259,3 +259,88 @@ legend's domain chips and that filter is a `some` test while `inIdentity` is an 
 the same as the census's: click **All domains** first, which is the button a player uses. It is now a
 named helper in `test/dom/builder.dom.test.ts` with the reason attached, so the next person to write a
 DOM probe there inherits it instead of re-finding it.
+
+
+---
+
+## 7. The tier audit — is any OTHER rule in the wrong tier? — `rc-builder`, 2026-09-13
+
+With the contract in hand the census's question becomes answerable for the whole checklist rather than
+for one rule, and it has to be asked in BOTH directions: rules the checklist scores that the button
+does not stop, and rules the button stops that the checklist does not score. Probe:
+`.scratch-builder/tiers.ts` (gitignored), which drives the real `capOf` / `sideboardCapOf` / `addCard`
+/ `setChampion` and then asks `checkBuild` about the deck each click produced.
+
+**NON-VACUITY: 1189 printings, 926 pool cells, and `checkBuild` emits 10 rows on an empty deck.**
+
+| `checkBuild` row | does a click reach the broken state? | tier, and is it right? |
+|---|---|---|
+| 103.1 One Champion Legend | no — a second legend REPLACES the first | correct |
+| 103.1.b Domain Identity | no — `OGN-001 Blazing Scorcher` refused under a calm + mind legend | **fixed this pass** |
+| 103.2.a.2 Chosen Champion | **was reachable in the model** — `setChampion` had no tag gate | **fixed this pass** |
+| 103.2 · TR 601.1.b Main Deck of 40 | n/a — a deck is built *up* to 40; no cap can apply | correct |
+| 103.2.b Up to 3 of a name | no — stops at 3 | correct |
+| 825.3.a One of each Unique name | no — `Forgefire Cape` stops at 1 | **fixed this pass** |
+| 103.2.d Up to 3 Signature cards | no — the Master Yi board stops at 3 | correct (#211) |
+| 103.3.a 12 runes | no — stops at 12 | correct |
+| 103.3.a.1 runes in identity | no — a Fury Rune refused under a calm + mind legend | **fixed this pass** |
+| 103.4.a · 103.4.c battlefields | no — 3 in all, 1 of a name | correct |
+| TR 601.1.c.1 sideboard ≤ 10 | no — stops at 10 | correct |
+| TR 601.1.c.2 sideboard contents | no — a rune is refused | correct |
+| TR 601.1.c.3 · 403.3 combined copies | no — a fourth copy across both bags is refused | correct |
+| 103.2.e Legal in this format | **yes, and deliberately** — `OGN-276 Aspirant's Climb` is added | **tier 3 BY DECISION** |
+
+**So the answer is: nothing is left in the wrong tier.** Every invariant row now blocks at the button,
+the one format-dependent row marks and takes the click, and `103.2` has no tier to be in.
+
+### The mirror, which is where the one open item is
+
+```
+  sideboard identity: button=REFUSES  checklist 103.1.b=pass  -> DISAGREE
+  main-deck control:  button=REFUSES  checklist 103.1.b=fail  -> agree
+```
+
+The control line is what makes the first trustworthy: the instrument fires and the checklist does fail
+for the same card in the Main Deck. `identityRule` reads `deck.main` and `deck.battlefields` and not
+`deck.sideboard`, so the BUTTON IS STRICTER THAN THE CHECKLIST on exactly one rule. The refusal is
+right (see §6) and the checklist is short; filed as its own issue rather than fixed inside a UI change.
+
+### 103.2.a.2 — the census's second exception, and a wrong refusal beside it
+
+The census said *"Identity and the Chosen Champion tag are the two exceptions"* to every rule living in
+the model. #212 moved the first; this pass moved the second, and 103.2.d.3 went with it, because
+`setChampion` never consulted `capOf` at all. `championCapOf` is now the third sibling of `capOf` and
+`sideboardCapOf`, and all three champion buttons — the pool's Champion cell, the deck row's *Champion*
+link, and `setChampion` itself — read it.
+
+**The player-facing half runs the other way, and it was a wrong REFUSAL rather than a missing one.** A
+Champion click DESIGNATES rather than adds: `setChampion` puts a copy in the Main Deck only when the
+list holds none. So a full copy cap refuses nothing — and it was refusing. Measured on the live editor:
+
+```
+  three Annie, Stubborn in the list, Champion zone
+  Annie, Stubborn    blocked=true  badge=3 of 3  title="3 of 3 · a Main Deck takes three of a name (103.2.b)."
+```
+
+**Three copies of your own champion candidate is the ordinary build, not a corner**, so anyone who
+built the deck the obvious way hit it. After: `blocked=false`, no badge, and the click designates while
+leaving all three copies where they were. The cap still binds where the list holds NO copy of that
+card, because there the designation really does add one — 103.2.b counts a NAME, so three of one
+printing bar a designation of another.
+
+One fact worth knowing before somebody rewrites that test: **the "unit" half of 103.2.a.2 is real and
+is currently unreachable as the reported reason.** Measured — 48 main-deck non-unit cards carry a
+champion tag and ALL 48 are Signature, so 103.2.d.3 always answers first. The clause stays because it
+is the rule, and a test pins why nobody ever sees it.
+
+### Two notes on the instrument
+
+`.scratch-builder/` is gitignored but **`npm test` still collected the DOM probes in it**, because
+vitest's include glob is `**/*.test.ts` and does not care about `.gitignore`. One of them then timed out
+at 5s under full-suite load — a false red in a tree four lanes share. The probes were renamed out of the
+glob once they had been read. A scratch probe that is a `*.test.ts` is everyone's problem, not yours.
+
+And the census's trap #1 cost this lane four rows before it cost anything else: `openList` preselects
+the legend's domain chips, so every off-domain subject read `CELL NOT DRAWN` and the first probe would
+have reported "the editor does not offer these". Clicking **All domains** first is now a named helper in
+`test/dom/builder.dom.test.ts` with the reason attached.

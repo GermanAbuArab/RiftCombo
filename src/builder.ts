@@ -523,6 +523,50 @@ export function removeCard(deck: Deck, base: string, cards: CardIndex): Deck {
 }
 
 /**
+ * What stops a card being the Chosen Champion. The census (#212) named TWO rules that lived in
+ * `web/builder.ts` and in no model: Domain Identity, which moved into `capOf`, and the champion tag,
+ * which is this — and with it went 103.2.d.3, since `setChampion` never consulted `capOf` at all. So
+ * the Champion button had the same shape of defect as the `+` did, one step less reachable because the
+ * pool's Champion zone filters the cells and `rowHtml` repeats the test. This is that fix for the
+ * third button: one function decides, the UI reads it back, and they cannot disagree.
+ *
+ * THE COPY CAP IS NOT ONE OF THEM, and that is the player-facing half. A Champion click DESIGNATES
+ * rather than adds — `setChampion` puts a copy in the Main Deck only when the list holds none — so a
+ * full 103.2.b refuses nothing when the copies are already there, and running a playset of your own
+ * champion candidate is the ORDINARY build, not a corner. Measured 2026-09-13: three `Annie, Stubborn`
+ * made her own Champion cell read "3 of 3 · a Main Deck takes three of a name (103.2.b)" and refuse the
+ * designation. It still binds where the list holds NO copy of that card, because there the designation
+ * really does add one — 103.2.b counts a NAME, so three of one printing bar a designation of another.
+ *
+ * With no legend named there is no tag to compare against and this judges nothing, exactly as
+ * `championRule` reports `unknown` rather than guessing. The UI does not OFFER the button in that
+ * state (the pool's Champion zone draws no cells without a legend, and `rowHtml` asks for a tag), which
+ * is the honest division: the model does not guess and the UI does not offer what it cannot check.
+ */
+export function championCapOf(deck: Deck, base: string, cards: CardIndex): Cap {
+  const card = cards.get(base);
+  if (!card) return { held: 0, max: 0, full: true, offIdentity: false, why: "Not a card in this pool.", badge: "Not in the pool" };
+  // 103.2.a.1 puts the Chosen Champion in the Champion Zone from the Main Deck before play.
+  if (zoneOf(card) !== "main") return { held: 0, max: 0, full: true, offIdentity: false, why: "The Chosen Champion is a Main Deck card (103.2.a.1).", badge: "Main Deck only" };
+  const held = copiesOf(deck, base);
+  const offDomain = identityCap(deck, card, cards, "main");
+  if (offDomain) return offDomain;
+  // 103.2.d.3 — a Signature card is never the Chosen Champion, and Tibbers is the rule's own example.
+  if (card.signature) return { held, max: 1, full: true, offIdentity: false, why: "A Signature card is never the Chosen Champion (103.2.d.3).", badge: "Signature" };
+  // 103.2.a.2 — the Chosen Champion is a unit carrying the legend's champion tag.
+  const tag = deck.legend ? championTagOf(deck.legend, cards) : null;
+  if (tag && !(card.type.includes("unit") && card.tags.includes(tag))) {
+    return { held, max: 1, full: true, offIdentity: false, why: `The Chosen Champion is a unit carrying the legend's ${tag} tag (103.2.a.2).`, badge: `Not ${tag}` };
+  }
+  // Only now does the copy cap matter, and only because designating would ADD the missing copy.
+  if (!held) {
+    const copies = capOf(deck, base, cards);
+    if (copies.full) return copies;
+  }
+  return { held, max: 1, full: false, offIdentity: false, why: "", badge: "" };
+}
+
+/**
  * Designate the Chosen Champion. It is a Main Deck card, and Tournament Rules 402.1 counts it inside
  * the 40 ("40 cards including a chosen champion"), so designating one that is not in the list yet
  * puts a copy there. Clearing the designation leaves the copies alone: the card is still playable.
@@ -531,6 +575,7 @@ export function setChampion(deck: Deck, base: string | null, cards: CardIndex): 
   if (!base) return { ...deck, champion: null };
   const card = cards.get(base);
   if (!card || zoneOf(card) !== "main") return deck;
+  if (championCapOf(deck, base, cards).full) return deck;
   const main = deck.main[base] ? deck.main : bump(deck.main, base, 1);
   return { ...deck, champion: base, main };
 }

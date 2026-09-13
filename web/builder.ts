@@ -15,6 +15,7 @@ import {
   builderText,
   canonicalizeDeck,
   capOf,
+  championCapOf,
   copiesOf,
   costCurve,
   emptyDeck,
@@ -248,7 +249,14 @@ function gridHtml(): string {
 function cellHtml(card: Card): string {
   // The Sideboard zone of the pool adds to the sideboard, under its own three caps (601.1.c, 403.3).
   const toSide = filters.zone === "sideboard";
-  const cap = toSide ? sideboardCapOf(deck, card.base, cards()) : capOf(deck, card.base, cards());
+  const setChamp = filters.zone === "champion";
+  // Each zone's click has its own question, so each asks its own function and none of them is asked a
+  // question it cannot answer: the Champion zone DESIGNATES rather than adds, and `championCapOf` is
+  // what knows that a full copy cap refuses nothing when the copies are already in the list (#212's
+  // shape, applied to the third button — see its docblock).
+  const cap = setChamp
+    ? championCapOf(deck, card.base, cards())
+    : toSide ? sideboardCapOf(deck, card.base, cards()) : capOf(deck, card.base, cards());
   const held = copiesOf(deck, card.base);
   // Domain Identity is a mark, not a filter: hiding a card is hiding the answer, so an out-of-domain
   // card stays in the grid, dimmed, with the reason on the button that will not take it -- in its
@@ -282,16 +290,11 @@ function cellHtml(card: Card): string {
     card.power ? `${card.power} Power` : "",
     card.might !== null ? `${card.might} Might` : "",
   ].filter(Boolean).join(", ");
-  // 103.2.d.3: a Signature card is never the Chosen Champion, and Tibbers is the rule's own worked
-  // example. The deck column already refuses to offer "Champion" on a Signature row (`rowHtml`), so
-  // the Champion zone of the pool has to refuse it too, with the reason on the button (#122).
-  const setChamp = filters.zone === "champion";
-  const noSignatureChampion = setChamp && card.signature;
-  // The cell's own precedence, unchanged: identity, then the Champion rule, then whatever cap binds.
-  // `cap.full` now covers identity too, so the three-way test is written out rather than left to the
-  // order of an `||` — a card can be off-domain AND at a cap, and the player needs the first reason.
-  const why = off ? cap.why : noSignatureChampion ? "A Signature card is never the Chosen Champion (103.2.d.3)." : cap.why;
-  const blocked = cap.full || noSignatureChampion;
+  // 103.2.d.3 (a Signature card is never the Chosen Champion, Tibbers being the rule's own worked
+  // example, #122) and 103.2.a.2 are now BOTH in `championCapOf`, so this cell states neither: it
+  // reads one cap and prints the reason that cap gives, whichever of the two it is.
+  const why = cap.why;
+  const blocked = cap.full;
   // #104: the cell is one NAME, and 101 of them reprint under a second (or third) base. The other
   // bases ride only in the accessible name and a title — there is nothing to click differently.
   const others = otherBasesOf(cards(), card.base);
@@ -302,7 +305,7 @@ function cellHtml(card: Card): string {
       aria-disabled="${blocked}" aria-label="${esc(label)}"${blocked ? ` title="${esc(why)}"` : ""}>
       ${src ? `<img src="${esc(src)}" alt="" loading="lazy">` : `<span class="pool-noart">${esc(card.name)}</span>`}
       ${held ? `<span class="pool-n mono">${held}×</span>` : ""}
-      ${blocked && !off ? `<span class="pool-full">${esc(noSignatureChampion ? "Signature" : cap.badge)}</span>` : ""}
+      ${blocked && !off && cap.badge ? `<span class="pool-full">${esc(cap.badge)}</span>` : ""}
     </button>
     <p class="pool-name"><span class="pool-name-txt">${esc(card.name)}</span>${card.signature ? `<span class="sig-tag" title="Signature card">S</span>` : ""}${legality ? `<span class="ban-tag${legality.status === "restricted" ? " restricted" : ""}">${legality.status}</span>` : ""}</p>
     <button type="button" class="linklike pool-view" data-b="view" data-base="${esc(card.base)}">View<span class="sr-only"> ${esc(card.name)}</span></button>
@@ -470,8 +473,13 @@ const mightHtml = (card: Card): string =>
 
 function rowHtml(card: Card, count: number, zone: "legend" | "battlefields" | "runes" | "main"): string {
   const champ = deck.champion === card.base;
+  // The row offers "Champion" only where `championCapOf` would take it, so the deck column and the
+  // pool's Champion zone read ONE answer (#212's shape). The `tag !== null` is the UI's own decision
+  // and not the model's: with no legend named there is nothing to check the tag against, and offering
+  // a button whose legality we cannot judge is worse than not offering it — which is also why the
+  // pool's Champion zone draws no cells at all in that state.
   const tag = deck.legend ? championTagOf(deck.legend, cards()) : null;
-  const eligible = zone === "main" && !champ && !card.signature && card.type.includes("unit") && tag !== null && card.tags.includes(tag);
+  const eligible = zone === "main" && !champ && tag !== null && !championCapOf(deck, card.base, cards()).full;
   const cap = capOf(deck, card.base, cards());
   return `<div class="drow${champ ? " champ" : ""}" data-base="${esc(card.base)}">
     ${rowLead(card)}

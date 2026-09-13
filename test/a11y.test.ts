@@ -331,16 +331,25 @@ describe("the deckbuilder", () => {
    * example. The deck column refuses to offer "Champion" on a Signature row, so the pool's Champion
    * zone has to refuse it too (#122): the two columns may not disagree about the same card.
    */
-  it("refuses a Signature card in the Champion zone, with the paragraph on the button", () => {
-    expect(builder).toContain("const noSignatureChampion = setChamp && card.signature;");
-    expect(builder).toContain('"A Signature card is never the Chosen Champion (103.2.d.3)."');
-    // The third term of this disjunction changed on 2026-09-13 because the CONTRACT moved, not
-    // because the line was reworded: `off` was a second, independent test of Domain Identity living
-    // here in `web/builder.ts`, and #212 moved that rule into `capOf` so the pool cell and the deck
-    // row could stop disagreeing about it. `cap.full` now subsumes it and the cell reads the reason
-    // back as `cap.offIdentity`, so the old literal has no meaning to restore. What this assertion is
-    // for is unchanged and still holds: `noSignatureChampion` is part of what blocks the button.
-    expect(builder).toContain("const blocked = cap.full || noSignatureChampion;");
+  /**
+   * This assertion was rewritten on 2026-09-13 because the CONTRACT moved twice in one commit, not
+   * because its lines were reworded. It used to pin three literals here in `web/builder.ts`:
+   * `const noSignatureChampion = setChamp && card.signature`, the 103.2.d.3 sentence, and
+   * `const blocked = off || noSignatureChampion || cap.full`. All three were the editor keeping its
+   * own copies of rules that lived in no model — Domain Identity and the champion tag, which is
+   * exactly the pair #212 was opened about — and the fix moved them into `src/builder.ts`. None of the
+   * three literals has a meaning left to restore.
+   *
+   * What the assertion is FOR is unchanged and is what it now pins: the cell may not answer the
+   * Champion question out of its own head. It asks `championCapOf` and prints the reason it is given,
+   * so the pool's Champion zone and the deck column cannot disagree about the same card (#122). The
+   * paragraph on the button is asserted where it now lives, and the BEHAVIOUR is pinned by a click in
+   * `test/dom/builder.dom.test.ts`, which is the stronger guard of the two.
+   */
+  it("asks one function for the Champion rule, so the two columns cannot disagree", () => {
+    expect(builder).toContain("championCapOf(deck, card.base, cards())");
+    expect(builder).toContain("const blocked = cap.full;");
+    expect(read("src/builder.ts")).toContain('"A Signature card is never the Chosen Champion (103.2.d.3)."');
   });
 
   it("gives a Construction mark a word beside it, since ✓ and ✗ are a shape and a colour", () => {

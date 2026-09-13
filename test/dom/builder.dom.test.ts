@@ -168,6 +168,27 @@ describe("what the pool refuses, and what it says", () => {
     expect(document.querySelector(".drow.champ")).not.toBeNull();
   });
 
+  /**
+   * A Champion click DESIGNATES rather than adds, so a full copy cap must not refuse it — and it did.
+   * Measured on the live editor before 2026-09-13: three `Annie, Stubborn` made her own Champion cell
+   * read "3 of 3 · a Main Deck takes three of a name (103.2.b)" and refuse the designation, which is a
+   * cap answering a question nobody asked. Three copies of your own champion candidate is the ORDINARY
+   * build, not a corner, so this was reachable by anyone who built the deck the obvious way.
+   */
+  it("designates a champion the list already holds a playset of", async () => {
+    await mount("Legend\n1 Dark Child - Starter\n\nMain Deck\n3 Annie, Stubborn\n");
+    setZone("champion");
+    const cell = cellNamed("Annie, Stubborn")!;
+    const button = cell.querySelector<HTMLButtonElement>(".pool-add")!;
+    expect(button.getAttribute("aria-disabled")).toBe("false");
+    expect(cell.querySelector(".pool-full")).toBeNull();
+    button.click();
+    expect(zoneCount("Champion")).toBe("1/1");
+    // The copies did not move: the designation is a label on cards that were already there.
+    expect(edits[0]).toContain("Annie, Stubborn");
+    expect(document.querySelector(".drow.champ")).not.toBeNull();
+  });
+
   it("dims a card outside the legend's domains instead of hiding it, and paints nothing over the art", async () => {
     await mount("Legend\n1 Nine-Tailed Fox\n");  // calm + mind
     setZone("main");
