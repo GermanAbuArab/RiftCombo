@@ -150,7 +150,54 @@ const namesAnswer = (blob, set) =>
 // to R Power, but every Power spent takes that rune off the board (161.2.b) and it returns at 2 a
 // turn (315.3.b), capped at 12 simultaneously (161.2.a). Going first; 485.7 gives the extra rune to
 // the player going SECOND, so this is the slower seat and therefore the honest bound.
+// #205: the old allocator sorted by total cost DESCENDING and bought the first affordable card each
+// turn. That is a GREEDY pass, and it buys a cheap Power card on turn 1 - which permanently removes
+// that rune (161.2.b) and starves the board - so it reported T8 on a line a hand walk puts at T6
+// (docs/plays/2026-09-12-chaos-order-the-one-answer.md). Replaced with an EXACT search: state is
+// (bitmask of cards paid for) -> the MOST runes reachable with that mask, since for a fixed mask more
+// runes always dominates. Each turn every affordable subset of what is left is tried. Median entry
+// has 4 costs and p95 is 7, so this is cheap; above 12 it falls back to the greedy pass (one entry
+// in the catalogue, at 19).
+//
+// It returns BOTH the turn everything is paid for and the turn the last UNIT landed, because the
+// old "+1 for readiness" was applied to every line and is a UNIT rule: 143.4 "Units enter the Board
+// exhausted" against 359.2.d, which enters a non-unit gear READY at base, and 359.3, which makes a
+// spell linger on the Chain and never become a permanent at all.
 function deployTurn(costs) {
+  const n = costs.length;
+  if (!n) return { all: 0, unit: 0 };
+  if (n > 12) { const g = greedyTurn(costs); return { all: g, unit: g }; }
+  const FULL = (1 << n) - 1;
+  let cur = new Map([[0, { r: 0, u: 0 }]]);
+  for (let turn = 1; turn <= 40; turn++) {
+    const next = new Map();
+    for (const [mask, st] of cur) {
+      const runes = Math.min(12, st.r + 2);
+      const idx = [];
+      for (let i = 0; i < n; i++) if (!(mask & (1 << i))) idx.push(i);
+      const k = idx.length;
+      for (let s = 0; s < (1 << k); s++) {
+        let e = 0, p = 0, m = mask, tookUnit = false;
+        for (let j = 0; j < k; j++) if (s & (1 << j)) {
+          const c = costs[idx[j]];
+          e += c.e; p += c.p; m |= 1 << idx[j];
+          if (c.unit) tookUnit = true;
+        }
+        if (e > runes || p > runes) continue;      // R runes afford R Energy AND R Power
+        const nr = runes - p;                       // 161.2.b: a recycled rune leaves the board
+        const nu = tookUnit ? turn : st.u;
+        const prev = next.get(m);
+        if (!prev || prev.r < nr || (prev.r === nr && prev.u > nu)) next.set(m, { r: nr, u: nu });
+      }
+    }
+    cur = next;
+    if (cur.has(FULL)) return { all: turn, unit: cur.get(FULL).u };
+  }
+  return { all: Infinity, unit: Infinity };
+}
+
+// Kept only as the >12 fallback. Do not use it for anything else: it is the defect #205 describes.
+function greedyTurn(costs) {
   const remaining = costs.map((c) => ({ ...c })).sort((a, b) => b.e + b.p - (a.e + a.p));
   let runes = 0;
   for (let turn = 1; turn <= 40; turn++) {
@@ -165,7 +212,7 @@ function deployTurn(costs) {
         if (c.e <= energy && c.p <= recyclable) {
           energy -= c.e;
           recyclable -= c.p;
-          runes -= c.p; // recycled runes leave the board
+          runes -= c.p;
           remaining.splice(i, 1);
           progress = true;
           break;
@@ -175,6 +222,24 @@ function deployTurn(costs) {
     if (!remaining.length) return turn;
   }
   return Infinity;
+}
+
+// A payoff that fires in the Beginning Phase cannot fire on the turn the last piece lands: a Hold is
+// Scored at 315.2.b.2 and an "at the start of your Beginning Phase" ability fires at 315.2.a, both
+// BEFORE the Main Phase (316) in which you assembled the board. Conservative by construction - any
+// hold or beginning-phase signal on a card OR in the entry's own prose keeps the extra turn, so this
+// can only ever remove it where neither reason is present.
+const HOLD_SIGNAL = /when i hold|when you hold|hold here/i;
+const BEGINNING_SIGNAL = /beginning phase|start of your/i;
+function beginningPhaseGated(e) {
+  let text = "";
+  for (const u of e.uses || []) {
+    const c = byBase.get(u.card);
+    if (c) text += ` ${c.text || ""} ${c.effect || ""}`;
+  }
+  if (HOLD_SIGNAL.test(text) || BEGINNING_SIGNAL.test(text)) return true;
+  const prose = `${(e.steps || []).join(" ")} ${e.terminatesIn || ""}`;
+  return /\bhold(s|ing)?\b/i.test(prose) || BEGINNING_SIGNAL.test(prose);
 }
 
 // The do-nothing Hold curve, from docs/plays/2026-09-12-the-unopposed-clock.md. The pool prints
@@ -242,7 +307,9 @@ const costsOf = (e) => {
   for (const u of e.uses || []) {
     const c = byBase.get(u.card);
     if (!c || c.type.includes("legend") || c.type.includes("battlefield")) continue;
-    for (let i = 0; i < u.quantity; i++) out.push({ e: c.energy || 0, p: c.power || 0 });
+    // 143.4 exhausts UNITS only, so only a unit costs a readiness turn.
+    for (let i = 0; i < u.quantity; i++)
+      out.push({ e: c.energy || 0, p: c.power || 0, unit: c.type.includes("unit") });
   }
   return out;
 };
@@ -250,6 +317,7 @@ const costsOf = (e) => {
 for (const { e, domains, costs } of entries) {
   let allCosts = costs;
   let via = null;
+  let best_consumer = null;
   if (!producesPoints(e)) {
     let best = null;
     for (const c of consumers) {
@@ -258,10 +326,10 @@ for (const { e, domains, costs } of entries) {
       const union = new Set([...domains, ...domainsOf(c)]);
       if (union.size > 2) continue; // 103.1.b: a legend has exactly two domains
       const merged = costs.concat(costsOf(c));
-      const t = deployTurn(merged);
-      if (!best || t < best.t) best = { t, id: c.id, merged };
+      const t = deployTurn(merged).all;
+      if (!best || t < best.t) best = { t, id: c.id, merged, consumer: c };
     }
-    if (best) { allCosts = best.merged; via = best.id; }
+    if (best) { allCosts = best.merged; via = best.id; best_consumer = best.consumer; }
     // ONE HOP ONLY. This does not chain two fuel producers together, so an engine whose consumer
     // needs more fuel tags than it alone produces reads as having no consumer even when the
     // catalogue routes it through a second engine - lux-infinite-power needs lux-infinite-energy
@@ -269,9 +337,14 @@ for (const { e, domains, costs } of entries) {
     // cross-check there before quoting a "no consumer" as a structural claim.
     else via = "no ONE-HOP consumer (see generateVariants)";
   }
-  // A Hold pays at your NEXT Beginning Phase and a Conquer needs bodies that are already ready
-  // (143.4 enters them exhausted), so the payoff is one turn after the last piece lands.
-  const pays = deployTurn(allCosts) + 1;
+  // The extra turn is owed for exactly two reasons and neither is universal, which is what the old
+  // unconditional "+1" got wrong: a UNIT that landed on the final turn is still exhausted (143.4) and
+  // is readied only at the next Awaken (315.1.b); and a payoff that fires in the Beginning Phase
+  // cannot fire on the turn you assembled the board. A line whose last act is casting a spell out of
+  // runes it already has owes neither.
+  const d = deployTurn(allCosts);
+  const gated = beginningPhaseGated(e) || (via && best_consumer ? beginningPhaseGated(best_consumer) : false);
+  const pays = d.all === Infinity ? Infinity : d.all + ((d.unit === d.all && d.unit !== 0) || gated ? 1 : 0);
   clock.push({ id: e.id, cls: e.class, pays, base: baselineTurn(domains), via,
                domains: [...domains].sort().join("/") || "colourless" });
 }
