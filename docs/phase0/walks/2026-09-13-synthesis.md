@@ -149,6 +149,44 @@ body — `master-yi-unstoppable-gardens-level-ladder` is a **single card** at 15
 reads T7, `corrupted-dragon-mass-evacuate` is one card at 12. Those are not hard to assemble; they are
 just dear, and the clock prices them correctly.
 
+## The close: it is not two problems, it is one axis
+
+Two separate things had been measured by this point — **arriving too late** (22% of engines, 51% of
+finishers) and **standing below the removal line**. The obvious question is whether they are the same
+entries. If they were two independent problems the catalogue would need two fixes.
+
+**The removal line is a real number and it is the pool's, not one card's.** Swept for a printed Might
+gate — `N Might or less`, `less than N Might` — folded by name and type, the pool prints **thirteen**
+and **ten sit at exactly Might 3**; two sit at 2 and exactly one reaches 5, `VEN-091 Corrupted Dragon`
+at **E10 + 2 Power**. So "below Might 3 at a battlefield" is the format's own definition of a body
+removal is priced to answer.
+
+Cross-tabulated over the **624 of 766 entries with a knowable smallest body at a battlefield**:
+
+| | below the line (Might ≤ 3) | at or above it |
+|---|---:|---:|
+| **arrives too late** | **61** | 116 |
+| **arrives in time** | **268** | 179 |
+
+- of the entries that arrive **too late**, **34%** are below the line
+- of the entries that arrive **in time**, **60%** are
+- under independence the late-and-fragile cell would hold **93**; it holds **61**
+
+**They are negatively correlated, so this is not two problems — it is one axis with entries spread
+along it.** An entry that arrives in time is *more* likely to be fragile, and an entry above the
+removal line is *more* likely to arrive late, because the bodies that removal cannot reach cost four
+Energy or more and a four-drop is a turn-4 play at best.
+
+That is the same trade every run play this lane wrote landed on, arriving here as a measurement over
+624 entries rather than as a verdict on three or four:
+
+> **You can be fast or you can be above the line the pool prices its removal at, and mostly not
+> both.** Ten of thirteen removal gates sit at Might 3; 98% of the two-drops and 0% of the six-drops
+> are under it; and the catalogue's entries are distributed exactly as that constraint predicts.
+
+Nobody designed that into `combos.json`. It is thirteen printings choosing one number, and 624 hand-
+walked entries falling either side of it.
+
 ## What this does NOT say
 
 - **It is not a claim that a line loses.** It says the *smallest* body dies, not that the line needs
@@ -157,7 +195,11 @@ just dear, and the clock prices them correctly.
   bodies are cheap; the gradient is the game's, not the catalogue's.
 - **The per-turn T6/T7 pair does not fit**, and the class cut explains why rather than smoothing it:
   a turn band mixes classes whose bodies differ by two Might.
-- **Seven of the 80 rows have no knowable smallest body** and are outside the measurement.
+- **Seven of the 80 finisher rows, and 142 of the 766 entries, have no knowable smallest body** and
+  are outside the measurement.
+- **The cross-tabulation is an association, not a cause.** It says the two properties trade off in
+  this catalogue; it does not say an author chose between them, and the mechanism offered — that the
+  bodies above the line cost four Energy — is an explanation rather than a demonstration.
 
 ## Reproduce
 
