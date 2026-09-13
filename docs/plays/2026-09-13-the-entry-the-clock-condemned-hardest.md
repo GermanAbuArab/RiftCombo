@@ -83,11 +83,19 @@ Channel Phase. The opponent has taken the other battlefield and garrisoned it; y
 | **T6** | 7 | **Attach all three** — `[Equip] E1 + 1 Calm` each, so E3 + 3 Calm Power, board → 4. Ahri carries 8 instances. |
 | **T7** | 6 | Beginning Phase: **Hold. 1 Score + 16 Gains = 17.** You were on 4. **Win.** |
 
-**Turn 7 with the attaches paid honestly — and the clock's T6 does not include them**, because
-`costsOfSet` reads a card's printed Energy and Power and 818.1 makes `[Equip]` a **separate Activated
-Ability with its own cost**. Three Equips at E1 + 1 Calm Power each is **three Energy and three Power
-the table cannot see**. That is the standing trap this project already records for published figures,
-inside our own instrument, and on this line it is worth a whole turn.
+**Turn 7 with the attaches paid honestly, and the clock says T6 — and the first version of this play
+got the reason wrong, which is worth the space.** I wrote that the clock's T6 "does not include" the
+Equip costs. It did not, because `costsOfSet` read a card's printed Energy and Power while 818.1 makes
+`[Equip]` a **separate Activated Ability with its own cost**; three attaches at E1 + 1 Calm Power each
+is three Energy and three Power. **That is now fixed and priced, and the clock still says T6**, so the
+missing turn was never the money.
+
+**It is ORDERING.** `deployTurn` asks only whether every cost is *payable* by turn N; it does not know
+that you cannot pay a Svellsongur's `[Equip]` before you have played the Svellsongur. The table above
+respects that and lands on T7; the allocator ignores it and lands on T6. Both are correct in their own
+terms, and the clock says which it is on every line it prints: **an optimistic lower bound.** The
+honest sentence is that a line with `[Equip]` costs has an ordering constraint the clock does not
+model, not that the clock cannot see the cost — it can now.
 
 **T7 against a contested curve of T9 is still two turns early**, and you only ever needed one
 battlefield.
@@ -131,6 +139,9 @@ comparison condemned hardest:
 2. **The `--stalled` HOLD label is too strong** and is not mine to edit. It is correct for a board
    where you control nothing and wrong for the one-battlefield board, which is the common case. A
    third bucket is not needed — one clause in the label is.
-3. **The clock does not price `[Equip]` costs.** This line pays three of them, E1 + 1 Calm Power
-   each, and it is the difference between T6 and T7. Worth fixing in `costsOfSet`, which would need
-   the Equip cost parsed out of card text rather than read from a field.
+3. **`[Equip]` is now priced** (mine, shipped): parsed from card text, 35 of the 39 gear that print
+   one parse to pure Energy and rune symbols — reproducing this file's own independent count of 29
+   one-rune plus 6 Energy-and-rune exactly — with the other four named and charged their mana part
+   only, `[Quick-Draw]` skipped and `[Weaponmaster]` freeing the cheapest attach. It moved the
+   unopposed headline from 41 to 45 of 80. **What remains unmodelled is ORDERING**, which is what
+   actually separates this line's T6 from its T7, and that is a larger change than a cost parser.
