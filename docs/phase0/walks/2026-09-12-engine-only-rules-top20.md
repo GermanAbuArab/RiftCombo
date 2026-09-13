@@ -320,3 +320,75 @@ Filed as **#207** for the three consequences I was not the owner of: the sixteen
 CLAUDE.md numbers that are now measurably wrong (§31.2's *"22 bucketed / 96 residue"* should be
 **26 / 41**), and the `204.3.a`-over-`383.3.b` citation upgrade that CLAUDE.md already prescribes and
 `combos.json` still has at 0 in finishers against 5.
+
+---
+
+## 8. The suppressed vein, read: five for five the same shape, and one of them settles an R-number
+
+Continuing through the sixteen gaps §7.1 surfaced. **All five read so far are parent-absent /
+child-carried**, which is not a coincidence — the suppression mechanism *selects* for that shape, so
+the hidden set is enriched in exactly the finding the instrument existed to produce.
+
+| rule | catalogue | CLAUDE.md | the child that hid it, which CLAUDE.md does carry |
+|---|---:|---:|---|
+| `419.4.a` | 16 | **0** | `419.4.a.1` (2) — the countered-card exception |
+| `464.2.e` | 18 | **0** | `464.2.e.1` (3) — the placement order |
+| `430.2` | 16 | **0** | `430.2.a` (1) — the ready/exhausted default |
+| `377` | 15 | **0** | `377.1` (n) — recognised by the `:` |
+| `144.4.c` | 14 | **0** | `144.4.c.1` (n) — Ganking widens the Standard Move |
+
+### 8.1 419.4.a settles R26, which was ruled on an internal conflict
+
+**419.4.a**, verbatim: *"Any such triggered abilities trigger when the act of playing the card has been
+completed by **the resolution of the card**."*
+
+R26 asks whether a *"When you play a spell"* trigger resolves before or after the spell. It was
+**ruled B on 2026-09-04** — the trigger waits for the spell to resolve — and the ruling records itself
+as *"un conflicto interno del reglamento, no una ambigüedad de lectura"*, decided against the literal
+chain read (playing completes at Finalize 337.1, the trigger goes on at 383.3.c, 340.1 resolves
+newest-first, so Virtuoso would banish his own spell) **on the strength of a worked example** at
+`359.3.e.10`. Its stated reopen condition is *"si Riot reordena la cadena o reformula el ejemplo"*.
+
+**419.4.a is not an example. It is the normative paragraph, and it states B outright.** The
+conclusion does not change; its footing does. Rewording the *example* can no longer reopen R26 —
+only rewording 419.4.a could. That is the same move this project already made for R9, R20, R27, R29
+and R31: **an R-number retired by finding the rule instead of asking.**
+
+Measured, and it is the actionable half: **five entries stand on R26 and not one of them cites
+419.4.a** — `virtuoso-banish-channel` (the entry R26 was opened for), `death-from-below-recurring-kill`,
+`darius-trifarian-thrill`, `katarina-lotus-trap-sudden-storm-board-cap`,
+`acceptable-losses-ravenbloom-prefect-gearless-gear-hate`. They lean on a voted reading where a rule
+exists. Proposed on issue #11 rather than applied here; `combos.json` is single-owner.
+
+**And 419.4.a is the positive half of a split CLAUDE.md already carries negatively.** The file states
+*"a non-triggered check needs only finalization, a trigger needs resolution"* and sources it to
+`419.4.b` against `419.4.a.1` — the two *negative* cases, a countered card counting for Legion and not
+for a play-trigger. `419.4.a` says the positive directly. Same shape as `811.6` against `811.1.b` and
+`316.8.b.1` against `316.8.b.1.a`: **the file derives what a standalone paragraph states.**
+
+### 8.2 The other four, disposed
+
+`464.2.e` — *"Add items to the Combat Chain if establishing Attacker and Defender has caused Triggered
+Abilities to become Pending."* The parent of the ordering rule CLAUDE.md uses to conclude the
+Defender's triggers resolve first. Citation upgrade, no new mechanic.
+
+`430.2` — *"The Game Effect that instructs a player to channel 1 or more runes **may specify the
+conditions or circumstances** under which those runes enter the board"*, with Riot's worked example
+being *"Channel 1 rune exhausted."* CLAUDE.md carries `430.2.a` as *"the default the card text
+overrides"*; `430.2` is the **permission** that makes the override legal, and the whole
+Startipped-Peak / Papertree family turns on it.
+
+`377` — *"Activated Abilities are **repeatable** effects with a cost."* Worth a line beside the
+once-per-turn census: the rules call them repeatable, and this pool makes eleven of them actually so,
+because an exhaust in the cost is what removes the repeatability the definition asserts.
+
+`144.4.c` — *"Ganking is a unique ability that affects a Unit's Standard Move."* Parent of `144.4.c.1`.
+Reinforces `810.1.c.3`: Ganking modifies the Standard Move and grants no separate movement.
+
+### 8.3 Standing note
+
+**A suppressed set is not a random sample.** These sixteen were hidden *because* a child was carried,
+so the set is enriched in parent-absent/child-carried cases by construction — five for five so far.
+That makes the remaining eleven worth reading rather than sampling, and it means the true size of the
+"exception carried, rule absent" family is larger than the four instances found by reading, because
+the instrument was deleting new ones from its own report.
