@@ -1803,23 +1803,23 @@
         "excludes": [
           {
             "card": "UNL-105",
-            "why": "\"an enemy unit here with less Might than ME\" — the threshold is Imposing Challenger's own Might, and Renekton's ability only pumps Renekton."
+            "why": "\"an enemy unit here with less Might than me\" — the threshold is Imposing Challenger's own Might, and Renekton's ability only pumps Renekton."
           },
           {
             "card": "VEN-136",
-            "why": "\"kill an enemy unit here with less Might than ME\" — same, the gate reads Ambessa's Might, not a unit you choose."
+            "why": "\"kill an enemy unit here with less Might than me\" — same, the gate reads Ambessa's Might, not a unit you choose."
           },
           {
             "card": "SFD-173",
-            "why": "\"if it has less Might than ME\" — Soraka's shield is measured against Soraka, so pumping Renekton widens nothing."
+            "why": "\"if it has less Might than me\" — Soraka's shield is measured against Soraka, so pumping Renekton widens nothing."
           },
           {
             "card": "UNL-057",
-            "why": "\"Your units here with less Might than ME can't be chosen\" — Alpha Wildclaw's own Might is the bar."
+            "why": "\"Your units here with less Might than me can't be chosen\" — Alpha Wildclaw's own Might is the bar."
           },
           {
             "card": "UNL-060",
-            "why": "\"Enemy units here with less Might than ME don't deal combat damage\" — Vilemaw's own Might is the bar."
+            "why": "\"Enemy units here with less Might than me don't deal combat damage\" — Vilemaw's own Might is the bar."
           }
         ]
       },
@@ -1847,7 +1847,7 @@
       "partner": {
         "textMatches": "\\d :rb_might: or less|total Might (of )?\\d+ or less"
       },
-      "why": "Sixteen cards in the pool price removal by a Might threshold — kill, banish, return to hand, take control, move, or empty a garrison, all gated on \"N Might or less\" — and Moonlight Affliction is the largest reduction printed anywhere: \"[Reaction] Give a unit -10 Might this turn\", with no floor. 143.2.b is what makes it a key rather than an overpayment: \"If a unit's Might is ever less than 0, it is treated as 0 WHEN REFERENCED BY SPELLS AND ABILITIES\", so a body at -2 reads as 0 and contributes 0 to the four rows that gate on a TOTAL (Fox-Fire's 4, Decree of Discord's 5, Tricksy Tentacles' 8, Corrupted Dragon's per-unit 5). 143.2.b.1 is the other half: \"it is not 0\", so an opponent undoing it has to climb from the real number. Two limits the list cannot show. 477.3.b snapshots any \"to a minimum of 1\" clause at the moment it applies, so the nine Origins reductions do not stack with each other — Moonlight Affliction carries no floor, which is why it is the anchor. And 477.3.e.2.a applies decreases LAST, so the reduction always lands after the opponent's pump, whatever order the two were played in.",
+      "why": "Sixteen cards in the pool price removal by a Might threshold — kill, banish, return to hand, take control, move, or empty a garrison, all gated on \"N Might or less\" — and Moonlight Affliction is the largest reduction printed anywhere: \"[Reaction] Give a unit -10 Might this turn\", with no floor. 143.2.b is what makes it a key rather than an overpayment: \"If a unit's Might is ever less than 0, it is treated as 0 when referenced by spells and abilities\", so a body at -2 reads as 0 and contributes 0 to the four rows that gate on a TOTAL (Fox-Fire's 4, Decree of Discord's 5, Tricksy Tentacles' 8, Corrupted Dragon's per-unit 5). 143.2.b.1 is the other half: \"it is not 0\", so an opponent undoing it has to climb from the real number. Two limits the list cannot show. 477.3.b snapshots any \"to a minimum of 1\" clause at the moment it applies, so the nine Origins reductions do not stack with each other — Moonlight Affliction carries no floor, which is why it is the anchor. And 477.3.e.2.a applies decreases LAST, so the reduction always lands after the opponent's pump, whatever order the two were played in.",
       "basis": {
         "rules": [
           "143.2.b",
@@ -1934,7 +1934,7 @@
         "textMatches": "[\\s\\S]",
         "minPower": 2
       },
-      "why": "\"When you play a card with Power cost [A][A] or more, draw 1\" — 82 cards in the pool print two or more Power, and this is the whole list. 206 is what makes it safe to read off the printed cost: \"Effects that need to determine a card's cost for any purpose always use its PRINTED or copied cost, even if that cost is increased, decreased, or IGNORED as the card is played\", and its own worked example is this exact clause on Lux, Illuminated. So a card played from [Hidden] for nothing (811.1.b: \"you may play this, ignoring its base cost\") still draws, and so does one discounted to zero. The trigger says CARD, which is the line worth knowing: 350.2 lets a token be played, and 185 says \"Tokens are not cards\", so no token ever draws here however much Power the thing it imitates prints. It counts an opponent's plays too — the clause is \"when you play\", so it does not.",
+      "why": "\"When you play a card with Power cost [A][A] or more, draw 1\" — 82 cards in the pool print two or more Power, and this is the whole list. 206 is what makes it safe to read off the printed cost: \"Effects that need to determine a card's cost for any purpose always use its printed or copied cost, even if that cost is increased, decreased, or ignored as the card is played\", and its own worked example is this exact clause on Lux, Illuminated. So a card played from [Hidden] for nothing (811.1.b: \"you may play this, ignoring its base cost\") still draws, and so does one discounted to zero. The trigger says CARD, which is the line worth knowing: 350.2 lets a token be played, and 185 says \"Tokens are not cards\", so no token ever draws here however much Power the thing it imitates prints. It counts an opponent's plays too — the clause is \"when you play\", so it does not.",
       "basis": {
         "rules": [
           "206",
@@ -1984,7 +1984,7 @@
         "textMatches": "[\\s\\S]",
         "minEnergy": 7
       },
-      "why": "\"Discard 1. Deal its Energy cost as damage to a unit at a battlefield. (Ignore its Power cost.)\" — the payoff IS the discarded card's cost, so the rule is a price list and the floor is where the price starts being worth a card. It is set at 7 because 7 damage kills 479 of the pool's 521 units: only 42 print 7 Might or more. 206 reads the PRINTED cost, so the best fuel is a card whose real cost is nothing like its printed one — Rhasa the Sunderer prints 10 and costs 1 less per card in your trash, Plaza Guardian prints 8 and Master Yi, Unstoppable 12. Two things the list cannot show. Get Excited! is E2 P1 Fury and 103.1.b caps the deck at the legend's two domains, so the fuel that is actually reachable is the Fury half plus one; and 422.1 makes discarding move the card \"from a player's hand DIRECTLY into their trash\", so every card spent here is still there for a trash payoff afterwards, which is the other half of the same lens ([[rhasa-trash-counter]]).",
+      "why": "\"Discard 1. Deal its Energy cost as damage to a unit at a battlefield. (Ignore its Power cost.)\" — the payoff IS the discarded card's cost, so the rule is a price list and the floor is where the price starts being worth a card. It is set at 7 because 7 damage kills 479 of the pool's 521 units: only 42 print 7 Might or more. 206 reads the PRINTED cost, so the best fuel is a card whose real cost is nothing like its printed one — Rhasa the Sunderer prints 10 and costs 1 less per card in your trash, Plaza Guardian prints 8 and Master Yi, Unstoppable 12. Two things the list cannot show. Get Excited! is E2 P1 Fury and 103.1.b caps the deck at the legend's two domains, so the fuel that is actually reachable is the Fury half plus one; and 422.1 makes discarding move the card \"from a player's hand directly into their trash\", so every card spent here is still there for a trash payoff afterwards, which is the other half of the same lens ([[rhasa-trash-counter]]).",
       "basis": {
         "rules": [
           "206",
@@ -2008,7 +2008,7 @@
         "excludes": [
           {
             "card": "VEN-114",
-            "why": "\"choose an OPPONENT. They [Burn 3]\" — it can only ever fill somebody else's trash, and Rhasa counts YOUR trash."
+            "why": "\"choose an opponent. They [Burn 3]\" — it can only ever fill somebody else's trash, and Rhasa counts YOUR trash."
           },
           {
             "card": "VEN-002",
@@ -4028,7 +4028,7 @@
         "excludes": [
           {
             "card": "UNL-130",
-            "why": "\"Choose an opponent. They play a 1 Might Bird unit token\" — the OPPONENT plays it, never Lillia's own controller, so her \"when YOU play a token unit\" trigger never sees it."
+            "why": "\"Choose an opponent. They play a 1 Might Bird unit token\" — the OPPONENT plays it, never Lillia's own controller, so her \"when you play a token unit\" trigger never sees it."
           }
         ]
       },
@@ -4643,7 +4643,7 @@
         "excludes": [
           {
             "card": "SFD-207",
-            "why": "\"return a unit you control HERE to its owner's hand\" is Emperor's Dais's own \"here\" — a different named battlefield. Only one battlefield is in play, so a bounce at Emperor's Dais never happens at Ripper's Bay."
+            "why": "\"return a unit you control here to its owner's hand\" is Emperor's Dais's own \"here\" — a different named battlefield. Only one battlefield is in play, so a bounce at Emperor's Dais never happens at Ripper's Bay."
           },
           {
             "card": "SFD-044",
@@ -5974,7 +5974,7 @@
     },
     {
       "id": "warwick-hunter-damage-marker",
-      "name": "\"Kill all DAMAGED enemy units\" reads a marker, not a threshold — so any ping in the list is universal removal",
+      "name": "\"Kill all damaged enemy units\" reads a marker, not a threshold — so any ping in the list is universal removal",
       "anchor": "OGN-159",
       "partner": {
         "textMatches": ":rb_exhaust:[^.]{0,25}[Dd]eal \\d+|[Ww]hen (I|you) (play me|move|attack)[^.]{0,80}deal \\d+"
@@ -6074,7 +6074,7 @@
         "excludes": [
           {
             "card": "VEN-099",
-            "why": "\"When you play me FROM FACE DOWN, you may empower something here\" — Temporal Breach's replay is a normal play from Banishment, not a play from face down (811.1.c.1 keeps Hide and Play separate), so the trigger never fires."
+            "why": "\"When you play me from face down, you may empower something here\" — Temporal Breach's replay is a normal play from Banishment, not a play from face down (811.1.c.1 keeps Hide and Play separate), so the trigger never fires."
           }
         ]
       },
@@ -6172,7 +6172,7 @@
         "excludes": [
           {
             "card": "OGN-034",
-            "why": "Tryndamere, Barbarian reads \"When I conquer AFTER AN ATTACK, if you assigned 5 or more excess damage\". Bard's route opens a Showdown under 344.2 with no opposing units, so 465.1 assigns no damage at all and R28 = A makes excess damage attacking Might that was never assigned — the condition is part of the Trigger Condition (383.2.a.1) and can never be met here."
+            "why": "Tryndamere, Barbarian reads \"When I conquer after an attack, if you assigned 5 or more excess damage\". Bard's route opens a Showdown under 344.2 with no opposing units, so 465.1 assigns no damage at all and R28 = A makes excess damage attacking Might that was never assigned — the condition is part of the Trigger Condition (383.2.a.1) and can never be met here."
           },
           {
             "card": "SFD-120",
@@ -6217,7 +6217,7 @@
         "excludes": [
           {
             "card": "OGN-242",
-            "why": "Baited Hook's kill sits AFTER the colon, so it is effect text and not a cost (203.3 never engages), and the payoff then reads \"Might up to 1 more than THE KILLED UNIT\" — 370.1.a.1 makes the replaced death the same as the kill not occurring, so the referent is gone and the tutor loses its ceiling."
+            "why": "Baited Hook's kill sits AFTER the colon, so it is effect text and not a cost (203.3 never engages), and the payoff then reads \"Might up to 1 more than the killed unit\" — 370.1.a.1 makes the replaced death the same as the kill not occurring, so the referent is gone and the tutor loses its ceiling."
           },
           {
             "card": "SFD-163",
@@ -6371,15 +6371,15 @@
         "excludes": [
           {
             "card": "OGN-032",
-            "why": "Ravenborn Tome reads \"The next SPELL you play this turn deals 1 Bonus Damage\". Volibear's split is a Triggered Ability, not a spell, so the grant never reaches it — the same spell-versus-ability line 417.6.b.3 draws elsewhere."
+            "why": "Ravenborn Tome reads \"The next spell you play this turn deals 1 Bonus Damage\". Volibear's split is a Triggered Ability, not a spell, so the grant never reaches it — the same spell-versus-ability line 417.6.b.3 draws elsewhere."
           },
           {
             "card": "VEN-010",
-            "why": "Consuming Curse's Bonus Damage is self-scoped — \"THIS deals 1 Bonus Damage for each card with this name in your trash\" — so it augments its own Deal action and grants nothing to anything else."
+            "why": "Consuming Curse's Bonus Damage is self-scoped — \"This deals 1 Bonus Damage for each card with this name in your trash\" — so it augments its own Deal action and grants nothing to anything else."
           },
           {
             "card": "UNL-020",
-            "why": "Dancing Grenade is self-scoped in the same way (\"this deals 1 additional Bonus Damage for each time THIS SPELL has dealt damage this turn\"), and R15 = A scopes that history to the card itself."
+            "why": "Dancing Grenade is self-scoped in the same way (\"this deals 1 additional Bonus Damage for each time this spell has dealt damage this turn\"), and R15 = A scopes that history to the card itself."
           }
         ]
       },
@@ -6582,7 +6582,7 @@
         "excludes": [
           {
             "card": "OGN-055",
-            "why": "Wielder of Water pays only \"while I'm attacking or defending ALONE\", and 740.2.a reads alone as an own-side measurement — \"A unit is alone when there are no other friendly units at the same location.\" The enemy body is dragged to Iascylla's own battlefield and Iascylla is standing there, so the condition can never be met on the event this rule schedules."
+            "why": "Wielder of Water pays only \"while I'm attacking or defending alone\", and 740.2.a reads alone as an own-side measurement — \"A unit is alone when there are no other friendly units at the same location.\" The enemy body is dragged to Iascylla's own battlefield and Iascylla is standing there, so the condition can never be met on the event this rule schedules."
           },
           {
             "card": "OGN-060",
