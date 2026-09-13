@@ -407,3 +407,39 @@ tempo rather than the game; it is named here and no notable is proposed for it.
 
 Substitute the body: `OGN-216 Soaring Scout` at **Might 1** for the three Soaring Scout rows,
 `OGN-210 Daring Poro` at **Might 2** for the rest, and both for `ivern-arena-sentinel-hold`.
+
+---
+
+## Closing the 18 — `zone: BASE` is not one fact, and that splits the population
+
+I reported 18 entries parking a Might ≤ 2 body at BASE, said 7 were owed and left the rest
+unclassified. Closing it changed the shape of the claim.
+
+**Measured: 18 rows — BURST 5, CHAIN 4, ENGINE 9.** (Not "7 owed and 11 ENGINE": two of the
+non-Ivern rows are the Swain BURST and CHAIN cleared above, not ENGINEs.)
+
+**The split is what `zone: BASE` MEANS, and it means two different things:**
+
+- **A PARKING SPOT — 7 Ivern rows.** The tag body sits at base permanently and never needs to move,
+  because Ivern's clause carries no location restriction. Base-parking is a real defence here, and the
+  three no-location threats are the only things that beat it. **Owed, reported, applied in `c688f6b`.**
+- **AN ORIGIN — 7 of the 9 ENGINEs.** These carry explicit shuttle language in their own steps:
+  *"Standard Move to a battlefield… move him back"* (`treasure-hunter-industrialist-gold`),
+  *"standard-move the Smith between its base and a battlefield you control"*
+  (`svellsongur-apprentice-smith-gear-dig`), *"Standard Move the Faefolk to Star Spring"* then back
+  (`faefolk-star-spring-drag`), and four more built on *"When I move"* triggers. **The body stands at
+  a battlefield during its own engine**, so `OGN-133` reaches it there in the ordinary way and
+  base-parking is not a defence for them at all. The remaining two — `daisy-green-father-four-tag-attacker`
+  and `ravenbloom-diana-fizz-spell-stack` — are closer to parkers; the first is the four-tag shape in
+  calm+order.
+
+**No notable is proposed for any of the nine.** An ENGINE that loses its body stops the engine; a
+finisher that loses its body loses the game. That is the distinction rc-synth2 used to decline 96
+Equipment notables and it holds here.
+
+**This is the sixth instance of the pattern, and the sharpest about where the datum lives.** The
+deciding fact — *does this body ever leave base?* — is **not in the `uses` row at all**. It is in the
+entry's `steps`. A population built by filtering `uses[].zone === "BASE"` cannot see it, and I built
+that population and drew a conclusion from it before reading the steps. The tally now reads: face two
+6→4, the INFINITE sweep 7-of-7→0-of-7, the manager's catch on the Sand Soldier assignment, the slice
+15→7, the two Swain rows cleared on tense, and this.
