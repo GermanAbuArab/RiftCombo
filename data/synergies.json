@@ -6957,6 +6957,51 @@
       "status": "rule-verified",
       "reviewed": "2026-09-13",
       "reviewedCount": 20
+    },
+    {
+      "id": "bullet-time-pays-on-resolution",
+      "name": "Bullet Time is sized after the opponent has answered, so every rainbow you can still Add is damage",
+      "anchor": "OGN-268",
+      "partner": {
+        "textMatches": "\\[Add\\][^.]{0,40}:rb_rune_rainbow:",
+        "excludes": [
+          {
+            "card": "UNL-018",
+            "why": "matched on the Gold token's own reminder text, not its own: it PLAYS two Gold gear tokens and Adds nothing itself. 187.5 puts the [Add] on the token, and Yeti Brawler prints them \"exhausted\", so they cannot pay for anything the turn they arrive."
+          },
+          {
+            "card": "UNL-073",
+            "why": "same nested quote — it plays a Gold gear token \"exhausted\" and 187.5's [Add] belongs to the token, not to Deadly Flourish."
+          },
+          {
+            "card": "UNL-145",
+            "why": "same nested quote — Pyke plays a Gold \"exhausted\" once each turn; the [Add] the predicate caught is 187.5's text on the token."
+          },
+          {
+            "card": "UNL-185",
+            "why": "same nested quote — the Ripper's own ability returns a unit and plays a Gold \"exhausted\"; the [Add] is the token's."
+          },
+          {
+            "card": "SFD-189",
+            "why": "\"[Add] rainbow. Use only to play gear or use gear abilities\" — Bullet Time is a SPELL, so this rainbow can never be spent on it. The restriction is the card's own and 054.2 makes an \"only\" clause a prohibition."
+          }
+        ]
+      },
+      "why": "\"Pay any amount of [A] to deal that much damage to all enemy units at a battlefield\" is a Cost within an Instruction, so 204.3.b and 740.4.a.1 have it paid ON RESOLUTION rather than as the spell is played — and 204.3.b's own worked examples are Bullet Time and SFD-117 Ancient Henge in consecutive sentences, which is Riot pairing this anchor with its best partner itself. The consequence is the whole rule: the size of the sweep is chosen after the opponent has already responded or declined to, so rainbow held open is damage held open, and 355.10.d makes a deal-to-ALL untargeted so no [Deflect] in their garrison taxes a single point of it. The Henge is the extreme case, converting Energy to rainbow 1:1 with no cap per activation. Two limits: 356.6 floors nothing here because there is no cost to reduce, but 135.2.e.5.a is what lets a domain Power pay the rainbow at all; and every Gold-producing card in the pool prints its token \"exhausted\", so a Gold is next turn's rainbow and never this turn's.",
+      "basis": {
+        "rules": [
+          "054.2",
+          "135.2.e.5.a",
+          "187.5",
+          "204.3.b",
+          "355.10.d",
+          "740.4.a.1"
+        ],
+        "combos": []
+      },
+      "status": "rule-verified",
+      "reviewed": "2026-09-13",
+      "reviewedCount": 6
     }
   ]
 }
