@@ -1914,3 +1914,64 @@ ordering, which only each entry's own ledger can settle**, and I have not walked
 defensible statement is the narrow one: **in eight of the fourteen the counterable window is the
 refill, so a counter costs the card the pass was going to replace and not merely the pass** — and none
 of the eight says so.
+
+---
+
+## 33. The `shen-sentinel-time-warp-chain` loop-financed twin: **REFUSED**, and not on the arithmetic the objection named
+
+rc-synth3's homework is sound on every point it checked: `shen-sentinel-time-warp-chain` is mind/order,
+`lux-infinite-energy` is mind/order, the union is two domains and legal under 103.1.b, the entry
+declares `needs: []`, no twin exists on its card set, and sixteen entries already declare
+`needs: infinite-energy`. Its withdrawal of the deck-slot objection is also right — `VEN-165 Shadow
+Temple` is a **battlefield**, and 103.4 keeps battlefields out of the Main Deck's forty, so on the
+Temple route the emptying costs no deck slots. **Room was never the problem.**
+
+**The problem is that a Lux-financed line cannot span a turn boundary, and this chain spans two.**
+
+The refusal is already written, in `lux-infinite-energy`'s own `notable` — a #200 correction that
+nobody appears to have read back onto the twin question:
+
+> **315.4.b** is the Draw Phase task, *"The Turn Player draws 1"*, and **315.4.b.1** is automatic:
+> *"If there are no cards remaining in their Main Deck to draw, the Turn Player has been Burned Out."*
+> **There is no "may".** … Since 315.4 Draw Phase precedes 316 Main Phase, **THE DECK MUST BE EMPTIED
+> AND THE LOOP MUST WIN INSIDE THE SAME MAIN PHASE — an empty Main Deck cannot be carried across a
+> turn boundary at all.**
+
+And `shen-sentinel-time-warp-chain`'s own `terminatesIn` reads **"nine points across three
+uninterrupted turns, crossing 8 on the third Hold"**. Its steps put a Time Warp in turn 1's Main Phase
+and another in turn 2's — so **it needs the loop's Energy on two separate turns**, with a full Start of
+Turn between them. Each of those crossings runs 315.4, and 315.4.b.1 fires with no `may`.
+
+**What the Burn Out then does is worse than the point it costs.** 431.2.b: *"Recycles their trash into
+their Main Deck"*, with its own reminder that the recycled cards **must be randomized** — so the turn-2
+Draw Phase both **un-empties the deck the loop's premise requires** and erases the known bottom the
+ledger stands on, before turn 2's Main Phase can cast the second Time Warp. **The financing is not
+available when the chain needs it.**
+
+### The stated objection is real and is not the kill
+
+The Shadow Temple's *"When you hold here, [Burn 3]"* carries no `may`, and 315.2.b.2 Holds **all**
+battlefields you control, so it does fire every turn you control it. But run the arithmetic and it
+does not refuse anything on points: the chain takes **9** and each Burn Out gives the opponent **1**
+(431.2.c), so three Holds give away three while taking nine, and **194.2 asks for *"points greater than
+or equal to the Victory Score and more points than any other player"* — 9 ≥ 8 and 9 > 3.** **The
+points were never the problem.** What the Temple adds is a *second* mandatory Burn Out per turn on top
+of the Draw Phase one, which makes a dead line deader.
+
+**And the Temple is self-defeating as an emptier in any case**, which is worth recording because it is
+not obvious: its burn only fires *"when you hold here"*, 469.2 defines Holding on a battlefield you
+**control**, and 323.6 strips control from a battlefield with none of your units on it. **To use it as
+an emptier you must control it; controlling it means Holding it; and Holding it once the deck is empty
+is the cascade 431.3.a describes.** It gets you to empty and then keeps firing.
+
+### The general form, which is the part worth keeping
+
+**`infinite-energy` from a Lux shell is a ONE-MAIN-PHASE resource, and any consumer that spans turns
+cannot be financed by it** — not for want of slots, domains or points, but because 315.4.b.1 makes the
+empty Main Deck that shell requires unable to survive its own Draw Phase. **That is a test any future
+twin proposal can be run against in one line: does the consumer finish inside the Main Phase the loop
+runs in?** `shen-sentinel-time-warp-chain` does not, and neither does any other Time-Warp-chained
+consumer, because an extra turn is by definition a new Start of Turn.
+
+**No entry was written and none should be.** `data/combos.json` stayed with rc-manager8 throughout
+this walk.
