@@ -102,6 +102,34 @@ describe("synergy rules", () => {
     expect(errors[0]).toMatch(/reviewedSet \(now [0-9a-f]{8}\)/);
   });
 
+  it("refuses a key no interface declares, at every level (#202 class, from combos.json)", () => {
+    // combos[].notable proved this on the other file: seven values at the wrong level, byte-identical
+    // to the right level, in no interface, read by nothing, invisible for days. 220 rules here are
+    // authored by hand as JSON and read through the same unchecked cast.
+    const s = synergies[0]!;
+    expect(validateSynergies([{ ...s, notable: ["x"] } as typeof s], cards))
+      .toEqual([`${s.id}: unknown field notable`]);
+    // THE NESTED LISTS EARN THEIR KEEP MORE THAN THE TOP-LEVEL ONE: a typo here is silent AND
+    // consequential - textExclude would exclude nothing, the list would be wider than intended, and
+    // a rule stamped in the same edit would carry that as its reviewed baseline.
+    const typo = { ...s, partner: { ...s.partner, textExclude: "x" } } as typeof s;
+    expect(validateSynergies([typo], cards, { skipReviewCount: true }))
+      .toEqual([`${s.id}: unknown field partner.textExclude`]);
+    expect(validateSynergies([{ ...s, basis: { ...s.basis, combo: [] } } as typeof s], cards))
+      .toEqual([`${s.id}: unknown field basis.combo`]);
+  });
+
+  it("refuses a card type that is not one, which nothing validated before", () => {
+    // `partner.types` is read straight into a filter (src/synergies.ts), so a mistyped type matched
+    // NOTHING rather than failing - and the rule's own count would have been stamped around it.
+    const s = synergies[0]!;
+    const bad = { ...s, partner: { ...s.partner, types: ["unit", "creature"] } } as unknown as typeof s;
+    expect(validateSynergies([bad], cards, { skipReviewCount: true }))
+      .toContain(`${s.id}: unknown card type creature in partner.types`);
+    // And every type the file actually uses is legal, so the check costs the catalogue nothing.
+    expect(validateSynergies(synergies, cards)).toEqual([]);
+  });
+
   it("refuses a rule with no fingerprint at all, rather than treating it as reviewed", () => {
     const { reviewedSet: _drop, ...naked } = synergies[0]!;
     const errors = validateSynergies([naked as typeof synergies[0]], cards);

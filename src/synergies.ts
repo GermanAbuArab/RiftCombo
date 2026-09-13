@@ -1,4 +1,5 @@
 import type { CardIndex } from "./cards.js";
+import { CARD_TYPES, SYNERGY_BASIS_KEYS, SYNERGY_EXCLUDE_KEYS, SYNERGY_KEYS, SYNERGY_PARTNER_KEYS } from "./types.js";
 import type { Card, Deck, Domain, Format, Synergy } from "./types.js";
 
 /** Rules text plus, for Equipment, the text it grants the unit it is attached to. */
@@ -46,6 +47,26 @@ export function validateSynergies(synergies: Synergy[], cards: CardIndex, opts: 
   for (const s of synergies) {
     if (ids.has(s.id)) errors.push(`${s.id}: duplicate id`);
     ids.add(s.id);
+    // AN EXTRA KEY IS THE SHAPE NOTHING ELSE CAN NOTICE, and the nested lists matter more than the
+    // top-level one here: `textExclude` for `textExcludes` would simply not exclude anything, the
+    // match list would be wider than intended, and a rule stamped in the same edit would carry that
+    // as its reviewed baseline - the exact failure `reviewedSet` exists to catch, arriving through a
+    // door it cannot watch. Closes the last class `validateCombos` checks and this did not.
+    const keys = (obj: object | undefined, allowed: readonly string[], where: string) => {
+      for (const k of Object.keys(obj ?? {})) {
+        if (!allowed.includes(k)) errors.push(`${s.id}: unknown field ${where}${k}`);
+      }
+    };
+    keys(s, SYNERGY_KEYS, "");
+    keys(s.partner, SYNERGY_PARTNER_KEYS, "partner.");
+    keys(s.basis, SYNERGY_BASIS_KEYS, "basis.");
+    for (const x of s.partner?.excludes ?? []) keys(x, SYNERGY_EXCLUDE_KEYS, "partner.excludes[].");
+    // `partner.types` was read straight into a filter and validated by nothing, so a mistyped type
+    // would silently match NOTHING rather than fail - and a rule stamped in the same edit would
+    // carry the mistake as its reviewed baseline.
+    for (const t of s.partner?.types ?? []) {
+      if (!(CARD_TYPES as readonly string[]).includes(t)) errors.push(`${s.id}: unknown card type ${t} in partner.types`);
+    }
     const anchor = cards.get(s.anchor);
     if (!anchor) errors.push(`${s.id}: unknown anchor ${s.anchor}`);
     else if (anchor.base !== s.anchor) errors.push(`${s.id}: anchor ${s.anchor} is not a base code (use ${anchor.base})`);

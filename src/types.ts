@@ -1,5 +1,17 @@
 export type Domain = "fury" | "calm" | "mind" | "body" | "chaos" | "order";
-export type CardType = "unit" | "spell" | "legend" | "gear" | "battlefield" | "rune";
+/**
+ * The card types, as a RUNTIME list — the FOURTH in this file after `SOURCE_KINDS`, `ZONES` and
+ * `COMBO_KEYS`, which stops being a coincidence and starts being the rule: **nothing this project
+ * authors is ever WRITTEN in TypeScript.** Cards, combos and synergies are all authored as JSON and
+ * read through an unchecked cast, so a compile-time union is never applied to the values it
+ * describes and only a runtime list can refuse a wrong one.
+ *
+ * The immediate need is `Synergy.partner.types`, which nothing validated: `src/synergies.ts` reads
+ * it straight into a filter, so a mistyped type would silently match NOTHING rather than fail —
+ * and a rule stamped in the same edit would carry the mistake as its reviewed baseline.
+ */
+export const CARD_TYPES = ["unit", "spell", "legend", "gear", "battlefield", "rune"] as const;
+export type CardType = (typeof CARD_TYPES)[number];
 export type Format = "constructed" | "2v2";
 
 export interface Card {
@@ -307,6 +319,31 @@ export interface SynergyPartner {
   /** Base codes read out of the match list by hand, each with the reason it does not belong. */
   excludes?: { card: string; why: string }[];
 }
+
+/**
+ * Every key a synergy rule and its nested objects may carry. The argument is the one `COMBO_KEYS`
+ * makes and it applies here WORD FOR WORD: 220 rules authored by hand as JSON, read through an
+ * unchecked cast, so AN EXTRA KEY IS THE SHAPE NOTHING CAN NOTICE — a missing one at least breaks a
+ * reader eventually, while a misplaced one sits there inert. `combos[].notable` proved that on the
+ * other file: seven values at the wrong level, byte-identical to the right level, invisible for days.
+ *
+ * THE NESTED LISTS EARN THEIR KEEP MORE THAN THE TOP-LEVEL ONE HERE, because `partner` is where a
+ * typo is silent AND consequential: `textExclude` for `textExcludes` would simply not exclude
+ * anything, the match list would be wider than intended, and a rule stamped in the same edit would
+ * carry that as its reviewed baseline — the exact failure `reviewedSet` exists to catch, arriving
+ * through a door it cannot watch.
+ *
+ * Built from a census of the keys actually in use plus these interfaces, never from memory: 10 rule
+ * keys all universal, 8 partner keys, 3 basis keys, 2 exclude keys.
+ */
+export const SYNERGY_KEYS = [
+  "id", "name", "anchor", "partner", "why", "basis", "status", "reviewed", "reviewedCount", "reviewedSet",
+] as const;
+export const SYNERGY_PARTNER_KEYS = [
+  "textMatches", "textExcludes", "types", "tags", "minMightBonus", "minEnergy", "minPower", "excludes",
+] as const;
+export const SYNERGY_BASIS_KEYS = ["readings", "rules", "combos"] as const;
+export const SYNERGY_EXCLUDE_KEYS = ["card", "why"] as const;
 
 export interface SynergyBasis {
   /** Rules readings from issue #11 this rule leans on, e.g. "R1". */
