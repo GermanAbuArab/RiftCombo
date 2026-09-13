@@ -223,7 +223,7 @@ Power) pays E4 + a Chaos rune on the replay and no base Power at all.
 - **359.3.e.16** (10, 0) — *"If a Delayed Ability's duration has ended before it was generated, the
   Delayed Ability is not generated."* Riot's first example is `OGN-289 Targon's Peak`, catalogued in
   `sprite-queen-targon-peak-conquer-cycle`: **conquer it during the Ending Phase and the ready-2-runes
-  never happens.** Second example `Akshan, Mischievous` — leave the board in response to your own play
+  never happens.** Second example `SFD-109 Akshan, Mischievous` — leave the board in response to your own play
   effect and you never gain control of the gear *"even for a moment."*
 
 - **359.3.e.9.a** (11, 0) — counting the targets of a Finalized Chain Item **includes mistargeted
@@ -477,3 +477,103 @@ The 7-citation band adds 25 more rows and 6-and-5 add 86 between them. **The pai
 against 437.3, 373.1/373.2 against 373, 444.2.c against 429.3.a), which is the reason the join keeps
 paying at a lower citation count than an orphan-neighbour probe would: **the tool is not ranking
 importance, it is finding asymmetry, and asymmetry does not thin out with frequency.**
+
+---
+
+# THIRD SLICE — the 7-citation band (25 rows), same day
+
+`.scratch-gap/band.mjs 7 7`. **13 real gaps, 4 of them worth a bullet of their own; 8 correctly
+absent; 4 folds into bullets above.** The band is where step headings start to appear in volume
+(`356` *"3. Determine Total Cost."*, `357` *"4. Pay the card's costs."*, `464` *"Step 1: The Combat
+Showdown Step"*, `191` *"Everything Else"*, `141`-style stubs, `103.3.a` *"12 Rune Cards"*,
+`419.4` and `827.1` as parents of children the file already carries) — **that is the signal the vein
+is thinning, not the citation count.**
+
+## 3A. THE FOUR WORTH A BULLET
+
+- **356.4.f.1** (7) — *"An optional additional cost was 'paid' if the player made the decision to pay
+  it. **It doesn't matter how much the player actually paid**."* Riot's example pays an optional
+  `[C]` reduced to 0 and **still draws.** This is the **exact inverse** of a finding the file already
+  carries: *"an Empower discounted to 0 does NOT fire a cost-threshold trigger"* (827.1.c.3). So the
+  pool answers *"discounted to zero"* **two opposite ways in two families** — an optional additional
+  cost still counts as PAID, an Empower no longer counts as COSTING. Riot's example card `OGN-044 Clockwork Keeper` is in the pool, and this reaches every *"if you
+  paid the additional cost"* card, `SFD-109 Akshan, Mischievous` among them.
+
+- **383.4.c.2.c** (7) — *"If the act of gaining one point from Conquering is negated or replaced in
+  any way, **the Conquer Effect will still trigger**."* The file records `VEN-053 Otterpus` as denial and *"REPLACES an early score with a draw, which prevents a gain rather than causing a
+  loss"* — and never says what that does to the PAYOFFS. It does nothing: every conquer trigger in
+  the line still fires. A protection for the whole 15-strong CONQUER bucket against point denial.
+
+- **822.1.d** (7) — *"Ambush can also appear as a **verb** on a card. In such a case, the verb is
+  taken to mean 'play with the permissions of the Ambush keyword'."* **Riot's worked example is
+  `UNL-120 Rengar, Trophy Hunter`**, whom the file names twice — as *"the one genuine threat because
+  his own text lifts the restriction"* and as the only card that reinforces a battlefield you are
+  attacking. 822.1.d is the mechanism by which his text does that, and the second example shows the
+  verb can be **restricted** as well as expanded. The file carries 822.1.b and 822.1.c-adjacent
+  reasoning and not this.
+
+- **417.6.b.2.a** (7) — *"When an Ability is the source of Damage for a Deal action, it is **in
+  addition to** the Spell or Unit that created that Ability"*, worked with `OGN-017 Iron Ballista`, in the pool: *"This
+  damage is dealt both by a gear and by an ability."* **The exact counterpart of 417.6.b.3**, which
+  the file leans on hard for the Challenge family (damage dealt by the UNITS, *not* in addition).
+  One gear activation therefore satisfies a gear-damage watcher AND an ability-damage watcher.
+
+## 3B. REAL, FOLDING INTO BULLETS ALREADY PROPOSED (5)
+
+- **144.3.b** (7) — *"When a Move like this is declared by a player, the **Origins do not need to be
+  the same**."* The last member of the 144.3 quartet: 144.3 one action, 144.3.a shared destination,
+  144.3.c simultaneous exhaust costs (carried by #207), and this. **Destination shared, origins
+  free** — so a garrison at two different battlefields walks home as one action.
+- **355.4.a** (7) — *"A valid Location for a Move Effect is one **other than the Units' current
+  Location**."* Folds into the 355.4 bullet: a move effect can never be a no-op on its own target.
+- **829.1.c.1** (7) — the Flow cost *"is an alternate cost that replaces the base cost of the spell
+  **to be paid during finalization**."* Folds into the 356.1.a Flow bullet and supplies the WHEN.
+- **805.4** (7) — *"Multiple instances of Accelerate are redundant."* Folds into the redundancy
+  bullet and **completes it to five printed members**: 815.2 Tank and 810.2 Ganking (carried),
+  816.2 Temporary and 819.2 Quick-Draw (slice 1), 805.4 Accelerate. Worth stating as a family — the
+  rules say it five separate times, so a second grant of ANY of them is a dead card.
+- **359.3.e.7** (7) — if ALL of an instruction's targets go invalid, **that instruction** does not
+  execute. Folds with 359.3.e.5 / .e.11 / .e.12 into one bullet on the resolution-failure ladder:
+  **.e.5** other instructions still run · **.e.7** the affected instruction does not · **.e.11**
+  partially-followable instructions run as far as they can · **.e.12** a check on a gone object
+  returns null.
+
+## 3C. REAL, SMALLER (4)
+
+**733** (7): *"There is no limit to an amount of XP a player can accrue."* The file says XP sinks are
+a bounded step function and an XP faucet is never an engine — 733 makes that precise: **the bound is
+entirely on the SPEND side, the accrual is uncapped.** ·
+**727.1.c.2** (7): *"Passive Abilities begin applying at the same time the Dependent Keyword becomes
+true"* — the passive half of the [Level] gate whose activated half (727.1.c.3.a) the file carries. ·
+**821.1.c.2** (7): the [Weaponmaster] Equip cost is determined *"as though that Equip ability was
+being activated choosing the unit with the Weaponmaster ability, as modulated by any abilities that
+alter Equip costs"* — the pricing paragraph under the file's measured claim that 29 one-rune
+Equipment are free under the keyword. ·
+**151.2** (7): a **gear's** activated ability is Main-Phase-Open-State only *"and not during a
+Showdown"* — 381 stated for the card type whose apparatus in this file is largest.
+
+Two narrower but real: **191.3** (7, a permanent's controller is assigned as it ENTERS the board,
+completing 191.1 / 191.2 which the file carries for theft) and **435.4.b** (7, an Equipment whose
+carrier leaves the board detaches **to the carrier's last location**, not straight to base — 457.1
+then recalls it at the next Cleanup, so there is an instant where it is at the battlefield).
+
+## 3D. CORRECTLY ABSENT — MEASURED (8)
+
+`356` and `357` (numbered STEPS of the play process, whose children the file carries), `464`
+(*"Step 1: The Combat Showdown Step"*), `191` (*"Everything Else"*), `141` (*"Unit is:"*),
+`103.3.a` (*"12 Rune Cards"*, a parameter already carried through 161.2.a's *"exactly 12"*),
+`422.5` (*"This action is formatted as 'Discard X.'"*), and two PARENTS whose operative children are
+already in the file — `419.4` (*"Some Abilities trigger when cards are played"*, against the carried
+419.4.a / 419.4.b) and `827.1` (*"Empower is an Activated Ability keyword"*, against the carried
+827.1.b.1 / .c.1 / .c.3). **`827.1` is the one of the eight I would reconsider**: being an *Activated*
+Ability puts Empower under 381, i.e. your turn and an Open State only, and the file states that
+consequence for no keyword. `465.2.c.2` is a third parent (*"Abilities or effects may influence the
+order in which damage is assigned"*) under the .c.3-.c.10 block the file carries in full.
+
+## 3E. THE VEIN, AND WHERE I WOULD STOP
+
+Across three slices in one day — **99 rows read, 61 real gaps, 17 measured non-gaps, the rest folds
+and one live tool bug.** The yield per row falls only slightly from the 10+ band to the 7 band
+(26/38, 22/36, 13/25) but **the composition changes**: step headings, section stubs and block parents
+go from none to eight of twenty-five. That, not the citation count, is the signal. **I would work
+the 6 band and stop there**, and I would expect the 5 band to be mostly parents and parameters.
