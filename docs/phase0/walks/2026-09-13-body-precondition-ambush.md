@@ -391,3 +391,54 @@ checker that files it with `TRASH` and `DECK` by the sound of the name is wrong;
 `BATTLEFIELD` are distinct members that entries genuinely use differently — `gutter-palace-keeper-time-warp`
 declares its unit at `BOARD` where the Palace needs units AT BATTLEFIELDS, which is precisely the gap
 §3 reports.
+
+---
+
+## 11. THE TAG VOCABULARY: PRINCIPLED, WITH ONE LEAD
+
+rc-gap proved the needs/produces DAG domain-sound and every declared `needs` supplied. Unasked: is the
+**tag vocabulary** coherent? Measured — **766 entries, 765 declaring `produces`, 33 declaring `needs`,
+19 distinct produces tags, 6 distinct needs tags.**
+
+**Thirteen of the nineteen produces tags are consumed by nothing, and that is correct rather than
+broken**: `win-the-game`, `burst-points`, `ability-points`, `repeatable-removal`,
+`card-advantage-engine`, `board-protection`, `tempo-denial` and the rest are **terminal outputs** — a
+deck wants them; no other combo eats them. The vocabulary really does split into FUEL and TERMINAL.
+
+**Two rows are worth a second look and one of them is a lead.**
+
+### `resource-engine`: 180 producers, ONE consumer
+
+The catalogue's most-produced tag has a single `needs` edge, `heimerdinger-renata-remote-score`. Not a
+defect — most of the 180 mean *"this makes Energy or cards"*, which is a description rather than a
+socket. **But it is the exact shape `CLAUDE.md` already records for `conquer-engine`**, which 32
+entries produced and nothing consumed until one entry declared the need and connected the DAG. Whether
+more finishers should declare `needs: resource-engine` is a design question for the schema owner.
+
+### `temporary-body-engine`: 9 producers, ZERO consumers — and the disjointness is real
+
+**No entry produces both `temporary-body-engine` and `token-body-engine`** (measured: 0 of 766), and
+the rules say why. 816.1.b kills every `[Temporary]` permanent *at the start of its controller's
+Beginning Phase, before scoring*, and the phase order is 315.1 Awaken → 315.2 Beginning → 316 Main —
+so a Temporary body minted on turn N is **dead before turn N+1's Main Phase**. It can never feed the
+Hold-based consumers `token-body-engine`'s six edges serve, which need seven bodies to survive the
+opponent's whole turn. **The two tags are disjoint by rule, not by accident.**
+
+**The lead: 816.1.c is the exception, and it points at exactly one consumer.** The Trigger Condition is
+*the start* of the Beginning Phase, so a Temporary permanent that ENTERS inside that window never dies
+that turn — and the window is reachable, because 816.1.b's trigger opens a Closed State where 312.2.c
+gives priority and 813.1.c.1 admits a `[Reaction]` card. A body that survives that way is alive in the
+Main Phase, which is where **`VEN-067 Bottled Constellation`** fires: *"At the start of your Main
+Phase, you may kill 3 other friendly units and/or gear to score 1 point."* `CLAUDE.md` already names
+`UNL-081 Keeper of Masks` as *"the only clean feed for `bottled-constellation-time-warp`"* — and Keeper
+of Masks makes Reflections, which are Temporary.
+
+**Four of the nine producers carry a card that reaches the window**:
+`petal-pixie-keeper-of-masks-might-wall` (`UNL-081`), `lillia-smoke-mirrors-sprite-relay` (`UNL-083`),
+`retreat-sprite-mother-rebuy` (`OGN-104`), `black-flame-altar-sprite-call-temporary-shield`
+(`OGN-094`).
+
+**STATED AS A LEAD AND NOT A CONCLUSION, because I measured the CARDS and did not walk the STEPS.**
+Those four merely *can* be played at Reaction speed; whether any of them actually mints its bodies
+inside the 816.1.c window, rather than in the Main Phase like the other five, is a walk somebody owes.
+The `needs` edge is the schema owner's to declare, not mine.
