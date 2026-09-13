@@ -210,8 +210,9 @@ describe("predicate E: a controlled battlefield with no body to take it", () => 
  * invisible to it. Both gaps were real and both were productive.
  *
  * **G — a card whose own text needs a unit you control, with no unit in `uses`.** The rule is one
- * paragraph: **818.1.c.2** — *"Equip is functionally short for '[Cost]: Attach this gear to A UNIT
- * YOU CONTROL.'"* So an Equipment line with no body requires one BY THE KEYWORD'S OWN DEFINITION,
+ * paragraph: **818.1.c.2** — *"Equip is functionally short for '[Cost]: Attach this gear to a unit
+ * you control.'"* Those last four words are the whole clause: an Equipment line with no body
+ * requires one BY THE KEYWORD'S OWN DEFINITION,
  * and the same holds for a card acting on a friendly unit or scoring on a Conquer or a Hold
  * (469.1, 469.2, 190.1). Read entry by entry: 31 fresh rows, **29 exposed, 2 refused** —
  * `dragons-rage-discipline-reflexive-double-kill`, which reads entirely on ENEMY bodies and says so

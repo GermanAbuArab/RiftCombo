@@ -205,7 +205,7 @@ three predicates now ship in `test/body-requirements.test.ts` rather than living
 directory — a predicate nobody can run twice is a predicate nobody runs twice.
 
 **G — a card whose own text needs a unit you control, with no unit in `uses`.** One paragraph:
-**818.1.c.2**, *"Equip is functionally short for '[Cost]: Attach this gear to A UNIT YOU CONTROL.'"*
+**818.1.c.2**, *"Equip is functionally short for '[Cost]: Attach this gear to a unit you control.'"* — **a unit you control** is the whole clause
 So an Equipment line with no body requires one BY THE KEYWORD'S OWN DEFINITION, and the same holds
 for a card acting on a friendly unit or scoring on a Conquer or a Hold (469.1, 469.2, 190.1). Read
 entry by entry: **31 fresh rows, 29 exposed, 2 refused.**
