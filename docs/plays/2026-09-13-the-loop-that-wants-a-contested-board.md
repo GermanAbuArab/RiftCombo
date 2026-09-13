@@ -7,9 +7,11 @@ Read [the unopposed clock](2026-09-12-the-unopposed-clock.md) for the baseline a
 was chosen over the faster-looking one.
 
 **Subject: `jhin-fiora-facebreaker-recall`**, an INFINITE the turn clock reads at **T5 against a T6
-baseline**. The companion play found that five of the nine rows beating their baseline carry an
-unpriced empty-Main-Deck cost. This is one of the **three that do not**: a combat-recall loop that
-spends zero cards a pass, so its number is honest to begin with.
+baseline**. The companion play found that of the rows beating their baseline, several carry an
+unpriced empty-Main-Deck cost — five of nine when it was written that morning, four of twenty-one
+once the ALT_WIN class was added to the clock later the same day. **This is one of the ones that do
+not**: a combat-recall loop that spends zero cards a pass, so its number is honest to begin with.
+The ratio is perishable and the property is not.
 
 Walked by hand it lands on **T4**, one turn earlier than the clock says, and the reason is a blind
 spot in the clock rather than an error in the entry.

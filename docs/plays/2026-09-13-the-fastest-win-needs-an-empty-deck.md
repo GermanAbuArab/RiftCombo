@@ -24,7 +24,11 @@ produces **only fuel** gets its cheapest legal consumer added to its cost (the `
 column). An entry that **consumes** fuel is priced over its own `uses[]` alone, and its declared
 `needs[]` are never funded.
 
-Measured over the 54 rows the clock covers: **8 rows produce points and declare unfunded needs** —
+**Measured AS OF the morning of 2026-09-13, over the 54 rows the clock covered then** — the clock
+covers 80 now, because the ALT_WIN class was excluded from it by a bare class filter until later the
+same day, and on today's population the same two counts read **11** and **21**. The counts move; the
+argument does not, so they are dated rather than chased. **8 rows produced points and declared
+unfunded needs** —
 `renata-mastermind-points`, `renata-bubble-bot-ready`, `jayce-mesmerize-renata`,
 `dragonstorm-brambleback-trinity-conquer`, `time-warp-hold-burst`, `swain-double-conquer`,
 `bottled-constellation-time-warp`, `reveler-loop-nasus-brambleback-conquer`. Of the **9 rows that
@@ -75,11 +79,18 @@ and draw it back? — the class splits:
   fires because **nothing is recycled**, and saying the deck is empty by construction claims a
   precondition they do not have.
 
-So of the **9 rows that beat their baseline**, **five carry the unpriced empty-deck cost**
-(`lux-infinite-power`, `renata-mastermind-points`, `renata-bubble-bot-ready`, `lux-infinite-energy`,
-`jayce-mesmerize-renata`), one is a CHAIN (`yasuo-windrider-ride-the-wind-chain`), and **three are
-honest**: `jhin-fiora-facebreaker-recall` and `twilight-reveler-eye-facebreaker-recruits` at T5, with
+So of the **9 rows that beat their baseline that morning**, **five carried the unpriced empty-deck
+cost** (`lux-infinite-power`, `renata-mastermind-points`, `renata-bubble-bot-ready`,
+`lux-infinite-energy`, `jayce-mesmerize-renata`), one was a CHAIN
+(`yasuo-windrider-ride-the-wind-chain`), and **three were honest**:
+`jhin-fiora-facebreaker-recall` and `twilight-reveler-eye-facebreaker-recruits` at T5, with
 `garen-fiora-malzahar-facebreaker-recruits` tying at T6.
+
+**Re-measured that evening, once ALT_WIN was in the clock and `needs` was folded upward: 21 rows beat
+their baseline and FOUR of them carry the empty-deck cost** — the same four minus
+`jayce-mesmerize-renata`, which the fold moved to T6 and out of the set. Twelve of the twenty-one are
+ALT_WINs, which nobody could see this morning. **Re-derive these, never quote them**; what does not
+move is the 8-and-6 split above, because it is a property of the entries rather than of the table.
 
 **Those three are also the inverse of the line this play walks.** They are combat loops: 807.1.d needs
 the Attacker designation and 323.9 stages no Combat without an enemy garrison, so they are **dead on
