@@ -253,7 +253,15 @@ function battlefieldRule(deck: Deck, cards: CardIndex): BuildRule {
   }
   const n = total(deck.battlefields);
   if (n !== BATTLEFIELDS) return { ...base, status: "fail", detail: `${n} battlefield${n === 1 ? "" : "s"} — a deck provides 3.` };
-  return { ...base, status: "pass", detail: "3 battlefields, all named differently. Only one reaches the board, picked at random (485.5)." };
+  // "Picked at random" is true of a DUEL and false of a MATCH, which is how a tournament is played,
+  // and the difference is one word in Riot's own text: 485.5 reads "Each player RANDOMLY SELECTS one
+  // (1) of their three (3) Battlefields", while 486.5 reads "Each player SELECTS one (1)..." and then
+  // "After this game, if a player won, the Battlefields that were used are to be removed and not
+  // selected again for this Match". So in a best-of-three it is a free choice in game 1 and then a
+  // REMOVAL, which is better than random in the first game and worse in the rest. CLAUDE.md corrected
+  // this on 2026-09-12 for the 81 combo entries carrying the caveat; the correction never reached this
+  // string, which is player-facing and was telling a tournament player the Duel rule.
+  return { ...base, status: "pass", detail: "3 battlefields, all named differently. Only one reaches the board: at random in a single game (485.5), or your free choice in game 1 of a match and then removed for the rest of it (486.5)." };
 }
 
 /**

@@ -240,6 +240,28 @@ describe("103.4 — three battlefields, all named differently", () => {
     expect(r.detail).toContain("3");
   });
 
+  /**
+   * The row's pass sentence used to say the battlefield is "picked at random (485.5)", which is true
+   * of a DUEL and false of a MATCH — and a tournament is played as matches. The difference is one word
+   * in Riot's own text: 485.5 reads "Each player RANDOMLY SELECTS one (1) of their three (3)
+   * Battlefields", while 486.5 reads "Each player SELECTS one (1)..." and then "After this game, if a
+   * player won, the Battlefields that were used are to be removed and not selected again for this
+   * Match". So in a best-of-three it is a FREE CHOICE in game 1 and then a REMOVAL: better than random
+   * in the first game and worse in the rest.
+   *
+   * Pinned because nothing pinned it, which is how the sentence survived CLAUDE.md's own correction of
+   * the same fact on 2026-09-12 — that correction reached the 81 combo entries carrying the caveat and
+   * never reached this string, which is the one a player actually reads.
+   */
+  it("does not tell a tournament player the Duel rule (485.5 against 486.5)", () => {
+    const detail = row(rows(LEGAL), "103.4.a").detail;
+    expect(detail).toContain("485.5");
+    expect(detail).toContain("486.5");
+    // The claim that was wrong: not that randomness is never involved, but that it is the whole story.
+    expect(detail).not.toMatch(/picked at random \(485\.5\)\.$/);
+    expect(detail).toMatch(/match/i);
+  });
+
   it("fails on two", () => {
     const r = row(rows(LEGAL.replace("1 Startipped Peak", "")), "103.4.a");
     expect(r.status).toBe("fail");
