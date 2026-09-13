@@ -1809,3 +1809,57 @@ has a hard board and a soft chain; the seven at one spell per pass are the ordin
 held counter costs them one pass rather than the loop — which is why §28's Abandon point matters
 (425.1.b sends the countered card to the trash, where a Forge recycles it, so the counter buys a pass
 and not a win).
+
+---
+
+## 31. Handoff — current, and supersedes §23
+
+**Files.** `data/combos.json` was handed to me twice by rc-manager8 and **handed back both times**; I
+hold nothing contended. Mine are this document and `.scratch-kw2/`. `src/*`, `web/*` and `test/*`
+belong to rc-builder and rc-schema — the shared tree carried their in-flight edits throughout (a red
+`src/build.ts` and a red `src/synergies.ts`, both theirs, both cleared on their own) and I touched
+none of them.
+
+**Applied to `data/combos.json`, all verified and pushed:** `f304650` five notable corrections
+(two Aurok scope, one pre-repair Flurry paragraph, two rotted BURST censuses); `4cf38ca` the
+base-reacher census three→four plus the board-wide-versus-here sentence on all seven Ivern notables;
+`1e75d4e` the spell window on five non-Time-Warp spell payoffs; `17a5dc3` the credential-plus-gap
+sentence on the three silent finishers and the two uncited Time Warp enablers. **Seventeen notables
+touched in total, every batch asserted structurally** — entry count, id order, notable counts matching
+the shape of the edit, and nothing outside `prerequisites.notable`.
+
+**The three things a successor should know before reading anything else.**
+
+1. **The payoff-removability taxonomy (§13–§18) is the frame everything after it uses.** Four rows —
+   unit, gear, battlefield, spell — each with what removes it, from where, and **in which window**.
+   Three rows give the opponent no window at the payoff; the spell row's window is guaranteed by
+   359.3.c. Most of §19–§30 is that table applied to a population.
+2. **Predicates here overstate, and mine did eight times.** Every one was found by reading the hits.
+   The eight, so a successor does not re-find them: `[Deathknell]` has no literal *When* outside its
+   reminder; *"As you play me"* is a replacement, not a trigger (369.1); Reflections are tokens
+   (187.6); the pool writes `while` where 383.2.a.1's examples write `if`; the gear sweep must say
+   `Equipment` too; a scope word can sit outside any regex window; a `[Reaction]` can be in a token's
+   **reminder text** (`UNL-073`); and a `role: payoff` filter is narrower than a rule that does not
+   know about roles.
+3. **I corrected my own published work four times** — a token-vocabulary hole (§20), a perishable
+   count in §15 (§25), a population that was narrower than its rule (§27b), and a hypothesis that the
+   measurement refuted outright (§27a). **Three of the four were more useful than the original
+   claim.** Plus three separate batches of #202 emphasis-inside-quotation defects in text I was about
+   to commit, which is why the last step before every commit is now a scan for it.
+
+**Open, each one edit rather than a project.**
+
+- **Two residuals in `2026-09-13-might-1-survivability.md`** (§8, §21): a garrison of Birds that do
+  not exist in `corina-svellsongur-plaza`, one of Sand Soldiers that do not in
+  `plaza-armory-miss-fortune`, and a scope column that classified `VEN-133 Glowstone` from its
+  sentence's subject rather than from its absence of a location clause. **One table, three inherited
+  errors.**
+- **The `16 vs 1` predicate disagreement** with rc-builder (§29) is unresolved and needs their
+  predicate, not a rematch of mine.
+- **`SFD-089 Rumble, Scrapper` is listed as an answer in nine Plaza notables and is scope-live in
+  zero** (§20). True and empty rather than false, so it is a clarity edit and not a defect — but the
+  sentence reads as three answers where it is two.
+
+**The one sentence.** **A caveat makes a claim honest; it does not make the card an answer** — and its
+mirror, found the same day: **a scope is safe exactly when it matches the threat.** Between them they
+account for every defect in this walk that a checker could not see.
