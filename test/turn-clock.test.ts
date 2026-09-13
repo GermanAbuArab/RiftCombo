@@ -13,8 +13,15 @@ import { describe, expect, it } from "vitest";
  * silently dropped for every entry that was not Beginning-Phase gated, and every number moved.
  *
  * Nothing caught it. It was found by hand-walking a turn table — the same instrument that found the
- * original defect. This file is the cheap version of that walk: the script runs in ~0.2s, so pinning
- * its two hand-walked reference points on every commit costs nothing and closes the class.
+ * original defect. This file is the cheap version of that walk: pinning the two hand-walked reference
+ * points on every commit closes the class.
+ *
+ * The script takes ~4.6s, up from ~0.2s when this file was written. Folding the `needs`/`produces`
+ * DAG UPWARD as well as downward (2026-09-13, #200) made the biggest closures much larger, and almost
+ * all of that time is ONE row: `dragonstorm-brambleback-trinity-conquer` at 25 costs and 193,536
+ * allocator states. The same change is why the allocator is now exact on 54 of 54 rows where it was
+ * 53 — the four rows that folding pushed past the old 12-cost bitmask limit would otherwise have
+ * fallen back to the greedy pass, which is the very defect #205 removed.
  *
  * The assertions are deliberately about entries whose turn was established BY HAND against the Core
  * Rules, not about the headline count, which is perishable and moves with the catalogue.
