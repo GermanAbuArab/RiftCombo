@@ -739,3 +739,95 @@ at the 29 lines it answers.
 and the entry should name the cheapest; a battlefield payoff has **one**, it is a legend, it costs the
 opponent a conquer first, and it delays rather than destroys. **That is one sentence, true of all 29,
 and the taxonomy is what makes it one sentence instead of an audit.**
+
+---
+
+## 15. The fourth row — **a spell payoff is the only one answered AT the payoff, and 0 of 11 say so**
+
+§14's table has a row I had not opened. It turns out to be the sharpest of the four, because the
+window is not a matter of the opponent having removal available a turn early — **the rules guarantee
+it, at the instant the payoff is played.**
+
+```
+359.3.c.  Other players have an opportunity to play Reactions before the resolution of spells.
+337.2.    If, after finalizing the Chain Item, that item is a Unit, Gear, or an ability that Adds
+          resources, it resolves immediately—Move to Step 4: Resolve.
+425.1.c.  Countering does not refund any costs paid to play a card, activate an ability, or trigger
+          an ability.
+425.1.c.1.   This includes additional costs.
+```
+
+Read together: **a unit or gear payoff never gets a pre-resolution window — the process skips the
+step at which windows exist — and a spell payoff always does.** So the four rows differ not only in
+*whether* the payoff is answerable but in *when*:
+
+| payoff | answered | window |
+|---|---|---|
+| unit | **before** — on an earlier turn or in a Closed State | none of its own (337.2) |
+| gear | **before** — same | none of its own (337.2) |
+| battlefield | essentially not at all | — (170.3, 170.4) |
+| **spell** | **at the instant it is played** | **guaranteed by 359.3.c**, with **no refund** (425.1.c) |
+
+**The answer set, swept.** Predicate: the bare word `counter` over `corpus_flat.txt`, **14 hits, all
+read**. Three are not counters — `SFD-194 Counter Strike` is a Prevent that merely carries the word
+in its name, and `VEN-015 Decree of Rage` and `VEN-069 Mel, Newly Awakened` **grant**
+can't-be-countered rather than countering. **Eleven counter printings remain**, which reproduces
+CLAUDE.md's figure exactly, and **Calm prints five of the eleven**:
+
+```
+Calm       OGN-045 Defy   OGN-064 Wind Wall   SFD-045 Not So Fast
+           UNL-044 Flurry of Feathers   VEN-039 Crumbling Sands
+Chaos      SFD-136 Hard Bargain   UNL-131 Abandon
+Body       UNL-106 Repulse
+Body/Order SFD-206 Riposte
+Calm/Mind  UNL-190 Lilting Lullaby
+Mind/Chaos VEN-152 Rebuttal
+```
+
+**Result: 11 finishers have a spell in a `payoff` role, and NONE of them contains the word
+`counter`.** The single entry my predicate flagged as naming one is a false positive of my own making
+— `keeper-of-masks-flurry-plaza-window` matched because `UNL-044 Flurry of Feathers` **is its payoff
+card**, and Flurry is in the answer set only because one of its two modes is a counter. **The honest
+figure is zero of eleven.**
+
+### Six of the eleven are `OGN-122 Time Warp`, and that is the whole finding
+
+```
+OGN-122 | Time Warp | Spell | Mind | E10 P4 | Take a turn after this one. Banish this.
+```
+
+`time-warp-hold-burst`, `renata-time-warp-ekko-refresh`, `power-nexus-atlas-sentinel-time-warp`,
+`power-nexus-benefactor-sentinel-time-warp`, `sentinel-trinity-time-warp-chain` and
+`shen-sentinel-time-warp-chain` all pay through it. **E10 + 4 Power is the largest single cost in any
+finishing turn this catalogue prices**, it is a **spell**, and 425.1.c refunds none of it.
+
+**Seven of the eleven counters reach it; four cannot, and the reason is printed on each.** `OGN-045
+Defy` (*"costs no more than 4 Energy and no more than 1 rainbow"*) and `VEN-152 Rebuttal` (*"Energy
+cost no more than 4"*) are priced out by Time Warp's own cost. `SFD-045 Not So Fast` and `UNL-106
+Repulse` both require the spell to **choose a friendly unit or gear**, and Time Warp chooses nothing
+— so the two cards in the pool that answer an **ability** are exactly the two that cannot answer
+this spell.
+
+**The cheapest that does reach it is `VEN-039 Crumbling Sands` — Calm, E1 + 1 Power** — *"Counter a
+spell **if an opponent has played another spell this turn**."* That condition is about the combo
+player's own turn and is not automatic; it is satisfied on any line that casts anything else first,
+which several of the six do. **The most punishing is `UNL-190 Lilting Lullaby`** (Calm/Mind, E2 P2):
+*"Counter a spell. **Its controller can't play spells this turn.**"* — which does not merely take the
+Time Warp, it ends the finishing turn. **`UNL-131 Abandon`** (Chaos, E2) returns it to hand instead
+of the trash, which is worse for the caster than it sounds only if they can afford to recast it, and
+on a turn budgeted to the rune they cannot.
+
+**And `VEN-152 Rebuttal` is the one that is not a counter at all**: *"Choose a spell with Energy cost
+no more than 4. You may pay rainbow. If you do, **gain control of it and you may make new choices for
+it**. Otherwise, counter it."* It is out of range for Time Warp, but against any spell payoff at 4 or
+less it does not deny the line, it **takes it**.
+
+### What this adds to §13 and §14
+
+The three rows differ in the **shape of the advice an entry owes**. A gear payoff owes the cheapest of
+fifteen answers and a note that all of them must be cast a turn early. A battlefield payoff owes one
+sentence about one legend. **A spell payoff owes something neither of the others does: an
+acknowledgement that the answer arrives in a window the rules create for it, after every cost is
+already spent** — which is why *"the opponent never acts"*, the sentence §13 found on
+`bottled-constellation-time-warp`, is the single most dangerous framing in this class. The opponent
+does not need a turn. **359.3.c gives them the window on yours.**
