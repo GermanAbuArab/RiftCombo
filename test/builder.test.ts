@@ -1,4 +1,4 @@
-import { readFileSync } from "node:fs";
+import { readFileSync, readdirSync } from "node:fs";
 import { describe, expect, it } from "vitest";
 import { loadCardIndex } from "../src/load.js";
 import type { Card, Deck } from "../src/types.js";
@@ -925,6 +925,71 @@ describe("the longest legal list the editor can produce still fits what the site
     expect(checkSave("A maximal list", text, []).ok).toBe(true);
     // The control, and it is what makes the line above mean anything: the cap does refuse something.
     expect(checkSave("x", "y".repeat(MAX_DECK_TEXT + 1), []).ok).toBe(false);
+  });
+});
+
+/**
+ * THE FALSE-REFUSAL TEST, AND ITS CONTROL IS 222 KNOWN POSITIVES.
+ *
+ * Every other test in this file asks whether the editor PERMITS what the rules FORBID. This asks the
+ * inverse — whether it FORBIDS what the rules PERMIT — and no test of the first kind can see it,
+ * because **a test asserting a button is disabled passes just as happily when the button should have
+ * been enabled.** The only two known false refusals (the Legend zone, and designating a champion the
+ * list holds a playset of) were both found by READING, not by any check.
+ *
+ * A false refusal is player-facing in the worst direction for this project: the standing rule is that
+ * calling a legal tournament list illegal is the worst failure the checklist has, and a button that
+ * refuses a legal card is that failure one layer earlier, where the player cannot see the reasoning.
+ *
+ * The control is what makes it a test rather than a hope. **Every one of the 222 registered lists was
+ * legal when it was played**, so each is a thing the editor MUST be able to build — 222 known
+ * positives, which is exactly what a detector needs to tell "nothing is wrong" from "I am not
+ * looking". Replay each list card by card through the real `addCard`, `setChampion` and
+ * `addToSideboard`, and anything the button drops is a candidate false refusal.
+ */
+describe("the editor can rebuild every registered list it should be able to", () => {
+  const DIR = new URL("./fixtures/tournament-lists/", import.meta.url);
+  const FILES = readdirSync(DIR).filter((f) => f.endsWith(".txt")).sort();
+
+  it("rebuilds all 222 except the two whose TRANSCRIPTION is malformed", () => {
+    expect(FILES.length).toBeGreaterThan(200);                     // non-vacuity
+    const refused: string[] = [];
+    let rebuilt = 0;
+    for (const f of FILES) {
+      const target = loadDeck(readFileSync(new URL(f, DIR), "utf8"), cards);
+      let d: Deck = target.legend ? addCard(emptyDeck(), target.legend, cards) : emptyDeck();
+      let ok = true;
+      for (const zone of ["battlefields", "runes", "main"] as const) {
+        for (const [base, n] of Object.entries(target[zone])) {
+          for (let i = 0; i < n; i++) {
+            const before = d[zone][base] ?? 0;
+            d = addCard(d, base, cards);
+            if ((d[zone][base] ?? 0) === before) { ok = false; break; }
+          }
+        }
+      }
+      if (target.champion) {
+        const c = setChampion(d, target.champion, cards);
+        if (c.champion !== target.champion) ok = false; else d = c;
+      }
+      for (const [base, n] of Object.entries(target.sideboard)) {
+        for (let i = 0; i < n; i++) {
+          const before = d.sideboard[base] ?? 0;
+          d = addToSideboard(d, base, cards);
+          if ((d.sideboard[base] ?? 0) === before) { ok = false; break; }
+        }
+      }
+      if (ok) rebuilt++; else refused.push(f);
+    }
+    /**
+     * Exact equality, not membership, for the reason the checklist's errata set is: an over-broad
+     * exception excuses the next real defect. Both of these are the editor being RIGHT about a
+     * malformed transcription — `utrecht-17` repeats its three battlefields inside its Sideboard
+     * section, which TR 601.1.c.2 refuses, and `vancouver-06` parses to SIX battlefields and ZERO
+     * runes because its Rune Pool section duplicates them, which 103.4.a refuses.
+     */
+    expect(refused).toEqual(["utrecht-17.txt", "vancouver-06.txt"]);
+    expect(rebuilt).toBe(FILES.length - 2);
   });
 });
 
