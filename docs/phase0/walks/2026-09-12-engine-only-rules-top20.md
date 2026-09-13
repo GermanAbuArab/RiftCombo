@@ -392,3 +392,81 @@ so the set is enriched in parent-absent/child-carried cases by construction — 
 That makes the remaining eleven worth reading rather than sampling, and it means the true size of the
 "exception carried, rule absent" family is larger than the four instances found by reading, because
 the instrument was deleting new ones from its own report.
+
+---
+
+## 9. The vein is read out: sixteen for sixteen, and the last one is this project's own house rule
+
+All sixteen suppressed gaps are now opened. **Every one is parent-absent / child-carried or a
+foundational paragraph the file reaches by derivation** — the suppression selected for it.
+
+### 9.1 051 is the rules-text authority for the discipline this project enforces most often
+
+**051**, verbatim: *"Card text uses different terminology than rules. Card text should be interpreted
+according to these rules, **not as though it were text within these rules**."*
+
+Catalogue **12**, CLAUDE.md **0**, 7 entries. This project enforces exactly that as a house style and
+has paid for it repeatedly — the `383.1.b` / `OGN-118` mismatch registered rather than erratized, the
+note that *"466.3.a is stricter than every 'when I win a combat' reminder in the pool"*, the `763.1`
+spurious comma settled from the card side, `342` treated as summary prose against the operative
+permissions, and the standing rule that reminder text is never quoted as rules text. **051 is the
+paragraph that mandates all of it**, and it was never cited here.
+
+### 9.2 052 dissolves an apparent contradiction between rule 161 and a printed card
+
+`161` (catalogue 14, CLAUDE.md 0) opens *"Rune is a Card Type."* `OGN-235 Karma, Channeler` prints
+*"(Runes aren't cards.)"* — verified verbatim in `corpus_flat.txt`, so CLAUDE.md's quote is right.
+Read together they look like rule 002 territory, card text beating rules text.
+
+They are not in conflict, and **052** says so in its own last sentence: *"Card, when written in card
+effects, is shorthand for 'Main Deck card.' Runes, legends, and battlefields are not considered cards
+when executing the abilities and effects of game objects. **They are considered cards for the purposes
+of these rules.**"*
+
+**A Rune IS a card for the rules and is NOT a card for card effects. Two scopes, both true.** So
+Karma's parenthetical is not a simplification — it is restating 052 — and 161's *"Rune is a Card
+Type"* is what makes `164.2.b`'s *"Recycle this"* legal at all, since 416.1 defines Recycling over
+cards. CLAUDE.md's synergy-predicate note is correct as written (it pairs the parenthetical with
+161.2.b); what it lacks is the paragraph that reconciles the two, which is the one a future session
+would otherwise re-derive.
+
+### 9.3 355.5.a is the play-steps half of the distinction this catalogue cites 145 times
+
+**355.5.a**: *"This does not include cards that affect one or more Game Objects based on criteria."*
+Riot's two worked examples: *"Stun a unit at a battlefield" is a Choice* and **"Kill all gear" is not
+a Choice**.
+
+This is the same programmatic-versus-chosen line as `355.10.d` (catalogue 145, in 53 entries) but at
+the **play-steps** level rather than the targeting level: 355.10.d decides whether something is
+*targeted*, 355.5 decides whether a choice is *made while playing the card*. Catalogue 5, CLAUDE.md 0.
+
+Concrete and actionable: **`raging-firebrand-thermo-beam-free-gear-wipe` cites `355.10.d` and not
+`355.5.a`** — and `OGN-022 Thermo Beam` kills all gear, which is *Riot's own worked example for the
+paragraph*. Citation upgrade, not a new verdict; not applied, `combos.json` is single-owner.
+
+### 9.4 The remainder, disposed
+
+`383.4.d` (7/0) — the **definition** of Hold Effect (*"Triggered Abilities whose Condition includes a
+Unit being present at a Battlefield during the Beginning phase when a player scores Victory Points
+from Holding"*), with 383.4.d.2's two halves: units present, **or** abilities referencing the player.
+CLAUDE.md carries `.2.a` and `.2.b`. `SFD-030 Skyfall of Areion` prints *"My hold effects are also
+conquer effects"*, so the card is reading this defined term.
+
+`431.2` (parent of the Burn Out sequence), `464.2` (how Combat opens), `465` (the Combat Damage Step),
+`356.4.c` (component discounts apply before other discounts — parent of the `356.4.c.1` ordering
+CLAUDE.md carries, with Ezreal Prodigy as Riot's example), `464.2.e`, `430.2`, `377`, `144.4.c` — all
+parents of children the file carries. Citation upgrades, no new mechanics.
+
+`116` (*"Players each draw 4"*) and `749` (*"Counters do not have a controller"*) are correctly absent:
+setup and a scaffolding statement with no card reading them.
+
+### 9.5 What the vein was worth
+
+Sixteen rules, read end to end: **one settles an open R-number** (`419.4.a` / R26, proposed on #11),
+**one is this project's own most-enforced discipline** (`051`), **one dissolves an apparent card-vs-rules
+contradiction** (`052` with `161`), **one is a named citation upgrade on a live entry** (`355.5.a` on
+the Thermo Beam wipe), and **twelve are parent-of-a-carried-child**. Nothing here changes a verdict;
+several things stop a future session re-deriving one.
+
+**And none of it was reachable while the instrument was broken**, because every one of these was
+deleted from its own report by the child that CLAUDE.md did carry.
