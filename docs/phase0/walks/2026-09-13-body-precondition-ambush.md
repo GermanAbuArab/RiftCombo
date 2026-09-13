@@ -1205,3 +1205,44 @@ three, and the remaining value is in the mechanical sweeps rather than in more r
 entries each produced a class that a whole-catalogue sweep then exhausted; these produce instances of
 classes already swept. **I stop reading the ENGINE class here** — and the value of this slice is the
 stopping, which is what the pre-registration was for.
+
+---
+
+## 25. FOUR MORE STATED INVARIANTS, TESTED
+
+The battlefield invariant paid at 118 of 119, so I mined `CLAUDE.md` for other claims phrased as
+rules rather than observations. **Four tested; three hold clean; one is a legibility finding.**
+
+**A. The five-place class invariant holds, and two of the five differ ON PURPOSE.** `CLAUDE.md`: *"it
+is typed in `src/types.ts` and ranked in `src/combos.ts` CLASS_RANK plus the sort orders in
+`web/graph.ts` and `web/main.ts` — all five must be updated together."* All five enumerate the same
+five classes, so a sixth would need all five touched. **But the NUMBERS deliberately disagree and
+nobody should "fix" it**: `CLASS_RANK` is `ENGINE 0 … ALT_WIN 4`, a STRENGTH rank used to pick the
+stronger class when folding a variant (`CLASS_RANK[p.cls] >= CLASS_RANK[sub.cls] ? p.cls : sub.cls`),
+while both web `order` maps are `INFINITE 0 … ENGINE 4`, a DISPLAY sort. The invariant is about
+membership, not about the integers.
+
+**B. *"Never label INFINITE without a 'repeat' step"* — 14 of 14 clean.** Every INFINITE carries a
+repeat-shaped step.
+
+**C. Class and status are both inside their typed sets — 766 of 766 — and all 766 are `verified`**,
+which matches the record that the `candidate` plumbing exists and has never been used.
+
+**D. The BURST quantity rule is a LEGIBILITY finding and not a defect, and I rank it low.**
+`CLAUDE.md`: *"A BURST entry must reach 8 with the quantities it declares, and the class must match
+`terminatesIn`."* **CHAIN 17 of 17 and ALT_WIN 26 of 26 state a total of 8 or more in
+`terminatesIn`. SEVEN of 23 BURSTs do not — and all seven state it elsewhere in the entry, so
+nothing is wrong.** The seven share one template: `ahri-blue-sentinel-hold`,
+`tryndamere-brambleback-conquer`, `blue-sentinel-trinity-force-hold`,
+`brambleback-trinity-skyfall-conquer`, `skyfall-ahri-conquer`, `ivern-sentinel-hold`,
+`ahri-trinity-svellsongur-hold` all read *"burst of ability points in one Hold"* or *"…in one
+Conquer"*. **The cost is that the check `CLAUDE.md` prescribes cannot be run from the field it names**
+— which is the *"18 Energy"* shape applied to points rather than to mana.
+
+**Seventh too-big first number today, and a new sub-kind.** My first pass flagged three CHAINs too,
+and all three were my predicate: `ivern-arena-draven-chaos-order-chain` says *"nine points"* and
+`trinity-skyfall-arena-second-battlefield-chain* says *"eight points"* — **word numerals, which a
+digit regex cannot see** — and `yasuo-windrider-ride-the-wind-chain` says *"WINS the game"*, which
+`/win the game/` misses on the S. **The catalogue writes its numbers in words as often as in digits,
+and its verbs are inflected.** Same family as the class names being ordinary English nouns: a
+predicate over prose is fighting the language.
