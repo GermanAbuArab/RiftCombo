@@ -210,7 +210,26 @@ The manager holds `data/combos.json`; this lane does not edit it. **Paste as one
 `prerequisites.notable`.** Written here rather than sent over `maestro send`, because the text carries
 backticks and square brackets that an interactive zsh on the receiving side would evaluate and glob.
 
-### For `noxian-drummer-eye-svellsongur-plaza`, `corina-svellsongur-plaza` and `arise-sand-soldiers-plaza` (all calm+order)
+> ⚠️ **CORRECTED 2026-09-13 before application — I had the two Sand-Soldier entries BACKWARDS.**
+> `plaza-armory-miss-fortune` runs `SFD-168 Vanguard Armory`, *"Play three 1 `:rb_might:` **Recruit**
+> unit tokens"*, so its garrison is **Might 1** and it takes the Recruit text.
+> `arise-sand-soldiers-plaza` resolves `SFD-198 Arise!`, *"Play a 2 `:rb_might:` **Sand Soldier** unit
+> token for each Equipment you control"*, so its garrison is **Might 2** and it takes the Sand Soldier
+> text. The assignment below is the corrected one; rc-manager7 caught it and applied it in `c04e4d1`.
+>
+> **The mechanism is the finding, and it is the Spiderling class again.** My garrison column tested
+> `JSON.stringify(entry).includes("Sand Soldier")`. That string occurs **exactly once** in
+> `plaza-armory-miss-fortune`, inside a **cross-reference to the other entry** — and the sentence
+> carrying it says the opposite of what I read: *"arise-sand-soldiers-plaza, whose bodies are 2 Might
+> Sand Soldiers, is immune to that; **this is not**."* **The entry refuted my reading in the same
+> sentence my predicate matched.** A string found in the right file, in the wrong sentence — which is
+> exactly how the emitted notable read seven Spiderlings as Might 1. A token name in an entry is not
+> that entry's garrison; the garrison is whatever its own `uses` cards PLAY, and that is readable from
+> `corpus_flat.txt` in one grep. Applying the uncorrected text would have told a reader that the Arise
+> line's Recruits go to Might 2 while the entry's own step 4 already says a 1-damage sweep does not
+> reach its bodies (142.4.b) — a notable contradicting the entry it sits in.
+
+### For `noxian-drummer-eye-svellsongur-plaza`, `corina-svellsongur-plaza` and `plaza-armory-miss-fortune` (Recruit garrisons, Might 1)
 
 > A DOMAIN-LEGAL +1 EXISTS, IT COSTS NO EXTRA SLOT, AND IT BUYS EXACTLY ONE CARD. `OGS-013 Garen,
 > Commander` and `OGN-243 Darius, Executioner` are both mono-Order and print the identical sentence —
@@ -226,7 +245,7 @@ backticks and square brackets that an interactive zsh on the receiving side woul
 > `SFD-147 Downwell`. So the +1 answers the card this entry already names and moves the cheapest
 > answer from one Energy to two.
 
-### For `plaza-armory-miss-fortune` (body+order)
+### For `arise-sand-soldiers-plaza` (Sand Soldier garrison, already Might 2 by 187.3)
 
 The same text, with one clause added after *"takes the Recruits to Might 2"*:
 
@@ -238,3 +257,69 @@ The same text, with one clause added after *"takes the Recruits to Might 2"*:
 `spiderling-swarm-grand-plaza` and `dragonstorm-confront-grand-plaza` pass the legality test and need
 nothing: seven Spiderlings are **Might 7** by the card's own printed text, and the Dragonstorm garrison
 is played units at Might 3 to 10. **A legality test says a fix is legal, never that it is needed.**
+
+---
+
+## Face one, generalised — the whole fragile-body population is measured against one card
+
+The table above prices the Plaza family. Run it across the catalogue instead.
+
+**Predicate:** an entry with a `uses` row that is a unit of Might ≤ 2, **or** naming one of the Might-1
+tokens by rule (Recruit 187.1, Bird 187.7, Tentacle 187.10, Reflection 187.6, Shadow Clone 187.11).
+**275 of 766 entries.**
+
+| | |
+|---|---:|
+| names **no** threat at all | 190 |
+| names **only** `OGN-133` Flurry of Blades | 60 |
+| names two or more | 12 |
+
+`OGN-133` is named **68 times** across those 275. **`UNL-132 Angler Beast` — the card that bounces
+exactly the Might-2 band a static +1 creates — is named TWICE, and both are ENGINEs. Zero finishers
+name it.**
+
+**A zone refinement that cuts the opposite way from the one already recorded.** `CLAUDE.md` records
+that a Flurry sweep must require zone BATTLEFIELD, because `OGN-133` reads *"all units at
+battlefields"* and a body at BASE is safe from it. **Three of the twenty carry no location clause at
+all** — `UNL-132 Angler Beast`, `UNL-180 The Ruination`, `SFD-147 Downwell` — so they reach the base
+too. **Parking a token engine at base is a defence against Flurry and not a defence against the lens.**
+Only 8 of the 275 name any of those three.
+
+**Narrowed, because 190 naming nothing is not 190 notables owed.** For an ENGINE a lost body is tempo,
+which is why rc-synth2 declined to emit 96 Equipment notables, and that restraint is the right one.
+Restricted to the classes where a lost body loses the **game**: **47 fragile-body finishers** —
+ALT_WIN 23 (20 name only Flurry), BURST 9 (4 only Flurry, 3 nothing), CHAIN 8 (3 only Flurry, 2
+nothing), INFINITE 7 (7 nothing). Seventeen of the 23 ALT_WINs are the Plaza family face two covers.
+
+### The INFINITE result is a NEGATIVE, and it matters more than the positive
+
+**All seven INFINITEs name no threat — and none of them is exposed.** That headline is worth writing
+down precisely because it looks alarming and is not, and because a future session running this same
+sweep will get the same 7-of-7 and should not have to re-derive the answer:
+
+- **Six of the seven matched only on a token NAME in prose describing loop OUTPUT.** They mention
+  Recruits because the loop makes Recruits; none has a Might-2 body in `uses` at all.
+- **The seventh, `lux-infinite-power`, has `OGN-087 Lecturing Yordle` at Might 2, role `enabler` — and
+  it is played and returned to hand every pass.** The entry's own steps read *"Play Lecturing Yordle
+  (3 Energy): draw 1"*, then *"Play Retreat (1 Energy) on Lecturing Yordle: it returns to hand"*, then
+  *"Replay Lecturing Yordle"*. **It never stands on a board to be swept.** Losing it to single-target
+  removal while it is out would break the loop, but that is a different lens.
+
+**No notable is proposed for any of the seven.**
+
+### The standing lesson, in one sentence
+
+**Twice in this task the predicate overstated and the reading corrected it — 6 owed became 4, and
+7-of-7 exposed became 0-of-7 — both times because the deciding datum is not in the predicate.** What
+decides is the garrison's Might, and whether the body ever stands on a board at all; neither is
+visible to a domain computation or to a string match. A third instance was caught by the manager
+before it shipped, in the appendix above, where the string matched a sentence that refuted it. **State
+the predicate with the number, then read the hits — here the predicate is never the answer.**
+
+### Two facts from rc-synth2 that bear on any Bird garrison
+
+Recorded so they are not re-derived: a *"deal N to **all**"* is **untargeted** under 355.10.d, so a
+garrison of `[Deflect]` Birds pays **no tax at all** against a sweeper — the keyword is worth nothing
+here, and 809.1.c charges only for choosing. And **`[Shield]` is DEFENDER-only** under 814.1.c
+(*"While I am a defender, I have +X `[M]`"*), so a Shield grant adds **nothing** against a Deal
+resolved outside combat — which is every sweeper in the table except `OGN-127 Cannon Barrage`.
