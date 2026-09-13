@@ -599,11 +599,19 @@ export function renderGraph(host: HTMLElement, hits: Hit[], layout: Layout, ctx:
          * that layout's whole shape. A reader on the circular view still gets it twice, from the
          * tray chip and from the drawer, both of which are layout-independent.
          */
-        const bodies = c.anyBodies ? ` · NEEDS ${c.anyBodies.count} MORE ${c.anyBodies.count === 1 ? "UNIT" : "UNITS"}` : "";
+        // "NEEDS 1 MORE UNIT" WAS THE WRONG UNIT OF MEASURE, and on the catalogue's most-reached
+        // finisher it read as an instruction to do the opposite of what the line wants.
+        // `anyBodies.count` is a DECK-CONTENT number - unit CARDS the list must supply beyond the
+        // ones the line names - while every exactness condition in the notes is a BOARD-STATE one.
+        // `gutter-palace` is count 1 and its requirement is "exactly 4 cards in hand and exactly 4
+        // units at battlefields": a player who read MORE as a board instruction and put a fifth
+        // body out would have BROKEN the line. Naming the axis - CARD - is what makes the badge
+        // unreadable as a board claim, and the drawer beside it carries the condition verbatim.
+        const bodies = c.anyBodies ? ` · NEEDS ${c.anyBodies.count} UNIT ${c.anyBodies.count === 1 ? "CARD" : "CARDS"}` : "";
         g.append(el("text", { class: "route-class", x: ROUTE_W / 2, y: h - 12, "text-anchor": "middle" }, `${c.class.replace("_", " ")}${c.status === "verified" ? "" : " · " + c.status.toUpperCase()}${bodies}`));
         // Every node is a tab stop, so the requirement has to reach the accessible name too (#78);
         // the node's own label is truncated by width and the title is where the sentence fits.
-        g.append(el("title", {}, c.anyBodies ? `${c.name} — needs ${c.anyBodies.count} more unit${c.anyBodies.count === 1 ? "" : "s"}: ${c.anyBodies.note}` : c.name));
+        g.append(el("title", {}, c.anyBodies ? `${c.name} — needs ${c.anyBodies.count} unit card${c.anyBodies.count === 1 ? "" : "s"} the line does not name: ${c.anyBodies.note}` : c.name));
       });
     }
   }

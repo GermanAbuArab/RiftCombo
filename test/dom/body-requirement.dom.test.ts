@@ -116,9 +116,16 @@ describe("the site says a line needs bodies no card supplies", () => {
     expect(node, "no Gutter Palace route node in the layered diagram").toBeDefined();
     // On the class line, because it is a property of the LINE and not of this deck, and because a
     // badge would need CSS that does not exist and could collide with another lane's.
-    expect(node!.querySelector(".route-class")!.textContent).toContain("NEEDS 1 MORE UNIT");
+    // THE BADGE NAMES ITS AXIS, and that is the assertion rather than the wording. `anyBodies.count`
+    // is a DECK-CONTENT number; the note beside it may state a BOARD-STATE exactness, and this very
+    // entry does - "exactly 4 cards in hand and exactly 4 units at battlefields". A badge reading
+    // "NEEDS 1 MORE UNIT" invites the board reading, and a player who followed it and put a fifth
+    // body out would have BROKEN the catalogue's most-reached finisher rather than completed it.
+    expect(node!.querySelector(".route-class")!.textContent).toContain("NEEDS 1 UNIT CARD");
+    expect(node!.querySelector(".route-class")!.textContent, "MORE invites a board reading").not.toContain("MORE");
     // Every node is a tab stop (#78), so the sentence has to reach the accessible name as well.
     expect(node!.querySelector("title")!.textContent).toContain("exactly 4 units at battlefields");
+    expect(node!.querySelector("title")!.textContent).toContain("the line does not name");
   });
 
   /**

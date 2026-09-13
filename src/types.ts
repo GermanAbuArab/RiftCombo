@@ -159,8 +159,25 @@ export interface Source {
  */
 export interface BodyRequirement {
   /**
-   * Unit CARDS the line needs beyond the ones in `uses`, for ONE execution. Tokens the line's own
-   * cards play are already netted out by the author: `flurry-of-feathers-grand-plaza-win` needs
+   * Unit CARDS the line needs beyond the ones in `uses`, for ONE execution.
+   *
+   * THIS IS A DECK-CONTENT NUMBER AND NEVER A BOARD-STATE CLAIM, and the two are different axes
+   * that a single integer cannot carry. A `note` may state an EXACTNESS condition about the board —
+   * `gutter-palace` is count 1 and quotes *"exactly 4 cards in hand and exactly 4 units at
+   * battlefields"* — and that is not a shortfall this number could ever express: you need one unit
+   * CARD because a token cannot take a battlefield (355.2.a), and you need exactly four BODIES
+   * there when the check fires. Measured over the 82 declaring the field: 7 notes carry an
+   * exactness marker and, read one by one, TWO state a board-state exactness of their own
+   * (`gutter-palace`, `shadow-dash-eye-of-twilight-dragged-attacker-tank`) — the other five are the
+   * opponent's garrison, an explicit *"at least"*, or damage arithmetic.
+   *
+   * NO SEPARATE FIELD FOR IT. An `exact: boolean` would conflate the axes rather than separate
+   * them: the count would still be a deck number while the flag described the board, and the next
+   * author would have to guess which one the flag qualified. What the rendering owes instead is to
+   * NAME ITS AXIS, which is why the diagram badge says UNIT CARDS and not MORE UNITS — a badge that
+   * can be read as a board instruction is one that can be followed into breaking the line.
+   *
+   * Tokens the line's own cards play are already netted out by the author: `flurry-of-feathers-grand-plaza-win` needs
    * seven at the Plaza, `UNL-044` supplies four Birds, and the count here is 3. A rate statement
    * (*"repeat on a DIFFERENT unbuffed Might-4 body"*) is not a requirement and does not raise it.
    */
