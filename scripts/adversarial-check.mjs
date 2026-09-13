@@ -33,6 +33,12 @@ const cards = JSON.parse(readFileSync("data/cards.json", "utf8")).cards;
 const db = JSON.parse(readFileSync("data/combos.json", "utf8"));
 const byBase = new Map();
 for (const c of cards) if (!byBase.has(c.base)) byBase.set(c.base, c);
+// `entries[].bases` is an ARRAY - a scalar read of it matched nothing once and reported a clean.
+// Constructed only: the clock's baseline is the Duel Hold curve, which is a Constructed board.
+const BANNED = new Set();
+for (const r of JSON.parse(readFileSync("data/legality.json", "utf8")).entries)
+  if (r.status === "banned" && r.format === "constructed") for (const b of r.bases || []) BANNED.add(b);
+const usesBanned = (e) => (e.uses || []).some((u) => BANNED.has(u.card));
 
 const FINISHER = new Set(["INFINITE", "BURST", "CHAIN", "ALT_WIN"]);
 
@@ -345,7 +351,7 @@ for (const e of db.combos) {
   // Retreat is in both lux-infinite-power and renata-mastermind-points) and a deck holds ONE of it.
   // Costs are derived from the merged set in ONE place below, which is also what closes the
   // two-cost-builders defect #205 shipped - there is now a single builder, costsOfSet.
-  if (e.class !== "ALT_WIN") entries.push({ e, domains, cards: cardSetOf(e) });
+  entries.push({ e, domains, cards: cardSetOf(e) });
 }
 
 // ---------------------------------------------------------------- the clock, with the DAG folded in
@@ -373,11 +379,20 @@ for (const e of db.combos) {
 // empty deck at your own Draw Phase an automatic Burn Out, so the state lasts one Main Phase.
 const POINTY = new Set(["ability-points", "burst-points", "win-the-game"]);
 const producesPoints = (e) => e.produces.some((p) => POINTY.has(p));
-const consumers = db.combos.filter((c) => c.needs.length && producesPoints(c));
+// A partner folded in is a card you would have to PUT IN THE DECK, so a banned one makes the whole
+// closure illegal. This project already records the trap by name - OGN-177 Stealthy Pursuer reached
+// row 20 of a ranked matrix, and `pursuer-herald-recruits` is a verified INFINITE that legality drops
+// at match time - and the first version of the upward fold walked straight into it, picking that very
+// entry as the cheapest fuel for `ready-recruits-grand-plaza`. A banned entry still gets its own ROW,
+// marked, because refusing to price it would hide it; it just cannot be anybody else's partner.
+const consumers = db.combos.filter((c) => c.needs.length && producesPoints(c) && !usesBanned(c));
 const producers = new Map();
-for (const c of db.combos) for (const f of c.produces || []) {
-  if (!producers.has(f)) producers.set(f, []);
-  producers.get(f).push(c);
+for (const c of db.combos) {
+  if (usesBanned(c)) continue;
+  for (const f of c.produces || []) {
+    if (!producers.has(f)) producers.set(f, []);
+    producers.get(f).push(c);
+  }
 }
 
 /** base -> copies, summed within an entry so a duplicated `uses` row is not lost. */
@@ -485,7 +500,8 @@ for (const { e, domains: ownDomains, cards: ownCards } of entries) {
   const d = deployTurn(costsOfSet(cards));
   const gated = beginningPhaseGated(e) || (consumer ? beginningPhaseGated(consumer) : false);
   const pays = d.all === Infinity ? Infinity : d.all + ((d.unit === d.all && d.unit !== 0) || gated ? 1 : 0);
-  const note = [fuel && `fuel: + ${fuel}`, via && `payoff: + ${via}`].filter(Boolean).join("; ");
+  const note = [usesBanned(e) && "BANNED in constructed", fuel && `fuel: + ${fuel}`,
+                via && `payoff: + ${via}`].filter(Boolean).join("; ");
   // Baseline AND the printed identity both read the MERGED set: the deck you would actually build
   // is the closure, and 103.1.b is what caps it at two domains. `ownDomains` is kept only as the
   // fallback for a row that folds nothing.
@@ -503,11 +519,11 @@ if (!onlyTurns) {
 
 const slower = clock.filter((c) => c.pays > c.base);
 console.log(`\n# Turn clock (optimistic lower bound: perfect draws, nothing else cast, no interaction)`);
-console.log(`# ${slower.length} of ${clock.length} point-scoring finishers pay LATER than the do-nothing Hold curve in their own identity`);
+console.log(`# ${slower.length} of ${clock.length} finishers pay LATER than the do-nothing Hold curve in their own identity`);
 // Non-vacuity, and the one number that says whether to trust a row: the greedy pass is the defect
 // #205 removed, so any row priced by it is a row to re-derive by hand rather than quote.
 console.log(`# allocator: exact on ${clock.length - greedyFallbacks} of ${clock.length} rows, greedy fallback on ${greedyFallbacks}`);
-for (const cls of ["INFINITE", "BURST", "CHAIN"]) {
+for (const cls of ["INFINITE", "BURST", "CHAIN", "ALT_WIN"]) {
   const all = clock.filter((c) => c.cls === cls);
   console.log(`#   ${cls.padEnd(9)} ${String(all.filter((c) => c.pays > c.base).length).padStart(2)} of ${String(all.length).padStart(2)}`);
 }
