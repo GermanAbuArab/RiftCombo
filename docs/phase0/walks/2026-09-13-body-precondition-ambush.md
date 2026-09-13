@@ -1431,3 +1431,66 @@ it is ENTRY-scoped and rots on every merge — which is exactly what it did.** T
 is decided by **what it counts, not by what it is about**, and I had the rule right in §26 and applied
 it wrong here. That is the difference between an invariant that is true forever and one that was true
 on a Friday.
+
+---
+
+## 29. THE FOURTH POPULATION: CLAIMS ABOUT SHIPPED CODE
+
+Two claims of this kind were already found wrong today by accident — *"nothing reads
+`Ingredient.zone`"* (it is validated at `src/combos.ts:20` and read at
+`scripts/adversarial-check.mjs:523`) and the guard's six-field list — so the vein deserved a pass.
+
+**51 sentences name a real source path AND make an assertion. ZERO name a path that no longer
+exists** — no dead file references anywhere in 614,843 characters, which for a file this old is
+itself a result.
+
+**Three sharp ones checked, three hold:**
+
+- ***"`web/router.ts` … is the only file that knows the view names"*** — **TRUE, and the docblock has
+  been updated to say why**: both consumers, `test/a11y.test.ts` and `test/router.test.ts`, **import
+  `VIEWS`**, and nothing routes on a hardcoded list. The claim was FALSE before #206 (the a11y test
+  repeated the list three times) and the repair also rewrote the sentence — *"`test/a11y.test.ts` now
+  reads VIEWS from here rather than repeating the list, so the sixth is too."* **A repair that updates
+  the claim it invalidated is the practice this document has asked for twice today.**
+- ***"the second test in `test/legend-lines.test.ts` intersects … the legends carrying its champion
+  tag with the legends covering the entry's domains"*** — that file has four tests and the **second**
+  is *"names no legend that lacks the champion tag of a Signature card the entry uses (103.2.d.2)"*.
+  Exact.
+- ***"a Spiritforged or Unleashed rune line is an alias in `RUNE_ALIAS` (`src/cards.ts`)"*** —
+  `RUNE_ALIAS` is at `src/cards.ts:36` and is consulted at line 77. Exact.
+
+**Tenth too-big first number today, and a new reason for it.** My first pass grepped the literal view
+strings and found them in a dozen files — but `"sources"` is also a `Combo` FIELD, `"decks"` a
+Supabase TABLE, and `"combos"` a data key and a CSS class. **The view names are also field names,
+table names and module names**, so a literal-string grep cannot distinguish a routing decision from a
+noun. Same family as the class names being ordinary English nouns.
+
+---
+
+## 30. THE INVARIANT AUDIT, COMPLETE: 24 CHECKABLE CLAIMS, 24 CORRECT
+
+| haystack | what it is checked against | half-life | tested | held |
+|---|---|---|---:|---:|
+| **CARD** | `corpus_flat.txt` / `cards.json` | rots on a new set | 8 | **8** |
+| **ENTRY** | `combos.json` | rots on every merge | 55 candidates, 24 self-flagged | **0 rotted** |
+| **RULE** | the two rulebooks | does not rot | 8 | **8** |
+| **CODE** | `src/`, `web/`, `test/`, `scripts/` | rots on refactor | 51 named, 3 sharp | **3** |
+| **stated conventions** | mixed | — | 5 | 4 clean, 1 legibility |
+
+**Across every claim I could check, `CLAUDE.md` was never wrong.** The single defect the whole sweep
+produced was `leblanc-temporary-plaza` — **the ENTRY was wrong and the FILE was right**, at 118 of
+119. Every other apparent failure was **my** predicate or **my** scoping, and in each the file's named
+members sat inside my wider set.
+
+**Ten too-big first numbers in one day, and they fall into three kinds worth separating**: a predicate
+encoding the rule without an exception the domain sanctions (the usual one); a predicate fighting the
+**language**, because the catalogue's technical terms are ordinary English nouns, its numbers are
+sometimes words, and its verbs are inflected; and a predicate reading at the wrong **granularity**,
+because this file marks perishability per BULLET and I scanned per sentence.
+
+**What the audit actually measures is not the file's accuracy but its two disciplines.** The CARD and
+RULE claims hold because they **state their predicates** — two of them carry their grep inside the
+sentence. The ENTRY claims have not rotted because the file **dates them and marks them perishable**.
+Those are one rule applied to two half-lives: **say how you measured it, and say when.** On the
+checkable subset, a file that does both is right 24 times out of 24, years after the sessions that
+wrote it ended.
