@@ -2166,3 +2166,106 @@ with one consumer.
 **The cheap version of the question, for whoever takes it:** `generateVariants` in `src/combos.ts`
 walks this DAG, so an unwired fuel tag is 136 entries the variant generator can route out of and
 nothing it can route into. **That is measurable against the generator rather than argued.**
+
+---
+
+## 37. HANDOFF — 2026-09-13, stand-down. **Supersedes §23 and §31.**
+
+### What I own, and what a successor must not touch
+
+**Mine:** this document, `docs/phase0/walks/2026-09-13-might-1-survivability.md` (inherited from
+`rc-kw`, whose handoff passed it forward — §8 and §21's corrections are in it), and `.scratch-kw2/`.
+**`data/combos.json` was handed to me three times by rc-manager8 and handed back all three times** —
+it is the manager's. **`src/*`, `web/*` and `test/*` belong to rc-builder and rc-schema**; the shared
+tree carried their in-flight edits all day (a red `src/build.ts`, a red `src/synergies.ts`, and at
+stand-down four dirty files that are theirs) and I touched none of them. **Report UI and code defects;
+do not patch them.**
+
+### The frame to read first, and what is scaffolding
+
+**Read §13–§18 first — the payoff-removability taxonomy.** Four rows, unit / gear / battlefield /
+spell, each with **what removes the payoff, from where, and in which window**. Three rows give the
+opponent no window at the payoff; the spell row's window is guaranteed by 359.3.c and costs are
+unrefunded by 425.1.c. **§19 through §36 are mostly that table applied to a population**, and each
+names its population and its predicate, so they can be read in any order or skipped.
+
+§1–§7 are the original brief (the fifteen notables of 2026-09-13, five defects, all repaired). §11 and
+§12 are closed veins. **§23 and §31 are superseded by this section.**
+
+### Open — what I would do next
+
+- **Two entries owe one sentence each (§35).** `time-warp-hold-burst` and
+  `bottled-constellation-time-warp` need loop Energy on turns after a Draw Phase, and every legal
+  producer runs on an empty Main Deck, so **each extra turn needs one card left for 315.4.b.1**. It is
+  a *requirement*, not a refutation — `lux-infinite-energy`'s own notable states the escape.
+  `grand-plaza-loop-time-warp` already makes the argument in its step 4 and is the model.
+- **`SFD-089 Rumble, Scrapper` is listed as an answer in nine Plaza notables and scope-live in zero**
+  (§20). True and empty rather than false, so a clarity edit.
+- **The four unwired `-engine` tags (§36)**, led by `card-advantage-engine` at 136 producers and zero
+  consumers and `resource-engine` at 180:1. **Measurable against `generateVariants` rather than
+  argued.** A design question for the manager, not a defect.
+
+### Refused, with the reason — so nobody re-derives them
+
+- **The `shen-sentinel-time-warp-chain` loop-financed twin (§33).** Not on domains, slots or points —
+  all three are fine, and the Shadow Temple objection as posed does not kill it (9 ≥ 8 and 9 > 3 under
+  194.2). **It dies because 315.4.b.1 makes an empty Main Deck unable to survive its own Draw Phase,
+  and the chain spans two turn boundaries.** The general form is a one-line test with two clauses
+  (§35): *does the consumer finish inside the loop's Main Phase, and if not, can it leave the deck a
+  card for every Draw Phase it crosses?* The twin answers neither, because its Holds come **before**
+  its Main Phases.
+- **Walking the other seven loop ledgers (§34).** One was authorised, walked, and the answer
+  generalises: 416.1 recycles to the **bottom of the deck**, so between passes a loop's components
+  live in the deck and the draws are the only thing that brings them to hand. **A countered
+  draw-spell costs the loop access to its own components, not a card.** True of all eight by
+  construction. **Do not walk the other seven.**
+- **Building a work list from the "names no answer" residue (§29).** A predicate looking for a named
+  card cannot see an entry whose exposure is **not a card** —
+  `threshold-reveler-infinite-energy` names none because its exposure is board state and the
+  opponent's resources, and it is one of the most careful entries in the catalogue.
+
+### The predicate traps I hit — eight, three of them in my own instruments
+
+1. **`[Deathknell]` has no literal *When*** outside its reminder text (808.1.c), so a `\bWhen\b` test
+   calls a Deathknell card trigger-less.
+2. **"As you play me" is a REPLACEMENT, not a trigger** — 369.1, with 370.1.b.1's worked example being
+   `SFD-175 Undertitan`. It creates no Chain Item and opens no window.
+3. **Reflections are tokens** (187.6), so a token test listing Recruit / Bird / Sprite / Sand Soldier /
+   Mech misses them.
+4. **The pool writes `while` where 383.2.a.1's examples write `if`** (`UNL-196 Daisy!`).
+5. **A gear sweep must say `Equipment` too** — `SFD-011 Angle Shot` detaches an *Equipment*, and it is
+   the only Reaction-speed gear answer in the pool.
+6. **A scope word can sit outside any window a regex chooses** — Garen and Darius print *here* after
+   the matched text; Lee Sin prints his scope before it.
+7. **A `[Reaction]` can live in a TOKEN'S REMINDER TEXT** — `UNL-073 Deadly Flourish` has none of its
+   own; the one in its text belongs to the Gold token it plays.
+8. **A `role: payoff` filter is narrower than a rule that does not know about roles** — 359.3.c
+   reaches every spell in a line, which turned 11 entries into 39 and named two live gaps.
+
+**And two more that are not predicates but cost the same:** a **scope column launders a judgement into
+a fact** (§21 — one table, three inherited errors, one of which reached seven notables); and **`git
+merge-base --is-ancestor HEAD origin/work` is the wrong verification on a shared branch** — HEAD moves
+under you. Capture your own sha immediately after your own commit and test that. A **rejected** push is
+not a failed push here, and a **successful** one is not a confirmation; both happened today.
+
+### Numbers I am quoting, each with its predicate and its date
+
+**All measured 2026-09-13 at catalogue 766.** Entry counts rot on every merge; card counts rot only
+when Riot prints a set; rules do not rot.
+
+| number | predicate |
+|---|---|
+| **15 enemy-facing gear answers**, all six domains | `(kills?\|banish(es)?\|return\|detach)` within 60 chars of `gear` **or** `Equipment`, 25 raw hits all read, self-facing and trash-recursion removed |
+| **11 counter printings**, every one `[Reaction]`, Calm printing five | the bare word `counter`, 14 hits all read, three excluded (`SFD-194` is a Prevent; `VEN-015` and `VEN-069` *grant* can't-be-countered) |
+| **2 Reaction-speed single-target answers, neither of which kills** | a single-target unit-removal instruction split by timing keyword, 71 hits; the `[Reaction]` bucket read in full |
+| **4 cards reach the BASE** (`UNL-132`, `VEN-133`, `UNL-180`, `SFD-147`) | the 20-card sweep table tested for **any** location clause, all twenty read |
+| **18 protectors: 8 spells, 2 gear, 8 units, every unit Might 4+** | four families swept separately — would-die / Prevent / untargetable / counter-proof |
+| **1 card makes your other spells uncounterable** — `VEN-069 Mel`, mono-Mind | `can't be countered`, 2 hits, both read |
+| **80 finishers: payoff types unit 31, gear 12, battlefield 12, spell 5, 10 mixed** | `uses` rows of role `payoff`, `Card.type` read as an **array** |
+| **0 of 12 distinct payoff units open a window on arrival** | a play trigger, after excluding Deathknells and the `As you play me` replacement |
+| **loop windows range 0 to 4**, floor not count | spells in each INFINITE's `uses`; 401.1 triggers not counted |
+| **DAG: zero needs unproduced; 13 produces unconsumed, 4 of them `-engine`** | all `needs` and `produces` values across 766 entries |
+
+**The one sentence.** **A caveat makes a claim honest; it does not make the card an answer** — and its
+mirror, **a scope is safe exactly when it matches the threat.** Between them they account for every
+defect in this walk that no checker could see.
