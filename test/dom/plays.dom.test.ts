@@ -203,6 +203,10 @@ describe("which entry a play is about", () => {
     "gutter-palace-keeper-time-warp",
     "time-warp-hold-burst",
     "grand-plaza-recruit-vanguard",
+    // The subject of 2026-09-13-the-setup-nobody-prices. A play resolves against THIS list, so a
+    // subject missing from it does not fail to resolve — it silently promotes whichever digression
+    // is in the list instead, which is why every new play adds its subject here.
+    "bottled-constellation-time-warp",
   ];
 
   it("points each play at the one line it is about, and half of them at none", async () => {
@@ -211,6 +215,7 @@ describe("which entry a play is about", () => {
     expect(at("yasuo-windrider-ride-the-wind-chain")).toEqual(["2026-09-12-chaos-fury-yasuo-shuttle"]);
     expect(at("ivern-ride-the-wind-double-conquer")).toEqual(["2026-09-12-chaos-order-the-one-answer"]);
     expect(at("tryndamere-brambleback-conquer")).toEqual(["2026-09-12-the-unopposed-clock"]);
+    expect(at("bottled-constellation-time-warp")).toEqual(["2026-09-13-the-setup-nobody-prices"]);
   });
 
   /**
