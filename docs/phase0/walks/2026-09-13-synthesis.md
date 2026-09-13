@@ -63,8 +63,23 @@ By absolute turn:
 | T7 | 15 | 2.73 | 40% |
 | T8+ | 11 | 3.64 | 9% |
 
-Monotone apart from the T6/T7 pair, which is 3.04 against 2.73 at n=23 and n=15 and should be read as
-noise rather than as a reversal.
+Monotone apart from the T6/T7 pair, 3.04 against 2.73 — and that pair is not noise, it is **class
+mixing**. The turn bands are not homogeneous: T6 is 9 BURST, 7 ALT_WIN, 4 INFINITE and 3 CHAIN while
+T7 is 8 BURST, 5 CHAIN and 2 ALT_WIN. Cut by class instead and the wobble disappears:
+
+| class | n | mean min Might | mean turn |
+|---|---:|---:|---:|
+| **ALT_WIN** | 24 | **1.58** | **4.92** |
+| INFINITE | 12 | 2.67 | 5.83 |
+| CHAIN | 15 | 3.13 | 7.67 |
+| BURST | 22 | **3.59** | 6.95 |
+
+**That is the cleaner statement of the same thing, and it carries a second result the turn bands hide.**
+Sorted by body size the classes are ALT_WIN, INFINITE, CHAIN, BURST; sorted by turn they are ALT_WIN,
+INFINITE, BURST, CHAIN. The two orders agree except on the last pair — **BURST has the biggest bodies
+in the catalogue at 3.59 and is still a turn faster than CHAIN**, because what a CHAIN buys with its
+extra turns is not bodies but `OGN-122 Time Warp` at E10 and 4 Power a copy. So the gradient is a
+CLASS gradient first and a turn gradient second, and the per-turn table above is its shadow.
 
 ## The finding, and the mechanism
 
@@ -88,7 +103,8 @@ whose bodies are tokens.
   that body. Some do not; that is per-entry reading, not a statistic.
 - **It is not a claim about card quality or about the authors.** A token line is fast *because* the
   bodies are cheap; the gradient is the game's, not the catalogue's.
-- **The T6/T7 pair does not fit** and is reported rather than smoothed.
+- **The per-turn T6/T7 pair does not fit**, and the class cut explains why rather than smoothing it:
+  a turn band mixes classes whose bodies differ by two Might.
 - **Seven of the 80 rows have no knowable smallest body** and are outside the measurement.
 
 ## Reproduce
