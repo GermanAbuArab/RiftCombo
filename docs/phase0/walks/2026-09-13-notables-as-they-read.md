@@ -1491,3 +1491,67 @@ not a counter against them**: *"You may pay :rb_rune_rainbow:. If you do, **gain
 may make new choices for it.** Otherwise, counter it."* Against `Desert's Call`, `Ride the Wind` and
 `Flurry of Feathers` the opponent does not have to deny the line — **they can take it**, which against
 `keeper-of-masks-flurry-plaza-window` means taking the four Birds the whole win condition is counting.
+
+---
+
+## 26. The protection layer is answerable a turn ahead, and the reason is **one point of Might**
+
+§25 left `VEN-069 Mel` as the pool's only counter-proofing, a **Might-4 unit**, and §24 established
+that the pool's only Reaction-speed single-target answers are two bounces — `OGN-169 Gust`, gated at
+**Might 3 or less**, and `UNL-128 Star-Crossed`, symmetric. **Mel sits one point above Gust's gate.**
+That looked like a coincidence about one card. It is not.
+
+**Predicate: the protection layer swept as four families, each with its own predicate so each number
+carries its own, reminder text NOT stripped, every hit printed and read. 937 card rows, 18 hits.**
+
+```
+would-die replacement  ("would die … instead")     6
+Prevent                (the word "prevent")        4
+untargetable           ("can't be chosen")         6
+counter-proof          ("can't be countered")      2
+```
+
+**Split by card type, the layer is 8 spells, 2 gear, and 8 units — and every one of the eight units
+is Might 4 or more.**
+
+```
+SFD-173 Soraka, Wanderer          M4    VEN-038 Akali, Silent          M4
+VEN-069 Mel, Newly Awakened       M4    VEN-025 Esteemed Hierophant    M5
+SFD-105 Ruin Runner               M5    UNL-057 Alpha Wildclaw         M7
+UNL-059 Master Yi, Unstoppable    M12   UNL-147 Baron Nashor           M12
+```
+
+**The floor is exactly 4 and Gust's ceiling is exactly 3.** `OGN-169 Gust` — the pool's only cheap
+Reaction-speed single-target answer, Chaos at **E1** — reaches **none of the eight**. What is left is
+`UNL-128 Star-Crossed` (Chaos, E3 P1), which returns *"a friendly unit **and** an enemy unit"*, so
+answering a protector at Reaction speed costs the answerer one of their own bodies.
+
+**So the three shapes of protector are answered in three different windows, and only one of them is
+answerable while it matters:**
+
+| protector shape | members | when it can be answered |
+|---|---|---|
+| **spell** (8) | Highlander, Smite, Tactical Retreat, Unyielding Spirit, Counter Strike, Ki Barrier, Twilight Shroud, Decree of Rage | **in its own window** — 359.3.c, by any of the 11 counters |
+| **gear** (2) | `OGN-077 Zhonya's Hourglass` (not an Equipment), `SFD-051 Guardian Angel` (Equipment) | by the 15 gear answers — of which only `SFD-011 Angle Shot` is `[Reaction]` and it is a **detach**, so it reaches the Guardian Angel and **not** the Hourglass |
+| **unit** (8) | the eight above, **minimum Might 4** | **on the opponent's own turn**, or by a symmetric bounce |
+
+**That is a structural fact about the format rather than an observation about a card.** A protector
+that is a unit is a standing, durable one — it is on the board before the moment it protects — and the
+format gives the attacker no cheap way to remove it in that moment. The designers put the only cheap
+Reaction-speed answer at a ceiling of 3 and every unit-shaped protector at a floor of 4.
+
+**Read the other way it is a warning for this catalogue.** Eight of the eighteen protectors are
+spells, and §15 established that a spell is the one thing the process stops for. **A protection plan
+built on a spell is answerable in the very window it was bought for; a protection plan built on a
+Might-4-or-more unit is not.** Of the two that matter most to this catalogue's finishers, `VEN-069
+Mel` (counter-proofing, §25) and `SFD-173 Soraka` (a would-die replacement for smaller bodies) are
+**both units at Might 4** — which is the good shape, and neither is named by any entry as a
+protection plan.
+
+**Two readings kept honest.** Four of the six *"can't be chosen"* hits protect only **themselves**
+(`SFD-105 Ruin Runner`, `VEN-038 Akali, Silent`, `UNL-059 Master Yi` at `[Level 16]`, `UNL-147 Baron
+Nashor`) — they are protectors of a *body*, not of a *plan*. The two that reach other bodies are
+`UNL-057 Alpha Wildclaw` (*"Your units here with less Might than me can't be chosen"*, M7 — so his own
+Might is the cap on what he covers) and `VEN-031 Twilight Shroud`, a **spell**. The Might floor of 4
+holds across all eight either way, which is why the structural claim is made over the whole set and
+the reach distinction is stated separately.
