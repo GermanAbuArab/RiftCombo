@@ -1142,3 +1142,72 @@ the three it lists, `VEN-018 Rage Amplifier` is genuinely legal and genuinely wo
 identity is fury+order — so it keeps one real answer and one dead one.
 
 **`data/combos.json` is rc-manager8's; this is a report, not a change.**
+
+---
+
+## 20. The eleven-instance template: **a caveat makes a claim honest, it does not make the card an answer**
+
+§19's Aurok defect is one member of one sentence. The sentence itself is worth measuring, because it
+appears eleven times and was filled per identity by hand.
+
+**Predicate: for each answer card, how often is it LISTED in a Plaza notable, and how often is its
+own scope LIVE for that entry's garrison** (garrison composition read from the entry's steps).
+
+```
+card      name                  scope                 listed  scope-live
+SFD-089   Rumble, Scrapper      Mech-scoped                9        0
+UNL-077   Soul Shepherd         token-scoped              15       14
+OGS-013   Garen, Commander      here-scoped               14       14
+OGN-243   Darius, Executioner   here-scoped                5        5
+VEN-018   Rage Amplifier        board-wide                 3        3
+VEN-130   Aurok General         Empowered-scoped           2        0
+UNL-147   Baron Nashor          board-wide                 1        1
+```
+
+**`SFD-089 Rumble, Scrapper` is listed nine times and is scope-live zero times.** Not one of the nine
+has a Mech in its garrison. And the **one** Plaza entry that does —
+`ferrous-forerunner-karthus-mech-plaza`, six Mech tokens — **cannot run him**: he is **Mind** and that
+identity is fury+order, so he is correctly absent from the only entry where he would work.
+
+**That is a different defect from Aurok's and the distinction is the point:**
+
+- **Aurok**: scope **missing** and inert → the sentence makes a claim that is **false**.
+- **Rumble**: scope **present** and inert → the sentence makes a claim that is **true and empty**.
+
+Both sit under the headline *"THE IDENTITY DOES HOLD AN ANSWER"*, which reads as **three** answers. For
+a Recruit garrison it is **two**. **A caveat makes a claim honest; it does not make the card an
+answer**, and a reader counting members is being told the identity is better supplied than it is.
+
+`OGS-013` and `OGN-243` are `here`-scoped and live in all 19 listings, for a reason worth stating
+rather than leaving to luck: **the scope and the threat have the same footprint.** `OGN-133` reads
+*"all units **at battlefields**"* and the Plaza needs its seven **here**, so a grant scoped to one
+battlefield covers exactly the bodies the sweep can reach and exactly the bodies the win condition
+counts. Nothing at the base is either threatened or counted.
+
+### And the one Soul Shepherd listing that is not live is a third instance of the corrected paragraph
+
+15 listed, 14 live. The exception is **`leblanc-temporary-plaza`**, and my own predicate nearly missed
+it: its steps say *"Reflection **copies**"*, and my token test looked for the words Recruit / Bird /
+Sprite / Sand Soldier / Mech / token. **Reflections are tokens (187.6) — a seventh vocabulary hole in
+this walk, in my own instrument.**
+
+Reading it is worse than the predicate suggested. The board is *"Play Keeper of Masks to the Plaza
+three times: each brings two Reflection copies. Ten units."* — `UNL-090 LeBlanc` at M4, **three
+`UNL-081 Keeper of Masks` at printed M1**, and **six Reflections at 0 Might** (187.6, with R27 keeping
+a copy at 0). Its `notable[5]` is the **pre-repair paragraph** — *"The repairs in the pool are narrow:
+`UNL-077 Soul Shepherd` … is the only permanent board-wide token-scoped one and is Mind…"* — and on
+this board:
+
+- the six Reflections go **0 → 1**, and 143.2.a still kills them on 1 damage;
+- the three Keepers are unit **cards**, not tokens, so the Shepherd never touches them and they stay
+  at M1;
+- **`OGN-133 Flurry of Blades` kills nine of the ten bodies with or without the Shepherd**, leaving
+  LeBlanc alone against a bar of seven.
+
+The identity is mono-Mind with a free slot, so the Shepherd is perfectly **legal** — it simply does
+nothing. **This is the third live instance of the paragraph the manager corrected on
+`keeper-of-masks-flurry-plaza-window` today** (after `gutter-palace-keeper-time-warp`, §13), and it is
+the one where the arithmetic is furthest off, because a Reflection starts at **zero**.
+
+**A one-entry discrepancy in a table of fifteen was worth opening.** It was a hole in my predicate and,
+behind the hole, the worst instance of a defect already known.
