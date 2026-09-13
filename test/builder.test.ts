@@ -768,6 +768,22 @@ describe("the Chosen Champion at click time (103.2.a.2, 103.2.d.3)", () => {
     expect(setChampion(deck, other, cards).champion).toBeNull();
   });
 
+  /**
+   * Belt and braces, and pinned because its CITATION changed in the self-audit: the pool's Champion
+   * zone only ever draws units, so this branch is unreachable from the UI — but `setChampion` is a
+   * module export and the model may not depend on a UI filter to stay correct, which is the whole
+   * lesson of #212. 103.2 is the paragraph, not 103.2.a.1: "A Main Deck of at least 40 cards: A
+   * Chosen Champion Unit, as well as Units, Gear, and Spells".
+   */
+  it("refuses a card that is not a Main Deck card at all (103.2)", () => {
+    const field = poolOf(cards).find((c) => c.type.includes("battlefield"))!;
+    const cap = championCapOf(annie(), field.base, cards);
+    expect(cap).toMatchObject({ full: true, badge: "Main Deck only" });
+    expect(cap.why).toContain("103.2");
+    expect(cap.why).not.toContain("103.2.a.1");
+    expect(setChampion(annie(), field.base, cards).champion).toBeNull();
+  });
+
   it("refuses a Signature card, which is 103.2.d.3's own worked example", () => {
     const cap = championCapOf(annie(), TIBBERS, cards);
     expect(cap).toMatchObject({ full: true, badge: "Signature" });

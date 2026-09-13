@@ -347,8 +347,15 @@ describe("the deckbuilder", () => {
    * `test/dom/builder.dom.test.ts`, which is the stronger guard of the two.
    */
   it("asks one function for the Champion rule, so the two columns cannot disagree", () => {
+    // Pinned as a FRAGMENT and a NEGATIVE, not as a whole statement. Measured 2026-09-13: of the 28
+    // string-needle source pins in this file, 27 pin a fragment — a call, an attribute, a rendered
+    // string — and the one that pinned a whole `const x = ...` was this assertion, written the same
+    // day, which then had to be rewritten twice as the contract moved. A whole-statement needle
+    // breaks on any correct rewording of the right-hand side, so it reports a repair as a defect.
     expect(builder).toContain("championCapOf(deck, card.base, cards())");
-    expect(builder).toContain("const blocked = cap.full;");
+    // The invariant, stated so that only its violation breaks it: the cell keeps NO second copy of
+    // the Champion rule. `noSignatureChampion` was that copy and #212 moved it into the model.
+    expect(builder).not.toMatch(/\bnoSignatureChampion\b/);
     expect(read("src/builder.ts")).toContain('"A Signature card is never the Chosen Champion (103.2.d.3)."');
   });
 
