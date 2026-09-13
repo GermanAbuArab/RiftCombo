@@ -348,10 +348,8 @@ even when the prose beside it was walked.**
 
 ## 9. Leads, with the predicate so they can be refuted in one command
 
-1. **69 of 766 entries cite `383.2.a.1`** (predicate: the token `383.2.a.1` anywhere in the
-   serialized entry). The positional test is only ever as good as the card's word order, and I read
-   four cards: `OGN-293` ✓, `UNL-088` ✓, `VEN-138` ✓, `UNL-177` ✗. **The other 65 are unaudited**,
-   and the failure is silent in exactly the direction that flatters a line.
+1. **The positional-test audit is CLOSED — see §11. The exposure is exactly the seven Ivern
+   notables above and nothing else in the catalogue.**
 2. **11 of the 18 base-parked entries still name none of the three base-reachers.** The uniform
    notable states the population correctly (*"eighteen entries … none named any of the three"*) and
    was applied to seven of them; the other eleven are listed in §7's predicate output —
@@ -376,3 +374,81 @@ were measured and are right, and what broke was a shared *rules reading* applied
 order runs the other way, a *uniqueness claim* about a catalogue nobody re-swept, and a *closing
 sentence* naming a sibling that was never re-read on arrival. Two of the three would have been caught
 by reading the notable once, in place, on each entry it was pasted onto.
+
+---
+
+## 11. The positional test, audited across the whole pool — CLOSED, and the empty explains itself
+
+§9's first lead is discharged here, in the same document, rather than left open.
+
+**The risk is not "entries citing 383.2.a.1"; it is "cards whose word order is the Loose Cannon
+shape".** A Sona-shape card cannot be got wrong by this test — the `if` really is in the Condition —
+so the exposed population is the cards where the conditional follows the effect verb.
+
+**Predicate, stated.** A corpus card line whose Effect text (parenthesised reminder text stripped
+first, because 051 makes it non-operative and several keywords carry `if` in reminders) contains a
+trigger opener — `When` / `At the start` / `At the end` / `The Nth time` — with the word `if`
+occurring after it. **937 card rows parsed, 64 hits.** Splitting each at the first comma after the
+opener and testing whether the tail begins with `if`: **40 Sona-shape clauses, 24 otherwise.**
+
+**All 24 were read, and the classifier over-reports exactly as expected.** Most are not trigger
+conditionals at all: `If you do` is a 205 linkage (`OGN-056`, `SFD-074`, `SFD-084`), a branch is an
+effect (`SFD-041` *"If it's a gear, draw it. Otherwise, recycle it."*, `VEN-033`, `SFD-215`), and
+`OGN-063 Spirit's Refuge`'s `if` is inside a static. **Four cards are the genuine shape** — a
+conditional that gates the trigger's own payoff and sits after the effect verb:
+
+| card | text | 
+|---|---|
+| `OGN-131` Dune Drake | *"When I attack, give me +2 :rb_might: this turn **if** there is a ready enemy unit here."* |
+| `UNL-097` Kinkou Initiate | *"When you play me, draw 1 **if** your other units have total Might 5 or more."* |
+| `OGN-281` Hallowed Tomb | *"When you hold here, you may return your Chosen Champion from your trash to your Champion Zone **if it is empty**."* |
+| `UNL-177` Ivern, Friend to All | *"When I conquer or hold, score 1 point **if** your units have all of the following tags among them …"* |
+
+(`OGN-223 Peak Guardian`'s *"Then, if I am at a battlefield…"* gates a second instruction inside the
+effect and is read as a fifth candidate; no entry makes a condition claim about it either.)
+
+**Predicate: entries using one of those five AND mentioning `383.2.a.1` or `Trigger Condition`.**
+
+```
+OGN-131 Dune Drake        2 entries use it,  0 make the claim
+UNL-097 Kinkou Initiate   1 entry  uses it,  0 make the claim
+OGN-281 Hallowed Tomb     1 entry  uses it,  0 make the claim
+OGN-223 Peak Guardian     7 entries use it,  0 make the claim
+UNL-177 Ivern             8 entries use it,  8 make a claim  <-- the whole exposure
+```
+
+**The mirror error was checked too and is also empty.** Predicate: an entry using one of the 40
+Sona-shape cards that nonetheless calls the conditional an Effect / Loose Cannon / checked on
+resolution — 84 entries use a Sona-shape card, **11 matched, all 11 read, zero are errors.** Four
+matched only on the `uses` filter with nothing readable; `tryndamere-hextech-gauntlets-enforcer`
+matched on *"the first part of the effect"*, which is 204.3.a about costs and an unrelated use of the
+phrase; and the remaining six are **correct, careful contrasts** —
+`karthus-machine-evangel-renata-plaza` and `leblanc-bashful-bloom-trevor-plaza` cite the Loose Cannon
+example to establish that the Plaza's `if` is in the Condition, `sona-wind-wall-condition-not-effect`
+quotes it verbatim to contrast Sona, and `swain-svellsongur-conquer-burst` names
+`ivern-ride-the-wind-double-conquer` as the opposite shape.
+
+**So the class is bounded at the seven notables of §1, and the catalogue already knew.** Predicate:
+text fields anywhere in the catalogue stating Ivern's clause is in the Effect / Loose Cannon /
+checked on resolution — **8 fields across 6 entries**:
+
+```
+ivern-sentinel-hold                   uses[2].note
+ivern-arena-sentinel-hold             uses[3].note, uses[4].note
+ivern-svellsongur-four-tags-hold      steps[4]
+ivern-bard-four-tag-double-conquer    notable[0], uses[1].note
+ivern-ride-the-wind-double-conquer    notable[2]
+swain-svellsongur-conquer-burst       notable[2]
+```
+
+`ivern-bard-four-tag-double-conquer` states the correct reading **twice**, in worked prose citing
+Riot's example by name, and carries the wrong one at `notable[10]`.
+
+**What this is worth.** A clean sweep is only a result when it says why it is clean, and this one
+does: **the positional test can only be got wrong on a card with the Loose Cannon shape, the pool
+prints four, and exactly one of the four is heavily catalogued.** That is also why pinning it costs
+nothing — the check is cheap, the state is clean apart from a repair the manager is about to make,
+and by CLAUDE.md's own rule a check that comes back clean is the one worth pinning as a test, because
+it can only ever be paid for once. **Proposed, not written, because `test/` is not mine**: assert that
+no entry using one of the four Loose-Cannon cards claims its conditional is part of the Trigger
+Condition, with a non-vacuity line printing the four base codes and the number of entries scanned.
