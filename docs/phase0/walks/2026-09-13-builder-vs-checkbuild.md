@@ -462,3 +462,71 @@ Neutering the sideboard identity row turns **exactly two of its eight** cases re
 a failure; the other six pin pass, unknown, absence and order and are *supposed* to survive a row that
 never fails. Neutering `refreshBuilder` turns **exactly one of twenty-five** red. A mutation that turns
 everything red means the suite is measuring something else.
+
+
+---
+
+## 10. The corpus, which neither the checklist nor the matcher had ever met — `rc-builder`, 2026-09-13
+
+`test/tournament-lists.test.ts` runs the 222 registered lists through the PARSER. Nothing had ever run
+`checkBuild` or `matchDeck` over them. A row that is wrong about a correctly transcribed tournament list
+is the worst failure the checklist has, so the question is worth asking of every list at once.
+
+### checkBuild: the two piles do not overlap, and neither is a defect
+
+**128 of 222 pass outright.** Every failure is one of exactly two kinds:
+
+- **Riot's pile — 92 lists** hold a card banned *since* the list was published, and two cards account
+  for all of it: `OGN-276 Aspirant's Climb` in 48 and `OGN-290 The Arena's Greatest` in 45. These are
+  Riot's own published results from before the bans. The checklist is right and the lists were legal.
+- **Ours — exactly FIVE**, all previously registered transcription errata, named individually:
+  `sydney-30` (0 battlefields), `utrecht-06` and `utrecht-19` (2 battlefields), `utrecht-17` (its
+  Sideboard section repeats the three battlefields — the erratum #197 caught), `vancouver-06` (0 runes).
+
+**Zero lists fail because a row is wrong.** Pinned in `test/build.test.ts`, with the errata asserted by
+**exact equality** rather than membership, so a sixth bad transcription fails the test instead of being
+quietly excused — a first version of that set had six names because one was typed from memory of a note
+about another file, and an over-broad exception set is a test that excuses the next real defect.
+
+### Two numbers that decide things, with their denominators
+
+**41% of Riot's own published tournament lists hold a card that is banned today.** That is the measured
+case FOR the user's tier-3 decision: if the editor BLOCKED a banned card rather than badging it, a
+player could not reconstruct two fifths of Riot's own lists. The decision was made on reasoning; it now
+has a number.
+
+**All 222 lists carry a sideboard — 1273 rows between them — and NOT ONE is outside its legend's
+identity.** So the `403.4.b` row fires on no real list under either reading, which is worth knowing
+about the ruling made the same day: it was a CORRECTNESS decision, not a risk one, because the measured
+cost of both readings is zero. (That players behave as if the sideboard is identity-bound is
+interesting and is **not** evidence about the rule; behaviour is not a rules argument.)
+
+### matchDeck: the headline is nearly meaningless and the distribution is the finding
+
+196 of 222 lists (**88%**) complete at least one catalogued line, 453 completions, 94 distinct variants,
+at catalogue 766 / 1638 variants. **Do not quote the 88%.** The first hit read by hand was
+`charm-evacuate-conquer`, whose `uses` is a **single card** — `1x OGN-043 Charm` — so any Calm list
+running Charm completes it, which is why it fires in 54 lists. The catalogue holds 21 one-card variants
+and 458 two-card ones.
+
+Split by size, completions / lists reaching that size:
+
+| line size | completions | lists |
+|---|---|---|
+| 1 card | 108 | 97 (44%) |
+| 2 | 234 | 134 (60%) |
+| 3 | 82 | 70 (32%) |
+| 4 | 18 | 14 (6%) |
+| 5 | 8 | 8 (4%) |
+| 6 | 3 | 1 |
+
+**And split by class, which is the result: ENGINE 443, INFINITE 4, CHAIN 3, ALT_WIN 2, BURST 1.** Ten
+finisher completions across 222 registered lists. That is #200's conclusion arriving from the corpus
+side rather than from the turn clock — a finisher is redundant against a Hold curve that has not been
+broken, and real lists almost never assemble one.
+
+**Not comparable to CLAUDE.md's 53.8%**, and the difference is not an improvement: that figure was
+measured on **8,307** lists at a catalogue of about 180 on 2026-09-06, and this is **222** lists — Riot's
+published *top decks*, a winner-biased subset — at a catalogue of 766. Two different populations and a
+catalogue four times larger, both pushing the same way. Quoting one against the other would be the
+predicate error this project keeps paying for.
