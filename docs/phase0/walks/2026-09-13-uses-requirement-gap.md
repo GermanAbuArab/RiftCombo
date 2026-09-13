@@ -98,12 +98,43 @@ Each checked against its own `uses`:
   met by a card already in `uses` under a different description**, which is one of the exception
   classes named in the brief.
 
-**Not yet read, and I am not calling them either way:** `aphelios-jax-quickdraw-attach`,
-`rumble-forerunner-mech-recursion`, `apothecary-pridestalker-buff`, `faefolk-star-spring-drag`,
-`svellsongur-ribbon-dancer-fiora-mass-ready`, `aphelios-forge-of-the-fluft-attach-cycle`,
-`prize-of-progress-gold-tokens-reaction-might`, and two more. **Several read like sustain conditions
-(*"for as long as you have a spare unit card on board"*) rather than requirements, and that
-distinction can only be made by reading the entry.**
+**ALL FOURTEEN ARE NOW READ. Two more are exposed and one is probable:**
+
+- **`apothecary-pridestalker-buff`** [ENGINE, `uses` 1 unit + a legend] — **STEP 1 IS THE
+  REQUIREMENT**: *"Have a friendly unit at a battlefield besides the Apothecary you are about to
+  play."* That body is what the Apothecary's play trigger bounces and replays, so it is the engine's
+  fuel, and it is not in `uses`. The strongest shape in the whole sweep: the requirement is the
+  opening line of the line.
+- **`aphelios-forge-of-the-fluft-attach-cycle`** [ENGINE, `uses` 1 unit] — step 3: *"attach the Sword
+  to **a spare unit** — this takes it off Aphelios (434.1.f) and fires nothing"*. The spare body is
+  the whole mechanism: the Sword has to leave Aphelios before re-attaching to him can fire his
+  trigger again. **With only Aphelios on board the cycle cannot turn over at all.**
+- **`lillia-fae-fawn-signpost-sprite-at-the-origin`** [ENGINE, `uses` 3 units + 3 tokens] —
+  **PROBABLE, and stated as probable.** Step 1: *"Keep a third body at your base as the Signpost's
+  anchor."* From the second cycle a Sprite the entry makes can be the anchor, and a token can never
+  be a `uses` row — but step 2 is what creates the first Sprite, so **the FIRST activation needs an
+  anchor the entry does not supply.** Whether that is a defect or an accepted opening cost is a
+  reading, and I am not making it for somebody else's entry.
+
+**Sanctioned, each with the reason, so nobody re-files them:**
+`karma-double-trouble-repeat-two-buffs` and `aphelios-jax-quickdraw-attach` and
+`faefolk-star-spring-drag` — the required body IS in `uses` under a different description
+(`OGN-216 Soaring Scout`; Jax; the Faefolk itself, named in the same sentence).
+`baron-pit-fae-porter-reach-from-anywhere` — nine units in `uses`.
+`rumble-forerunner-mech-recursion` — *"for as long as you have a spare unit card on board to feed
+it"* is a SUSTAIN condition on an engine whose declared `produces` is `token-body-engine`: it makes
+its own fuel. `prize-of-progress-gold-tokens-reaction-might` and
+`svellsongur-ribbon-dancer-fiora-mass-ready` — the match is a RULES description and a CARD TEXT
+quotation respectively, neither a requirement.
+`sprite-queen-dusk-rose-lab-shard-undoing` — the entry says outright that the second body *"is a
+deckbuilding choice, not a requirement"*, which is the entry being more careful than the check.
+
+**A THIRD SHAPE, found by reading and NOT swept for:** `apothecary-pridestalker-buff`'s step 1 says
+*"Have a friendly unit … **besides** the Apothecary"* — a board precondition with no
+"second/another/third" in it. Predicate B caught that entry only through a different phrase in a
+notable. **A step-1 precondition phrased without a counting word is a fourth predicate somebody
+should write**, and it is likely the highest-yield one left, because a requirement that opens a line
+is exactly the kind an author states once in prose and never encodes.
 
 ---
 
