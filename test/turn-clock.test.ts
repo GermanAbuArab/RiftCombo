@@ -16,12 +16,13 @@ import { describe, expect, it } from "vitest";
  * original defect. This file is the cheap version of that walk: pinning the two hand-walked reference
  * points on every commit closes the class.
  *
- * The script takes ~4.6s, up from ~0.2s when this file was written. Folding the `needs`/`produces`
- * DAG UPWARD as well as downward (2026-09-13, #200) made the biggest closures much larger, and almost
- * all of that time is ONE row: `dragonstorm-brambleback-trinity-conquer` at 25 costs and 193,536
- * allocator states. The same change is why the allocator is now exact on 54 of 54 rows where it was
- * 53 — the four rows that folding pushed past the old 12-cost bitmask limit would otherwise have
- * fallen back to the greedy pass, which is the very defect #205 removed.
+ * Folding the `needs`/`produces` DAG UPWARD as well as downward (2026-09-13, #200) made the biggest
+ * closures much larger, and almost all of the runtime is ONE row,
+ * `dragonstorm-brambleback-trinity-conquer`. Pricing `[Equip]` added a second cost per Equipment and
+ * pushed that row past the state guard; modelling ORDERING later the same day (an `[Equip]` cannot be
+ * paid before its own gear — 818.1 with 380) pruned the search back down, so `--turns` is ~0.2s again
+ * and the allocator is exact on 79 of the 80 rows. Quote the header's own line for that count rather
+ * than this comment: a row priced by the greedy fallback is a row priced by the defect #205 removed.
  *
  * The assertions are deliberately about entries whose turn was established BY HAND against the Core
  * Rules, not about the headline count, which is perishable and moves with the catalogue.
@@ -83,5 +84,38 @@ describe("the turn clock", () => {
   it("does not charge the readiness turn universally", () => {
     const atBaseline = [...rows.values()].filter((r) => r.pays <= r.base);
     expect(atBaseline.length).toBeGreaterThan(0);
+  });
+});
+
+/**
+ * ORDERING, pinned because the result is a NULL.
+ *
+ * An `[Equip]` cost is not merely a second cost but a LATER one: 818.1 makes Equip an Activated
+ * Ability of the gear and 380 says an Activated Ability "can primarily be activated while on the
+ * Board". Modelled exactly in the allocator on 2026-09-13, it moves ZERO of the 80 rows — and a null
+ * from a new constraint is worth nothing unless the instrument can be shown to SEE the thing it says
+ * is absent. `--selftest` is that proof: synthetic cost sets whose answers are hand-derived, two of
+ * them ordered, one of which owes a turn to the constraint (T6 unordered against T7 ordered).
+ *
+ * Pinning a clean state costs nothing now and can only ever be paid for once. These two assertions
+ * close the two ways the null could go quietly false: the constraint being dropped (the self-test
+ * fails) and the LINKING being dropped, which would leave the constraint in place with nothing
+ * attached to it and print "moves nothing" for a vacuous reason.
+ */
+describe("the allocator's ordering constraint", () => {
+  it("passes its own hand-derived self-test, so the null is a result and not a blind spot", () => {
+    const st = execFileSync("node", ["scripts/adversarial-check.mjs", "--selftest"], {
+      encoding: "utf8",
+      maxBuffer: 1 << 22,
+    });
+    expect(st).toContain("# all pass");
+    expect(st).not.toContain("FAIL");
+  });
+
+  it("still has a non-empty linked population, so 'it moves nothing' cannot go vacuous", () => {
+    const m = out.match(/ordering \(\[Equip\] after its own gear[^)]*\): (\d+) of (\d+) rows carry a linked cost/);
+    expect(m, "the ordering non-vacuity line is missing from --turns").toBeTruthy();
+    expect(Number(m![1])).toBeGreaterThan(20);
+    expect(Number(m![1])).toBeLessThan(Number(m![2]));
   });
 });

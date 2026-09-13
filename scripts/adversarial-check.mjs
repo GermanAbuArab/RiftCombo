@@ -31,6 +31,35 @@
 //      section 5b is the control case: `twilight-reveler-eye-facebreaker-recruits` scores the same T5
 //      here, produces no Energy, and really is T5. Fixing it needs a model of WHEN a loop ignites,
 //      which is a larger thing than the fold was, so it is recorded rather than guessed at.
+//
+//      ORDERING IS MODELLED AS OF 2026-09-13 AND IT MOVES NOTHING, WHICH IS THE RESULT. `deployTurn`
+//      used to ask only whether every cost was PAYABLE by turn N; an [Equip] is not merely a second
+//      cost but a LATER one, because 818.1 makes it an Activated Ability of the gear and 380 says an
+//      Activated Ability "can primarily be activated while on the Board". That is now a real
+//      constraint in the allocator (`link` / `after` in costsOfSet, the `cap` in walk), it is exact,
+//      and `--selftest` proves it can SEE a turn where a hand-derived case owes one. Measured over
+//      the catalogue: 33 of the 80 finisher rows carry a linked cost and the constraint moves ZERO
+//      of them.
+//
+//      The null is by a HAIR and rests on one paragraph. 359.2.d enters a non-unit gear "Ready at
+//      the player's Base", so the gear is on the board the turn it is played and the attach may be
+//      the SAME turn; no [Equip] cost in this pool contains an exhaust. Run `--strict-ordering` to
+//      forbid the same turn as well - that is WRONG as rules and is only a sensitivity probe - and
+//      SIX rows move by exactly one turn (reveler-svellsongur-jhin-infinite-power,
+//      shen-kinkou-svellsongur-hold, svellsongur-copy-hold, swain-shurelya-double-conquer,
+//      swain-svellsongur-conquer-burst, trinity-skyfall-arena-second-battlefield-chain), taking the
+//      unopposed headline from 45 to 47 of 80. The catalogue's gear lines sit exactly on the
+//      boundary, and 359.2.d is worth a turn on six of them.
+//
+//      WHAT IS STILL NOT MODELLED, with its size. An [Equip] also needs a CARRIER - 818.1.c.2,
+//      "Attach this gear to a unit you control" - and that unit need not be named in `uses`, because
+//      any unit in the deck carries a generic Equipment. Probed in .scratch-gap/probe-carrier.mjs by
+//      forbidding an equip until a unit of the same card set is paid: it moves NO row, and the only
+//      row it touches at all is `arise-sand-soldiers-plaza`, which it sends to Infinity because that
+//      is the one finisher with an Equipment and no unit in `uses` - and that entry already declares
+//      `anyBodies: {count: 1}`. So the carrier is inert on all 79 rows where it is expressible and
+//      unmodellable on the 80th without inventing a decklist, which is why it is a probe and not
+//      shipped.
 import { readFileSync, writeFileSync } from "node:fs";
 
 const args = process.argv.slice(2);
@@ -42,6 +71,7 @@ const recheck = args.includes("--recheck-notables");
 const holds = args.includes("--holds");
 const holdNotables = args.includes("--holds-notables");
 const engines = args.includes("--engines");
+const strictOrdering = args.includes("--strict-ordering");
 
 const cards = JSON.parse(readFileSync("data/cards.json", "utf8")).cards;
 const db = JSON.parse(readFileSync("data/combos.json", "utf8"));
@@ -201,26 +231,67 @@ let greedyFallbacks = 0;
  * enough to be exact; the tie-break keeps the EARLIEST last-unit turn, because that is what the
  * readiness `+1` reads.
  */
+/**
+ * Cost items -> canonically ordered cost TYPES carrying a dependency index, plus a signature.
+ *
+ * Two costs are the same TYPE when they share (Energy, Power, unit) AND `link`. Including `link` is
+ * what keeps a gear's play cost from merging with an unrelated card that happens to cost the same,
+ * which would make the ordering constraint read "this equip follows SOME card of that price" instead
+ * of "this equip follows ITS OWN gear" - looser, and therefore a number that is still a lower bound
+ * but no longer a tight one.
+ *
+ * The order is canonical, each root immediately followed by its dependants and roots sorted by the
+ * descriptor of the whole chain, for two separate reasons. The allocator reads a dependant's root
+ * count out of a slot the recursion has already filled, which requires dep < index. And the
+ * signature must be identical for two structurally identical cost sets from different base codes,
+ * or the memo - which is the only reason this runs in seconds rather than minutes - would miss on
+ * every gear line, because `link` is built out of a base code.
+ */
+function typesOf(costs) {
+  const byType = new Map();
+  for (const c of costs) {
+    const k = `${c.e}|${c.p}|${c.unit ? 1 : 0}|${c.link || ""}`;
+    if (!byType.has(k))
+      byType.set(k, { e: c.e, p: c.p, unit: !!c.unit, link: c.link || "", after: c.after || "", n: 0, kids: [] });
+    byType.get(k).n++;
+  }
+  const all = [...byType.values()];
+  const byLink = new Map();
+  for (const t of all) if (t.link) byLink.set(t.link, t);
+  const roots = [];
+  for (const t of all) {
+    // A dangling `after` cannot happen today (the two are pushed together) and is treated as a root
+    // rather than thrown, because an unconstrained cost is the LOWER bound this table promises.
+    const parent = t.after ? byLink.get(t.after) : null;
+    if (parent) parent.kids.push(t); else roots.push(t);
+  }
+  const desc = (t) => `${t.e}|${t.p}|${t.unit ? 1 : 0}|${t.n}` +
+                      (t.kids.length ? `(${t.kids.map(desc).sort().join(",")})` : "");
+  const cmp = (a, b) => (desc(a) < desc(b) ? -1 : desc(a) > desc(b) ? 1 : 0);
+  roots.sort(cmp);
+  const types = [];
+  const emit = (t, dep) => {
+    t.dep = dep;
+    const i = types.push(t) - 1;
+    for (const k of [...t.kids].sort(cmp)) emit(k, i);
+  };
+  for (const r of roots) emit(r, -1);
+  return { types, sig: roots.map(desc).join(",") };
+}
+
 const deployMemo = new Map();
 function deployTurn(costs) {
   if (!costs.length) return { all: 0, unit: 0 };
   // Memoized on the canonical cost SIGNATURE, not on the entry: closuresOf and the consumer search
   // both price many candidate card sets and the same multiset recurs constantly.
-  const sig = costs.map((c) => `${c.e}|${c.p}|${c.unit ? 1 : 0}`).sort().join(",");
+  const { types, sig } = typesOf(costs);
   const hit = deployMemo.get(sig);
   if (hit) return hit;
-  const r = deployTurnUncached(costs);
+  const r = deployTurnUncached(types, costs);
   deployMemo.set(sig, r);
   return r;
 }
-function deployTurnUncached(costs) {
-  const byType = new Map();
-  for (const c of costs) {
-    const k = `${c.e}|${c.p}|${c.unit ? 1 : 0}`;
-    if (!byType.has(k)) byType.set(k, { e: c.e, p: c.p, unit: !!c.unit, n: 0 });
-    byType.get(k).n++;
-  }
-  const types = [...byType.values()];
+function deployTurnUncached(types, costs) {
   const dim = types.length;
   // Mixed-radix packing: the whole state is ONE integer, so the inner loop allocates nothing. A
   // first version keyed the state on a joined string and took minutes; the arithmetic was never the
@@ -245,6 +316,10 @@ function deployTurnUncached(costs) {
   // catalogue against 0.4s here, because a recursive closure re-created 300,000 times is not one V8
   // can keep optimized.
   let idx = 0, runes = 0, u0 = 0, turn = 0;
+  // Where each type stands in the state being BUILT. Hoisted and mutated in place rather than passed,
+  // for the same reason the closure itself is hoisted: this is the innermost loop in the file. A
+  // dependant reads its root out of this array, which is why typesOf emits a root before its kids.
+  const cnt = new Int16Array(dim);
   const walk = (i, e, p, delta, tookUnit) => {
     if (i === dim) {
       const k = idx + delta;
@@ -256,8 +331,23 @@ function deployTurnUncached(costs) {
       return;
     }
     const t = types[i];
-    const left = t.n - ((idx / stride[i]) | 0) % (t.n + 1);
-    for (let q = 0; q <= left; q++) {
+    const have = ((idx / stride[i]) | 0) % (t.n + 1);
+    // ORDERING. An [Equip] cost can never have been paid more times than its own gear has been
+    // played: 818.1 makes Equip an Activated Ability of that gear and 380 confines an Activated
+    // Ability to one "while on the Board". The cap is the root's count IN THE STATE BEING BUILT, so
+    // playing a gear and attaching it on the same turn stays legal (359.2.d enters a non-unit gear
+    // ready at base, and no [Equip] cost in this pool contains an exhaust) while attaching first
+    // does not. `q` only grows, so the break is safe.
+    // --strict-ordering is a SENSITIVITY probe, not the model: it forbids the same turn as well, so
+    // the gap between the two runs says whether the shipped null is inert by a wide margin or by a
+    // hair. It is wrong as rules (359.2.d) and is never the default.
+    const root = t.dep < 0 ? -1 : strictOrdering
+      ? ((idx / stride[t.dep]) | 0) % (types[t.dep].n + 1)   // the count BEFORE this turn
+      : cnt[t.dep];                                          // the count as at this turn
+    const cap = t.dep >= 0 && root < t.n ? root : t.n;
+    for (let q = 0; q <= t.n - have; q++) {
+      if (have + q > cap) break;
+      cnt[i] = have + q;
       const ne = e + t.e * q, np = p + t.p * q;
       if (ne > runes || np > runes) break;      // R runes afford R Energy AND R Power
       walk(i + 1, ne, np, delta + q * stride[i], tookUnit || (q > 0 && t.unit));
@@ -282,6 +372,9 @@ function deployTurnUncached(costs) {
 // Do not use it for anything else: it is the defect #205 describes.
 function greedyTurn(costs) {
   const remaining = costs.map((c) => ({ ...c })).sort((a, b) => b.e + b.p - (a.e + a.p));
+  // The same ordering gate the exact allocator enforces, so a fallback row is wrong only in the one
+  // way #205 documented and not in a second one as well.
+  const paid = new Map();
   let runes = 0;
   for (let turn = 1; turn <= 40; turn++) {
     runes = Math.min(12, runes + 2);
@@ -292,7 +385,9 @@ function greedyTurn(costs) {
       progress = false;
       for (let i = 0; i < remaining.length; i++) {
         const c = remaining[i];
+        if (c.after && (paid.get(c.after) ?? 0) <= (paid.get(c.link) ?? 0)) continue;
         if (c.e <= energy && c.p <= recyclable) {
+          if (c.link) paid.set(c.link, (paid.get(c.link) ?? 0) + 1);
           energy -= c.e;
           recyclable -= c.p;
           runes -= c.p;
@@ -305,6 +400,44 @@ function greedyTurn(costs) {
     if (!remaining.length) return turn;
   }
   return Infinity;
+}
+
+// --selftest exercises the allocator on synthetic cost sets whose answers are hand-derivable, and it
+// exists because ADDING THE ORDERING CONSTRAINT MOVED NO ROW IN THE CATALOGUE. A null from a new
+// constraint is worth nothing until the instrument is shown to be able to SEE the thing it is
+// claiming is absent, and the two ordered cases below are the proof that it can: the first is the
+// shape where ordering costs a turn and the allocator returns 6 unordered against 7 ordered.
+if (args.includes("--selftest")) {
+  const play = (e, p, link) => ({ e, p, unit: false, link });
+  const equip = (e, p, link, after) => ({ e, p, unit: false, link, after });
+  const cases = [
+    // [name, costs, expected `all`, why]
+    ["one E2 card", [play(2, 0, "")], 1, "T1 has 2 runes"],
+    ["one E3 card", [play(3, 0, "")], 2, "T1 affords 2, T2 affords 4"],
+    ["E12 card", [play(12, 0, "")], 6, "runes are 2,4,6,8,10,12 (161.2.a caps at 12)"],
+    ["E1 + 1 Power", [play(1, 1, "")], 1, "R runes afford R Energy AND R Power"],
+    // Hand-derived as T3 first, and that was wrong: 164.2.a costs the rune's EXHAUST and 164.2.b
+    // costs its RECYCLE, so two runes pay two Energy AND two Power in the same turn and T1 takes
+    // two of these three cards. The instrument was right and the expectation was not.
+    ["3 x E1+1P", [play(1, 1, ""), play(1, 1, ""), play(1, 1, "")], 2,
+     "2 runes pay 2 Energy AND 2 Power on T1; the third card waits for the 2 channelled on T2"],
+    ["UNORDERED E12 gear + free-floating E2", [play(12, 0, "a"), play(2, 0, "b")], 6,
+     "the E2 goes on T1 out of mana the E12 cannot use"],
+    ["ORDERED E12 gear + its E2 equip", [play(12, 0, "g#play"), equip(2, 0, "g#equip", "g#play")], 7,
+     "the equip cannot precede the gear, and T6 is exactly 12 runes, so it waits for T7"],
+    ["ORDERED, same turn is legal", [play(4, 0, "g#play"), equip(2, 0, "g#equip", "g#play")], 3,
+     "T3 has 6 runes and 359.2.d puts the gear on the board the turn it is played"],
+  ];
+  let bad = 0;
+  console.log(`# allocator self-test: ${cases.length} synthetic cost sets, answers hand-derived`);
+  for (const [name, costs, want, why] of cases) {
+    const got = deployTurn(costs).all;
+    const ok = got === want;
+    if (!ok) bad++;
+    console.log(`  ${ok ? "ok  " : "FAIL"}  T${got} (want T${want})  ${name} — ${why}`);
+  }
+  console.log(bad ? `# ${bad} FAILED` : "# all pass");
+  process.exit(bad ? 1 : 0);
 }
 
 // A payoff that fires in the Beginning Phase cannot fire on the turn the last piece lands: a Hold is
@@ -500,11 +633,20 @@ const costsOfSet = (set) => {
   for (const [b, q] of Object.entries(set)) {
     const c = byBase.get(b);
     if (!c || c.type.includes("legend") || c.type.includes("battlefield")) continue;
+    const eq = equipCost(c);
+    // ORDERING. An [Equip] cost is not merely a second cost, it is a LATER one: 818.1 makes Equip an
+    // Activated Ability of the gear and 380 says an Activated Ability "can primarily be activated
+    // while on the Board", so it cannot be paid before the gear itself has been. `link` and `after`
+    // carry that into the allocator; everything else in this pool is an ordinary play cost with no
+    // predecessor. The SAME turn is legal and is left legal: 359.2.d enters a non-unit gear "Ready at
+    // the player's Base", so the gear is on the board the turn it is played, and no [Equip] cost in
+    // this pool contains an exhaust (measured: 0 exhaust symbols across the 40 Equipment).
+    const linked = !!(eq && (eq.e || eq.p));
     // 143.4 exhausts UNITS only, so only a unit costs a readiness turn.
     for (let i = 0; i < q; i++) {
-      out.push({ e: c.energy || 0, p: c.power || 0, unit: c.type.includes("unit") });
-      const eq = equipCost(c);
-      if (eq && (eq.e || eq.p)) equips.push({ e: eq.e, p: eq.p, unit: false });
+      out.push({ e: c.energy || 0, p: c.power || 0, unit: c.type.includes("unit"),
+                 link: linked ? `${b}#play` : "" });
+      if (linked) equips.push({ e: eq.e, p: eq.p, unit: false, link: `${b}#equip`, after: `${b}#play` });
     }
   }
   if (weaponmaster && equips.length) {
@@ -586,7 +728,8 @@ for (const { e, domains: ownDomains, cards: ownCards } of entries) {
   // Read on whichever entry carries the PAYOFF and never on the fuel: `lux-infinite-energy` brings
   // UNL-165 Shadow's Call, whose reminder says "at the start of its controller's Beginning Phase",
   // and folding that in would charge a readiness turn to every line that burns Lux Energy.
-  const d = deployTurn(costsOfSet(cards));
+  const finalCosts = costsOfSet(cards);
+  const d = deployTurn(finalCosts);
   const gated = beginningPhaseGated(e) || (consumer ? beginningPhaseGated(consumer) : false);
   const pays = d.all === Infinity ? Infinity : d.all + ((d.unit === d.all && d.unit !== 0) || gated ? 1 : 0);
   const note = [usesBanned(e) && "BANNED in constructed", fuel && `fuel: + ${fuel}`,
@@ -596,6 +739,7 @@ for (const { e, domains: ownDomains, cards: ownCards } of entries) {
   // fallback for a row that folds nothing.
   const merged = [...domainsOfSet(cards)];
   clock.push({ id: e.id, cls: e.class, pays, base: baselineTurn(merged), via: note || null,
+               ordered: finalCosts.some((c) => c.after),
                domains: (merged.length ? merged : [...ownDomains]).sort().join("/") || "colourless" });
 }
 
@@ -644,6 +788,10 @@ console.log(`# ${slowerContested.length} of ${clock.length} pay later than the C
 // Non-vacuity, and the one number that says whether to trust a row: the greedy pass is the defect
 // #205 removed, so any row priced by it is a row to re-derive by hand rather than quote.
 console.log(`# allocator: exact on ${clock.length - greedyFallbacks} of ${clock.length} rows, greedy fallback on ${greedyFallbacks}`);
+// Non-vacuity for the ordering model: the constraint can only ever bind on a row that HAS an [Equip]
+// cost, so the size of that population is what makes "it moves nothing" a result rather than a shrug.
+console.log(`# ordering ([Equip] after its own gear, 818.1 + 380): ${clock.filter((c) => c.ordered).length} of ${clock.length} rows carry a linked cost` +
+            `${strictOrdering ? "; --strict-ordering IS ON, so this run also forbids the same turn and is NOT the rules model" : ""}`);
 for (const cls of ["INFINITE", "BURST", "CHAIN", "ALT_WIN"]) {
   const all = clock.filter((c) => c.cls === cls);
   console.log(`#   ${cls.padEnd(9)} ${String(all.filter((c) => c.pays > c.base).length).padStart(2)} of ${String(all.length).padStart(2)} unopposed` +
