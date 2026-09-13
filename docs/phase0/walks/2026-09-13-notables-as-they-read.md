@@ -2022,8 +2022,9 @@ own components. **`OGN-212 Forge of the Future` is one of them, and step 7 canno
 
 ### Counter window 2 — Sacrifice, which is worse
 
-The additional cost is **mandatory** (356.2.a.1: *"use the phrase 'as an additional cost' and don't
-include the word 'may'"*), so it is paid at the play step — and **425.1.c.1** says a counter refunds
+The additional cost is **mandatory** (356.2.a.1 makes an additional cost mandatory exactly when it uses the phrase **as an additional
+cost** and does not carry the word **may** — paraphrased rather than quoted, because the source
+sentence contains its own quoted phrases), so it is paid at the play step — and **425.1.c.1** says a counter refunds
 *"additional costs"* too. **A countered Sacrifice therefore kills Ekko, fires his Deathknell, recycles
 him into the deck, and draws nothing.** The pass ends with **both** `OGN-212` and `OGN-110` in the
 deck and neither in hand.

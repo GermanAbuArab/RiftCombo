@@ -38,7 +38,7 @@ threshold removal at *"≤ T"* needs **M > T**; a kill-all or return-all needs n
 | 4 | `OGS-018` Tibbers | fury/chaos | E8 P2 M7 | — | deal 3 | all battlefields |
 | 4 | `OGN-148` Anivia, Primal | body | E7 P2 M8 | — | deal 3 | here |
 | 5 | `OGN-190` Kog'Maw, Caustic | chaos | E3 P1 M1 | — | deal 4 (Deathknell) | its battlefield |
-| 6 | `VEN-133` Glowstone | order | E2 | — | deal 5 | units they control |
+| 6 | `VEN-133` Glowstone | order | E2 | — | deal 5 | ~~units they control~~ **everywhere — NO location clause** [^c1] |
 | 6 | `VEN-091` Corrupted Dragon | body | E10 P2 M10 | — | move ≤5 | here |
 | 13 | `OGN-123` Unchecked Power | mind | E7 P2 | — | deal 12 | all battlefields |
 | **any** | `OGN-268` Bullet Time | body/chaos | E1 + X rainbow | Action | deal X | one battlefield |
@@ -126,8 +126,8 @@ garrison**, which is nowhere in the legality computation. Reading the six:
 |---|---|---|---|
 | `noxian-drummer-eye-svellsongur-plaza` | calm+order | Garen **or** Darius | Recruits, M1 |
 | `arise-sand-soldiers-plaza` | calm+order | Garen **or** Darius | Recruits M1 **+ Sand Soldiers M2** (187.3) |
-| `corina-svellsongur-plaza` | calm+order | Garen **or** Darius | Recruits + Birds, both M1 (187.1, 187.7) |
-| `plaza-armory-miss-fortune` | body+order | Garen **or** Darius | Recruits + Sand Soldiers |
+| `corina-svellsongur-plaza` | calm+order | Garen **or** Darius | ~~Recruits + Birds, both M1 (187.1, 187.7)~~ **six Recruits M1 + Corina M6 — there are no Birds** [^c2] |
+| `plaza-armory-miss-fortune` | body+order | Garen **or** Darius | ~~Recruits + Sand Soldiers~~ **nine Recruits M1 + Miss Fortune M5 — there are no Sand Soldiers** [^c3] |
 
 **So the honest answer to face two is 4, not 6** — and the two subtracted are subtracted for the
 reason the lens exists.
@@ -443,3 +443,37 @@ entry's `steps`. A population built by filtering `uses[].zone === "BASE"` cannot
 that population and drew a conclusion from it before reading the steps. The tally now reads: face two
 6→4, the INFINITE sweep 7-of-7→0-of-7, the manager's catch on the Sand Soldier assignment, the slice
 15→7, the two Swain rows cleared on tense, and this.
+
+
+---
+
+## Correction, 2026-09-13 — three rows, corrected by `rc-kw2` as `rc-kw`'s successor
+
+**This is a successor correcting a predecessor's table, not the original author changing their mind.**
+The three struck cells are kept visible beside the corrections, because the sequence is the point and a
+document that hides what it used to say reads as though the right answer was obvious.
+
+[^c1]: **`VEN-133` Glowstone carries NO location clause, so it reaches the BASE**, and belongs with
+`UNL-132`, `UNL-180` and `SFD-147` rather than in a scope of its own. Its clause is *"At the end of
+your turn, kill this and deal 5 to all units you control"*, and its give-away ability hands it to the
+opponent first (053.2 makes *"your turn"* its **controller's** turn). **The scope column read the
+sentence's SUBJECT — *units they control* — rather than its ABSENCE OF A LOCATION CLAUSE.** The census
+of base-reachers is therefore **four, not three**, and Glowstone at **E2** is the cheapest of them
+against E5, E8 and E9. **That miscount reached seven live Ivern notables** and was repaired on
+2026-09-13 (`4cf38ca`).
+
+[^c2]: `corina-svellsongur-plaza` fields **six Recruit tokens and Corina Veraza (M6)**. Its step 4
+reads *"Both instances resolve and six Recruits join her there — eight friendly units in total."*
+**There are no Birds in the entry.**
+
+[^c3]: `plaza-armory-miss-fortune` fields **nine Recruit tokens and Miss Fortune (M5)** from two
+`SFD-168 Vanguard Armory` activations plus a third off her ready. **There are no Sand Soldiers in the
+entry** — the string *"Sand Soldier"* occurs there exactly once, inside a **cross-reference to another
+entry** that refutes the reading in the same sentence. `CLAUDE.md` already records that trap for this
+entry by name, which is why this row should have been read rather than matched.
+
+**The durable half, and the reason all three landed in the same place:** **A SCOPE COLUMN IS A
+READING, AND A READING BELONGS IN PROSE WHERE IT CAN BE ARGUED WITH, NOT IN A COLUMN WHERE IT GETS
+COPIED.** One table produced three inherited errors; the two garrison rows never reached a notable and
+the scope row reached seven. The prose beside this table was walked and is right — it is the *cells*
+that were matched.
