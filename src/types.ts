@@ -192,6 +192,28 @@ export interface BodyRequirement {
   note: string;
 }
 
+/**
+ * Every key an entry may carry, as a RUNTIME list — the third place in this file that has needed
+ * one, after `SOURCE_KINDS` and `ZONES`, and for the identical reason: no `Combo` is ever WRITTEN
+ * in TypeScript, so the interface below is never applied to the values it describes. `src/load.ts`
+ * reads `data/combos.json` through an unchecked cast, and an EXTRA key is the one shape a cast
+ * cannot notice at all — a missing key at least breaks a reader eventually.
+ *
+ * That is not hypothetical. `spinning-axe-factory-recall-inactive-temporary` carried a TOP-LEVEL
+ * `notable` of seven values, byte-identical to its own `prerequisites.notable`, absent from this
+ * interface, and read by nothing in `src/`, `web/`, `scripts/` or `test/`. It was inert and it was
+ * invisible, and it was found only because a guard that walks every string path enumerated it.
+ *
+ * TWO FIELDS OF THE SAME NAME AT DIFFERENT LEVELS IS THE CONDITION THAT MAKES GUARDS AND REPAIRS
+ * MISS, so the schema's job here is to REFUSE the misplacement rather than to document it. A reader
+ * wanting to know where a notable belongs has one answer, `prerequisites.notable`, and no second
+ * place to wonder about.
+ */
+export const COMBO_KEYS = [
+  "id", "name", "class", "status", "uses", "needs", "produces", "removes", "legends", "anyBodies",
+  "prerequisites", "steps", "netPerIteration", "terminatesIn", "sources", "rulesVersion", "notes",
+] as const;
+
 /** AUTHORED. One entry per reviewed combo. Combos compose through needs/produces into a DAG. */
 export interface Combo {
   id: string;

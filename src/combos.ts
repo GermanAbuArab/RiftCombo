@@ -1,6 +1,6 @@
 import { addCard, emptyDeck } from "./builder.js";
 import type { CardIndex } from "./cards.js";
-import { ZONES } from "./types.js";
+import { COMBO_KEYS, ZONES } from "./types.js";
 import type { Combo, ComboClass, ComboStatus, Domain, Feature, Variant } from "./types.js";
 
 /**
@@ -70,6 +70,11 @@ export function validateCombos(combos: Combo[], features: Feature[], cards: Card
     }
     for (const f of [...c.needs, ...c.produces, ...(c.removes ?? [])]) {
       if (!featureIds.has(f)) errors.push(`${c.id}: unknown feature ${f}`);
+    }
+    // An EXTRA key is the one shape an unchecked cast cannot notice: a missing field breaks a reader
+    // eventually, a misplaced one sits there inert. See COMBO_KEYS for the case that produced this.
+    for (const k of Object.keys(c)) {
+      if (!(COMBO_KEYS as readonly string[]).includes(k)) errors.push(`${c.id}: unknown field ${k}`);
     }
     errors.push(...copyCapErrors(c, cards));
     if (c.class === "INFINITE" && !c.steps.some((s) => /repeat/i.test(s))) {
