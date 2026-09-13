@@ -133,14 +133,16 @@ describe("bodies a line needs that no card supplies (Combo.anyBodies)", () => {
  * exposed anyway, because 355.2.a plays a token to *"the controller's Base or a battlefield the
  * controller controls"* — a token can HOLD a battlefield you already took and can never TAKE one.
  *
- * A RATCHET, not a clean bill of health, and it is pinned at today's count rather than at zero on
- * purpose: five sessions share this working tree, the repair is `data/combos.json` and that file is
- * the manager's, so a red suite here would block four lanes over work this lane is not allowed to
- * do. What the ceiling buys is the thing that matters — the number can only go DOWN, so entry
- * twelve cannot ship. Lower CEILING in the same commit that lowers the count. Raising it is
- * papering over the defect: give the entry an `anyBodies` instead.
+ * A RATCHET, and it shipped at 18 — today's count — rather than at zero, because the repair is
+ * `data/combos.json`, that file is the manager's, and a red suite would have blocked four lanes
+ * over work this lane may not do. rc-manager7 merged the rows within the hour (`341ecd7`), so the
+ * count is now ZERO and the ceiling comes down with it, which is the rule this project already
+ * applies to its other ratchet: lower CEILING in the same commit that lowers the count.
+ *
+ * At zero it is an assertion rather than a ratchet, and that is the stronger form now that it can
+ * be honest. Raising it is papering over the defect: give the entry an `anyBodies` instead.
  */
-const CEILING = 18;
+const CEILING = 0;
 
 const isType = (base: string, t: string) => cards.get(base)?.type.includes(t as never) ?? false;
 const saysYou = (base: string) => {
@@ -156,9 +158,23 @@ const flagged = live.filter((c) =>
   !c.uses.some((u) => isType(u.card, "unit")) &&
   c.uses.some((u) => isType(u.card, "battlefield") && saysYou(u.card)));
 
+/**
+ * The other half of a zero-ceiling check, and it is what makes one honest. A count of DEFECTS that
+ * can only go down says nothing if the predicate quietly stops matching; a count of REPAIRS that can
+ * only go up cannot be faked the same way, because it reads the field rather than the predicate. So
+ * the two ratchet in opposite directions and a silent failure of either shows up in the other.
+ *
+ * 27 entries carry the field as of 341ecd7. The 28th staged row,
+ * `irelia-fervent-forgotten-signpost-choose`, was staged with the doubt written beside it and
+ * overruled — its `uses` already carries two units, so Keeper-pays-while-Irelia-moves runs without a
+ * third body, and what the third buys is the option of moving somebody else while she stays put.
+ */
+const REPAIRS = 27;
+
 describe("predicate E: a controlled battlefield with no body to take it", () => {
   it("reads a non-trivial population, so a broken sweep cannot read as green", () => {
     // A probe that silently matches nothing prints a clean pass. Assert the inputs first.
+    expect(live.filter((c) => c.anyBodies).length).toBeGreaterThanOrEqual(REPAIRS);
     expect(live.length).toBeGreaterThan(700);
     expect(live.flatMap((c) => c.uses).filter((u) => isType(u.card, "unit")).length).toBeGreaterThan(900);
     expect(new Set(live.flatMap((c) => c.uses).filter((u) => isType(u.card, "battlefield")).map((u) => u.card)).size)
