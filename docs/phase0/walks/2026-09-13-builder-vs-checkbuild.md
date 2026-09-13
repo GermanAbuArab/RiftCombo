@@ -495,6 +495,13 @@ everything red means the suite is measuring something else.
 
 ## 10. The corpus, which neither the checklist nor the matcher had ever met — `rc-builder`, 2026-09-13
 
+> **Every count in this section is AS OF 2026-09-13, at a catalogue of 766 entries and 80 finishers,
+> against the 222 registered lists in `test/fixtures/tournament-lists/`.** Lanes merge entries
+> continuously, so the catalogue-dependent figures — 766, 80, 1638 variants, the class split, the size
+> medians — drift the moment one lands. **Re-derive them; do not quote them.** The 222 lists and the
+> 1189 card printings are fixed, so anything measured over those alone is stable. Every script that
+> produced these numbers is named beside the claim it produced.
+
 `test/tournament-lists.test.ts` runs the 222 registered lists through the PARSER. Nothing had ever run
 `checkBuild` or `matchDeck` over them. A row that is wrong about a correctly transcribed tournament list
 is the worst failure the checklist has, so the question is worth asking of every list at once.
