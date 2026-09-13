@@ -184,9 +184,14 @@ not a false positive; it was a PROSE defect detected from the wrong end.
 
 - The **relational** half of every requirement — *"besides the Apothecary"*, *"at a different
   location"* — is displayed and never verified. `matchDeck` reads a decklist, not a board.
-- The `note` is asserted **verbatim and at a sentence boundary** at staging time
-  (`.scratch-schema/stage.mjs`) and by nothing afterwards. A reword in `data/combos.json` can drift
-  from the step it was cut from.
+- ~~The `note` is asserted verbatim at staging time and by nothing afterwards.~~ **CLOSED the same
+  day** (`d68ef02`): `test/body-requirements.test.ts` now requires every note to contain a verbatim
+  run of 20+ characters from its own entry's prose or from card text, and floors the share of
+  FULLY verbatim notes at 85% (95% today). The shape was chosen by measurement rather than guessed —
+  78 of 82 are 100% verbatim, the four that are not are a card citation and three counts rc-manager7
+  appended arithmetic to, and the ratios run 17% to 100%, so a percentage floor would have been
+  wrong. **Its limit is stated in the test**: a note that quotes twenty characters and invents the
+  rest would pass.
 - Predicate E is one shape of one defect class. `gutter-palace` is NOT in its population, because
   `UNL-088` is a GEAR — E and the prose predicates are complementary and neither subsumes the other.
 - `scripts/web-card-fields.mjs` needs nothing and this was checked rather than assumed: that list
