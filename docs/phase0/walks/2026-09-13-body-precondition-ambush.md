@@ -1246,3 +1246,60 @@ digit regex cannot see** — and `yasuo-windrider-ride-the-wind-chain` says *"WI
 `/win the game/` misses on the S. **The catalogue writes its numbers in words as often as in digits,
 and its verbs are inflected.** Same family as the class names being ordinary English nouns: a
 predicate over prose is fighting the language.
+
+---
+
+## 26. AUDITING `CLAUDE.md` AGAINST ITSELF — AND THE RESULT IS ABOUT ITS OWN DISCIPLINE
+
+rc-manager8's framing: the file every session reasons from asserts dozens of invariants and **nobody
+has ever checked them.** The battlefield one paid at 118 of 119, so this is the systematic version.
+
+**Candidate population, measured first: 614,843 characters, 1,471 sentences over 40 characters, and
+327 carrying an invariant SHAPE** — *exactly N* 102, *N of the pool* 85, *zero/none* 53, *every/all*
+50, *the only* 26, *the pool prints* 11. **Too big, exactly as predicted**, because an English
+sentence that looks universal usually carries a scope only reading reveals.
+
+**Separated by haystack before anything else, because the half-lives differ**: a CARD invariant is
+checkable against the corpus and rots only when Riot prints a set; an ENTRY invariant is checkable
+against `combos.json` and rots on every merge; a RULE invariant is checkable against the rulebooks and
+does not rot at all. I took the **CARD** subset, as the most durable, and inside it the 23
+uniqueness claims, which is the class `CLAUDE.md` itself warns hardest about.
+
+### Six checked. Three hold. The other three failures are MY predicates, not the file.
+
+| claim | result |
+|---|---|
+| `UNL-125 Lunar Boon` is the ONLY [Reaction] discard | **HOLDS** — 1 name |
+| `OGN-228 Vanguard Helm` is the ONLY card recovering a buff from a corpse | **HOLDS** — 1 name |
+| `VEN-159 Kinkou Temple` is the only card that PAYS for [Tank] | **HOLDS** — 1 name |
+| *"exactly THREE cost-INCREASE rows"* | my predicate returned **18** |
+| *"six [Temporary] granters"* | my predicate returned **16** |
+| `VEN-141 Butcher of the Sands`, the only Power-to-Energy conversion | my cost test returned **0** |
+
+**In all three failures the file's named members are INSIDE my set, and my predicate is wider.** My
+cost-increase regex catches `Defy`, whose text is *"costs no more than N"* — a CEILING, the opposite
+of an increase — along with `Lux, Illuminated` and every cost THRESHOLD in the pool. My Temporary
+regex conflates *playing a token that HAS [Temporary]* (Sprite Queen, Sprite Burst, Sprite Mother and
+seven more) with *GRANTING [Temporary] to a body already there*, which is what the file's six do and
+what makes them removal. **Eighth too-big first number today, and the file is not shown wrong by any
+of them.**
+
+### The result is a measurement of the file's own most-repeated rule
+
+**The three that HOLD are exactly the three where `CLAUDE.md` STATES ITS OWN PREDICATE**, and the
+three I could not check are exactly the three where it does not:
+
+- Lunar Boon: *"(swept: discard ∧ [Reaction] = 1 row)"* — **the grep is in the sentence.**
+- Vanguard Helm: *"(`grep -inE "dies.*buff|buff.*dies"` returns exactly one row)"* — **likewise.**
+- Kinkou Temple: the card's text is quoted in full, so the predicate is reconstructable.
+- The other three name a CONCEPT — *"cost-INCREASE rows"*, *"granters"* — and I had to invent a
+  predicate, and mine was wider every time.
+
+**`CLAUDE.md`'s most-repeated methodological rule is STATE THE PREDICATE WITH THE NUMBER, and this is
+a direct measurement that the rule is what makes the file auditable at all.** Where it was obeyed the
+claim can be re-run by a stranger years later; where it was not, the claim is not false — it is
+UNCHECKABLE, which is a different and quieter cost.
+
+**Stated with its limit: six claims is a small sample and the correlation is perfect on six.** It is
+worth more as a mechanism than as a rate, and the mechanism is not in doubt — a sentence carrying its
+own grep is re-runnable and a sentence naming a concept is not.
