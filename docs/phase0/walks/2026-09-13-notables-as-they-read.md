@@ -1630,3 +1630,72 @@ has the milder version: its win condition is a **battlefield** and therefore unr
 so the Time Warp is its only counterable link — but it is a big one.
 
 **Reported, not applied:** `data/combos.json` was handed back to rc-manager8 before this measurement.
+
+---
+
+## 28. The three finishers that say nothing — walked, and the silence is **half defensible**
+
+rc-builder measured that of the 80 finishers, 61 name a specific answer card, 16 speak of answers
+without naming one, and **three say nothing at all**. rc-manager8 routed them here because the
+question is a walk rather than a measurement, and because §13–§27 already hold both halves: **what can
+remove each payoff, in which window, and whether a domain-legal protector exists.** rc-builder's
+caveat is carried intact — *"no unanswered hole"* and *"no stated point of failure"* are different
+things, and #200's sweep separately reports zero unanswered holes across the class.
+
+| | class | identity | payoff | Might | spell it spends each pass |
+|---|---|---|---|---:|---|
+| `renata-mastermind-points` | INFINITE | mind/order | `SFD-088` Renata Glasc, Mastermind | **5** (M4 + `SFD-166 Rally the Troops`, 703 makes a buff exactly +1) | `OGN-104 Retreat`, **E1** |
+| `jayce-mesmerize-renata` | INFINITE | mind | `SFD-088` Renata Glasc, Mastermind | **4** | `VEN-052 Mesmerize`, **E1 + 1 Power** |
+| `swain-double-conquer` | CHAIN | mind | `VEN-065` Swain, Visionary ×3 | **6** | `OGN-104 Retreat`, **E1** |
+
+### Half the silence is right, and §24 and §26 say why
+
+**Every one of the three payoffs is a unit above `OGN-169 Gust`'s ceiling.** Gust — the pool's only
+cheap Reaction-speed single-target answer, Chaos at E1 — is gated at **Might 3 or less**, and these
+are 4, 5 and 6. **Renata at M4 misses it by exactly one point**, which is the same one-point margin
+§26 found across the whole protection layer. The only other Reaction-speed single-target answer in
+the pool is `UNL-128 Star-Crossed` (Chaos, E3 P1), which returns *"a friendly unit **and** an enemy
+unit"* — so answering any of the three in the window costs the answerer one of their own bodies.
+
+**And the two Renata lines never leave the Main Phase**, so the ~20 `[Action]` removals cannot reach
+them either: 806.1.c.1 admits an Action *"on your turn or in showdowns"*, and these loops open
+neither a combat nor a showdown. **Their board answer has to be found on the opponent's own turn, a
+full turn ahead and fully telegraphed** — which is exactly the shape §1's Ivern notables describe for
+base removal, and it is a credential rather than a gap.
+
+`swain-double-conquer` is the exception and its entry does not say so: **it conquers two battlefields,
+so it opens a Showdown at each** — and 806.1.c.1 puts every `[Action]` removal inside that window.
+`OGS-012 Blast of Power` (Order, E6 + 1 Power, *"[Action] Kill a unit at a battlefield"*) reaches a
+Might-6 Swain there; `OGN-229 Vengeance` (Order, E4 + 2 Power, *"Kill a unit."*) does the same on the
+opponent's own turn. **Three Swains means three answers needed**, which is the real reason the line is
+robust — and stating that is different from stating nothing.
+
+### The other half is not right: all three are silent about the one window the rules guarantee
+
+**Each pass spends a spell, and §15 established that a spell is the one payoff class the process
+stops for** — 359.3.c, *"Other players have an opportunity to play Reactions before the resolution of
+spells."* None of the three cites it. The exposure is small in Energy (425.1.c refunds E1, or E1 + 1
+Power) and **is not small in consequence for a loop**, because `renata-mastermind-points`'s own
+`notable[3]` says each pass spends one `Retreat`, 103.2.b caps it at three copies, and the spare Forge
+recycle slot is what brings it back.
+
+**And the counter-choice matters in a way worth printing**: a countered card goes to the trash
+(425.1.b makes it not-played), where the Forge can recycle it — **so `UNL-131 Abandon`, which returns
+a countered spell *"to its owner's hand instead of putting it in their trash"*, is the WRONG counter
+to use against these loops**, since it hands the card straight back. Any of the other ten is better.
+
+**`VEN-069 Mel, Newly Awakened` closes that window and is legal in all three.** She is **mono-Mind**
+(§25), and all three identities contain Mind — `renata-mastermind-points` is mind/order,
+`jayce-mesmerize-renata` and `swain-double-conquer` are mono-Mind with a free slot. E4 + 1 Power for
+the body, `[Empower]` E3 to arm it, and 441.2 makes Empowered permanent. **She is a Might-4 unit**, so
+by the paragraph above she is herself above Gust's ceiling and answerable only on the opponent's own
+turn.
+
+### The verdict
+
+**Two of the three are silent about board answers for a defensible reason and silent about the spell
+window for none.** `swain-double-conquer` is additionally silent about the Showdown its own Conquers
+open, which is the one place an `[Action]` removal reaches a Might-6 body. Whether any of the three
+*needs* the sentence is the entry author's call; what this walk can say is **what the sentence would
+be**, and for all three it is the same one: *the loop's only guaranteed window is the spell it spends,
+and the pool's one answer to that window is mono-Mind and therefore always legal here.*
