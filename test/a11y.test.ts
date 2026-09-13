@@ -334,7 +334,13 @@ describe("the deckbuilder", () => {
   it("refuses a Signature card in the Champion zone, with the paragraph on the button", () => {
     expect(builder).toContain("const noSignatureChampion = setChamp && card.signature;");
     expect(builder).toContain('"A Signature card is never the Chosen Champion (103.2.d.3)."');
-    expect(builder).toContain("const blocked = off || noSignatureChampion || cap.full;");
+    // The third term of this disjunction changed on 2026-09-13 because the CONTRACT moved, not
+    // because the line was reworded: `off` was a second, independent test of Domain Identity living
+    // here in `web/builder.ts`, and #212 moved that rule into `capOf` so the pool cell and the deck
+    // row could stop disagreeing about it. `cap.full` now subsumes it and the cell reads the reason
+    // back as `cap.offIdentity`, so the old literal has no meaning to restore. What this assertion is
+    // for is unchanged and still holds: `noSignatureChampion` is part of what blocks the button.
+    expect(builder).toContain("const blocked = cap.full || noSignatureChampion;");
   });
 
   it("gives a Construction mark a word beside it, since ✓ and ✗ are a shape and a colour", () => {

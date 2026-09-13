@@ -5,18 +5,26 @@
 // `Deck` the parser produces and writes it back out through `deckToText`, so a list built click by
 // click and one pasted from a tournament report are the same string. And it never decides whether a
 // deck is legal — `checkBuild` is the only place that answers that, row by row with its paragraph.
-// What it enforces are the caps a click has to respect to keep the editor honest: three of a name
-// (103.2.b), three Signature cards and each carrying the legend's champion tag (103.2.d, #211), one
-// battlefield of a name and three in all (103.4.c, 103.4.a), twelve runes (103.3.a), one legend. The
-// Main Deck's own 40 is NOT one of them — 103.2 is a floor, not a ceiling, and the Construction
-// checklist is what reports the difference.
+// What it enforces is the user's contract of 2026-09-13, which splits the rules `checkBuild` scores
+// by INVARIANT versus FORMAT. A rule no format exempts is BLOCKED at the button, with the reason on
+// it: Domain Identity (103.1.b, and 103.3.a.1 for the Rune Deck), three of a name (103.2.b), one of
+// each Unique name (825.3.a), three Signature cards each carrying the legend's champion tag
+// (103.2.d) — plus the caps that keep the arithmetic honest: one battlefield of a name and three in
+// all (103.4.c, 103.4.a), twelve runes (103.3.a), one legend. A rule that IS format-dependent is
+// MARKED and the click is taken anyway: 103.2.e legality, which `web/builder.ts` badges on the cell
+// and which this file deliberately says nothing about (#213). The Main Deck's own 40 is in neither
+// tier — 103.2 is a floor, not a ceiling, and only the Construction checklist reports the difference.
 //
-// Two rules `checkBuild` scores that a click here does NOT stop, both measured rather than assumed
-// (docs/phase0/walks/2026-09-13-builder-vs-checkbuild.md): 825.3.a, one of each Unique name (#210),
-// and 103.1.b Domain Identity, which is enforced in `web/builder.ts` alone and so reaches a clicking
-// player but no other consumer of this module (#212). Neither is a decision this file has made.
+// The checklist remains the authority and the block is a convenience that must never disagree with
+// it, so every refusal below mirrors the row that scores the same rule in `src/build.ts`, reading the
+// same predicate and the same bags rather than reasoning independently.
+//
+// Domain Identity used to live in `web/builder.ts` alone, where it reached a player clicking the POOL
+// and nobody else — the deck column's own `+` read `capOf` and let an imported off-domain card climb
+// (#212, measured in docs/phase0/walks/2026-09-13-builder-vs-checkbuild.md §3). Moving it here is why
+// `capOf` now answers "may this card be here at all" and not only "how many copies of it".
 
-import { ANY_NUMBER, SIGNATURE_CAP, championTagOf, copiesByName } from "./build.js";
+import { ANY_NUMBER, SIGNATURE_CAP, UNIQUE, championTagOf, copiesByName } from "./build.js";
 import { readableCardText } from "./cards.js";
 import { deckToText, type DeckEntry } from "./deck.js";
 import type { CardIndex } from "./cards.js";
@@ -270,30 +278,121 @@ export interface Cap {
    * answering a question nobody asked while the accessible name said the right thing.
    */
   badge: string;
+  /**
+   * The refusal is Domain Identity, which is the one the editor DIMS instead of badging (user
+   * decision 2026-09-06: the "Off domain" bar across the artwork went, and the reason lives in the
+   * button's accessible label and title). It is a flag rather than a `badge` string because that is
+   * the only way the cell can dim on the same decision that refuses the click — before #212 it
+   * re-tested the identity itself, which is exactly how the two buttons came to disagree.
+   */
+  offIdentity: boolean;
+}
+
+/**
+ * 103.1.b at click time (#212). 103.1.b.1: "Cards included in your deck must abide by your Domain
+ * Identity", with 103.1.b.2 making that identity the legend's own domains. With no legend there is no
+ * identity to break — a different answer from "it is broken", and the same one `identityRule` gives
+ * as `unknown`.
+ *
+ * The paragraph cited is the one the Construction checklist would cite for the same card, because the
+ * button may not disagree with the checklist: the Rune Deck has its own row, so a rune is refused
+ * under 103.3.a.1 ("Cards in the Rune Deck must be of the Domain Identity of your Champion Legend")
+ * and everything else under 103.1.b.
+ *
+ * The SIDEBOARD is refused too, which preserves what the pool cell already did and is not a guess:
+ * Tournament Rules 403.4 exchanges a sideboard card "1 for 1 with Main Deck cards" and 403.4.b says a
+ * player "may not change their Runes, Legend, or Battlefields at any point after deck registration",
+ * so the identity a sideboard card would be swapped into is fixed for the whole match. `identityRule`
+ * does NOT read the sideboard today, which makes the button stricter than the checklist there; that is
+ * a gap in the checklist rather than a licence to loosen the button, and it is filed as its own issue.
+ */
+function identityCap(deck: Deck, card: Card, cards: CardIndex, zone: DeckZone | "sideboard"): Cap | null {
+  if (!deck.legend) return null;
+  const identity = cards.domainsOf(deck.legend);
+  if (inIdentity(card, identity)) return null;
+  const rule = zone === "runes" ? "103.3.a.1" : "103.1.b";
+  return {
+    held: zone === "sideboard" ? (deck.sideboard[card.base] ?? 0) : copiesOf(deck, card.base),
+    max: 0,
+    full: true,
+    offIdentity: true,
+    why: `Outside ${identity.join(" + ")} — Domain Identity (${rule}).`,
+    badge: "",
+  };
+}
+
+/**
+ * 825.3.a at click time (#210): "A deck can contain only one card of a given name if the card has
+ * Unique". The editor capped a Unique name at three like any other and only the Construction checklist
+ * objected — the first instance of the omission the census found, with 103.2.d (#211) the second.
+ *
+ * It mirrors `uniqueRule` (`src/build.ts`) deliberately, so a cell and its checklist row can never
+ * disagree about one deck: the same exported `UNIQUE` predicate over the same two bags. 825.3.a says
+ * "a deck" and Tournament Rules 403.3 puts limits on copies of named cards on "the combination of Main
+ * Deck and sideboard", which is why the sideboard counts here where 103.2.b's own cap does not count it.
+ *
+ * Measured 2026-09-13 over all 1189 printings: three carry the keyword (SFD-190 Forgefire Cape,
+ * SFD-191 Rabadon's Deathcrown, SFD-192 Shurelya's Requiem), they are three distinct names, and NO card
+ * prints both `[Unique]` and Spiderling's "any number" clause — so those two card-text caps are
+ * disjoint in this pool and their precedence is UNTESTED rather than decided. `test/builder.test.ts`
+ * asserts the disjointness, so the day a card prints both, a red test asks the question instead of one
+ * branch answering it silently.
+ */
+function uniqueCap(deck: Deck, card: Card, cards: CardIndex): Cap | null {
+  if (!UNIQUE.test(card.text ?? "")) return null;
+  const held = mainCopiesOfName(deck, cards, card.name);
+  if (held < 1) return null;
+  return { held, max: 1, full: true, offIdentity: false, why: `${held} of 1 · a Unique card is capped at one per deck (825.3.a).`, badge: `${held} of 1` };
 }
 
 export function capOf(deck: Deck, base: string, cards: CardIndex): Cap {
   const card = cards.get(base);
-  if (!card) return { held: 0, max: 0, full: true, why: "Not a card in this pool.", badge: "Not in the pool" };
+  if (!card) return { held: 0, max: 0, full: true, offIdentity: false, why: "Not a card in this pool.", badge: "Not in the pool" };
   const zone = zoneOf(card);
+  // A legend is the one card Domain Identity can never refuse, so the gate below sits AFTER this
+  // branch: 103.1.b.2 makes the identity "dictated by the domains of your Champion Legend", i.e. the
+  // legend defines it rather than sitting inside it, and 103.1.b.1's "cards included in your deck" is
+  // about the rest of the list. Until 2026-09-13 the editor refused an off-domain legend in the Legend
+  // zone with "Outside calm + mind — Domain Identity (103.1.b)", so switching legends meant removing
+  // one first — measured, and the census had not probed that zone. `addCard` replaces it instead.
   if (zone === "legend") {
     const held = deck.legend === base ? 1 : 0;
-    return { held, max: 1, full: held === 1, why: held ? "Already the legend of this list." : "", badge: held ? "The legend" : "" };
+    return { held, max: 1, full: held === 1, offIdentity: false, why: held ? "Already the legend of this list." : "", badge: held ? "The legend" : "" };
   }
+  const offDomain = identityCap(deck, card, cards, zone);
+  if (offDomain) return offDomain;
   if (zone === "battlefields") {
     const held = deck.battlefields[base] ?? 0;
     const total = sum(deck.battlefields);
-    if (held >= 1) return { held, max: 1, full: true, why: "1 of 1 · a deck holds one battlefield of each name (103.4.c).", badge: "1 of 1" };
-    if (total >= BATTLEFIELDS) return { held, max: 1, full: true, why: `${total} of 3 battlefields (103.4.a).`, badge: `${total} of 3` };
-    return { held, max: 1, full: false, why: "", badge: "" };
+    if (held >= 1) return { held, max: 1, full: true, offIdentity: false, why: "1 of 1 · a deck holds one battlefield of each name (103.4.c).", badge: "1 of 1" };
+    if (total >= BATTLEFIELDS) return { held, max: 1, full: true, offIdentity: false, why: `${total} of 3 battlefields (103.4.a).`, badge: `${total} of 3` };
+    return { held, max: 1, full: false, offIdentity: false, why: "", badge: "" };
   }
   if (zone === "runes") {
     const held = deck.runes[base] ?? 0;
     const total = sum(deck.runes);
     const full = total >= RUNES;
-    return { held, max: RUNES, full, why: full ? `${total} of 12 runes (103.3.a).` : "", badge: full ? `${total} of 12` : "" };
+    return { held, max: RUNES, full, offIdentity: false, why: full ? `${total} of 12 runes (103.3.a).` : "", badge: full ? `${total} of 12` : "" };
   }
-  const sig = signatureCap(deck, card, cards);
+  // PRECEDENCE among the Main Deck's four refusals, stated because getting it wrong is silent. The
+  // order is "which rule would STILL refuse this click once the others were relieved", so the most
+  // binding is reported first and a player is never sent to fix a rule they have not broken:
+  //   103.1.b   — above, before the zones: no quantity of this card is ever legal in this list.
+  //   103.2.d.2 — an off-tag Signature card can never be in THIS deck at any quantity either.
+  //   825.3.a   — this NAME is capped at one; dropping some other card does not lift it.
+  //   103.2.d.1 — three Signature cards in all; dropping another Signature card DOES lift it.
+  //   103.2.b   — three of this name.
+  // The middle pair had to be ordered rather than left to fall out, and Ornn is why. Measured over all
+  // 51 Signature names, he is the only champion with three, and all three are Unique — so the
+  // canonical Ornn list holding one of each refuses a second Forgefire Cape under BOTH rules, and
+  // answering "3 of 3 Signature cards" there would name a rule the player cannot fix by dropping one:
+  // 825.3.b keeps the two caps independent, "any combination of three Signature cards, but still only
+  // one of each named Unique card".
+  const tag = signatureTagCap(deck, card, cards);
+  if (tag) return tag;
+  const unique = uniqueCap(deck, card, cards);
+  if (unique) return unique;
+  const sig = signatureCountCap(deck, card, cards);
   if (sig) return sig;
   // 002 — card text supersedes rules text. `VEN-097 Spiderling` prints "Your deck can have any number
   // of cards named Spiderling", which is the whole of the exception today; matching the clause rather
@@ -305,6 +404,7 @@ export function capOf(deck: Deck, base: string, cards: CardIndex): Cap {
     held,
     max,
     full,
+    offIdentity: false,
     why: full ? `${held} of 3 · a Main Deck takes three of a name (103.2.b).` : "",
     badge: full ? `${held} of 3` : "",
   };
@@ -323,33 +423,38 @@ export function capOf(deck: Deck, base: string, cards: CardIndex): Cap {
  * counted, because that row does not count it (103.2.d.1 caps a category, not copies of a name, so
  * Tournament Rules 403.3 does not reach it); and `SIGNATURE_CAP` is imported rather than repeated.
  *
- * PRECEDENCE, stated because getting it wrong is silent: an absolute prohibition is reported before a
- * count, so 103.2.d.2 is tested first — an off-tag Signature card can never be in this deck at any
- * quantity, and answering "3 of 3" there would name a rule the player has not broken. That is the same
- * ordering `web/builder.ts` already uses when it reports Domain Identity ahead of a full cap.
- *
- * Returns `null` when the card is not Signature or nothing binds, so `capOf` falls through to 103.2.b.
+ * The rule is TWO functions rather than one because 825.3.a has to sit between its halves: the tag is
+ * an absolute prohibition and outranks every count, while the count of three is outranked by a Unique
+ * name's count of one. `capOf` states the whole ordering and why.
  */
-function signatureCap(deck: Deck, card: Card, cards: CardIndex): Cap | null {
-  if (!card.signature) return null;
-  const held = Object.entries(deck.main)
+function signatureHeld(deck: Deck, cards: CardIndex): number {
+  return Object.entries(deck.main)
     .map(([code, n]) => ({ card: cards.get(code), n }))
     .filter((x): x is { card: Card; n: number } => Boolean(x.card?.signature))
     .reduce((a, x) => a + x.n, 0);
+}
 
-  // 103.2.d.2 — every Signature card carries the legend's champion tag. With no legend named there is
-  // no tag to compare against, and `signatureRule` passes that case too rather than guessing.
+/**
+ * 103.2.d.2 — every Signature card carries the legend's champion tag. With no legend named there is no
+ * tag to compare against, and `signatureRule` passes that case too rather than guessing.
+ */
+function signatureTagCap(deck: Deck, card: Card, cards: CardIndex): Cap | null {
+  if (!card.signature) return null;
   const tag = deck.legend ? championTagOf(deck.legend, cards) : null;
-  if (tag && !card.tags.includes(tag)) {
-    return { held, max: SIGNATURE_CAP, full: true, why: `A Signature card must carry the legend's ${tag} tag (103.2.d.2).`, badge: `Not ${tag}` };
-  }
-  // 103.2.d.1 — three in all, "regardless of name", so the count that binds is the deck's and not
-  // this card's. Same shape as the battlefield branch above, where a fourth battlefield is refused by
-  // the three already in the list rather than by the one copy of its own name (#123).
-  if (held >= SIGNATURE_CAP) {
-    return { held, max: SIGNATURE_CAP, full: true, why: `${held} of 3 · a deck takes three Signature cards, regardless of name (103.2.d.1).`, badge: `${held} of 3` };
-  }
-  return null;
+  if (!tag || card.tags.includes(tag)) return null;
+  return { held: signatureHeld(deck, cards), max: SIGNATURE_CAP, full: true, offIdentity: false, why: `A Signature card must carry the legend's ${tag} tag (103.2.d.2).`, badge: `Not ${tag}` };
+}
+
+/**
+ * 103.2.d.1 — three in all, "regardless of name", so the count that binds is the deck's and not this
+ * card's. Same shape as the battlefield branch above, where a fourth battlefield is refused by the
+ * three already in the list rather than by the one copy of its own name (#123).
+ */
+function signatureCountCap(deck: Deck, card: Card, cards: CardIndex): Cap | null {
+  if (!card.signature) return null;
+  const held = signatureHeld(deck, cards);
+  if (held < SIGNATURE_CAP) return null;
+  return { held, max: SIGNATURE_CAP, full: true, offIdentity: false, why: `${held} of 3 · a deck takes three Signature cards, regardless of name (103.2.d.1).`, badge: `${held} of 3` };
 }
 
 const bump = (bag: Record<string, number>, base: string, by: number): Record<string, number> => {
@@ -372,21 +477,28 @@ export function addCard(deck: Deck, base: string, cards: CardIndex): Deck {
 }
 
 /**
- * What stops a card going into the sideboard: 601.1.c.1 caps it at ten, 601.1.c.2 admits only Main
- * Deck cards, and 403.3 counts the copy limit across Main Deck and sideboard together -- the same
- * `mainCopiesOfName` the main cap reads, which is what keeps the two zones from adding up to six.
+ * What stops a card going into the sideboard: Domain Identity (103.1.b, see `identityCap` for why it
+ * reaches this zone), 601.1.c.1 caps it at ten, 601.1.c.2 admits only Main Deck cards, and 403.3
+ * counts the copy limit across Main Deck and sideboard together -- the same `mainCopiesOfName` the
+ * main cap reads, which is what keeps the two zones from adding up to six. 825.3.a joins that last
+ * pair because it is the same axis, copies of a name, split off only because it cites a different
+ * paragraph and caps at one (#210).
  */
 export function sideboardCapOf(deck: Deck, base: string, cards: CardIndex): Cap {
   const card = cards.get(base);
-  if (!card) return { held: 0, max: 0, full: true, why: "Not a card in this pool.", badge: "Not in the pool" };
-  if (zoneOf(card) !== "main") return { held: 0, max: 0, full: true, why: "A sideboard holds Main Deck cards only (Tournament Rules 601.1.c.2).", badge: "Main Deck only" };
+  if (!card) return { held: 0, max: 0, full: true, offIdentity: false, why: "Not a card in this pool.", badge: "Not in the pool" };
+  if (zoneOf(card) !== "main") return { held: 0, max: 0, full: true, offIdentity: false, why: "A sideboard holds Main Deck cards only (Tournament Rules 601.1.c.2).", badge: "Main Deck only" };
+  const offDomain = identityCap(deck, card, cards, "sideboard");
+  if (offDomain) return offDomain;
   const total = sum(deck.sideboard);
   const held = deck.sideboard[base] ?? 0;
-  if (total >= SIDEBOARD) return { held, max: SIDEBOARD, full: true, why: `${total} of ${SIDEBOARD} in the sideboard (Tournament Rules 601.1.c.1).`, badge: `${total} of ${SIDEBOARD}` };
+  if (total >= SIDEBOARD) return { held, max: SIDEBOARD, full: true, offIdentity: false, why: `${total} of ${SIDEBOARD} in the sideboard (Tournament Rules 601.1.c.1).`, badge: `${total} of ${SIDEBOARD}` };
+  const unique = uniqueCap(deck, card, cards);
+  if (unique) return unique;
   const max = ANY_NUMBER.test(card.text ?? "") ? Infinity : MAIN_COPIES;
   const named = mainCopiesOfName(deck, cards, card.name);
-  if (named >= max) return { held, max, full: true, why: `${named} of ${max} across Main Deck and sideboard (Tournament Rules 403.3).`, badge: `${named} of ${max}` };
-  return { held, max, full: false, why: "", badge: "" };
+  if (named >= max) return { held, max, full: true, offIdentity: false, why: `${named} of ${max} across Main Deck and sideboard (Tournament Rules 403.3).`, badge: `${named} of ${max}` };
+  return { held, max, full: false, offIdentity: false, why: "", badge: "" };
 }
 
 export function addToSideboard(deck: Deck, base: string, cards: CardIndex): Deck {

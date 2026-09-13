@@ -19,7 +19,6 @@ import {
   costCurve,
   emptyDeck,
   filterPool,
-  inIdentity,
   isEmptyDeck,
   otherBasesOf,
   removeCard,
@@ -246,16 +245,37 @@ function gridHtml(): string {
     ${rest > 0 ? `<button type="button" class="ghost pool-more" data-b="more">Show ${Math.min(rest, PAGE)} more</button>` : ""}`;
 }
 
-const identity = (): Domain[] => (deck.legend ? cards().domainsOf(deck.legend) : []);
-
 function cellHtml(card: Card): string {
   // The Sideboard zone of the pool adds to the sideboard, under its own three caps (601.1.c, 403.3).
   const toSide = filters.zone === "sideboard";
   const cap = toSide ? sideboardCapOf(deck, card.base, cards()) : capOf(deck, card.base, cards());
   const held = copiesOf(deck, card.base);
-  const off = deck.legend !== null && !inIdentity(card, identity());
+  // Domain Identity is a mark, not a filter: hiding a card is hiding the answer, so an out-of-domain
+  // card stays in the grid, dimmed, with the reason on the button that will not take it -- in its
+  // accessible label and its title, never as a bar painted across the art (user decision, 2026-09-06:
+  // the "Off domain" badge went; the cap and Signature badges stay, since they mark a full zone).
+  //
+  // The DECISION now lives in `capOf` / `sideboardCapOf` and this line only reads it back (#212).
+  // Until 2026-09-13 the cell re-tested the identity here, which is precisely how the two buttons came
+  // to disagree: the deck column's own `+` reads `cap.full` and so let an imported off-domain card
+  // climb while the pool cell refused it. One function decides; both buttons read the same answer.
+  const off = cap.offIdentity;
   const land = card.orientation === "landscape";
   const src = thumb(card.image, land ? 320 : 240);
+  // 103.2.e is MARKED AND NOT BLOCKED, and that is a decision rather than an omission (#213, user,
+  // 2026-09-13). A banned card paints a `banned` badge on the cell below and the click is taken
+  // anyway, for a reason the other blocked rules do not have: the format toggle makes "banned" a
+  // property of the QUESTION being asked rather than of the card, so a player may legitimately build
+  // a casual or a pre-ban list and then read the verdict for the format they care about. Domain
+  // Identity is different in kind — no format exempts it — which is why that one blocks.
+  //
+  // `restricted` must stay addable whatever else changes: it is a CAP, not an illegal card, and
+  // `data/legality.json` has exactly one restricted row (OGS-019 Wuju Bladesman - Starter, 2v2 only).
+  // Blocking it would be wrong.
+  //
+  // Written down here because #208 was found by asking why one rule was unenforced, and the answer
+  // "it is this tier on purpose" would have closed it in a minute. The Construction checklist reports
+  // 103.2.e whatever this cell does — the checklist is the authority and the block is a convenience.
   const legality = cards().legality(card.base, env.format());
   const stats = [
     card.energy !== null ? `${card.energy} Energy` : "",
@@ -267,16 +287,11 @@ function cellHtml(card: Card): string {
   // the Champion zone of the pool has to refuse it too, with the reason on the button (#122).
   const setChamp = filters.zone === "champion";
   const noSignatureChampion = setChamp && card.signature;
-  // Domain Identity is a mark, not a filter: hiding a card is hiding the answer, so an out-of-domain
-  // card stays in the grid, dimmed, with the reason on the button that will not take it -- in its
-  // accessible label and its title, never as a bar painted across the art (user decision, 2026-09-06:
-  // the "Off domain" badge went; the cap and Signature badges stay, since they mark a full zone).
-  const why = off
-    ? `Outside ${identity().join(" + ")} — Domain Identity (103.1.b).`
-    : noSignatureChampion
-      ? "A Signature card is never the Chosen Champion (103.2.d.3)."
-      : cap.why;
-  const blocked = off || noSignatureChampion || cap.full;
+  // The cell's own precedence, unchanged: identity, then the Champion rule, then whatever cap binds.
+  // `cap.full` now covers identity too, so the three-way test is written out rather than left to the
+  // order of an `||` — a card can be off-domain AND at a cap, and the player needs the first reason.
+  const why = off ? cap.why : noSignatureChampion ? "A Signature card is never the Chosen Champion (103.2.d.3)." : cap.why;
+  const blocked = cap.full || noSignatureChampion;
   // #104: the cell is one NAME, and 101 of them reprint under a second (or third) base. The other
   // bases ride only in the accessible name and a title — there is nothing to click differently.
   const others = otherBasesOf(cards(), card.base);

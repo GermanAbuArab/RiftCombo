@@ -166,3 +166,96 @@ the pool cell knows about Domain Identity and the deck row does not.
 
 Per the brief, **nothing was fixed in this pass.** #213 is a decision rather than a defect and is
 labelled as one; the other three are the same omission at three sizes.
+
+---
+
+## 6. THE DECISION, and what shipped against it — lane `rc-builder`, 2026-09-13
+
+The user answered #213 and the three issues around it in one contract, and it is stated by the axis
+rather than rule by rule: **the tier a rule belongs to is decided by INVARIANT versus FORMAT.**
+
+> **BLOCK at the button, both the pool cell AND the deck-row plus, with the reason on the button:**
+> 103.1.b Domain Identity — no format exempts it; 103.2.b copy cap; 825.3.a Unique; 103.2.d Signature.
+>
+> **MARK but take the click, badge on the cell:** 103.2.e banned — because the format toggle makes
+> "banned" a property of the QUESTION being asked rather than of the card, so a player may legitimately
+> build a casual or pre-ban list — and 103.2.e restricted, which is not even a question: it is a CAP,
+> not an illegal card, and `data/legality.json` has exactly one restricted row (`OGS-019 Wuju Bladesman
+> - Starter`, 2v2 only). Blocking it would be WRONG.
+>
+> **The Construction checklist keeps reporting EVERYTHING regardless of tier. It is the authority; the
+> button block is a convenience that must never disagree with it.**
+
+So tier 4 is abolished and tier 3 is confirmed as deliberate. The census's own framing survives intact:
+tier 3 was *"defensible and may well be deliberate"*, and it is; tier 4 was *"not a choice, it is an
+omission"*, and it was.
+
+### What shipped
+
+`825.3.a` and `103.1.b` both moved into `src/builder.ts`, where every other rule the editor enforces
+already lived. That is the structural half of #212 rather than the narrow one, and it is what makes the
+contract's *"both buttons"* clause true by construction instead of by two copies of one test agreeing:
+`capOf` now answers **"may this card be here at all"** rather than only *"how many copies"*, and the
+deck row, the pool cell and `addCard` all read it. `web/builder.ts` no longer tests Domain Identity at
+all — it dims on `cap.offIdentity`, which is the same decision that refuses the click.
+
+`103.2.e` is unchanged and now carries a docblock at its own site in `cellHtml` naming the tier and the
+reason, because #208 was found by asking why one rule was unenforced and *"it is this tier on purpose"*
+would have closed it in a minute.
+
+### Three things the census did not see, found while fixing it
+
+**1. The Legend zone was a FALSE REFUSAL, and it is now gone.** The census probed the pool's main,
+champion and battlefield zones and the deck column; nobody probed the Legend zone. Measured: with
+`SFD-189 Fire Below the Mountain` (calm + mind) already named, the cell for `OGN-251 Loose Cannon`
+(fury + chaos) was dimmed and its button refused, reading *"Outside calm + mind — Domain Identity
+(103.1.b)."* — so **switching legends meant removing one first.** 103.1.b.2 says the identity *"is
+dictated by the domains of your Champion Legend"*, i.e. a legend DEFINES the identity rather than
+sitting inside it, and 103.1.b.1's *"Cards included in your deck"* is about the rest of the list;
+`addCard`'s own docblock has said *"A legend REPLACES the one already named — refusing that click helps
+nobody"* since #101. The gate in `capOf` sits after the legend branch for exactly this reason.
+
+**2. The button is STRICTER than the checklist on one rule, and that is now a known gap rather than an
+accident.** `identityRule` (`src/build.ts`) reads `deck.main` and `deck.battlefields` and **not the
+sideboard**, while the pool cell has refused an off-identity sideboard card since #101 — so the editor
+and the checklist disagree there, in the safe direction. The refusal was KEPT and the rules were read
+rather than guessed: Tournament Rules 403.4 exchanges a sideboard card *"1 for 1 with Main Deck cards"*
+and 403.4.b says a player *"may not change their Runes, Legend, or Battlefields at any point after deck
+registration"*, so the identity a sideboard card would be swapped into is fixed for the whole match and
+an off-identity one can never legally be played. That makes it a gap in the CHECKLIST, and widening
+`identityRule` is a rules judgement that deserves its own issue rather than a quiet edit inside a UI fix.
+
+**3. The precedence between 825.3.a and 103.2.d.1 had to be decided, and Ornn is why.** Measured over all
+51 Signature names in the pool: **Ornn is the only champion with three, and all three are Unique**
+(`SFD-190`, `SFD-191`, `SFD-192`); Master Yi is the only other with two and neither is Unique; the
+remaining 45 champions have one each. So the canonical Ornn list — one of each — refuses a second
+`Forgefire Cape` under BOTH rules at once, and answering *"3 of 3 Signature cards (103.2.d.1)"* there
+would name a rule the player cannot fix by dropping one: 825.3.b keeps the two caps independent, *"any
+combination of three Signature cards, but still only one of each named Unique card"*. `capOf` therefore
+reports, in order, 103.1.b → 103.2.d.2 → 825.3.a → 103.2.d.1 → 103.2.b, which is *"which rule would
+still refuse this click once the others were relieved"*.
+
+A consequence worth stating because it moved two tests: **once 825.3.a caps a Unique name at one, the
+only shell in the pool where a player can still see 103.2.d.1 refuse an ON-TAG card is Master Yi** —
+three `Highlander` (not Unique) and then `Alpha Strike`. Both the model and the DOM fixtures for that
+rule were moved off Ornn onto Master Yi, using the `UNL-191 Wuju Master` printing rather than `OGS-019`,
+which carries the same champion tag and is the pool's one restricted row.
+
+### Measurements, with their predicates
+
+| | |
+|---|---|
+| printings examined | **1189** |
+| `/\[Unique\]/i` over `text` **or** `effect` | **3 printings, 3 distinct names** — `SFD-190 Forgefire Cape`, `SFD-191 Rabadon's Deathcrown`, `SFD-192 Shurelya's Requiem`; the shipped predicate reads `text` alone and returns the same three |
+| cards printing BOTH `[Unique]` and Spiderling's *"can have any number of cards named"* | **0** — the two card-text caps are DISJOINT in this pool, so their precedence is **untested rather than decided**, and `test/builder.test.ts` pins the disjointness as a tripwire |
+| Signature names, folded by the one champion tag they carry | **51 names across 48 champion tags**: Ornn 3 (all Unique), Master Yi 2 (neither), 45 champions with 1 |
+| cards the identity gate refuses vs allows, swept over the whole pool under a calm + mind legend | both **> 100**, and `capOf` agrees with the checklist's identity rows on **every** non-legend card the pool offers (`test/builder.test.ts`) |
+
+### A trap the census recorded and a probe walked into anyway
+
+Trap #1 — *"the pool hides off-domain cards before it dims them"* — cost the first probe of this lane
+four rows too, which read `CELL NOT DRAWN` for every off-domain subject. `openList` preselects the
+legend's domain chips and that filter is a `some` test while `inIdentity` is an `every` test. The fix is
+the same as the census's: click **All domains** first, which is the button a player uses. It is now a
+named helper in `test/dom/builder.dom.test.ts` with the reason attached, so the next person to write a
+DOM probe there inherits it instead of re-finding it.

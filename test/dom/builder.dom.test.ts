@@ -44,6 +44,27 @@ const zoneCount = (label: string) =>
   [...document.querySelectorAll<HTMLElement>(".dzone-head")].find((h) => h.textContent?.startsWith(label))
     ?.querySelector(".dzone-n")?.textContent;
 
+/**
+ * Trap #1 of the census: `openList` preselects the legend's own domain chips, so an off-domain card is
+ * HIDDEN before it is ever dimmed. A probe that skips this reads "no such cell" and mistakes a filter
+ * for a refusal — which is how the first pass of the census was wrong in four rows. "All domains" is
+ * the button a player presses.
+ */
+const allDomains = () => document.querySelector<HTMLButtonElement>('[data-b="all-domains"]')!.click();
+
+/** A deck-column row by the card's name, and the `+` on it. */
+const rowNamed = (name: string) =>
+  [...document.querySelectorAll<HTMLElement>(".drow")].find((r) => r.querySelector(".drow-name")?.textContent === name);
+const rowPlus = (name: string) => rowNamed(name)!.querySelector<HTMLButtonElement>('[data-b="add"]')!;
+
+/** The pool paginates at 48 and the search box is debounced 150ms, so a named subject is searched for. */
+const search = async (q: string) => {
+  const box = document.querySelector<HTMLInputElement>("#bld-search")!;
+  box.value = q;
+  box.dispatchEvent(new Event("input", { bubbles: true }));
+  await new Promise((r) => setTimeout(r, 220));
+};
+
 /** The pool's zone is a radio group read through a delegated change listener. */
 const setZone = (zone: string) => {
   const radio = document.querySelector<HTMLInputElement>(`input[name="bld-zone"][value="${zone}"]`)!;
@@ -178,18 +199,18 @@ describe("what the pool refuses, and what it says", () => {
  */
 describe("103.2.d — the pool refuses a fourth Signature card (#211)", () => {
   const ORNN = "Legend\n1 Fire Below the Mountain\n\nMain Deck\n1 Forgefire Cape\n1 Rabadon's Deathcrown\n1 Shurelya's Requiem\n";
-  /** The pool paginates at 48 and the search box is debounced 150ms, so a named subject is searched for. */
-  const search = async (q: string) => {
-    const box = document.querySelector<HTMLInputElement>("#bld-search")!;
-    box.value = q;
-    box.dispatchEvent(new Event("input", { bubbles: true }));
-    await new Promise((r) => setTimeout(r, 220));
-  };
+  /**
+   * Master Yi, not Ornn, and for the reason #210 shipped: all three Ornn Signature names are Unique,
+   * so on an Ornn board 825.3.a refuses a second copy before this rule can count to three. Master Yi's
+   * two Signature names carry no Unique, so three Highlanders are legal and Alpha Strike is a real
+   * on-tag fourth — the one shell in the pool where a player sees this refusal.
+   */
+  const YI = "Legend\n1 Wuju Master\n\nMain Deck\n3 Highlander\n";
 
   it("refuses the fourth and blames the deck's three, not the card's own count", async () => {
-    await mount(ORNN);
-    await search("Forgefire Cape");
-    const cell = cellNamed("Forgefire Cape")!;
+    await mount(YI);
+    await search("Alpha Strike");
+    const cell = cellNamed("Alpha Strike")!;
     const button = cell.querySelector<HTMLButtonElement>(".pool-add")!;
 
     expect(button.getAttribute("aria-disabled")).toBe("true");
@@ -224,6 +245,112 @@ describe("103.2.d — the pool refuses a fourth Signature card (#211)", () => {
     expect(button.getAttribute("aria-disabled")).toBe("false");
     button.click();
     expect(edits.length).toBe(1);
+  });
+});
+
+/**
+ * 103.1.b at click time (#212). The bug this pins is invisible to a test that reads ONE button: the
+ * pool cell has refused an off-domain card since #101, and the deck column's `+` read `capOf` alone —
+ * which knew nothing about Domain Identity, because the rule lived in `web/builder.ts`. So the same
+ * rule was enforced or not depending on which of two buttons the player pressed, and a list that
+ * arrives by paste, deck code or Piltover Archive import never passes through the pool at all.
+ *
+ * Every assertion below therefore reads BOTH buttons for ONE card and compares the two answers.
+ * Subject measured in the census: legend `SFD-189 Fire Below the Mountain` (calm + mind) holding
+ * `Blazing Scorcher` (OGN-001, mono-fury).
+ */
+describe("103.1.b — the pool cell and the deck row give one answer (#212)", () => {
+  const IMPORTED = "Legend\n1 Fire Below the Mountain\n\nMain Deck\n1 Blazing Scorcher\n";
+
+  it("refuses an imported off-domain card at the deck row, with the reason the pool cell gives", async () => {
+    await mount(IMPORTED);
+    const plus = rowPlus("Blazing Scorcher");
+    expect(plus.getAttribute("aria-disabled")).toBe("true");
+    const rowWhy = plus.getAttribute("title")!;
+    expect(rowWhy).toContain("Domain Identity (103.1.b)");
+    plus.click();
+    expect(edits).toEqual([]);
+
+    // The same card in the pool, reached the way a player reaches it.
+    allDomains();
+    await search("Blazing Scorcher");
+    const cell = cellNamed("Blazing Scorcher")!;
+    const button = cell.querySelector<HTMLButtonElement>(".pool-add")!;
+    expect(button.getAttribute("aria-disabled")).toBe("true");
+    expect(cell.classList.contains("off")).toBe(true);
+    // The point of the issue: not merely that both refuse, but that they say the SAME thing.
+    expect(button.getAttribute("title")).toBe(rowWhy);
+    button.click();
+    expect(edits).toEqual([]);
+  });
+
+  /**
+   * The control, and it is what makes the two assertions above worth anything: the instrument does
+   * fire, and it takes a click for a card that is inside the identity.
+   */
+  it("still adds an in-identity card from either button", async () => {
+    await mount(IMPORTED + "1 Forgefire Cape\n");
+    const plus = rowPlus("Blazing Scorcher");
+    expect(plus.getAttribute("aria-disabled")).toBe("true");
+
+    await search("Clockwork Keeper");           // OGN-044, calm + mind, not Signature, not Unique
+    const button = cellNamed("Clockwork Keeper")!.querySelector<HTMLButtonElement>(".pool-add")!;
+    expect(button.getAttribute("aria-disabled")).toBe("false");
+    button.click();
+    expect(edits).toHaveLength(1);
+    expect(rowPlus("Clockwork Keeper").getAttribute("aria-disabled")).toBe(null);
+  });
+
+  /**
+   * The Legend zone is the one place 103.1.b must NOT refuse, and until 2026-09-13 it did. 103.1.b.2
+   * makes the identity "dictated by the domains of your Champion Legend", so a legend defines it
+   * rather than sitting inside it, and `addCard` replaces the one already named. The census did not
+   * probe this zone; the editor was telling a player that the legend they wanted was outside the
+   * identity of the legend they were replacing.
+   */
+  it("offers a legend outside the current identity, and takes the click", async () => {
+    await mount("Legend\n1 Fire Below the Mountain\n");   // calm + mind
+    allDomains();
+    setZone("legend");
+    await search("Loose Cannon");                          // fury + chaos, nothing in common
+    const cell = cellNamed("Loose Cannon")!;
+    const button = cell.querySelector<HTMLButtonElement>(".pool-add")!;
+    expect(button.getAttribute("aria-disabled")).toBe("false");
+    expect(cell.classList.contains("off")).toBe(false);
+    button.click();
+    expect(edits).toHaveLength(1);
+    expect(edits[0]).toContain("Loose Cannon");
+  });
+});
+
+/**
+ * 825.3.a at click time (#210). Same shape as #212 above and for the same reason: both buttons are
+ * read, because the cap lives in `capOf` and a test of the pool alone would not see the deck row.
+ */
+describe("825.3.a — one of each Unique name, at both buttons (#210)", () => {
+  const ORNN_ONE = "Legend\n1 Fire Below the Mountain\n\nMain Deck\n1 Forgefire Cape\n";
+
+  it("refuses a second copy at the pool cell, and says which rule", async () => {
+    await mount(ORNN_ONE);
+    await search("Forgefire Cape");
+    const cell = cellNamed("Forgefire Cape")!;
+    const button = cell.querySelector<HTMLButtonElement>(".pool-add")!;
+    expect(button.getAttribute("aria-disabled")).toBe("true");
+    expect(cell.querySelector(".pool-full")!.textContent).toBe("1 of 1");
+    expect(button.getAttribute("aria-label")).toContain("825.3.a");
+    // Not the Domain Identity path: a Unique card gets a badge, an off-domain one is only dimmed.
+    expect(cell.classList.contains("off")).toBe(false);
+    button.click();
+    expect(edits).toEqual([]);
+  });
+
+  it("refuses it at the deck row too, which is the button an imported list leaves you with", async () => {
+    await mount(ORNN_ONE);
+    const plus = rowPlus("Forgefire Cape");
+    expect(plus.getAttribute("aria-disabled")).toBe("true");
+    expect(plus.getAttribute("title")).toContain("825.3.a");
+    plus.click();
+    expect(edits).toEqual([]);
   });
 });
 

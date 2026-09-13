@@ -2,7 +2,7 @@ import { readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
 import { loadCardIndex } from "../src/load.js";
 import type { Deck } from "../src/types.js";
-import { checkBuild } from "../src/build.js";
+import { ANY_NUMBER, UNIQUE, checkBuild } from "../src/build.js";
 import { loadDeck } from "../src/deck.js";
 import {
   addCard,
@@ -47,6 +47,20 @@ const CAPE = "SFD-190";         // Forgefire Cape — Signature, tagged Ornn, [U
 const DEATHCROWN = "SFD-191";   // Rabadon's Deathcrown — Signature, tagged Ornn, [Unique]
 const REQUIEM = "SFD-192";      // Shurelya's Requiem — Signature, tagged Ornn, [Unique]
 const FOXFIRE = "OGN-256";      // Fox-Fire — Signature, calm + mind, tagged Ahri, NOT Ornn
+// Master Yi is the only OTHER champion with more than one Signature name, and neither of his is
+// Unique — measured over all 51 Signature names, 2026-09-13. That makes him the one shell in the pool
+// where 103.2.d.1 can still bind on an ON-TAG card once 825.3.a caps a Unique name at one (#210):
+// three Highlanders are legal, and Alpha Strike is a legal fourth Signature card that 103.2.d.1 stops.
+// The legend is UNL-191 and not OGS-019, which carries the same tag and is the pool's one restricted
+// row (2v2 only, data/legality.json) — a fixture has no business depending on that.
+const YI_LEGEND = "UNL-191";    // Wuju Master, calm + body
+const HIGHLANDER = "OGS-020";   // Highlander — Signature, tagged Master Yi, NOT Unique
+const ALPHA_STRIKE = "UNL-192"; // Alpha Strike — Signature, tagged Master Yi, NOT Unique
+/** A Main Deck card inside calm + mind that is neither Signature nor exempt, read out of the pool. */
+const inCalmMind = () => poolOf(cards).find(
+  (c) => zoneOf(c) === "main" && !c.signature && c.domains.length > 0
+    && c.domains.every((d) => d === "calm" || d === "mind") && !/any number/i.test(c.text ?? ""),
+)!;
 
 describe("the pool the builder draws from", () => {
   const pool = poolOf(cards);
@@ -355,15 +369,23 @@ describe("the caps a click has to respect", () => {
 describe("103.2.d — Signature cards at click time (#211)", () => {
   const ornn = (): Deck => ({ ...emptyDeck(), legend: ORNN_LEGEND });
 
+  /**
+   * The subject is Master Yi and not Ornn, and the move is the whole point of #210's precedence. All
+   * three Ornn Signature names are Unique, so on an Ornn board 825.3.a refuses a second copy of one
+   * of them BEFORE this rule can count to three — and reporting "3 of 3 Signature cards" there would
+   * name a rule the player cannot fix by dropping one. Master Yi's two Signature names carry no
+   * Unique, so three Highlanders are legal and Alpha Strike is a genuine on-tag fourth.
+   */
   it("refuses a fourth Signature card, counting the DECK rather than the name (103.2.d.1)", () => {
-    let deck = ornn();
-    for (const b of [CAPE, DEATHCROWN, REQUIEM]) deck = addCard(deck, b, cards);
-    // Three different names, one copy each: 103.2.b is nowhere near its cap, so only 103.2.d.1 can bind.
-    const cap = capOf(deck, CAPE, cards);
-    expect(cap).toMatchObject({ full: true, badge: "3 of 3" });
+    let deck: Deck = { ...emptyDeck(), legend: YI_LEGEND };
+    for (let i = 0; i < 3; i++) deck = addCard(deck, HIGHLANDER, cards);
+    expect(copiesOf(deck, HIGHLANDER)).toBe(3);
+    // A different NAME, so 103.2.b is nowhere near its cap and only 103.2.d.1 can bind.
+    const cap = capOf(deck, ALPHA_STRIKE, cards);
+    expect(cap).toMatchObject({ held: 3, full: true, badge: "3 of 3" });
     expect(cap.why).toContain("103.2.d.1");
     expect(cap.why).toContain("regardless of name");
-    expect(copiesOf(addCard(deck, CAPE, cards), CAPE)).toBe(1);
+    expect(copiesOf(addCard(deck, ALPHA_STRIKE, cards), ALPHA_STRIKE)).toBe(0);
   });
 
   it("refuses a Signature card that does not carry the legend's champion tag (103.2.d.2)", () => {
@@ -392,26 +414,229 @@ describe("103.2.d — Signature cards at click time (#211)", () => {
     expect(copiesOf(addCard(emptyDeck(), FOXFIRE, cards), FOXFIRE)).toBe(1);
   });
 
+  /**
+   * The subject is read out of the pool rather than named, and it has to be INSIDE calm + mind: the
+   * old fixture was Forge of the Future, which is mono-Order, so once `capOf` learned 103.1.b (#212)
+   * this test would have passed for the wrong reason — a refusal, dressed as a fall-through.
+   */
   it("leaves a card that is not Signature on the 103.2.b path", () => {
     let deck = ornn();
     for (const b of [CAPE, DEATHCROWN, REQUIEM]) deck = addCard(deck, b, cards);
-    const cap = capOf(deck, FORGE, cards);       // Forge of the Future: not Signature
+    const cap = capOf(deck, inCalmMind().base, cards);
     expect(cap.full).toBe(false);
     expect(cap.why).toBe("");
   });
 
   /**
-   * SCOPE, pinned so nobody reads #211 as having closed #210. The Signature cap stops the FOURTH
-   * Signature card; 825.3.a is already broken at the SECOND copy of a Unique one. A deck whose only
-   * Signature cards are copies of one Unique name never reaches three until the third click, so
-   * 103.2.d.1 cannot bind in time and the Construction checklist is still the only thing that objects.
+   * SCOPE, and this pin was inverted on 2026-09-13 when #210 shipped. It used to record that the
+   * Signature cap could NOT close 825.3.a — the Signature cap stops the FOURTH Signature card while
+   * 825.3.a is already broken at the SECOND copy of a Unique one, so a deck whose only Signature cards
+   * are copies of one Unique name never reaches three in time. That reasoning still holds and is why
+   * 825.3.a needed a cap of its own; what changed is that the cap now exists.
    */
-  it("does NOT close #210: three copies of a Unique card are still reachable by clicking", () => {
+  it("closes #210 through 825.3.a, which the Signature cap could never have reached", () => {
     let deck = ornn();
     for (let i = 0; i < 4; i++) deck = addCard(deck, CAPE, cards);
-    expect(copiesOf(deck, CAPE)).toBe(3);
+    expect(copiesOf(deck, CAPE)).toBe(1);
     const unique = checkBuild(deck, cards, "constructed").rules.find((r) => r.rule.startsWith("825.3.a"))!;
-    expect(unique.status).toBe("fail");
+    expect(unique.status).toBe("pass");
+    // And it is 825.3.a doing it, not the Signature count: one copy is nowhere near three.
+    expect(capOf(deck, CAPE, cards).why).toContain("825.3.a");
+  });
+});
+
+/**
+ * 825.3.a at click time (#210): "A deck can contain only one card of a given name if the card has
+ * Unique". The editor capped a Unique name at three like any other and only the Construction checklist
+ * objected — the first instance of the omission the census found, 103.2.d (#211) the second.
+ */
+describe("825.3.a — one of each Unique name at click time (#210)", () => {
+  const ornn = (): Deck => ({ ...emptyDeck(), legend: ORNN_LEGEND });
+
+  it("refuses the second copy, and names the rule that refuses it", () => {
+    const deck = addCard(ornn(), CAPE, cards);
+    const cap = capOf(deck, CAPE, cards);
+    expect(cap).toMatchObject({ held: 1, max: 1, full: true, badge: "1 of 1", offIdentity: false });
+    expect(cap.why).toContain("825.3.a");
+    expect(cap.why).toContain("Unique");
+  });
+
+  it("is a no-op through addCard, so no consumer of the module can climb past one", () => {
+    let deck = ornn();
+    for (let i = 0; i < 5; i++) deck = addCard(deck, CAPE, cards);
+    expect(copiesOf(deck, CAPE)).toBe(1);
+  });
+
+  /**
+   * The sideboard counts, unlike 103.2.b's own cap. 825.3.a says "a deck", and Tournament Rules 403.3
+   * puts limits on copies of named cards on "the combination of Main Deck and sideboard" — which is
+   * exactly the pair of bags `uniqueRule` reads, so the cell and the checklist row cannot drift.
+   */
+  it("counts the sideboard with the Main Deck, in both directions", () => {
+    const inMain = addCard(ornn(), CAPE, cards);
+    expect(sideboardCapOf(inMain, CAPE, cards).full).toBe(true);
+    expect(sideboardCapOf(inMain, CAPE, cards).why).toContain("825.3.a");
+    expect(zoneCounts(addToSideboard(inMain, CAPE, cards)).sideboard).toBe(0);
+
+    const inSide = addToSideboard(ornn(), CAPE, cards);
+    expect(zoneCounts(inSide).sideboard).toBe(1);
+    expect(capOf(inSide, CAPE, cards).full).toBe(true);
+    expect(copiesOf(addCard(inSide, CAPE, cards), CAPE)).toBe(0);
+  });
+
+  /**
+   * PRECEDENCE, and the case is the canonical Ornn list rather than a corner: one of each of his three
+   * Signature names is three Signature cards AND one of a Unique name, so a second Forgefire Cape is
+   * refused by 103.2.d.1 and 825.3.a at once. The answer has to be 825.3.a, because 825.3.b keeps the
+   * two caps independent — "any combination of three Signature cards, but still only one of each named
+   * Unique card" — so dropping Shurelya's Requiem would NOT make room for a second Cape, and pointing a
+   * player at the Signature count would send them to fix a rule that is not what stopped them.
+   */
+  it("reports 825.3.a ahead of the Signature count when both bind", () => {
+    let deck = ornn();
+    for (const b of [CAPE, DEATHCROWN, REQUIEM]) deck = addCard(deck, b, cards);
+    const cap = capOf(deck, CAPE, cards);
+    expect(cap.why).toContain("825.3.a");
+    expect(cap.why).not.toContain("103.2.d.1");
+    // And the tag still outranks both: an off-tag Signature card can never be here at any quantity.
+    expect(capOf(deck, FOXFIRE, cards).why).toContain("103.2.d.2");
+  });
+
+  /**
+   * The whole population of 825.3.a is three cards, so the thing worth pinning is that it fires for
+   * those and for nothing else: a Signature name without the keyword still goes to three copies.
+   * Which of the OTHER caps then reports the fourth click is not this rule's business — three
+   * Highlanders are three copies of a name AND three Signature cards, so 103.2.b and 103.2.d.1 both
+   * bind and the message names the second. What must not appear is 825.3.a.
+   */
+  it("leaves a Signature name that is NOT Unique on the three-copy path", () => {
+    let deck: Deck = { ...emptyDeck(), legend: YI_LEGEND };
+    for (let i = 0; i < 4; i++) deck = addCard(deck, HIGHLANDER, cards);
+    expect(copiesOf(deck, HIGHLANDER)).toBe(3);
+    expect(capOf(deck, HIGHLANDER, cards).why).not.toContain("825.3.a");
+    expect(capOf(deck, HIGHLANDER, cards).full).toBe(true);
+  });
+
+  /**
+   * The two card-text caps — Spiderling's "any number" and `[Unique]` — are DISJOINT over this pool, so
+   * which of them wins has never been decided and `capOf` does not pretend otherwise. Pinned as a
+   * tripwire rather than as a fact: the day one card prints both, this goes red and the question gets
+   * asked, instead of the answer falling out of whichever branch happens to run first.
+   */
+  it("holds the two card-text copy caps disjoint over the whole pool", () => {
+    const printings = cards.cards;
+    expect(printings.length).toBeGreaterThan(1000);          // non-vacuity: the sweep has a haystack
+    const unique = printings.filter((c) => UNIQUE.test(c.text ?? ""));
+    const anyNumber = printings.filter((c) => ANY_NUMBER.test(c.text ?? ""));
+    expect(unique.map((c) => c.base)).toEqual([CAPE, DEATHCROWN, REQUIEM]);
+    expect(new Set(unique.map((c) => c.name)).size).toBe(3);
+    expect(anyNumber.length).toBeGreaterThan(0);
+    expect(unique.filter((c) => ANY_NUMBER.test(c.text ?? ""))).toEqual([]);
+  });
+
+  it("agrees with the Construction checklist on the deck it produces", () => {
+    let deck = ornn();
+    for (let i = 0; i < 3; i++) deck = addCard(deck, CAPE, cards);
+    const row = checkBuild(deck, cards, "constructed").rules.find((r) => r.rule.startsWith("825.3.a"))!;
+    expect(row.status).toBe("pass");
+  });
+});
+
+/**
+ * 103.1.b at click time (#212). The rule used to live in `web/builder.ts` alone, so it reached a player
+ * clicking the POOL and no other consumer of this module — including the deck column's own `+`, which
+ * reads `capOf`. These are the model half; `test/dom/builder.dom.test.ts` reads both buttons.
+ */
+describe("103.1.b — Domain Identity at click time (#212)", () => {
+  const ornn = (): Deck => ({ ...emptyDeck(), legend: ORNN_LEGEND });   // calm + mind
+  const OFF = "OGN-001";                                                // Blazing Scorcher, mono-fury
+
+  it("refuses an off-domain card in the model, not only in the DOM", () => {
+    const cap = capOf(ornn(), OFF, cards);
+    expect(cap).toMatchObject({ full: true, offIdentity: true, badge: "" });
+    expect(cap.why).toContain("Outside calm + mind");
+    expect(cap.why).toContain("103.1.b");
+    expect(addCard(ornn(), OFF, cards).main).toEqual({});
+  });
+
+  /** An imported list can already hold copies, and the cap reports the real number rather than zero. */
+  it("keeps refusing a card an imported list already holds, and counts it honestly", () => {
+    const imported: Deck = { ...emptyDeck(), legend: ORNN_LEGEND, main: { [OFF]: 2 } };
+    const cap = capOf(imported, OFF, cards);
+    expect(cap).toMatchObject({ held: 2, max: 0, full: true, offIdentity: true });
+    expect(addCard(imported, OFF, cards).main).toEqual({ [OFF]: 2 });
+  });
+
+  /**
+   * The Rune Deck has its own checklist row, so a rune is refused under its own paragraph: 103.3.a.1,
+   * "Cards in the Rune Deck must be of the Domain Identity of your Champion Legend". The button may not
+   * cite a different rule from the one the checklist would cite for the same card.
+   */
+  it("cites the Rune Deck's own paragraph for a rune", () => {
+    const fury = poolOf(cards).find((c) => c.type.includes("rune") && c.domains.includes("fury"))!;
+    const cap = capOf(ornn(), fury.base, cards);
+    expect(cap.offIdentity).toBe(true);
+    expect(cap.why).toContain("103.3.a.1");
+    expect(cap.why).not.toContain("103.1.b");
+  });
+
+  /**
+   * A legend DICTATES the identity (103.1.b.2) rather than obeying it, and `addCard` replaces the one
+   * already named. Until 2026-09-13 the editor refused an off-domain legend in the Legend zone, so
+   * switching legends meant removing one first — a zone the census had not probed.
+   */
+  it("never refuses a legend, and swapping one replaces it", () => {
+    const cap = capOf(ornn(), LADY, cards);            // Mind + Order, nothing in common with calm + mind
+    expect(cap).toMatchObject({ full: false, offIdentity: false });
+    expect(addCard(ornn(), LADY, cards).legend).toBe(LADY);
+  });
+
+  it("judges nothing until a legend is named, exactly as identityRule does", () => {
+    const cap = capOf(emptyDeck(), OFF, cards);
+    expect(cap.offIdentity).toBe(false);
+    expect(copiesOf(addCard(emptyDeck(), OFF, cards), OFF)).toBe(1);
+  });
+
+  /**
+   * The sideboard is refused too, which is what the pool cell already did before the rule moved down a
+   * layer. Not a guess: Tournament Rules 403.4 exchanges a sideboard card "1 for 1 with Main Deck
+   * cards" and 403.4.b says a player "may not change their Runes, Legend, or Battlefields at any point
+   * after deck registration", so the identity it would be swapped into is fixed for the whole match.
+   */
+  it("reaches the sideboard", () => {
+    const cap = sideboardCapOf(ornn(), OFF, cards);
+    expect(cap.offIdentity).toBe(true);
+    expect(zoneCounts(addToSideboard(ornn(), OFF, cards)).sideboard).toBe(0);
+  });
+
+  /**
+   * The cross-layer sweep, and the reason the rule was worth moving rather than copying: for EVERY
+   * card the pool offers, the button refuses exactly what the Construction checklist's identity rows
+   * fail, under the paragraph those rows cite. A disagreement between the two is the defect class this
+   * issue is about, and it is now measured over the whole pool rather than on one subject.
+   */
+  it("refuses exactly what the checklist's identity rows fail, over the whole pool", () => {
+    const empty = ornn();
+    let refused = 0, allowed = 0, checked = 0;
+    for (const card of poolOf(cards)) {
+      if (card.type.includes("legend")) continue;
+      const zone = zoneOf(card);
+      const cap = capOf(empty, card.base, cards);
+      const held: Deck = { ...empty, [zone]: { [card.base]: 1 } };
+      const rules = checkBuild(held, cards, "constructed").rules;
+      // A rune's row also fails for the COUNT (one rune is not twelve), so the identity half of that
+      // row is read from its detail; every other zone reports 103.1.b on its own row.
+      const checklistSaysOff = zone === "runes"
+        ? rules.find((r) => r.rule.startsWith("103.3.a"))!.detail.includes("103.3.a.1")
+        : rules.find((r) => r.rule === "103.1.b")!.status === "fail";
+      expect(cap.offIdentity, `${card.base} ${card.name}`).toBe(checklistSaysOff);
+      checked++;
+      if (cap.offIdentity) refused++; else allowed++;
+    }
+    // Non-vacuity: the sweep saw the whole pool bar the legends, and both answers really occur.
+    expect(checked).toBe(poolOf(cards).filter((c) => !c.type.includes("legend")).length);
+    expect(refused).toBeGreaterThan(100);
+    expect(allowed).toBeGreaterThan(100);
   });
 });
 
@@ -570,12 +795,22 @@ describe("the sideboard (Tournament Rules 403, 601.1.c)", () => {
   // A Main Deck unit legal under Mind + Order, read out of the pool rather than remembered.
   const unit = poolOf(cards).find((c) => zoneOf(c) === "main" && c.domains.every((d) => ["mind", "order"].includes(d)) && c.domains.length === 1 && !/any number/i.test(c.text ?? ""))!;
 
+  /**
+   * Every subject is inside Mind + Order. `sideboardCapOf` learned 103.1.b on 2026-09-13 (#212) —
+   * Tournament Rules 403.4 swaps a sideboard card "1 for 1 with Main Deck cards" and 403.4.b freezes
+   * the Legend for the match, so an off-identity sideboard card can never be played — and the old
+   * fixture took the first ten Main Deck cards in set order, most of them outside the identity.
+   */
+  const inIdentityMain = poolOf(cards).filter(
+    (c) => zoneOf(c) === "main" && c.domains.length > 0 && c.domains.every((d) => ["mind", "order"].includes(d)),
+  );
+
   it("caps at ten cards (601.1.c.1)", () => {
     let deck = legend;
-    const tens = poolOf(cards).filter((c) => zoneOf(c) === "main").slice(0, 10);
-    for (const c of tens) deck = addToSideboard(deck, c.base, cards);
+    expect(inIdentityMain.length).toBeGreaterThan(11);
+    for (const c of inIdentityMain.slice(0, 10)) deck = addToSideboard(deck, c.base, cards);
     expect(zoneCounts(deck).sideboard).toBe(10);
-    const eleventh = poolOf(cards).filter((c) => zoneOf(c) === "main")[10]!;
+    const eleventh = inIdentityMain[10]!;
     const cap = sideboardCapOf(deck, eleventh.base, cards);
     expect(cap.full).toBe(true);
     expect(cap.why).toContain("601.1.c.1");
