@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { CardIndex } from "../src/cards.js";
 import { CLASS_RANK, generateVariants, sourceHref, validateCombos } from "../src/combos.js";
-import { loadCombos } from "../src/load.js";
+import { loadCardIndex, loadCombos } from "../src/load.js";
 import { SOURCE_KINDS } from "../src/types.js";
 import type { Card, Combo, ComboClass, ComboStatus, Domain, Ingredient } from "../src/types.js";
 
@@ -444,5 +444,83 @@ describe("the outcome vocabulary cannot publish an incomplete line as complete",
       .filter((c: Combo) => c.needs.some((n: string) => OUTPUT_ONLY.includes(n)))
       .map((c: Combo) => `${c.id}: needs ${c.needs.filter((n: string) => OUTPUT_ONLY.includes(n)).join(", ")}`);
     expect(bad, bad.join("\n")).toEqual([]);
+  });
+});
+
+/**
+ * #216: `validateCombos` bounded `quantity` BELOW and not above, so an entry could declare a card
+ * set no legal deck can hold — two copies of a `[Unique]`, four of a name — and `planDeck` would
+ * price it for a player as *copies to add*, on the panel `CLAUDE.md` describes as never
+ * recommending an illegal purchase. `planDeck` guards Domain Identity and banned cards and nothing
+ * else.
+ *
+ * THE CHECK REPLAYS THE ENTRY THROUGH THE BUILDER'S OWN `addCard` rather than re-implementing the
+ * caps, and the reason is the first case below: THE CAPS ARE ZONE-DEPENDENT, so a flat
+ * `quantity <= 3` is wrong in BOTH directions at once — too strict for a rune, where 103.3.a allows
+ * twelve, and too loose for a battlefield, where 103.4.c allows one of a name.
+ *
+ * THE LIVE RESULT IS ZERO AND A ZERO IS ONLY A RESULT IF THE INSTRUMENT CAN SEE THE THING, so the
+ * control lives HERE and not only in the issue: an entry asking for four `OGN-212 Forge of the
+ * Future` is flagged, through `validateCombos` itself rather than through `addCard`, which is what
+ * proves the wiring and not merely the builder.
+ */
+describe("an authored card set a legal deck could not hold (#216)", () => {
+  const real = loadCardIndex();
+  const { combos: live } = loadCombos();
+  const entry = (uses: Ingredient[]): Combo => ({
+    id: "probe", name: "Probe", class: "ENGINE", status: "verified", uses, needs: [], produces: [],
+    prerequisites: { easy: [], notable: [] }, steps: [], terminatesIn: "n/a", sources: [],
+    rulesVersion: "2026-07-16",
+  });
+  const errorsFor = (uses: Ingredient[]) => validateCombos([entry(uses)], features, real);
+  const use = (card: string, quantity: number): Ingredient => ({ card, quantity, role: "engine" });
+
+  it("replays a real population, so a silent no-op cannot read as a pass", () => {
+    const rows = live.flatMap((c) => c.uses);
+    const legendRows = rows.filter((u) => real.get(u.card)?.type.includes("legend")).length;
+    // The denominators, stated: 766 entries and 1,898 rows on 2026-09-13, 115 of them legends,
+    // which are skipped in the replay and checked as quantity-1 instead.
+    expect(live.length).toBeGreaterThan(700);
+    expect(rows.length).toBeGreaterThan(1800);
+    expect(legendRows).toBeGreaterThan(100);
+  });
+
+  it("FIRES on the control, which is what makes the zero worth reporting", () => {
+    // `OGN-212 Forge of the Future` is a gear: 103.2.b caps it at three copies of a name.
+    expect(errorsFor([use("OGN-212", 4)]))
+      .toEqual(["probe: OGN-212 x4 is more than a deck may hold (the builder took 3)"]);
+    expect(errorsFor([use("OGN-212", 3)])).toEqual([]);
+  });
+
+  it("is zone-dependent, which is why a flat quantity cap would be wrong in both directions", () => {
+    // 103.3.a: twelve runes is a legal Rune Deck, so a flat "<= 3" would reject a correct entry.
+    expect(errorsFor([use("OGN-007", 12)])).toEqual([]);
+    expect(errorsFor([use("OGN-007", 13)])).toHaveLength(1);
+    // 103.4.c: one battlefield of a name, so a flat "<= 3" would admit an illegal one.
+    expect(errorsFor([use("OGN-293", 1)])).toEqual([]);
+    expect(errorsFor([use("OGN-293", 2)])).toHaveLength(1);
+    // `VEN-097 Spiderling` prints "your deck can have any number", and rule 002 makes card text
+    // beat 103.2.b — so the exemption has to survive the check too.
+    expect(errorsFor([use("VEN-097", 6)])).toEqual([]);
+  });
+
+  it("skips legend rows rather than replaying them, and checks their quantity instead", () => {
+    // `addCard` on a legend SETS deck.legend, and identityCap stands down only while that is null
+    // (src/builder.ts:323) - so replaying a legend first would switch Domain Identity on and fail
+    // every off-domain row after it under the wrong rule. Identity is planDeck's job.
+    const fury = "UNL-183";                 // Pridestalker, Fury/Body
+    const offDomain = "OGN-120";            // Seal of Insight, Mind - outside that identity
+    expect(real.domainsOf(fury).length).toBe(2);
+    expect(errorsFor([{ card: fury, quantity: 1, role: "legend" }, use(offDomain, 1)])).toEqual([]);
+    expect(errorsFor([{ card: fury, quantity: 2, role: "legend" }]))
+      .toEqual(["probe: UNL-183 is a legend, so quantity must be 1 (103.2.a.1)"]);
+  });
+
+  it("names every entry over a cap, and the catalogue holds none", () => {
+    // A NAMED SET rather than a bare zero, so a future exception has to be recorded here with its
+    // reason instead of quietly raising a number.
+    const KNOWN_OVER_CAP: string[] = [];
+    const over = live.filter((c) => validateCombos([c], features, real).some((e) => /more than a deck may hold|must be 1/.test(e)));
+    expect(over.map((c) => c.id).sort()).toEqual([...KNOWN_OVER_CAP].sort());
   });
 });

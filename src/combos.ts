@@ -1,6 +1,53 @@
+import { addCard, emptyDeck } from "./builder.js";
 import type { CardIndex } from "./cards.js";
 import { ZONES } from "./types.js";
 import type { Combo, ComboClass, ComboStatus, Domain, Feature, Variant } from "./types.js";
+
+/**
+ * Copies an authored card set asks for that a legal deck could not hold (#216).
+ *
+ * `validateCombos` bounded `quantity` below and not above, so nothing stopped an entry declaring two
+ * copies of a `[Unique]` card or four of a name — and `planDeck` would then price that for a player
+ * as *copies to add*, on the panel `CLAUDE.md` describes as never recommending an illegal purchase.
+ * It guards Domain Identity and banned cards and nothing else.
+ *
+ * THE CAPS ARE NOT RE-IMPLEMENTED HERE; the entry is REPLAYED through the builder's own `addCard`,
+ * which already refuses an illegal click, and the question asked is whether it took every copy it
+ * was offered. A flat `quantity <= 3` would be wrong in BOTH directions, because the caps are
+ * ZONE-DEPENDENT: 103.3.a allows twelve runes and 103.4.c allows ONE battlefield of a name. Replay
+ * gets 103.2.b with its `ANY_NUMBER` exemption, 825.3.a, 103.2.d, 103.3.a, 103.4.a and 103.4.c for
+ * free, and stays correct the day any of them changes.
+ *
+ * LEGEND ROWS ARE SKIPPED ON PURPOSE AND CHECKED SEPARATELY. `addCard` on a legend SETS
+ * `deck.legend`, and `identityCap` stands down only while that is null (`src/builder.ts:323`) — so
+ * replaying a legend first would switch Domain Identity on and fail every off-domain row after it
+ * with a message about the wrong rule. Identity is `planDeck`'s job and it already does it. What a
+ * legend row owes instead is a quantity of exactly one, which 103.2.a.1 puts in the Champion Zone
+ * before play; measured over the catalogue, all 115 legend rows are 1 today.
+ */
+function copyCapErrors(c: Combo, cards: CardIndex): string[] {
+  const errors: string[] = [];
+  const isLegend = (base: string) => cards.get(base)?.type.includes("legend") ?? false;
+  const wanted = new Map<string, number>();
+  for (const ing of c.uses) {
+    // An unresolvable code already has its own error and `addCard` is a no-op for one, so replaying
+    // it would report the same row twice under two different diagnoses. Caught by the existing
+    // unknown-card test in `test/combos.test.ts`, which is what that test is for.
+    if (!cards.get(ing.card)) continue;
+    if (isLegend(ing.card)) {
+      if (ing.quantity !== 1) errors.push(`${c.id}: ${ing.card} is a legend, so quantity must be 1 (103.2.a.1)`);
+      continue;
+    }
+    wanted.set(ing.card, (wanted.get(ing.card) ?? 0) + ing.quantity);
+  }
+  let probe = emptyDeck();
+  for (const [base, n] of wanted) for (let i = 0; i < n; i++) probe = addCard(probe, base, cards);
+  for (const [base, n] of wanted) {
+    const held = (probe.main[base] ?? 0) + (probe.battlefields[base] ?? 0) + (probe.runes[base] ?? 0);
+    if (held < n) errors.push(`${c.id}: ${base} x${n} is more than a deck may hold (the builder took ${held})`);
+  }
+  return errors;
+}
 
 /** Sanity checks an authored combo file must pass before anything is generated from it. */
 export function validateCombos(combos: Combo[], features: Feature[], cards: CardIndex): string[] {
@@ -24,6 +71,7 @@ export function validateCombos(combos: Combo[], features: Feature[], cards: Card
     for (const f of [...c.needs, ...c.produces, ...(c.removes ?? [])]) {
       if (!featureIds.has(f)) errors.push(`${c.id}: unknown feature ${f}`);
     }
+    errors.push(...copyCapErrors(c, cards));
     if (c.class === "INFINITE" && !c.steps.some((s) => /repeat/i.test(s))) {
       errors.push(`${c.id}: INFINITE combos must have a step that says "repeat"`);
     }
