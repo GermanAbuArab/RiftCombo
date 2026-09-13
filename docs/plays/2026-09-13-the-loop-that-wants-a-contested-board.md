@@ -107,6 +107,39 @@ readied for free by 315.1.b at your next Awaken, so a line with a spare turn doe
 it just wins on T5 instead of T4. She is four Energy and a rune for exactly one turn of compression,
 and that is only worth it because the Energy is free by the time you cast her.
 
+## 5b. The control case: the other Fury/Order Recruit engine, which the clock scores identically
+
+`twilight-reveler-eye-facebreaker-recruits` is the same identity, the same payoff and the same
+`[payoff: + ready-recruits-grand-plaza]` fold, and the clock reads it at **T5 vs T6** — the same row
+as this one. It is also **cheaper and simpler**: E9 and no Power over four copies of three names
+(`VEN-020 Twilight Reveler` ×2, `SFD-153 Eye of the Herald`, `OGN-220 Facebreaker`) against E11 + 1
+Power over five names here. Its pass costs literally nothing: Reveler A moves in, the Eye makes a
+Recruit, 383.4.e fires *"When I attack, ready another friendly unit"* on Reveler B, the combat cleanup
+recalls A, and B goes next — so a Recruit arrives on every pass the Eye-carrying Reveler makes.
+
+**And it cannot do what §4 does, for one reason: it produces `token-body-engine` and nothing else.**
+This line produces `infinite-energy` as well, and that is the whole difference.
+
+```
+T1  R=2   Eye of the Herald (E1)
+T2  R=4   Reveler A (E3); [Equip] the Eye to A, 1 Order Power -> board 3
+T3  R=5   Reveler B (E3); Facebreaker (E2). Loop all turn: Recruits pile up at base EXHAUSTED
+T4  R=7   Awaken readies them. Rage Amplifier (E4 + 1 Power) -> board 6. Walk seven in -> Conquer
+          Renata (E4) does NOT fit beside it: E4 + E4 = 8 against 7 runes
+T5        Beginning Phase: Hold -> 7+ units here -> win
+```
+
+**Turn 5, and T5 is its floor** — pulling the Conquer back to T3 would need Renata on T3 so the
+Recruits enter ready, and Reveler B at E3 plus Renata at E4 is seven Energy against five runes.
+
+So two entries the clock cannot separate are a turn apart, and the separator is whether the loop
+makes Energy. **A body engine has to buy its own insurance off the rune curve; an Energy engine buys
+it out of the loop.** That is the §5 finding stated from the other side, and it is also why these two
+are not one line written twice: Jhin costs two more Energy, one more Power and two more card names,
+and what he buys with them is the turn.
+
+---
+
 ## 6. Breaks to — the opponent's one turn, priced
 
 The seven bodies have to survive from your T3 Conquer to your T4 Beginning Phase. That is the whole
