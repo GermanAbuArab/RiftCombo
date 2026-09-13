@@ -113,3 +113,47 @@ noise and which turned out to be class mixing"*. Checked for stale downstream re
 0.67"*, *"T4 1.50"*, *"T5 2.38"*, *"T8+ 3.64"* and *"monotone by turn"* each appear **zero** times in
 the file. Nothing still quotes the old framing. Its own n's are internally consistent too —
 24 + 12 + 9 + 22 + 6 = 73, which is the *"73 of the 80 finisher rows"* the same bullet opens with.
+
+---
+
+## 5. WHAT THE AUDIT TURNED UP IN **MY OWN** WORK, WHICH IS THE POINT OF DOING IT
+
+Chasing the attribution of the four shouted `AT BATTLEFIELDS` quotations is what made me re-run my
+own probe — **and it had been reporting a false clean.** In an earlier report I told the manager
+`data/combos.json` prose held *"2 distinct of 17,145"* and `synergies.json` *"0 of 1,242"*, and used
+that to argue the emphasis class was concentrated in `CLAUDE.md` because its house style is to shout.
+**Both numbers were wrong and the conclusion was unsupported.**
+
+**The cause was the instrument, twice, in opposite directions.**
+
+1. **It scanned `JSON.stringify(entry)`.** In serialised JSON every embedded quotation is an escaped
+   `\"`, and to a character scanner a backslash-quote is still a quote character — so span pairing
+   broke and nearly every quotation was missed or mis-paired. The fix is to walk the **parsed string
+   values**, so escaping is the parser's problem. That took the figure from 2 to 295.
+2. **Then it counted POSITION 0 as a shout**, and position 0 is the SPLICE BOUNDARY, which #202
+   sanctions **in both directions** — lowercasing *"When"* to splice mid-sentence is correct, and so
+   is capitalising a mid-sentence word when you begin a quotation at it. **I had encoded exactly that
+   allowance in my `CLAUDE.md` probe that morning and written the bullet saying so, then omitted it
+   from the probe I pointed at the data files.** That took 295 down to **42**.
+
+**THE HONEST FIGURE IS 42 DISTINCT mid-sentence shouts** (45 occurrences) across both data files,
+plus 1 mirror case where we lowercased a word a card prints in caps, plus 2 needing a read.
+
+**That is the THIRD over-report of the day from one cause** — 72 → 18, 24 → 4, 284 → 42 — and all
+three are the rule this project now records in my own words: **the instrument encoded the rule and
+not an exception the domain already sanctions.** Writing the bullet did not stop me making the
+mistake again within the hour, which is worth knowing about the bullet as much as about me.
+
+**And reading the 27 "mixed" spans I had reserved for a human is what produced the fix rather than a
+judgement:** in 25 of them the only lowering IS the sentence-initial splice, and in the other 2 we had
+also lowercased *"Battlefield"*, which Riot capitalises. **So all 27 are mechanically repairable under
+one rule — recase everything except position 0 — and none needed the judgement I reserved.** Reserving
+it was still right; reading them is what showed the rule.
+
+**The repair is built and dry-runs clean** (`.scratch-gap/fix-data-emphasis.mjs`), with the same
+proofs as the `CLAUDE.md` repair: a pure case fix cannot change the file's byte length, the lowercase
+form of the file must be identical before and after, and the file must already be byte-identical to
+its own dump. 28 spans in `combos.json`, 19 in `synergies.json`. **The durable half is the guard, not
+the fix: nothing checks PROSE in either data file — `test/source-quotes.test.ts` owns `sources[].quote`
+alone — and a case-insensitive check with the position-0 allowance is the same two-condition shape as
+predicate E.**
