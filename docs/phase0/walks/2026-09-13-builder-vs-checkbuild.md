@@ -564,3 +564,32 @@ the requirement its own note quotes is *"if you have exactly 4 cards in hand and
 battlefields, you win the game"* — a board STATE with two exactness conditions, which a count of bodies
 cannot express. The price is honest about what `anyBodies` measures and the note carries the text; what
 is worth knowing is that the panel's top recommendation for a third of all real lists is that line.
+
+
+### Both artifacts have ONE cause: class and size are correlated
+
+Two corpus headlines in a row turned out to be measuring entry SIZE — the matcher's 88% (top hit a
+one-card entry) and `planDeck`'s two-card median (121 of 146 reaching two entries). That is not two
+coincidences. Measured over all 766 entries, **distinct cards per entry, by class**:
+
+| class | n | min | **median** | max | median copies |
+|---|---|---|---|---|---|
+| ENGINE | 686 | 1 | **2** | 6 | 4 |
+| BURST | 23 | 2 | **3** | 5 | 6 |
+| CHAIN | 17 | 2 | **3** | 6 | 6 |
+| ALT_WIN | 26 | 1 | **4** | 8 | 4 |
+| INFINITE | 14 | 3 | **4** | 11 | 5 |
+
+**A finisher is 1.5 to 2 times the size of an ENGINE, and needs half again as many copies.** ENGINE is
+also 686 of 766 entries. So any count over "lines completed" is a count over ENGINEs, twice over — they
+are the overwhelming majority AND the cheapest to complete. That is the single cause of both artifacts,
+and it is why the class split is the only honest way to report either number.
+
+**And the concentration is sharper still: of 26 one-card entries, 25 are ENGINE and exactly ONE is a
+finisher — `gutter-palace`.** That single entry, one of 766, is the nearest finisher for 69 of the 222
+registered lists. One row of data drives a third of the panel's answers.
+
+**What this adds to #200**, which reached "a finisher is redundant against an unbroken Hold curve" from
+the turn clock: the clock says finishers are **slow**; this says they are also **bigger** — more cards
+and more copies, so more slots in a 40-card deck. Two independent costs, measured by two instruments
+neither of which was derived from the other, both pointing the same way.
