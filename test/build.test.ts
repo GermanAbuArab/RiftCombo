@@ -590,3 +590,88 @@ Sideboard
     expect(r.detail).toContain("Spiderling");
   });
 });
+
+/**
+ * 403.4.b — the sideboard inside the Domain Identity (#215). The editor has refused an off-identity
+ * card in the sideboard since #101 and this report called such a list LEGAL, because `identityRule`
+ * reads `deck.main` and `deck.battlefields` and not `deck.sideboard`. That was the one disagreement
+ * the 2026-09-13 tier audit found between the two layers, and the button was the one that was right.
+ *
+ * It is a TOURNAMENT RULES row rather than part of 103.1.b's because at registration a sideboard card
+ * is not in the deck: Tournament Rules 601.1.b makes the Main Deck exactly 40 and 601.1.c keeps the
+ * sideboard beside it. What makes an off-identity one illegal is what it is FOR — 403.4, "Sideboard
+ * cards must be exchanged 1 for 1 with Main Deck cards", read with 403.4.b, "a player may not change
+ * their Runes, Legend, or Battlefields at any point after deck registration". The Legend is frozen
+ * for the match, so the identity the card would be swapped into is frozen with it.
+ *
+ * LEGAL is Mind + Order, so every subject below is chosen outside those two domains and inside the
+ * Main Deck card types, or 601.1.c.2 would be the row refusing it instead — the precedence trap the
+ * census paid for, in a new place.
+ */
+describe("Tournament Rules 403.4.b — the sideboard inside the identity (#215)", () => {
+  const SIDE = (...names: string[]) => `${LEGAL}\n\nSideboard\n${names.map((n) => `1 ${n}`).join("\n")}`;
+
+  it("fails on a sideboard card outside the legend's domains, and names it", () => {
+    const r = row(rows(SIDE("Blazing Scorcher")), "Tournament Rules 403.4.b");
+    expect(r.status).toBe("fail");
+    expect(r.detail).toContain("Blazing Scorcher");
+    expect(r.detail).toContain("mind + order");
+    // The reason, not just the verdict: the citation a reader can follow.
+    expect(r.detail).toContain("403.4");
+    expect(rows(SIDE("Blazing Scorcher")).legal).toBe(false);
+  });
+
+  it("passes when every sideboard card is inside them", () => {
+    const r = row(rows(SIDE("The Ruination", "Ashe, Focused")), "Tournament Rules 403.4.b");
+    expect(r.status).toBe("pass");
+    expect(r.detail).toContain("mind + order");
+    expect(rows(SIDE("The Ruination", "Ashe, Focused")).legal).toBe(true);
+  });
+
+  /**
+   * The same shape `identityRule` uses for the Main Deck: four names, then a count. Without this the
+   * detail of a ten-card off-identity sideboard would be a wall of names in a player-facing panel.
+   */
+  it("names four and counts the rest", () => {
+    const five = SIDE("Abandon", "Acceptable Losses", "Adaptatron", "Affectionate Poro", "Against the Odds");
+    const r = row(rows(five), "Tournament Rules 403.4.b");
+    expect(r.status).toBe("fail");
+    expect(r.detail).toContain("and 1 more");
+    expect(r.detail).not.toContain("Against the Odds");
+  });
+
+  it("judges nothing with no legend named, exactly as 103.1.b's row does", () => {
+    const r = row(rows("Sideboard\n1 Blazing Scorcher"), "Tournament Rules 403.4.b");
+    expect(r.status).toBe("unknown");
+    expect(r.detail).toContain("no Domain Identity");
+  });
+
+  it("is not drawn at all when the deck carries no sideboard", () => {
+    expect(rows(LEGAL).rules.some((x) => x.rule === "Tournament Rules 403.4.b")).toBe(false);
+  });
+
+  /**
+   * It reports FIRST of the four sideboard rows, for the reason `capOf` reports identity first: no
+   * quantity of an off-identity card is ever legal there, while the other three are caps. Pinned as
+   * an ORDER rather than an index, so inserting a fifth sideboard row later cannot silently move it.
+   */
+  it("is the first of the sideboard rows", () => {
+    const ids = rows(SIDE("Blazing Scorcher")).rules.map((x) => x.rule).filter((x) => x.startsWith("Tournament Rules"));
+    expect(ids[0]).toBe("Tournament Rules 403.4.b");
+    expect(ids).toContain("Tournament Rules 601.1.c.1");
+  });
+
+  /**
+   * And it is a DOMAIN row, not a card-type row: an off-identity card that is also the wrong type is
+   * reported by 601.1.c.2 as before, and this row has nothing to say about it. That is the 825.3.a
+   * precedent — the checklist names the rule the list actually broke, and a domain is not a type.
+   */
+  it("leaves a rune in the sideboard to 601.1.c.2, which is a different rule", () => {
+    const r = rows(`${LEGAL}\n\nSideboard\n1 Fury Rune`);
+    expect(row(r, "Tournament Rules 601.1.c.2").status).toBe("fail");
+    expect(row(r, "Tournament Rules 601.1.c.2").detail).toContain("Fury Rune");
+    // A rune is off-identity here too, so this row may fire as well — what it may NOT do is be the
+    // only thing reported, which is what a widening of 601.1.c.2 would have produced.
+    expect(row(r, "Tournament Rules 403.4.b")).toBeDefined();
+  });
+});
