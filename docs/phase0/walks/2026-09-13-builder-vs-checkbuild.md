@@ -407,3 +407,58 @@ still matching `**/*.test.ts`, and it timed out at 5s under full-suite load, tur
 every lane in the shared tree. Renamed out of the glob, contents intact. rc-kw already knew the trap
 (`unique-demo.vtest-disabled.ts` beside it is a probe they disabled the same way) and missed one.
 **A scratch probe named `*.test.ts` is everyone's problem; `.gitignore` does not reach vitest.**
+
+
+---
+
+## 9. Is every rule the cell enforces pinned by a CLICK? — `rc-builder`, 2026-09-13
+
+`test/dom/builder.dom.test.ts` exists because enforcement rides on a rendered `aria-disabled` that the
+click handler reads back (§4 trap 3, and #138's own lesson): a change to the cell template can switch a
+rule off with every `src/` test still green. Three rules joined that string today, so the question is
+whether each one is pinned by a CLICK and not only by a source pin — and the day's own a11y
+measurement is why the question needs asking, since the one whole-statement source pin in that file
+had to be rewritten twice because a CORRECT rewording broke it.
+
+**The answer was no in five places, and all five are closed.**
+
+| rule | before | now |
+|---|---|---|
+| `103.3.a.1` rune identity | model only, new today | clicked, and asserted to cite 103.3.a.1 and **not** 103.1.b |
+| `103.2.a.2` champion tag, via the DECK ROW | source only | clicked — the one champion button a pool filter cannot cover |
+| `103.4.c` one battlefield of a name | badge asserted, click not | clicked, both buttons |
+| `103.3.a` twelve runes | no DOM test at all | clicked, both buttons |
+| `103.2.e` legality, tier 3 | docblock only | clicked, in **both formats** |
+
+**Reading a badge and taking a click are two different claims**, which is what `103.4.c` and `103.3.a`
+had confused: a template change could have left the badge painted and the button working.
+
+### Tier 3 is pinned by one card, and it is the only card that could
+
+Measured over all 1189 printings, **exactly ONE card's legality differs between the two formats**:
+`OGS-019 Wuju Bladesman - Starter`, restricted in 2v2 and unremarkable in Constructed. So it is the
+only subject that can show the badge following `env.format()` at all — and it is simultaneously the
+pool's only restricted row, the one the user's decision says must stay addable whatever else changes.
+Both halves of tier 3 therefore land on the same cell: no badge in Constructed, the restricted badge
+after the flip, and `aria-disabled="false"` with a click that lands in both.
+
+### Coverage, stated honestly
+
+Of the twelve rules the cell can report, **eleven** are named inside a block that clicks and asserts
+nothing happened. The twelfth is the bare `103.2` — `championCapOf`'s not-a-Main-Deck-card branch — and
+it is **unreachable from the UI**: `filterPool` draws only on-tag units in the Champion zone and a
+non-main row has no Champion link. It is pinned in the model instead, with that reason in the test.
+
+**The first coverage probe answered "(none) missing" and was wrong**, because it matched prefixes, so
+`103.2.a.2` satisfied the bare `103.2`. Exact matching gives one. That is the fourth instrument error
+of this lane in a day — after a probe that read a filter as a refusal, a round-trip check that compared
+key order, and a `checkSave(text, name)` call against a `checkSave(name, text)` signature that made the
+length check answer `ok` without ever seeing the text. **Every one of them returned a confident wrong
+answer rather than an error**, which is the whole argument for sampling the hits and reading them.
+
+### Two mutations, and the counts are the point
+
+Neutering the sideboard identity row turns **exactly two of its eight** cases red — the two that detect
+a failure; the other six pin pass, unknown, absence and order and are *supposed* to survive a row that
+never fails. Neutering `refreshBuilder` turns **exactly one of twenty-five** red. A mutation that turns
+everything red means the suite is measuring something else.
