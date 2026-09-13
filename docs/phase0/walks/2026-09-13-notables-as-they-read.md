@@ -452,3 +452,109 @@ and by CLAUDE.md's own rule a check that comes back clean is the one worth pinni
 it can only ever be paid for once. **Proposed, not written, because `test/` is not mine**: assert that
 no entry using one of the four Loose-Cannon cards claims its conditional is part of the Trigger
 Condition, with a non-vacuity line printing the four base codes and the number of entries scanned.
+
+---
+
+## 12. Lead 2, read rather than pasted — **eight of the eleven are owed, not eleven**
+
+§9's second lead said eleven of the eighteen base-parked entries name none of the three
+base-reachers. That is true of the *count* and the obvious next move — paste the uniform notable onto
+all eleven — would reproduce, while fixing it, the exact failure §1 to §5 report. **All eleven were
+read. Three are not exposed, for three different reasons, and only one of the three was already a
+known reason.**
+
+### Not exposed (3)
+
+**`swain-shurelya-double-conquer` and `swain-svellsongur-conquer-burst` — the clause is past tense.**
+
+```
+VEN-065 | Swain, Visionary | Unit | Mind | E6 P1 M6 | ... When I conquer, if you've played a
+non-token unit, a non-token gear, and a spell this turn, you score 1 point.
+```
+
+*"if you've played"* is a fact about the turn's history. Both entries say so in their own steps —
+*"Swain's three-part condition is now satisfied for the rest of the turn"* and *"All three thirds of
+the Trigger Condition are now historical facts about this turn"*. `OGN-096 Watchful Sentry` (M1) and
+`VEN-043 Steel Paws` (M0) have finished their work the instant they resolve; bouncing or killing
+either afterwards changes nothing. **This reason my predecessor had already named.**
+
+**`stare-down-demolitionist-gear-strike` — the printed Might is not the board Might, and the entry
+says so in its first sentence.** `VEN-080 Noxian Demolitionist` is printed **M1**, which is what the
+predicate read. Its step 0 reads *"[Equip] both to him … **He is now M5** (434.1.d, 137.3, 477.3.d)"*,
+and measured on `cards.json` that is exact: `SFD-118 Boneshiver` and `UNL-096 Hunter's Machete` each
+carry `mightBonus: 2`. **718.4** — *"While in this state, the card's Might Bonus modulates the
+Top-Most Card's Might by the value listed"* — and **137.3.a** put it at 5 wherever it stands.
+`UNL-132 Angler Beast` returns units *"with 2 :rb_might: or less"* and cannot reach it. The Might
+Bonus is not incidental here either: his own payoff reads *"kill a gear with Energy cost no more than
+**my Might**"*, so the entry is built on the number the predicate could not see.
+
+**This is a new member of the predecessor's class and it is worth stating separately: a `uses` row
+carries the card's PRINTED Might, and an entry that attaches gear has a different Might on the board.
+The deciding datum was again in the steps.** (One honest window: if the gear is attached on a later
+turn than the body is played, he sits at M1 in between; the entry declares the assembled state.)
+
+### Exposed, severely (3) — every one is a Svellsongur carrier
+
+`svellsongur-treasure-hunter-gold` (`SFD-130`, M1), `svellsongur-apprentice-smith-gear-dig`
+(`SFD-041`, M2), `svellsongur-traveling-merchant-discard` (`OGN-185`, M2). Each is a small body
+carrying **three `SFD-059 Svellsongur`** for the 2³ = 8 composition, and each parks at base.
+
+`UNL-132 Angler Beast` (Chaos, E5 P1) returns it to **hand**, and **719.5** — *"When a Top-Most Card
+changes zones from a board zone to a non-board zone, all Attached cards Detach from it, remaining in
+their current zones"* — takes all three Svellsongur off, with **457.1** recalling them to base.
+
+**The cards survive; what is spent is the rebuild, and I over-stated it before checking.** The first
+figure I reached for was the whole investment (E9 + 3 Calm Power of Svellsongur plus E3 + 3 Calm
+Power of attaches). That is wrong: CLAUDE.md already records that losing a carrier costs *one [Equip]
+cost and not the card*. The honest bill is **E2 to replay the carrier — which 143.4 enters exhausted,
+so it cannot move and the engine produces nothing that turn — plus E1 + 1 Calm Power per re-attach,
+and the three must go back on IN ORDER**, because 480.3 applies effects in timestamp order and the
+composition depends on it. **E5 + 3 Calm Power and a full turn, against one card at E5 + 1 Power.**
+A clean trade for the opponent, and not the catastrophe the first figure implied. **The predicate
+that overstates is not always someone else's.**
+
+### Exposed, ordinarily (5), each with the shape of its loss
+
+| entry | body | what losing it costs |
+|---|---|---|
+| `treasure-hunter-industrialist-gold` | `SFD-130` M1 | the Gold faucet stops; replayable for E2 |
+| `faefolk-star-spring-drag` | `UNL-112` M1 | the forced reposition stops; its step 0 puts it *"in your base, ready"* and its step 3 moves it back there, so it stands at base every opponent turn |
+| `daisy-green-father-four-tag-attacker` | `OGN-216` M1, `SFD-159` M2, `OGN-210` M2 | **three of the four tags in one card**, and the loss is total |
+| `friendship-fiora-worthy-mighty-ready` | `OGN-210` M2, `SFD-159` M2 | **partial, not total** — `UNL-046 Friendship` gives +1 per tag, so one tag is one Might and the 709 crossing may still land |
+| `ravenbloom-diana-fizz-spell-stack` | `OGN-103` M2 | exposed only **between deployment and the payoff turn**; on the payoff turn the spells take her to M6 and out of the band |
+
+**`daisy-green-father-four-tag-attacker` deserves the contrast, because it is Ivern's mirror on the
+same four tags.**
+
+```
+UNL-196 | Daisy! | Unit | E9 P2 M8 | ... When I attack while your units have all 4 tags, [Stun] an
+enemy unit here.
+```
+
+Daisy's conditional sits **between the trigger opener and the effect verb**, so 383.2.a.1 makes it
+part of the **Trigger Condition** — checked once, at the Attacker designation — and the entry's own
+step 3 cites it correctly. **Ivern's identical-looking four-tag clause follows the effect verb and is
+an Effect clause.** Same four tags, same bodies, opposite answer to *"can they remove a tag in
+response?"* — for Daisy, no; for Ivern, yes.
+
+### The vocabulary hole in my own §11 sweep, reported rather than quietly patched
+
+Daisy prints **`while`**, not `if`. §11's predicate required the word `if`, because 383.2.a.1's two
+worked examples both use it — **so the domain's vocabulary was wider than the rule's examples and my
+sweep could not see her.** Re-run with `if | while | unless | as long as`: **42 Sona-shape clauses
+(up from 40) and 27 otherwise (up from 24)**. The two added Sona-shape cards are `UNL-196 Daisy!` and
+`UNL-150 Vex, Apathetic`; **zero new Loose-Cannon-shape cards appear**, because every added `while`
+in the LOOSE bucket is a *separate static sentence* rather than a conditional gating the trigger
+(`SFD-201` *"While your score is within 3 points…"*, `VEN-132` *"While I'm at a battlefield,
+opponents can't play spells with that name"*, `VEN-135` *"While there's a stunned enemy unit here, I
+have +2"*), all read. **§11's four stand and its conclusion is unchanged**; what changes is that the
+predicate was narrower than the pool, which is the same defect this walk reports in other people's
+work, found in mine.
+
+### Tally
+
+**Eight of eleven are owed a note, not eleven.** Three subtractions, three different reasons — past
+tense (2), printed Might ≠ board Might (1) — and the eight split into three severe and five ordinary,
+with the shape of the loss differing in every one: total for Daisy and the Svellsongur carriers,
+partial for Friendship, windowed for Ravenbloom. **There is no uniform sentence that is true of all
+eight**, which is the answer to the question the lead was really asking.
