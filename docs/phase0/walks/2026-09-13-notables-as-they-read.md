@@ -2109,3 +2109,60 @@ management moves its financing into the right phase. **The test has two clauses,
 consumer finish inside the loop's Main Phase*, and if not, *can it leave the deck a card for every
 Draw Phase it crosses?* `grand-plaza-loop-time-warp` answers the first, these two answer the second,
 and the twin answers neither.
+
+---
+
+## 36. The `needs`/`produces` DAG — **sound in the direction that matters, and the `-engine` suffix is a promise the schema does not keep**
+
+**766 entries, 19 distinct `produces` values, 6 distinct `needs` values.**
+
+**Zero `needs` values are produced by nothing.** That is the load-bearing direction — a consumer with
+no producer is a line that cannot be assembled — and it is clean, which extends CLAUDE.md's recorded
+result that no `needs` lacks a *domain-legal* producer.
+
+**Thirteen `produces` values are consumed by nothing, and most of them should be.**
+
+```
+value                    produced by   needed by
+resource-engine                 180           1
+repeatable-removal              149           0
+card-advantage-engine           136           0
+ability-points                   62           0
+token-body-engine                60           6
+conquer-engine                   58          10
+burst-points                     39           0
+combat-might                     39           0
+board-protection                 33           0
+win-the-game                     27           0
+tempo-denial                     27           0
+unit-delivery                    21           0
+strip-opponent-hand              10           0
+temporary-body-engine             9           0
+infinite-energy                   7          16
+xp-engine                         6           0
+infinite-power                    5          11
+opponent-deck-pressure            3           0
+infinite-recycle                  1           2
+```
+
+**The thirteen split into two kinds the schema does not distinguish.** `win-the-game`,
+`burst-points`, `ability-points`, `repeatable-removal`, `combat-might`, `board-protection` and
+`tempo-denial` are **OUTPUTS** — what a line delivers. Nothing should consume them, and their zeroes
+are correct.
+
+**But four carry `-engine` in the name, which reads as a promise of fuel, and are consumed by nothing
+or nearly nothing:** `resource-engine` at **180 producers and ONE consumer**, `card-advantage-engine`
+at **136 and zero**, `temporary-body-engine` at 9 and zero, `xp-engine` at 6 and zero. Beside them
+`infinite-energy` runs 7 producers to 16 consumers and `conquer-engine` 58 to 10 — **so the
+vocabulary does contain working fuel edges, and these four are not among them.**
+
+**Whether that is a gap or a correct terminal is a design question and I am not answering it**, but
+the precedent points one way: CLAUDE.md records `conquer-engine` as *"32 entries produced and nothing
+consumed"*, and it now reads **58 produced and 10 consumed** — somebody connected it, and the tag was
+a real fuel edge that was simply unwired. **`card-advantage-engine` at 136:0 is the same shape at four
+times the size**, and `resource-engine` at 180:1 is the largest producer set in the whole vocabulary
+with one consumer.
+
+**The cheap version of the question, for whoever takes it:** `generateVariants` in `src/combos.ts`
+walks this DAG, so an unwired fuel tag is 136 entries the variant generator can route out of and
+nothing it can route into. **That is measurable against the generator rather than argued.**
