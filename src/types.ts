@@ -48,7 +48,26 @@ export interface LegalityEntry {
 export type ComboClass = "INFINITE" | "BURST" | "CHAIN" | "ALT_WIN" | "ENGINE";
 export type ComboStatus = "verified" | "candidate" | "refuted";
 export type IngredientRole = "engine" | "enabler" | "payoff" | "resource" | "ready" | "battlefield" | "legend";
-export type Zone = "BOARD" | "BATTLEFIELD" | "BASE" | "HAND" | "TRASH" | "DECK" | "LEGEND" | "CHAMPION";
+/**
+ * Where a piece has to be for the line to work. A RUNTIME list with the type derived from it, for
+ * the reason `SOURCE_KINDS` below is one: a union that exists only at compile time is checked only
+ * where a value is WRITTEN in TypeScript, and no `Ingredient` ever is — they are authored in
+ * `data/combos.json` and arrive through an unchecked cast in `src/load.ts`.
+ *
+ * That is not hypothetical here. `ATTACHED` was in use on 24 `uses` rows across 22 entries, every
+ * one an Equipment on a carrier, while this union declared eight members and not that one, and
+ * nothing anywhere noticed — the identical failure `SOURCE_KINDS` records for `video`, which sat in
+ * the catalogue 54 times undeclared. `validateCombos` now walks every zone against this list.
+ *
+ * `ATTACHED` IS AN ON-BOARD ZONE and a checker written from the name alone would get that wrong:
+ * 718.5.b keeps an attached card a legal target *while attached*, and 719.5 detaches it only when
+ * the Top-Most Card leaves the board. So anything counting what a deck has standing must treat it
+ * as present, not as a non-board zone like `TRASH` or `DECK`.
+ */
+export const ZONES = [
+  "BOARD", "BATTLEFIELD", "BASE", "HAND", "TRASH", "DECK", "LEGEND", "CHAMPION", "ATTACHED",
+] as const;
+export type Zone = (typeof ZONES)[number];
 
 export interface Ingredient {
   /** Base card code (no alt-art suffix). */

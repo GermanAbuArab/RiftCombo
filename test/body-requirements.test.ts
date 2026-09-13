@@ -3,6 +3,7 @@ import { generateVariants, validateCombos } from "../src/combos.js";
 import { loadCardIndex, loadCombos } from "../src/load.js";
 import { matchDeck } from "../src/matcher.js";
 import { planDeck } from "../src/plan.js";
+import { ZONES } from "../src/types.js";
 import type { Combo, Deck } from "../src/types.js";
 
 const cards = loadCardIndex();
@@ -83,6 +84,21 @@ describe("bodies a line needs that no card supplies (Combo.anyBodies)", () => {
 
     const withUnits = deck({ legend: "SFD-195", battlefields: { "OGN-293": 1 }, main: { "UNL-044": 1, "OGN-044": 3 } });
     expect(planDeck(withUnits, vs, cards, { format: "constructed" }).have).toHaveLength(1);
+  });
+
+  it("declares every zone the catalogue actually uses, ATTACHED included", () => {
+    // ATTACHED was in use on 24 `uses` rows across 22 entries while `Zone` declared eight members
+    // and not that one. Nothing caught it: the union is compile-time, `src/load.ts` reads the file
+    // through an unchecked cast, and `validateCombos` never looked at `zone`. Exactly the failure
+    // `SOURCE_KINDS` records for `video`, which sat in the catalogue 54 times undeclared.
+    const used = new Set(combos.flatMap((c) => c.uses).map((u) => u.zone).filter(Boolean));
+    expect(used.size, "the zone sweep matched nothing, so it proves nothing").toBeGreaterThan(5);
+    expect([...used].filter((z) => !(ZONES as readonly string[]).includes(z!))).toEqual([]);
+    // Pinned by name so the union cannot be "tidied" back to eight: the data is right, the type was
+    // short, and a body checker written from the name alone would treat it as a non-board zone.
+    expect(used.has("ATTACHED")).toBe(true);
+    expect(validateCombos([combo({ uses: [{ card: "OGN-044", quantity: 1, role: "engine", zone: "SIDEBOARD" as never }] })], features, cards))
+      .toEqual(["synthetic: OGN-044 has unknown zone SIDEBOARD"]);
   });
 
   it("refuses an authored requirement a reader could not check", () => {

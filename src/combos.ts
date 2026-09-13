@@ -1,4 +1,5 @@
 import type { CardIndex } from "./cards.js";
+import { ZONES } from "./types.js";
 import type { Combo, ComboClass, ComboStatus, Domain, Feature, Variant } from "./types.js";
 
 /** Sanity checks an authored combo file must pass before anything is generated from it. */
@@ -14,6 +15,11 @@ export function validateCombos(combos: Combo[], features: Feature[], cards: Card
       if (!card) errors.push(`${c.id}: unknown card ${ing.card}`);
       else if (card.base !== ing.card) errors.push(`${c.id}: ${ing.card} is not a base code (use ${card.base})`);
       if (ing.quantity < 1) errors.push(`${c.id}: ${ing.card} quantity must be >= 1`);
+      // The compile-time union cannot see this file, so the runtime list does. ATTACHED was in use
+      // on 24 rows while the type declared eight members and nothing anywhere noticed.
+      if (ing.zone && !(ZONES as readonly string[]).includes(ing.zone)) {
+        errors.push(`${c.id}: ${ing.card} has unknown zone ${ing.zone}`);
+      }
     }
     for (const f of [...c.needs, ...c.produces, ...(c.removes ?? [])]) {
       if (!featureIds.has(f)) errors.push(`${c.id}: unknown feature ${f}`);
