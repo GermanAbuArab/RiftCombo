@@ -512,7 +512,13 @@ function banRow(r: DeckRestriction): string {
 /** What adding these cards costs the list: deck slots, battlefield slots, or a rebuild. */
 function leadFootnote(r: Route): string {
   const parts: string[] = [];
-  if (r.havePieces > 0) parts.push(`You already have <strong>${r.havePieces} of ${r.totalPieces}</strong> pieces.`);
+  // "You already have 1 of 1 pieces" beside a "+1 CARD" pill reads like a contradiction, and for a
+  // route short of a body it is not one: `havePieces` counts the pieces the line NAMES, and a body
+  // no card supplies is unnamed by construction. The word "named" is the whole fix, and it is added
+  // only where the ambiguity exists so every other route keeps the sentence it had.
+  if (r.havePieces > 0) {
+    parts.push(`You already have <strong>${r.havePieces} of ${r.totalPieces}</strong> ${r.addBodies ? "named " : ""}pieces.`);
+  }
   // Bodies are deck slots like any other card, so they belong in the "cards in means cards out"
   // arithmetic rather than beside it.
   const deckCopies = r.cost - r.battlefieldCopies;

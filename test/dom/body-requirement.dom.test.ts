@@ -91,6 +91,10 @@ describe("the site says a line needs bodies no card supplies", () => {
     // The row sits in the same list as the card rows because it costs the same thing, a deck slot.
     expect(text).toMatch(/1 more unit of your own/);
     expect(text).toContain("exactly 4 units at battlefields");
+    // "You already have 1 of 1 pieces" beside a "+1 CARD" pill reads as a contradiction. It is not
+    // one - havePieces counts the pieces the line NAMES - and the panel now says so in that case.
+    expect(text).toContain("named pieces");
+    expect(text).toContain("+1 CARD");
   });
 
   it("says it on the diagram's route node too, which is a CARD graph with no node for a body", async () => {
