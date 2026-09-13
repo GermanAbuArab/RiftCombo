@@ -53,9 +53,39 @@ That is a one-turn correction, and it is the small half of the problem.
 
 It is not one entry's quirk. Searched over `prerequisites.notable` for the exact string *"the Main
 Deck is empty by construction"*: **14 of 14 INFINITEs carry it, and no entry of any other class
-does.** The clock prices none of it — and **8 of the 9 rows that beat their baseline are INFINITEs**,
-so the entire "faster than doing nothing" result rests on the one class whose entry condition is
-invisible to the instrument that produced it.
+does.**
+
+**And ASSERTING it is not the same as NEEDING it — a first draft of this play conflated the two and
+the corrected version is the better finding.** That sentence reaches all fourteen because it lives
+inside the Tournament Rules 505 paragraph that was pasted uniformly onto the class in #191 batch 27.
+Classified instead from each entry's own `steps` — does the **pass** put a card into the Main Deck
+and draw it back? — the class splits:
+
+- **Eight need it.** `lux-infinite-energy`, `lux-infinite-power`, `lady-luminosity-loop-comet`,
+  `jhin-virtuoso-ekko-malzahar-vi` and `gemdragon-henge-vi-blind-fury` recycle and draw inside every
+  pass; `renata-mastermind-points`, `renata-bubble-bot-ready` and `jayce-mesmerize-renata` declare
+  `needs: ["infinite-energy","infinite-power"]` and inherit it from the Lux engines.
+- **Six do not.** `jhin-fiora-facebreaker-recall`, `twilight-reveler-eye-facebreaker-recruits`,
+  `garen-fiora-malzahar-facebreaker-recruits`, `threshold-reveler-infinite-energy`,
+  `reveler-svellsongur-jhin-infinite-power` and the banned `pursuer-herald-recruits` are
+  **combat-recall loops that spend zero cards a pass** — walk in, take the Attacker designation,
+  get recalled by 466.1.a.2, repeat. Two of them do carry the word *draw* in their steps and both say
+  *"first pass only"*; their own `netPerIteration` reads *"0 Energy, 0 Power and 0 cards spent"*. For
+  those six the boilerplate's argument is not merely unnecessary, it is the wrong one: 416.5 never
+  fires because **nothing is recycled**, and saying the deck is empty by construction claims a
+  precondition they do not have.
+
+So of the **9 rows that beat their baseline**, **five carry the unpriced empty-deck cost**
+(`lux-infinite-power`, `renata-mastermind-points`, `renata-bubble-bot-ready`, `lux-infinite-energy`,
+`jayce-mesmerize-renata`), one is a CHAIN (`yasuo-windrider-ride-the-wind-chain`), and **three are
+honest**: `jhin-fiora-facebreaker-recall` and `twilight-reveler-eye-facebreaker-recruits` at T5, with
+`garen-fiora-malzahar-facebreaker-recruits` tying at T6.
+
+**Those three are also the inverse of the line this play walks.** They are combat loops: 807.1.d needs
+the Attacker designation and 323.9 stages no Combat without an enemy garrison, so they are **dead on
+an empty board and alive on a contested one** — which is the shape the `--stalled` pass calls a
+credential, and the shape the Renata line does not have. The catalogue's genuinely fast INFINITEs are
+the ones that cost no cards and want the board a stall produces.
 
 ### The empty deck is a ONE-MAIN-PHASE state, and it destroys itself
 
@@ -286,7 +316,21 @@ R30 (voted 2026-09-06, issue #11) turns on exactly this sentence: Heimerdinger c
 **Heimerdinger** must stand at a battlefield. The reading was settled for the copier and never read
 back onto the original — the diagnosed-but-unapplied shape, in a new place.
 
-### Two suggested changes, neither made here
+### The Tournament Rules 505 notable is right on eight entries and wrong on six
+
+Every INFINITE carries the same pasted paragraph, and its load-bearing clause is *"The condition is
+checkable and this entry meets it: the Main Deck is empty by construction, so every card recycled in
+a pass is drawn back inside that same pass."* On the eight loops that recycle, that is exactly right
+and is one of the better things in the catalogue — it is the *"zero spare draws"* invariant doing a
+second job, licensing the shortcut under TR 505.9.
+
+On the six combat-recall loops it is an argument for a condition they do not have. The true reason
+those six may be shortcut is shorter and stronger: **they recycle nothing, so 416.5 never fires at
+all.** Uniform boilerplate is how a correct sentence ends up on an entry it was not measured against,
+and the tell here is that the entries' own `netPerIteration` fields contradict it in their own words
+— *"0 Energy, 0 Power and 0 cards spent"*.
+
+### Three suggested changes, none made here
 
 `data/combos.json` is single-owner and this lane does not hold it, and
 `scripts/adversarial-check.mjs` is the clock's own file. Both are for the manager:
@@ -301,5 +345,8 @@ back onto the original — the diagnosed-but-unapplied shape, in a new place.
 2. **The clock should fold `needs` upward.** `generateVariants` already builds the correct card set
    and caps the domains; using it for the 8 rows that declare unfunded needs is a strictly better
    number than the one printed today. It does not reach the empty-deck cost, which is not a mana cost
-   at all and would need a draw model — but the citation belongs in each INFINITE's own prose, which
-   costs nothing: **fourteen entries assert an empty Main Deck and not one of them cites 315.4.b.1.**
+   at all and would need a draw model — but the citation belongs in the prose of the eight that
+   really carry it, which costs nothing: **they assert an empty Main Deck and not one of them cites
+   315.4.b.1, the paragraph that makes the state last one Main Phase.**
+3. **The TR 505 notable should say the right thing on the six that do not recycle** — one sentence,
+   not the pasted one. A uniform paragraph is worth auditing wherever it reaches a whole class.
