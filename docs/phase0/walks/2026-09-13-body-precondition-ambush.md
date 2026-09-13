@@ -1381,3 +1381,53 @@ inside my wider set.
 **And the two halves explain each other.** The CARD claims hold because they state their predicates;
 the ENTRY claims have not rotted because the file marks them perishable and dates them. **Those are
 the same discipline applied to two different half-lives** — say how you measured it, and say when.
+
+---
+
+## 28. THE RULE HAYSTACK: EIGHT OF NINE EXACT, AND THE NINTH TAUGHT ME I HAD BUCKETED IT WRONG
+
+RULE invariants do not rot, so a wrong one has been wrong in every session since it was written.
+Checked with the anchors this file itself records as the only safe forms — `[[:space:]]` rather than a
+literal space, no trailing space after the dot, a lookbehind excluding hyphen and hash.
+
+| claim | found |
+|---|---|
+| the Core Rules stop at **829** | highest top-level heading **829** |
+| nothing between 490 and 648 | **0** headings; neighbours are 489 and 649 |
+| *"is not a subset of"* appears exactly **FIVE** times | **5** |
+| **120** form-feed page breaks | **120** |
+| **89** headings sit immediately after a form feed | **89** |
+| **eleven** U+200B in the Core Rules | **11** |
+| **no** U+200B in the Tournament Rules | **0** |
+| **2,381** real headings | **2,381** |
+
+**Eight for eight, exactly.** Every one of these is an instrument fact — they are the reason the greps
+in this project do not lie — and each is precisely right.
+
+### The ninth is not a rule invariant at all, and that is my error
+
+*"of 1,082 distinct rule references in the catalogue, exactly ONE resolves only in the Tournament
+Rules (703.3.a.3) while 52 exist in BOTH books."* My first pass compared **all** headings shared
+between the books and got 146, which is a different population — the claim is scoped to references
+**the catalogue actually makes**. Scoped correctly: **1,322 distinct references today (was 1,082), 77
+in both books (was 52), and THIRTEEN resolving only in the Tournament Rules (was one)** —
+`505`, `505.2`, `505.9`, `503.8`, `503.9.c`, `503.9.d`, `500`, `501`, `603`, `604`, `702.15.a.1`,
+`702.15.a.2`, `703.3.a.3`.
+
+**Its bullet is dated 2026-09-12, so by this file's own rule it is SANCTIONED and not a defect** — it
+was right when it was made, and the drift is the #187 Tournament survey plus my own citations today.
+
+**But I am flagging it as a REFRESH rather than nothing, because the impression it leaves has
+inverted.** Its own consequence is a standing instruction — *"`test/rule-refs.test.ts` accepting
+either cannot disambiguate, so write every Tournament Rules citation labelled"* — and a reader seeing
+*"exactly ONE"* concludes Tournament-only citations are vanishingly rare. **They are now routine, at
+thirteen, which makes the instruction MORE necessary rather than less.** A dated number whose
+direction of travel strengthens its own rule is worth refreshing even though nothing is wrong.
+
+### And the methodological correction is mine
+
+**I put this in the RULE bucket because it is ABOUT the rulebooks. It COUNTS catalogue references, so
+it is ENTRY-scoped and rots on every merge — which is exactly what it did.** The haystack of a claim
+is decided by **what it counts, not by what it is about**, and I had the rule right in §26 and applied
+it wrong here. That is the difference between an invariant that is true forever and one that was true
+on a Friday.
