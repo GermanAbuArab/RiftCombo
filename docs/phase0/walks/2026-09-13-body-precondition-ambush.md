@@ -1103,3 +1103,67 @@ do and what let `anyBodies.note` be born outside its coverage.
 
 **Two patterns for one problem in one repo, and only one fails safe.** That is a stronger argument
 than any I could make from first principles, and it is the one to hand the schema owner.
+
+---
+
+## 23. A STATED INVARIANT, TESTED: 118 OF 119
+
+`CLAUDE.md` states an invariant rather than an observation — *"Every entry that needs a specific
+battlefield states this in `prerequisites.notable`, per format."* **That is checkable**, and it is
+worth checking because the claim it protects is one a player acts on: 485.5 *"Each player randomly
+selects one (1) of their three (3) Battlefields"* in a Duel, 487.5 the same in Skirmish, and 486.5 a
+free CHOICE in game 1 of a Match followed by REMOVAL for the rest of it.
+
+**119 entries stand on a non-token battlefield named in `uses`. 118 state the caveat in some form**
+— a setup rule number, or the randomness in words. **ONE does not: `leblanc-temporary-plaza`
+[ALT_WIN], on `OGN-293 The Grand Plaza`.**
+
+**It is an ALT_WIN, which is the class where it matters most**: the sentence the site puts in front
+of a player is *you win the game*, and the line needs a specific battlefield that arrives one game in
+three in a Duel. Reported, not edited — `data/combos.json` is rc-manager8's.
+
+**A 118-of-119 result is what a real invariant looks like.** It is not a clean sweep and it is not a
+broken claim; it is a convention that held 118 times and lapsed once, which is exactly the kind of
+thing worth a mechanical check rather than a rule in a file.
+
+---
+
+## 24. THE SECOND ENGINE SLICE — PREDICTION AND STOPPING RULE, WRITTEN FIRST
+
+rc-manager8's decision, and the reasoning is better than the task: **the reading is a
+CLASS-DISCOVERY instrument, not a rate estimator.** The first 24 produced a perishable entry count
+(then swept across all 766), an Equipment-with-no-answer shape (swept across all 686) and a
+prose-field coverage gap (turned into a 28-path census). **In every case the reading found a class
+and a sweep measured it.**
+
+### The frame, and an honest disclosure about it
+
+**Every 57th ENGINE from index 1 — 13 entries, disjoint from the offset-0 slice by construction.**
+Three of the thirteen I have already read elsewhere in this document
+(`guardian-passage-svellsongur` in the thin-tail census, `tianna-wildclaw-point-lock` and
+`emperors-dais-sprite-queen-conquer-cycle`), so the genuinely new population is **ten**.
+
+**AND I HAD ALREADY OPENED FIVE OF THEM WHEN THE STOPPING RULE ARRIVED**, which I am recording rather
+than papering over: `kaisa-survivor-arena-draw`, `warden-tianna-base-lock`,
+`power-nexus-sentinel-renata-mastermind`, `ember-monk-edge-of-night` and
+`forbidding-waste-wuju-bladesman-lone-defender`. **They produced no new class** — the sharpest thing
+in them was a rules check that came back CORRECT (805.1.a.1 confines an Accelerate Power to the
+unit's own domain, and `OGN-039 Kai'Sa, Survivor` is Fury paying a Fury rune). So the
+pre-registration below governs the remaining five unread entries honestly, and the five already read
+are declared as read-before-registration.
+
+### THE STOPPING RULE, stated so it executes itself
+
+**If this slice finds NO NEW CLASS — only further instances of classes already swept mechanically —
+I STOP READING THE ENGINE CLASS AND SAY SO IN THOSE WORDS.** A second slice turning up three more
+perishable counts is not a reason for a third; it is evidence the class-discovery rate has fallen and
+that the mechanical sweeps hold the remaining value. **One new class authorises a third slice.**
+
+### The prediction
+
+**I expect NO new class.** Three reasons, stated now so they cannot be assembled afterwards: the
+first 24 entries produced three classes and each was immediately exhausted by a whole-catalogue
+sweep, so the cheap discoveries are behind rather than ahead; the five already read produced none;
+and the four questions I read against are now each backed by a mechanical sweep that has already
+covered all 686, so a new instance would be caught without me. **If I am right, the honest report is
+"stop", and the value of this slice is the stopping rather than the finding.**
