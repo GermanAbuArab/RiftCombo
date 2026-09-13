@@ -20,6 +20,13 @@
 //      See docs/plays/2026-09-12-the-unopposed-clock.md. Both numbers are OPTIMISTIC LOWER BOUNDS:
 //      perfect draws, nothing else ever cast, no interaction from the opponent.
 //
+//      "Perfect draws" silently includes the RUNE DECK, and that had no paragraph behind it until
+//      2026-09-13. This table pays a Power cost out of whatever rune it likes; the game does not.
+//      114 shuffles the Rune Deck at setup, 108.5.d makes its order Secret Information, and 430.1
+//      channels "from the top" - so a domain arriving on the turn a cost wants it is a DRAW
+//      assumption exactly like holding the card, not a choice the player makes. Both paragraphs are
+//      cited by nothing else in this project (108.5.d by nothing at all).
+//
 //      KNOWN AND UNPATCHED, AND IT POINTS THE OTHER WAY FOR ONE CLASS. `deployTurn` prices every card
 //      in a closure against the rune curve, which is right for a BURST or a CHAIN, where every Energy
 //      comes from a rune. It is WRONG for an Energy engine: once an `infinite-energy` loop is live,

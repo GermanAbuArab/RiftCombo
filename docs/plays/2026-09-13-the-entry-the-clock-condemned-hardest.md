@@ -8,11 +8,17 @@ first — this play is about what that document's baseline is and is not for.
 **Subject: `svellsongur-copy-hold`** — a BURST, T6, and a member of the worst-scoring population in
 the whole catalogue on the day's headline numbers. It is:
 
-- in **BURST**, the class where **20 of 23** rows pay later than the do-nothing Hold curve;
+- in **BURST**, the class where **21 of 23** rows pay later than the do-nothing Hold curve;
 - in the `--stalled` pass's **HOLD** bucket, labelled *"DIES WITH THE CURVE … the stall that makes
   this line necessary is the same stall that switches it off"*;
-- one of the **8 entries that are both**, which is the sharpest negative any instrument in this
+- one of the **23 entries that are both**, which is the sharpest negative any instrument in this
   project produces.
+
+Those three counts read 20, the same bucket, and 8 when this play was first written, and all three
+are re-measured here on 2026-09-13 at catalogue 766: pricing `[Equip]` took BURST from 20 to 21, and
+the `--stalled` precedence fix moved seventeen battlefield-payoff rows into the HOLD bucket, so the
+intersection is 46 and 45 overlapping in 23 rather than in 8. **Re-derive them; do not quote them.**
+Nothing in the argument below turns on any of the three.
 
 **And every one of those verdicts is measured against a board this line was never for.** On the board
 it *is* for it wins three turns early. This play is the correction, and it is a correction to
@@ -64,9 +70,9 @@ pay for it — the Energy-1 units that make the unopposed curve T5 are not neede
 scoped to a **Conquer**, and these are Holds.
 
 **Against that curve this line is T6 against T9 — three turns early.** Measured over the whole
-catalogue the re-baselining moves the class from **20 of 23 slower to 1 of 23**, and the whole table
-from 41 of 80 to **6 of 80**. Both numbers are true; they answer different questions, and the script
-now prints both.
+catalogue the re-baselining moves the class from **21 of 23 slower to 1 of 23**, and the whole table
+from 45 of 80 to **6 of 80** (2026-09-13, catalogue 766). Both numbers are true; they answer
+different questions, and the script now prints both.
 
 ## 3. The turns, on the board it is for
 
@@ -76,29 +82,50 @@ Channel Phase. The opponent has taken the other battlefield and garrisoned it; y
 | turn | R | what happens |
 |---|---:|---|
 | **T1** | 2 | `VEN-043 Steel Paws` (Calm, E1) to base. One Energy idle. |
-| **T2** | 4 | Move it in — 190.3.a.1 Contested, 344.2 opens a Showdown at the next Cleanup, 348.2.a Control, 348.2.a.1 **Conquer**, +1. Then `SFD-059 Svellsongur` (E3 + 1 Calm Power, board → 3). |
-| **T3** | 5 | Beginning: Hold, +1 (2). `UNL-087 Blue Sentinel` (E4 + 1 Power, board → 4). |
-| **T4** | 6 | Hold, +1 (3). `OGN-066 Ahri, Alluring` (E5 + 1 Power, board → 5). Both bodies are now at the battlefield. |
-| **T5** | 7 | Hold, +1 (4). Svellsongur #2 and #3 (E6 + 2 Power, board → 5). |
-| **T6** | 7 | **Attach all three** — `[Equip] E1 + 1 Calm` each, so E3 + 3 Calm Power, board → 4. Ahri carries 8 instances. |
-| **T7** | 6 | Beginning Phase: **Hold. 1 Score + 16 Gains = 17.** You were on 4. **Win.** |
+| **T2** | 4 | Move it in — 190.3.a.1 Contested, 344.2 opens a Showdown at the next Cleanup, 348.2.a Control, 348.2.a.1 **Conquer**, +1. You now control the battlefield, so `UNL-087 Blue Sentinel` (E4 + 1 Power) is played straight to it. Board → 3. |
+| **T3** | 5 | Beginning: Hold, +1 (2). `OGN-066 Ahri, Alluring` (E5 + 1 Power) to the battlefield. Board → 4. |
+| **T4** | 6 | Hold, +1 (3). `SFD-059 Svellsongur` #1 and #2 (E6 + 2 Power). Board → 4. |
+| **T5** | 6 | Hold, +1 (4). Svellsongur #3 **and all three attaches in the same Main Phase** — E3 + 1 Power for the gear, then `[Equip] E1 + 1 Calm` three times, so E6 + 4 Power in all. Board → 2. Ahri carries 8 instances. |
+| **T6** | 4 | Beginning Phase: **Hold. 1 Score + 16 Gains = 17.** You were on 4. **Win.** |
 
-**Turn 7 with the attaches paid honestly, and the clock says T6 — and the first version of this play
-got the reason wrong, which is worth the space.** I wrote that the clock's T6 "does not include" the
-Equip costs. It did not, because `costsOfSet` read a card's printed Energy and Power while 818.1 makes
-`[Equip]` a **separate Activated Ability with its own cost**; three attaches at E1 + 1 Calm Power each
-is three Energy and three Power. **That is now fixed and priced, and the clock still says T6**, so the
-missing turn was never the money.
+**Turn 6 — and the two earlier versions of this table both said T7, for two different wrong reasons.
+That is worth the space, because the second wrong reason became a line in `CLAUDE.md` and a brief.**
 
-**It is ORDERING.** `deployTurn` asks only whether every cost is *payable* by turn N; it does not know
-that you cannot pay a Svellsongur's `[Equip]` before you have played the Svellsongur. The table above
-respects that and lands on T7; the allocator ignores it and lands on T6. Both are correct in their own
-terms, and the clock says which it is on every line it prints: **an optimistic lower bound.** The
-honest sentence is that a line with `[Equip]` costs has an ordering constraint the clock does not
-model, not that the clock cannot see the cost — it can now.
+The first version said the clock's T6 "does not include" the Equip costs. It did not: `costsOfSet`
+read a card's printed Energy and Power while 818.1 makes `[Equip]` a **separate Activated Ability with
+its own cost**. That was fixed and priced, and the clock still said T6, so the missing turn was never
+the money.
 
-**T7 against a contested curve of T9 is still two turns early**, and you only ever needed one
-battlefield.
+The second version said **it is ORDERING** — that `deployTurn` would happily pay a Svellsongur's
+`[Equip]` before the Svellsongur. The premise is true and the conclusion is false. Ordering is now
+modelled exactly (`--selftest` proves the allocator can see a turn where a hand-derived case owes
+one), and **it moves none of the 80 rows, including this one.** 33 of the 80 carry a linked `[Equip]`
+cost and not one of them is constrained by it.
+
+**What actually cost this table a turn was the table.** It spent one card a turn and left Energy idle
+on every one of them — E5 of 5 on T3 wastes nothing, but E4 of 5, E5 of 6 and E6 of 7 each leave one
+behind, and T6 spent E3 of 7. Packed against the same rune curve it fits a turn earlier. Verified
+twice and by two different algorithms: the shipped allocator's exact search, and an independent
+breadth-first enumeration written from the rules rather than from the allocator, which prints exactly
+the schedule above.
+
+**The specific belief that cost the turn is that a gear played this turn cannot be attached this
+turn.** 359.2.d refutes it — *"If it is a Non-Unit Gear, it enters the Board Ready at the player's
+Base"* — so the gear is a Game Object on the board the moment it resolves, 380 is satisfied, and no
+`[Equip]` cost in this pool contains an exhaust. Run the clock with `--strict-ordering`, which forbids
+the same turn and is therefore **wrong as rules**, and this row reads **T7**: the old table was the
+optimum of a game one paragraph stricter than the real one. Six rows move under that probe and the
+unopposed headline goes from 45 to 47 of 80, so the whole gear half of the catalogue sits exactly on
+that boundary.
+
+Two assumptions this table inherits from the clock and does not hide. It ignores which **domain** a
+rune is when paying Power, and that is a draw assumption rather than a choice: 114 shuffles the Rune
+Deck at setup, 108.5.d makes its order Secret Information, and 430.1 channels from the top. And it
+assumes the cards are in hand when wanted. Both are the same optimism as "perfect draws", applied to
+the other deck.
+
+**T6 against a contested curve of T9 is three turns early**, and you only ever needed one
+battlefield. Section 2 said three turns and section 5 said two; three is right.
 
 ## 4. Breaks to
 
@@ -139,9 +166,19 @@ comparison condemned hardest:
 2. **The `--stalled` HOLD label is too strong** and is not mine to edit. It is correct for a board
    where you control nothing and wrong for the one-battlefield board, which is the common case. A
    third bucket is not needed — one clause in the label is.
-3. **`[Equip]` is now priced** (mine, shipped): parsed from card text, 35 of the 39 gear that print
-   one parse to pure Energy and rune symbols — reproducing this file's own independent count of 29
-   one-rune plus 6 Energy-and-rune exactly — with the other four named and charged their mana part
+3. **`[Equip]` is now priced** (rc-synth2, shipped): parsed from card text, 35 of the 39 gear that
+   print one parse to pure Energy and rune symbols — reproducing this file's own independent count of
+   29 one-rune plus 6 Energy-and-rune exactly — with the other four named and charged their mana part
    only, `[Quick-Draw]` skipped and `[Weaponmaster]` freeing the cheapest attach. It moved the
-   unopposed headline from 41 to 45 of 80. **What remains unmodelled is ORDERING**, which is what
-   actually separates this line's T6 from its T7, and that is a larger change than a cost parser.
+   unopposed headline from 41 to 45 of 80.
+4. **ORDERING is now modelled too** (rc-synth3, shipped, 2026-09-13) and **it moves nothing**: 33 of
+   the 80 rows carry a linked `[Equip]` cost and the constraint constrains none of them. The sentence
+   this play used to carry — that ordering is what separates this line's T6 from its T7 — **is
+   withdrawn**; the T7 was a suboptimal hand schedule that assumed a gear cannot be attached the turn
+   it is played, which 359.2.d refutes. `CLAUDE.md` carries the old claim by way of a handoff and is
+   the manager's file, so it is flagged rather than edited here.
+5. **The clock's last unmodelled ordering fact is the CARRIER** (818.1.c.2, *"a unit you control"*),
+   and it is bounded rather than open: probed in `.scratch-gap/probe-carrier.mjs` it moves no row, and
+   the only row it touches is `arise-sand-soldiers-plaza` — the one finisher with an Equipment and no
+   unit in `uses`, which already declares `anyBodies`. Inert wherever it is expressible, and
+   unmodellable on the last row without inventing a decklist.
