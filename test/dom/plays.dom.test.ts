@@ -208,6 +208,7 @@ describe("which entry a play is about", () => {
     // is in the list instead, which is why every new play adds its subject here.
     "bottled-constellation-time-warp",
     "shen-sentinel-time-warp-chain",
+    "keeper-of-masks-flurry-plaza-window",
   ];
 
   it("points each play at the one line it is about, and half of them at none", async () => {
@@ -218,6 +219,7 @@ describe("which entry a play is about", () => {
     expect(at("tryndamere-brambleback-conquer")).toEqual(["2026-09-12-the-unopposed-clock"]);
     expect(at("bottled-constellation-time-warp")).toEqual(["2026-09-13-the-setup-nobody-prices"]);
     expect(at("shen-sentinel-time-warp-chain")).toEqual(["2026-09-13-the-elegance-is-the-slowness"]);
+    expect(at("keeper-of-masks-flurry-plaza-window")).toEqual(["2026-09-13-the-defenders-chair"]);
   });
 
   /**

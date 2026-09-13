@@ -514,3 +514,31 @@ a rule finds things and needs one narrowing; a check grounded in prose finds not
 several. This one needed two narrowings and found nothing, which is the prose signature exactly. The
 card half is rules-grounded and reusable (`.scratch-gap/probe-conquer-rate.mjs` prints the 26); the
 entry half is a human reading and should stay one.
+
+---
+
+## 14. A shared-branch trap one step worse than the one this project records
+
+`CLAUDE.md` records that a commit failing on `.git/index.lock` inside an `&&`-joined chain lets the
+push run anyway and answer *"Everything up-to-date"*, so a line ending in `echo PUSHED` prints PUSHED
+for a commit that never happened.
+
+**This session hit a worse version: the verification itself was fooled.** The commit failed on the
+lock; the joined push then **succeeded**, pushing another lane's commits; and my own
+`git merge-base --is-ancestor HEAD origin/work` check **passed on those**, printing PUSH VERIFIED for
+a commit that did not exist. The remedy this project already prescribes — verify by re-fetching and
+testing ancestry rather than by the push command's message — is not sufficient on a branch six
+sessions share, because the ancestry test passes for anything already on the remote.
+
+**Verify that YOUR OWN SHA SPECIFICALLY is present, captured immediately after your own commit** —
+not that a merge-base test passes. Reading the `fatal:` line rather than the last line is the other
+half; the failure is loud and it is not last.
+
+The recovery is the one already written down and it worked first time: retry on a short backoff
+(the lock was clear on attempt one, three seconds later), never force, never delete the lock.
+
+**And the inverse case happened in the same hour, which is why the check has to name a sha rather than
+a direction.** A later push chain exited non-zero because `origin/work` had moved ahead — and on
+inspection `HEAD` and `origin/work` were **identical**: another lane had committed on top of mine and
+pushed, carrying my commit with it. **On a shared branch, "my push failed" and "my work is not
+pushed" are different claims**, and only a per-sha ancestry test tells them apart.
