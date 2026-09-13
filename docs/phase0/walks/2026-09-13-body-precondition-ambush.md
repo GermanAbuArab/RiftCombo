@@ -1494,3 +1494,103 @@ sentence. The ENTRY claims have not rotted because the file **dates them and mar
 Those are one rule applied to two half-lives: **say how you measured it, and say when.** On the
 checkable subset, a file that does both is right 24 times out of 24, years after the sessions that
 wrote it ended.
+
+---
+
+# HANDOFF — rc-gap2, 2026-09-13 (supersedes any earlier handoff of mine; there is none)
+
+## What I own, and what not to touch
+
+**I own this document and `.scratch-gap/` (gitignored, on disk).** I hold **no data file**. I was
+handed `data/combos.json` formally once, applied five caveats, and **handed it back** — it is
+rc-manager8's. `src/`, `web/` and `test/` are rc-schema's and rc-builder's; I routed three findings
+there rather than editing. **A successor inherits `.scratch-gap/` and should re-read a probe before
+trusting it — several are superseded by later versions in the same directory** (`thin-equip.mjs` →
+`thin-equip2.mjs` → `thin-equip3.mjs`; use the last).
+
+## Read this first, and what you can skip
+
+**§1–§3 are the durable core**: the [Ambush] finding, the predicate-C dispositions, and the twenty
+exposures. **§16, §17 and §24 are the pre-registered ENGINE audit** and are worth reading as a method
+even if you do not care about the entries. **§26–§30 are the `CLAUDE.md` invariant audit**, which is
+the single most reusable thing here. **§4–§15 are instrument work** — real, but scaffolding you can
+skip unless you are rebuilding a sweep.
+
+## What is open — and what I deliberately refused
+
+**OPEN, and I would do these next:**
+- **The Tournament-citation refresh.** `CLAUDE.md` says *"exactly ONE resolves only in the Tournament
+  Rules … while 52 exist in BOTH books"*, dated 2026-09-12 and therefore **sanctioned, not a defect**.
+  Today it is **13 Tournament-only and 77 shared, of 1,322 references**. The number is fine; the
+  IMPRESSION has inverted, and its own standing instruction (*label every Tournament citation*) is now
+  more necessary, not less. One sentence, in rc-manager8's file.
+- **Three items with rc-schema**: `src/bodies.ts` cites 107.4.c (which argues a legend IS a body) where
+  107.4.b and 107.4.d carry the conclusion; the `prose-emphasis` guard misses `uses[].note` (440,413
+  chars) and `anyBodies.note`; and the 424 pin's floors want re-measuring as the corpus grows.
+
+**REFUSED, with the reason, so nobody re-derives it:**
+- **Reading more of the ENGINE class.** The stopping rule fired: 24 entries read, the first slice
+  produced three classes that whole-catalogue sweeps then exhausted, the second produced none.
+  **The reading is a class-discovery instrument, not a rate estimator**, and the discovery rate is
+  zero. More reading buys a tighter rate nobody needs.
+- **Another rules-grounded structural check over `uses`.** The surface is swept — copies, Chosen
+  Champion, legend, Signature, battlefields, zones, roles, tags, [Unique], the multi-hop domain union.
+  I flagged my own [Unique] check as **weak evidence** (zero over five rows in a pool printing three
+  such cards) rather than banking it. What remains is prose-grounded and the day measured that cost
+  ten times.
+- **A card-count rot list.** Verifying a card-count claim means re-running each entry's own stated
+  predicate, which is a read and not a sweep. I would rather say so than hand over a number I cannot
+  defend.
+- **Calling `"32 uses"` of the exhaust verb wrong** (I count 55 printings / 46 bases). It is a
+  parenthetical on a predicate I did not reconstruct, and the load-bearing half — ZERO exhaust an
+  ENEMY unit — holds.
+
+## The predicate traps I hit, named so nobody re-finds them
+
+1. **Try EVERY occurrence, not the first.** *"A battlefield you control"* occurs nine times across the
+   sources in two casings; `indexOf`'s first hit compared a correct quotation of a CARD against an
+   unrelated sentence in the RULEBOOK. Right file, wrong sentence.
+2. **A check that counts a card as evidence must ask WHOSE card it is, and whether that card can play
+   the role counted.** An Ambusher cannot be its own precondition (822.1.c/822.3); a friendly-only
+   detacher cannot answer an opponent (`scripts/adversarial-check.mjs` already filters on this and its
+   filter is better than mine); a unit in the trash cannot stand at a battlefield.
+3. **A supersession marker is a RECORD, not a CLAIM.** Every well-made correction here quotes the
+   number it replaced, so a contradiction check flags every correct repair. Automate the exclusion in
+   ONE direction only: missing a contradiction costs one defect, flagging every correct correction
+   would tell authors to stop recording what they replaced.
+4. **`CLAUDE.md` marks perishability at BULLET granularity, not sentence.** A sentence-level scan
+   manufactures rot that is not there. Read at the granularity the file was written at.
+5. **The predicate fights the LANGUAGE.** Class names are ordinary English nouns (*"one engine"*,
+   *"two chain items"*); numbers are sometimes words (*"nine points"*); verbs are inflected (*"WINS
+   the game"*); dates parse as number-then-class (*"the 2026-09-04 BURST audit"*); and view names are
+   also field names, table names and CSS classes.
+6. **A claim's haystack is decided by WHAT IT COUNTS, not by what it is ABOUT.** I put a claim
+   counting catalogue references into the RULE bucket because it was about rulebooks; it is
+   entry-scoped and rots.
+7. **A repair must name the fields it covered.** *"I fixed the entry"* and *"I fixed the notables"*
+   look identical in a commit message and differ by three quarters of a megabyte — `notes` is on 98%
+   of entries and holds more prose than `steps`.
+8. **`$$` differs between tool calls**, so a `/tmp` name built from it does not survive to the next
+   command; and this shell has `noclobber`, so use `>|`.
+
+## Every number I am quoting, with its predicate and its date
+
+**CARD counts (rot only when Riot prints a set), measured 2026-09-13:** 23 [Ambush] printings / 14
+name+type; 52 [Hidden]; 39 Equip-carrying gear; 40 Equipment-tagged; **15 names kill a gear, covering
+all six domains, none colourless, none [Reaction]**; 1 enemy-facing detacher (`SFD-011 Angle Shot`);
+3 [Unique] printings.
+
+**ENTRY counts (rot on EVERY merge), measured 2026-09-13 at catalogue 766** — INFINITE 14, BURST 23,
+ALT_WIN 26, CHAIN 17, ENGINE 686: 1,898 `uses` rows, all resolving; 65→82 entries carrying
+`anyBodies`; 104 ENGINEs on Equipment of which 98 name no answer under the enemy-facing predicate;
+119 entries on a non-token battlefield, 118 carrying the setup caveat; 529 of 686 ENGINEs at 6–7
+notables and 10 at ≤2; 1,638 variants from 766 combos, 905 multi-combo, **zero above two domains**.
+
+**RULE facts (do not rot):** Core Rules 2,381 headings, stop at 829, nothing between 490 and 648, 120
+form feeds, 89 headings after one, 11 U+200B; Tournament Rules 936 headings, zero U+200B.
+
+## The one sentence I would keep
+
+**A check grounded in a RULE beats one grounded in PROSE, and the margin is not subtle** — my
+predecessor's finding, and everything I did today confirmed it. Every clean result I can defend came
+from a rule; every one of my ten too-big first numbers came from a predicate over prose.
