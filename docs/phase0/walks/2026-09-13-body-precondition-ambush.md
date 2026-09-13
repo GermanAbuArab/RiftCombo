@@ -740,3 +740,63 @@ The eleven: `svellsongur-ornn-hold`, `guardian-passage-svellsongur`, `gauntlets-
 not about the 686** — stated per rc-manager8's rule. It is the right next read precisely because it is
 biased: the thin tail is where a missing point of failure is most likely, and it is eleven entries
 rather than a sample.
+
+---
+
+## 18. THE THIN-TAIL CENSUS, AND A MEASUREMENT THAT MOVED BECAUSE OF MY OWN FINDING
+
+**A census, not a sample: all ELEVEN ENGINEs carrying two or fewer notables, read in full.** Stated
+per rc-manager8's rule as a deliberately NON-random slice — any rate here is a statement about those
+eleven.
+
+**Result: 3 clear candidates, 1 weak, 6 clean** (plus `svellsongur-ornn-hold` from §17, same shape,
+making four of the family).
+
+- **Candidates, all class (4):** `guardian-passage-svellsongur` (2 steps, 1 notable — an attached
+  Svellsongur on a body that must Hold through the opponent's turn, no threat named),
+  `gauntlets-enforcer-conquer` (whose entire `terminatesIn` is the two words *"engine only"*),
+  `azir-aphelios-attach`.
+- **Weak:** `ruination-sprite-burst-clear` states its symmetric cost (*"every unit dies, including
+  yours"*) and names no answer.
+- **Clean, and thin is not the same as careless:** `promising-future-force-deck`'s `terminatesIn`
+  states its own failure outright (*"431.2.b refills their deck from trash before any Burn Out point,
+  so it cannot deck them"*); `ashe-retreat-hand-strip` N2 bounds the lock (*"a lock until their next
+  Hold, not permanent removal"*); `pack-of-wonders-bewitching-discard` step 3 concedes that one Pack
+  only breaks even against 315.4.b's draw; `sprite-fountain-malzahar-jayce` N2 states the 816.1.b
+  limit precisely. **Four one-notable entries state their point of failure in a `terminatesIn` or a
+  step instead.**
+
+### The family result, which is worth more than the four
+
+**All four candidates stand on ATTACHED EQUIPMENT and none names a gear answer** — which is exactly
+#200 batch 1's finding for the finisher classes (*"of the 29 BURST and CHAIN entries, TWELVE stand on
+attached Equipment and not one named a gear-removal card"*), **reproducing in the ENGINE class.**
+
+#200 batch 19 already measured that population and **deliberately shipped nothing**: *"96 ENGINEs use
+Equipment with no gear answer named… no narrower criterion was available, so 96 notables were not
+shipped."* **The thin tail is that criterion.** Measured now: **104 ENGINEs stand on an
+Equipment-tagged card, 78 name no gear answer, and intersected with the thin tail that is THREE** — a
+list short enough to act on, where 78 is not. The argument for the narrowing is not merely that it is
+smaller: **an entry with one notable has no room for the caveat, so its absence is an omission rather
+than an editorial choice**, whereas a seven-notable entry that omits it may have decided.
+
+**The probe's limit, stated with the number: 3 is a FLOOR.** The answer set is swept from
+`cards.json` on a removal predicate that includes *"detach"*, which catches cards this catalogue runs
+as its own ENABLERS — `aphelios-jax-quickdraw-attach` reads as having named an answer **only because
+it runs `SFD-193 Grandmaster at Arms`**, and `CLAUDE.md` already records `SFD-011 Angle Shot` being
+catalogued *"used on your OWN gear for draw"*. **Removal and relocation are not the same set, and my
+predicate conflates them.**
+
+### The measurement moved because my own finding was applied to it
+
+**The thin tail was ELEVEN when I fixed the frame and is TEN now.** The entry that left is
+`svellsongur-ornn-hold`, which gained a third notable in commit `703f305` — **rc-manager8 applying the
+424.1.a.2 upgrade I reported in §15, on which that entry was first in the list of sixteen.** It
+therefore fell out of my own `<= 2` filter, and the Equipment intersection read 3 where it should have
+read 4.
+
+**I caught it only because I asked why an entry I had flagged by READING was absent from the
+intersection that was supposed to confirm it.** That is *re-validate immediately before reporting* in
+its sharpest form yet — not the file moving under me, but **the file moving BECAUSE OF ME**. A lane
+that reports a finding and then measures the same population later is measuring a population its own
+report changed.
