@@ -242,8 +242,45 @@ describe("predicate E: a controlled battlefield with no body to take it", () => 
  * commit that lowers its count**, exactly as for E. The `REPAIRS` floor above guards all three, for
  * the same reason it guards E: it reads the FIELD where these read the PREDICATE.
  */
-const G_CEILING = 22;
-const H_CEILING = 15;
+/**
+ * NOT CEILINGS ANY MORE. rc-manager7 merged the rows within the hour (`2384143`, 65 entries), and
+ * what each predicate now returns is EXACTLY the set of entries this lane read and REFUSED — two
+ * for G, seven for H, every id matching by name. So they are pinned as SETS rather than as counts.
+ *
+ * A set is the stronger form here and it is also the honest one: a ceiling would let a new defect
+ * in whenever a refusal was repaired, and it would tell the next reader nothing about why the count
+ * is not zero. Naming the members says both — anything NEW turns this red, and every current
+ * occupant carries its reason. A reader who adds a refusal has to record it here, which is how this
+ * project already treats a refusal everywhere else: name it so nobody re-files it.
+ */
+const G_REFUSED = [
+  // Reads entirely on ENEMY bodies, and says so in its own step 5: "the card says 'a unit', not
+  // 'a friendly unit'". The friendly match comes from the Blind Monk legend's text, never used here.
+  "dragons-rage-discipline-reflexive-double-kill",
+  // An EITHER/OR entry whose primary half — the counter — needs no body at all; only the Decree
+  // alternative wants one, and a requirement one branch imposes is not a requirement of the entry.
+  "crumbling-sands-decree-of-focus-conditional-reactions",
+];
+const H_REFUSED = [
+  // Three whose "another unit" is an ENEMY.
+  "blade-dancer-irelia-defiant-dance",
+  "annie-fiery-piercing-light-bonus-per-instance",
+  "arcane-shift-zaunite-bouncer-two-choices-one-card",
+  // Needs the exact opposite: its step 2 requires the opponent to choose Jae AND NO OTHER friendly
+  // unit, so a second body would break it.
+  "jae-medarda-repulse-counter-that-pays-for-itself",
+  // Both run on `UNL-041 Allay`'s OWN printed [Deflect], which the second states in its own step 3:
+  // "Allay's own printed Deflect joins the sum on her, so she reads 3".
+  "not-so-fast-allay-deflect-tax-denial",
+  "allay-petricite-monument-deflect-value-sums",
+  // THE ONE THAT IS A RULE RATHER THAN A READING, and it is the test for every future row.
+  // `SFD-132 Beast Below` prints "When you play me, return ANOTHER FRIENDLY UNIT and an enemy unit
+  // to their owners' hands" with no "you may" — and it is still not a requirement, because 055.1
+  // and 359.3.e.11 IGNORE an impossible instruction, so the ETB partially fizzles and the line is
+  // better for it. Its own step 1 calls that "accepting its ETB", i.e. a drawback. An EFFECT that
+  // wants another friendly unit is not a requirement; a COST that wants one is (203.3).
+  "last-breath-beast-below-unforgiven-unit-damage-ready",
+];
 
 const needsABody = (base: string) => {
   const c = cards.get(base);
@@ -291,12 +328,12 @@ describe("predicates G and H: a card that needs a body the line does not hold", 
     expect(live.filter((c) => unitCopies(c) === 1).length).toBeGreaterThan(150);
   });
 
-  it(`does not add a line whose card needs a body it has none of (G, ratchet at ${G_CEILING})`, () => {
-    expect(gFlagged.length).toBeLessThanOrEqual(G_CEILING);
+  it("flags nothing but the entries read and refused by name (G)", () => {
+    expect(gFlagged.map((c) => c.id).sort()).toEqual([...G_REFUSED].sort());
   });
 
-  it(`does not add a line that holds one body and needs two (H, ratchet at ${H_CEILING})`, () => {
-    expect(hFlagged.length).toBeLessThanOrEqual(H_CEILING);
+  it("flags nothing but the entries read and refused by name (H)", () => {
+    expect(hFlagged.map((c) => c.id).sort()).toEqual([...H_REFUSED].sort());
   });
 
   it("still reaches the cases read by hand, however the predicates are narrowed", () => {
