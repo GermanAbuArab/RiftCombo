@@ -344,3 +344,66 @@ And the census's trap #1 cost this lane four rows before it cost anything else: 
 the legend's domain chips, so every off-domain subject read `CELL NOT DRAWN` and the first probe would
 have reported "the editor does not offer these". Clicking **All domains** first is now a named helper in
 `test/dom/builder.dom.test.ts` with the reason attached.
+
+
+---
+
+## 8. Close-out — `rc-builder`, 2026-09-13
+
+**The two layers now agree on every rule.** §7's mirror left one disagreement, sideboard identity, and
+it is closed (**#215**): the checklist gained a fourth sideboard row, `Tournament Rules 403.4.b ·
+Sideboard inside the identity`, reported first of the four for the reason `capOf` reports identity
+first. It is a Tournament Rules row rather than part of 103.1.b's because at registration a sideboard
+card is not in the deck — TR 601.1.b makes the Main Deck exactly 40 and 601.1.c keeps the sideboard
+beside it — and what makes an off-identity one illegal is what it is FOR: TR 403.4 swaps it 1 for 1
+into the Main Deck and TR 403.4.b freezes the Legend for the match. Both citations are labelled,
+because 403.3 and 403.4 exist in both books.
+
+It was measured to be test-neutral for `test/build.test.ts` rather than hoped: the row lives inside
+`sideboardRules`, which returns nothing for a deck with no sideboard, so the stable-order pin is
+untouched; and every card in both sideboard fixtures is mono-mind or mono-order under a mind + order
+legend, so the new row passes and both `legal` assertions stand. Its own row-level cases still belong
+in that file and it needs an owner.
+
+Rendered and looked at rather than assumed, since it is a claim about output:
+
+```
+  ✗ Sideboard inside the identity  to fix   Outside calm + mind: Blazing Scorcher — a sideboard card
+    is swapped into the Main Deck (Tournament Rules 403.4) ...
+  ✓ Sideboard of 10 or fewer       ok       Tournament Rules 601.1.c.1
+  ✓ Sideboard cards only           ok       Tournament Rules 601.1.c.2
+  ✓ Copies across Main Deck and sideboard   Tournament Rules 601.1.c.3 · 403.3
+```
+
+### One surface the audit did NOT cover, and what it found there — #216
+
+The editor now refuses an illegal click; the question that follows is **what else prices a card set for
+a player.** `planDeck` guards Domain Identity and banned cards and nothing else, and `validateCombos`
+bounds an entry's quantity below (`>= 1`) and not above — so nothing stops an entry declaring a card
+set that is not a legal deck, and the "What to add" panel would price it.
+
+**Latent, not live, and the zero is not vacuous:** 766 entries, 1898 `uses` rows all carrying an
+explicit quantity, and 1638 variants of which 905 flatten more than one entry, 6085 card cells —
+**zero** over 103.2.b, 825.3.a or 103.2.d. Nine variants touch a Unique card and 149 touch a Signature
+card, so the predicates had something to find. Composition is safe for a reason rather than by luck:
+`generateVariants` merges card multisets with `max()` and not `sum()`.
+
+The fix proposed there is proven rather than asserted, and it is this day's principle again — **do not
+write a second copy of the caps.** Replay an entry's `uses[]` through `addCard` and assert the builder
+took every copy asked for. With no legend named `identityCap` stands down, so a replay checks exactly
+the copy caps, which matters because they are ZONE-DEPENDENT: a flat `quantity <= 3` is wrong for a
+rune, where twelve is legal, and wrong for a battlefield, where one of a name is the limit.
+
+```
+replayed 766 entries and 1898 uses rows through addCard
+rows the builder REFUSED to take in full: 0
+CONTROL: asked 4x Forge of the Future, builder took 3 -> instrument FIRES
+```
+
+### A third instrument note, because it cost two lanes a false red
+
+`.scratch-kw/census.dom.test.ts` — the probe that produced §1 of this document — was still on disk and
+still matching `**/*.test.ts`, and it timed out at 5s under full-suite load, turning `npm test` red for
+every lane in the shared tree. Renamed out of the glob, contents intact. rc-kw already knew the trap
+(`unique-demo.vtest-disabled.ts` beside it is a probe they disabled the same way) and missed one.
+**A scratch probe named `*.test.ts` is everyone's problem; `.gitignore` does not reach vitest.**
