@@ -1303,3 +1303,37 @@ UNCHECKABLE, which is a different and quieter cost.
 **Stated with its limit: six claims is a small sample and the correlation is perfect on six.** It is
 worth more as a mechanism than as a rate, and the mechanism is not in doubt — a sentence carrying its
 own grep is re-runnable and a sentence naming a concept is not.
+
+### The five load-bearing ones hold EXACTLY, member for member
+
+The claims above are small. These are the ones dozens of entries rest on, and each states its own
+sweep — so each is re-runnable by a stranger. **All five reproduce exactly against the current
+corpus, not approximately: the same base codes, member for member.**
+
+| claim | expected | found |
+|---|---|---|
+| *"the pool has exactly THREE trigger multipliers"* | `OGN-236`, `UNL-029`, `UNL-087` | **identical** |
+| *"exactly THREE 'win the game' cards"* | `OGN-276`, `OGN-293`, `UNL-088` | **identical** |
+| *"Time Warp is the pool's ONLY extra-turn source"* | `OGN-122` | **identical** |
+| *"exactly TWO cards print 'can't be countered'"* | `VEN-015`, `VEN-069` | **identical** |
+| *"ZERO cards exhaust an enemy unit"* | none | **none** |
+
+**That matters more than the count, because of what rests on them.** The three-multiplier claim is
+why `CLAUDE.md` can say no BURST in the Sentinel family can be scaled by a different doubler; the
+three-win-cards claim is the whole ALT_WIN class's foundation; the Time Warp claim is why every
+Additional-Turn CHAIN must admit Mind. **Each has been load-bearing in every session that read it, and
+each is exactly right.**
+
+**One figure beside a claim differs and I am NOT calling it**: the exhaust sentence adds *"full
+inventory of the verb, 32 uses"* and I count 55 printings across 46 bases using the verb at all. That
+is a printings-versus-names-versus-window difference of the kind this document has hit eight times
+today, and **the load-bearing half — ZERO exhaust an ENEMY unit — holds.** Calling a parenthetical
+wrong on a predicate I did not reconstruct would be the exact error I have spent the day cataloguing.
+
+### The tally, and what it measures
+
+**Eight checkable CARD invariants tested; EIGHT hold. All eight state their own predicate. The three
+I could NOT check are the three that name a concept instead.** The correlation is now perfect on
+eleven claims rather than six, and it says the same thing: **`CLAUDE.md`'s discipline of stating the
+predicate with the number is what makes the file auditable, and where it was followed the file is
+exactly right.**
