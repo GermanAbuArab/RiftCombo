@@ -707,3 +707,66 @@ paragraph of 369–373 beyond 371.1 — so the two consequences of Zilean's doub
 Replacement Effect are unstated there: **the opponent cannot respond to the doubling** (§5C, no chain
 item) and **372 decides its order** against any other replacement on the same token play. That is a
 citation upgrade for an entry lane, not something I can apply from here.
+
+---
+
+# SIXTH SLICE — #202 audited `combos.json`; the 87 WALK DOCUMENTS were never checked
+
+I built a quote checker for my own draft, it caught 17 defects there, and **then it caught 19 more in
+slices 1–4 of THIS document, which I had never run it over** — I fixed them in the draft and left
+them standing here, which is diagnosed-but-unapplied inside one day and in my own work (commit
+`5fa55e2`). That prompted the obvious question: **#202 measured the 985 quote fields in
+`combos.json`. Nobody has ever checked the walk corpus.**
+
+## 6A. THE NUMBER, WITH THE PREDICATE, AND WHY THE FIRST ONE WAS NOT HONEST
+
+A naive sweep of every `*"…"*` passage over 25 characters gives **638 of 4,452 (14.3%) not found
+verbatim** — and **that is not a defect rate.** Reading the flagged passages in
+`2026-09-06-combat-keyword-lens.md` (14 of 28, the worst ratio in the corpus) shows **all fourteen
+are the author's own Spanish paraphrases of this file's trap list, used as checklist labels**
+(in Spanish, rendered here: `1. "Entering an empty enemy battlefield is not an attack" - does not
+apply. 2. ...`). Legitimate.
+The mining walks miss for the same reason: they quote community sources that are in no file here.
+
+**The refinement that makes it honest is the same shape as #200 batch 19's**: only check a passage
+that CLAIMS to be rules text, i.e. one with a rule number in the 40 characters immediately before it,
+and check it against the rulebooks **plus** the card corpus **plus** `CLAUDE.md`. That gives
+**80 of 1,569 rules-claiming passages, 5.1%**, and the residue is small and legible.
+
+## 6B. THE CLASSES ARE #202'S OWN, AND THE TRUNCATION KEEPS EATING THE OPERATIVE CLAUSE
+
+Verified at source, not merely flagged:
+
+- **151.2** is quoted in two documents as *"…during the controlling player's Main Phase during an
+  Open State."* The rule continues **", and not during a Showdown."** — which is the entire content
+  of the paragraph, and is the reason I proposed it as a gap in §3A.
+- **829.1.b.2** is quoted as *"Playing a spell for its Flow cost does not change the timing at which
+  it can be played."* The rule continues **", nor any permissions for the spell aside from the zone
+  from which it can be played."** Same shape, same rule I proposed in §2.
+- **195** appears twice. One document writes *"…if an effect instructs them to do so…"* **with an
+  ellipsis — which is correct** and which the checker passes. The other writes *"…do so."* with a
+  period, which reads as the whole sentence when the rule continues *", or if they are the only
+  player remaining in the game."* **This file already records that exact truncation as a defect found
+  in `combos.json` by #202. It is also in the walk corpus.**
+- **437.4** is quoted in `2026-09-07-rules-second-pass.md` as *"…that has all of that damage
+  Prevented…"* — dropping Riot's doubled **"that all of that"**. This file records that precise
+  defect, in those words, as the thing a walker's memory silently repairs. **It recurred.**
+- **829.1.c.3**, in a document dated **today**, is quoted as *"…may choose which cost to apply."*
+  The rule ends **"as they play it."**
+- **Bracketed gists** are the other live class: *"they will [Burn Out]"* for 431.1.a's *"perform this
+  action"*, and *"other game effects and abilities can [reference]"*.
+
+**The residue is real and I am not calling all 80 defects.** Some flagged passages are glosses a
+human would never read as quotations (*"2v2 - 2 opponents each, 1 teammate"*), and a `…`-marked
+elision passes while a `...`-marked one does not. **Call it a floor of the defect count and a ceiling
+of 80**; the full list is reproducible in one command.
+
+## 6C. WHAT WOULD FIX IT
+
+`test/source-quotes.test.ts` checks `combos.json` and **nothing checks the walk documents**, which is
+how nineteen defects sat in a document written today by somebody who had spent the day reading the
+rule against them. The checker is `.scratch-gap/walk-strict.mjs`, about 25 lines, and it needs three
+things that each bit while it was built and all three generalise: **fold quote CHARACTERS only**
+(#202), **strip a markdown blockquote prefix**, which lands inside a multi-line captured quote, and
+**fold a BACKTICK used as an apostrophe**, which `CLAUDE.md` does in places. **I have not edited any
+other lane's walk document** — the measurement and the instrument are the deliverable.
