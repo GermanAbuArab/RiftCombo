@@ -13,20 +13,19 @@ const ids = (hits: { variant: { id: string } }[]) => hits.map((h) => h.variant.i
 
 describe("authored combos", () => {
   /**
-   * ONE DATA DEFECT THE SCHEMA CHECK SEES AND THIS LANE CANNOT FIX, because `data/combos.json` is
-   * held by another lane. `spinning-axe-factory-recall-inactive-temporary` carries a TOP-LEVEL
-   * `notable` of seven values, BYTE-IDENTICAL to its own `prerequisites.notable`, in no interface,
-   * and read by nothing in `src/`, `web/`, `scripts/` or `test/`. It is inert, which is exactly why
-   * it survived: an EXTRA key is the one shape an unchecked JSON cast cannot notice at all.
+   * EMPTY, AND IT WAS NOT FOR ONE COMMIT. `spinning-axe-factory-recall-inactive-temporary` carried a
+   * TOP-LEVEL `notable` of seven values, byte-identical to its own `prerequisites.notable`, in no
+   * interface and read by nothing — inert, which is exactly why it survived, since an EXTRA key is
+   * the one shape an unchecked JSON cast cannot notice at all. `COMBO_KEYS` in `src/types.ts` is
+   * what made it visible and this array is what stopped it shipping red while the data was held by
+   * another lane.
    *
-   * The repair is deleting the duplicate key and emptying this array IN THE SAME COMMIT, and the
-   * assertion is an EQUALITY so that the two are coupled: fixing the data without emptying this
-   * turns the suite red, and emptying it without fixing the data does too. An exception that can be
-   * left behind becomes permanent.
+   * The assertion stays an EQUALITY rather than a subset, which is what coupled the repair to the
+   * exception in BOTH directions: deleting the key without emptying this turned the suite red, and
+   * emptying it without deleting the key did too. AN EXCEPTION THAT CAN BE LEFT BEHIND BECOMES
+   * PERMANENT, so the next one should be written the same way and die the same way.
    */
-  const KNOWN_DATA_DEFECTS = [
-    "spinning-axe-factory-recall-inactive-temporary: unknown field notable",
-  ];
+  const KNOWN_DATA_DEFECTS: string[] = [];
 
   it("validate against the card index and feature vocabulary", () => {
     expect(validateCombos(combos, features, cards)).toEqual(KNOWN_DATA_DEFECTS);
