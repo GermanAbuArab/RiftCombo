@@ -337,3 +337,108 @@ a reader sees it and no machine pretends to check it.
 
 **Every one of those checks was proved OUT OF BAND** — corrupt the thing it guards, watch it name
 itself, revert — because an assertion whose plumbing is broken passes forever.
+
+---
+
+# HANDOFF — rc-schema, 2026-09-13 (SUPERSEDES ANY EARLIER HANDOFF IN THIS DOCUMENT)
+
+## WHAT I OWN
+
+`src/types.ts`, `src/combos.ts`, `src/matcher.ts`, `src/plan.ts`, `src/bodies.ts`,
+`src/synergies.ts`, `web/main.ts`, `web/graph.ts`, `vitest.config.ts`, and their tests.
+
+**DO NOT TOUCH:** `data/combos.json` and `data/synergies.json` are the manager's — both were handed
+to me formally for one change each and handed back in those words. `src/build.ts`, `src/builder.ts`
+and `web/builder.ts` are rc-builder's; I only ever IMPORT `src/builder.ts`.
+
+## THE FRAME TO READ FIRST
+
+Sections 1 and 2 of this document are the schema and predicate E. **Section 8 is the map** — six
+shapes of one defect class, four of which came back empty — and it is the fastest way in. Sections
+3 to 5 are the sweeps behind it and can be skipped unless you are re-running one. Section 9 indexes
+the code.
+
+## WHAT IS OPEN
+
+**What I would do next.**
+
+- `basis.combos` is validated in `test/synergies.test.ts` and not in `validateSynergies`, where the
+  combos equivalent (features) IS in the validator. Moving it needs the combo list as a new
+  parameter across a CLI and ten call sites, for no new coverage. Worth doing only if the validator
+  gains that dependency for another reason.
+- #218 and #219 are filed with their measurements. #219 is BUILT; #218 is a recorded approximation
+  and not a task.
+- The paraphrase vein: quoted spans in `combos.json` prose that CLAIM to be rules text (a rule
+  number within 40 characters) and are verbatim in no source. **401 after one narrowing**, with four
+  false-positive classes visible in the first twenty and NOT worked through. It is rc-gap2's
+  subject; the probe is gone with `.scratch-schema`, but the predicate is one line.
+
+**What I deliberately refused, with the reason — these are worth more than the to-dos.**
+
+- **No `zone` and no relational field on `anyBodies`.** The matcher reads a DECKLIST and never a
+  board, so a structured field for *"besides the Apothecary"* is the phrase-in-a-notable defect with
+  a JSON key on it.
+- **No severity flag.** A body that is not required is not a requirement, and `blocking: false`
+  would hand the next author a switch to defuse the check.
+- **No `exact: boolean`.** It would CONFLATE the axes rather than separate them: `count` is a
+  DECK-CONTENT number and every exactness condition is a BOARD-STATE one. Naming the axis on the
+  badge — UNIT CARDS, never MORE UNITS — is the repair.
+- **`anyBodies` not widened for XP (1 case) or `[Hidden]` (2 cases).** Three instances across two
+  nouns is not a schema axis; generalising to kind/count/note is one edit if a fourth lands.
+- **`bodyCheck` is not format-aware**, so a BANNED unit still counts toward spare. Flattering
+  direction, on a deck `matchDeck` already flags through `hit.illegal` for the same card.
+- **`max()` not `sum()` on the variant merge.** Measured: 905 variants flatten 2+ entries and ZERO
+  flatten two that both declare `anyBodies`, so it has never had two contributors. `sum()` would
+  over-report every pair whose legs genuinely share a body.
+
+## PREDICATE TRAPS I HIT, SO NOBODY RE-FINDS THEM
+
+1. **A trailing `\b` needs a word character in front of it**, so `Arise!`, `Guards!` and `Daisy!`
+   match nothing. This pool prints three card names ending in punctuation.
+2. **`\bJhin\b` does not match "Jhins"** — a plural is a word character. Cost me a whole sweep, an
+   hour after fixing the same trap in another script.
+3. **`\bunit token\b` does not match "unit tokenS"** — the same trap again, in a different script,
+   by me, the same hour.
+4. **A name head under six characters** excluded Jhin, Ahri, Vi and Fizz from a name sweep.
+5. **A card referred to by its TAG** — *"six 5 Might Dragons"* and never *"Blazing Scorcher"*.
+6. **The EPITHET after the comma** is how this catalogue writes a name: *"Brambleback"*,
+   *"Industrialist"*, *"Reveler"*.
+7. **`partnersOf` folds reprints onto one FAMILY**, so a predicate chosen by counting BASES gives
+   the wrong size. Broke my first swap test.
+8. **An unused import is tree-shaken**, so a bundle measurement with an import you do not CALL
+   proves nothing. My first #216 bundle number was worthless.
+9. **A glob containing `*` then `/` ends a block comment early.** `vitest.config.ts` did not load.
+   Describe the glob; do NOT hide the closer behind an invisible character.
+10. **A guard that rebuilds an object with a spread puts the key at the END**, and
+    `JSON.stringify` is order-sensitive — my own migration guard aborted on its own reconstruction.
+    Build the baseline from a SECOND PARSE so key order is identical by construction.
+11. **`git stash` can FAIL because of ANOTHER lane's staged file** on this tree, so it is not a safe
+    isolation tool here.
+
+## NUMBERS I AM QUOTING, WITH PREDICATE AND DATE
+
+All measured 2026-09-13 unless stated. **An entry count rots on every merge; a card count rots only
+when Riot prints a set; a rule does not rot at all.**
+
+- **82 entries carry `anyBodies`** — rots on every merge. `REPAIRS` in
+  `test/body-requirements.test.ts` floors it.
+- **Predicate E 0, G 2, H 7**, pinned as NAMED SETS of refusals rather than counts, so they do not
+  rot — a new member turns them red.
+- **220 synergy rules, 5,475 reviewed partners, largest list 106, 168 distinct fingerprints, ZERO
+  real collisions** (compared the SETS, not the hashes).
+- **prose-emphasis: 47 string paths, 29 excluded, 18 walked, 18,914 strings, 8,307 spans of 25+,
+  6,154 verbatim, 0 flagged.** Floors set below each.
+- **424 join: 29 reveal printings, 38 entries using one, 26 citing 431.1.c, 0 owed.** Floors, not
+  pins — the population grows whenever a lane writes a reveal entry.
+- **vitest: 49 files collected before the config, 47 after** — and 47 is exactly 33 in `test/` plus
+  14 in `test/dom/`.
+- **766 entries, 17 distinct top-level keys, 16 declared and one not** — that one is now deleted and
+  the check refuses its return.
+
+## THE RULE THAT OUTLIVES ALL OF THESE
+
+**Is the body being SPENT, or asked for?** An EFFECT that wants another friendly unit is not a
+requirement — 055.1 and 359.3.e.11 ignore an impossible instruction and it fizzles. A COST that
+wants one is — 203.3 makes an impossible cost unpayable and the card is stuck in hand. That is the
+test for every future row in this class, and it does not rot.
+
