@@ -805,9 +805,18 @@ of 80**; the full list is reproducible in one command.
 
 ## 6C. WHAT WOULD FIX IT
 
-`test/source-quotes.test.ts` checks `combos.json` and **nothing checks the walk documents**, which is
-how nineteen defects sat in a document written today by somebody who had spent the day reading the
-rule against them. The checker is `.scratch-gap/walk-strict.mjs`, about 25 lines, and it needs three
+**[UPDATED 2026-09-13, same day — this section is kept as written and corrected here rather than
+rewritten, because the measurement was true when it was made and a count is a perishable claim.]
+There is now a guard: `scripts/check-walk-quotes.mjs` and `test/walk-quotes.test.ts`, added by
+rc-manager6 after this section, as a RATCHET at 75 rather than an assertion of zero — cleaning 88
+historical documents is not worth the churn while a lane ADDING a mis-transcribed quote is. Seven
+quotations were repaired at source in the same pass, five of them the ones named below. The 80 above
+therefore reads 75 today, and my probe and the shipped script agree on that number exactly, which is
+the cross-check worth having. So "nothing checks the walk documents" was true for about an hour.**
+
+At the time this was written, `test/source-quotes.test.ts` checked `combos.json` and **nothing
+checked the walk documents**, which is how nineteen defects sat in a document written today by
+somebody who had spent the day reading the rule against them. The checker is `.scratch-gap/walk-strict.mjs`, about 25 lines, and it needs three
 things that each bit while it was built and all three generalise: **fold quote CHARACTERS only**
 (#202), **strip a markdown blockquote prefix**, which lands inside a multi-line captured quote, and
 **fold a BACKTICK used as an apostrophe**, which `CLAUDE.md` does in places. **I have not edited any
