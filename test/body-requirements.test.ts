@@ -1,3 +1,4 @@
+import { readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
 import { generateVariants, validateCombos } from "../src/combos.js";
 import { loadCardIndex, loadCombos } from "../src/load.js";
@@ -99,6 +100,47 @@ describe("bodies a line needs that no card supplies (Combo.anyBodies)", () => {
     expect(used.has("ATTACHED")).toBe(true);
     expect(validateCombos([combo({ uses: [{ card: "OGN-044", quantity: 1, role: "engine", zone: "SIDEBOARD" as never }] })], features, cards))
       .toEqual(["synthetic: OGN-044 has unknown zone SIDEBOARD"]);
+  });
+
+  it("keeps every requirement quoted from the entry or the card, not retyped", () => {
+    /**
+     * SECTION 6 OF THE WALK DOCUMENT NAMED THIS AS UNCHECKED AND THIS IS THE REPAIR. The staging
+     * script asserts each `note` verbatim AND at a sentence boundary when a row is written, and
+     * NOTHING asserted it afterwards - so a reword in `data/combos.json` could drift from the step
+     * it was cut from and no instrument would say so. This project has twice paid for a quotation
+     * typed from memory, and the field's whole point is that a reader can refute the requirement.
+     *
+     * THE INVARIANT IS A VERBATIM RUN, NOT A WHOLE-NOTE MATCH, because a note legitimately carries
+     * more than the quotation. Measured over all 82: SEVENTY-EIGHT are 100% verbatim, and the four
+     * that are not are all sound - `gutter-palace` prefixes a CARD citation ("UNL-088 Gutter
+     * Palace: ...") because the entry restates the requirement as "4/4" and the card's own words
+     * are the requirement, and three carry arithmetic rc-manager7 appended when he raised a count.
+     * The shortest verbatim run across all 82 is 23 characters, so the floor is 20.
+     *
+     * ITS LIMIT, STATED: a note that quotes twenty characters and invents the rest would pass. It
+     * catches a wholly invented or heavily paraphrased note, which is the failure that has actually
+     * happened here, and the second floor below is what catches a drift TOWARDS that.
+     */
+    const fold = (x: string) => x.replace(/[\u201c\u201d]/g, '"').replace(/[\u2018\u2019]/g, "'").replace(/\s+/g, " ").trim();
+    const corpus = fold(readFileSync("data/corpus_flat.txt", "utf8"));
+    const withBodies = live.filter((c) => c.anyBodies);
+    let fullyVerbatim = 0;
+    const short: string[] = [];
+    for (const c of withBodies) {
+      const note = fold(c.anyBodies!.note);
+      const own = fold([...c.steps, ...(c.prerequisites?.notable ?? []), c.terminatesIn ?? "",
+        c.netPerIteration ?? "", c.notes ?? ""].join("\n"));
+      const inSource = (t: string) => own.includes(t) || corpus.includes(t);
+      if (inSource(note)) fullyVerbatim++;
+      // Any 20-character window found verbatim clears it - cheap, and it is the invariant.
+      let run = false;
+      for (let i = 0; i + 20 <= note.length && !run; i++) if (inSource(note.slice(i, i + 20))) run = true;
+      if (!run) short.push(c.id);
+    }
+    expect(withBodies.length, "no entry carries the field, so this proves nothing").toBeGreaterThan(60);
+    expect(short, "these notes quote nothing from their own entry or from card text").toEqual([]);
+    // The drift floor: if this starts failing, notes are being written rather than quoted.
+    expect(fullyVerbatim).toBeGreaterThanOrEqual(Math.floor(withBodies.length * 0.85));
   });
 
   it("refuses an authored requirement a reader could not check", () => {
