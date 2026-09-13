@@ -757,3 +757,77 @@ worth more than the numbers: **the answer cards are named in `prerequisites.nota
 and was handled correctly all along** — so the field the bug destroyed turned out not to be where the
 information lives. The same field-shape trap as `Card.type` being an array, and the fourth time today a
 probe of mine returned a confident answer from the wrong shape.
+
+
+---
+
+## 11. HANDOFF — lane `rc-builder`, 2026-09-13, end of day
+
+**This supersedes any earlier handoff of this lane.** The project is paused until Saturday 2026-09-19.
+
+### What this lane owned
+
+`src/builder.ts`, `web/builder.ts`, `src/build.ts`, `test/builder.test.ts`, `test/dom/builder.dom.test.ts`,
+`test/a11y.test.ts` (builder assertions only — the colour tokens and the single focus ring are NOT this
+lane's), this document, and `.scratch-builder/`. `src/deck.ts` was touched ONCE, for a comment-only
+quotation repair, and is not owned. **Do not touch** `data/combos.json`, `data/synergies.json`,
+`CLAUDE.md`, `scripts/adversarial-check.mjs`, `src/plan.ts`, `src/combos.ts`, `src/bodies.ts`,
+`src/matcher.ts`, `src/types.ts`, `web/main.ts`.
+
+### Read this first
+
+**§6 is the frame**: the user's contract of 2026-09-13, split by INVARIANT versus FORMAT, and what
+shipped against it. §7 is the tier audit; §9 the click coverage; §10 the corpus. **§1–§5 are rc-kw's
+original census** and are scaffolding for anything after §6 — read them only for provenance. §8 contains
+a paragraph deliberately left showing what it used to say and what refuted it; that is not an oversight.
+
+### Open, and what I would do next
+
+- **One DEAD synergy rule, verified, not yet filed** (measured at the moment the stand-down came).
+  `highlander-kill-cost-shield`: the anchor `OGS-020 Highlander` is calm/body and **all 8 partners are
+  order (6), chaos (1), mind (1)** — anchor plus any partner is three domains, which 103.1.b forbids, so
+  **no legal deck can ever fire it.** Dead by a second rule too: Highlander is a SIGNATURE card, so
+  103.2.d.2 forces the Master Yi legend and FIXES the identity at calm/body. Exactly 1 of 220 rules is
+  dead; 30 more are live in only ONE of the 15 legend pairs, which is narrow but legal. File it, or fix
+  the predicate — `data/synergies.json` is the manager's.
+- **#220** (the dead Might-1 notable emitter) is filed with its blast radius at one instance; its fix is
+  rc-synth2's.
+- **#216** is with rc-schema. **#218** carries a corpus denominator from this lane.
+
+### Deliberately refused, with the reason — so nobody re-derives them
+
+- **Widening 103.2.d to the sideboard (#217).** Refused and closed: "sideboard" appears ZERO times in
+  the Core Rules, and TR 403.3 — the only clause extending a constraint across both bags — is scoped to
+  *"limits on copies of NAMED cards"*, which 103.2.d.1 excludes itself from in its own words.
+- **Making the `403.4.b` row `fail`.** It reports `unknown` on purpose: an off-identity sideboard card is
+  unplayable, not an illegal registration, and **calling a legal tournament list illegal is the worst
+  failure this checklist has.** The EDITOR still blocks it at the button — a different claim, and one
+  that must not be "fixed" to match.
+- **Emitting 96 gear-answer notables and 46 `netPerIteration` rows** — reported as counts and not shipped,
+  because no narrower criterion was available.
+- **Pinning the corpus characterisations** (the 88%, the medians). A correctness claim gets a test; a
+  characterisation gets a date and its denominators.
+
+### Predicate traps this lane paid for
+
+1. **`notes` is a STRING and `prerequisites.notable` is an ARRAY.** Spreading the string puts a separator
+   between every character and substring matching silently fails. Same family as `Card.type` being an
+   array and `uses` rows keying on `.card`, not `.base`.
+2. **A producer-check that matches the needle against its own lookup line** reports OK for a pair you
+   have already proved broken. **Validate a new detector against a known positive.**
+3. **Comparing `capOf` against `checkBuild` on a PART-BUILT deck is confounded** — the relevant row is
+   often failing already (zero runes is not twelve), so a correct refusal reads as unjustified.
+4. **`checkSave(name, text)`, not `(text, name)`** — reversed, the length check never sees the text and
+   still answers `ok`.
+5. **A prefix match treats `103.2.a.2` as satisfying a bare `103.2`.** Use exact matching for coverage.
+6. **An enumeration is only as complete as the states you drive it through** — `103.2.d.1` cannot speak
+   on an Ornn board, so the refusal-reason test needs a Master Yi board or it silently covers 13 of 14.
+7. **The pool hides off-domain cards before it dims them** (rc-kw's trap 1, which cost this lane four
+   rows too). Click **All domains** first.
+
+### Numbers quoted here, with what rots
+
+**Rots on every merge:** 766 entries, 80 finishers, 1638 variants, 220 synergy rules, and every class
+median or completion count in §10. **Rots only when Riot prints a set:** 1189 printings, 926 pool cells,
+66 battlefields, 51 Signature names, 3 Unique cards, 16 point cards, 15 legend pairs. **Does not rot:**
+every rule citation, and the two floors — ALT_WIN 1, BURST 2. The 222 registered lists are fixed.
