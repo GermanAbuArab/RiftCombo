@@ -202,7 +202,39 @@ exposure, and it is where this line is actually decided.
 |---|---|
 | **Unopposed — they take neither battlefield** | **The loop does not run.** No enemy garrison, no Combat, no Attacker designation, no recall. You conquer two battlefields with bodies and win on the free Hold curve at turn 6, and the seven cards of the package did nothing. |
 | **One battlefield each, garrisoned — the ordinary game** | **Turn 4**, against a free curve that pays you 1 a turn and reaches 8 around turn 9. The Conquer on T3 is worth a point on its own and the Plaza does the rest. **This is the board the line is built for and it is two turns faster than doing nothing.** |
-| **They take both and garrison both** | Still alive, and this is the case that separates it from every Hold line in the catalogue. The loop only needs an enemy garrison, which they have just given you; what it loses is the **Plaza**, because you need a battlefield you control to walk the Recruits to. So the engine runs and the payoff does not — and the entry's own step 4 names the alternative, `SFD-177 Azir, Sovereign`, whose *"when I attack, move any number of your token units to this battlefield"* puts the swarm on a battlefield you are attacking instead. Not walked here. |
+| **They take both and garrison both** | **Still alive, and the payoff survives too — which a first version of this row got wrong.** The loop only needs an enemy garrison, which they have just given you. And the Plaza is not lost: the Recruits are recalled to your **base** by 466.1.a.2, 144.4.a moves a unit from its Base to a Battlefield with no [Ganking] and no restriction on whose it is, and 144.3 takes the whole swarm in as one action. 190.3.a.1 applies Contested and 323.9 stages a **Combat**, because opposing units are now present — so you fight for the Plaza instead of walking into it. See below for why that is winnable and what it costs. |
+
+### Fighting for the Plaza, which is the third case worked
+
+The swarm at base is Might 2 under the Rage Amplifier and unbounded in size. Walk `K` of them into the
+Plaza the opponent is holding with a garrison of summed Might `D`:
+
+- **465.2.c**: *"Starting with the Attacker, each player assigns an amount of damage equal to their
+  summed Might among the other's Units."* You assign `2K`; they assign `D`.
+- **465.2.c.4** caps each assignment at minimum lethal and **465.2.c.3** forces it onto one unit in
+  full before moving on, so their `D` kills `floor(D/2)` of your bodies and no more.
+- **The binding constraint is that you must WIPE the garrison, not merely out-damage it.** 466.3.a
+  gives the combat to the player who is *"the only Player that has units remaining at this
+  battlefield"*, and if even one defender lives, **466.1.a.2** recalls every attacker you have — no
+  Control, no Conquer, no Plaza. With Might-2 bodies that is `2K ≥` the garrison's total lethal
+  requirement, which unbounded `K` clears against anything.
+- Win it and 466.5 establishes Control, 466.5.d makes it a **Conquer**, and the survivors —
+  `K − floor(D/2)` — are standing on the Plaza for next turn's Hold. Overshoot `K` and seven is not
+  the constraint either.
+
+**So this is the one case in which the loop and the payoff want OPPOSITE combat results, and that is
+the thing to get right at the table.** Every pass of the engine deliberately LOSES its combat — it
+needs defenders to remain so 466.1.a.2 sends Jhin home to go again. The Plaza attack must WIN its
+combat, because a surviving defender recalls the swarm. They are two different battlefields on the
+same turn and the order does not matter, but running the engine into the Plaza would be a mistake:
+it would kill the garrison you are farming.
+
+`SFD-177 Azir, Sovereign` is **not** needed for any of this and the third case does not want him.
+His clause moves token units *"to this battlefield"* — the one he is attacking — and 420.3.a puts the
+exhaust on the Standard Move alone, so what he uniquely does is move **exhausted** tokens
+**battlefield to battlefield** with no [Ganking]. This swarm is neither: 466.1.a.2 already put it at
+your base and 315.1.b already readied it, so 144.4.a walks it in for free. He is a four-Energy body
+here.
 
 **The finisher earns its slot in the middle case and the middle case is the normal one.** That is more
 than the companion play's Renata engine could say, and the difference is one property: this line's
