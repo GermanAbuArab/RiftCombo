@@ -458,6 +458,44 @@ function sideboardRules(deck: Deck, cards: CardIndex): BuildRule[] {
       }
     : { rule: "Tournament Rules 601.1.c.2", label: "Sideboard cards only", status: "pass", detail: "Every sideboard card is a unit, spell or gear — a valid Main Deck card." };
 
+  /**
+   * Domain Identity over the SIDEBOARD (#215). 103.1.b's own row reads the Main Deck and the
+   * battlefields, so an off-identity sideboard card passed the checklist while the editor refused to
+   * put one there — the one place the button and this report disagreed, found by the tier audit in
+   * docs/phase0/walks/2026-09-13-builder-vs-checkbuild.md §7. The button was right.
+   *
+   * Why it is a TOURNAMENT RULES row and not part of 103.1.b's. 103.1.b.1 is "Cards included in your
+   * deck must abide by your Domain Identity", and at registration a sideboard card is not in the deck:
+   * Tournament Rules 601.1.b makes the Main Deck exactly 40 and 601.1.c keeps the sideboard beside it.
+   * What makes an off-identity sideboard card illegal is what it is FOR — 403.4, "Sideboard cards must
+   * be exchanged 1 for 1 with Main Deck cards", read with 403.4.b, "a player may not change their
+   * Runes, Legend, or Battlefields at any point after deck registration". The Legend is frozen for the
+   * match, so the identity the card would be swapped into is frozen with it and the swap can never be
+   * legal. That is the same shape as the copies row below, which keeps 103.2.b's Main Deck cap where
+   * it belongs and folds the sideboard in under 403.3 instead.
+   *
+   * It is a ROW of its own rather than a widening of 601.1.c.2's "valid Main Deck cards", on this
+   * project's own precedent: 825.3.a got its own row rather than tightening 103.2.b, so that the
+   * checklist names the rule the list actually broke. A domain is not a card type.
+   *
+   * Reported FIRST of the four, for the reason `capOf` reports identity first: no quantity of an
+   * off-identity card is ever legal here, while the other three are caps.
+   */
+  const inIdentity = identityOf(deck, cards);
+  const offIdentity = inIdentity
+    ? Object.keys(deck.sideboard).filter((b) => !inIdentity(b)).map((b) => cards.get(b)?.name ?? b).sort((a, b) => a.localeCompare(b))
+    : [];
+  const identity: BuildRule = !inIdentity
+    ? { rule: "Tournament Rules 403.4.b", label: "Sideboard inside the identity", status: "unknown", detail: "No legend named, so there is no Domain Identity to measure the sideboard against." }
+    : offIdentity.length
+      ? {
+          rule: "Tournament Rules 403.4.b",
+          label: "Sideboard inside the identity",
+          status: "fail",
+          detail: `Outside ${cards.domainsOf(deck.legend!).join(" + ")}: ${offIdentity.slice(0, 4).join(", ")}${offIdentity.length > 4 ? ` and ${offIdentity.length - 4} more` : ""} — a sideboard card is swapped into the Main Deck (Tournament Rules 403.4) and the Legend cannot change mid-match (403.4.b), so it could never be played.`,
+        }
+      : { rule: "Tournament Rules 403.4.b", label: "Sideboard inside the identity", status: "pass", detail: `Every sideboard card sits inside ${cards.domainsOf(deck.legend!).join(" + ")}, so any of them can be swapped in.` };
+
   const byName = copiesByName(cards, [deck.main, deck.sideboard]);
   const over = [...byName.values()].filter((x) => !x.exempt && x.count > COPY_CAP).sort((a, b) => b.count - a.count);
   const copies: BuildRule = over.length
@@ -479,7 +517,7 @@ function sideboardRules(deck: Deck, cards: CardIndex): BuildRule[] {
         })(),
       };
 
-  return [size, contents, copies];
+  return [identity, size, contents, copies];
 }
 
 /**

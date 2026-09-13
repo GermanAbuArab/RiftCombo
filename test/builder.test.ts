@@ -611,6 +611,38 @@ describe("103.1.b — Domain Identity at click time (#212)", () => {
   });
 
   /**
+   * #215: the button refused an off-identity sideboard card and the checklist called the list legal,
+   * which was the ONE disagreement the tier audit found between the two layers. The checklist now
+   * carries its own row for it, cited to the Tournament Rules because a sideboard card is not in the
+   * deck at registration — TR 601.1.b makes the Main Deck exactly 40 and 601.1.c keeps the sideboard
+   * beside it — and what makes it illegal is what it is FOR: TR 403.4 swaps it 1 for 1 into the Main
+   * Deck and TR 403.4.b freezes the Legend for the match.
+   *
+   * This asserts the AGREEMENT, which is what the issue was about. The row's own cases — no legend,
+   * the wording, its place in the order — belong in `test/build.test.ts` beside the other three
+   * sideboard rows, and that file is not this lane's to write in.
+   */
+  it("agrees with the checklist about the sideboard, which it did not before #215", () => {
+    const held: Deck = { ...ornn(), sideboard: { [OFF]: 1 } };
+    const rules = checkBuild(held, cards, "constructed").rules;
+    const row = rules.find((r) => r.rule === "Tournament Rules 403.4.b")!;
+    expect(row, "the row has to exist for the agreement to mean anything").toBeDefined();
+    expect(row.status).toBe("fail");
+    expect(row.detail).toContain(cards.get(OFF)!.name);
+    expect(sideboardCapOf(ornn(), OFF, cards).full).toBe(true);
+
+    // The control: an IN-identity sideboard card passes the row and the button takes it, so the row
+    // is not simply failing for everything.
+    const ok = poolOf(cards).find(
+      (c) => zoneOf(c) === "main" && c.domains.length > 0
+        && c.domains.every((d) => cards.domainsOf(ORNN_LEGEND).includes(d)),
+    )!;
+    const fine: Deck = { ...ornn(), sideboard: { [ok.base]: 1 } };
+    expect(checkBuild(fine, cards, "constructed").rules.find((r) => r.rule === "Tournament Rules 403.4.b")!.status).toBe("pass");
+    expect(sideboardCapOf(ornn(), ok.base, cards).full).toBe(false);
+  });
+
+  /**
    * The cross-layer sweep, and the reason the rule was worth moving rather than copying: for EVERY
    * card the pool offers, the button refuses exactly what the Construction checklist's identity rows
    * fail, under the paragraph those rows cite. A disagreement between the two is the defect class this
