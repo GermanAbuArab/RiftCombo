@@ -37,22 +37,29 @@ export interface BodyShortfall {
  * Returns a factory, because the deck-side total is the same for every variant and the callers walk
  * 1,638 of them.
  */
-export function bodyCheck(deck: Deck, cards: CardIndex): (v: Variant) => BodyShortfall | null {
+export function bodyCheck(deck: Deck, cards: CardIndex, opts: { includeSideboard?: boolean } = {}): (v: Variant) => BodyShortfall | null {
   const isUnit = (base: string) => cards.get(base)?.type.includes("unit") ?? false;
 
-  // Counted from the raw bag rather than from an equivalents-expanded map: `equivalents` maps one
+  // THE SAME BAGS THE CALLER COUNTS, or this check disagrees with the match it is part of.
+  // `matchDeck` takes `includeSideboard` and `planDeck` deliberately does not offer it, and the
+  // first version of this function silently ignored the option: a list whose units were all in the
+  // sideboard would have been reported as holding the CARDS and short of the BODIES, from one call.
+  // Nothing passes the flag today, which is exactly why it was invisible and why it is fixed now.
+  const bags = [deck.main, deck.battlefields, ...(opts.includeSideboard ? [deck.sideboard] : [])];
+
+  // Counted from the raw bags rather than from an equivalents-expanded map: `equivalents` maps one
   // printing onto every base sharing its name+type, so summing an expanded map counts a Daring Poro
   // twice (OGN-210 and UNL-225). Battlefields hold no units and the legend is not one (107.4.c
   // makes it a Game Object on the board, and 143.4 exhausts units — it is neither a unit card nor a
-  // body this list could add), so the main deck is the whole population.
+  // body this list could add), so in practice this is the main deck and, when asked for, the side.
   let held = 0;
-  for (const [base, n] of Object.entries(deck.main)) if (isUnit(base)) held += n;
+  for (const bag of bags) for (const [base, n] of Object.entries(bag)) if (isUnit(base)) held += n;
 
   // Copies of a base the list actually holds, alt printings folded in — the same reading of
   // `equivalents` the matcher uses (601.2.a: legality travels with the name, so two printings of a
   // name are interchangeable by rule).
   const owned = new Map<string, number>();
-  for (const bag of [deck.main, deck.battlefields]) for (const [base, n] of Object.entries(bag)) {
+  for (const bag of bags) for (const [base, n] of Object.entries(bag)) {
     for (const eq of cards.equivalents(base)) owned.set(eq, (owned.get(eq) ?? 0) + n);
   }
 

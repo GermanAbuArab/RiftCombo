@@ -57,7 +57,7 @@ export function matchDeck(deck: Deck, variants: Variant[], cards: CardIndex, opt
   }
   if (deck.legend) owned.set(deck.legend, 1);
 
-  const bodies = bodyCheck(deck, cards);
+  const bodies = bodyCheck(deck, cards, { includeSideboard: opts.includeSideboard });
   const legendDomains = deck.legend ? new Set<Domain>(cards.domainsOf(deck.legend)) : null;
   const inIdentity = (base: string) => !legendDomains || cards.domainsOf(base).every((d) => legendDomains.has(d));
 

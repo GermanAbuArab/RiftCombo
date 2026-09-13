@@ -71,6 +71,18 @@ describe("bodies a line needs that no card supplies (Combo.anyBodies)", () => {
       .included.map((h) => h.variant.id)).toEqual(["synthetic-spare"]);
   });
 
+  it("counts the same bags the caller counts, sideboard included when asked", () => {
+    // `matchDeck` takes `includeSideboard` and the first version of this check silently ignored it,
+    // so one call could report a list as holding the CARDS and short of the BODIES. Nothing passes
+    // the flag today, which is precisely why it was invisible - a dead option is where a
+    // disagreement hides until somebody turns it on.
+    const sided = deck({ battlefields: { "OGN-293": 1 }, main: { "UNL-044": 3 }, sideboard: { "OGN-044": 3 } });
+    expect(matchDeck(sided, vs, cards, { format: "constructed" }).included).toEqual([]);
+    const withSide = matchDeck(sided, vs, cards, { format: "constructed", includeSideboard: true });
+    expect(withSide.included.map((h) => h.variant.id)).toEqual(["synthetic-plaza"]);
+    expect(withSide.included[0]!.missingBodies).toBeUndefined();
+  });
+
   it("is priced by planDeck, so the panel can finally name what is missing", () => {
     // SFD-195 Blade Dancer is Calm/Chaos, which holds colourless OGN-293 and Calm UNL-044.
     const noUnits = deck({ legend: "SFD-195", battlefields: { "OGN-293": 1 }, main: { "UNL-044": 1 } });
