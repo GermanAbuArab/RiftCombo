@@ -931,3 +931,52 @@ routes legends and battlefields to their own bags, so neither can reach `deck.ma
 **A class that only ever confirms itself is a story** — rc-manager8's phrase. Aimed at code nobody
 here wrote for this purpose, it found one citation and confirmed the rest, which is the right shape
 for a result.
+
+---
+
+## 21. THE STALE-COUNT CENSUS: MY WEAKEST NUMBER, CONVERTED
+
+§17's random slice read 13 of 686 and found exactly one hard defect — a perishable entry count. I said
+at the time that 13 cannot tell a 5% rate from a 15% one. **The cheapest way to tighten that was not
+more reading: a count of entries is MACHINE-CHECKABLE against the live catalogue**, so the one class
+the sample found can be swept over all 766.
+
+**Swept: 33,883 strings, 45 numeric class-count claims. Live counts INFINITE 14, BURST 23, ALT_WIN 26,
+CHAIN 17, ENGINE 686.**
+
+**The first number was too big for the sixth time today**, and the false positives are worth naming
+because they are not the usual kind: **ordinary English** (*"one engine"*, *"two engines that stack"*,
+*"two chain items"*, *"one burst of six cards"* — the class names are also common nouns) and **dates**
+(*"the 2026-09-04 BURST audit"* matches a number-then-class pattern). A class-count predicate over
+prose is fighting the vocabulary, not the catalogue.
+
+**Two real defects, and the narrowing that separates them from the sanctioned ones is already the
+rule**: a count carrying an **as-of date** or **named members** is fine — `nasus-ascended-sentinel-arena-hold`
+says *"the 2026-09-04 audit found four BURSTs had skipped"* (dated), `lullaby-hold-escort` says *"The
+two BURSTs that score in a Hold and sit in Calm/Mind are ahri-blue-sentinel-hold and…"* (named), and
+six entries say *"fourteen INFINITEs"*, which is still 14. **A bare present-tense count is the defect.**
+
+### `tianna-wildclaw-point-lock` — five against twenty-six
+
+*"the catalogue's five ALT_WIN lines go straight through this wall."* **ALT_WIN is 26.** Present
+tense, no date, no members. The surrounding argument is right and load-bearing — 194.2 makes winning
+separate from gaining points, so a points lock does not stop rule 195 — and the number in front of it
+has rotted by a factor of five.
+
+### `brynhir-lockout-window` now CONTRADICTS ITSELF, and that is worse than being stale
+
+This is the entry §17 flagged, and it has been **partially** corrected since — by another lane, today.
+It now contains BOTH:
+
+- *"of the twelve BURSTs, seven score on a Hold and FIVE score on a Conquer"*, and
+- *"ELEVEN BURSTs score on a Conquer, re-measured 2026-09-13 from each entry's own `terminatesIn`"*.
+
+**Five and eleven, in one entry, about one thing.** The re-measurement is excellent — dated, sourced
+to `terminatesIn` rather than `steps`, with the reason the steps over-report, and with its members
+named. **What it did not do is delete the sentence it replaced**, which is precisely the failure
+`CLAUDE.md` records: *"the session that supplies the answer is the one that knows the stale text has to
+go, and it goes in the same edit."*
+
+**A partial correction is a new defect rather than half a fix**, because a reader now has two numbers
+and no way to tell which survived. Both are in `data/combos.json`, which I have handed back —
+reported, not edited.
