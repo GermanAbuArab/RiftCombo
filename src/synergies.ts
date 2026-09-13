@@ -24,6 +24,21 @@ export interface ValidateOptions {
   skipReviewCount?: boolean;
 }
 
+/**
+ * FNV-1a over the sorted base codes. Stable across runs and across machines, independent of the
+ * order `partnersOf` happens to return, and eight characters wide — see `Synergy.reviewedSet` for
+ * why a real hash would be over-engineering on lists this size.
+ */
+export function fingerprintOf(partners: { base: string }[]): string {
+  const joined = partners.map((c) => c.base).sort().join(",");
+  let h = 0x811c9dc5;
+  for (let i = 0; i < joined.length; i++) {
+    h ^= joined.charCodeAt(i);
+    h = Math.imul(h, 0x01000193) >>> 0;
+  }
+  return h.toString(16).padStart(8, "0");
+}
+
 /** Sanity checks the authored file must pass before anything is matched against it. */
 export function validateSynergies(synergies: Synergy[], cards: CardIndex, opts: ValidateOptions = {}): string[] {
   const errors: string[] = [];
@@ -54,12 +69,25 @@ export function validateSynergies(synergies: Synergy[], cards: CardIndex, opts: 
     if (anchor && formats.every((f) => cards.legality(s.anchor, f))) {
       errors.push(`${s.id}: anchor ${s.anchor} is banned in every format`);
     }
-    const found = partnersOf(s, cards).length;
+    const partners = partnersOf(s, cards);
+    const found = partners.length;
+    const fingerprint = fingerprintOf(partners);
     if (found === 0) errors.push(`${s.id}: partner predicate matches nothing`);
     else if (found !== s.reviewedCount && !opts.skipReviewCount) {
+      // SIZE changed: a widening or a shrink. A new set legitimately widens many lists, so this is
+      // the one an author often accepts after re-reading.
       const delta = found - s.reviewedCount;
       errors.push(`${s.id}: match list is ${s.reviewedCount} -> ${found} (${delta > 0 ? "+" : ""}${delta}) since ${s.reviewed}. ` +
-        `Run \`npm run synergies -- ${s.id} --match\`, read it again, then update reviewed and reviewedCount.`);
+        `Run \`npm run synergies -- ${s.id} --match\`, read it again, then update reviewed, reviewedCount and reviewedSet (now ${fingerprint}).`);
+    } else if (!s.reviewedSet) {
+      errors.push(`${s.id}: no reviewedSet — stamp it as ${fingerprint} (#219)`);
+    } else if (fingerprint !== s.reviewedSet && !opts.skipReviewCount) {
+      // SAME SIZE, DIFFERENT MEMBERS. A new set cannot do this: it only adds cards, which moves the
+      // count. A swap is always a predicate change and always has to be read - this is the case
+      // `reviewedCount` alone could never see (#219).
+      errors.push(`${s.id}: the match list is still ${found} cards and is NOT THE SAME ${found} cards ` +
+        `(${s.reviewedSet} -> ${fingerprint}) since ${s.reviewed}. A swap is a predicate change, never a new set. ` +
+        `Run \`npm run synergies -- ${s.id} --match\`, read it again, then update reviewed and reviewedSet.`);
     }
   }
   return errors;

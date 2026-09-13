@@ -62,7 +62,8 @@
       },
       "status": "rule-verified",
       "reviewed": "2026-09-06",
-      "reviewedCount": 46
+      "reviewedCount": 46,
+      "reviewedSet": "cf13ec6f"
     },
     {
       "id": "red-brambleback-conquer",
@@ -113,7 +114,8 @@
       },
       "status": "rule-verified",
       "reviewed": "2026-09-04",
-      "reviewedCount": 57
+      "reviewedCount": 57,
+      "reviewedSet": "15c65369"
     },
     {
       "id": "skyfall-hold-conquer-bridge",
@@ -158,7 +160,8 @@
       },
       "status": "rule-verified",
       "reviewed": "2026-09-06",
-      "reviewedCount": 29
+      "reviewedCount": 29,
+      "reviewedSet": "992c44a8"
     },
     {
       "id": "reckoners-arena-conquer-on-hold",
@@ -200,7 +203,8 @@
       },
       "status": "rule-verified",
       "reviewed": "2026-09-06",
-      "reviewedCount": 27
+      "reviewedCount": 27,
+      "reviewedSet": "d58f06af"
     },
     {
       "id": "svellsongur-copy",
@@ -272,7 +276,8 @@
       },
       "status": "rule-verified",
       "reviewed": "2026-09-06",
-      "reviewedCount": 102
+      "reviewedCount": 102,
+      "reviewedSet": "71ff5d77"
     },
     {
       "id": "renata-industrialist-tokens",
@@ -311,7 +316,8 @@
       },
       "status": "rule-verified",
       "reviewed": "2026-09-04",
-      "reviewedCount": 73
+      "reviewedCount": 73,
+      "reviewedSet": "1e8d9374"
     },
     {
       "id": "grand-plaza-unit-tokens",
@@ -342,7 +348,8 @@
       },
       "status": "rule-verified",
       "reviewed": "2026-09-05",
-      "reviewedCount": 47
+      "reviewedCount": 47,
+      "reviewedSet": "a2e04356"
     },
     {
       "id": "leblanc-temporary",
@@ -371,7 +378,8 @@
       },
       "status": "rule-verified",
       "reviewed": "2026-09-04",
-      "reviewedCount": 13
+      "reviewedCount": 13,
+      "reviewedSet": "cd6cb631"
     },
     {
       "id": "fiora-buff-ready",
@@ -421,7 +429,8 @@
       },
       "status": "rule-verified",
       "reviewed": "2026-09-04",
-      "reviewedCount": 98
+      "reviewedCount": 98,
+      "reviewedSet": "8584be57"
     },
     {
       "id": "fiora-equipment-ready",
@@ -449,7 +458,8 @@
       },
       "status": "rule-verified",
       "reviewed": "2026-09-04",
-      "reviewedCount": 21
+      "reviewedCount": 21,
+      "reviewedSet": "2ca93a97"
     },
     {
       "id": "jayce-readies-exhaust-abilities",
@@ -483,7 +493,8 @@
       },
       "status": "rule-verified",
       "reviewed": "2026-09-06",
-      "reviewedCount": 76
+      "reviewedCount": 76,
+      "reviewedSet": "69bb0797"
     },
     {
       "id": "ride-the-wind-move-triggers",
@@ -506,7 +517,8 @@
       },
       "status": "rule-verified",
       "reviewed": "2026-09-04",
-      "reviewedCount": 28
+      "reviewedCount": 28,
+      "reviewedSet": "c21aee48"
     },
     {
       "id": "relentless-pursuit-move-triggers",
@@ -529,7 +541,8 @@
       },
       "status": "rule-verified",
       "reviewed": "2026-09-04",
-      "reviewedCount": 28
+      "reviewedCount": 28,
+      "reviewedSet": "c21aee48"
     },
     {
       "id": "windswept-hillock-move-triggers",
@@ -551,7 +564,8 @@
       },
       "status": "rule-verified",
       "reviewed": "2026-09-04",
-      "reviewedCount": 28
+      "reviewedCount": 28,
+      "reviewedSet": "c21aee48"
     },
     {
       "id": "retreat-replays-a-body",
@@ -582,7 +596,8 @@
       },
       "status": "rule-verified",
       "reviewed": "2026-09-04",
-      "reviewedCount": 14
+      "reviewedCount": 14,
+      "reviewedSet": "d24177cb"
     },
     {
       "id": "pack-of-wonders-replays-a-body",
@@ -613,7 +628,8 @@
       },
       "status": "rule-verified",
       "reviewed": "2026-09-04",
-      "reviewedCount": 16
+      "reviewedCount": 16,
+      "reviewedSet": "c965a660"
     },
     {
       "id": "aphelios-equipment-attach",
@@ -639,7 +655,8 @@
       },
       "status": "rule-verified",
       "reviewed": "2026-09-04",
-      "reviewedCount": 39
+      "reviewedCount": 39,
+      "reviewedSet": "5bbe8f55"
     },
     {
       "id": "ekko-deathknell-runes",
@@ -662,7 +679,8 @@
       },
       "status": "rule-verified",
       "reviewed": "2026-09-04",
-      "reviewedCount": 10
+      "reviewedCount": 10,
+      "reviewedSet": "e78f47a5"
     },
     {
       "id": "malzahar-token-fodder",
@@ -687,7 +705,8 @@
       },
       "status": "rule-verified",
       "reviewed": "2026-09-04",
-      "reviewedCount": 73
+      "reviewedCount": 73,
+      "reviewedSet": "1e8d9374"
     },
     {
       "id": "wallop-buff-spend",
@@ -722,7 +741,8 @@
       },
       "status": "rule-verified",
       "reviewed": "2026-09-04",
-      "reviewedCount": 33
+      "reviewedCount": 33,
+      "reviewedSet": "01d99c57"
     },
     {
       "id": "time-warp-once-per-turn",
@@ -747,7 +767,8 @@
       },
       "status": "rule-verified",
       "reviewed": "2026-09-04",
-      "reviewedCount": 13
+      "reviewedCount": 13,
+      "reviewedSet": "9a937eba"
     },
     {
       "id": "gardens-of-becoming-xp",
@@ -773,7 +794,8 @@
       },
       "status": "rule-verified",
       "reviewed": "2026-09-04",
-      "reviewedCount": 12
+      "reviewedCount": 12,
+      "reviewedSet": "efdcb3d6"
     },
     {
       "id": "blood-rose-level",
@@ -798,7 +820,8 @@
       },
       "status": "rule-verified",
       "reviewed": "2026-09-04",
-      "reviewedCount": 15
+      "reviewedCount": 15,
+      "reviewedSet": "f4bb814a"
     },
     {
       "id": "sanction-empower-unit",
@@ -833,7 +856,8 @@
       },
       "status": "rule-verified",
       "reviewed": "2026-09-04",
-      "reviewedCount": 31
+      "reviewedCount": 31,
+      "reviewedSet": "c404a711"
     },
     {
       "id": "hextech-formula-empower-gear",
@@ -860,7 +884,8 @@
       },
       "status": "rule-verified",
       "reviewed": "2026-09-04",
-      "reviewedCount": 4
+      "reviewedCount": 4,
+      "reviewedSet": "d9f6bb27"
     },
     {
       "id": "stargazer-flow-spells",
@@ -886,7 +911,8 @@
       },
       "status": "rule-verified",
       "reviewed": "2026-09-04",
-      "reviewedCount": 15
+      "reviewedCount": 15,
+      "reviewedSet": "554be839"
     },
     {
       "id": "rumble-scrapper-mech",
@@ -912,7 +938,8 @@
       },
       "status": "rule-verified",
       "reviewed": "2026-09-04",
-      "reviewedCount": 15
+      "reviewedCount": 15,
+      "reviewedSet": "13573854"
     },
     {
       "id": "rumble-hotheaded-mech",
@@ -941,7 +968,8 @@
       },
       "status": "rule-verified",
       "reviewed": "2026-09-04",
-      "reviewedCount": 15
+      "reviewedCount": 15,
+      "reviewedSet": "749b6fa3"
     },
     {
       "id": "karthus-deathknell-double",
@@ -984,7 +1012,8 @@
       },
       "status": "rule-verified",
       "reviewed": "2026-09-04",
-      "reviewedCount": 23
+      "reviewedCount": 23,
+      "reviewedSet": "402a449c"
     },
     {
       "id": "bandle-tree-hidden",
@@ -1013,7 +1042,8 @@
       },
       "status": "rule-verified",
       "reviewed": "2026-09-04",
-      "reviewedCount": 39
+      "reviewedCount": 39,
+      "reviewedSet": "13c73347"
     },
     {
       "id": "trapping-grounds-excess-damage",
@@ -1044,7 +1074,8 @@
       },
       "status": "rule-verified",
       "reviewed": "2026-09-04",
-      "reviewedCount": 41
+      "reviewedCount": 41,
+      "reviewedSet": "6fe158b8"
     },
     {
       "id": "shadow-temple-trash-fuel",
@@ -1072,7 +1103,8 @@
       },
       "status": "rule-verified",
       "reviewed": "2026-09-05",
-      "reviewedCount": 49
+      "reviewedCount": 49,
+      "reviewedSet": "89ab2c9e"
     },
     {
       "id": "ezreal-prodigy-accelerate",
@@ -1103,7 +1135,8 @@
       },
       "status": "rule-verified",
       "reviewed": "2026-09-04",
-      "reviewedCount": 26
+      "reviewedCount": 26,
+      "reviewedSet": "de437a7f"
     },
     {
       "id": "dark-child-off-turn-reactions",
@@ -1138,7 +1171,8 @@
       },
       "status": "rule-verified",
       "reviewed": "2026-09-06",
-      "reviewedCount": 62
+      "reviewedCount": 62,
+      "reviewedSet": "a6898084"
     },
     {
       "id": "azir-sovereign-token-relay",
@@ -1168,7 +1202,8 @@
       },
       "status": "rule-verified",
       "reviewed": "2026-09-06",
-      "reviewedCount": 17
+      "reviewedCount": 17,
+      "reviewedSet": "0dd7bff6"
     },
     {
       "id": "forgotten-signpost-carries-exhausted",
@@ -1198,7 +1233,8 @@
       },
       "status": "rule-verified",
       "reviewed": "2026-09-06",
-      "reviewedCount": 17
+      "reviewedCount": 17,
+      "reviewedSet": "0dd7bff6"
     },
     {
       "id": "blood-money-small-token-fodder",
@@ -1229,7 +1265,8 @@
       },
       "status": "rule-verified",
       "reviewed": "2026-09-06",
-      "reviewedCount": 29
+      "reviewedCount": 29,
+      "reviewedSet": "f3c2090b"
     },
     {
       "id": "defender-of-tomorrow-readies-gear",
@@ -1280,7 +1317,8 @@
       },
       "status": "rule-verified",
       "reviewed": "2026-09-06",
-      "reviewedCount": 32
+      "reviewedCount": 32,
+      "reviewedSet": "376c125e"
     },
     {
       "id": "veiled-temple-readies-gear",
@@ -1325,7 +1363,8 @@
       },
       "status": "rule-verified",
       "reviewed": "2026-09-06",
-      "reviewedCount": 34
+      "reviewedCount": 34,
+      "reviewedSet": "37ffe7ac"
     },
     {
       "id": "royal-entourage-readies-your-legend",
@@ -1351,7 +1390,8 @@
       },
       "status": "rule-verified",
       "reviewed": "2026-09-06",
-      "reviewedCount": 24
+      "reviewedCount": 24,
+      "reviewedSet": "a4d7ebfa"
     },
     {
       "id": "hall-of-legends-readies-your-legend",
@@ -1377,7 +1417,8 @@
       },
       "status": "rule-verified",
       "reviewed": "2026-09-06",
-      "reviewedCount": 24
+      "reviewedCount": 24,
+      "reviewedSet": "a4d7ebfa"
     },
     {
       "id": "miss-fortune-readies-your-legend",
@@ -1403,7 +1444,8 @@
       },
       "status": "rule-verified",
       "reviewed": "2026-09-06",
-      "reviewedCount": 24
+      "reviewedCount": 24,
+      "reviewedSet": "a4d7ebfa"
     },
     {
       "id": "stare-down-empties-the-garrison",
@@ -1444,7 +1486,8 @@
       },
       "status": "rule-verified",
       "reviewed": "2026-09-06",
-      "reviewedCount": 54
+      "reviewedCount": 54,
+      "reviewedSet": "815a7aaf"
     },
     {
       "id": "blast-cone-enemy-move",
@@ -1468,7 +1511,8 @@
       },
       "status": "rule-verified",
       "reviewed": "2026-09-06",
-      "reviewedCount": 19
+      "reviewedCount": 19,
+      "reviewedSet": "8e5b6b54"
     },
     {
       "id": "radiant-dawn-stun-buff",
@@ -1504,7 +1548,8 @@
       },
       "status": "rule-verified",
       "reviewed": "2026-09-06",
-      "reviewedCount": 21
+      "reviewedCount": 21,
+      "reviewedSet": "5924a7b4"
     },
     {
       "id": "twilight-reveler-ganking-second-move",
@@ -1534,7 +1579,8 @@
       },
       "status": "rule-verified",
       "reviewed": "2026-09-06",
-      "reviewedCount": 37
+      "reviewedCount": 37,
+      "reviewedSet": "2b2f31b8"
     },
     {
       "id": "on-the-hunt-ganking-second-move",
@@ -1561,7 +1607,8 @@
       },
       "status": "rule-verified",
       "reviewed": "2026-09-06",
-      "reviewedCount": 37
+      "reviewedCount": 37,
+      "reviewedSet": "2b2f31b8"
     },
     {
       "id": "acceleration-gate-ganking-second-move",
@@ -1589,7 +1636,8 @@
       },
       "status": "rule-verified",
       "reviewed": "2026-09-06",
-      "reviewedCount": 37
+      "reviewedCount": 37,
+      "reviewedSet": "2b2f31b8"
     },
     {
       "id": "ancient-henge-energy-surplus",
@@ -1626,7 +1674,8 @@
       },
       "status": "rule-verified",
       "reviewed": "2026-09-06",
-      "reviewedCount": 11
+      "reviewedCount": 11,
+      "reviewedSet": "94ec901e"
     },
     {
       "id": "hextech-anomaly-power-surplus",
@@ -1657,7 +1706,8 @@
       },
       "status": "rule-verified",
       "reviewed": "2026-09-06",
-      "reviewedCount": 16
+      "reviewedCount": 16,
+      "reviewedSet": "e0bf9f22"
     },
     {
       "id": "blade-dancer-buff-is-choosing",
@@ -1704,7 +1754,8 @@
       },
       "status": "rule-verified",
       "reviewed": "2026-09-12",
-      "reviewedCount": 32
+      "reviewedCount": 32,
+      "reviewedSet": "c3d9eca0"
     },
     {
       "id": "irelia-fervent-buff-is-choosing",
@@ -1754,7 +1805,8 @@
       },
       "status": "rule-verified",
       "reviewed": "2026-09-06",
-      "reviewedCount": 21
+      "reviewedCount": 21,
+      "reviewedSet": "146a6381"
     },
     {
       "id": "jae-medarda-chosen-by-spell",
@@ -1792,7 +1844,8 @@
       },
       "status": "rule-verified",
       "reviewed": "2026-09-06",
-      "reviewedCount": 34
+      "reviewedCount": 34,
+      "reviewedSet": "7847d9c2"
     },
     {
       "id": "renekton-brute-relative-might-gate",
@@ -1838,7 +1891,8 @@
       },
       "status": "rule-verified",
       "reviewed": "2026-09-06",
-      "reviewedCount": 2
+      "reviewedCount": 2,
+      "reviewedSet": "212c1eff"
     },
     {
       "id": "moonlight-affliction-might-gate",
@@ -1864,7 +1918,8 @@
       },
       "status": "rule-verified",
       "reviewed": "2026-09-06",
-      "reviewedCount": 16
+      "reviewedCount": 16,
+      "reviewedSet": "a66a8d9c"
     },
     {
       "id": "pit-crew-gear-ready",
@@ -1898,7 +1953,8 @@
       },
       "status": "rule-verified",
       "reviewed": "2026-09-06",
-      "reviewedCount": 106
+      "reviewedCount": 106,
+      "reviewedSet": "d30cf28a"
     },
     {
       "id": "shurelyas-requiem-ganking-second-move",
@@ -1924,7 +1980,8 @@
       },
       "status": "rule-verified",
       "reviewed": "2026-09-06",
-      "reviewedCount": 36
+      "reviewedCount": 36,
+      "reviewedSet": "a11e3aca"
     },
     {
       "id": "yordle-explorer-power-two",
@@ -1948,7 +2005,8 @@
       },
       "status": "rule-verified",
       "reviewed": "2026-09-06",
-      "reviewedCount": 82
+      "reviewedCount": 82,
+      "reviewedSet": "a84c5c99"
     },
     {
       "id": "lady-of-luminosity-expensive-spells",
@@ -1974,7 +2032,8 @@
       },
       "status": "rule-verified",
       "reviewed": "2026-09-06",
-      "reviewedCount": 37
+      "reviewedCount": 37,
+      "reviewedSet": "013fc95f"
     },
     {
       "id": "get-excited-expensive-discard",
@@ -1997,7 +2056,8 @@
       },
       "status": "rule-verified",
       "reviewed": "2026-09-06",
-      "reviewedCount": 67
+      "reviewedCount": 67,
+      "reviewedSet": "bd7f9645"
     },
     {
       "id": "rhasa-trash-counter",
@@ -2043,7 +2103,8 @@
       },
       "status": "rule-verified",
       "reviewed": "2026-09-06",
-      "reviewedCount": 29
+      "reviewedCount": 29,
+      "reviewedSet": "66921f80"
     },
     {
       "id": "startipped-peak-rune-ramp",
@@ -2068,7 +2129,8 @@
       },
       "status": "rule-verified",
       "reviewed": "2026-09-06",
-      "reviewedCount": 2
+      "reviewedCount": 2,
+      "reviewedSet": "5df77b63"
     },
     {
       "id": "reckoners-arena-hunt-double-xp",
@@ -2095,7 +2157,8 @@
       },
       "status": "rule-verified",
       "reviewed": "2026-09-06",
-      "reviewedCount": 13
+      "reviewedCount": 13,
+      "reviewedSet": "7c9991e4"
     },
     {
       "id": "call-to-glory-buff-bank",
@@ -2120,7 +2183,8 @@
       },
       "status": "rule-verified",
       "reviewed": "2026-09-06",
-      "reviewedCount": 5
+      "reviewedCount": 5,
+      "reviewedSet": "17beee37"
     },
     {
       "id": "albus-ferros-buff-bank",
@@ -2146,7 +2210,8 @@
       },
       "status": "rule-verified",
       "reviewed": "2026-09-06",
-      "reviewedCount": 5
+      "reviewedCount": 5,
+      "reviewedSet": "17beee37"
     },
     {
       "id": "sett-kingpin-mass-buff",
@@ -2170,7 +2235,8 @@
       },
       "status": "rule-verified",
       "reviewed": "2026-09-06",
-      "reviewedCount": 5
+      "reviewedCount": 5,
+      "reviewedSet": "17beee37"
     },
     {
       "id": "poro-herder-poro-tag",
@@ -2193,7 +2259,8 @@
       },
       "status": "rule-verified",
       "reviewed": "2026-09-06",
-      "reviewedCount": 14
+      "reviewedCount": 14,
+      "reviewedSet": "5230da3b"
     },
     {
       "id": "herald-of-scales-dragon-discount",
@@ -2218,7 +2285,8 @@
       },
       "status": "rule-verified",
       "reviewed": "2026-09-06",
-      "reviewedCount": 19
+      "reviewedCount": 19,
+      "reviewedSet": "b5ddd831"
     },
     {
       "id": "gentle-gemdragon-dragon-ready",
@@ -2242,7 +2310,8 @@
       },
       "status": "rule-verified",
       "reviewed": "2026-09-06",
-      "reviewedCount": 18
+      "reviewedCount": 18,
+      "reviewedSet": "1716d9fe"
     },
     {
       "id": "direwing-dragon-ready",
@@ -2266,7 +2335,8 @@
       },
       "status": "rule-verified",
       "reviewed": "2026-09-06",
-      "reviewedCount": 18
+      "reviewedCount": 18,
+      "reviewedSet": "4e208bbe"
     },
     {
       "id": "friendship-four-tags",
@@ -2292,7 +2362,8 @@
       },
       "status": "rule-verified",
       "reviewed": "2026-09-06",
-      "reviewedCount": 51
+      "reviewedCount": 51,
+      "reviewedSet": "6eb28488"
     },
     {
       "id": "stalking-wolf-four-tags",
@@ -2320,7 +2391,8 @@
       },
       "status": "rule-verified",
       "reviewed": "2026-09-06",
-      "reviewedCount": 50
+      "reviewedCount": 50,
+      "reviewedSet": "fa464ff3"
     },
     {
       "id": "starhound-four-tags",
@@ -2348,7 +2420,8 @@
       },
       "status": "rule-verified",
       "reviewed": "2026-09-06",
-      "reviewedCount": 50
+      "reviewedCount": 50,
+      "reviewedSet": "817f0138"
     },
     {
       "id": "undying-loyalty-four-tags",
@@ -2374,7 +2447,8 @@
       },
       "status": "rule-verified",
       "reviewed": "2026-09-06",
-      "reviewedCount": 51
+      "reviewedCount": 51,
+      "reviewedSet": "6eb28488"
     },
     {
       "id": "ivern-friend-to-all-four-tags",
@@ -2405,7 +2479,8 @@
       },
       "status": "rule-verified",
       "reviewed": "2026-09-06",
-      "reviewedCount": 51
+      "reviewedCount": 51,
+      "reviewedSet": "6eb28488"
     },
     {
       "id": "daisy-four-tags",
@@ -2431,7 +2506,8 @@
       },
       "status": "rule-verified",
       "reviewed": "2026-09-06",
-      "reviewedCount": 51
+      "reviewedCount": 51,
+      "reviewedSet": "6eb28488"
     },
     {
       "id": "green-father-brush-four-tags",
@@ -2460,7 +2536,8 @@
       },
       "status": "rule-verified",
       "reviewed": "2026-09-06",
-      "reviewedCount": 54
+      "reviewedCount": 54,
+      "reviewedSet": "06a26713"
     },
     {
       "id": "grim-resolve-combat-win-removal-family",
@@ -2496,7 +2573,8 @@
       },
       "status": "rule-verified",
       "reviewed": "2026-09-06",
-      "reviewedCount": 28
+      "reviewedCount": 28,
+      "reviewedSet": "1b96db77"
     },
     {
       "id": "pyke-returned-enemy-kill-removal-family",
@@ -2552,7 +2630,8 @@
       },
       "status": "rule-verified",
       "reviewed": "2026-09-06",
-      "reviewedCount": 23
+      "reviewedCount": 23,
+      "reviewedSet": "72497cdc"
     },
     {
       "id": "portal-rescue-replays-a-body",
@@ -2588,7 +2667,8 @@
       },
       "status": "rule-verified",
       "reviewed": "2026-09-06",
-      "reviewedCount": 16
+      "reviewedCount": 16,
+      "reviewedSet": "c965a660"
     },
     {
       "id": "teemo-strategist-lures-the-attacker",
@@ -2650,7 +2730,8 @@
       },
       "status": "rule-verified",
       "reviewed": "2026-09-06",
-      "reviewedCount": 13
+      "reviewedCount": 13,
+      "reviewedSet": "7bbeee88"
     },
     {
       "id": "dark-child-off-turn-reaction-units",
@@ -2677,7 +2758,8 @@
       },
       "status": "rule-verified",
       "reviewed": "2026-09-06",
-      "reviewedCount": 17
+      "reviewedCount": 17,
+      "reviewedSet": "993a87c8"
     },
     {
       "id": "scrutinizing-sergeant-xp-producer",
@@ -2698,7 +2780,8 @@
       },
       "status": "rule-verified",
       "reviewed": "2026-09-06",
-      "reviewedCount": 27
+      "reviewedCount": 27,
+      "reviewedSet": "51646883"
     },
     {
       "id": "magma-wurm-mass-ready",
@@ -2719,7 +2802,8 @@
       },
       "status": "rule-verified",
       "reviewed": "2026-09-06",
-      "reviewedCount": 50
+      "reviewedCount": 50,
+      "reviewedSet": "9b1a19ce"
     },
     {
       "id": "weaponmaster-equip-discount",
@@ -2745,7 +2829,8 @@
       },
       "status": "rule-verified",
       "reviewed": "2026-09-06",
-      "reviewedCount": 39
+      "reviewedCount": 39,
+      "reviewedSet": "5bbe8f55"
     },
     {
       "id": "oasis-raider-low-rune-family",
@@ -2766,7 +2851,8 @@
       },
       "status": "rule-verified",
       "reviewed": "2026-09-06",
-      "reviewedCount": 5
+      "reviewedCount": 5,
+      "reviewedSet": "808cf2a9"
     },
     {
       "id": "rell-magnetic-free-equip-attach",
@@ -2791,7 +2877,8 @@
       },
       "status": "rule-verified",
       "reviewed": "2026-09-06",
-      "reviewedCount": 39
+      "reviewedCount": 39,
+      "reviewedSet": "5bbe8f55"
     },
     {
       "id": "karma-channeler-vision-recycle",
@@ -2815,7 +2902,8 @@
       },
       "status": "rule-verified",
       "reviewed": "2026-09-06",
-      "reviewedCount": 8
+      "reviewedCount": 8,
+      "reviewedSet": "078b341e"
     },
     {
       "id": "dauntless-vanguard-occupied-battlefield-assault",
@@ -2839,7 +2927,8 @@
       },
       "status": "rule-verified",
       "reviewed": "2026-09-06",
-      "reviewedCount": 41
+      "reviewedCount": 41,
+      "reviewedSet": "6fe158b8"
     },
     {
       "id": "profiteer-empower-relay",
@@ -2861,7 +2950,8 @@
       },
       "status": "rule-verified",
       "reviewed": "2026-09-06",
-      "reviewedCount": 2
+      "reviewedCount": 2,
+      "reviewedSet": "beda9de1"
     },
     {
       "id": "wizened-elder-buffed-payoff",
@@ -2879,7 +2969,8 @@
       },
       "status": "rule-verified",
       "reviewed": "2026-09-06",
-      "reviewedCount": 2
+      "reviewedCount": 2,
+      "reviewedSet": "d5b49b90"
     },
     {
       "id": "shadow-watcher-temporary-death-window",
@@ -2901,7 +2992,8 @@
       },
       "status": "rule-verified",
       "reviewed": "2026-09-06",
-      "reviewedCount": 2
+      "reviewedCount": 2,
+      "reviewedSet": "bb673fc5"
     },
     {
       "id": "eager-apprentice-sky-splitter",
@@ -2921,7 +3013,8 @@
       },
       "status": "rule-verified",
       "reviewed": "2026-09-06",
-      "reviewedCount": 1
+      "reviewedCount": 1,
+      "reviewedSet": "c0390ba7"
     },
     {
       "id": "soul-shepherd-token-buff",
@@ -2943,7 +3036,8 @@
       },
       "status": "rule-verified",
       "reviewed": "2026-09-06",
-      "reviewedCount": 50
+      "reviewedCount": 50,
+      "reviewedSet": "9b1a19ce"
     },
     {
       "id": "gemcraft-seer-vision-generalization",
@@ -2965,7 +3059,8 @@
       },
       "status": "rule-verified",
       "reviewed": "2026-09-06",
-      "reviewedCount": 50
+      "reviewedCount": 50,
+      "reviewedSet": "9b1a19ce"
     },
     {
       "id": "malzahar-fanatic-friendly-death-payoff",
@@ -2987,7 +3082,8 @@
       },
       "status": "rule-verified",
       "reviewed": "2026-09-06",
-      "reviewedCount": 7
+      "reviewedCount": 7,
+      "reviewedSet": "8f55e7c0"
     },
     {
       "id": "heimerdinger-inventor-exhaust-copy",
@@ -3032,7 +3128,8 @@
       },
       "status": "rule-verified",
       "reviewed": "2026-09-06",
-      "reviewedCount": 73
+      "reviewedCount": 73,
+      "reviewedSet": "4e82fe5f"
     },
     {
       "id": "blade-of-ruined-king-deathknell-ondemand",
@@ -3069,7 +3166,8 @@
       },
       "status": "rule-verified",
       "reviewed": "2026-09-06",
-      "reviewedCount": 22
+      "reviewedCount": 22,
+      "reviewedSet": "227479b8"
     },
     {
       "id": "heedless-resurrection-deathknell-ondemand",
@@ -3100,7 +3198,8 @@
       },
       "status": "rule-verified",
       "reviewed": "2026-09-06",
-      "reviewedCount": 22
+      "reviewedCount": 22,
+      "reviewedSet": "227479b8"
     },
     {
       "id": "unforgiven-move-triggers",
@@ -3125,7 +3224,8 @@
       },
       "status": "rule-verified",
       "reviewed": "2026-09-06",
-      "reviewedCount": 28
+      "reviewedCount": 28,
+      "reviewedSet": "c21aee48"
     },
     {
       "id": "grandmaster-at-arms-equip-relay",
@@ -3151,7 +3251,8 @@
       },
       "status": "rule-verified",
       "reviewed": "2026-09-06",
-      "reviewedCount": 14
+      "reviewedCount": 14,
+      "reviewedSet": "1e8a2532"
     },
     {
       "id": "kadregrin-mighty-payoff",
@@ -3173,7 +3274,8 @@
       },
       "status": "rule-verified",
       "reviewed": "2026-09-06",
-      "reviewedCount": 9
+      "reviewedCount": 9,
+      "reviewedSet": "8f8ae652"
     },
     {
       "id": "undertitan-reveal-fuel",
@@ -3210,7 +3312,8 @@
       },
       "status": "rule-verified",
       "reviewed": "2026-09-06",
-      "reviewedCount": 10
+      "reviewedCount": 10,
+      "reviewedSet": "9ab73601"
     },
     {
       "id": "black-market-broker-hidden-family",
@@ -3258,7 +3361,8 @@
       },
       "status": "rule-verified",
       "reviewed": "2026-09-06",
-      "reviewedCount": 39
+      "reviewedCount": 39,
+      "reviewedSet": "13c73347"
     },
     {
       "id": "flame-chompers-discard-family",
@@ -3295,7 +3399,8 @@
       },
       "status": "rule-verified",
       "reviewed": "2026-09-06",
-      "reviewedCount": 24
+      "reviewedCount": 24,
+      "reviewedSet": "50ea1646"
     },
     {
       "id": "fae-dragon-buff-spend-payoff",
@@ -3320,7 +3425,8 @@
       },
       "status": "rule-verified",
       "reviewed": "2026-09-06",
-      "reviewedCount": 8
+      "reviewedCount": 8,
+      "reviewedSet": "9f39f064"
     },
     {
       "id": "leona-zealot-stun-might-collapse",
@@ -3357,7 +3463,8 @@
       },
       "status": "rule-verified",
       "reviewed": "2026-09-06",
-      "reviewedCount": 21
+      "reviewedCount": 21,
+      "reviewedSet": "5924a7b4"
     },
     {
       "id": "solari-chief-stun-into-kill",
@@ -3394,7 +3501,8 @@
       },
       "status": "rule-verified",
       "reviewed": "2026-09-06",
-      "reviewedCount": 21
+      "reviewedCount": 21,
+      "reviewedSet": "5924a7b4"
     },
     {
       "id": "ava-achiever-hidden-discount",
@@ -3447,7 +3555,8 @@
       },
       "status": "rule-verified",
       "reviewed": "2026-09-06",
-      "reviewedCount": 36
+      "reviewedCount": 36,
+      "reviewedSet": "38f8abb8"
     },
     {
       "id": "show-of-strength-mighty-payoff",
@@ -3468,7 +3577,8 @@
       },
       "status": "rule-verified",
       "reviewed": "2026-09-06",
-      "reviewedCount": 9
+      "reviewedCount": 9,
+      "reviewedSet": "ed78b3ff"
     },
     {
       "id": "pridestalker-mighty-enabler",
@@ -3490,7 +3600,8 @@
       },
       "status": "rule-verified",
       "reviewed": "2026-09-06",
-      "reviewedCount": 10
+      "reviewedCount": 10,
+      "reviewedSet": "14e7db04"
     },
     {
       "id": "isolate-open-battlefield-walker",
@@ -3513,7 +3624,8 @@
       },
       "status": "rule-verified",
       "reviewed": "2026-09-06",
-      "reviewedCount": 4
+      "reviewedCount": 4,
+      "reviewedSet": "03c24692"
     },
     {
       "id": "curator-of-the-sands-printed-cost",
@@ -3539,7 +3651,8 @@
       },
       "status": "rule-verified",
       "reviewed": "2026-09-06",
-      "reviewedCount": 54
+      "reviewedCount": 54,
+      "reviewedSet": "008d750c"
     },
     {
       "id": "jax-unrelenting-attach-draw",
@@ -3564,7 +3677,8 @@
       },
       "status": "rule-verified",
       "reviewed": "2026-09-06",
-      "reviewedCount": 39
+      "reviewedCount": 39,
+      "reviewedSet": "5bbe8f55"
     },
     {
       "id": "marai-spire-repeat-discount",
@@ -3599,7 +3713,8 @@
       },
       "status": "rule-verified",
       "reviewed": "2026-09-06",
-      "reviewedCount": 20
+      "reviewedCount": 20,
+      "reviewedSet": "5b54128a"
     },
     {
       "id": "lee-sin-ascetic-unlimited-buffs",
@@ -3620,7 +3735,8 @@
       },
       "status": "rule-verified",
       "reviewed": "2026-09-06",
-      "reviewedCount": 3
+      "reviewedCount": 3,
+      "reviewedSet": "f3081af9"
     },
     {
       "id": "bewitching-spirit-bounce-replay",
@@ -3647,7 +3763,8 @@
       },
       "status": "rule-verified",
       "reviewed": "2026-09-06",
-      "reviewedCount": 7
+      "reviewedCount": 7,
+      "reviewedSet": "f5d377a7"
     },
     {
       "id": "chem-baroness-gold-ramp",
@@ -3677,7 +3794,8 @@
       },
       "status": "rule-verified",
       "reviewed": "2026-09-06",
-      "reviewedCount": 20
+      "reviewedCount": 20,
+      "reviewedSet": "95d0e0b7"
     },
     {
       "id": "ravenbloom-student-spell-replay",
@@ -3705,7 +3823,8 @@
       },
       "status": "rule-verified",
       "reviewed": "2026-09-06",
-      "reviewedCount": 18
+      "reviewedCount": 18,
+      "reviewedSet": "7480711a"
     },
     {
       "id": "time-warp-hold-effects",
@@ -3751,7 +3870,8 @@
       },
       "status": "rule-verified",
       "reviewed": "2026-09-06",
-      "reviewedCount": 47
+      "reviewedCount": 47,
+      "reviewedSet": "e48455f2"
     },
     {
       "id": "peak-guardian-buffed-payoff",
@@ -3772,7 +3892,8 @@
       },
       "status": "rule-verified",
       "reviewed": "2026-09-06",
-      "reviewedCount": 2
+      "reviewedCount": 2,
+      "reviewedSet": "d5b49b90"
     },
     {
       "id": "bloodharbor-ripper-etb-replay",
@@ -3805,7 +3926,8 @@
       },
       "status": "rule-verified",
       "reviewed": "2026-09-06",
-      "reviewedCount": 14
+      "reviewedCount": 14,
+      "reviewedSet": "d24177cb"
     },
     {
       "id": "sprite-queen-friendly-death-feeder",
@@ -3828,7 +3950,8 @@
       },
       "status": "rule-verified",
       "reviewed": "2026-09-06",
-      "reviewedCount": 7
+      "reviewedCount": 7,
+      "reviewedSet": "8f55e7c0"
     },
     {
       "id": "tryndamere-excess-damage-might-reduction",
@@ -3859,7 +3982,8 @@
       },
       "status": "rule-verified",
       "reviewed": "2026-09-06",
-      "reviewedCount": 22
+      "reviewedCount": 22,
+      "reviewedSet": "5420120a"
     },
     {
       "id": "sky-splitter-might-discount",
@@ -3879,7 +4003,8 @@
       },
       "status": "rule-verified",
       "reviewed": "2026-09-06",
-      "reviewedCount": 10
+      "reviewedCount": 10,
+      "reviewedSet": "ec12e28a"
     },
     {
       "id": "master-of-shadows-banish-empower",
@@ -3912,7 +4037,8 @@
       },
       "status": "rule-verified",
       "reviewed": "2026-09-06",
-      "reviewedCount": 31
+      "reviewedCount": 31,
+      "reviewedSet": "d553df39"
     },
     {
       "id": "undertitan-reveal-payoff",
@@ -3937,7 +4063,8 @@
       },
       "status": "rule-verified",
       "reviewed": "2026-09-06",
-      "reviewedCount": 8
+      "reviewedCount": 8,
+      "reviewedSet": "fe1288ca"
     },
     {
       "id": "karma-channeler-recycle-main",
@@ -3990,7 +4117,8 @@
       },
       "status": "rule-verified",
       "reviewed": "2026-09-06",
-      "reviewedCount": 46
+      "reviewedCount": 46,
+      "reviewedSet": "7e88f0a2"
     },
     {
       "id": "back-alley-bar-any-mover",
@@ -4017,7 +4145,8 @@
       },
       "status": "rule-verified",
       "reviewed": "2026-09-06",
-      "reviewedCount": 46
+      "reviewedCount": 46,
+      "reviewedSet": "377daf07"
     },
     {
       "id": "lillia-protector-token-unit-tank",
@@ -4047,7 +4176,8 @@
       },
       "status": "rule-verified",
       "reviewed": "2026-09-06",
-      "reviewedCount": 48
+      "reviewedCount": 48,
+      "reviewedSet": "de0224c0"
     },
     {
       "id": "viktor-leader-friendly-kill",
@@ -4080,7 +4210,8 @@
       },
       "status": "rule-verified",
       "reviewed": "2026-09-06",
-      "reviewedCount": 14
+      "reviewedCount": 14,
+      "reviewedSet": "36c9f517"
     },
     {
       "id": "wraith-of-echoes-friendly-kill",
@@ -4113,7 +4244,8 @@
       },
       "status": "rule-verified",
       "reviewed": "2026-09-06",
-      "reviewedCount": 14
+      "reviewedCount": 14,
+      "reviewedSet": "36c9f517"
     },
     {
       "id": "vanguard-helm-friendly-kill",
@@ -4146,7 +4278,8 @@
       },
       "status": "rule-verified",
       "reviewed": "2026-09-06",
-      "reviewedCount": 14
+      "reviewedCount": 14,
+      "reviewedSet": "36c9f517"
     },
     {
       "id": "altar-of-memories-friendly-kill",
@@ -4177,7 +4310,8 @@
       },
       "status": "rule-verified",
       "reviewed": "2026-09-06",
-      "reviewedCount": 14
+      "reviewedCount": 14,
+      "reviewedSet": "36c9f517"
     },
     {
       "id": "spectral-centaur-friendly-kill",
@@ -4210,7 +4344,8 @@
       },
       "status": "rule-verified",
       "reviewed": "2026-09-06",
-      "reviewedCount": 14
+      "reviewedCount": 14,
+      "reviewedSet": "36c9f517"
     },
     {
       "id": "shard-of-undoing-temporary-death",
@@ -4270,7 +4405,8 @@
       },
       "status": "rule-verified",
       "reviewed": "2026-09-06",
-      "reviewedCount": 14
+      "reviewedCount": 14,
+      "reviewedSet": "b67cc9ef"
     },
     {
       "id": "jinx-rebel-discard-family",
@@ -4306,7 +4442,8 @@
       },
       "status": "rule-verified",
       "reviewed": "2026-09-06",
-      "reviewedCount": 24
+      "reviewedCount": 24,
+      "reviewedSet": "50ea1646"
     },
     {
       "id": "mask-mother-choice-discard-buff",
@@ -4339,7 +4476,8 @@
       },
       "status": "rule-verified",
       "reviewed": "2026-09-06",
-      "reviewedCount": 24
+      "reviewedCount": 24,
+      "reviewedSet": "50ea1646"
     },
     {
       "id": "vex-mocking-stun-relocate",
@@ -4381,7 +4519,8 @@
       },
       "status": "rule-verified",
       "reviewed": "2026-09-06",
-      "reviewedCount": 21
+      "reviewedCount": 21,
+      "reviewedSet": "5924a7b4"
     },
     {
       "id": "eclipse-herald-stun-ready",
@@ -4420,7 +4559,8 @@
       },
       "status": "rule-verified",
       "reviewed": "2026-09-06",
-      "reviewedCount": 21
+      "reviewedCount": 21,
+      "reviewedSet": "5924a7b4"
     },
     {
       "id": "solari-shrine-stun-kill-draw",
@@ -4459,7 +4599,8 @@
       },
       "status": "rule-verified",
       "reviewed": "2026-09-06",
-      "reviewedCount": 21
+      "reviewedCount": 21,
+      "reviewedSet": "5924a7b4"
     },
     {
       "id": "katarina-reckless-hidden-package",
@@ -4505,7 +4646,8 @@
       },
       "status": "rule-verified",
       "reviewed": "2026-09-06",
-      "reviewedCount": 39
+      "reviewedCount": 39,
+      "reviewedSet": "13c73347"
     },
     {
       "id": "ember-monk-hidden-play-might",
@@ -4545,7 +4687,8 @@
       },
       "status": "rule-verified",
       "reviewed": "2026-09-06",
-      "reviewedCount": 39
+      "reviewedCount": 39,
+      "reviewedSet": "13c73347"
     },
     {
       "id": "spirit-wheel-choose-friendly-draw",
@@ -4567,7 +4710,8 @@
       },
       "status": "rule-verified",
       "reviewed": "2026-09-06",
-      "reviewedCount": 16
+      "reviewedCount": 16,
+      "reviewedSet": "d90f325d"
     },
     {
       "id": "soul-reflection-empower-relay",
@@ -4599,7 +4743,8 @@
       },
       "status": "rule-verified",
       "reviewed": "2026-09-07",
-      "reviewedCount": 38
+      "reviewedCount": 38,
+      "reviewedSet": "d8488c92"
     },
     {
       "id": "matriarch-of-war-empower-relay",
@@ -4631,7 +4776,8 @@
       },
       "status": "rule-verified",
       "reviewed": "2026-09-07",
-      "reviewedCount": 38
+      "reviewedCount": 38,
+      "reviewedSet": "d8488c92"
     },
     {
       "id": "rippers-bay-bounce-channel",
@@ -4677,7 +4823,8 @@
       },
       "status": "rule-verified",
       "reviewed": "2026-09-07",
-      "reviewedCount": 13
+      "reviewedCount": 13,
+      "reviewedSet": "61e9c72d"
     },
     {
       "id": "pirates-haven-any-friendly-ready",
@@ -4713,7 +4860,8 @@
       },
       "status": "rule-verified",
       "reviewed": "2026-09-07",
-      "reviewedCount": 30
+      "reviewedCount": 30,
+      "reviewedSet": "6e29b015"
     },
     {
       "id": "jayce-hammer-second-ready",
@@ -4750,7 +4898,8 @@
       },
       "status": "rule-verified",
       "reviewed": "2026-09-07",
-      "reviewedCount": 15
+      "reviewedCount": 15,
+      "reviewedSet": "1cd3f28e"
     },
     {
       "id": "fretful-feline-second-ready",
@@ -4787,7 +4936,8 @@
       },
       "status": "rule-verified",
       "reviewed": "2026-09-07",
-      "reviewedCount": 15
+      "reviewedCount": 15,
+      "reviewedSet": "1cd3f28e"
     },
     {
       "id": "mistfall-buff-ready",
@@ -4818,7 +4968,8 @@
       },
       "status": "rule-verified",
       "reviewed": "2026-09-07",
-      "reviewedCount": 34
+      "reviewedCount": 34,
+      "reviewedSet": "78f8476c"
     },
     {
       "id": "simian-ancestor-buff-ready",
@@ -4849,7 +5000,8 @@
       },
       "status": "rule-verified",
       "reviewed": "2026-09-07",
-      "reviewedCount": 34
+      "reviewedCount": 34,
+      "reviewedSet": "545f1426"
     },
     {
       "id": "prize-of-progress-gear-activation",
@@ -4874,7 +5026,8 @@
       },
       "status": "rule-verified",
       "reviewed": "2026-09-07",
-      "reviewedCount": 39
+      "reviewedCount": 39,
+      "reviewedSet": "58498f79"
     },
     {
       "id": "vicious-snapjaws-friendly-kill",
@@ -4904,7 +5057,8 @@
       },
       "status": "rule-verified",
       "reviewed": "2026-09-07",
-      "reviewedCount": 14
+      "reviewedCount": 14,
+      "reviewedSet": "36c9f517"
     },
     {
       "id": "sprite-queen-conquer-battlefield-cycle",
@@ -4936,7 +5090,8 @@
       },
       "status": "rule-verified",
       "reviewed": "2026-09-07",
-      "reviewedCount": 14
+      "reviewedCount": 14,
+      "reviewedSet": "2b7b030b"
     },
     {
       "id": "forge-of-fluft-repeatable-attach",
@@ -4963,7 +5118,8 @@
       },
       "status": "rule-verified",
       "reviewed": "2026-09-07",
-      "reviewedCount": 4
+      "reviewedCount": 4,
+      "reviewedSet": "53a47cac"
     },
     {
       "id": "vanguard-helm-buff-supply",
@@ -5007,7 +5163,8 @@
       },
       "status": "rule-verified",
       "reviewed": "2026-09-07",
-      "reviewedCount": 32
+      "reviewedCount": 32,
+      "reviewedSet": "db824006"
     },
     {
       "id": "monastery-hirana-buff-supply",
@@ -5048,7 +5205,8 @@
       },
       "status": "rule-verified",
       "reviewed": "2026-09-07",
-      "reviewedCount": 31
+      "reviewedCount": 31,
+      "reviewedSet": "22d9564e"
     },
     {
       "id": "irelia-fervent-choose-cost",
@@ -5071,7 +5229,8 @@
       },
       "status": "rule-verified",
       "reviewed": "2026-09-07",
-      "reviewedCount": 4
+      "reviewedCount": 4,
+      "reviewedSet": "49f1deca"
     },
     {
       "id": "blade-dancer-choose-relocate",
@@ -5094,7 +5253,8 @@
       },
       "status": "rule-verified",
       "reviewed": "2026-09-07",
-      "reviewedCount": 3
+      "reviewedCount": 3,
+      "reviewedSet": "d4b0b861"
     },
     {
       "id": "dragon-roost-dragon-tag",
@@ -5117,7 +5277,8 @@
       },
       "status": "rule-verified",
       "reviewed": "2026-09-07",
-      "reviewedCount": 19
+      "reviewedCount": 19,
+      "reviewedSet": "b5ddd831"
     },
     {
       "id": "risen-altar-empower-discount",
@@ -5163,7 +5324,8 @@
       },
       "status": "rule-verified",
       "reviewed": "2026-09-07",
-      "reviewedCount": 33
+      "reviewedCount": 33,
+      "reviewedSet": "f82c7c48"
     },
     {
       "id": "forgotten-library-spent-four-threshold",
@@ -5186,7 +5348,8 @@
       },
       "status": "rule-verified",
       "reviewed": "2026-09-07",
-      "reviewedCount": 4
+      "reviewedCount": 4,
+      "reviewedSet": "c91c9223"
     },
     {
       "id": "relentless-storm-ambush-mighty",
@@ -5237,7 +5400,8 @@
       },
       "status": "rule-verified",
       "reviewed": "2026-09-07",
-      "reviewedCount": 7
+      "reviewedCount": 7,
+      "reviewedSet": "1432386e"
     },
     {
       "id": "sandswept-tomb-choose-friendly-spells",
@@ -5261,7 +5425,8 @@
       },
       "status": "rule-verified",
       "reviewed": "2026-09-07",
-      "reviewedCount": 14
+      "reviewedCount": 14,
+      "reviewedSet": "f6cdc1bc"
     },
     {
       "id": "frozen-fortress-token-toughness",
@@ -5287,7 +5452,8 @@
       },
       "status": "rule-verified",
       "reviewed": "2026-09-13",
-      "reviewedCount": 6
+      "reviewedCount": 6,
+      "reviewedSet": "0754421f"
     },
     {
       "id": "forbidding-waste-lone-defender-buff",
@@ -5309,7 +5475,8 @@
       },
       "status": "rule-verified",
       "reviewed": "2026-09-07",
-      "reviewedCount": 3
+      "reviewedCount": 3,
+      "reviewedSet": "fa99b37b"
     },
     {
       "id": "annie-fiery-repeatable-pinger",
@@ -5331,7 +5498,8 @@
       },
       "status": "rule-verified",
       "reviewed": "2026-09-07",
-      "reviewedCount": 3
+      "reviewedCount": 3,
+      "reviewedSet": "27809334"
     },
     {
       "id": "captain-farron-granted-assault-sums",
@@ -5353,7 +5521,8 @@
       },
       "status": "rule-verified",
       "reviewed": "2026-09-07",
-      "reviewedCount": 40
+      "reviewedCount": 40,
+      "reviewedSet": "c66e81af"
     },
     {
       "id": "taric-protector-granted-shield-sums",
@@ -5374,7 +5543,8 @@
       },
       "status": "rule-verified",
       "reviewed": "2026-09-07",
-      "reviewedCount": 26
+      "reviewedCount": 26,
+      "reviewedSet": "52b9fa7c"
     },
     {
       "id": "disciple-of-shen-exactly-two-units",
@@ -5395,7 +5565,8 @@
       },
       "status": "rule-verified",
       "reviewed": "2026-09-07",
-      "reviewedCount": 6
+      "reviewedCount": 6,
+      "reviewedSet": "cde9eaa2"
     },
     {
       "id": "unyielding-spirit-unit-damage-family",
@@ -5416,7 +5587,8 @@
       },
       "status": "rule-verified",
       "reviewed": "2026-09-07",
-      "reviewedCount": 10
+      "reviewedCount": 10,
+      "reviewedSet": "f599ca34"
     },
     {
       "id": "syndra-transcendent-repeat-grant",
@@ -5476,7 +5648,8 @@
       },
       "status": "rule-verified",
       "reviewed": "2026-09-09",
-      "reviewedCount": 12
+      "reviewedCount": 12,
+      "reviewedSet": "23ce856b"
     },
     {
       "id": "gearhead-doubles-might-bonus",
@@ -5501,7 +5674,8 @@
       },
       "status": "rule-verified",
       "reviewed": "2026-09-07",
-      "reviewedCount": 34
+      "reviewedCount": 34,
+      "reviewedSet": "c51c0dc7"
     },
     {
       "id": "kinkou-temple-tank-wall-doubling",
@@ -5522,7 +5696,8 @@
       },
       "status": "rule-verified",
       "reviewed": "2026-09-07",
-      "reviewedCount": 25
+      "reviewedCount": 25,
+      "reviewedSet": "af89f2e2"
     },
     {
       "id": "eye-of-twilight-tank-on-a-shield-body",
@@ -5553,7 +5728,8 @@
       },
       "status": "rule-verified",
       "reviewed": "2026-09-09",
-      "reviewedCount": 27
+      "reviewedCount": 27,
+      "reviewedSet": "bff98d26"
     },
     {
       "id": "counter-strike-protects-while-at-battlefield",
@@ -5578,7 +5754,8 @@
       },
       "status": "rule-verified",
       "reviewed": "2026-09-07",
-      "reviewedCount": 14
+      "reviewedCount": 14,
+      "reviewedSet": "18f27e83"
     },
     {
       "id": "heedless-resurrection-accelerated-return",
@@ -5604,7 +5781,8 @@
       },
       "status": "rule-verified",
       "reviewed": "2026-09-07",
-      "reviewedCount": 26
+      "reviewedCount": 26,
+      "reviewedSet": "de437a7f"
     },
     {
       "id": "allay-eager-admirer-granted-deflect-sums",
@@ -5640,7 +5818,8 @@
       },
       "status": "rule-verified",
       "reviewed": "2026-09-09",
-      "reviewedCount": 42
+      "reviewedCount": 42,
+      "reviewedSet": "b6668c32"
     },
     {
       "id": "wielder-of-water-attack-defend-alone-family",
@@ -5660,7 +5839,8 @@
       },
       "status": "rule-verified",
       "reviewed": "2026-09-07",
-      "reviewedCount": 2
+      "reviewedCount": 2,
+      "reviewedSet": "5b4abee0"
     },
     {
       "id": "hidden-blade-would-die-shield",
@@ -5690,7 +5870,8 @@
       },
       "status": "rule-verified",
       "reviewed": "2026-09-09",
-      "reviewedCount": 8
+      "reviewedCount": 8,
+      "reviewedSet": "98df14b8"
     },
     {
       "id": "mageseeker-warden-base-reaching-removal",
@@ -5720,7 +5901,8 @@
       },
       "status": "rule-verified",
       "reviewed": "2026-09-09",
-      "reviewedCount": 9
+      "reviewedCount": 9,
+      "reviewedSet": "25b20b75"
     },
     {
       "id": "seal-of-rage-finalization-power",
@@ -5746,7 +5928,8 @@
       },
       "status": "rule-verified",
       "reviewed": "2026-09-09",
-      "reviewedCount": 5
+      "reviewedCount": 5,
+      "reviewedSet": "34e7fae2"
     },
     {
       "id": "drag-under-empties-the-garrison",
@@ -5774,7 +5957,8 @@
       },
       "status": "rule-verified",
       "reviewed": "2026-09-09",
-      "reviewedCount": 5
+      "reviewedCount": 5,
+      "reviewedSet": "6c372e00"
     },
     {
       "id": "ravenborn-tome-bonus-damage-per-action",
@@ -5810,7 +5994,8 @@
       },
       "status": "rule-verified",
       "reviewed": "2026-09-09",
-      "reviewedCount": 4
+      "reviewedCount": 4,
+      "reviewedSet": "95589fb0"
     },
     {
       "id": "breakneck-mech-ganking",
@@ -5838,7 +6023,8 @@
       },
       "status": "rule-verified",
       "reviewed": "2026-09-09",
-      "reviewedCount": 15
+      "reviewedCount": 15,
+      "reviewedSet": "89b517bf"
     },
     {
       "id": "patched-porobot-gold-gear-count",
@@ -5863,7 +6049,8 @@
       },
       "status": "rule-verified",
       "reviewed": "2026-09-09",
-      "reviewedCount": 23
+      "reviewedCount": 23,
+      "reviewedSet": "faa27691"
     },
     {
       "id": "wily-newtfish-xp-this-turn",
@@ -5887,7 +6074,8 @@
       },
       "status": "rule-verified",
       "reviewed": "2026-09-09",
-      "reviewedCount": 30
+      "reviewedCount": 30,
+      "reviewedSet": "13e3e5ed"
     },
     {
       "id": "cull-the-weak-friendly-death-outlet",
@@ -5911,7 +6099,8 @@
       },
       "status": "rule-verified",
       "reviewed": "2026-09-09",
-      "reviewedCount": 33
+      "reviewedCount": 33,
+      "reviewedSet": "756eeff9"
     },
     {
       "id": "prepared-neophyte-repeat-cost",
@@ -5940,7 +6129,8 @@
       },
       "status": "rule-verified",
       "reviewed": "2026-09-09",
-      "reviewedCount": 20
+      "reviewedCount": 20,
+      "reviewedSet": "ed08f283"
     },
     {
       "id": "purifier-equipment-assault-sums",
@@ -5970,7 +6160,8 @@
       },
       "status": "rule-verified",
       "reviewed": "2026-09-09",
-      "reviewedCount": 40
+      "reviewedCount": 40,
+      "reviewedSet": "159d1f67"
     },
     {
       "id": "warwick-hunter-damage-marker",
@@ -5997,7 +6188,8 @@
       },
       "status": "rule-verified",
       "reviewed": "2026-09-09",
-      "reviewedCount": 14
+      "reviewedCount": 14,
+      "reviewedSet": "1e6fdcd1"
     },
     {
       "id": "immortal-phoenix-spell-kill",
@@ -6033,7 +6225,8 @@
       },
       "status": "rule-verified",
       "reviewed": "2026-09-09",
-      "reviewedCount": 33
+      "reviewedCount": 33,
+      "reviewedSet": "ea143c7c"
     },
     {
       "id": "atakhan-expensive-sacrifice",
@@ -6063,7 +6256,8 @@
       },
       "status": "rule-verified",
       "reviewed": "2026-09-09",
-      "reviewedCount": 28
+      "reviewedCount": 28,
+      "reviewedSet": "45d6f55b"
     },
     {
       "id": "temporal-breach-replays-in-place",
@@ -6095,7 +6289,8 @@
       },
       "status": "rule-verified",
       "reviewed": "2026-09-09",
-      "reviewedCount": 11
+      "reviewedCount": 11,
+      "reviewedSet": "4bab6efa"
     },
     {
       "id": "caitlyn-patrolling-tank-screen",
@@ -6127,7 +6322,8 @@
       },
       "status": "rule-verified",
       "reviewed": "2026-09-09",
-      "reviewedCount": 25
+      "reviewedCount": 25,
+      "reviewedSet": "d8d80a27"
     },
     {
       "id": "factory-recall-equipment-rehost",
@@ -6158,7 +6354,8 @@
       },
       "status": "rule-verified",
       "reviewed": "2026-09-09",
-      "reviewedCount": 40
+      "reviewedCount": 40,
+      "reviewedSet": "159d1f67"
     },
     {
       "id": "bard-mercurial-carries-conquer-payoffs",
@@ -6206,7 +6403,8 @@
       },
       "status": "rule-verified",
       "reviewed": "2026-09-09",
-      "reviewedCount": 29
+      "reviewedCount": 29,
+      "reviewedSet": "f12d69a8"
     },
     {
       "id": "zhonyas-hourglass-cost-still-paid",
@@ -6244,7 +6442,8 @@
       },
       "status": "rule-verified",
       "reviewed": "2026-09-09",
-      "reviewedCount": 8
+      "reviewedCount": 8,
+      "reviewedSet": "2d60512e"
     },
     {
       "id": "vanguard-captain-legion-one-card",
@@ -6271,7 +6470,8 @@
       },
       "status": "rule-verified",
       "reviewed": "2026-09-09",
-      "reviewedCount": 9
+      "reviewedCount": 9,
+      "reviewedSet": "066f3d71"
     },
     {
       "id": "last-stand-doubles-a-shield-body",
@@ -6298,7 +6498,8 @@
       },
       "status": "rule-verified",
       "reviewed": "2026-09-09",
-      "reviewedCount": 27
+      "reviewedCount": 27,
+      "reviewedSet": "bff98d26"
     },
     {
       "id": "dune-surfer-one-way-tank-ignore",
@@ -6326,7 +6527,8 @@
       },
       "status": "rule-verified",
       "reviewed": "2026-09-09",
-      "reviewedCount": 25
+      "reviewedCount": 25,
+      "reviewedSet": "d8d80a27"
     },
     {
       "id": "soraka-wanderer-replacement-fork",
@@ -6360,7 +6562,8 @@
       },
       "status": "rule-verified",
       "reviewed": "2026-09-09",
-      "reviewedCount": 7
+      "reviewedCount": 7,
+      "reviewedSet": "a0f81c1f"
     },
     {
       "id": "volibear-split-bonus-damage-target-count",
@@ -6404,7 +6607,8 @@
       },
       "status": "rule-verified",
       "reviewed": "2026-09-09",
-      "reviewedCount": 3
+      "reviewedCount": 3,
+      "reviewedSet": "6e0854e1"
     },
     {
       "id": "commander-ledros-token-fodder",
@@ -6436,7 +6640,8 @@
       },
       "status": "rule-verified",
       "reviewed": "2026-09-09",
-      "reviewedCount": 48
+      "reviewedCount": 48,
+      "reviewedSet": "de0224c0"
     },
     {
       "id": "treasure-hoard-temporary-garrison-cycle",
@@ -6492,7 +6697,8 @@
       },
       "status": "rule-verified",
       "reviewed": "2026-09-09",
-      "reviewedCount": 15
+      "reviewedCount": 15,
+      "reviewedSet": "32aa1b6a"
     },
     {
       "id": "baron-pit-move-to-a-battlefield",
@@ -6535,7 +6741,8 @@
       },
       "status": "rule-verified",
       "reviewed": "2026-09-12",
-      "reviewedCount": 12
+      "reviewedCount": 12,
+      "reviewedSet": "7f71671a"
     },
     {
       "id": "eye-of-the-herald-effect-mover",
@@ -6571,7 +6778,8 @@
       },
       "status": "rule-verified",
       "reviewed": "2026-09-12",
-      "reviewedCount": 14
+      "reviewedCount": 14,
+      "reviewedSet": "700ab276"
     },
     {
       "id": "iascylla-schedules-the-defend-half",
@@ -6621,7 +6829,8 @@
       },
       "status": "rule-verified",
       "reviewed": "2026-09-12",
-      "reviewedCount": 8
+      "reviewedCount": 8,
+      "reviewedSet": "41ecea43"
     },
     {
       "id": "jax-unmatched-quick-draw-everywhere",
@@ -6668,7 +6877,8 @@
       },
       "status": "rule-verified",
       "reviewed": "2026-09-12",
-      "reviewedCount": 36
+      "reviewedCount": 36,
+      "reviewedSet": "c7e30c33"
     },
     {
       "id": "power-nexus-reaction-power-at-finalization",
@@ -6715,7 +6925,8 @@
       },
       "status": "rule-verified",
       "reviewed": "2026-09-12",
-      "reviewedCount": 12
+      "reviewedCount": 12,
+      "reviewedSet": "1b26396f"
     },
     {
       "id": "sun-disc-enters-ready-exhaust-abilities",
@@ -6769,7 +6980,8 @@
       },
       "status": "rule-verified",
       "reviewed": "2026-09-12",
-      "reviewedCount": 10
+      "reviewedCount": 10,
+      "reviewedSet": "28c66d38"
     },
     {
       "id": "the-academy-granted-repeat-modal-spell",
@@ -6808,7 +7020,8 @@
       },
       "status": "rule-verified",
       "reviewed": "2026-09-12",
-      "reviewedCount": 6
+      "reviewedCount": 6,
+      "reviewedSet": "c34944b3"
     },
     {
       "id": "highlander-kill-cost-shield",
@@ -6848,7 +7061,8 @@
       },
       "status": "rule-verified",
       "reviewed": "2026-09-12",
-      "reviewedCount": 8
+      "reviewedCount": 8,
+      "reviewedSet": "2d60512e"
     },
     {
       "id": "ki-barrier-tank-raises-the-toll",
@@ -6883,7 +7097,8 @@
       },
       "status": "rule-verified",
       "reviewed": "2026-09-12",
-      "reviewedCount": 25
+      "reviewedCount": 25,
+      "reviewedSet": "d8d80a27"
     },
     {
       "id": "flurry-of-blades-one-sided-sweep",
@@ -6907,7 +7122,8 @@
       },
       "status": "rule-verified",
       "reviewed": "2026-09-13",
-      "reviewedCount": 6
+      "reviewedCount": 6,
+      "reviewedSet": "0754421f"
     },
     {
       "id": "angler-beast-one-sided-bounce",
@@ -6930,7 +7146,8 @@
       },
       "status": "rule-verified",
       "reviewed": "2026-09-13",
-      "reviewedCount": 6
+      "reviewedCount": 6,
+      "reviewedSet": "0754421f"
     },
     {
       "id": "rage-amplifier-lifts-the-damage-band",
@@ -6960,7 +7177,8 @@
       },
       "status": "rule-verified",
       "reviewed": "2026-09-13",
-      "reviewedCount": 20
+      "reviewedCount": 20,
+      "reviewedSet": "1db5da50"
     },
     {
       "id": "bullet-time-pays-on-resolution",
@@ -7005,7 +7223,8 @@
       },
       "status": "rule-verified",
       "reviewed": "2026-09-13",
-      "reviewedCount": 6
+      "reviewedCount": 6,
+      "reviewedSet": "48fcf7b0"
     },
     {
       "id": "kogmaw-caustic-sacrifice-outlet",
@@ -7029,7 +7248,8 @@
       },
       "status": "rule-verified",
       "reviewed": "2026-09-13",
-      "reviewedCount": 10
+      "reviewedCount": 10,
+      "reviewedSet": "ef0174c5"
     }
   ]
 }

@@ -314,4 +314,23 @@ export interface Synergy {
    * whole guarantee.
    */
   reviewedCount: number;
+  /**
+   * A fingerprint of the reviewed match list, which pins it by IDENTITY where `reviewedCount` pins
+   * it only by SIZE (#219). The count above catches a list that GROWS or SHRINKS and is blind to a
+   * SWAP — a predicate edit that drops one member and admits another leaves it correct, `reviewed`
+   * untouched, and every check in the tree green. Measured before this field existed: 220 rules,
+   * 5,475 reviewed partners, and nothing anywhere stored the set.
+   *
+   * The two together CLASSIFY the drift rather than merely detecting it, which is what an author
+   * needs: a different SIZE is a widening or a shrink, which a new set legitimately causes and which
+   * is usually accepted by re-reading and restamping; the same size with a different fingerprint is
+   * a SWAP, which is always a predicate change and always has to be read. `validateSynergies` says
+   * which of the two it is and prints the value to paste.
+   *
+   * FNV-1a over the sorted base codes, eight hex characters — the largest list in the file is 106
+   * and `test/synergies.test.ts` caps a rule at 150, so nothing here needs a real hash. A collision
+   * would hide ONE swap in ONE rule at about 2^-32 per check, which is the stated cost of not
+   * storing 5,475 base codes in the file.
+   */
+  reviewedSet: string;
 }

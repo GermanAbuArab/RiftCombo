@@ -2,7 +2,7 @@ import { readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
 import { loadDeck } from "../src/deck.js";
 import { loadCardIndex, loadCombos, loadSynergies } from "../src/load.js";
-import { matchSynergies, partnersOf, planSynergies, validateSynergies } from "../src/synergies.js";
+import { fingerprintOf, matchSynergies, partnersOf, planSynergies, validateSynergies } from "../src/synergies.js";
 
 const cards = loadCardIndex();
 const synergies = loadSynergies();
@@ -30,6 +30,83 @@ describe("synergy rules", () => {
 
   it("stamped every rule with the size of the list that was read", () => {
     for (const s of synergies) expect(s.reviewedCount, s.id).toBe(partnersOf(s, cards).length);
+  });
+
+  /**
+   * #219: `reviewedCount` pins a reviewed list by SIZE and is blind to a SWAP. `reviewedSet` pins it
+   * by IDENTITY. Measured before the field existed: 220 rules, 5,475 reviewed partners, and nothing
+   * in `src/`, `test/` or `scripts/` stored the set — so a predicate edit that dropped one member
+   * and admitted another left the count correct, `reviewed` untouched and every check green.
+   *
+   * The two together CLASSIFY the drift rather than merely detecting it, which is what the author
+   * reading the failure needs: a different SIZE is a widening or a shrink, which a new set
+   * legitimately causes; the SAME size with a different fingerprint is a swap, which a new set
+   * cannot cause and which is always a predicate change.
+   */
+  it("stamped every rule with the IDENTITY of the list, not only its size", () => {
+    for (const s of synergies) {
+      expect(s.reviewedSet, s.id).toMatch(/^[0-9a-f]{8}$/);
+      expect(s.reviewedSet, s.id).toBe(fingerprintOf(partnersOf(s, cards)));
+    }
+    // 29 fingerprints are shared by rules whose match sets are genuinely IDENTICAL - different
+    // anchors, same partners - and ZERO are shared by rules with different sets. Measured, and it
+    // would not matter either way, since a rule's fingerprint is only ever compared with its own.
+    const bySet = new Map<string, Set<string>>();
+    for (const s of synergies) {
+      const set = partnersOf(s, cards).map((c) => c.base).sort().join(",");
+      (bySet.get(s.reviewedSet) ?? bySet.set(s.reviewedSet, new Set()).get(s.reviewedSet)!).add(set);
+    }
+    expect([...bySet.entries()].filter(([, sets]) => sets.size > 1).map(([fp]) => fp)).toEqual([]);
+  });
+
+  it("CATCHES A GENUINE SWAP: the same number of cards, and not the same cards", () => {
+    // Built rather than simulated, over the REAL pool. Two predicates that each match exactly TWO
+    // printing families and share no member - "Spiderling|Baron Pit" is VEN-097 and UNL-147, and
+    // "you win the game" is UNL-088 and OGN-293 - so replacing one with the other holds the SIZE at
+    // two and changes every MEMBER. That is exactly what `reviewedCount` cannot see.
+    // Note the families, not the base codes: `partnersOf` folds reprints onto one row, which is why
+    // the first attempt at this test picked a predicate matching three bases and two families.
+    const base = {
+      ...synergies[0]!, id: "probe-swap",
+      partner: { textMatches: "Spiderling|Baron Pit" },
+    };
+    const before = partnersOf(base, cards);
+    const stamped = { ...base, reviewedCount: before.length, reviewedSet: fingerprintOf(before) };
+    expect(validateSynergies([stamped], cards)).toEqual([]);
+
+    const swapped = { ...stamped, partner: { textMatches: "you win the game" } };
+    const after = partnersOf(swapped, cards);
+    // The premise of the test, asserted rather than assumed: a real swap with no change of size.
+    expect(after.length).toBe(before.length);
+    expect(after.map((c) => c.base).sort()).not.toEqual(before.map((c) => c.base).sort());
+
+    const errors = validateSynergies([swapped], cards);
+    expect(errors).toHaveLength(1);
+    expect(errors[0]).toContain("NOT THE SAME");
+    expect(errors[0]).toContain("a predicate change, never a new set");
+    // And the OLD check is blind to it, which is the whole reason this field exists.
+    expect(partnersOf(swapped, cards).length).toBe(stamped.reviewedCount);
+  });
+
+  it("classifies a size change as a size change, not as a swap", () => {
+    // A new set widens lists legitimately and an author often accepts that after re-reading. The
+    // two failures must not read alike, or the message stops telling them apart.
+    const s = synergies[0]!;
+    const widened = { ...s, reviewedCount: s.reviewedCount - 6 };
+    const errors = validateSynergies([widened], cards);
+    expect(errors).toHaveLength(1);
+    expect(errors[0]).toContain("+6");
+    expect(errors[0]).not.toContain("NOT THE SAME");
+    // The size message carries the fingerprint to paste, because the review tool is read-only and
+    // an author restamping the count alone would just meet the swap error on the next run.
+    expect(errors[0]).toMatch(/reviewedSet \(now [0-9a-f]{8}\)/);
+  });
+
+  it("refuses a rule with no fingerprint at all, rather than treating it as reviewed", () => {
+    const { reviewedSet: _drop, ...naked } = synergies[0]!;
+    const errors = validateSynergies([naked as typeof synergies[0]], cards);
+    expect(errors).toHaveLength(1);
+    expect(errors[0]).toContain("no reviewedSet");
   });
 
   it("cites combos that exist, and only verified ones", () => {
