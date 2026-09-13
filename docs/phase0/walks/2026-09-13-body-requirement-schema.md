@@ -269,3 +269,42 @@ not the real guard**: at zero a population floor says nothing about whether a re
 So each predicate is **pinned against named cards** chosen because each one broke something —
 `UNL-188` for [Equip], `SFD-168` for the plural, `UNL-056` for *"other units"*, `OGN-044` and
 `OGN-293` as negatives. Proved out of band by corrupting the predicate and watching it name itself.
+
+---
+
+## 8. THE CLASS IS CLOSED, AND THE MAP IS THE RESULT
+
+Every shape of *"an entry states a requirement its own `uses` does not supply"* has now been swept.
+Four of the six came back empty or near-empty, and **a measured empty is a full result** — it says
+the catalogue is sound in that direction and it stops the next session re-deriving it.
+
+| Shape | Population | Verdict |
+|---|---|---|
+| A body the prose states, `uses` omits | 65 entries | **`Combo.anyBodies`**, all repaired |
+| A named CARD in prose, `uses` omits | 208 codes + 1,836 name occurrences in steps | **CLEAN** — bounded by nameability |
+| A `uses` row the prose never names | 1,898 rows → 18 | **CLEAN** — no matcher defect; 15 of 18 are units |
+| XP | 52 entries spend it, 19 with no faucet | **ONE** (`monch-skyward-strike-stun-discount`) |
+| A banked resource (Power, runes, trash) | 60 entries mention one | **ZERO deck-checkable** |
+| A card CATEGORY (`[Hidden]`) | 3 flagged | **TWO** genuine, 1 discussion |
+
+**Why the banked-resource row is zero rather than unswept.** 161.2.a fixes the Rune Deck at exactly
+twelve and 315.3.b channels two a turn, so *"eleven Power banked"* is a question of TURNS and not of
+deckbuilding; a trash fills itself; and the rune SPLIT is a build decision `checkBuild` already
+scores. None of the sixty is a thing a decklist could fail to supply, so none can be a matcher
+defect. That is a property of the resource, not of the entries, which is why it did not need reading.
+
+**The two `[Hidden]` cases are the same shape one noun across, and they are un-nameable for the same
+reason.** `katarina-reckless-hidden-burn` and `frigid-jewel-mushroom-pouch-second-card` both instruct
+you to hide a card and neither's `uses` carries one; 811.1.b asks for a facedown card and names none,
+exactly as The Grand Plaza counts any seven units. Naming one would over-constrain by the width of
+the pool: **46 printings carry the keyword, and even inside one domain it is 9 distinct names in
+Mind, 11 in Chaos, 6 in Calm.** `brynhir-lockout-window` is the third flag and is discussion — its
+step 3 says opponents play *no card from [Hidden]*, the opposite of an instruction to hide one.
+
+**`anyBodies` was NOT widened for XP or for `[Hidden]`, and the reasoning is the same both times.**
+Three instances across two different nouns is not a schema axis; generalising `count` and `note` into
+a kind/count/note triple is one edit whenever a fourth lands, and the two fields carry over
+unchanged. What is NOT acceptable is the middle road of naming one arbitrary member in `uses`, which
+turns a false COMPLETE into a false MISSING — `matchDeck` would report *missing Scuttle Crab* at a
+deck running Mosstomper. The recommendation on the record is prose in `prerequisites.notable`, where
+a reader sees it and no machine pretends to check it.
