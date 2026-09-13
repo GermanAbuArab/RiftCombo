@@ -1366,3 +1366,63 @@ walk, **two of them in my own**: `[Deathknell]` has no literal *When* outside it
 the gear sweep wrote `gear` (§13); and a scope word can sit outside any window a regex chooses (§21).
 **Every one was found by reading the hits, and the two in my own instruments were found the same way
 as the five in other people's.**
+
+---
+
+## 24. The unit row's credential: **the pool holds TWO Reaction-speed single-target answers and neither of them kills**
+
+§18 established that a payoff unit opens no response window when it lands — 0 of 12, because 337.2
+resolves a unit immediately and none of the twelve fires a trigger on play. That only matters if the
+opponent has some *other* way into a Closed State on your turn. **Measured, they almost do not.**
+
+**Predicate: corpus lines carrying a single-target unit-removal instruction — `kill` / `banish` /
+`return` naming *a unit*, or `deal N to … a unit` — split by timing keyword.** (The multi-body sweeps
+are the separate twenty-card population of §21.) **937 card rows parsed, 71 hits.**
+
+```
+[Reaction]  3   ->  TWO after reading
+[Action]   23   ->  ~20 after reading
+plain      45       (not individually read; stated as such)
+```
+
+**The `[Reaction]` bucket was read in full and one of the three is mine.** `UNL-073 Deadly Flourish`
+carries **no `[Reaction]` of its own** — its only one is inside the **parenthesised reminder text of
+the Gold token it plays**: *"(It has "[Reaction][>] Kill this, :rb_exhaust:: [Add] rainbow.")"*. My
+classifier tested the full string including parentheses. **CLAUDE.md already records this exact trap**
+(*"a `spell or ability` sweep catches `UNL-044 Flurry of Feathers` on its [Reaction] REMINDER text"*)
+and I walked into it — **the eighth vocabulary hole in this walk, the third in my own instrument.**
+
+**So the honest set is two, and both are Chaos, and NEITHER KILLS:**
+
+```
+OGN-169 | Gust        | Chaos | E1    | [Reaction] Return a unit at a battlefield with 3 Might or less to its owner's hand.
+UNL-128 | Star-Crossed| Chaos | E3 P1 | [Reaction] Return a friendly unit and an enemy unit to their owners' hands.
+```
+
+One is a **bounce gated at Might 3 or less**; the other is a **bounce that is symmetric** and takes
+one of the caster's own bodies with it. **There is no unconditional single-target kill at Reaction
+speed anywhere in this pool.**
+
+Three of the 23 `[Action]` hits are read out as false positives and named so the number is
+reproducible: `OGN-170 Morbid Return` returns a unit **from your trash** (recursion, not removal),
+`SFD-200 Arcane Shift` banishes a **friendly** unit and replays it, and `UNL-161 Divining Shells`
+matched only because *"Kill **this**"* sits within fifty characters of *"Give **a unit** +2 Might"* —
+it is a pump. The remaining ~20 are genuine, and 806.1.c.1 lets them reach a **Showdown on either
+player's turn**, which is a real window but one the defender has to be in a combat to open.
+
+### The contrast with §15 is the whole taxonomy in two lines
+
+| payoff | window at the payoff | Reaction-speed answers in the pool |
+|---|---|---|
+| **spell** | **guaranteed** by 359.3.c | **eleven counters, every one `[Reaction]`** |
+| **unit** | **none** (337.2; 0 of 12 fire on play) | **two, both Chaos, neither of which kills** |
+
+**That is a structural credential the 36 unit-payoff finishers hold and none of them states.** A unit
+payoff has to be answered on the opponent's own turn — a full turn ahead and telegraphed, exactly as
+§1's Ivern notables describe for base removal — or inside a Showdown with an `[Action]`, which the
+defender must first be in a combat to have. The spell row is the opposite in every cell.
+
+**And it explains, rather than criticising, why the catalogue's threat discussions read as they do:**
+the entries talk about **sweeps** (`OGN-133` and the twenty) and about **gear removal** (§13) because
+those are the answers that exist. Single-target removal at Reaction speed is not a thing an opponent
+holds in this format, and the catalogue's silence about it is correct.
