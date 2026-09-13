@@ -266,7 +266,13 @@ for (const e of db.combos) {
     if (!c) continue;
     for (const d of c.domains) domains.add(d);
     if (c.type.includes("legend") || c.type.includes("battlefield")) continue;
-    for (let i = 0; i < u.quantity; i++) costs.push({ e: c.energy || 0, p: c.power || 0 });
+    // The `unit` flag is what deployTurn reads to decide whether a readiness turn is owed (143.4).
+    // It MUST be set here as well as in costsOf(): this loop is the one that feeds the clock for every
+    // entry, and costsOf() only supplies the merged consumer. Setting it in one place and not the other
+    // left c.unit undefined here, so tookUnit never fired, d.unit stayed 0 and the +1 was silently
+    // dropped for every entry that was not Beginning-Phase gated. Caught by hand-walking a turn table.
+    for (let i = 0; i < u.quantity; i++)
+      costs.push({ e: c.energy || 0, p: c.power || 0, unit: c.type.includes("unit") });
     if (c.type.includes("gear") && c.tags.includes("Equipment")) equipment.push(`${c.name} x${u.quantity}`);
     // OGN-133 Flurry of Blades reads "Deal 1 to all units AT BATTLEFIELDS", so it cannot reach a body
     // the entry itself declares in zone BASE. Four of the ten finishers with a Might<=1 unit declare it
