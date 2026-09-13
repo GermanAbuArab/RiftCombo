@@ -191,6 +191,15 @@ file through an unchecked cast (`read<{ combos: Combo[] }>`) and `validateCombos
 It matters to this class directly: any body-requirement check has to treat `ATTACHED` as an on-board
 zone, and a checker written from the type alone would not know it exists.
 
+**REPAIRED THE SAME AFTERNOON, by rc-schema, in commit `6370a8b` — so read this section as history, not
+as a live defect.** The fix added BOTH the ninth member and, more importantly, a RUNTIME check in
+`validateCombos` (`src/combos.ts:20`), with the right diagnosis in its own commit message: *"the union
+is compile-time only, and no `Ingredient` is ever WRITTEN in TypeScript — they are authored in
+`data/combos.json` and arrive through an unchecked cast in `src/load.ts`, so the type was never applied
+to the values it describes."* **My own sentence above — that `validateCombos` never looks at `zone` —
+was true when I wrote it and is false now, because of this report.** Stated rather than quietly edited,
+because a claim about tooling is dated the moment it is made on a tree six sessions are writing to.
+
 ---
 
 ## 6. METHOD NOTES
@@ -338,3 +347,47 @@ measured rather than the verdicts trusted**: max copies of one name runs 1→329
 *"Your deck can have any number of cards named Spiderling"*, and rule 002 makes card text beat rules
 text. **So the single exception hard-coded in that check is the one the pool itself prints, and the
 zero is now PROVEN rather than assumed** — which is the only kind of zero worth reporting.
+
+---
+
+## 10. ZONE VALIDITY: THE ENUM IS CHECKED, THE SEMANTICS ARE NOT
+
+`validateCombos` now checks a `zone` against the nine-member `ZONES` list. **What nothing checks is
+whether that zone is legal for the card's TYPE**, and the rules decide it: **359.2** makes a permanent
+leave the chain and become a Game Object (a spell does not), **359.2.d** enters a non-unit gear READY
+at base, **143.4** enters units exhausted, **718.1** keeps an attached card attached until Detached,
+and **811.1.b** is the ONLY route by which a card sits face-down at a battlefield.
+
+**The whole cross-tab was measured before anything was guessed** — 1,898 `uses` rows, **25 distinct
+type-zone combinations**, every combination of six or fewer occurrences read individually. Most of the
+rare cells are correct and are named here so nobody re-files them: `unit @ CHAMPION` ×3 is the Chosen
+Champion (103.2.a.3); `spell @ TRASH` ×3 is [Flow] and `OGN-252 Super Mega Death Rocket!`, which is
+385.2's own worked example; `spell/gear/unit @ DECK` is reveal-and-predict material such as
+`SFD-175 Undertitan`; the `(none)` cells are an optional field left unset.
+
+### The one testable cell, and the one hit in it
+
+**A spell may sit at a battlefield only if it is [Hidden].** Of the **7** rows declaring
+`spell @ BATTLEFIELD`, **6 carry [Hidden]** and one does not:
+**`sprite-mother-burst-leblanc-plaza` declares `UNL-069 Sprite Burst` at `zone: "BATTLEFIELD"`**, and
+Sprite Burst is a plain Mind spell with no [Hidden] at all. Its own step 4 says what actually happens —
+*"Cast Sprite Burst (5 Energy) and put both Sprites at the Plaza under 355.2.a"* — so the SPELL is cast
+from hand and the TOKENS go to the Plaza. **The row should read HAND.** It changes no behaviour today,
+but it is wrong, and `scripts/adversarial-check.mjs:523` already reads `u.zone` as a board
+discriminator, so the field is load-bearing somewhere.
+
+### An inconsistency worth more than the defect
+
+**An Equipment in play is declared FOUR different ways across the catalogue**: `BOARD` 54,
+`BATTLEFIELD` 52, `ATTACHED` 24, `BASE` 6. Only 24 of those ~136 rows distinguish the state that
+718.x makes materially different — an ATTACHED card has its printed Rules Text Inactive (718.2), its
+Effect Text appended to the carrier (718.3), its [Equip] unusable (721.2), and is still a legal target
+(718.5.b). **So the `zone` field does not currently tell you whether an Equipment is attached**, and
+any checker built on it — mine included — gets a different answer depending on which convention the
+author happened to use. That is a convention question for the schema owner, not a defect list.
+
+**And the caution that makes this axis dangerous to automate**: `ATTACHED` is an ON-BOARD zone, so a
+checker that files it with `TRASH` and `DECK` by the sound of the name is wrong; and `BOARD` and
+`BATTLEFIELD` are distinct members that entries genuinely use differently — `gutter-palace-keeper-time-warp`
+declares its unit at `BOARD` where the Palace needs units AT BATTLEFIELDS, which is precisely the gap
+§3 reports.
