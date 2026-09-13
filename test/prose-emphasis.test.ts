@@ -142,7 +142,7 @@ for (const span of all) {
  * it survived a previous sweep of the same subject that reported zero. A minimum length is a
  * judgement, and the entry sitting on the boundary is the one that proves which way to round.
  */
-const KNOWN = ["for each rune you CONTROL"];
+const KNOWN: string[] = [];
 
 describe("quoted passages in the catalogue's own prose", () => {
   it("walks a corpus big enough that a broken tokenizer cannot pass green", () => {
