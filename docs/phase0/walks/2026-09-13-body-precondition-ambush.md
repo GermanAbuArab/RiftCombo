@@ -800,3 +800,23 @@ intersection that was supposed to confirm it.** That is *re-validate immediately
 its sharpest form yet — not the file moving under me, but **the file moving BECAUSE OF ME**. A lane
 that reports a finding and then measures the same population later is measuring a population its own
 report changed.
+
+### The floor was three and the honest figure is four — I fixed my own probe
+
+I reported 3 as a floor and named the cause as conflating removal with relocation. **Splitting them
+was worth doing and was not the bug.** Split: **14 removal names** (Thermo Beam, Salvage, Detonate,
+Disarming Rake, Zaun Punk, Rocket Barrage, Brittle Steel, Noxian Demolitionist, Acceptable Losses,
+Pickpocket, Adaptatron, Malzahar Fanatic, Jayce Man of Progress, Bottled Constellation) against **7
+relocation names** (Angle Shot, Factory Recall, Strike Down, Legion Quartermaster, Grandmaster at
+Arms, Veiled Temple, Pack of Wonders).
+
+**The real bug is that an answer card sitting in the entry's OWN `uses` was counting as the entry
+having named an answer.** The relocation set is where it lived, because those seven are precisely the
+cards this catalogue runs on its **own** gear. Measured: **8 entries** had their only "answer" be one
+of their own enablers. Corrected, the population goes **78 → 86** and the thin-tail intersection goes
+**3 → 4**, adding `aphelios-jax-quickdraw-attach` — **the entry I had predicted from reading and
+could not explain from the probe.**
+
+**Reading found it, the probe hid it, and the reading is what made me go back.** The standing form is
+the one this project already has and this is a new instance of it: *a check that counts a card as
+evidence must ask whose card it is.*
