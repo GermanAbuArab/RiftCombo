@@ -56,10 +56,11 @@ decides what is visible; `web/account.ts` sets the attribute.
 | Unverified | **0** | `node -pe 'require("./data/combos.json").combos.filter(e=>e.status!=="verified").length'` |
 | By class | INFINITE 14 · BURST 23 · CHAIN 17 · ALT_WIN 26 · ENGINE 686 | `node -pe 'const a=require("./data/combos.json").combos,b={};for(const e of a)b[e.class]=(b[e.class]||0)+1;JSON.stringify(b)'` |
 | Entries by card count (`uses.length`) | 1:26 · 2:468 · 3:194 · 4:53 · 5:17 · 6:5 · 8:2 · 11:1 | `node -pe 'const a=require("./data/combos.json").combos,b={};for(const e of a)b[e.uses.length]=(b[e.uses.length]\|\|0)+1;Object.keys(b).map(Number).sort((x,y)=>x-y).map(k=>k+":"+b[k]).join(" · ")'` |
+| Entries declaring `anyBodies` | **27** | `node -pe 'require("./data/combos.json").combos.filter(e=>e.anyBodies).length'` |
 | Distinct cards used by some entry | **897** | `node -pe 'const a=require("./data/combos.json").combos,s=new Set();for(const e of a)for(const u of e.uses)s.add(u.card);s.size'` |
 | Sources cited | **2264** | `node -pe 'require("./data/combos.json").combos.reduce((n,e)=>n+(e.sources\|\|[]).length,0)'` |
-| Synergy rules | **215** | `node -pe 'require("./data/synergies.json").synergies.length'` |
-| Anchor–partner pairs produced | **5422** | `npm run synergies \| tail -1` |
+| Synergy rules | **220** | `node -pe 'require("./data/synergies.json").synergies.length'` |
+| Anchor–partner pairs produced | **5475** | `npm run synergies \| tail -1` |
 | Printings in the pool | **1189** | `node -pe 'require("./data/cards.json").cards.length'` |
 | Flat corpus lines | **947** | `wc -l < data/corpus_flat.txt` |
 | Errata replacements | **52** | `node -pe 'require("./data/errata.json").entries.length'` |
@@ -104,7 +105,7 @@ cache. Nothing else runs on a server. Its header notes it was ported from a Clou
 Cloudflare Workers to Vercel".
 
 **`data/` — four authored files, the rest generated or downloaded.** Authored: `combos.json` (the
-catalogue, every entry by hand with its sources), `synergies.json` (215 pattern rules: the rule is
+catalogue, every entry by hand with its sources), `synergies.json` (220 pattern rules: the rule is
 hand-verified, the instances are found by a text predicate over the pool), `legality.src.json` (the
 ban list transcribed from Riot's Rules Hub by name, resolved to codes at build time) and
 `signature.src.json` (#103: the 51 Signature cards, resolved from two independent mirrors that Riot's
