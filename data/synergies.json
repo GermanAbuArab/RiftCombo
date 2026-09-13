@@ -7006,6 +7006,30 @@
       "status": "rule-verified",
       "reviewed": "2026-09-13",
       "reviewedCount": 6
+    },
+    {
+      "id": "kogmaw-caustic-sacrifice-outlet",
+      "name": "Kog'Maw is a 4-damage wipe of one battlefield, fired whenever you choose to kill him",
+      "anchor": "OGN-190",
+      "partner": {
+        "textMatches": "[Kk]ill (?:a|any number of) friendly units?|[Kk]ill a unit you control here"
+      },
+      "why": "\"[Deathknell] — Deal 4 to all units at my battlefield\" on a Might 1 body for E3 + 1 Chaos is a board wipe whose only problem is TIMING: left alone it fires when the opponent chooses to kill him, or not at all. A friendly-kill outlet turns that into a wipe you fire on demand, and 428.1.a.1.b is what makes it work rather than merely legal — a unit killed by a Kill INSTRUCTION has its Deathknell put on the chain FIRST, with \"the unit's location, attributes, and other relevant information\" noted before the kill completes, so \"at my battlefield\" still resolves to where he was standing. It is not a \"when another friendly unit dies\" trigger and no rule of that family reaches it: 808.1.c makes a Deathknell short for \"When I die\", which is why malzahar-fanatic-friendly-death-payoff's list does not contain him. 355.10.d makes a deal-to-ALL untargeted, so a garrison of [Deflect] Birds pays no tax and 143.2.a takes everything up to Might 4 with it — including your own, which is the cost. Three of the ten are worth naming for speed: OGN-113 Malzahar, Fanatic is free, repeatable and [Action], so it fires inside a showdown; SFD-163 Deathgrip and UNL-142 Heedless Resurrection carry [Reaction], which reaches a Closed State on the opponent's turn. Six of the ten pay the kill as an additional cost to play a card, so they fire him ONCE, and SFD-178 Blade of the Ruined King pays it per attachment — 718.2 and 721.2 make an attached Equipment unable to pay its own [Equip] again.",
+      "basis": {
+        "rules": [
+          "143.2.a",
+          "355.10.d",
+          "428.1.a.1.b",
+          "718.2",
+          "721.2",
+          "808.1.c",
+          "808.1.d"
+        ],
+        "combos": []
+      },
+      "status": "rule-verified",
+      "reviewed": "2026-09-13",
+      "reviewedCount": 10
     }
   ]
 }
