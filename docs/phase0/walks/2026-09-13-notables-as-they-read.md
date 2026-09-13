@@ -2052,3 +2052,60 @@ that `UNL-131 Abandon` is the wrong counter to use at all, gives a player two co
 a card they will actually be holding.
 
 **Recommendation: stop here.** One ledger answered the question for all eight.
+
+---
+
+## 35. §33's test applied to the sixteen — **one entry already passes it in its own words, two owe a sentence**
+
+§33 produced a one-line test and left it unapplied: **does the consumer finish inside the Main Phase
+the loop runs in?** Sixteen entries declare `needs: infinite-energy`.
+
+**First, a result in the catalogue's favour: ZERO of the sixteen try to spend loop Energy at a HOLD.**
+315.2 Beginning precedes 316 Main and 167 empties the Rune Pool at the Main Phase start, so loop
+Energy exists only in the Main Phase — and every one of the sixteen lands its payoff in the Main Phase
+or on a Conquer, which is a Main Phase event. **The rule CLAUDE.md records is already respected across
+the whole population.**
+
+**Three carry `OGN-122 Time Warp`, and an extra turn is by definition a new Start of Turn** — with a
+Draw Phase in it, and **315.4.b.1**: *"If there are no cards remaining in their Main Deck to draw, the
+Turn Player has been Burned Out."* No `may`.
+
+### `grand-plaza-loop-time-warp` passes, and its own step 4 is the model
+
+> *"Extra turn, Scoring Step of the Beginning Phase (315.2.b.2): you hold the Plaza with 7+ units, so
+> you win (195, 196). **That is two steps before the Draw Phase (315.4)**, so no card is drawn."*
+
+**It wins at 315.2.b.2, before 315.4 ever arrives, and it runs the loop on the first turn only.** The
+entry made the argument before anyone asked the question. **This is what the answer looks like when
+the author has already thought of it.**
+
+### The other two owe a sentence, and it is a REQUIREMENT rather than a refutation
+
+`time-warp-hold-burst` step 3 — *"Cast Time Warp. Extra turn: Hold both, +2. **Repeat twice more**"* —
+and `bottled-constellation-time-warp` step 1 — *"Extra turn: Main Phase start → three Constellations
+… **Loop again**; Time Warp"* — both need the loop's Energy **on turns after a Draw Phase**, because
+each further Time Warp costs E10 + 4 Power and 167 forbids banking it.
+
+**And every producer that could finance them runs on an empty Main Deck.** All seven entries producing
+`infinite-energy` state that premise, and domain legality leaves no escape: `time-warp-hold-burst` is
+**mind/order with no free slot**, so `lux-infinite-energy` is its only legal producer;
+`bottled-constellation-time-warp` is mono-Mind and admits `lux-infinite-energy` or
+`jhin-virtuoso-ekko-malzahar-vi`, both empty-deck loops.
+
+**What I do NOT claim is that they are broken.** `lux-infinite-energy`'s own notable states the escape
+— *"the turn before the kill must end with enough cards for that turn's forced removals and no more"*
+— so a pilot who leaves one card in the deck per extra turn survives every Draw Phase. **The honest
+finding is a requirement neither entry states:**
+
+> **Each extra turn needs at least one card left in the Main Deck for its Draw Phase**, or 315.4.b.1
+> Burns you Out, 431.2.c pays the opponent a point, and 431.2.b recycles the trash back into the deck
+> **and randomises it** — erasing the known bottom the loop's ledger stands on, before the Main Phase
+> that has to pay for the next Time Warp.
+
+**That is the same rule that refused the twin in §33, applied to two live entries, and it lands
+differently because they can satisfy it.** §33's consumer could not: `shen-sentinel-time-warp-chain`
+needs a Hold on each of three turns and the Holds come *before* the Main Phases, so no amount of deck
+management moves its financing into the right phase. **The test has two clauses, not one** — *does the
+consumer finish inside the loop's Main Phase*, and if not, *can it leave the deck a card for every
+Draw Phase it crosses?* `grand-plaza-loop-time-warp` answers the first, these two answer the second,
+and the twin answers neither.
