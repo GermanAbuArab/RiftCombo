@@ -507,7 +507,32 @@ if (stalled) {
   // same 15. Swept from card text rather than a typed list so it cannot go stale against a new set.
   const HOLD_HERE = /when you hold here/i;
   const CONQUER = /when i conquer|when you conquer|conquer here/i;
-  const buckets = { attack: [], conquer: [], hold: [], independent: [] };
+  // FIFTH BUCKET, added 2026-09-13 after rc-synth2 measured that INDEPENDENT was half wrong and its
+  // LABEL overclaimed. It was the else branch of three regexes over hold/conquer/attack, with no
+  // predicate for a LOCATION GATE at all - so four of its eight rows stood on `SFD-088 Renata Glasc,
+  // Mastermind`, whose own printed text ends "Use my abilities only while I'm at a battlefield", and
+  // 355.2.a makes that a battlefield you CONTROL, which is exactly what a stall takes away.
+  //
+  // Narrowed on purpose to an outright restriction on the CARD'S OWN abilities. 17 printings match
+  // "while I'm at a battlefield"; 13 of those are static grants ("While I'm at a battlefield,
+  // opponents can only play units to their base") which restrict nothing of their own, and
+  // `UNL-049 Honeyfruit`'s gate is XP rather than a location. The four that remain are
+  // OGN-068 Caitlyn Patrolling, SFD-088, UNL-026 Xerath Freed and UNL-160 Ultrasoft Poro.
+  const LOCATION_GATE = /use (?:this|my) abilit(?:y|ies) only while i'?m at a battlefield/i;
+  // A row that ALREADY has a hold, conquer or attack gate keeps it and gets this as a RIDER. Putting
+  // LOCATION_GATE earlier in the chain moved `ivern-svellsongur-four-tags-hold` out of HOLD, which is
+  // the precedence error this project already paid for once: a classifier that assigns ONE bucket to a
+  // MIXED object is wrong in whichever direction its order leans, so the order is the thing to audit
+  // and a genuinely two-legged row is named on both.
+  const gateRider = (e, text) => {
+    if (!LOCATION_GATE.test(text)) return "";
+    const who = (e.uses || [])
+      .map((u) => byBase.get(u.card))
+      .filter((x) => x && LOCATION_GATE.test(`${x.text || ""} ${x.effect || ""}`))
+      .map((x) => x.name);
+    return `  [+ LOCATION-GATED: ${who.join(", ")} works only at a battlefield]`;
+  };
+  const buckets = { attack: [], conquer: [], hold: [], located: [], independent: [] };
   for (const e of db.combos) {
     if (!FINISHER.has(e.class)) continue;
     let text = "";
@@ -541,9 +566,10 @@ if (stalled) {
       // a reader has to be able to see that without re-deriving it.
       const also = why.length ? "  [+ an attack leg too - read it]" : conq ? "  [+ a conquer leg too - read it]" : "";
       buckets.hold.push(`${e.class.padEnd(8)} ${e.id}  <- payoff is ${holdPayoff}, "when you hold here"${also}`);
-    } else if (why.length) buckets.attack.push(row);
-    else if (conq) buckets.conquer.push(row + tag(conq));
-    else if (hold) buckets.hold.push(row + tag(hold));
+    } else if (why.length) buckets.attack.push(row + gateRider(e, text));
+    else if (conq) buckets.conquer.push(row + tag(conq) + gateRider(e, text));
+    else if (hold) buckets.hold.push(row + tag(hold) + gateRider(e, text));
+    else if (LOCATION_GATE.test(text)) buckets.located.push(`${e.class.padEnd(8)} ${e.id}${gateRider(e, text)}`);
     else buckets.independent.push(row);
   }
   const n = Object.values(buckets).reduce((a2, b2) => a2 + b2.length, 0);
@@ -554,9 +580,10 @@ if (stalled) {
     attack: "ALIVE WHERE THE CURVE STALLS. The printed text needs the Attacker designation, which 807.1.d and 323.9 make impossible without an enemy garrison. Dead on an empty board, alive on a contested one - the shape a finisher should have.",
     conquer: "SURVIVES A STALL. Scores on a Conquer, and a battlefield the opponent took is a Conquer target, so the stall does not switch it off.",
     hold: "DIES WITH THE CURVE. Scores on a Hold, which needs battlefields you ALREADY control - so the stall that makes this line necessary is the same stall that switches it off.",
+    located: "LOCATION-GATED. The card's OWN abilities are switched off unless it stands at a battlefield, and 355.2.a makes that one you CONTROL - so a stall takes it away exactly as it takes away a Hold. These read as board-independent to a hold/conquer/attack predicate and are not.",
     independent: "BOARD-INDEPENDENT. No Hold, no Conquer and no attack in the printed text, so nothing about the board switches it off.",
   };
-  for (const k of ["attack", "conquer", "hold", "independent"]) {
+  for (const k of ["attack", "conquer", "hold", "located", "independent"]) {
     console.log(`\n## ${k.toUpperCase()}  (${buckets[k].length})\n   ${label[k]}\n`);
     for (const r of buckets[k].sort()) console.log(`     ${r}`);
   }
