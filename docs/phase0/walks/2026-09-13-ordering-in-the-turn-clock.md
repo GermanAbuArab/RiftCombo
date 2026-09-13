@@ -159,15 +159,35 @@ and *"the 8 entries that are both"* is **23**, because the `--stalled` precedenc
 battlefield-payoff rows into the HOLD bucket after the play was written (46 ∩ 45 = 23). The document
 also contradicted itself, claiming three turns early in one section and two in another.
 
-## 7. A stated optimism that had no paragraph
+## 7. 108.5.d is the paragraph the whole turn clock rests on, and it is cited nowhere
 
-The clock has always declared that it ignores which **domain** a rune is when paying Power. Nothing
-said why that is an assumption rather than a choice. It is a **draw** assumption: **114** — *"Each
-player shuffles their Main and Rune Decks, separately"* — **108.5.d** — *"The order of runes in the
-Rune Deck is Secret Information during the course of play"* — and **430.1**, which channels *"from the
-top of a player's Rune Deck"*. **108.5.d is cited by nothing else in this project**; the two hits on
-`114` in the catalogue and in `CLAUDE.md` are both quantities (*"114 gear in all"*, a type histogram),
-not citations. Now in the script header beside the optimism it explains.
+The clock has always declared, in its own header and in `CLAUDE.md`, that it ignores which **domain**
+a rune is when paying Power. It has never said why that is an **assumption** rather than a modelling
+choice — and the difference matters, because a modelling choice is something you could tighten and an
+assumption is something you cannot.
+
+It is a **draw** assumption, and three paragraphs put it there:
+
+- **114** — *"Each player shuffles their Main and Rune Decks, separately, then places them into their
+  respective Zones."* The Rune Deck is shuffled at setup exactly as the Main Deck is.
+- **108.5.d** — *"The order of runes in the Rune Deck is Secret Information during the course of
+  play."* You do not know it and you may not arrange it.
+- **430.1** — Channeling takes runes *"from the top of a player's Rune Deck"*. You take what is on
+  top.
+
+**So a rune of the right domain arriving on the turn a cost wants it is a draw assumption of exactly
+the same kind as holding the card** — it belongs with "perfect draws", not beside it. Every Power
+cost this table prices is paid out of a rune whose domain the player did not choose, and the model
+assumes the choice went their way each time. That is one more thing running in the finisher's favour,
+and it is the reason the table calls itself an optimistic lower bound rather than an estimate.
+
+**108.5.d is cited by nothing else in this project** — not by an entry, not by a synergy rule, not by
+`CLAUDE.md`. The two hits on `114` are both quantities (*"114 gear in all"*, a type histogram), not
+citations. Both are now in the script header, beside the sentence they explain.
+
+The general shape is worth keeping separately from the fact: **an instrument's stated optimism should
+name the paragraph that makes it optimism.** This one had been stated correctly for days and stood on
+nothing, which meant nobody could tell whether it was a limitation or a decision.
 
 ## 8. What a reader should take
 

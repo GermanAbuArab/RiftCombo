@@ -39,6 +39,13 @@ The clock prices **cards**. `lux-infinite-energy` states two requirements in its
 Deck at exactly twelve, and 161.2.b takes a rune off the board for every Power paid — so T6 is the
 best case and every Power spent on the way pushes it out.
 
+**Ten of the eighty rows in the clock carry that engine in their closure, and every one of them
+prints T5** — `bottled-constellation-time-warp`, `grand-plaza-loop-time-warp`, `jayce-mesmerize-renata`,
+`lady-luminosity-loop-comet`, `lux-infinite-energy`, `lux-infinite-power`, `renata-bubble-bot-ready`,
+`renata-mastermind-points`, `swain-double-conquer`, `time-warp-hold-burst`. **Read all ten as no
+earlier than T6.** That set is exact in a way the floor's *source* is not: it is "the closure contains
+`lux-infinite-energy`", and that entry declares both requirements in its own words.
+
 **The empty deck is the one with no number on it**, and the catalogue already knows it is fragile.
 `lux-infinite-energy` carries the finding in its own words — *"THE EMPTY MAIN DECK IS A ONE-TURN
 STATE THAT DESTROYS ITSELF"* — because 315.4.b.1 makes an empty deck at your Draw Phase an automatic
