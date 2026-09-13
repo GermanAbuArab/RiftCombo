@@ -327,6 +327,26 @@ function beginningPhaseGated(e) {
 const CHEAP_BODY_DOMAINS = new Set(["body", "calm"]);
 const baselineTurn = (domains) => ([...domains].some((d) => CHEAP_BODY_DOMAINS.has(d)) ? 5 : 6);
 
+/**
+ * THE SECOND BASELINE, AND THE FIRST ONE IS THE WRONG BOARD FOR THE QUESTION.
+ *
+ * `baselineTurn` is the UNOPPOSED curve: both battlefields yours, 315.2.b.2 Holding both for 2 points
+ * a turn, 8 by T5 or T6. That is the board on which NO FINISHER IS NEEDED — this project's own note
+ * says it, "unopposed, the Hold curve has already won" — so measuring every finisher against it
+ * answers "is this redundant when I was winning anyway", which is not the question a finisher is for.
+ *
+ * The board a finisher IS for is a contested one. Hold ONE battlefield and the curve pays 1 a turn:
+ * a body on T1 (Energy 2 is affordable on two runes in every identity), 143.4 exhausts it, it walks
+ * in on T2 for a Conquer, and seven Holds take it to 8 on **T9**. 471.1.a.1 is why the eighth point
+ * lands unconditionally — the Final Point restriction of 471.1.b.1 is scoped to a CONQUER, and these
+ * are Holds. It is T9 in every identity, because one body on turn 1 does not need an Energy-1 unit.
+ *
+ * Measured over the catalogue on 2026-09-13: 41 of 80 finishers are slower than the unopposed curve
+ * and **6 of 80 are slower than the contested one**, with BURST going from 20 of 23 to 1 of 23. Both
+ * numbers are true and they answer different questions, so the report prints both.
+ */
+const CONTESTED_BASELINE = 9;
+
 // ---------------------------------------------------------------- run it
 const findings = [];
 const clock = [];
@@ -566,14 +586,17 @@ if (engines) {
 }
 
 const slower = clock.filter((c) => c.pays > c.base);
+const slowerContested = clock.filter((c) => c.pays > CONTESTED_BASELINE);
 console.log(`\n# Turn clock (optimistic lower bound: perfect draws, nothing else cast, no interaction)`);
-console.log(`# ${slower.length} of ${clock.length} finishers pay LATER than the do-nothing Hold curve in their own identity`);
+console.log(`# ${slower.length} of ${clock.length} finishers pay LATER than the UNOPPOSED Hold curve (both battlefields, 2/turn, T5-T6)`);
+console.log(`# ${slowerContested.length} of ${clock.length} pay later than the CONTESTED curve (ONE battlefield, 1/turn, T9) — the board a finisher is FOR`);
 // Non-vacuity, and the one number that says whether to trust a row: the greedy pass is the defect
 // #205 removed, so any row priced by it is a row to re-derive by hand rather than quote.
 console.log(`# allocator: exact on ${clock.length - greedyFallbacks} of ${clock.length} rows, greedy fallback on ${greedyFallbacks}`);
 for (const cls of ["INFINITE", "BURST", "CHAIN", "ALT_WIN"]) {
   const all = clock.filter((c) => c.cls === cls);
-  console.log(`#   ${cls.padEnd(9)} ${String(all.filter((c) => c.pays > c.base).length).padStart(2)} of ${String(all.length).padStart(2)}`);
+  console.log(`#   ${cls.padEnd(9)} ${String(all.filter((c) => c.pays > c.base).length).padStart(2)} of ${String(all.length).padStart(2)} unopposed` +
+              `   ${String(all.filter((c) => c.pays > CONTESTED_BASELINE).length).padStart(2)} of ${String(all.length).padStart(2)} contested`);
 }
 console.log();
 for (const c of clock.sort((a, b) => b.pays - a.pays || a.id.localeCompare(b.id)))
