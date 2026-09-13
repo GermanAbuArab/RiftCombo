@@ -15,18 +15,23 @@ const fixture = (n: string) => readFileSync(`${process.cwd()}/test/fixtures/${n}
 
 let edits: string[] = [];
 const shown: string[] = [];
+/** The format the harness reports, so a test can flip it the way the Decks page's radio does. */
+let fmt: "constructed" | "2v2" = "constructed";
+/** The mounted module, kept module-level so a test can call `refreshBuilder` as `web/decks.ts` does. */
+let mod: typeof import("../../web/builder.js");
 
 /** Mount the editor on a fresh module, so the deck and the filters never leak between tests. */
 async function mount(list: string) {
   vi.resetModules();
   edits = [];
   shown.length = 0;
+  fmt = "constructed";
   document.body.innerHTML = `<div id="host"></div>`;
   const host = document.querySelector<HTMLElement>("#host")!;
-  const mod = await import("../../web/builder.js");
+  mod = await import("../../web/builder.js");
   mod.initBuilder(host, {
     cards: () => cards,
-    format: () => "constructed",
+    format: () => fmt,
     showCard: (base) => shown.push(base),
     onEdit: (text) => edits.push(text),
     saveLabel: () => "Save",
@@ -480,6 +485,60 @@ describe("825.3.a — one of each Unique name, at both buttons (#210)", () => {
     expect(plus.getAttribute("title")).toContain("825.3.a");
     plus.click();
     expect(edits).toEqual([]);
+  });
+});
+
+/**
+ * 103.2.e is the one rule the user put in a DIFFERENT TIER on 2026-09-13 (#213): the cell MARKS a
+ * banned or restricted card and takes the click anyway, because the format toggle makes "banned" a
+ * property of the question being asked rather than of the card. Both halves of that decision are
+ * pinned here, and one card pins both.
+ *
+ * Measured over all 1189 printings: EXACTLY ONE card's legality differs between the two formats —
+ * `OGS-019 Wuju Bladesman - Starter`, restricted in 2v2 and unremarkable in Constructed. So it is the
+ * only subject in the pool that can show the badge following `env.format()` at all, and it is also
+ * the pool's only restricted row, which is the one the decision says must stay addable whatever else
+ * changes: a restricted card is a CAP, not an illegal card, and blocking it would be wrong.
+ */
+describe("103.2.e — marked, never blocked, and the mark follows the format (#213)", () => {
+  it("paints the restricted badge only in the format that restricts it, and takes the click in both", async () => {
+    await mount("");
+    allDomains();
+    setZone("legend");
+    await search("Wuju Bladesman");
+    const cell = () => cellNamed("Wuju Bladesman - Starter")!;
+    expect(cell(), "the subject is drawn at all").toBeTruthy();
+    expect(cell().querySelector(".ban-tag"), "nothing to mark in Constructed").toBeNull();
+
+    // The Decks page flips this radio and calls refreshBuilder; this is the builder half of that wire.
+    fmt = "2v2";
+    mod!.refreshBuilder();
+    const tag = cell().querySelector(".ban-tag")!;
+    expect(tag, "restricted in 2v2").not.toBeNull();
+    expect(tag.textContent).toBe("restricted");
+    expect(tag.classList.contains("restricted")).toBe(true);
+
+    // Tier 3: MARKED, not blocked. A restricted card is a cap and not an illegal card.
+    const button = cell().querySelector<HTMLButtonElement>(".pool-add")!;
+    expect(button.getAttribute("aria-disabled")).toBe("false");
+    button.click();
+    expect(edits).toHaveLength(1);
+    expect(edits[0]).toContain("Wuju Bladesman");
+  });
+
+  it("takes the click on a BANNED card too, which is the same tier and the same reason", async () => {
+    await mount("Legend\n1 Fire Below the Mountain\n");
+    allDomains();
+    setZone("battlefields");
+    await search("Aspirant");                       // OGN-276, banned in both formats, colourless
+    const cell = cellNamed("Aspirant's Climb")!;
+    expect(cell.querySelector(".ban-tag")!.textContent).toBe("banned");
+    const button = cell.querySelector<HTMLButtonElement>(".pool-add")!;
+    expect(button.getAttribute("aria-disabled")).toBe("false");
+    button.click();
+    expect(edits).toHaveLength(1);
+    // And the checklist is the authority that still reports it, which is what makes the tier safe.
+    expect(document.querySelector(".bld-check-n")!.textContent).not.toBe("Legal");
   });
 });
 
