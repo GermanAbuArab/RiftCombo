@@ -470,3 +470,44 @@ several things stop a future session re-deriving one.
 
 **And none of it was reachable while the instrument was broken**, because every one of these was
 deleted from its own report by the child that CLAUDE.md did carry.
+
+---
+
+## 10. The corrected clock, and a class law it makes visible (2026-09-13)
+
+Re-derived after #205's allocator was replaced with an exact search **and after that replacement's
+own defect was caught and fixed** (`e0c430a`: the `unit` flag was set in `costsOf()` and not in the
+`entries` loop that feeds the clock, so the readiness turn was silently dropped — two places build
+the cost objects and only one was patched). Figures below are from `npm run adversarial -- --turns`
+at `eb9a49a`. Predicate: the rows that command prints; **ALT_WIN is excluded from the clock by a
+pre-existing line in the script**, which is why the population is 54 and not 80.
+
+| class | n | faster than doing nothing | ties | slower | median pays | median baseline |
+|---|---:|---:|---:|---:|---:|---:|
+| INFINITE | 14 | **8** | 3 | 3 | T5 | T6 |
+| BURST | 23 | **0** | 3 | 20 | T6 | T5 |
+| CHAIN | 17 | **1** | 3 | 13 | T7 | T6 |
+| **total** | **54** | **9** | 9 | 36 | | |
+
+**Eight of the nine finishers that beat the free Hold curve are INFINITE, and NO BURST beats it —
+three tie and twenty are slower.** The fastest line in the catalogue is `lux-infinite-power` at
+**T3 against a T6 baseline**, three turns ahead of doing nothing at all.
+
+This is the quantitative form of a claim `CLAUDE.md` already makes qualitatively — *"an INFINITE is a
+small cheap loop that arrives on turns 3-5, so it beats the clock and changes what you do with the
+game; a BURST is a pile of expensive bodies on turns 6-8"* — and it is now measured with a correct
+instrument rather than asserted. The BURST row is the sharp one: **zero of twenty-three is not a
+tendency, it is a property of the class**, and it is exactly why a BURST earns its slot only where
+the Hold curve has already been broken. Against an opponent who lets you hold two battlefields, every
+BURST in the catalogue is redundant with points that were arriving for free.
+
+**Do not quote these counts.** They moved twice in one day — once when the allocator became exact and
+once when its own defect was fixed — and they move again with every entry merged. `npm run adversarial
+-- --turns` is the truth; this is a photo. What is durable is the shape: the class that beats the
+clock is INFINITE, and the class that cannot is BURST.
+
+**And the clock is now pinned.** `test/turn-clock.test.ts` asserts the two hand-walked reference
+points (`ivern-ride-the-wind-double-conquer` and `ivern-bard-four-tag-double-conquer`, both T6),
+a non-vacuity floor so a broken parse cannot read as green, and that the readiness turn is not
+universal. It was proved out of band by reintroducing the dropped `unit` flag and confirming the
+suite fails by name with *"expected 5 to be 6"*.
