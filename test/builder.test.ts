@@ -993,6 +993,70 @@ describe("the editor can rebuild every registered list it should be able to", ()
   });
 });
 
+/**
+ * EVERY REFUSAL REASON THE EDITOR CAN SHOW A PLAYER, enumerated rather than sampled. `#138`'s lesson is
+ * that enforcement rides on a rendered string; this is the same lesson applied to the REASON on that
+ * string. A refusal added later with no citation, or with a paragraph that does not exist, is
+ * invisible — every other test here asserts a reason it already knows to look for.
+ *
+ * The citations are checked against the rulebooks themselves, so a typo in a paragraph number fails
+ * here rather than reaching a player. Tournament Rules citations are resolved against the OTHER book,
+ * because 52 numbers exist in both and `CR 403.3` is the cost-determination step while
+ * `Tournament Rules 403.3` is the sideboard copy limit.
+ */
+describe("every reason the editor can refuse a click", () => {
+  const core = readFileSync(new URL("../data/Riftbound-Core-Rules-2026-07-16.txt", import.meta.url), "utf8");
+  const tour = readFileSync(new URL("../data/Riftbound-Tournament-Rules-2026-07-16.txt", import.meta.url), "utf8");
+  /** The heading anchor this project requires: 89 headings sit after a form feed, so `\s` not " ". */
+  const exists = (book: string, n: string) => new RegExp(`^\\s*${n.replace(/\./g, "\\.")}\\.`, "m").test(book);
+
+  /** Drive the three cap functions over several boards, so every branch has a chance to speak. */
+  const reasons = (): string[] => {
+    const boards: Deck[] = [emptyDeck(), loadDeck(readFileSync(new URL("./fixtures/lux.txt", import.meta.url), "utf8"), cards)];
+    let ornn: Deck = { ...emptyDeck(), legend: ORNN_LEGEND };
+    for (const b of [CAPE, DEATHCROWN, REQUIEM]) ornn = addCard(ornn, b, cards);
+    boards.push(ornn);
+    let side: Deck = { ...emptyDeck(), legend: LADY };
+    for (const c of poolOf(cards).filter((x) => zoneOf(x) === "main").slice(0, 12)) side = addToSideboard(side, c.base, cards);
+    boards.push(side);
+    // Master Yi is REQUIRED for completeness, not decoration: 103.2.d.1 cannot speak on the Ornn board
+    // because Ornn's only fourth Signature card is off-tag and 103.2.d.2 answers first, and his three
+    // names are all Unique so 825.3.a answers before the count. He is the one shell where the count is
+    // the binding rule, so without him that branch's citation is never enumerated and never checked.
+    let yi: Deck = { ...emptyDeck(), legend: YI_LEGEND };
+    for (let i = 0; i < 3; i++) yi = addCard(yi, HIGHLANDER, cards);
+    boards.push(yi);
+    const out = new Set<string>();
+    for (const d of boards) for (const c of poolOf(cards)) {
+      for (const w of [capOf(d, c.base, cards).why, sideboardCapOf(d, c.base, cards).why, championCapOf(d, c.base, cards).why]) if (w) out.add(w);
+    }
+    return [...out];
+  };
+
+  it("cites a paragraph that exists, in the right book, for every reason that is a RULE", () => {
+    const all = reasons();
+    expect(all.length).toBeGreaterThan(10);                        // non-vacuity: the boards do speak
+    /**
+     * The one reason that is not a rule and correctly cites nothing: it states a fact about the list,
+     * and clicking would be a no-op rather than illegal. Named, so a SECOND uncited reason fails here.
+     */
+    const STATE_ONLY = ["Already the legend of this list."];
+    const uncited = all.filter((w) => !/\d{3}/.test(w));
+    expect(uncited).toEqual(STATE_ONLY);
+
+    let checked = 0;
+    for (const w of all) {
+      for (const m of w.matchAll(/(Tournament Rules )?(\d{3}(?:\.[0-9a-z]+)*)/g)) {
+        const n = m[2]!;
+        const book = m[1] ? tour : core;
+        expect(exists(book, n), `${m[1] ? "Tournament Rules " : ""}${n} exists, cited by: ${w}`).toBe(true);
+        checked++;
+      }
+    }
+    expect(checked).toBeGreaterThan(12);                           // non-vacuity: citations were read
+  });
+});
+
 describe("a list that arrives already illegal (the import path)", () => {
   const ILLEGAL = `Legend
 1 Fire Below the Mountain
