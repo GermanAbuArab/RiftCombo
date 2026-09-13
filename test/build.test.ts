@@ -700,6 +700,25 @@ describe("Tournament Rules 403.4.b — the sideboard inside the identity (#215)"
    * fixed; whether the row or `signatureRule` should widen is #217, and turns on whether 103.2.d.1's
    * count wants the same treatment as 103.2.d.2's tag. Change this test when that is decided.
    */
+  /**
+   * And the sibling question that asymmetry raises is SETTLED, not open (#217): 103.2.d is a Main Deck
+   * rule and the sideboard is deliberately outside it. Measured — "sideboard" appears ZERO times in the
+   * Core Rules — and Tournament Rules 403.3, the one clause that extends a constraint across both bags,
+   * is scoped to "limits on copies of NAMED cards", which 103.2.d.1 excludes itself from in its own
+   * words ("regardless of name"). `uniqueRule` folds the sideboard in because 825.3.a IS such a limit.
+   */
+  it("does not count a sideboard Signature card, because 403.3 is scoped to named-card limits (#217)", () => {
+    const three = "Legend\n1 Fire Below the Mountain\n\nMain Deck\n1 Forgefire Cape\n1 Rabadon's Deathcrown\n1 Shurelya's Requiem\n";
+    expect(row(rows(three), "103.2.d").status).toBe("pass");
+    // A FOURTH Signature card in the sideboard does not make it four.
+    expect(row(rows(`${three}\nSideboard\n1 Fox-Fire\n`), "103.2.d").status).toBe("pass");
+    // The control, and it is what separates this from a row that never fails: a fourth in the MAIN
+    // deck does make it four, so the count is real and only the bag is different.
+    expect(row(rows(`${three}1 Fox-Fire\n`), "103.2.d").status).toBe("fail");
+    // And the contrast with 825.3.a, which DOES fold the sideboard in, for the reason above.
+    expect(row(rows("Legend\n1 Fire Below the Mountain\n\nMain Deck\n1 Forgefire Cape\n\nSideboard\n1 Forgefire Cape\n"), "825.3.a").status).toBe("fail");
+  });
+
   it("measures the domain and not the champion tag, which is #217", () => {
     // The legend has to be the ORNN one, not LEGAL's: Fox-Fire is calm + mind, so under LEGAL's
     // Mind + Order it is off-DOMAIN and the row catches it correctly. The gap only exists where the

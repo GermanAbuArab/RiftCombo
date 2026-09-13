@@ -379,6 +379,26 @@ export const SIGNATURE_CAP = 3;
  * even when no legend is named. 103.2.d.2 does need one (the champion tag it compares against), so with
  * no legend this row reports the count check alone rather than falling back to "unknown" for lacking half
  * of the picture.
+ *
+ * THE MAIN DECK AND NOT THE SIDEBOARD, and that is settled rather than assumed (#217). A Signature card
+ * carrying another champion's tag may sit in the sideboard, pass this row, and never legally be played —
+ * which looks like the gap #215 closed for Domain Identity, one rule over. It is not, for three reasons
+ * read out of the books rather than argued:
+ *
+ *   - "sideboard" appears ZERO times in the Core Rules. It exists only in the Tournament Rules (403,
+ *     601.1.c), so 103.2.d's "your deck" cannot include one and the word carries no weight here.
+ *   - Tournament Rules 403.3 is the ONLY clause that extends a deckbuilding constraint across both bags,
+ *     and it is scoped: "Limits on copies of NAMED cards ... apply to the combination of Main Deck and
+ *     sideboard." 103.2.d.1 says "REGARDLESS OF NAME" in its own text, so it is a category cap and 403.3
+ *     excludes it by that rule's own words; 103.2.d.2 is a membership condition and not a copy limit at
+ *     all. `uniqueRule` folds the sideboard in because 825.3.a IS a named-card limit, which is the half
+ *     of its citation that does the work.
+ *   - 403.4.c extends only deck SIZE past the swap, and 601.1.c.4 states the legend-matching requirement
+ *     EXPLICITLY for the Chosen Champion — which it would not need to if 601.1.c.2's "valid Main Deck
+ *     cards" already meant "legal in THIS deck".
+ *
+ * So an off-tag Signature card in a sideboard is dead weight rather than an illegal registration, and
+ * this row is right not to fail it.
  */
 function signatureRule(deck: Deck, cards: CardIndex): BuildRule {
   const base = { rule: "103.2.d", label: "Up to 3 Signature cards" };
