@@ -442,3 +442,44 @@ of Masks makes Reflections, which are Temporary.
 Those four merely *can* be played at Reaction speed; whether any of them actually mints its bodies
 inside the 816.1.c window, rather than in the Main Phase like the other five, is a walk somebody owes.
 The `needs` edge is the schema owner's to declare, not mine.
+
+---
+
+## 12. THE LEAD, WALKED — AND IT REFUTES ITSELF, WHICH IS THE RIGHT ANSWER
+
+I proposed §11's socket and then read the four candidates' steps. **All four are refused, and the
+refusal is sharper than the lead was.**
+
+**Every one of the four names 816.1.b in its own steps and says its bodies never survive to score:**
+`lillia-smoke-mirrors-sprite-relay` — *"816.1.b kills every Sprite at the start of your next Beginning
+Phase, before scoring — they defend for one turn cycle and never Hold"*;
+`petal-pixie-keeper-of-masks-might-wall` — *"At the start of your next Beginning Phase every
+[Temporary] body dies before scoring (816.1.b)"*; `retreat-sprite-mother-rebuy` — *"At the start of
+your next Beginning Phase 816.1.b kills all of them before scoring"*;
+`black-flame-altar-sprite-call-temporary-shield` — *"At your next Beginning Phase 816.1.b kills the
+Sprite at 315.2.a, before scoring"*.
+
+**And none of them mints a body inside the 816.1.c window, which is the whole question.** 816.1.c:
+*"The Trigger Condition is the controller of the permanent's Beginning Phase starting."* To survive
+into the Main Phase a Temporary body must enter **after that instant, during YOUR OWN Beginning
+Phase** — 383.2.a.1 measures the condition when the trigger is placed, so a permanent that was not
+there is not killed. The four mint in two other places and neither works:
+
+- **In your Main Phase** (`lillia`, `retreat-sprite-mother`) — dies at your NEXT Beginning Phase,
+  which is before that turn's Main Phase. The consumer never sees it.
+- **On the OPPONENT'S turn, inside their attack** (`black-flame-altar` step 3, `petal-pixie` step 3's
+  Reaction line) — and 816.1.b kills at *"this permanent's controller's Beginning Phase"*, which is
+  **yours**, so the body defends through their turn and dies at your next Beginning Phase, again
+  before your Main Phase.
+
+**So `temporary-body-engine` has zero consumers and should keep zero.** That is not an oversight in
+the vocabulary; it is 816.1.b holding. The socket at `VEN-067 Bottled Constellation` is real in
+principle and unreachable in practice, because it fires at 316 and no producer in the catalogue mints
+inside the one window that reaches 316.
+
+**The method note is the durable half.** Four cards *carrying* a Reaction-speed keyword measured as
+four candidates; four entries *read* measured as zero. **A card that CAN be played at Reaction speed
+is not an entry that DOES play it in the one phase that matters** — the same distinction as
+`dune-surfer-armed-assailant-ignore-tank`, where a card carrying [Weaponmaster] never uses it. **I
+flagged §11 as measuring the cards rather than the steps, and that caveat was the whole difference
+between a lead and a wrong DAG edge.**
