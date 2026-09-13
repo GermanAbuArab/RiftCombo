@@ -20,15 +20,39 @@ const heads=[...new Set((R.match(/(^|[\s\f])(\d{3}(?:\.[0-9a-z]+)*)\.[\s\f]/gm)|
 const cnt=(h,s)=>{const re=new RegExp("(?<![-#0-9.])"+h.replace(/\./g,"\\.")+"(?![0-9a-z.])","g");return (s.match(re)||[]).length;};
 const MIN=Number(process.argv[2]||10);
 console.log(`# minCitations = ${MIN}`);
-const rows=[];
+// SECOND COUNTER BUG, found by rc-gap 2026-09-13 and reproduced independently. Fixing the
+// CATALOGUE side in 1727a80 left the CLAUDE.md side with the identical collision, in the
+// SUPPRESSING direction: a rule is dropped when its CLAUDE.md count is non-zero, and a BARE
+// three-digit head also matches a plain quantity in prose. Five rows were hidden by hits that are
+// not citations - "its 100 partners", the issue number 153, the lane label "300-499", "against
+// 348's 381", and "exactly one entry in 762", which is THE CATALOGUE'S OWN SIZE.
+//
+// The blind spot GROWS: as the catalogue passes 800 entries, every sentence quoting the entry count
+// will suppress rules 767-829 one at a time - and that band is the keyword block this project leans
+// on hardest. A tighter regex cannot fix it, because "762" in prose and "762." as a citation are the
+// same characters. So a bare head is never silently dropped: it is reported for READING, with its
+// hits, which is the only check that works on this class.
+const rows=[], verify=[];
 for(const h of heads){
   const c=cnt(h,blob); if(c<MIN) continue;        // the catalogue leans on it
-  const k=cnt(h,CL);   if(k>0) continue;         // CLAUDE.md does not carry it
-  rows.push({h,c});
+  const k=cnt(h,CL);
+  if(k===0){ rows.push({h,c}); continue; }        // CLAUDE.md does not carry it
+  if(!h.includes(".")) verify.push({h,c,k});      // bare head + non-zero: a collision is possible
 }
 rows.sort((a,b)=>b.c-a.c);
 console.log(`NON-VACUITY: ${heads.length} headings parsed; catalogue blob ${blob.length} bytes; CLAUDE.md ${CL.length} bytes.`);
 console.log(`Rules cited ${MIN}+ times by the catalogue and ZERO times in CLAUDE.md: ${rows.length}\n`);
+if(verify.length){
+  console.log(`# ${verify.length} BARE heads were suppressed by a non-zero CLAUDE.md count. A bare`);
+  console.log(`# three-digit number in prose is indistinguishable from a citation, so READ THESE HITS`);
+  console.log(`# rather than trusting the suppression - this is the second counter bug, not a ranking issue.`);
+  for(const v of verify){
+    const hits=(CL.match(new RegExp(".{30}(?<![-#0-9.])"+v.h+"(?![0-9a-z.]).{14}","g"))||[]).slice(0,2);
+    console.log(`  ${String(v.c).padStart(4)}x cat | ${v.k} in CLAUDE.md | ${v.h}`);
+    for(const x of hits) console.log(`         ...${x.replace(/\n/g," ")}...`);
+  }
+  console.log("");
+}
 for(const r of rows.slice(0,25)){
   const re=new RegExp("(^|[\\s\\f])"+r.h.replace(/\./g,"\\.")+"\\.[\\s\\f]([\\s\\S]{0,150})");
   const m=R.match(re);
