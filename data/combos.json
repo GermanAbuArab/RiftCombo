@@ -1491,7 +1491,11 @@
         }
       ],
       "rulesVersion": "2026-07-16",
-      "notes": "Fury/Order had no entry at all. Modest but real, and the only line found so far for that pair. REFUTE 2026-09-03: WOUNDED — the earlier note called the Equip free; only the Energy is reduced by Might, the rainbow Power stays. Both triggers share one condition and each fires once per Conquer: additive, not multiplicative. Kept as the only Fury/Order line. HAND-WALKED 2026-09-04 (docs/phase0/walks/2026-09-04-jhin-fiora-gauntlets-pack.md) once R28 was ruled A, which is what gives the shared condition a value. The Equip reduction is printed on 'this ability's Energy cost', so a 3+ Might bearer zeroes the Energy and the rainbow Power is still paid. The [Effect] 'When I conquer' is the bearer's own trigger by 136.2.d, the same chain as World Atlas and Trinity Force."
+      "notes": "Fury/Order had no entry at all. Modest but real, and the only line found so far for that pair. REFUTE 2026-09-03: WOUNDED — the earlier note called the Equip free; only the Energy is reduced by Might, the rainbow Power stays. Both triggers share one condition and each fires once per Conquer: additive, not multiplicative. Kept as the only Fury/Order line. HAND-WALKED 2026-09-04 (docs/phase0/walks/2026-09-04-jhin-fiora-gauntlets-pack.md) once R28 was ruled A, which is what gives the shared condition a value. The Equip reduction is printed on 'this ability's Energy cost', so a 3+ Might bearer zeroes the Energy and the rainbow Power is still paid. The [Effect] 'When I conquer' is the bearer's own trigger by 136.2.d, the same chain as World Atlas and Trinity Force.",
+      "anyBodies": {
+        "count": 1,
+        "note": "Equip Hextech Gauntlets to a 3+ Might unit (free)"
+      }
     },
     {
       "id": "azir-aphelios-attach",
@@ -7937,7 +7941,11 @@
         }
       ],
       "rulesVersion": "2026-07-16",
-      "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-reaction-deflect-candidates.md), issue #44 candidate 7. Verified as claimed and then found to be stronger than the hunt wrote it: #44 described the payoff as \"a unit from the trash of cost <= the killed unit\", which reads as a downgrade, and missed that the killed unit is itself in the trash at resolution and costs exactly its own cost, so the card is \"your unit dodges the removal and comes straight back, ignoring its cost\". The card prints no \"another unit\". The Deathknell comparison against 808.1.d.1 was added because the two anti-removal shapes in this batch behave in opposite ways on that point."
+      "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-reaction-deflect-candidates.md), issue #44 candidate 7. Verified as claimed and then found to be stronger than the hunt wrote it: #44 described the payoff as \"a unit from the trash of cost <= the killed unit\", which reads as a downgrade, and missed that the killed unit is itself in the trash at resolution and costs exactly its own cost, so the card is \"your unit dodges the removal and comes straight back, ignoring its cost\". The card prints no \"another unit\". The Deathknell comparison against 808.1.d.1 was added because the two anti-removal shapes in this batch behave in opposite ways on that point.",
+      "anyBodies": {
+        "count": 1,
+        "note": "The opponent plays removal choosing your unit X, paying X's Deflect tax if it has one (809.1.c)"
+      }
     },
     {
       "id": "twilight-reveler-eye-facebreaker-recruits",
@@ -11835,7 +11843,11 @@
           "date": "2026-09-06"
         }
       ],
-      "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-issue62-table-of-fourteen.md), issue #62 section 2.6. SCOPED DOWN FROM THE OBVIOUS OVERCLAIM: it would be easy to read Skyfall as making the trigger fire twice on a conquer, since the ability is now in both categories. It does not - a Conquer resolves it once. The catalogue already has the shape where a two-category ability IS paid twice, ivern-arena-sentinel-hold under 823.1.b, and it needs Reckoner's Arena to do it. Card text verbatim from data/corpus_flat.txt. Trap check: no [Repeat]; no [Temporary]; no token; no recall; the channelled rune is exhausted, so 167 never comes into it. Depends on no unruled reading."
+      "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-issue62-table-of-fourteen.md), issue #62 section 2.6. SCOPED DOWN FROM THE OBVIOUS OVERCLAIM: it would be easy to read Skyfall as making the trigger fire twice on a conquer, since the ability is now in both categories. It does not - a Conquer resolves it once. The catalogue already has the shape where a two-category ability IS paid twice, ivern-arena-sentinel-hold under 823.1.b, and it needs Reckoner's Arena to do it. Card text verbatim from data/corpus_flat.txt. Trap check: no [Repeat]; no [Temporary]; no token; no recall; the channelled rune is exhausted, so 167 never comes into it. Depends on no unruled reading.",
+      "anyBodies": {
+        "count": 1,
+        "note": "Equip both Boneshiver and Skyfall of Areion to the same unit (1 Energy + 1 Body, then 1 Energy + 1 Fury)"
+      }
     },
     {
       "id": "lucian-skyfinity-double-conquer",
@@ -13776,7 +13788,11 @@
           "date": "2026-09-06"
         }
       ],
-      "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-issue62-section3.md), issue #62 section 3, and the source is a regional decklist rather than theorycraft. SFD-108 Warmog's Armor was in the catalogue only as a passenger in jhin-relentless-pursuit-wallop; this is the first entry about what it does. The distinction the walk insists on is between the legend's two abilities: the DETACHED one costs 1 Energy and the ATTACHED one costs only the exhaust, and it is the free one this engine runs on. Card text verbatim from data/corpus_flat.txt. Trap check: no attack designation is needed for a Conquer; no [Repeat]; no [Temporary]; no token; no recall; 434.1.f handles the detach half of a reattachment automatically. Depends on no unruled reading."
+      "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-issue62-section3.md), issue #62 section 3, and the source is a regional decklist rather than theorycraft. SFD-108 Warmog's Armor was in the catalogue only as a passenger in jhin-relentless-pursuit-wallop; this is the first entry about what it does. The distinction the walk insists on is between the legend's two abilities: the DETACHED one costs 1 Energy and the ATTACHED one costs only the exhaust, and it is the free one this engine runs on. Card text verbatim from data/corpus_flat.txt. Trap check: no attack designation is needed for a Conquer; no [Repeat]; no [Temporary]; no token; no recall; 434.1.f handles the detach half of a reattachment automatically. Depends on no unruled reading.",
+      "anyBodies": {
+        "count": 2,
+        "note": "Exhaust the legend - its second ability, no Energy - to attach the already-attached Warmog's to a DIFFERENT unit you control"
+      }
     },
     {
       "id": "jax-grandmaster-brutalizer-refresh",
@@ -13852,7 +13868,11 @@
           "date": "2026-09-06"
         }
       ],
-      "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-issue62-section3.md), issue #62 section 3. SFD-042 Brutalizer appeared in no entry before this. The video's own title calls it the 'infinite weapon hack' and the entry deliberately does not: the legend's cost carries an exhaust, so it is once a turn, which is an ENGINE and not an INFINITE by this catalogue's definition. Card text verbatim from data/corpus_flat.txt. Trap check: no attack designation; no [Repeat]; no [Temporary]; no token; no recall; 434.1.f is what makes a same-unit reattachment legal to describe. Depends on no unruled reading."
+      "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-issue62-section3.md), issue #62 section 3. SFD-042 Brutalizer appeared in no entry before this. The video's own title calls it the 'infinite weapon hack' and the entry deliberately does not: the legend's cost carries an exhaust, so it is once a turn, which is an ENGINE and not an INFINITE by this catalogue's definition. Card text verbatim from data/corpus_flat.txt. Trap check: no attack designation; no [Repeat]; no [Temporary]; no token; no recall; 434.1.f is what makes a same-unit reattachment legal to describe. Depends on no unruled reading.",
+      "anyBodies": {
+        "count": 1,
+        "note": "Equip Brutalizer to a unit (1 Calm Power): +1 Might from the Might Bonus, plus +2 because it was attached this turn"
+      }
     },
     {
       "id": "kharox-tornado-warrior-pack",
@@ -15565,7 +15585,11 @@
           "date": "2026-09-06"
         }
       ],
-      "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-issue89-tournament-corpus.md), issue #89 candidate 8 (61 registered lists, 48 of them from riftbound.gg). All three cards appeared in NO entry before this. THE WALK'S ADDITIONS over the hunt: the hunt cited 823.1.b alongside 383.4.c.1/383.4.d.1, and 823.1.b is the [Hunt] rule — it says the right thing about the wrong card, so this entry stands on the two wording rules alone; and the [Equip] cost is checked against 185 / 186.1 / 416.1 / 416.3, which makes 'Recycle 2 cards from your trash' impossible to pay with tokens and impossible to pay at all with fewer than two cards there, a gate the hunt did not price. Card text verbatim from data/corpus_flat.txt. Citations opened: 185, 186.1, 315.2.b.2, 383.2.a.1, 383.4.c.1, 383.4.d.1, 415.3.a, 416.1, 416.3, 431.1. Ban check: none of the three carries a [BANNED marker. Trap check: the Hold half is measured at 383.2.a.1's instant and the entry says the body must survive the opponent's turn; no attack designation; no [Repeat]; no [Temporary]; no token is ever recycled; no recall; no Gold; no battlefield of its own. Depends on no unruled reading."
+      "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-issue89-tournament-corpus.md), issue #89 candidate 8 (61 registered lists, 48 of them from riftbound.gg). All three cards appeared in NO entry before this. THE WALK'S ADDITIONS over the hunt: the hunt cited 823.1.b alongside 383.4.c.1/383.4.d.1, and 823.1.b is the [Hunt] rule — it says the right thing about the wrong card, so this entry stands on the two wording rules alone; and the [Equip] cost is checked against 185 / 186.1 / 416.1 / 416.3, which makes 'Recycle 2 cards from your trash' impossible to pay with tokens and impossible to pay at all with fewer than two cards there, a gate the hunt did not price. Card text verbatim from data/corpus_flat.txt. Citations opened: 185, 186.1, 315.2.b.2, 383.2.a.1, 383.4.c.1, 383.4.d.1, 415.3.a, 416.1, 416.3, 431.1. Ban check: none of the three carries a [BANNED marker. Trap check: the Hold half is measured at 383.2.a.1's instant and the entry says the body must survive the opponent's turn; no attack designation; no [Repeat]; no [Temporary]; no token is ever recycled; no recall; no Gold; no battlefield of its own. Depends on no unruled reading.",
+      "anyBodies": {
+        "count": 2,
+        "note": "Play Lunar Boon at Reaction speed for 3 Energy: discard a unit you want back, draw 2"
+      }
     },
     {
       "id": "shurelya-requiem-ready-and-ganking",
@@ -18470,7 +18494,11 @@
         }
       ],
       "rulesVersion": "2026-07-16",
-      "notes": "FOUND BY THE #107 WALK, not by the issue (docs/phase0/walks/2026-09-06-gear-without-equipment-lens.md). The issue's candidate pairs the Shard with Sprite Fountain, which is a TWO-TURN supply of Beginning-Phase deaths per copy; the Shard wants one such death per turn forever, and UNL-199 Deceiver — one of the four Mind/Order legends the candidate already had to choose from — supplies exactly that for a discard. No new reading is needed: leblanc-zilean-reflection-doubling already states in its own step 2 that an unprotected Reflection dies at your Beginning Phase (816.1.b), and spends UNL-090 LeBlanc, Everywhere at Once (R10 = A) to stop it. This entry is the inversion of that one and the two cannot share a battlefield, which is written into notable. The timing turns on the Beginning Phase's two substeps: 816.1.b kills in the Beginning Step (315.2.a.1) and Deceiver's hold trigger fires in the Scoring Step (315.2.b.2) that follows, so the replacement is always made after the window that would have killed it (383.2.c.1). Cheaper than the Fountain line (6 Energy once, no Power) and unbounded in turns; the cost is one card per turn against a 1-card draw step (315.4.b). Depends on no unruled reading. Card text verbatim from data/corpus_flat.txt; every rule quoted from data/Riftbound-Core-Rules-2026-07-16.txt."
+      "notes": "FOUND BY THE #107 WALK, not by the issue (docs/phase0/walks/2026-09-06-gear-without-equipment-lens.md). The issue's candidate pairs the Shard with Sprite Fountain, which is a TWO-TURN supply of Beginning-Phase deaths per copy; the Shard wants one such death per turn forever, and UNL-199 Deceiver — one of the four Mind/Order legends the candidate already had to choose from — supplies exactly that for a discard. No new reading is needed: leblanc-zilean-reflection-doubling already states in its own step 2 that an unprotected Reflection dies at your Beginning Phase (816.1.b), and spends UNL-090 LeBlanc, Everywhere at Once (R10 = A) to stop it. This entry is the inversion of that one and the two cannot share a battlefield, which is written into notable. The timing turns on the Beginning Phase's two substeps: 816.1.b kills in the Beginning Step (315.2.a.1) and Deceiver's hold trigger fires in the Scoring Step (315.2.b.2) that follows, so the replacement is always made after the window that would have killed it (383.2.c.1). Cheaper than the Fountain line (6 Energy once, no Power) and unbounded in turns; the cost is one card per turn against a 1-card draw step (315.4.b). Depends on no unruled reading. Card text verbatim from data/corpus_flat.txt; every rule quoted from data/Riftbound-Core-Rules-2026-07-16.txt.",
+      "anyBodies": {
+        "count": 1,
+        "note": "Every turn you hold or conquer: discard 1 and exhaust Deceiver to play a ready Reflection token there, with [Temporary] appended"
+      }
     },
     {
       "id": "sett-kingpin-karma-army-might-wall",
@@ -26003,7 +26031,11 @@
         }
       ],
       "rulesVersion": "2026-07-16",
-      "notes": "AUTHORED 2026-09-06 from issue #160. SFD-134 was an uncatalogued partner of skyfall-hold-conquer-bridge (26 partners, 2 entries), and every catalogued Skyfall entry runs the bridge in the hold-to-conquer direction only. Card text verbatim from data/corpus_flat.txt; 136.2.c, 136.2.d, 137.3, 137.3.a, 187.5, 315.1.b, 315.2.b.2, 383.2.a.1, 383.4.c.1, 383.4.d.1, 434.1.b.1 and 103.1.b.1 opened in the Core Rules file. No unruled reading. The refusal that came with it is in the fifth notable rather than a separate row: a conquer payoff whose condition only a combat can satisfy does not survive the conversion, which kills Yeti Brawler and Tryndamere as partners in this direction."
+      "notes": "AUTHORED 2026-09-06 from issue #160. SFD-134 was an uncatalogued partner of skyfall-hold-conquer-bridge (26 partners, 2 entries), and every catalogued Skyfall entry runs the bridge in the hold-to-conquer direction only. Card text verbatim from data/corpus_flat.txt; 136.2.c, 136.2.d, 137.3, 137.3.a, 187.5, 315.1.b, 315.2.b.2, 383.2.a.1, 383.4.c.1, 383.4.d.1, 434.1.b.1 and 103.1.b.1 opened in the Core Rules file. No unruled reading. The refusal that came with it is in the fifth notable rather than a separate row: a conquer payoff whose condition only a combat can satisfy does not survive the conversion, which kills Yeti Brawler and Tryndamere as partners in this direction.",
+      "anyBodies": {
+        "count": 1,
+        "note": "Put a unit at a battlefield you intend to hold, and attach Skyfall of Areion to it (3 Energy, then 1 Energy + 1 Fury Power to [Equip])"
+      }
     },
     {
       "id": "blade-kogmaw-karthus-wipe",
@@ -31682,7 +31714,7 @@
       },
       "steps": [
         "Play Irelia, Fervent (5 Energy) to a battlefield and Forgotten Signpost (2 Energy).",
-        "Keep a third unit at a different location, so the Signpost has a payer and a destination.",
+        "`OGN-044 Clockwork Keeper` is the payer AND the destination, and the line needs no third body: `UNL-045` reads *\"Exhaust a unit you control, :rb_exhaust:: Move a different unit you control to the location of the unit you exhausted\"*, and exhausting Irelia is itself a CHOOSING, so with her and the Keeper you may exhaust HER for the +1 and move the Keeper to her — which is how she stays where the fight is. A third unit at a different location is OPTIONAL and buys only the choice of moving somebody else while she stays put.",
         "When a Showdown or Combat is open on either player's turn (806.1.b), activate the Signpost: exhaust the Signpost and exhaust one of your units.",
         "Move Irelia to that unit's location — that is a choosing, so her trigger gives her +1 Might this turn — or, if she should stay put, exhaust HER to pay the cost instead and move somebody else; either way she gets the +1 once.",
         "Fight with the raised Might (465.2.c reads it at assignment).",
@@ -49372,7 +49404,8 @@
           "THE STUN ITSELF BUYS ALMOST NOTHING, WHICH IS WHY THIS ENTRY IS ABOUT THE DISCOUNT. 423.1.b removes a stunned unit's contribution to the combat damage step but 423.1.c keeps its full Might as the price to kill it - so a stun never cheapens removal. Read Skyward Strike's stun as the KEY to the Monch, not as a combat trick; its own always-on half is the move, which 449 makes an effect Move with only the source's restrictions.",
           "AND THE MOVE HALF IS THE ONE THAT IS ALWAYS LIVE. 'Move an enemy unit' with no destination named is 449 and 449.1; note that dragging an enemy body onto a battlefield you control makes THEM the Attacker on your own turn, because 190.3.a.1 and 450 key Contested on the moved unit's CONTROLLER and 464.2.c.1 makes that player the Attacker - the trick blitzcrank-ezreal-dashing-forced-defence is built on. Skyward Strike is a second, cheaper way to set it up.",
           "THE XP GATE IS THE SAME FORK THIS CATALOGUE KEEPS FINDING. 824.1.d re-evaluates continuously, so a Skyward Strike drawn at 0 XP simply has no stun half that turn and gains one later - unlike a [Level] rider on a play trigger, which is spent for good. mosstomper-wuju-apprentice-xp-calm-ladder is where the Calm ladder is walked, and [Hunt 2] on two held battlefields reaches six in two Beginning Phases.",
-          "WHAT IT IS NOT. Nothing here scores; 469 defines Scoring as Conquer or Hold. And the Monch's condition reads 'an opponent controls a stunned unit', so an opponent who simply has none - because you have no stun, or theirs died - leaves it a six-drop that enters exhausted."
+          "WHAT IT IS NOT. Nothing here scores; 469 defines Scoring as Conquer or Hold. And the Monch's condition reads 'an opponent controls a stunned unit', so an opponent who simply has none - because you have no stun, or theirs died - leaves it a six-drop that enters exhausted.",
+          "THE BANKED 6 XP IS A REQUIREMENT THIS ENTRY DOES NOT SUPPLY, AND NEITHER CARD IN `uses` IS A FAUCET (added 2026-09-13, #200). Step 1 is the requirement in its own words — *\"Bank 6 XP and do not spend it\"* — with 824.1.d making a `[Level N]` ability Inactive the moment you hold less than N and 730.2 making a spend REDUCE what you hold, which is why this entry’s own `terminatesIn` says the whole thing is dark below six XP. But `UNL-035 Monch` is a COST REDUCTION reading an enemy stunned unit, and `UNL-038 Skyward Strike`’s `[Level 6]` half is a CONSUMER of the threshold — so a deck matching this entry with no XP source is told it has an engine it does not have. 823.1.c.1 makes a faucet a CARD, and mono-Calm prints FIVE non-legend ones (Herald of Spring, Wuju Apprentice, Mosstomper, Scuttle Crab, Gardens of Becoming) plus the legends Voidreaver and Keeper of the Hammer. NAMING ONE IN `uses` WOULD BE A DIFFERENT LIE, because the matcher would then report MISSING Scuttle Crab at a deck running Mosstomper; the requirement is *an* XP faucet, and this sentence is where it lives rather than in the schema."
         ]
       },
       "steps": [
@@ -51411,7 +51444,11 @@
           "date": "2026-09-07"
         }
       ],
-      "notes": "HAND-WALKED 2026-09-07 (issue #187, sub-rule lane 100-499; from the filtered probe). 359.3.e.6, .e.7, .e.8, .e.9 and .e.9.a are cited by no entry and no synergy rule in this project, and 359.3.e.9.a's worked example names four pool cards together - OGN-041 Volibear, Furious, OGS-011 Flash, UNL-106 Repulse and UNL-142 Heedless Resurrection. Card text verbatim from data/corpus_flat.txt. Citations opened: 103.1.b.2, 103.2.b, 103.2.d.2, 185.3.a.1, 206, 359.3.e.7, 359.3.e.8, 359.3.e.9, 359.3.e.9.a, 415.3.a, 813.1.c.1. REPORT TO THE MANAGER: the general fact is that a MOVE and a KILL are not interchangeable answers to a multi-target chain item - a mistargeted choice is still counted, a choice that left the board is not - and it reaches every 'chooses it and no other' or 'that targets N' clause in the pool. Distinct from jae-medarda-repulse-counter-that-pays-for-itself and from the three existing Heedless Resurrection entries, none of which cites 359.3.e.9.a. Trap check: 359.3.e.8 means killing some targets does not blank the instruction, so the counter is still required; the kills must resolve before Repulse is finalized; 206 prices the reanimation on printed costs and a token is worth 0 (185.3.a.1); no unruled reading."
+      "notes": "HAND-WALKED 2026-09-07 (issue #187, sub-rule lane 100-499; from the filtered probe). 359.3.e.6, .e.7, .e.8, .e.9 and .e.9.a are cited by no entry and no synergy rule in this project, and 359.3.e.9.a's worked example names four pool cards together - OGN-041 Volibear, Furious, OGS-011 Flash, UNL-106 Repulse and UNL-142 Heedless Resurrection. Card text verbatim from data/corpus_flat.txt. Citations opened: 103.1.b.2, 103.2.b, 103.2.d.2, 185.3.a.1, 206, 359.3.e.7, 359.3.e.8, 359.3.e.9, 359.3.e.9.a, 415.3.a, 813.1.c.1. REPORT TO THE MANAGER: the general fact is that a MOVE and a KILL are not interchangeable answers to a multi-target chain item - a mistargeted choice is still counted, a choice that left the board is not - and it reaches every 'chooses it and no other' or 'that targets N' clause in the pool. Distinct from jae-medarda-repulse-counter-that-pays-for-itself and from the three existing Heedless Resurrection entries, none of which cites 359.3.e.9.a. Trap check: 359.3.e.8 means killing some targets does not blank the instruction, so the counter is still required; the kills must resolve before Repulse is finalized; 206 prices the reanimation on printed costs and a token is worth 0 (185.3.a.1); no unruled reading.",
+      "anyBodies": {
+        "count": 3,
+        "note": "The opponent finalizes a trigger or spell that chooses three of your units - Volibear, Furious's attack trigger is Riot's case"
+      }
     },
     {
       "id": "ornn-blacksmith-late-may-resolution",
@@ -55390,7 +55427,11 @@
           "kind": "manual-walk",
           "date": "2026-09-12"
         }
-      ]
+      ],
+      "anyBodies": {
+        "count": 1,
+        "note": "Choose the first mode and choose a friendly unit that is not already Empowered (441.1.b)"
+      }
     },
     {
       "id": "conscription-forge-of-the-fluft-equipment-outlives-the-theft",

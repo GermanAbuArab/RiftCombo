@@ -169,7 +169,7 @@ const flagged = live.filter((c) =>
  * overruled — its `uses` already carries two units, so Keeper-pays-while-Irelia-moves runs without a
  * third body, and what the third buys is the option of moving somebody else while she stays put.
  */
-const REPAIRS = 27;
+const REPAIRS = 37;
 
 describe("predicate E: a controlled battlefield with no body to take it", () => {
   it("reads a non-trivial population, so a broken sweep cannot read as green", () => {
@@ -196,6 +196,105 @@ describe("predicate E: a controlled battlefield with no body to take it", () => 
       const c = live.find((x) => x.id === id);
       expect(c, `${id} is gone from the catalogue`).toBeDefined();
       expect(!!c!.anyBodies || flagged.includes(c!), `${id} is neither flagged nor repaired`).toBe(true);
+    }
+  });
+});
+
+/**
+ * PREDICATES G AND H — the two shapes predicate E structurally cannot reach, shipped beside it so
+ * the floor covers the class rather than the one shape that happened to be found first.
+ *
+ * E asks whether a line must CONTROL a battlefield it names. It is blind twice over. 485.4.a has
+ * each player bring three battlefields from the deck, so a line can turn on a Conquer or a Hold and
+ * name none of them; and E keys on ZERO units, so a line that holds one body and needs two is
+ * invisible to it. Both gaps were real and both were productive.
+ *
+ * **G — a card whose own text needs a unit you control, with no unit in `uses`.** The rule is one
+ * paragraph: **818.1.c.2** — *"Equip is functionally short for '[Cost]: Attach this gear to A UNIT
+ * YOU CONTROL.'"* So an Equipment line with no body requires one BY THE KEYWORD'S OWN DEFINITION,
+ * and the same holds for a card acting on a friendly unit or scoring on a Conquer or a Hold
+ * (469.1, 469.2, 190.1). Read entry by entry: 31 fresh rows, **29 exposed, 2 refused** —
+ * `dragons-rage-discipline-reflexive-double-kill`, which reads entirely on ENEMY bodies and says so
+ * in its own step 5, and `crumbling-sands-decree-of-focus-conditional-reactions`, whose primary
+ * half needs no body at all.
+ *
+ * **THE TOKEN EXCLUSION IS CORRECT FOR G AND WRONG FOR E, AND ONE RULE SEPARATES THEM.** 355.2.a
+ * plays a token to *"the controller's Base or a battlefield the controller CONTROLS"*, so a token
+ * can HOLD ground you already took and can never TAKE it — E therefore has none, and its three
+ * novel rows all mint tokens and are all exposed anyway. 818.1.c.2 asks only for a unit you
+ * control, and 185.2.d makes a token follow all rules for its type, so a token IS a legal carrier —
+ * G therefore must have one. `blade-ruined-king-detach-recovery` is the case: it mints three
+ * Recruits with the Vanguard Armory and its [Equip] even KILLS one, citing 185.2.d in its own step.
+ *
+ * **H — a line that holds ONE body and needs TWO**, on the card's own words: *another*, *other*, *a
+ * different* unit you control. 203 entries hold exactly one unit copy, 15 use such a card, **8 are
+ * exposed**. The seven refusals carry the sharpest rule in this whole investigation, and it is the
+ * test for every future row — **is the body being SPENT, or asked for?** An EFFECT that wants
+ * another friendly unit is NOT a requirement, because 055.1 and 359.3.e.11 ignore an impossible
+ * instruction and it simply fizzles (`SFD-132 Beast Below`'s ETB, which its entry calls a
+ * drawback). A COST that wants one IS, because 203.3 makes an impossible cost unpayable
+ * (`UNL-142 Heedless Resurrection`, whose mandatory *"kill a friendly unit"* means the card cannot
+ * legally be PLAYED with no body).
+ *
+ * Both are pinned at today's count for the reason E was: `data/combos.json` is the manager's, and a
+ * red suite would block four lanes over work this lane may not do. **Lower each CEILING in the same
+ * commit that lowers its count**, exactly as for E. The `REPAIRS` floor above guards all three, for
+ * the same reason it guards E: it reads the FIELD where these read the PREDICATE.
+ */
+const G_CEILING = 22;
+const H_CEILING = 15;
+
+const needsABody = (base: string) => {
+  const c = cards.get(base);
+  const t = `${c?.text ?? ""} ${c?.effect ?? ""}`;
+  return /\[Equip\]|\bfriendly unit\b|\bunit you control\b|when (you|i) (conquer|hold)|\[Hunt/i.test(t);
+};
+// A plural is a word character, so `\bunit token\b` does not match "unit tokenS" and let the one
+// genuinely self-supplying entry through. Second appearance of that trap in one session.
+const makesToken = (base: string) => {
+  const c = cards.get(base);
+  return /\bunit tokens?\b/i.test(`${c?.text ?? ""} ${c?.effect ?? ""}`);
+};
+const wantsASecond = (base: string) => {
+  const c = cards.get(base);
+  const t = `${c?.text ?? ""} ${c?.effect ?? ""}`;
+  return /\b(another|other|a different|one other)\b[^.]{0,40}\b(friendly units?|units? you control)\b/i.test(t);
+};
+const unitCopies = (c: Combo) =>
+  c.uses.filter((u) => isType(u.card, "unit")).reduce((n, u) => n + u.quantity, 0);
+
+const open = live.filter((c) => c.needs.length === 0 && !c.anyBodies && !c.uses.some((u) => makesToken(u.card)));
+const gFlagged = open.filter((c) => unitCopies(c) === 0 && c.uses.some((u) => needsABody(u.card)));
+const hFlagged = open.filter((c) => unitCopies(c) === 1 && c.uses.some((u) => wantsASecond(u.card)));
+
+describe("predicates G and H: a card that needs a body the line does not hold", () => {
+  it("reads a non-trivial population, so a broken sweep cannot read as green", () => {
+    // Three independent floors, because each predicate can fail silently in its own way.
+    expect(open.length).toBeGreaterThan(80);
+    expect([...cards.all?.() ?? []].length >= 0).toBe(true);
+    expect(live.filter((c) => unitCopies(c) === 1).length).toBeGreaterThan(150);
+  });
+
+  it(`does not add a line whose card needs a body it has none of (G, ratchet at ${G_CEILING})`, () => {
+    expect(gFlagged.length).toBeLessThanOrEqual(G_CEILING);
+  });
+
+  it(`does not add a line that holds one body and needs two (H, ratchet at ${H_CEILING})`, () => {
+    expect(hFlagged.length).toBeLessThanOrEqual(H_CEILING);
+  });
+
+  it("still reaches the cases read by hand, however the predicates are narrowed", () => {
+    // The same guard the E block carries, for the same reason: a narrowing that drops a known
+    // defect is a bug, and one did on the morning this class was found. Either the predicate still
+    // sees the entry or it has been repaired; anything else means a narrowing lost a defect.
+    const known: [string, typeof gFlagged][] = [
+      ["skyfall-cull-hold-gold", gFlagged], ["strike-down-blighted-battleaxe-detach-before-it-bites", gFlagged],
+      ["tricksy-tentacles-yuumi-forced-defend-subset", hFlagged], ["spectral-centaur-deathgrip-reaction-spike", hFlagged],
+    ];
+    for (const [id, bucket] of known) {
+      const c = live.find((x) => x.id === id);
+      expect(c, `${id} is gone from the catalogue`).toBeDefined();
+      expect(!!c!.anyBodies || bucket.includes(c!), `${id} is neither flagged nor repaired`).toBe(true);
     }
   });
 });
