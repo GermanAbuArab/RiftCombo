@@ -129,9 +129,11 @@ export interface Source {
  * decklist and make the entry match only the decks holding those cards. `Ingredient` is keyed on a
  * base code and has no way to say "any N bodies". This is that missing way.
  *
- * WHAT IT DELIBERATELY DOES NOT MODEL. Four of the eleven requirements are RELATIONAL — *"besides
- * the Apothecary"*, *"a spare unit"*, *"at a different location"*, *"wherever the fight is going to
- * be"* — and none of them is a `Zone`. There is no field for them and that is a decision, not an
+ * WHAT IT DELIBERATELY DOES NOT MODEL. Many of these requirements are RELATIONAL — *"besides the
+ * Apothecary"*, *"a spare unit"*, *"at a different location"*, *"wherever the fight is going to
+ * be"* — and none of them is a `Zone`. (Four of the first eleven read; **11 of the 82 notes carry a
+ * relational phrase as of 2026-09-13**, and a count is dated here because the durable half is the
+ * decision, not the number.) There is no field for them and that is a decision, not an
  * omission: **the matcher reads a DECKLIST, never a board**, so it cannot know where a body stands
  * or which card it is standing beside, and a structured field nothing can read is the
  * phrase-in-a-notable defect again with a JSON key on it. The relation lives in `note`, verbatim,
@@ -139,11 +141,17 @@ export interface Source {
  * battlefield"* and silently drop *"besides me"*, which reads as if the zone were the whole
  * requirement.
  *
- * AND THERE IS NO SEVERITY FLAG. Eleven entries were read and in every one the missing body is the
- * whole line, not tempo: `OGN-108 Convergent Mutation` says *"another friendly unit"* in its own
- * text, `434.1.g` makes the Aphelios cycle's re-attach do nothing without a second carrier, and
- * `svellsongur-faefolk-mass-evacuation` produces no `conquer-engine` at all. A body that is NOT
- * required is not a requirement, and the catalogue already has the right home for one:
+ * AND THERE IS NO SEVERITY FLAG, and the reason is a rule rather than a tally: **a body that is not
+ * required is not a requirement.** A `blocking: false` would mean *a requirement that is not
+ * required*, and it would hand the next author a switch to defuse the check.
+ *
+ * The evidence is corroboration, not the argument, and it is dated: the first eleven entries were
+ * read one by one and in every one the missing body is the whole line rather than tempo —
+ * `OGN-108 Convergent Mutation` says *"another friendly unit"* in its own text, `434.1.g` makes the
+ * Aphelios cycle's re-attach do nothing without a second carrier, and
+ * `svellsongur-faefolk-mass-evacuation` produces no `conquer-engine` at all. Nothing found since
+ * (82 entries as of 2026-09-13) has been a tempo case. And the catalogue already has the right home
+ * for one:
  * `sprite-queen-dusk-rose-lab-shard-undoing` says outright that its second body *"is a deckbuilding
  * choice, not a requirement"*, in prose. A `blocking: false` would mean "a requirement that is not
  * required" and would hand the next author a switch to defuse the check — the defect returning with
