@@ -395,3 +395,54 @@ basis`, which is the same *"prove what you did NOT touch"* discipline `#204` est
 **And the file's own validator earned its keep on this lane**: a staging marker placed inside a rule
 object failed with *"unknown field `_amendment`"* and *"duplicate id"*, both correct, which is why new
 rules and amendments are staged in two separate files.
+
+## A second rule from the same harvest — `factory-recall-reready-gear`, anchor `SFD-135`, 29 partners
+
+**`149.1` is three words — *"Gear enter play Ready."* — and it is what makes a bounce buy a SECOND
+activation in the SAME turn** rather than a second one next turn. Exhaust the gear for its ability,
+return it to hand with `SFD-135 Factory Recall` (E1, `[Action]`), replay it, and 149.1 enters it READY
+with its ability live again. **Without 149.1 the replay buys nothing**, because `315.1.b` would not
+ready it until your next Awaken. The price is 1 Energy plus the gear's own cost, which is why the six
+**Seals at Energy cost 0** are the sharpest partners: one Energy for one Power at `[Action]` speed, on
+a card the deck already runs as its Power base. `SFD-044 Legion Quartermaster` is the Calm
+alternative, paying a body instead of a card.
+
+**It is not the existing `factory-recall-equipment-rehost`, and the two lists are DISJOINT BY
+CONSTRUCTION — measured, not argued.** That rule stands on `718.2` (an `[Equip]` is Inactive only
+*while* attached) and its 40 partners are the Equipment, which by this project's own measurement carry
+**zero exhaust symbols anywhere in their text**. Overlap computed through the real `partnersOf`: **0**.
+Two rules on one anchor, two paragraphs, no shared card.
+
+**Two exclusions live in the PREDICATE rather than in `excludes`, because each is a whole class:**
+
+- **`This enters exhausted` — five gear whose own text overrides 149.1 under rule 002**
+  (`OGN-017 Iron Ballista`, `UNL-049 Honeyfruit`, `UNL-136 Scryer's Bloom`, `VEN-062 Hextech Formula`,
+  `VEN-075 Platewyrm Egg`). The rule's premise fails on them outright.
+- **A cost that KILLS the gear** — a one-way door with nothing left to bounce.
+
+**The kill predicate is the part worth carrying, because a blunt version would have been wrong.**
+*"Kill this"* appears in **two different roles**: as a **COST** (*"Kill this."*, *"Kill this: Draw
+1."*) and inside the **`[Temporary]` REMINDER** (*"Kill this at the start of its controller's
+Beginning Phase"*). Matching `Kill this` followed by a **period, colon or comma** catches exactly the
+six cost forms and none of the three `[Temporary]` gear — verified in both directions.
+
+**And the control chosen for that check was a bad one, which was itself checked rather than trusted:**
+the three `[Temporary]` gear carry **no exhaust ability at all**, so they were never candidates and
+the exclude never touched them. The conclusion holds; the control did not prove it. *A control that
+cannot fail proves nothing* — the same lesson as a detector with no known positive, from the other
+side.
+
+Two named `excludes` rest on this project's own recorded finding: **`SFD-117 Ancient Henge`** and
+**`SFD-083 Hextech Anomaly`** both print *"Pay any amount"*, so the first activation already converts
+everything and a second is worth **zero** — the no-per-execution-cap trap `CLAUDE.md` names by card,
+and both were in the raw list.
+
+## And the queue lesson generalises past `apply.json`
+
+The manager merged the first rule and the amendment while the second was being written, and the
+staged file still held both. **The validator caught it as `duplicate id`** — not a human noticing.
+
+**Any staged artifact is a QUEUE and not a record.** It has to be retired against the live file before
+it is handed over again, exactly as an apply-list does; the record is git. That is the same hazard
+recorded earlier in this document for `apply.json`, arriving in a different file, which is what makes
+it a class rather than an incident.
