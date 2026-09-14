@@ -274,6 +274,47 @@ describe("the stalled-board buckets", () => {
  *                                             defect turned on)
  *   self-scaling body counted              -> spiderling-swarm-grand-plaza FAILs (the FIRST false notable)
  */
+/**
+ * A PROTECTION IS AN ANSWER ONLY IF IT REACHES.
+ *
+ * Both Hold modes named "THE IDENTITY DOES HOLD AN ANSWER" and listed +1 Might grants beside a
+ * 12-damage sweep. 143.2.a kills on marked damage at or above Might, so +1 on a Might-4 body against
+ * OGN-123 Unchecked Power changes nothing — and every garrison-wide protection in this pool is +1 or
+ * +2 (measured: 105 and 11 instances), so NOTHING in the pool protects a garrison from that card. Four
+ * pending corrections were about to tell a player otherwise.
+ *
+ * The card facts were right and the premise about the board was wrong, which is this emitter's whole
+ * failure family. The gate is arithmetic: floor + plus must EXCEED the damage.
+ *
+ * Found by reading the four pending rows before handing them over, not by any check.
+ */
+describe("a garrison protection", () => {
+  const h = execFileSync("node", ["scripts/adversarial-check.mjs", "--holds"], { encoding: "utf8", maxBuffer: 1 << 24 });
+  const rows = h.split("\n");
+
+  it("is never claimed when it cannot lift the garrison above the answer", () => {
+    let checked = 0;
+    for (let i = 0; i < rows.length; i++) {
+      const f = rows[i]!.match(/floor M(\d+)/);
+      if (!f) continue;
+      const ans = rows[i + 1]?.match(/dmg(\d+)/);
+      const prot = rows[i + 2]?.match(/identity HOLDS a protection: (.*)/);
+      if (!ans || !prot) continue;
+      checked++;
+      const floor = Number(f[1]), dmg = Number(ans[1]);
+      for (const p of prot[1]!.matchAll(/\+(\d+)/g))
+        expect(floor + Number(p[1]), `${rows[i]!.trim()} names a +${p[1]} against ${dmg} damage`).toBeGreaterThan(dmg);
+    }
+    // Non-vacuity: a parse that matched nothing would pass silently.
+    expect(checked, "no row was checked — the --holds layout may have moved").toBeGreaterThan(5);
+  });
+
+  /** An Empowered-gated grant reaches no token garrison: 441.1 makes Empowering an act per body. */
+  it("never names a grant gated on a state a token garrison cannot have", () => {
+    expect(h).not.toMatch(/identity HOLDS a protection:[^\n]*Aurok General/);
+  });
+});
+
 describe("the garrison Might floor", () => {
   const g = execFileSync("node", ["scripts/adversarial-check.mjs", "--selftest-garrison"], { encoding: "utf8", maxBuffer: 1 << 22 });
 

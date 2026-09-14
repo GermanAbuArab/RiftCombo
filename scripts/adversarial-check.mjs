@@ -290,6 +290,13 @@ function sweepGarrisonProtection(cards) {
     const m = t.match(/(your (?:token )?units?|other friendly units?|units here|your Mechs)[^.]{0,28}have \+(\d+) :rb_might:/i);
     if (!m || /while (?:they|we|I)'?re? (?:attackers|defenders)/i.test(m[0])) continue;
     if (/this turn/i.test(t)) continue;
+    // A GRANT GATED ON A STATE THE GARRISON WILL NOT HAVE IS NOT A PROTECTION. `VEN-130 Aurok General`
+    // reads "Your units that are [Empowered] have +2 Might", and 441.1 makes Empowering an ACT a card
+    // must perform on each body - so he reaches zero of a Recruit, Bird, Sprite or Mech garrison, which
+    // is every garrison this mode is about. CLAUDE.md had already recorded him as inert, in almost
+    // these words, and the sweep had never been told. Checked on the MATCHED CLAUSE rather than the
+    // whole card, because a card may mention Empowered elsewhere without gating this grant on it.
+    if (/\[?Empowered\]?/i.test(m[0])) continue;
     out.push({ base: c.base, name: c.name, domains: c.domains || [], plus: +m[2], clause: m[0].replace(/\s+/g, " ") });
   }
   return out;
@@ -1744,6 +1751,13 @@ if (holds) {
       if ((card?.type || []).includes("battlefield") && !(x.domains || []).length && /token/i.test(x.name)) return false;
       const union = new Set([...domains, ...(x.domains || [])]);
       if (union.size > 2) return false;
+      // ARITHMETIC, not availability - the same gate as the emitter's, and for the same reason. A
+      // protection answers only if it lifts the garrison ABOVE what the answer deals (143.2.a kills on
+      // marked damage at or above Might). Every garrison-wide protection in this pool is +1 or +2, so
+      // against OGN-123 Unchecked Power's 12 NOTHING reaches, and this line was printing "identity
+      // HOLDS a protection" beside a 12-damage sweep. It even listed VEN-130 Aurok General, whose
+      // grant reaches only Empowered units and is inert on a Recruit or Mech garrison.
+      if (floor !== null && cheapest && floor + x.plus <= cheapest.dmg) return false;
       if (seenName.has(x.name)) return false;
       seenName.add(x.name);
       return true;
@@ -1873,6 +1887,14 @@ if (holdNotables) {
       if (needsBf && (card?.type || []).includes("battlefield")) continue;
       if (new Set([...domains, ...(x.domains || [])]).size > 2) continue;
       if (seenName.has(x.name)) continue;
+      // ARITHMETIC, not availability. A protection is only an ANSWER if it lifts the garrison ABOVE the
+      // damage the answer deals - 143.2.a kills on marked damage at or above Might, so +1 on a Might-4
+      // body against a 12-damage sweep changes nothing at all. Every garrison-wide protection in this
+      // pool is +1 or +2 (measured: 105 and 11 instances), so NOTHING protects a garrison from
+      // OGN-123 Unchecked Power, and four rows were about to be told "THE IDENTITY DOES HOLD AN
+      // ANSWER" and handed three cards that cannot reach. That is the true-and-empty class this
+      // emitter keeps producing: the card facts are right and the premise about the board is wrong.
+      if (floor !== null && answer && floor + x.plus <= answer.dmg) continue;
       seenName.add(x.name); prot.push(x);
     }
     const scope = (x) => (/token/i.test(x.clause) ? " (token bodies only)" : /Mechs/i.test(x.clause) ? " (Mech bodies only)" : /units here/i.test(x.clause) ? " (that battlefield only)" : "");
@@ -1895,7 +1917,7 @@ if (holdNotables) {
               : prot.some((x) => (byBase.get(x.base)?.type || []).includes("battlefield"))
                 ? `(A battlefield protection is a 1-in-3: 485.5 has each player "randomly select one (1) of their three (3) Battlefields", so it is not a card you can count on drawing.) `
                 : "")
-          : `THE IDENTITY HOLDS NO ANSWER: swept for a permanent, garrison-wide +Might legal beside this line under 103.1.b, there is none, so this line cannot be protected and can only be rebuilt. `) +
+          : `THE IDENTITY HOLDS NO ANSWER, and there are two ways that happens: either nothing with a permanent, garrison-wide +Might is legal beside this line under 103.1.b, or something is legal and cannot REACH - every such protection in the pool is +1 or +2, so against a sweep dealing ${answer.dmg} a garrison whose floor is ${floor} stays dead either way (143.2.a kills on damage at or above Might). This line cannot be protected against that answer and can only be rebuilt. `) +
         TIMING,
       ],
     });
