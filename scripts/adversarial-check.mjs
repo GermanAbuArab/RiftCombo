@@ -244,7 +244,9 @@ const selfScaling = (cards) => cards.filter((c) => /I have \+\d+ :rb_might: for 
 // Swept, not typed: mass damage that reaches every body at a battlefield. "in combat" is excluded -
 // OGN-127 Cannon Barrage deals 2 to all enemy units IN COMBAT and so cannot touch a passive garrison,
 // which is the kind of near-miss a damage-ranked list invites.
+const LEGEND_TAGS = new Set();
 function sweepMassAnswers(cards) {
+  for (const c of cards) if ((c.type || []).includes("legend")) for (const x of c.tags || []) LEGEND_TAGS.add(x);
   // THIS PREDICATE WAS WRONG THREE TIMES AND EACH WRONG VERSION NAMED A REAL CARD, so the shape is
   // written out rather than trusted. A MASS-DAMAGE predicate is not an ANSWER predicate. An answer is
   // a card the opponent can simply CAST at a garrison standing on a battlefield you control. Excluded,
@@ -282,7 +284,14 @@ function sweepMassAnswers(cards) {
       // garrison arm quoted the text and left the reader to notice.
       enemyOnly: /\benemy units?\b/i.test(t),
       dmg: scalable ? Infinity : m ? +m[1] : Infinity, scalable, signature: !!c.signature,
-      tag: (c.tags || [])[0] || null, kills: !m && !scalable,
+      // THE CHAMPION TAG, not merely the first tag. 103.2.d.2 binds a Signature card to the legend
+      // carrying its CHAMPION tag, and a card's tag array also holds regions and types - measured, 7 of
+      // the 51 Signature names have a first tag of Equipment, Ionia or Shadow Isles, which no legend
+      // carries. Taking tags[0] would name the wrong tag and then conclude "no legend carries it", i.e.
+      // print DEAD LETTER about a perfectly legal card. Only Bullet Time is a Signature ANSWER today, and
+      // its single tag is a champion's - so this is latent, and it is the same latency the equipment
+      // arm's copy count had. Prefer a tag some legend actually carries; fall back to the first.
+      tag: (c.tags || []).find((x) => LEGEND_TAGS.has(x)) || (c.tags || [])[0] || null, kills: !m && !scalable,
       reaction: /\[Reaction\]/i.test(t), action: /\[Action\]/i.test(t),
       enemyOnly: /to all enemy units/i.test(t) });
   }
@@ -1980,7 +1989,18 @@ if (holdNotables) {
           ? `It reads "enemy units", so it costs the opponent NOTHING on their own board - there is no board state in which they would decline to cast it for that reason. `
           : `IT IS SYMMETRIC, WHICH IS HALF THE PRICE AND THE QUOTED TEXT SAYS SO: it sweeps ALL units at battlefields, the caster's included. Against a deck with a board of its own it is a two-sided trade and they may not want it; against one playing from hand it is free. Read the matchup, not the Energy. `) +
         (sigAnswer && sigAnswer.e + Math.max(floor, 1) < answer.e + answer.p
-          ? `A CHEAPER ANSWER EXISTS AND IT IS NOT AVAILABLE TO EVERY OPPONENT: ${sigAnswer.base} ${sigAnswer.name} costs ${sigAnswer.e} Energy + ${Math.max(floor, 1)} Power here${sigAnswer.scalable ? " (it pays per point of damage, so it scales to any garrison)" : ""}${sigAnswer.action ? " and is [Action], so 806.1.c.1 puts it inside any showdown on any player's turn" : ""} - but it is a SIGNATURE card tagged ${sigAnswer.tag}, and 103.2.d.2 requires every Signature card to carry the Chosen Champion Legend's tag, so only a ${sigAnswer.tag} legend can run it. Count it as a matchup, not as the field. `
+          ? `A CHEAPER ANSWER EXISTS AND IT IS NOT AVAILABLE TO EVERY OPPONENT: ${sigAnswer.base} ${sigAnswer.name} costs ${sigAnswer.e} Energy + ${Math.max(floor, 1)} Power here${sigAnswer.scalable ? " (it pays per point of damage, so it scales to any garrison)" : ""}${sigAnswer.action ? " and is [Action], so 806.1.c.1 puts it inside any showdown on any player's turn" : ""} - but it is a SIGNATURE card tagged ${sigAnswer.tag}, and 103.2.d.2 requires every Signature card to carry the Chosen Champion Legend's tag. ` +
+            // NAME the legend and its domains rather than leaving "a <tag> legend" abstract. The tag is
+            // one step; what a reader can act on is the identity it forces. Derived from the pool at
+            // run time, never typed - a legend census typed from memory is a defect class this project
+            // has paid for repeatedly, and legend NAMES carry two base codes each (103.2.b caps by
+            // name), so the names are folded.
+            ((who) => who.length
+              ? `That is ${who.length === 1 ? "one legend" : `${who.length} legends`}: ${who.map((x) => `${x.name} (${x.domains.join("/")})`).join(", ")} - so an opponent holding it is committed to that identity under 103.1.b, which is a much narrower matchup than "somebody might have it". `
+              : `NO legend in the pool carries that tag, so no legal deck can run this card at all and it is not a matchup - it is dead letter. `)(
+              [...new Map(cards.filter((x) => (x.type || []).includes("legend") && (x.tags || []).includes(sigAnswer.tag))
+                .map((x) => [x.name, { name: x.name, domains: x.domains || [] }])).values()]) +
+            `Count it as a matchup, not as the field. `
           : "") +
         (prot.length
           ? `THE IDENTITY DOES HOLD AN ANSWER: ${prot.slice(0, 3).map((x) => `${x.base} ${x.name} +${x.plus}${scope(x)}`).join(", ")} - a permanent, garrison-wide +Might is the only thing that lifts every body at once, since a single-target pump is useless against a sweep that hits all of them. ` +

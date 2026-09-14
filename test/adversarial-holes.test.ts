@@ -52,8 +52,14 @@ function selftest(): { status: number; out: string } {
 }
 const { status, out } = selftest();
 
-/** Written by the --holds-notables assertion below; gitignored, and removed by the test itself. */
-const HOLDS_PROBE = ".scratch-emit/holds-test-probe.json";
+/**
+ * Written by the --holds-notables assertions below; gitignored, and removed by each test.
+ *
+ * PID-SUFFIXED, because two tests in this file write it and a concurrent run collided once, failing on
+ * a missing file rather than on anything it asserts. That is the same shared-path defect this session
+ * fixed in the script's own `--out` default — applied to the script and not, at first, to its test.
+ */
+const HOLDS_PROBE = `.scratch-emit/holds-test-probe-${process.pid}.json`;
 
 describe("the hole sweep and its notable emitter", () => {
   /** A probe that silently runs no cases prints a clean pass. Assert the population first. */
