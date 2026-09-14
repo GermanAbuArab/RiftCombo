@@ -486,3 +486,56 @@ describe("an exclude reaches every printing of the card it names", () => {
     }
   });
 });
+
+describe("a synergy rule can be domain-dead", () => {
+  /**
+   * A rule can be DOMAIN-DEAD: every partner its predicate finds forms three domains with the anchor,
+   * so 103.1.b forbids every pairing and the rule can never fire in a legal deck. That is the one
+   * failure the "regla verificada, instancias por texto" split is supposed to make impossible - the
+   * RULE is right and every INSTANCE it can offer is illegal.
+   *
+   * This is the exact sibling of validateSynergies' existing "anchor is banned in every format" check,
+   * whose comment says such a rule "can never fire, so it is dead weight in the UI". Its natural home
+   * is beside that one in src/synergies.ts; it lives here because the check is over authored DATA and
+   * was written at a moment when that file had an owner and this one did not.
+   *
+   * Found by pointing 222 registered lists at the layer (#221): `highlander-kill-cost-shield` anchored
+   * on the calm/body OGS-020 while EVERY card in the pool whose cost kills a friendly unit is order,
+   * mind or chaos. Re-anchored to its word-for-word Order twin UNL-175, 0 of 8 legal pairings became
+   * 8 of 8. The control below re-creates the dead state, so this cannot pass by matching nothing.
+   */
+  it("has no DOMAIN-DEAD rule: every rule has a partner the anchor can legally sit beside (103.1.b)", () => {
+    const dead: string[] = [];
+    let assessed = 0;
+    for (const s of synergies) {
+      const anchor = cards.get(s.anchor);
+      if (!anchor) continue;
+      const partners = partnersOf(s, cards);
+      if (partners.length === 0) continue;
+      assessed++;
+      const legal = partners.filter(
+        (p) => new Set([...(anchor.domains ?? []), ...(p.domains ?? [])]).size <= 2,
+      );
+      if (legal.length === 0) dead.push(`${s.id} (anchor ${s.anchor}, ${partners.length} partners, 0 legal)`);
+    }
+    // Non-vacuity: every rule must actually be reachable by this check, or a silent zero-match
+    // reads exactly like a pass.
+    expect(assessed).toBe(synergies.length);
+    expect(dead).toEqual([]);
+  });
+
+  it("CONTROL: the domain-dead check fires when a rule is re-anchored back onto the card it came from", () => {
+    // OGS-020 Highlander is Tactical Retreat's word-for-word twin and is calm/body, so re-anchoring
+    // there makes all eight kill-cost partners three domains. If this stops failing, the check above
+    // has stopped looking rather than stopped finding.
+    const rule = synergies.find((s) => s.id === "highlander-kill-cost-shield")!;
+    const highlander = cards.get("OGS-020")!;
+    expect(highlander.domains).toEqual(["calm", "body"]);
+    const partners = partnersOf(rule, cards);
+    expect(partners.length).toBeGreaterThan(0);
+    const legal = partners.filter(
+      (p) => new Set([...highlander.domains, ...(p.domains ?? [])]).size <= 2,
+    );
+    expect(legal).toEqual([]);
+  });
+});
