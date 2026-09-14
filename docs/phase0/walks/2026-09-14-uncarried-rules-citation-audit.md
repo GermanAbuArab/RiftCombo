@@ -2,6 +2,102 @@
 
 Lane rc-gap3, 2026-09-14, issue #187. Manager rc-manager9.
 
+---
+
+# FOUR THINGS A SUCCESSOR SHOULD ACT ON, each with its measurement AND its control
+
+The 63 dispositions below are spent. **These four are not**, and each is stated so that the next
+reader can re-run it rather than trust it.
+
+### 1. THE CITATION COUNTER HAS TWO OPPOSITE FAILURE MODES AND THE SHIPPED SCRIPT STILL HAS THEM
+
+**Use this form and nothing else:**
+
+```
+(?<![-#=_0-9.A-Za-z])(?<![A-Za-z]/)HEAD(?![0-9a-z]|\.[0-9a-z])
+```
+
+**Measurement.** Five traps, each found by a wrong answer that looked like a discovery: a preceding
+hyphen (`OGN-304`), a `#` (issue numbers), a sub-part dot (a parent absorbing its own block), **a
+sentence-closing period** (`816.3.` counted ZERO while carried), and **a rule-pair slash**
+(`420.1/420.2.a` — `CLAUDE.md` holds 9 rule-pair slashes against 15 URL slashes, and what precedes the
+slash separates them exactly).
+
+**Control.** `355.10.d` counts **15** under this form and **14** under the old one — and **14 is the
+figure `CLAUDE.md` published about itself**, so any counter that reproduces 14 is reproducing the bug.
+Probe `999.9.z` must return 0 in both.
+
+**What to do.** `scripts/claude-md-gap.mjs` was fixed in `1727a80` to the *older* form and therefore
+still carries both modes; its published population of 75 is an upper bound on one side and a lower
+bound on the other. Anyone re-running it should patch `cnt` first.
+
+### 2. THE "EXCEPTION CARRIED, RULE ABSENT" SHAPE HAS A MIRROR THAT NOBODY HAD NAMED
+
+`CLAUDE.md` names six cases of **the exception carried and the rule not** (`355.7`, `136.2.c`,
+`811.6`, `384`, `316.8.b.1`, `355.8`). **The defect runs the other way too: THE GENERAL STATEMENT
+CARRIED AND THE EXCEPTION NOT**, and only one direction has ever been searched for.
+
+**Measurement.** The file says *"Predict and Vision are defined with 'look at', never 'reveal', so
+neither fires an 'as I'm revealed' payoff"* — **true**, and the pool prints exactly one such payoff.
+**`OGN-194 Nocturne, Horrifying` is worded *"look at OR reveal"* and is fed by all 29 cards that look
+at the top of your own Main Deck**, none of which either Undertitan rule reaches.
+
+**Control.** The two Undertitan synergy rules match on `reveal`; the Nocturne list matches on `look at
+the top`; overlap of the two partner sets, computed through the real `partnersOf`, is what makes the
+claim checkable rather than rhetorical.
+
+**What to do.** Sweep `CLAUDE.md` for sentences of the form *"X is defined with A, never B, so no card
+does C"* and ask **which card is worded to escape the wording rather than the mechanic.** Same cause as
+the six — a file built by promoting findings keeps whichever half surprised somebody.
+
+### 3. A STAGED ARTIFACT IS A QUEUE, NOT A RECORD — AND IT BITES BOTH ENDS OF A HANDOVER
+
+**Measurement.** After 21 items were applied and pushed, **re-running the same list would have
+re-applied 17 of them**: 8 of 12 splices are EXTENSIONS whose `new` CONTAINS `old`, so the needle
+still occurs exactly once and a uniqueness gate passes it; and **all 9 appends still match their
+anchors**, because an anchor is an existing bullet you insert *before* and inserting does not consume
+it. Only true REPLACEMENTS are idempotent, and by accident.
+
+**Control.** The gate that catches it tests whether each item's **full `new`** already occurs in the
+target. Validated in both directions: **0 false positives on the un-applied batch, 21 of 21 true
+positives on the known-applied archive.** A first version tested a 120-character PREFIX and fired on
+every extension splice, because for an extension the prefix IS the old text.
+
+**What to do.** An applier should **retire its own queue on success**; `.scratch-gap3/retire.mjs` and
+`scripts/apply-staged.mjs` both now do. This was hit **three times in one session in three different
+files** and a validator caught it every time rather than the author — which is what makes it a class.
+
+### 4. A SYNERGY PARTNER IS EITHER THE ANCHOR'S *TARGET* OR ITS *CAUSE*, AND NO PREDICATE CAN TELL
+
+- **TARGET shape** — the anchor acts **ON** the partner (*"Give a friendly unit [Tank]"*) → the
+  partner **must be a unit**, and a `types` filter is mandatory.
+- **CAUSE shape** — the partner **TRIGGERS or ANSWERS** the anchor (*"when you ready a friendly
+  unit"*) → **any card type is correct**, and a `types` filter would be a defect.
+
+**Measurement.** The blunt check — *anchor acts only on a unit, no `types` filter, a non-unit partner
+present* — flags **33 rules and 353 pairings**. Reading them, **3 are real and 30 are correct by
+design.** `pirates-haven-any-friendly-ready` alone accounts for 17 correct ones.
+
+**Control, and it is a NEGATIVE one.** A proxy was built to separate the two shapes — *"a partner
+predicate matching a bracketed keyword is a body, one matching a verb is a cause"* — and it **mislabels
+four rules that match `buff` as a VERB and only look keyword-shaped because the regex opens with
+`\[Buff\]`.** **The proxy was recorded and NOT shipped.** A check that needs an unreliable proxy to
+be usable is not a check.
+
+**What to do.** Treat it as a human reading, one rule at a time, **not** as a test. The three real ones
+(`eye-of-twilight-tank-on-a-shield-body`, `last-stand-doubles-a-shield-body`,
+`ki-barrier-tank-raises-the-toll`) were applied as a SET, because it is one judgement in three places.
+
+### The standing law all four obey
+
+**Every number in this document was wrong the first time, always too big, and reading the hits fixed
+it every time** — the redundancy family 5 → 8 (the one exception, too SMALL), the characteristic family
+3 → 30, the idempotence gate 3 false → 0, the quote verifier 8 false → 0, the types check 33 → 3, the
+counter 6 → 0 on `115`. **The instrument encodes the rule and not the exception the domain already
+sanctions, and only a person reading the top hits corrects it.**
+
+---
+
 ## What this was
 
 `CLAUDE.md` is built by promoting FINDINGS, so it keeps the half of a rule that surprised somebody and
@@ -513,3 +609,23 @@ author** — as `duplicate id`, or as an amendment reporting *"fields changed = 
 **byte-identical** to the live rule, and runs before every handover. **A staged artifact is a QUEUE,
 not a record; the record is git.** Three occurrences in three different files in one session is what
 makes it a class rather than carelessness.
+
+## The last lead, refused — and it repeated the defect it had just been used to find
+
+`UNL-208 Black Flame Altar` is in zero synergy rules and **reads `[Temporary]` as a characteristic**,
+which is exactly the `816.3` finding cashing out, so it was the best remaining lead. Built and
+measured: **21 partners, 0 domain-illegal — and reading all 21, SIX are wrong.**
+
+The card says *"Units **here** with [Temporary] have [Shield]"*, and the list holds **four GEAR that
+carry `[Temporary]` themselves and can never be units** (`SFD-104 Petricite Monument`, `UNL-078 Sprite
+Fountain`, `UNL-085 Sumpworks Map`, `SFD-186 Spinning Axe`) — **the same TARGET-shape types trap found
+in three live rules an hour earlier, reappearing in the candidate written by the person who found
+it.** Plus two mention-only cards: `UNL-076 Petal Pixie` READS `[Temporary]` to size herself and
+`UNL-090 LeBlanc, Everywhere at Once` switches the `[Temporary]` trigger OFF.
+
+And the residue needs an argument no predicate settles: `UNL-078` plays its Sprite token **"to your
+base"** while the Altar pays units **"here"**, so whether it is a partner at all turns on a walk.
+
+**A rule needing a types narrowing, six excludes and an unwalked location argument is not a rule to
+ship on the way out of a vein.** Final ratio for the harvest: **two rules and four refusals from five
+leads** — reported as-is, because the standing instruction here is not to pad toward a round number.
