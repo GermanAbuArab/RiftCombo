@@ -10,6 +10,11 @@ clock reads at **T7 against a T5 baseline**. Walked turn by turn it wins on **T5
 is not that the clock is wrong about arithmetic. It is that the clock prices a CARD SET and this line
 wins with half of its cards still in hand.
 
+**T5 TIES the unopposed curve and beats the CONTESTED one by four turns, and the second number is the
+one that matters.** The free curve pays 2 a turn only when you hold BOTH battlefields; hold one and it
+pays 1 a turn and arrives on T9. This line pays **4 a turn at a single battlefield**, so it does not
+care how many you hold — which is the whole argument for it and is not something a clock row says.
+
 The entry says its two halves cover the middle board. **They do not. The middle board is where one
 half suffices, and the halves only genuinely differ on a board the entry never names.** That is the
 finding, and it is a correction to my own entry.
@@ -49,7 +54,8 @@ T4     6   HOLD A: Score +1, two Trinity +2              E2     +3 = 6
 T5     7   HOLD A: Score +1, three Trinity +3            E3    +4 = 10   WIN
 ```
 
-**Turn 5, and Tryndamere never left your hand.** He and the two Bramblebacks are E15 and 4 Power
+**Turn 5 — a tie with the unopposed curve, and four turns inside the contested one — and Tryndamere
+never left your hand.** He and the two Bramblebacks are E15 and 4 Power
 against a board that has seven runes on T5; the attack half is not castable before the Hold half has
 already won.
 
@@ -76,22 +82,27 @@ sees (R2 = A).
 line reaches eight with three of its six cards uncast, so T7 is the turn the whole board is affordable
 and has nothing to do with the turn it wins. An entry has one `terminatesIn` and cannot say that.
 
-**And its baseline is one turn too fast for this identity.** `scripts/adversarial-check.mjs:677` reads
-`baselineTurn = domains.some(d => CHEAP_BODY_DOMAINS.has(d)) ? 5 : 6` with
-`CHEAP_BODY_DOMAINS = {body, calm}`, and its own comment gives the reason: the pool prints exactly two
-units at Energy 1 or less, so an identity reaching one of them *"plays two bodies on turn 1, conquers
-both battlefields on turn 2 and holds to 8 on turn 5."*
+**A SECOND CLAIM STOOD HERE AND IT IS REFUTED — BY THE MANAGER, AGAINST ME, AND IT WAS WRONG.** I
+wrote that `baselineTurn` is one turn too fast for the eight identities that reach one cheap body and
+not two, because `CHEAP_BODY_DOMAINS` is `{body, calm}` and the pool's only two units at Energy 1 or
+less are `UNL-111 Determined Sentry` (Body) and `VEN-043 Steel Paws` (Calm), so only calm/body can
+field **both cards**.
 
-**Two bodies on turn 1 needs two Energy-1 units, and the two the pool prints are `UNL-111 Determined
-Sentry` (Body) and `VEN-043 Steel Paws` (Calm).** Measured over all fifteen pairs: **only calm/body
-can field both.** The other eight identities containing body or calm field ONE, and a second body
-costs 2 Energy against two runes on turn 1 — so they conquer one battlefield on T2, the second on T3,
-and reach eight on **T6**.
+**That measurement is correct and it answers the wrong question. The curve does not need two CARDS, it
+needs two BODIES**, and 103.2.b — *"Your Main Deck can include up to 3 copies of the same named
+card"* — makes those different things. `UNL-111` is not [Unique], not Signature and not in
+`data/legality.json`, so **two copies cost 2 Energy and land on turn 1's two runes**; 144.1.a then
+allows a Standard Move at any time in your Main Phase, so they walk to two different battlefields on
+T2 as separate actions rather than under 144.3.a's shared-destination rule.
 
-**body/fury is one of the eight.** Its honest unopposed curve is T6, not T5, so this line beats it by
-one turn rather than trailing it by two. The instrument is not wrong about any card; it is wrong about
-one identity's opening, in the eight places where an identity reaches one cheap body and not two.
-Reported to the lane that owns that file.
+**So the domain-MEMBERSHIP test is right, a domain-PAIR test would have been wrong, and body/fury's
+baseline is 5.** The script's own comment says *"an identity that reaches one of them plays two bodies
+on turn 1"* — precisely, in its own words — **and I read "two bodies" as "two cards" and went looking
+for a second card.** The word was not there. Nothing about the clock needs fixing, and routing my
+"fix" would have put a real defect into it.
+
+**It costs this play its first headline**: T5 TIES the unopposed curve rather than beating it. It
+costs nothing else, and §8 states what survives.
 
 ## 5. The whole Hold half is one body, and that is the play
 
@@ -155,8 +166,14 @@ What the attack half actually buys is a line that still functions after its sing
 has been hit — and a Hold engine standing on one body will have it hit.
 
 **Read as a clock row this line is T7 against T5 and looks two turns slow. Read turn by turn it is T5
-against an honest T6 and is a turn fast.** Both numbers come from the same script; the difference is
-that one of them prices a deck and the other prices a game.
+against the same T5 — a TIE on the board where nothing was needed, and T5 against T9 on the board
+where something was.** Both numbers come from the same script; the difference is that one of them
+prices a deck and the other prices a game.
+
+**The honest one-line verdict: this does not beat the free curve, it beats the free curve's
+REQUIREMENT.** Two points a turn need both battlefields; four points a turn need one. That is what the
+package buys, and it is why §6's third row — the board where you hold none — is where the attack half
+finally earns its cards.
 
 ## 9. Not verified
 
