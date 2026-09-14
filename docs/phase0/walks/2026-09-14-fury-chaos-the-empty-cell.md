@@ -425,6 +425,17 @@ suggests.
 | `draven-svellsongur-bloodless-combat-burst` | calm/chaos | `SFD-148 Draven` — *"win a combat"* |
 | `draven-yasuo-battle-mistress-contested-chain` | body/chaos | `SFD-148 Draven` — *"win a combat"* |
 
+**A FIFTH FINISHER STANDS ON A CREDENTIAL CARD AND IS NOT IN THAT BUCKET, WHICH IS THE CLASSIFIER
+BEING RIGHT AND MY READING OF IT BEING INCOMPLETE (amended 2026-09-14 by its own author).**
+`ivern-arena-draven-chaos-order-chain` runs `SFD-148` and lands in **HOLD**, because `--stalled`
+assigns ONE bucket per row and `UNL-177 Ivern`'s hold-or-conquer half wins its precedence — and the
+script prints the rider itself: *"payoff is Reckoner's Arena, 'when you hold here' **[+ an attack leg
+too - read it]**"*. `CLAUDE.md` records that precedence problem in general terms, that a classifier
+assigning one bucket to a mixed object is wrong in whichever direction its precedence leans; this is
+that, and the instrument names both legs rather than flattening them. **So the honest count is FIVE
+finishers on the two cards, of which four are bucketed ATTACK and the fifth is a genuinely mixed row.
+The claim below is unaffected and is the one that matters.**
+
 **And that is the pool rather than the authoring.** Swept over `corpus_flat.txt` for a card that gains
 a point and whose gate names an attack or a combat win, the answer is **two rows and they are those
 two cards**. Every other point source in the game is gated on a hold, a conquer, or your own board —
