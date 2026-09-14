@@ -4,6 +4,37 @@ Lane rc-gap3, 2026-09-14, issue #187. Manager rc-manager9.
 
 ---
 
+# WHAT NOT TO SPEND TIME ON — read this before the four findings below
+
+Written for a successor reading cold. **Each of these was worked to the end and closed; re-opening one
+costs a day and returns what is already written here.**
+
+- **DO NOT LOOK FOR A 64TH CITATION GAP.** The vein is called. 63 tokens dispositioned, 4 refused on
+  measurement, 1 as a definitional link, and the one extra (`383.4.d.2.c`) surfaced only because the
+  COUNTER was fixed. The next thing you find will be scaffolding. **If you re-run
+  `scripts/claude-md-gap.mjs`, patch its `cnt` first** — it still carries the older lookbehind.
+- **DO NOT REBUILD A PREDICATE FOR *TARGET vs CAUSE*.** It flags 33 synergy rules, 3 are real and 30
+  are correct by design, and the proxy built to separate them mislabels four rules that match `buff`
+  as a VERB. It is a human reading, one rule at a time. The three real ones are fixed.
+- **DO NOT REBUILD A PREDICATE FOR HALF-RATE VERB-PAIR PRICING.** 23 hits, 15 after narrowing to
+  ENGINEs, and reading them they are steady-state descriptions — plus *"as long as the board holds"*
+  is a HOMONYM of the Hold keyword. The one real candidate was found by reading. The rules-grounded
+  half (which cards, which costs) is in `scripts/or-pairs.mjs`; the entry half is not automatable.
+- **DO NOT TRY TO FILL `accessed` ON THE `#137` CITATIONS.** All eight survivors are Reddit,
+  re-tested 2026-09-14 by three routes, all shut. A date on a page nobody opened is a fabrication.
+  **And `r.jina.ai` answers HTTP 200 while relaying a 403 — check the body, never the code.**
+- **DO NOT RE-ENUMERATE THE SPANNING/POINT-SOURCE ROUTES.** rc-synth4 closed it; the one correction
+  that mattered (Trinity Force is **Body**, not colourless, so route one needs a Body pair — five of
+  fifteen) is already folded into their answer.
+- **DO NOT FILE AN R-NUMBER FOR OQ-SVELL-CAP.** It is a named open question on purpose. The second
+  read below shows the one argument that appeared to LEAN is symmetric, so there is nothing new to
+  settle it with — only a user ruling, and the affected entry now carries a prominent note saying
+  exactly what changes if it comes.
+
+**The one thing that IS worth re-running: `node scripts/or-pairs.mjs` after any new set.** Its
+population is pinned as an exact member list, so the test goes red and somebody has to read the new
+rows — which is the whole design.
+
 # FOUR THINGS A SUCCESSOR SHOULD ACT ON, each with its measurement AND its control
 
 The 63 dispositions below are spent. **These four are not**, and each is stated so that the next
