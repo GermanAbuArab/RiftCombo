@@ -7,6 +7,7 @@
 //   node scripts/adversarial-check.mjs --recheck-notables   corrections that REPLACE a stale shipped notable
 //   node scripts/adversarial-check.mjs --selftest-holes    the hole sweep + notable emitter, on synthetic entries
 //   node scripts/adversarial-check.mjs --selftest-garrison the garrison Might floor, on real entries with hand-derived answers
+//   node scripts/adversarial-check.mjs --recheck-garrison  garrison notables that no longer match their board
 //
 // It asks two questions of every INFINITE / BURST / CHAIN / ALT_WIN entry:
 //
@@ -1807,6 +1808,61 @@ if (holds) {
   console.log(`\n# ${unanswered.length} of ${rows.length} do not name the cheapest card that answers them.`);
 }
 
+
+// ---------------------------------------------------------------- --recheck-garrison
+/**
+ * STALE GARRISON NOTABLES, which the APPEND-only emitter can never clean up after itself.
+ *
+ * --holds-notables only ever ADDS, so when the garrison floor was wrong and then repaired, the wrong
+ * sentence stayed on the entry and the right one was appended beside it. Three entries now carry BOTH
+ * - "1 ENERGY ANSWERS THE GARRISON ... AND THE BODIES ARE TOKENS" next to a correct 6- or 7-Energy
+ * answer - so the page tells a player two incompatible things about the same board.
+ *
+ * Two tests, both arithmetic against the CURRENT board rather than against prose:
+ *   - it claims TOKEN bodies and no card the entry uses plays a token (the phantom-token defect), or
+ *   - the damage it names is below the garrison floor, so the answer it offers kills nothing.
+ * A notable that passes both still agrees with the board and is left alone.
+ *
+ * This is a one-shot repair exactly like --recheck-notables, so it carries the same state tokens and
+ * will print [SPENT] once applied. Emitting REPLACE rows rather than appending again: appending is
+ * what produced the contradiction.
+ */
+if (args.includes("--recheck-garrison")) {
+  const scalingR = new Set(selfScaling(cards).map((c) => c.base));
+  const rows = [];
+  let carrying = 0;
+  for (const e of db.combos) {
+    const notables = ((e.prerequisites || {}).notable) || [];
+    const gs = notables.map((n, i) => [n, i]).filter(([n]) => n.includes("ANSWERS THE GARRISON"));
+    if (!gs.length) continue;
+    carrying++;
+    const used = (e.uses || []).map((u) => byBase.get(u.card)).filter(Boolean);
+    const { floor, toks } = garrisonFloor(e, used, scalingR);
+    for (const [n, at] of gs) {
+      const why = [];
+      if (n.includes("THE BODIES ARE TOKENS") && !toks.length)
+        why.push("it claims the bodies are TOKENS, and no card this entry uses plays one (439.2.c) - the phantom-token defect");
+      const d = n.match(/at or below Might (\d+)/);
+      if (floor !== null && d && Number(d[1]) < Math.max(floor, 1))
+        why.push(`the answer it names deals ${d[1]} and the garrison floor is ${floor}, so 143.2.a kills nothing`);
+      if (!why.length) continue;
+      rows.push({
+        entry: e.id,
+        action: "REPLACE one notable in prerequisites.notable - the shipped sentence no longer matches the board",
+        notable_index: at,
+        match_contains: n.slice(0, 60),
+        why: `${why.join("; ")}. The garrison floor is now read from the entry's own board (uses[] rows at zone BATTLEFIELD plus tokens a card it uses actually plays), and this sentence predates that. --holds-notables only APPENDS, so the correct answer was added beside this one rather than replacing it.`,
+        replacement: null,
+        note: "Replacement text: re-run `npm run adversarial -- --holds-notables` for this entry's current answer, or DELETE this notable if the entry already carries a correct one - three of these sit beside a correct sentence and are a contradiction rather than a gap.",
+      });
+    }
+  }
+  const out = outPath("recheck-garrison");
+  writeFileSync(out, JSON.stringify(rows, null, 1) + "\n");
+  if (rows.length) console.log(`\n# --recheck-garrison: ${rows.length} stale garrison notable${rows.length === 1 ? "" : "s"} across ${new Set(rows.map((r) => r.entry)).size} entries (of ${carrying} carrying one) -> ${out}`);
+  else if (carrying) console.log(`\n# --recheck-garrison: 0 stale [SPENT] - all ${carrying} entries carrying a garrison notable still agree with their board. -> ${out} (empty)`);
+  else console.log(`\n# --recheck-garrison: 0 stale [INDETERMINATE] - NO entry carries a garrison notable at all, so this 0 says nothing. -> ${out} (empty)`);
+}
 
 // ---------------------------------------------------------------- --holds-notables
 // Corrections for the HOLD bucket, in the shape the manager merges. Two kinds, because the pass found
