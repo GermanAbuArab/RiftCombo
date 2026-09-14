@@ -399,3 +399,53 @@ siblings. Reported to the manager, who owns both files.
 outing: measure the distribution before writing the predicate, and read every small cell.** The
 defect was not something a predicate would have been pointed at — it was a cell of size one in a
 cross-tab built to answer an entirely different question.
+
+---
+
+## 12. The close: the one identity that owns both credential cards is the one identity where they cannot be combined
+
+`npm run adversarial -- --stalled` sorts every finisher by the board it needs, and its **ATTACK**
+bucket carries the label this project uses for the shape a finisher should have: *"ALIVE WHERE THE
+CURVE STALLS. The printed text needs the Attacker designation, which 807.1.d and 323.9 make
+impossible without an enemy garrison. Dead on an empty board, alive on a contested one."*
+
+The bucket holds **eight** rows, and the script flags four of them itself: `gemdragon-henge-vi-blind-fury`,
+`reveler-svellsongur-jhin-infinite-power`, `threshold-reveler-infinite-energy` and
+`twilight-reveler-eye-facebreaker-recruits` are INFINITEs that **score nothing** — they make fuel, and
+the board question belongs to whatever consumes it. `CLAUDE.md` already notes those four are Twilight
+Reveler loops; the refinement is that subtracting them leaves the class smaller than the bucket
+suggests.
+
+**Four finishers both SCORE and have the shape**, and they stand on exactly **two** printed cards:
+
+| entry | identity | the card that gates it |
+|---|---|---|
+| `tryndamere-brambleback-conquer` | fury | `OGN-034 Tryndamere` — *"excess damage"* |
+| `tryndamere-svellsongur-excess-burst` | calm/fury | `OGN-034 Tryndamere` — *"excess damage"* |
+| `draven-svellsongur-bloodless-combat-burst` | calm/chaos | `SFD-148 Draven` — *"win a combat"* |
+| `draven-yasuo-battle-mistress-contested-chain` | body/chaos | `SFD-148 Draven` — *"win a combat"* |
+
+**And that is the pool rather than the authoring.** Swept over `corpus_flat.txt` for a card that gains
+a point and whose gate names an attack or a combat win, the answer is **two rows and they are those
+two cards**. Every other point source in the game is gated on a hold, a conquer, or your own board —
+things the opponent can deny by declining to present a garrison, or that pay you anyway when they do
+not.
+
+`OGN-034` is mono-**fury**. `SFD-148` is mono-**chaos**. So 103.1.b admits exactly one legend pair
+that can run both, and the five Fury/Chaos names — Loose Cannon, Dark Child, Glorious Executioner,
+Bloodharbor Ripper, Master of Shadows — are the only legends in the game under which the catalogue's
+two credential cards may sit in the same deck.
+
+**They cannot be combined, and this walk has already shown why twice over.** §5: their gates are
+opposite outcomes of the same damage step — Tryndamere needs a real assignment to leave five excess,
+which is exactly the assignment that lets the **opponent choose** (465.2.c) which of your bodies dies,
+and 466.3.c gives the combat result only to *"units at this battlefield"*, so a Draven killed there
+cannot inherit the win and his own death clause pays them a point instead. §3: Fury's two multipliers
+read conquer effects and hold effects, and Draven's clause is neither, so nothing in the identity can
+scale him.
+
+So the identity whose every point source is a credential — the property `CLAUDE.md` catalogued as
+**chaos/fury's weakness** and which the turn clock later showed is the property that makes a finisher
+worth its slot — is the identity that cannot put two of them on one board. **The empty cell is not an
+oversight in the catalogue. It is where two cards the pool printed in different domains meet a rule
+that keeps them apart, and the pair that owns both is the only pair that ever had to care.**
