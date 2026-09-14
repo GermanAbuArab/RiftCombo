@@ -5,6 +5,7 @@
 //   node scripts/adversarial-check.mjs --turns    only the turn-clock section
 //   node scripts/adversarial-check.mjs --engines  when the ENGINE class is deployable, and only that
 //   node scripts/adversarial-check.mjs --recheck-notables   corrections that REPLACE a stale shipped notable
+//   node scripts/adversarial-check.mjs --selftest-holes    the hole sweep + notable emitter, on synthetic entries
 //
 // It asks two questions of every INFINITE / BURST / CHAIN / ALT_WIN entry:
 //
@@ -610,25 +611,98 @@ const baselineTurn = (domains) => ([...domains].some((d) => CHEAP_BODY_DOMAINS.h
  */
 const CONTESTED_BASELINE = 9;
 
-// ---------------------------------------------------------------- run it
-const findings = [];
-const clock = [];
-const entries = [];
-for (const e of db.combos) {
-  // ENGINEs are priced only under --engines, and reported in their own section with their own
-  // wording. They are NOT folded into the finisher table: an ALT_WIN belongs there because it PAYS a
-  // turn and wins, and an engine never pays at all - it produces a rate. Putting them in one table
-  // would be the class-filter mistake of 2026-09-13 committed in reverse.
-  if (!FINISHER.has(e.class) && !(engines && e.class === "ENGINE")) continue;
-  const blob = JSON.stringify(e.prerequisites) + JSON.stringify(e.steps) + (e.notes || "") + (e.terminatesIn || "");
+// ---------------------------------------------------------------- the notable each hole earns
+/**
+ * The emitter's half of holesFor's contract: ONE arm per hole `kind`, and a kind with no arm is a
+ * LOUD failure rather than a silent one.
+ *
+ * That second clause is what closes the CLASS rather than the instance. #220 was a lookup that
+ * quietly matched nothing, and repairing the string alone would leave the NEXT hole kind somebody
+ * adds free to vanish the same way - detected, named in the report, and never explained to the
+ * player who reads riftcombo.app. So unhandled kinds are returned to the caller, which says so on
+ * stderr and refuses to hand over a correction row with nothing in it.
+ */
+function notablesFor(f) {
+// The swept set is 16, but several of those only reach a FRIENDLY gear or are gated (Jayce and
+// Malzahar kill your own, Zaun Punk's is an additional cost, Bottled Constellation is a payoff,
+// Pickpocket caps at Energy cost 1 and Noxian Demolitionist at its own Might, Decree of Unity
+// reaches only an enemy Chaos card). Listing all 16 as "answers" would be false, so the notable
+// names the unconditional enemy-facing subset and points at this script's predicate for the rest.
+const ENEMY_FACING = ["OGN-022", "SFD-005", "VEN-003", "OGN-224", "SFD-032", "SFD-077"];
+const facing = gearKills.filter((g) => ENEMY_FACING.includes(g.base))
+  .map((g) => `${g.base} ${g.name} (${g.domains.join("/")})`).join(", ");
+  const notables = [];
+  const eqHole = f.holes.find((h) => h.kind === "equipment");
+  if (eqHole) {
+    const eq = eqHole.items.join(", ");
+    const copies = [...eq.matchAll(/x(\d+)/g)].reduce((n, m) => n + Number(m[1]), 0);
+    // One copy is answered most cheaply by a single-target kill; several by the one card that
+    // kills them all. Naming Thermo Beam against a lone Equipment would overstate the threat.
+    const headline = copies >= 2
+      ? `OGN-022 Thermo Beam (Fury, E5 + 2 Fury Power, "[Action] (Play on your turn or in showdowns.) Kill all gear.") ` +
+        `is the only card in the pool that kills EVERY gear at once, so against the ${copies} copies this line ` +
+        `stands on it answers the whole payoff with ONE card. It is symmetric, which makes it cheap for a gearless ` +
+        `deck and expensive for anyone else.`
+      : `The single copy here does not need the mass answer: SFD-005 Detonate (Fury, E1 + 1 Fury Power, "Kill a ` +
+        `gear. Its controller draws 2.") is the cheapest removal in the pool for it, and the two cards it hands ` +
+        `back do not replace what was attached.`;
+    notables.push(
+      `THE EQUIPMENT THIS LINE STANDS ON (${eq}) IS A LEGAL TARGET THE WHOLE TIME IT SITS THERE. 718.5.b: ` +
+      `"Attached cards still can be chosen or targeted by game effects while Attached." Its printed Rules Text is ` +
+      `Inactive while attached (718.2) and its [Equip] is unusable (721.2), but neither of those protects the CARD. ` +
+      `${headline} The unconditional enemy-facing gear kills are ${facing} - four domains, so there is no identity ` +
+      `this line can hide in. (The full swept set is ${gearKills.length} base codes across all six domains; the ` +
+      `predicate is /\\bkills?\\b[^.]{0,80}\\bgear\\b/i over text+effect of every deckable base in ` +
+      `data/cards.json, and the rest either reach only a friendly gear or are gated below this line's costs. Run ` +
+      `npm run adversarial to re-derive it.)`,
+      REACTION_NOTABLE);
+  }
+  const mightHole = f.holes.find((h) => h.kind === "fragile-body");
+  if (mightHole) {
+    const bodies = mightHole.items.join(", ");
+    notables.push(
+      `ONE ENERGY ANSWERS THE MIGHT-1 BODY THIS LINE NEEDS (${bodies}). OGN-133 Flurry of Blades is Body, E1: ` +
+      `"[Reaction] (Play any time, even before spells and abilities resolve.) Deal 1 to all units at battlefields." ` +
+      `143.2.a kills on marked damage at or above Might, so it kills every 1-Might body on the board ` +
+      `SIMULTANEOUSLY however many there are - the binding constraint is Might PER BODY, not the number of bodies, ` +
+      `so no amount of going wider answers it - and 813.1.c.1 lets it land in any Closed State on either player's ` +
+      `turn. The repairs in the pool are narrow: UNL-077 Soul Shepherd ("Your token units have +1 Might") is the ` +
+      `only permanent board-wide token-scoped one and is Mind, OGN-266 Siphon Power is one turn and one ` +
+      `battlefield, and UNL-T03 Brush reaches only Bird, Cat, Dog, Poro and Ivern units.`);
+  }
+  const HANDLED = new Set(["equipment", "fragile-body"]);
+  const unhandled = [...new Set(f.holes.map((h) => h.kind))].filter((k) => !HANDLED.has(k));
+  return { notables, unhandled };
+}
 
-  const domains = new Set();
+// ---------------------------------------------------------------- holes, and why they are OBJECTS
+/**
+ * A hole carries a `kind`. It is NOT identified by its sentence, because it was, and that broke
+ * silently (#220).
+ *
+ * The fragile-body check below was widened from `might === 1` to `might <= 1` and its message was
+ * reworded from "a Might-1 body" to "a Might-1-or-less body" to match. The emitter, which found its
+ * own hole again with `startsWith("stands on a Might-1 body")`, was not - and
+ * `"...Might-1-or-less...".startsWith("...Might-1 body")` is false, so from that commit the notable
+ * explaining the hole could never be emitted. The zone guard added later closed every live instance,
+ * which is why nothing noticed: the report still named the hole and the emitter simply offered
+ * nothing for it. Removing the guard reproduces it exactly - 1 hole of 80 finishers
+ * (swain-svellsongur-conquer-burst, Steel Paws M0) and a correction row carrying ZERO notables.
+ *
+ * Two things follow, and both belong here rather than in the emitter:
+ *   - `kind` is a tag nobody rewords by accident. The prose is free to change; the contract is not.
+ *   - `items` is the PAYLOAD, so the emitter never re-parses its own sentence. It used to recover the
+ *     card list with `hole.match(/\((.*)\) and names no/)[1]`, which is the same fragility one step
+ *     later: it would fail LOUDLY rather than silently, which is better, but it fails for the same
+ *     reason - a consumer reading a producer's prose.
+ */
+function holesFor(e) {
+  const blob = JSON.stringify(e.prerequisites) + JSON.stringify(e.steps) + (e.notes || "") + (e.terminatesIn || "");
   const equipment = [];
   const fragile = [];
   for (const u of e.uses || []) {
     const c = byBase.get(u.card);
     if (!c) continue;
-    for (const d of c.domains) domains.add(d);
     if (c.type.includes("legend") || c.type.includes("battlefield")) continue;
     if (c.type.includes("gear") && c.tags.includes("Equipment")) equipment.push(`${c.name} x${u.quantity}`);
     // OGN-133 Flurry of Blades reads "Deal 1 to all units AT BATTLEFIELDS", so it cannot reach a body
@@ -640,12 +714,155 @@ for (const e of db.combos) {
     // the removal that reaches a base (OGN-229 Vengeance and its family) - just not by the sweeper.
     if (c.type.includes("unit") && c.might !== null && c.might <= 1 && u.zone !== "BASE") fragile.push(`${c.name} (M${c.might})`);
   }
-
   const holes = [];
   if (equipment.length && !namesAnswer(blob, gearAnswers).length)
-    holes.push(`stands on Equipment (${equipment.join(", ")}) and names no gear answer`);
+    holes.push({ kind: "equipment", items: equipment,
+                 text: `stands on Equipment (${equipment.join(", ")}) and names no gear answer` });
   if (fragile.length && !namesAnswer(blob, [SWEEPER]).length)
-    holes.push(`stands on a Might-1-or-less body at a battlefield (${fragile.join(", ")}) and never names OGN-133 Flurry of Blades`);
+    holes.push({ kind: "fragile-body", items: fragile,
+                 text: `stands on a Might-1-or-less body at a battlefield (${fragile.join(", ")}) and never names OGN-133 Flurry of Blades` });
+  return holes;
+}
+
+// ---------------------------------------------------------------- the Reaction/detach notable
+// Hoisted because THREE modes need the identical sentence: --emit-notables writes it into an entry
+// that has no gear answer at all, --recheck-notables replaces the STALE, narrower version of it that
+// 14 entries already carry, and --selftest-holes asserts it is still produced. One source of truth,
+// so they can never drift apart.
+const REACTION_NOTABLE =
+  `NO GEAR KILL IN THE POOL CARRIES [Reaction] - BUT A KILL IS NOT THE ONLY ANSWER, AND THE PREDICATE ` +
+  `THAT MEASURED THAT SET COULD NOT SEE THE OTHER FAMILY. Swept over all ${gearKills.length} kills: Thermo ` +
+  `Beam and Salvage are [Action], which 806.1.c.1 makes short for "This can be played during showdowns on ` +
+  `any player's turn", and Detonate and Brittle Steel are plain spells, which 155 confines to "an Open State ` +
+  `outside of Showdowns on its controller's turn". WHICH OF THOSE PROTECTS THIS LINE DEPENDS ON WHERE IT PAYS, ` +
+  `so check before relying on it. If it pays on a HOLD, the Score happens at 315.2.b.2 inside your own Beginning ` +
+  `Phase, where 312.2.a gives the opponent no priority in a Neutral Open State and 813.1.c.1 admits only a ` +
+  `[Reaction] in the Closed State the trigger opens - no kill in the pool reaches that window at all, so each ` +
+  `must be cast on THEIR own turn, a full turn early and fully telegraphed, and that spell on the Chain is ` +
+  `itself a Closed State where 312.2.c hands out priority and 813.1.c.1 admits a [Reaction] in response. If it ` +
+  `instead pays in your MAIN PHASE, that protection does not exist: 806.1.c.1 puts Thermo Beam and Salvage ` +
+  `inside any showdown on any player's turn, so they reach the scoring window itself. THE SECOND FAMILY IS DETACHMENT, AND IT DOES CARRY [Reaction]. ` +
+  `719.1 appends an attached card's Effect Text to its carrier "for as long as they remain Attached" and ` +
+  `137.3.a stops the Might Bonus "as soon as the card with the Might Bonus is no longer Attached", so taking ` +
+  `the Equipment OFF switches the payoff off without killing anything. Swept with /\\bdetach/i over ` +
+  `text+effect of every deckable base: ${gearDetach.length} base codes (${new Set(gearDetach.map((d) => d.name)).size} names - ` +
+  `Grandmaster at Arms is printed twice), of which only ${detachAnswers.length} is ENEMY-FACING, because ` +
+  `Strike Down says "an equipped friendly unit", Veiled Temple "a friendly gear" and Grandmaster at Arms ` +
+  `"you control". That one is SFD-011 Angle Shot - Fury, 2 Energy, NO Power, and it cantrips: "[Reaction] ` +
+  `(Play any time, even before spells and abilities resolve.) Choose a unit and an Equipment with the same ` +
+  `controller. Attach that Equipment to that unit or detach that Equipment from that unit. Draw 1." The words ` +
+  `that make it an answer are "the same controller", which need not be you. WHAT IT PROVABLY DOES is strip ` +
+  `the text and the Might Bonus BEFORE the trigger condition is ever met. WHAT IS NOT WALKED, and a reader ` +
+  `should not reach for it here until somebody does, is whether a detach inside the scoring window itself ` +
+  `accomplishes anything. The reason to DOUBT it - not a paragraph that settles it - is that a Trigger Condition ` +
+  `is measured when the trigger is PLACED (383.2.a.1 makes a clause immediately after the trigger "part of the ` +
+  `Trigger Condition and not the Effect"), so stripping the Equipment once its trigger is already on the Chain ` +
+  `may well change nothing. Nobody has walked what becomes of a chain item whose source text has gone. Until ` +
+  `somebody does, treat Angle Shot as a cheap answer cast EARLY, and do not claim it answers the trigger.`;
+
+// ---------------------------------------------------------------- --selftest-holes
+/**
+ * The hole sweep and the notable emitter had NO test, which is how #220 survived: every live hole is
+ * currently answered, so `--emit-notables` prints `[]` and neither path is exercised by real data at
+ * all. A detector with no known positive cannot tell "nothing is wrong" from "I am not looking", so
+ * a test over the catalogue would have gone green either side of the break.
+ *
+ * The fixtures are therefore synthetic, in the shape of `--selftest`, and the answers are derived by
+ * hand from the two rules the pair encodes:
+ *   - OGN-133 Flurry of Blades reads "Deal 1 to all units AT BATTLEFIELDS", so a body the entry
+ *     declares in zone BASE is NOT answered by it. That guard is the repair that stopped a FALSE
+ *     notable shipping to three entries (#200 batch 17), and deleting it left the whole suite green.
+ *   - 143.2.a kills on marked damage at or above Might, so the threshold is Might <= 1 and a Might-2
+ *     body is not in the hole at all.
+ *
+ * Every fixture names a REAL base code, because the sweep reads type, might and tags out of
+ * data/cards.json - an invented card would produce nothing and pass for the wrong reason.
+ */
+if (args.includes("--selftest-holes")) {
+  const entry = (uses, prose = "synthetic fixture") => ({
+    id: "selftest", class: "BURST",
+    uses: uses.map(([card, quantity, zone]) => ({ card, quantity, zone })),
+    prerequisites: { easy: [], notable: [] }, steps: [prose], notes: "", terminatesIn: "",
+  });
+  const cases = [
+    { name: "fragile body at a battlefield, no answer named",
+      e: entry([["VEN-043", 1, "BATTLEFIELD"]]), kinds: ["fragile-body"], notables: 1,
+      contains: ["Steel Paws (M0)"],
+      why: "VEN-043 Steel Paws is Might 0 and stands where the sweeper reaches - the hole, and the sentence must name the body" },
+    { name: "the SAME body declared at the base",
+      e: entry([["VEN-043", 1, "BASE"]]), kinds: [], notables: 0,
+      why: "OGN-133 says 'at battlefields', so it cannot reach a base - this is the guard that stopped three false notables" },
+    { name: "fragile body at a battlefield, and the entry names the sweeper",
+      e: entry([["VEN-043", 1, "BATTLEFIELD"]], "answered by OGN-133"), kinds: [], notables: 0,
+      why: "an entry that already names its answer has no hole; without this, case 1 could pass for the wrong reason" },
+    { name: "a Might-2 body at a battlefield",
+      e: entry([["OGN-003", 1, "BATTLEFIELD"]]), kinds: [], notables: 0,
+      why: "143.2.a needs damage at or above Might, and one damage is below 2 - the threshold is Might <= 1" },
+    { name: "one Equipment, no gear answer named",
+      e: entry([["SFD-059", 1, "BATTLEFIELD"]]), kinds: ["equipment"], notables: 2,
+      contains: ["Svellsongur x1", "The single copy here does not need the mass answer"],
+      why: "718.5.b keeps an attached Equipment targetable; one copy is answered most cheaply by SFD-005 Detonate" },
+    { name: "two Equipment, no gear answer named",
+      e: entry([["SFD-059", 2, "BATTLEFIELD"]]), kinds: ["equipment"], notables: 2,
+      contains: ["Svellsongur x2", "is the only card in the pool that kills EVERY gear at once"],
+      why: "two or more copies switch the headline to OGN-022 Thermo Beam, which answers all of them with one card" },
+    { name: "Equipment, and the entry names a gear answer",
+      e: entry([["SFD-059", 1, "BATTLEFIELD"]], "answered by OGN-022"), kinds: [], notables: 0,
+      why: "the same namesAnswer check on the gear side" },
+    { name: "BOTH holes on one entry",
+      e: entry([["SFD-059", 1, "BATTLEFIELD"], ["VEN-043", 1, "BATTLEFIELD"]]),
+      kinds: ["equipment", "fragile-body"], notables: 3,
+      contains: ["Steel Paws (M0)", "Svellsongur x1"],
+      why: "#220 WAS exactly this asymmetry - the equipment arm worked and the fragile arm did not, so one kind must never mask the other" },
+  ];
+
+  console.log(`# --selftest-holes: the hole sweep and the notable emitter, on synthetic entries`);
+  console.log(`# ${cases.length} cases, ${cases.filter((c) => c.kinds.length).length} expect a hole and ` +
+              `${cases.filter((c) => !c.kinds.length).length} expect none; kinds exercised: ` +
+              `${[...new Set(cases.flatMap((c) => c.kinds))].sort().join(", ")}`);
+  let bad = 0;
+  for (const c of cases) {
+    const holes = holesFor(c.e);
+    const kinds = holes.map((h) => h.kind);
+    const { notables, unhandled } = notablesFor({ e: c.e, holes });
+    const missing = (c.contains || []).filter((t) => !notables.join("\n").includes(t));
+    const ok = kinds.join(",") === c.kinds.join(",") && notables.length === c.notables &&
+               !unhandled.length && !missing.length;
+    if (!ok) bad++;
+    console.log(`  ${ok ? "ok  " : "FAIL"}  ${c.name}`);
+    console.log(`          holes=[${kinds.join(", ")}] want [${c.kinds.join(", ")}]  ` +
+                `notables=${notables.length} want ${c.notables}` +
+                `${missing.length ? `  MISSING FROM THE SENTENCE: ${missing.join(" | ")}` : ""}`);
+    console.log(`          ${c.why}`);
+  }
+
+  // The half that closes the CLASS: a hole kind nobody wrote a sentence for must be LOUD. #220 was
+  // silent, and a fix that only repaired the string would leave the next kind free to vanish.
+  const { notables, unhandled } = notablesFor({ e: { id: "selftest" }, holes: [{ kind: "not-a-kind", items: [], text: "x" }] });
+  const okLoud = unhandled.join(",") === "not-a-kind" && notables.length === 0;
+  if (!okLoud) bad++;
+  console.log(`  ${okLoud ? "ok  " : "FAIL"}  an unhandled hole kind is reported, not swallowed`);
+  console.log(`          unhandled=[${unhandled.join(", ")}] want [not-a-kind]  notables=${notables.length} want 0`);
+  console.log(bad ? `# ${bad} FAILED` : "# all pass");
+  process.exit(bad ? 1 : 0);
+}
+
+// ---------------------------------------------------------------- run it
+const findings = [];
+const clock = [];
+const entries = [];
+for (const e of db.combos) {
+  // ENGINEs are priced only under --engines, and reported in their own section with their own
+  // wording. They are NOT folded into the finisher table: an ALT_WIN belongs there because it PAYS a
+  // turn and wins, and an engine never pays at all - it produces a rate. Putting them in one table
+  // would be the class-filter mistake of 2026-09-13 committed in reverse.
+  if (!FINISHER.has(e.class) && !(engines && e.class === "ENGINE")) continue;
+  const domains = new Set();
+  for (const u of e.uses || []) {
+    const c = byBase.get(u.card);
+    if (c) for (const d of c.domains) domains.add(d);
+  }
+  const holes = holesFor(e);
   if (holes.length) findings.push({ e, holes });
 
   // The card MULTISET, not a cost array: two entries folded together can share a card (OGN-104
@@ -944,7 +1161,7 @@ if (!onlyTurns && !engines) {
   console.log(`# Unanswered holes: ${findings.length} of ${db.combos.filter((c) => FINISHER.has(c.class)).length} finishers`);
   console.log(`# gear-kill answer set: ${gearKills.length} base codes, domains ${[...new Set(gearKills.flatMap((g) => g.domains))].sort().join(" ")}`);
   console.log(`# gear-detach answer set: ${gearDetach.length} base codes swept, ${detachAnswers.length} enemy-facing (${detachAnswers.map((d) => `${d.base} ${d.name}`).join(", ") || "none"})\n`);
-  for (const f of findings) for (const h of f.holes) console.log(`${f.e.class.padEnd(8)} ${f.e.id}\n         ${h}`);
+  for (const f of findings) for (const h of f.holes) console.log(`${f.e.class.padEnd(8)} ${f.e.id}\n         ${h.text}`);
 }
 
 if (engines) {
@@ -993,100 +1210,23 @@ console.log();
 for (const c of clock.sort((a, b) => b.pays - a.pays || a.id.localeCompare(b.id)))
   console.log(`  T${String(c.pays).padStart(2)} vs T${c.base} baseline  ${c.pays > c.base ? "SLOWER" : "      "}  ${c.cls.padEnd(8)} ${c.domains.padEnd(12)} ${c.id}${c.via ? `  [${c.via}]` : ""}`);
 
-// ---------------------------------------------------------------- the Reaction/detach notable
-// Hoisted because TWO modes need the identical sentence: --emit-notables writes it into an entry that
-// has no gear answer at all, and --recheck-notables replaces the STALE, narrower version of it that
-// 14 entries already carry. One source of truth, so the two can never drift apart.
-const REACTION_NOTABLE =
-  `NO GEAR KILL IN THE POOL CARRIES [Reaction] - BUT A KILL IS NOT THE ONLY ANSWER, AND THE PREDICATE ` +
-  `THAT MEASURED THAT SET COULD NOT SEE THE OTHER FAMILY. Swept over all ${gearKills.length} kills: Thermo ` +
-  `Beam and Salvage are [Action], which 806.1.c.1 makes short for "This can be played during showdowns on ` +
-  `any player's turn", and Detonate and Brittle Steel are plain spells, which 155 confines to "an Open State ` +
-  `outside of Showdowns on its controller's turn". WHICH OF THOSE PROTECTS THIS LINE DEPENDS ON WHERE IT PAYS, ` +
-  `so check before relying on it. If it pays on a HOLD, the Score happens at 315.2.b.2 inside your own Beginning ` +
-  `Phase, where 312.2.a gives the opponent no priority in a Neutral Open State and 813.1.c.1 admits only a ` +
-  `[Reaction] in the Closed State the trigger opens - no kill in the pool reaches that window at all, so each ` +
-  `must be cast on THEIR own turn, a full turn early and fully telegraphed, and that spell on the Chain is ` +
-  `itself a Closed State where 312.2.c hands out priority and 813.1.c.1 admits a [Reaction] in response. If it ` +
-  `instead pays in your MAIN PHASE, that protection does not exist: 806.1.c.1 puts Thermo Beam and Salvage ` +
-  `inside any showdown on any player's turn, so they reach the scoring window itself. THE SECOND FAMILY IS DETACHMENT, AND IT DOES CARRY [Reaction]. ` +
-  `719.1 appends an attached card's Effect Text to its carrier "for as long as they remain Attached" and ` +
-  `137.3.a stops the Might Bonus "as soon as the card with the Might Bonus is no longer Attached", so taking ` +
-  `the Equipment OFF switches the payoff off without killing anything. Swept with /\\bdetach/i over ` +
-  `text+effect of every deckable base: ${gearDetach.length} base codes (${new Set(gearDetach.map((d) => d.name)).size} names - ` +
-  `Grandmaster at Arms is printed twice), of which only ${detachAnswers.length} is ENEMY-FACING, because ` +
-  `Strike Down says "an equipped friendly unit", Veiled Temple "a friendly gear" and Grandmaster at Arms ` +
-  `"you control". That one is SFD-011 Angle Shot - Fury, 2 Energy, NO Power, and it cantrips: "[Reaction] ` +
-  `(Play any time, even before spells and abilities resolve.) Choose a unit and an Equipment with the same ` +
-  `controller. Attach that Equipment to that unit or detach that Equipment from that unit. Draw 1." The words ` +
-  `that make it an answer are "the same controller", which need not be you. WHAT IT PROVABLY DOES is strip ` +
-  `the text and the Might Bonus BEFORE the trigger condition is ever met. WHAT IS NOT WALKED, and a reader ` +
-  `should not reach for it here until somebody does, is whether a detach inside the scoring window itself ` +
-  `accomplishes anything. The reason to DOUBT it - not a paragraph that settles it - is that a Trigger Condition ` +
-  `is measured when the trigger is PLACED (383.2.a.1 makes a clause immediately after the trigger "part of the ` +
-  `Trigger Condition and not the Effect"), so stripping the Equipment once its trigger is already on the Chain ` +
-  `may well change nothing. Nobody has walked what becomes of a chain item whose source text has gone. Until ` +
-  `somebody does, treat Angle Shot as a cheap answer cast EARLY, and do not claim it answers the trigger.`;
-
 // ---------------------------------------------------------------- --emit-notables
 // A player reading riftcombo.app never runs npm, so a hole only this script knows about is invisible
 // to the only audience that matters. This writes the findings out as a corrections file in the shape
 // the manager merges, so the script stays the source of truth and the entries still carry the
 // warning. Generated prose is still prose: READ WHAT IT EMITS before handing it over.
 if (emit) {
-  // The swept set is 16, but several of those only reach a FRIENDLY gear or are gated (Jayce and
-  // Malzahar kill your own, Zaun Punk's is an additional cost, Bottled Constellation is a payoff,
-  // Pickpocket caps at Energy cost 1 and Noxian Demolitionist at its own Might, Decree of Unity
-  // reaches only an enemy Chaos card). Listing all 16 as "answers" would be false, so the notable
-  // names the unconditional enemy-facing subset and points at this script's predicate for the rest.
-  const ENEMY_FACING = ["OGN-022", "SFD-005", "VEN-003", "OGN-224", "SFD-032", "SFD-077"];
-  const facing = gearKills.filter((g) => ENEMY_FACING.includes(g.base))
-    .map((g) => `${g.base} ${g.name} (${g.domains.join("/")})`).join(", ");
   const rows = [];
   for (const f of findings) {
-    const notables = [];
-    const eqHole = f.holes.find((h) => h.startsWith("stands on Equipment"));
-    if (eqHole) {
-      const eq = eqHole.match(/\((.*)\) and names no/)[1];
-      const copies = [...eq.matchAll(/x(\d+)/g)].reduce((n, m) => n + Number(m[1]), 0);
-      // One copy is answered most cheaply by a single-target kill; several by the one card that
-      // kills them all. Naming Thermo Beam against a lone Equipment would overstate the threat.
-      const headline = copies >= 2
-        ? `OGN-022 Thermo Beam (Fury, E5 + 2 Fury Power, "[Action] (Play on your turn or in showdowns.) Kill all gear.") ` +
-          `is the only card in the pool that kills EVERY gear at once, so against the ${copies} copies this line ` +
-          `stands on it answers the whole payoff with ONE card. It is symmetric, which makes it cheap for a gearless ` +
-          `deck and expensive for anyone else.`
-        : `The single copy here does not need the mass answer: SFD-005 Detonate (Fury, E1 + 1 Fury Power, "Kill a ` +
-          `gear. Its controller draws 2.") is the cheapest removal in the pool for it, and the two cards it hands ` +
-          `back do not replace what was attached.`;
-      notables.push(
-        `THE EQUIPMENT THIS LINE STANDS ON (${eq}) IS A LEGAL TARGET THE WHOLE TIME IT SITS THERE. 718.5.b: ` +
-        `"Attached cards still can be chosen or targeted by game effects while Attached." Its printed Rules Text is ` +
-        `Inactive while attached (718.2) and its [Equip] is unusable (721.2), but neither of those protects the CARD. ` +
-        `${headline} The unconditional enemy-facing gear kills are ${facing} - four domains, so there is no identity ` +
-        `this line can hide in. (The full swept set is ${gearKills.length} base codes across all six domains; the ` +
-        `predicate is /\\bkills?\\b[^.]{0,80}\\bgear\\b/i over text+effect of every deckable base in ` +
-        `data/cards.json, and the rest either reach only a friendly gear or are gated below this line's costs. Run ` +
-        `npm run adversarial to re-derive it.)`,
-        REACTION_NOTABLE);
-    }
-    const mightHole = f.holes.find((h) => h.startsWith("stands on a Might-1 body"));
-    if (mightHole) {
-      const bodies = mightHole.match(/\((.*)\) and never names/)[1];
-      notables.push(
-        `ONE ENERGY ANSWERS THE MIGHT-1 BODY THIS LINE NEEDS (${bodies}). OGN-133 Flurry of Blades is Body, E1: ` +
-        `"[Reaction] (Play any time, even before spells and abilities resolve.) Deal 1 to all units at battlefields." ` +
-        `143.2.a kills on marked damage at or above Might, so it kills every 1-Might body on the board ` +
-        `SIMULTANEOUSLY however many there are - the binding constraint is Might PER BODY, not the number of bodies, ` +
-        `so no amount of going wider answers it - and 813.1.c.1 lets it land in any Closed State on either player's ` +
-        `turn. The repairs in the pool are narrow: UNL-077 Soul Shepherd ("Your token units have +1 Might") is the ` +
-        `only permanent board-wide token-scoped one and is Mind, OGN-266 Siphon Power is one turn and one ` +
-        `battlefield, and UNL-T03 Brush reaches only Bird, Cat, Dog, Poro and Ivern units.`);
-    }
+    const { notables, unhandled } = notablesFor(f);
+    // A hole with no notable is the #220 shape: detected and never explained. It used to produce a
+    // correction row reading "append 0 notables", which is noise handed to whoever merges this.
+    if (unhandled.length) console.error(`# WARNING ${f.e.id}: no notable is written for hole kind(s) ${unhandled.join(", ")} - it will be reported and never explained`);
+    if (!notables.length) continue;
     rows.push({
       entry: f.e.id,
       action: `append ${notables.length} notable${notables.length > 1 ? "s" : ""} to prerequisites.notable`,
-      why: `Generated by scripts/adversarial-check.mjs --emit-notables (issue #200, lane rc-synth). ${f.holes.join("; ")}. ` +
+      why: `Generated by scripts/adversarial-check.mjs --emit-notables (issue #200, lane rc-synth). ${f.holes.map((h) => h.text).join("; ")}. ` +
            `Reviewed by hand before handing over; the headline answer is chosen by copy count, and the "answers" named ` +
            `are the unconditional enemy-facing subset rather than the whole swept set.`,
       notables_to_append: notables,
