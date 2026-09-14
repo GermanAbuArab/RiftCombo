@@ -243,7 +243,10 @@ describe("the stalled-board buckets", () => {
 
   it("keeps INDEPENDENT small, and labelled as a claim to check", () => {
     expect(bucket("INDEPENDENT").n).toBeLessThanOrEqual(4);
-    expect(st).toMatch(/WRONG TWICE by being the else branch/);
+    // NOT the count in that sentence — it moves every time the bucket overclaims again, and pinning it
+    // failed this test on a label edit it had no opinion about. The durable half is the warning itself.
+    expect(st).toMatch(/else branch of too few predicates/);
+    expect(st).toMatch(/claim to check, not a conclusion/);
   });
 });
 

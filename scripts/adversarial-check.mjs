@@ -668,7 +668,18 @@ function tokensPlayedBy(used) {
   for (const c of used) {
     const t = `${c.text || ""} ${c.effect || ""}`;
     for (const k of Object.keys(TOKEN_MIGHT)) {
-      const m = t.match(new RegExp(`play[^.]{0,40}\\b${k}\\b[^.]{0,60}`, "i"));
+      // THE WORD `token` IS LOAD-BEARING AND A FIRST VERSION DROPPED IT. 439.2.c's wording is "Play a
+      // 1 [M] Recruit token", and a PROXIMITY regex without that anchor matches `UNL-177 Ivern, Friend
+      // to All` - "As you PLAY me, choose BIRD, Cat, Dog, or Poro" - which chooses a TAG and plays no
+      // token at all. That gave ivern-sentinel-hold a phantom Might-1 Bird and a floor of 1 where its
+      // battlefield bodies are Might 6 and 4. Exactly the defect this function was written to remove,
+      // surviving inside its own repair because the scan moved from prose to card text and kept the
+      // loose window. Found by SAMPLING --holds by hand, not by any test.
+      // The tail past `token` is for the DESTINATION test below, and the two clauses are coupled
+      // through this one window: anchoring on `token` without it truncated the match before "to your
+      // base" and silently switched the base exclusion off. --selftest-garrison caught that in the same
+      // run, which is the whole reason it exists.
+      const m = t.match(new RegExp(`play[^.]{0,40}\\b${k}\\b[^.]{0,40}\\btokens?\\b[^.]{0,60}`, "i"));
       if (!m) continue;
       // 355.2.a's default is your base OR a battlefield you control, and a card that NAMES the base
       // puts the body where a battlefield sweep cannot reach it.
@@ -721,6 +732,7 @@ if (args.includes("--selftest-garrison")) {
     // watching nothing go red. Both are real entries and both hand-derive to 4.
     ["rumble-scrapper-sentinel-mechs", 4, [], "SFD-089 Rumble plays a 3-Might Mech TO YOUR BASE, which a battlefield sweep cannot reach, so the garrison is his own Might 4 beside Blue Sentinel's. Without the base exclusion this reads 3 - the same wrong number the phantom Mech produced, off the same card"],
     ["ivern-nurturer-hold-tutor", 4, [], "UNL-051 Ivern, Nurturer MENTIONS Bird and plays none, so a name-matcher reads 1 and the truth is her own printed Might 4. This is the play-versus-name clause the whole defect turned on"],
+    ["ivern-sentinel-hold", 4, [], "UNL-177 Ivern, Friend to All reads \"As you PLAY me, choose BIRD, Cat, Dog, or Poro\" - a TAG choice with no token in it. A proximity regex without the word `token` read that as a Might-1 Bird and gave this entry a floor of 1, where its battlefield bodies are Might 6 and 4 and its only Might-1 card sits at zone BASE. Found by sampling --holds by hand"],
     ["spiderling-swarm-grand-plaza", null, [], "VEN-097 Spiderling is printed Might 1 and reads \"I have +1 Might for each other unit you control here with my name\", so its PRINTED value is meaningless on a board of seven. Excluding it leaves nothing, and null is the honest answer - this is the entry the first false notable shipped on"],
   ];
   console.log(`# --selftest-garrison: ${cases.length} real entries with hand-derived floors`);
@@ -1609,7 +1621,7 @@ if (stalled) {
     hold: "NEEDS ONE BATTLEFIELD, AND IS AT ITS BEST WITH EXACTLY ONE. Scores on a Hold, which needs a battlefield you ALREADY control. There are THREE board states and this bucket only dies on the third: hold BOTH and the free curve wins on T5-T6 without you, so the line is redundant; hold ONE and the free curve pays 1 a turn and does not reach 8 until T9, which is where a Hold finisher is worth its slot; hold NONE and it is switched off. The earlier label said 'the stall that makes this line necessary is the same stall that switches it off', which is true of a TOTAL stall and false of the ordinary contested game.",
     located: "LOCATION-GATED. The card's OWN abilities are switched off unless it stands at a battlefield, and 355.2.a makes that one you CONTROL - so a stall takes it away exactly as it takes away a Hold. These read as board-independent to a hold/conquer/attack predicate and are not.",
     garrisoned: "GARRISON-GATED. The printed win condition REQUIRES a number of your units to be standing at battlefields, which is not a Hold, a Conquer, an attack, or a restriction on the card's own abilities - so all five predicates above are blind to it. A stall that costs you battlefields costs you the win condition outright.",
-    independent: "BOARD-INDEPENDENT. No Hold, no Conquer, no attack, no location gate and no garrison requirement in the printed text, so nothing about the board switches it off. This bucket has been WRONG TWICE by being the else branch of too few predicates; treat a row landing here as a claim to check, not a conclusion.",
+    independent: "STALL-INDEPENDENT, which is a weaker claim than board-independent and is the one this mode supports. No Hold, no Conquer, no attack, no location gate and no garrison requirement in the printed text, so losing battlefields does not switch it off - but something else on the board still can. bottled-constellation-time-warp needs three friendly units or gear to KILL, so removal answers it while a stall does not. The label said BOARD-INDEPENDENT until 2026-09-14. This bucket has now overclaimed THREE times by being the else branch of too few predicates; treat a row landing here as a claim to check, not a conclusion.",
   };
   for (const k of ["attack", "conquer", "hold", "located", "garrisoned", "independent"]) {
     console.log(`\n## ${k.toUpperCase()}  (${buckets[k].length})\n   ${label[k]}\n`);
