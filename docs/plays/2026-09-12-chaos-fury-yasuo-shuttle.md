@@ -22,10 +22,10 @@ Filtered by 103.1.b to what a Fury/Chaos legend may run, there are exactly four:
 |---|---|---|
 | `OGN-034 Tryndamere, Barbarian` | Fury | an enemy garrison to attack — 807.1.d, "Being an attacker means the Unit has gained the Attacker designation during Combat", and 323.9 stages no Combat without opposing units |
 | `SFD-148 Draven, Audacious` | Chaos | a combat to win — 466.3.a, "…are the only Player that has units remaining at this battlefield during this step" |
-| `SFD-214 Power Nexus` | colourless | 4 rainbow Power banked before the Hold trigger finalizes (383.3.b.1), which in this pool means `UNL-087 Blue Sentinel`'s Add — and that is **Mind** |
+| `SFD-214 Power Nexus` | colourless | a **Hold**, so a battlefield you already control. *(Corrected 2026-09-14: this row said the 4 rainbow needed `UNL-087 Blue Sentinel`'s Add and was therefore illegal in the identity. 444.2.c refutes that verbatim — "Players may activate abilities that Add resources with the Reaction keyword at any time that they are instructed to Pay resources" — and 164.2 gives every Basic Rune two Reaction abilities, the second costing the RECYCLE rather than an exhaust, so the Power comes off the board in any identity. The play predates #200 batch 4, which reopened that refusal.)* |
 | `OGN-205 Yasuo, Windrider` | Chaos | **three moves. Nothing else.** |
 
-The first two pay only if the opponent presents a board; the third is illegal in the identity. **The
+The first two pay only if the opponent presents a board; the third needs a battlefield you already control, which is exactly what an opponent takes from you. **The
 Yasuo point is the only one in Chaos/Fury that an opponent cannot switch off by declining to play.**
 That is the whole thesis of the play.
 

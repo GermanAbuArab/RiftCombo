@@ -57457,6 +57457,87 @@
       ],
       "rulesVersion": "2026-07-16",
       "notes": "SYNTHESISED, not extracted (issue #200, lane rc-synth, 2026-09-12). It is the fury cell of the multiplier grid rc-manager5 built from this lane's section 25 census, and the fifth and last member of the Svellsongur family recorded in section 24.1 - Body prints no non-Hold point card, so the family is complete here. Card text verbatim from data/corpus_flat.txt. Rules opened and pasted from data/Riftbound-Core-Rules-2026-07-16.txt: 103.1.b, 103.2.b, 103.2.d.2, 136.2.d, 143.4, 144.2, 144.3, 144.3.a, 194.1.c, 312.2.a, 315.1.b, 315.2.b.2, 323.9, 383.2.a.1, 383.4.c.2.a, 434.1.c, 450, 465.2.c, 465.2.c.4, 466.3.a, 466.5, 466.5.d, 469.1, 470, 471.1, 476.1, 477.2.c, 479.1, 480.3, 718.2, 718.5.b, 721.2, 806.1.c.1. Stands on R2 = A, R6 = A and R28 = A; no new reading, and one possible reading was deliberately avoided rather than filed - see the Blighted Battleaxe notable. Identity computed from data/cards.json (fury + calm, exactly two). Legality checked against data/legality.json: neither card appears in its 21 rows. Arithmetic checked against the entry's own declared quantities: 2^3 = 8 instances on the loaded carrier plus 1 on the bare one is 9 Gains, plus the Conquer Score is 10, and the excess-damage threshold is met at summed Might 16 against any D <= 11. scripts/have.mjs confirmed no entry uses this card set or a subset."
+    },
+    {
+      "id": "tryndamere-isolate-excess-lever",
+      "name": "Isolate the big defender — Tryndamere's excess threshold in Fury/Chaos",
+      "class": "ENGINE",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "OGN-034",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BATTLEFIELD",
+          "note": "Fury unit, E7 P2 M8. 'When I conquer after an attack, if you assigned 5 or more excess damage to enemy units, you score 1 point.' Alone at Might 8 his clause needs the garrison's SUMMED Might to be 3 or less, which is the quantity this entry buys."
+        },
+        {
+          "card": "UNL-124",
+          "quantity": 1,
+          "role": "enabler",
+          "zone": "HAND",
+          "note": "Chaos spell, E2, no Power. 'Move an enemy unit from a battlefield to its base. Then, if there's an enemy unit alone at that battlefield, draw 1.' One per attack; 103.2.b caps the deck at 3 copies."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "ability-points"
+      ],
+      "prerequisites": {
+        "easy": [
+          "Any Fury/Chaos legend. The pool prints FIVE names across twelve printings, measured against data/cards.json rather than typed: Loose Cannon (OGN-251 / OGN-301), Dark Child - Starter (OGS-017), Glorious Executioner (SFD-185 / SFD-242), Bloodharbor Ripper (UNL-185 / UNL-228), Master of Shadows (VEN-143 / VEN-191). OGN-034 is mono-Fury and UNL-124 is mono-Chaos, so the union is exactly {fury, chaos} under 103.1.b and every one of the five is legal.",
+          "Neither card appears in data/legality.json, whose 21 rows were checked on 2026-09-14; neither carries the Signature supertype, so 103.2.d.2 imposes no legend of its own."
+        ],
+        "notable": [
+          "THE THRESHOLD IS THE GARRISON'S SUMMED MIGHT, NOT ITS SIZE, AND THAT IS WHY A CHEAP MOVER IS THE LEVER. R28 = A defines excess damage as attacking Might that never got assigned, and 465.2.c.4 is the paragraph that leaves any: 'Units cannot have more damage assigned to them than the minimum required to constitute lethal damage unless no further units remain to have damage assigned to them', with 142.4.b making Lethal Damage 'a non-zero amount greater than or equal to that Unit's Might'. So a lone Tryndamere assigns exactly the defenders' summed Might and keeps the rest.",
+          "REMOVING A BODY IS STRICTLY CHEAPER THAN KILLING IT, FOR THIS THRESHOLD AND ONLY FOR THIS ONE. A defender you kill still eats its whole Might out of your assignment under 465.2.c.4; a defender you MOVE eats nothing, because 465.2.b sums 'the Might of all Defending Units' and it is no longer one. Every catalogued excess-damage lever until now either shrank the defender or enlarged the attacker; this one deletes a term from the sum.",
+          "THE ORDER IS FORCED BY THE ABSENCE OF A KEYWORD, NOT CHOSEN. UNL-124 carries neither [Action] nor [Reaction], so 155 confines it — 'A spell can be played during an Open State outside of Showdowns on its controller's turn.' After Tryndamere moves in there is no such window: 323.9 marks the Combat Staged at the very next Cleanup and 323.13 opens it, 'If the current state is a Neutral Open State and one or more Combats are Staged at Battlefields, the Turn Player chooses one of those Battlefields. Combat begins there.' Cast it before the move or not at all. This is the #58 evacuation sequencing rule arriving on a line that is not an evacuation.",
+          "THE LEVER HAS A FLOOR AND THE FLOOR BITES TWICE, WHICH IS THE WHOLE REASON THIS IS NOT 'REMOVE THE GARRISON'. 465.1: 'If both Attacking and Defending units remain at this battlefield, the following Tasks become Outstanding' — empty the garrison and no damage is ever assigned, so excess is ZERO and the clause cannot be met. And independently, 323.6 strips their Control the instant their last body leaves ('Players lose control of any controlled Battlefields without their Units occupying them if the turn is in an Open State and there is no Showdown or Combat ongoing there'), after which 344.2 opens a Showdown rather than a Combat and 323.9 stages no Combat at all — so Tryndamere never gains the Attacker designation (464.2.c.3) and his 'when I conquer after an attack' has nothing to read — THE ATTACK IS THE HALF THAT GOES MISSING, not the conquer. Leave exactly one defender, and its Might must be 3 or less.",
+          "THE CARD REPLACES ITSELF PRECISELY WHEN IT IS PLAYED CORRECTLY, WHICH IS AN ACCIDENT WORTH STATING. Isolate's rider is 'if there's an enemy unit alone at that battlefield, draw 1', and 740.2.a defines it as 'A unit is alone when there are no other friendly units at the same location' — friendly to the unit, i.e. the opponent's own bodies. The floor above requires exactly one defender left standing, which is the same board state the rider asks for. The draw is not a bonus you sometimes get; it is guaranteed by the constraint the line already obeys.",
+          "THE FURY/MIND TWIN, AND THE TWO ARE NOT INTERCHANGEABLE. tryndamere-thousand-tailed-watcher-shrink does the same job with OGN-116 Thousand-Tailed Watcher, which is MIND at E7 + 1 Mind Power and therefore illegal under every Fury/Chaos legend by 103.1.b. The difference is not only price. The Watcher gives every enemy unit -3 Might to a MINIMUM OF 1, and 477.3.b snapshots that limit when it applies, so against a single Might-8 defender it leaves a summed Might of 1 and Tryndamere keeps 7 — while Isolate on that same board empties the battlefield and the floor above refuses it. Against a big body standing beside a small one, Isolate leaves a summed Might of 3 for two Energy and the Watcher costs seven and a Power. The Watcher is the one-body answer; this is the two-body answer.",
+          "SFD-129 Temptation IS NOT A SECOND COPY OF THIS. Chaos, E2, with [Repeat] E2, and 820.2.a lets the extra execution choose a different target — so E4 moves two enemy bodies where Isolate moves one. But its destination clause is 'Move an enemy unit to a location where there's a unit with the same controller', so it can only put a body somewhere the opponent ALREADY has one; against a garrison with an empty base and an empty second battlefield it has no legal destination. Isolate names the base unconditionally. Run Temptation as a second lever only where the opponent's board is spread.",
+          "THE LEVER IS FOR THE SMALL BOARD AND SAYS SO. 465.2.a sums the Might of ALL attacking units, so every extra attacker widens the window by its own printed Might at no thinking cost: tryndamere-brambleback-conquer attacks at Might 28 across five bodies and needs no Isolate until the garrison passes summed Might 23. This entry deliberately prices ONE Tryndamere, where the window is five Might wide and a single oversized defender closes it.",
+          "CEILING. 470 caps Scoring 'from either method, once per Battlefield per turn' and 485.4 puts two battlefields on a Duel table, so two Conquers a turn bounds the Score half however many Isolates you hold; the ability half is bounded separately by 103.2.b's three copies, since Isolate is a spell and does not come back. Three extra points a game, and never a finisher on its own — which is why this is an ENGINE and not a BURST."
+        ]
+      },
+      "steps": [
+        "The board this is for: the opponent controls a battlefield and garrisons it with TWO OR MORE units, of which at least one is Might 3 or less. Tryndamere, Barbarian is on your board and ready — 143.4, 'Units enter the Board exhausted', and 315.1.b readies him in your Awakening.",
+        "Count the garrison before doing anything. 465.2.b sums the Might of all Defending Units, 465.2.c.4 caps each defender's assignment at the minimum lethal for it, and 142.4.b makes that minimum its Might. So a lone Tryndamere at Might 8 will keep 8 minus the garrison's summed Might, and his clause wants 5 or more of it: the garrison has to come down to summed Might 3.",
+        "Main Phase, BEFORE any move: cast UNL-124 Isolate (E2) on the biggest defender — 'Move an enemy unit from a battlefield to its base.' 155 is why this is not optional sequencing: Isolate carries no [Action] or [Reaction], so it is playable only 'during an Open State outside of Showdowns on its controller's turn', and after the move 323.9 stages the Combat at the next Cleanup and 323.13 opens it with no window in between.",
+        "LEAVE A DEFENDER STANDING. If Isolate takes the last one, 465.1 never makes the damage tasks Outstanding ('If both Attacking and Defending units remain at this battlefield'), so there is no assignment and no excess; and 323.6 hands their Control back at the same Cleanup, after which 344.2 opens a Showdown instead of a Combat and there is no Attacker designation for his 'after an attack' to read.",
+        "Isolate's own rider now pays, and it pays by construction rather than by luck: 'if there's an enemy unit alone at that battlefield, draw 1', with 740.2.a reading alone as 'no other friendly units at the same location' — friendly to the remaining defender, which is the exact board the previous step requires. Draw 1.",
+        "Standard-Move Tryndamere in: 144.4.a from his Base to that Battlefield, paying his exhaust (144.2; 420.3.a, 'The Cost is Exhausting one or more Units'). 450 applies Contested to the destination, 464.2.c.1 makes you the Attacker as 'the player whose unit(s) applied the Contested status', and 464.2.c.3 designates him an Attacking Unit.",
+        "The damage step. 465.2.a sums your Might at 8, 465.2.b sums theirs at 3 or less, 465.2.c assigns 'starting with the Attacker'. The defender takes its minimum lethal and no more (465.2.c.4), and what is left over is the excess R28 = A names.",
+        "466.3.a: 'A Player has won a combat if they received either the attacker or defender designation and are the only Player that has units remaining at this battlefield during this step.' 466.5 establishes Control, 466.5.d makes that a Conquer, and 471.1 gains the Score's own point. Tryndamere's trigger then checks 5 or more excess, finds it, and 194.1.c gains a second point by ability.",
+        "THE NUMBER, so a reader can refute it in one line. A garrison of one Might-5 and one Might-3 is summed Might 8. Tryndamere alone assigns all eight, kills both, wins the combat and Conquers for ONE point with excess zero. Isolate the Might-5 first and the sum is 3: he assigns three, keeps five, and the identical attack pays TWO. Two Energy and no Power bought the second point, and the rider drew the card back."
+      ],
+      "terminatesIn": "engine — one extra point per Isolate on a garrison of two or more whose smallest body is Might 3 or less; 103.2.b caps the deck at three copies of a spell that does not return, so three extra points a game, while 470 and 485.4 bound the Score half at two Conquers a turn independently",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Card text verbatim from data/corpus_flat.txt (OGN-034, UNL-124, SFD-129, OGN-116)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Rules reading R28 = A, ruled 2026-09-04 (GitHub issue #11): excess damage is attacking Might never assigned",
+          "kind": "manual-walk",
+          "url": "https://github.com/GermanAbuArab/RiftCombo/issues/11",
+          "date": "2026-09-04",
+          "accessed": "2026-09-14"
+        },
+        {
+          "title": "Hand walk 2026-09-14 (docs/phase0/walks/2026-09-14-fury-chaos-the-empty-cell.md), issue #200 — synthesized from the spanning axis, then checked against the pool",
+          "kind": "manual-walk",
+          "date": "2026-09-14"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "SYNTHESIZED, not extracted (#200): the target was chosen first — fury/chaos is the one legend pair with ZERO spanning finishers, measured over all 766 entries on 2026-09-14 — and the pool was asked afterwards whether it could supply one. It cannot supply a FINISHER, and the walk document records that refusal with its arithmetic; what it does supply is this lever, which is the Chaos member of a family the catalogue held only in fury/mind. Hand-walked against card text and the Core Rules with every cited paragraph opened and pasted, so the status is verified rather than candidate; the provenance is recorded here because it is the first entry in this catalogue designed from a target rather than from a card."
     }
   ]
 }
