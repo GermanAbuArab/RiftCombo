@@ -202,6 +202,28 @@ describe("the stalled-board buckets", () => {
     expect(bucket("GARRISONED").n, "the garrison bucket is empty — the predicate may have gone blind").toBeGreaterThan(0);
   });
 
+  /**
+   * A bucket label is a generalisation, and a row that scores outside its bucket's own gate is the
+   * exception the label cannot carry. HOLD has had an `also` rider since the precedence fix; ATTACK and
+   * CONQUER had none, so draven-yasuo-battle-mistress-contested-chain read as "Dead on an empty board"
+   * while `OGN-205 Yasuo, Windrider` scores on the third time it MOVES — the entry's own terminatesIn
+   * says "the same board unopposed yields only five".
+   *
+   * Pinned as a property, not a roster: the rider must exist, and it must not fire on a row whose only
+   * scoring leg IS the bucket's gate — a first version excluded attack wording but not conquer wording
+   * and flagged 10 of 18 CONQUER rows, every one of them for its own Conquer trigger.
+   */
+  it("flags a scoring leg the bucket's own gate does not cover, and not the gate itself", () => {
+    const riders = st.split("\n").filter((l) => l.includes("scores without that gate too"));
+    expect(riders.length, "the second-leg rider never fires — the predicate may have gone blind").toBeGreaterThan(0);
+    // Every flagged row names a card, so the rider can never be a bare assertion.
+    for (const r of riders) expect(r).toMatch(/scores without that gate too - .+ - read it/);
+    // It must stay a narrow exception. If most of a bucket trips it, the gate is being flagged as a leg.
+    const conq = bucket("CONQUER");
+    const conqRiders = conq.body.split("\n").filter((l) => l.includes("scores without that gate too")).length;
+    expect(conqRiders).toBeLessThan(conq.n / 2);
+  });
+
   it("keeps INDEPENDENT small, and labelled as a claim to check", () => {
     expect(bucket("INDEPENDENT").n).toBeLessThanOrEqual(4);
     expect(st).toMatch(/WRONG TWICE by being the else branch/);

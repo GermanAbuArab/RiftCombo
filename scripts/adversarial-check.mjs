@@ -1529,6 +1529,37 @@ if (stalled) {
       if ((c.type || []).includes("battlefield") && HOLD_HERE.test(t)) holdPayoff = c.name;
     }
     const flag = !why.length && ENEMY.test(text) ? "  [FLAG: names an enemy unit - read it]" : "";
+    // A SECOND SCORING LEG THAT THE BUCKET'S OWN GATE DOES NOT COVER. The HOLD branch below has carried
+    // an `also` rider since the precedence fix; ATTACK and CONQUER had none, so a mixed row read as
+    // though the bucket's label were the whole story. It is not:
+    // draven-yasuo-battle-mistress-contested-chain sits in ATTACK, whose label says "Dead on an empty
+    // board" - and `OGN-205 Yasuo, Windrider` scores on "The third time I move in a turn", which needs
+    // no enemy garrison at all. The entry's own terminatesIn says so: "the same board unopposed yields
+    // only five".
+    //
+    // The gate is PER BUCKET, which is the whole difficulty. A first version excluded only attack
+    // wording and reported 10 of 18 CONQUER rows - every one of them a Conquer-scoring card, i.e. the
+    // bucket's own gate flagged as if it were a second leg. Narrowed, it is ATTACK 1 of 8 and CONQUER 2
+    // of 18, and all three were read: Yasuo twice, and Ahri's "When I hold, you score 1 point" under
+    // Skyfall of Areion, which makes her hold effect a conquer effect AND leaves it a hold effect.
+    //
+    // "you score" on purpose: `SFD-148 Draven, Audacious` also prints "They score 1 point", which is
+    // the OPPONENT scoring - a drawback - and a naive /score \d+ point/ counts it as a payoff.
+    const SCORES = /you score \d+ point|you win the game/i;
+    const freeLeg = (gate) => {
+      const out = new Set();
+      for (const u of e.uses || []) {
+        const c = byBase.get(u.card);
+        if (!c) continue;
+        for (const sent of `${c.text || ""} ${c.effect || ""}`.split(/(?<=\.)\s+/))
+          if (SCORES.test(sent) && !gate.test(sent)) out.add(c.name);
+      }
+      return [...out];
+    };
+    const rider = (gate) => {
+      const l = freeLeg(gate);
+      return l.length ? `  [+ scores without that gate too - ${l.join(", ")} - read it]` : "";
+    };
     // Card text alone under-reads the Conquer and Hold buckets: an entry can SCORE on a Conquer
     // without any of its cards printing the word, because the Conquer is the game's own scoring
     // mechanism (469.1) rather than a card ability. time-warp-hold-burst and
@@ -1547,8 +1578,8 @@ if (stalled) {
       // a reader has to be able to see that without re-deriving it.
       const also = why.length ? "  [+ an attack leg too - read it]" : conq ? "  [+ a conquer leg too - read it]" : "";
       buckets.hold.push(`${e.class.padEnd(8)} ${e.id}  <- payoff is ${holdPayoff}, "when you hold here"${also}`);
-    } else if (why.length) buckets.attack.push(row + gateRider(e, text));
-    else if (conq) buckets.conquer.push(row + tag(conq) + gateRider(e, text));
+    } else if (why.length) buckets.attack.push(row + rider(ATTACK) + gateRider(e, text));
+    else if (conq) buckets.conquer.push(row + tag(conq) + rider(new RegExp(`${ATTACK.source}|${CONQUER.source}`, "i")) + gateRider(e, text));
     else if (hold) buckets.hold.push(row + tag(hold) + gateRider(e, text));
     else if (LOCATION_GATE.test(text)) buckets.located.push(`${e.class.padEnd(8)} ${e.id}${gateRider(e, text)}`);
     else if (GARRISON_GATE.test(text)) buckets.garrisoned.push(`${e.class.padEnd(8)} ${e.id}  <- ${text.match(GARRISON_GATE)[0].trim()}`);
