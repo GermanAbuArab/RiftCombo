@@ -224,6 +224,23 @@ describe("the stalled-board buckets", () => {
     expect(conqRiders).toBeLessThan(conq.n / 2);
   });
 
+  /**
+   * A fuel engine has no board verdict to give. Ten of the 80 rows produce only fuel and score nothing,
+   * so "does a stall switch this finisher off" is malformed for them — the board question belongs to
+   * whatever consumes the fuel. Read off `produces`, which is structured; a prose predicate over
+   * terminatesIn agrees on 9 of the 10 and differs on gemdragon-henge-vi-blind-fury only because its own
+   * text mentions the points that the entry it BUYS scores.
+   */
+  it("says so when a classified row scores nothing at all", () => {
+    const fuel = st.split("\n").filter((l) => l.includes("SCORES NOTHING"));
+    expect(fuel.length, "no row is marked as a fuel engine — the produces read may have gone blind").toBeGreaterThan(0);
+    // Every such row must name what it DOES produce, so the claim is checkable in one look.
+    for (const l of fuel) expect(l).toMatch(/SCORES NOTHING: produces \S/);
+    // It is a minority of the population; if most rows trip it, the tag names were guessed again.
+    const total = Number(st.match(/classification of all (\d+) finishers/)![1]);
+    expect(fuel.length).toBeLessThan(total / 3);
+  });
+
   it("keeps INDEPENDENT small, and labelled as a claim to check", () => {
     expect(bucket("INDEPENDENT").n).toBeLessThanOrEqual(4);
     expect(st).toMatch(/WRONG TWICE by being the else branch/);

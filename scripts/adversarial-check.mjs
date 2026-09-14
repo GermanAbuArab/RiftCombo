@@ -1556,6 +1556,20 @@ if (stalled) {
       }
       return [...out];
     };
+    // A FUEL ENGINE HAS NO BOARD VERDICT TO GIVE, because it never finishes. Ten of the 80 rows in this
+    // classification produce only fuel - infinite-energy, infinite-power, token-body-engine,
+    // repeatable-removal, infinite-recycle - and score nothing at all; asking "does a stall switch this
+    // finisher off" of a line that never scores is a malformed question, and answering it puts a board
+    // verdict in front of a reader who should be told to go and look at the CONSUMER.
+    //
+    // Read off `produces`, which is structured, rather than off prose. A prose predicate over
+    // terminatesIn agrees on 9 of the 10 and differs on gemdragon-henge-vi-blind-fury for a nameable
+    // reason: its own text mentions the points that the entry it BUYS scores. `produces` has no such
+    // ambiguity. (The tag names were measured, not guessed - a first pass looked for "points" and the
+    // vocabulary says `ability-points` and `burst-points`, which over-counted 53 of 80.)
+    const POINTY = new Set(["ability-points", "burst-points", "win-the-game"]);
+    const fuelOnly = !(e.produces || []).some((t) => POINTY.has(t));
+    const fuelRider = fuelOnly ? `  [SCORES NOTHING: produces ${(e.produces || []).join(", ") || "nothing"} - the board question belongs to its consumer]` : "";
     const rider = (gate) => {
       const l = freeLeg(gate);
       return l.length ? `  [+ scores without that gate too - ${l.join(", ")} - read it]` : "";
@@ -1578,12 +1592,12 @@ if (stalled) {
       // a reader has to be able to see that without re-deriving it.
       const also = why.length ? "  [+ an attack leg too - read it]" : conq ? "  [+ a conquer leg too - read it]" : "";
       buckets.hold.push(`${e.class.padEnd(8)} ${e.id}  <- payoff is ${holdPayoff}, "when you hold here"${also}`);
-    } else if (why.length) buckets.attack.push(row + rider(ATTACK) + gateRider(e, text));
-    else if (conq) buckets.conquer.push(row + tag(conq) + rider(new RegExp(`${ATTACK.source}|${CONQUER.source}`, "i")) + gateRider(e, text));
-    else if (hold) buckets.hold.push(row + tag(hold) + gateRider(e, text));
-    else if (LOCATION_GATE.test(text)) buckets.located.push(`${e.class.padEnd(8)} ${e.id}${gateRider(e, text)}`);
+    } else if (why.length) buckets.attack.push(row + fuelRider + rider(ATTACK) + gateRider(e, text));
+    else if (conq) buckets.conquer.push(row + tag(conq) + fuelRider + rider(new RegExp(`${ATTACK.source}|${CONQUER.source}`, "i")) + gateRider(e, text));
+    else if (hold) buckets.hold.push(row + tag(hold) + fuelRider + gateRider(e, text));
+    else if (LOCATION_GATE.test(text)) buckets.located.push(`${e.class.padEnd(8)} ${e.id}${fuelRider}${gateRider(e, text)}`);
     else if (GARRISON_GATE.test(text)) buckets.garrisoned.push(`${e.class.padEnd(8)} ${e.id}  <- ${text.match(GARRISON_GATE)[0].trim()}`);
-    else buckets.independent.push(row);
+    else buckets.independent.push(row + fuelRider);
   }
   const n = Object.values(buckets).reduce((a2, b2) => a2 + b2.length, 0);
   console.log(`\n# Stalled-board classification of all ${n} finishers.`);
