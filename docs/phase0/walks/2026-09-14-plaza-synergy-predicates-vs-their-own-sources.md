@@ -157,3 +157,72 @@ So that rule's predicate is widened for consistency **and** gains an `excludes` 
 refusal, which is where a reader will find it. **Eight fixes staged in
 `.scratch-plaza/synergy-fixes.json`**, every old fingerprint reproduced before the new one was
 computed, all 19 quoted passages proved verbatim against the rulebooks and the corpus.
+
+---
+
+## 7. Addendum 2: the partial-miss band read in full — a THIRD shortfall, and one exclude I nearly staged and had to withdraw
+
+The 100%-miss band is finished. The remaining band is **22 rules missing on SOME of their sources but
+not all, 33 misses**, read end to end. **Twenty-one are the documented second meaning.** The
+twenty-second is real.
+
+### `[Ww]hen I move` is not how three cards word a move trigger
+
+Four rules share the predicate `[Ww]hen I move\b` at 28 partners each — `ride-the-wind-move-triggers`,
+`relentless-pursuit-move-triggers`, `windswept-hillock-move-triggers`, `unforgiven-move-triggers`,
+every one of them an anchor that BUYS an effect Move. All four miss the same three cards, whose move
+trigger is an Nth-time clause rather than a when-clause:
+
+| card | domains | text |
+|---|---|---|
+| `OGN-205` Yasuo, Windrider | chaos | *"The third time I move in a turn, you score 1 point."* |
+| `OGN-162` Miss Fortune, Captain | body | *"The first time I move each turn, you may ready something else that's exhausted."* |
+| `VEN-002` Blade Twirler | fury | *"The first time I move each turn, choose a player. They [Burn 1]."* |
+
+> Swept over text+effect of every deckable card folded by name+type: the widened predicate adds
+> **exactly these three and nothing else**. Verified per rule with `partnersOf()`: **28 → 31, strictly
+> additive, nothing lost, all four.**
+
+**Self-proving, for the third time in this file:** `OGN-205 Yasuo, Windrider` is the subject of **two
+of `unforgiven-move-triggers`' own basis entries** — `yasuo-syren-unforgiven-point` and
+`yasuo-windrider-ride-the-wind-chain`. The rule cannot see the card two of its own sources are built
+on.
+
+### An exclude I staged and then withdrew, because the rule's own `why` refuted it
+
+My draft excluded the two *"first time each turn"* cards on **383.3.e.1** — *"Such a Triggered Ability
+will only be performed the specified number of times"* — so a SECOND move in the same turn adds
+nothing to them. **That is true and it is not what these four rules claim.** Every one of their `why`
+fields is about firing a move trigger **at all** through an effect Move (420.1, 420.2.a), and
+`unforgiven-move-triggers` says so outright, calling it one free move trigger a turn for as long as
+Unforgiven is out — which is exactly what a *"first time each turn"* trigger wants.
+
+**Reading the anchor's own `why` is what refuted it.** The distinction survives as a per-partner note
+rather than a refusal: 383.3.e.1 caps Miss Fortune and Blade Twirler at one firing however many extra
+moves you buy, while `OGN-205` is the one card in the pool that WANTS several — *"The third time I move
+in a turn"* is unreachable without them, which makes these four anchors its natural partners rather
+than incidental ones.
+
+### Deliberately not staged
+
+`svellsongur-copy` and `grandmaster-at-arms-equip-relay` miss the same three cards through wider
+alternations. **Not staged**: Svellsongur copies the carrier's text, so v copies yield 2^v instances,
+and how 383.3.e.1's cap interacts with several instances of one *"first time each turn"* ability is
+settled by no paragraph I read. **That needs a walk, not a predicate change.**
+
+---
+
+## 8. Final tally for this instrument, across five answer sets
+
+| set | result |
+|---|---|
+| `adversarial-check` mass answers | one WORDING short — `UNL-072 Crescent Strike` |
+| `adversarial-check` gear answers | one FAMILY short — bounce: `SFD-135`, `SFD-109`, `SFD-147` |
+| `adversarial-check` garrison protection | **CLEAN**, and now pinned as a test |
+| `synergies` time-warp | one PHASE short — `VEN-067` (applied) |
+| `synergies` buff | one WORD short — `SFD-166`, across 7 rules |
+| `synergies` move | one WORDING short — `OGN-205`, `OGN-162`, `VEN-002`, across 4 rules |
+
+**Twelve fixes staged. Every one was a predicate written from the wording of the card its author had
+already met — and in every case the card it could not see was already written down somewhere else in
+this repository, by a human, often in the rule's own source entry.**
