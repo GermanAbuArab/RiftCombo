@@ -501,7 +501,7 @@
       "name": "Ride the Wind fires a move trigger and leaves the unit ready",
       "anchor": "OGN-173",
       "partner": {
-        "textMatches": "[Ww]hen I move\\b"
+        "textMatches": "[Ww]hen I move\\b|[Tt]he \\w+ time I move\\b"
       },
       "why": "An effect moving a unit is a Move (420.1), so it sets off that unit's move triggers, and the triggers of any Equipment attached to it. Ride the Wind readies the unit as well, so the body is still available afterwards. A recall is not a Move (456.1) and would not do this.",
       "basis": {
@@ -516,16 +516,16 @@
         ]
       },
       "status": "rule-verified",
-      "reviewed": "2026-09-04",
-      "reviewedCount": 28,
-      "reviewedSet": "c21aee48"
+      "reviewed": "2026-09-14",
+      "reviewedCount": 31,
+      "reviewedSet": "19986c78"
     },
     {
       "id": "relentless-pursuit-move-triggers",
       "name": "Relentless Pursuit moves a unit and hands it an Equipment on the way",
       "anchor": "SFD-184",
       "partner": {
-        "textMatches": "[Ww]hen I move\\b"
+        "textMatches": "[Ww]hen I move\\b|[Tt]he \\w+ time I move\\b"
       },
       "why": "The same Move as Ride the Wind, but it can attach an Equipment in the same breath, so the move trigger you want can be bolted on to whichever unit is going.",
       "basis": {
@@ -540,16 +540,16 @@
         ]
       },
       "status": "rule-verified",
-      "reviewed": "2026-09-04",
-      "reviewedCount": 28,
-      "reviewedSet": "c21aee48"
+      "reviewed": "2026-09-14",
+      "reviewedCount": 31,
+      "reviewedSet": "19986c78"
     },
     {
       "id": "windswept-hillock-move-triggers",
       "name": "Windswept Hillock lets a move trigger fire on your own terms",
       "anchor": "OGN-297",
       "partner": {
-        "textMatches": "[Ww]hen I move\\b"
+        "textMatches": "[Ww]hen I move\\b|[Tt]he \\w+ time I move\\b"
       },
       "why": "Units at the Hillock have [Ganking], which is short for \"I may move to a battlefield from another battlefield\" (810.1.b), and that move is a Move (420.1) — so it fires the unit's move triggers and those of any Equipment attached to it, on your turn, without spending a card. The Hillock has no domain, so any legend can run it.",
       "basis": {
@@ -563,9 +563,9 @@
         "combos": []
       },
       "status": "rule-verified",
-      "reviewed": "2026-09-04",
-      "reviewedCount": 28,
-      "reviewedSet": "c21aee48"
+      "reviewed": "2026-09-14",
+      "reviewedCount": 31,
+      "reviewedSet": "19986c78"
     },
     {
       "id": "retreat-replays-a-body",
@@ -1714,7 +1714,7 @@
       "name": "Blade Dancer readies whatever a buff chooses",
       "anchor": "SFD-195",
       "partner": {
-        "textMatches": "\\[Buff\\]|[Bb]uff (a|all|another|me|up to|your)",
+        "textMatches": "\\[Buff\\]|[Bb]uff (a|all|another|me|up to|your|it)",
         "excludes": [
           {
             "card": "OGN-146",
@@ -1735,6 +1735,10 @@
           {
             "card": "SFD-098",
             "why": "Sea Monkey buffs HIMSELF and nothing else - \"if you paid the additional cost, buff me\" - and 355.10.d takes an object \"programmatically selected based on its characteristics rather than chosen by the spell or ability’s controller\" out of the choosing, with 355.10.d.1 scoping that exception to \"objects for which no choice is ever possible\". A buff whose object is the source itself is such an object, so Blade Dancer never fires on it. 702.2.a still governs every buff that names ANOTHER unit, which is the rest of this list. ELEVEN more rows in this list print the same pure self-buff - OGN-056 Adaptatron, SFD-091 Buhru Captain, OGN-139 Cithria of Cloudfield, UNL-102 Crowd Favorite, UNL-162 Enthralling Protector, OGN-078 Lee Sin Ascetic, OGN-061 Poro Herder, OGN-164 Sett Brawler, OGN-217 Trifarian Gloryseeker, SFD-108 Warmog's Armor and OGN-147 Wildclaw Shaman - and they are NAMED rather than excluded here because that is a correction across the whole buff family and across several rules this batch did not author; it was reported to the manager on 2026-09-12 with these eleven names."
+          },
+          {
+            "card": "SFD-166",
+            "why": "\"When a friendly unit is played this turn, buff it\" — the unit is the one that was played, so 355.10.d makes it programmatically selected rather than chosen and 355.10.d.1 confirms the exception applies \"solely to objects for which no choice is ever possible\". 383.4.b.3 keeps 702.2.a's internal \"chooses\" from being read across, so Blade Dancer never fires."
           }
         ]
       },
@@ -1753,7 +1757,7 @@
         ]
       },
       "status": "rule-verified",
-      "reviewed": "2026-09-12",
+      "reviewed": "2026-09-14",
       "reviewedCount": 32,
       "reviewedSet": "c3d9eca0"
     },
@@ -3206,7 +3210,7 @@
       "name": "Unforgiven's exhaust move fires a move trigger every turn for free",
       "anchor": "OGN-259",
       "partner": {
-        "textMatches": "[Ww]hen I move\\b"
+        "textMatches": "[Ww]hen I move\\b|[Tt]he \\w+ time I move\\b"
       },
       "why": "Unforgiven's legend ability — \"2 Energy, exhaust: Move a friendly unit to or from its base\" — is an effect Move (420.1), so it fires that unit's own move triggers and those of any Equipment attached to it (420.2.a), exactly like Ride the Wind and the other two move-effect anchors. The legend's cost carries an exhaust, so 315.1.b readies it once every Awaken: one free move trigger a turn for as long as Unforgiven is out, with no card spent. A recall is not a Move (456.1) and would not do this.",
       "basis": {
@@ -3223,9 +3227,9 @@
         ]
       },
       "status": "rule-verified",
-      "reviewed": "2026-09-06",
-      "reviewedCount": 28,
-      "reviewedSet": "c21aee48"
+      "reviewed": "2026-09-14",
+      "reviewedCount": 31,
+      "reviewedSet": "19986c78"
     },
     {
       "id": "grandmaster-at-arms-equip-relay",
