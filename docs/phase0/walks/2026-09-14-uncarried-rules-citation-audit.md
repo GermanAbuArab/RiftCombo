@@ -50,6 +50,37 @@ claim checkable rather than rhetorical.
 does C"* and ask **which card is worded to escape the wording rather than the mechanic.** Same cause as
 the six — a file built by promoting findings keeps whichever half surprised somebody.
 
+**AND THERE IS A BETTER WAY TO RUN IT, MEASURED 2026-09-14: SEARCH THE POOL FOR THE CARD, NOT THE FILE
+FOR THE CLAIM.** A mirror defect needs a printing worded to satisfy **both halves** of the distinction
+a sentence rests on — Nocturne prints *"look at **or** reveal"*. So sweep the corpus for every
+`<verb> or <verb>` construction over the game's verbs (`.scratch-gap3/or-pairs.mjs`).
+
+**The whole pool contains FIFTEEN such pairs.** That is the complete population, not a sample, and it
+is readable in one screen. **Control:** `look at OR reveal` → `OGN-194`, present.
+
+**TWO OF THE FIFTEEN HAVE ALREADY BEEN REAL DEFECTS IN THIS PROJECT**, found seven weeks apart by two
+unrelated routes — `look at OR reveal` (Nocturne, 2026-09-14) and `attack OR defend` (11 cards,
+2026-09-12, and the file shouts it in its own voice: *"AN \"ATTACK OR DEFEND\" TRIGGER IS BOTH KINDS AT
+ONCE AND FIRES TWICE PER TURN CYCLE, AND SIX ENTRIES PRICED IT AT HALF RATE"*). Same shape, same mechanism.
+
+**The other thirteen are clean and each has a reason**: five are *"conquer or hold"*, which `823.1.b`
+already covers here explicitly; four are printed MODES (*"draw 1 or buff me"*, *"ready or exhaust a
+legend"*, *"draw 1 or channel 1 rune"*, *"play me or another Dragon"*); three are regex artifacts
+spanning a clause boundary; and `OGN-182 Scrapheap` is banned in both formats.
+
+**Two limits, stated so nobody over-reads it:** it catches only a card that escapes by printing *"A or
+B"*, never one that escapes by a SYNONYM; and it is exhaustive over the CURRENT pool, so **re-run it
+when a set is printed** — a new `<verb> or <verb>` card is a new candidate by construction.
+
+**The prose sweep still works and is the slower half**: a distribution-first cross-tab of seven
+contrast forms over `CLAUDE.md` gives 38 candidate sentences, the known positive is caught by three of
+the seven, and reading them confirmed three claims outright — the `[Hidden]` watchers (all three are
+worded *"from face down"* or *"from [Hidden]"* and none catches a from-HAND play), the token-recycle
+claim (no card recycles a token, and `186.1` means none is ever in the trash to be chosen anyway), and
+Lee Sin's continuous modifier (every counting card in the pool counts *"buffed"*, never a Might
+modifier). **Confirming a sentence is a result.**
+
+
 ### 3. A STAGED ARTIFACT IS A QUEUE, NOT A RECORD — AND IT BITES BOTH ENDS OF A HANDOVER
 
 **Measurement.** After 21 items were applied and pushed, **re-running the same list would have
@@ -629,3 +660,26 @@ base"** while the Altar pays units **"here"**, so whether it is a partner at all
 **A rule needing a types narrowing, six excludes and an unwalked location argument is not a rule to
 ship on the way out of a vein.** Final ratio for the harvest: **two rules and four refusals from five
 leads** — reported as-is, because the standing instruction here is not to pad toward a round number.
+
+## A gap in the shipped quote guard's SCOPE, found by a defect in this very document
+
+Writing the section above, I quoted `CLAUDE.md`'s own sentence about `attack OR defend` and **lowered
+its case inside the quotation marks** — the #202 defect, for the fourth time in one day, by the person
+who had already been returned for it three times.
+
+**`scripts/check-walk-quotes.mjs` reported ZERO flags on this document both before and after the
+fix.** That is not a bug and the script documents it at line 14: a passage *"CLAIMS to be rules text"*
+when there is **a rule number within the 40 characters immediately before it**, and my defective quote
+was preceded by a DATE. It is out of scope by design.
+
+**The consequence is worth stating anyway: a quotation of `CLAUDE.md`'s own prose inside a walk
+document is checked by nothing** — and that is precisely where a propagated misquote lives, which is
+the masking effect `CLAUDE.md` already records about itself, one level up. This file's own guard note
+says the check *"gets weaker exactly as the problem gets worse"*; the scope rule is a second, quieter
+instance of the same geometry.
+
+`.scratch-gap3/selfcheck.mjs` is the stricter pass that caught it: it takes a **120-character** lead
+window and checks **against the two rulebooks only**, so a quotation of `CLAUDE.md` fails there and has
+to be verified by hand against `CLAUDE.md`. That is deliberate — **the whole point is to stop the file
+validating a quotation of itself.** Both remaining flags on this document were checked by hand and are
+present in their claimed sources (one in `CLAUDE.md`, one in `combos.json`).
