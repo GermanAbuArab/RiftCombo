@@ -136,7 +136,8 @@
 //      `anyBodies: {count: 1}`. So the carrier is inert on all 79 rows where it is expressible and
 //      unmodellable on the 80th without inventing a decklist, which is why it is a probe and not
 //      shipped.
-import { readFileSync, writeFileSync } from "node:fs";
+import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
+import { dirname, resolve, sep } from "node:path";
 
 const args = process.argv.slice(2);
 const strict = args.includes("--strict");
@@ -156,6 +157,16 @@ const strictOrdering = args.includes("--strict-ordering");
 // (bottled-constellation-time-warp read T14 where its own fuel makes it T5) in preference to a
 // bounded one-turn one on five named rows. `--no-ignition` reproduces the old table exactly.
 const ignition = !args.includes("--no-ignition");
+// Checked HERE rather than at the write site, because the analysis takes ~15s and a refusal that
+// arrives after it is one the user has already paid for. See outPath for why it is refused at all.
+{
+  const at = args.indexOf("--out");
+  if (at >= 0 && args[at + 1] && resolve(args[at + 1]).startsWith(resolve("data") + sep)) {
+    console.error(`# REFUSING --out ${args[at + 1]}: this writes a corrections file for a human to apply, never a data file.`);
+    process.exit(2);
+  }
+}
+
 // The SANDWICH that proves --ignition's restriction is free. --ignition forbids buying a
 // post-ignition card before the loop is running, which can only push a row LATER than the truth.
 // --ignition-nogate keeps the discount and drops the gate, which lets a card be bought early at a
@@ -610,6 +621,30 @@ const baselineTurn = (domains) => ([...domains].some((d) => CHEAP_BODY_DOMAINS.h
  * numbers are true and they answer different questions, so the report prints both.
  */
 const CONTESTED_BASELINE = 9;
+
+// ---------------------------------------------------------------- where a corrections file goes
+/**
+ * The default is SESSION-UNIQUE, and that is not tidiness.
+ *
+ * These two modes write a corrections file rather than stdout, because the report sections would
+ * otherwise be interleaved with the JSON and the manager applies a FILE. `/tmp/rc-walks/` is shared
+ * by every lane on this fleet and currently holds ~187 files, so two lanes running the same mode is
+ * the NORMAL case rather than the unlucky one - and the failure is the worst kind: `writeFileSync`
+ * truncates, so nobody sees an error, and the reader gets somebody else's plausible, correct-looking
+ * data. This project has already had a lane read a file another lane wrote an hour earlier and come
+ * within one step of reporting it as its own measurement. Read the path this prints, not a path you
+ * remember.
+ *
+ * `--out` still overrides, and is REFUSED under `data/`: these are corrections for a human to apply,
+ * never a data file, and a script under active edit run against a file you do not own is how this
+ * repo once recased ~270 correct spans.
+ */
+function outPath(kind) {
+  const at = args.indexOf("--out");
+  const chosen = at >= 0 && args[at + 1] ? args[at + 1] : `/tmp/rc-walks/rc-synth-${kind}-${process.pid}.json`;
+  mkdirSync(dirname(resolve(chosen)), { recursive: true });
+  return chosen;
+}
 
 // ---------------------------------------------------------------- the notable each hole earns
 /**
@@ -1410,8 +1445,7 @@ if (recheck) {
   }
   // A file, not stdout: the report sections above would otherwise be interleaved with the JSON, and
   // the manager applies a FILE. --out overrides the default path.
-  const outAt = args.indexOf("--out");
-  const out = outAt >= 0 && args[outAt + 1] ? args[outAt + 1] : "/tmp/rc-walks/rc-synth-recheck.json";
+  const out = outPath("recheck");
   writeFileSync(out, JSON.stringify(rows, null, 1) + "\n");
   console.log(`\n# --recheck-notables: ${rows.length} entries carry the stale sentence -> ${out}`);
 }
@@ -1617,8 +1651,7 @@ if (holdNotables) {
       ],
     });
   }
-  const outAt2 = args.indexOf("--out");
-  const out2 = outAt2 >= 0 && args[outAt2 + 1] ? args[outAt2 + 1] : "/tmp/rc-walks/rc-synth-holds.json";
+  const out2 = outPath("holds");
   writeFileSync(out2, JSON.stringify(rows, null, 1) + "\n");
   const repl = rows.filter((r) => r.action.startsWith("REPLACE")).length;
   console.log(`\n# --holds-notables: ${rows.length} corrections (${repl} REPLACE a false shipped sentence, ${rows.length - repl} append a missing one) -> ${out2}`);

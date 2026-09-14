@@ -1,4 +1,5 @@
 import { execFileSync } from "node:child_process";
+import { existsSync, unlinkSync } from "node:fs";
 import { describe, expect, it } from "vitest";
 
 /**
@@ -100,6 +101,56 @@ describe("the hole sweep and its notable emitter", () => {
    */
   it("reports a hole kind nobody wrote a sentence for instead of swallowing it", () => {
     expect(out).toMatch(/ok {4}an unhandled hole kind is reported, not swallowed/);
+  });
+});
+
+
+/**
+ * Where a corrections file goes.
+ *
+ * `--recheck-notables` and `--holds-notables` write a FILE rather than stdout, because the report
+ * sections would otherwise be interleaved with the JSON and a human applies the file. The default
+ * used to be a fixed name under `/tmp/rc-walks/`, which every lane on this fleet shares and which
+ * currently holds ~187 files — so two lanes running the same mode is the NORMAL case, `writeFileSync`
+ * truncates without complaint, and the loser reads somebody else's plausible, correct-looking data.
+ * This project has already had a lane read a file another lane wrote an hour earlier and come within
+ * one step of reporting it as its own measurement.
+ *
+ * The `data/` refusal is the other half, and it is the accident this repo has actually had: a script
+ * run against a file its runner did not own, which recased ~270 correct spans. These modes emit
+ * corrections for a human to apply and have no business writing anything under `data/`.
+ */
+describe("the corrections file", () => {
+  /** A probe pointed at a path that does NOT exist, so a broken guard leaves junk rather than eating a data file. */
+  const PROBE = "data/__outguard_probe_do_not_commit.json";
+
+  it("refuses an --out under data/, and refuses it before doing the analysis", () => {
+    const t0 = Date.now();
+    let status = 0, err = "";
+    try {
+      execFileSync("node", ["scripts/adversarial-check.mjs", "--holds-notables", "--out", PROBE], { encoding: "utf8", maxBuffer: 1 << 22 });
+    } catch (e) {
+      const x = e as { status?: number; stderr?: string };
+      status = x.status ?? 1;
+      err = x.stderr ?? "";
+    }
+    expect(status, "an --out under data/ was accepted").toBe(2);
+    expect(err).toContain("REFUSING --out");
+    expect(existsSync(PROBE), `${PROBE} was created — the guard did not hold`).toBe(false);
+    // Fast, because the refusal is at flag-parse time and the analysis it would otherwise precede is
+    // the expensive part. A refusal that arrives after the work is one the caller has already paid for.
+    expect(Date.now() - t0).toBeLessThan(5000);
+  });
+
+  it("defaults to a session-unique path and says which one", () => {
+    const out = execFileSync("node", ["scripts/adversarial-check.mjs", "--recheck-notables"], { encoding: "utf8", maxBuffer: 1 << 22 });
+    const m = out.match(/-> (\S+)/);
+    expect(m, "the mode does not print where it wrote").toBeTruthy();
+    const written = m![1] as string;
+    // The pid is what makes two lanes running this in the same second not collide.
+    expect(written).toMatch(/rc-synth-recheck-\d+\.json$/);
+    expect(existsSync(written), "the printed path does not exist").toBe(true);
+    unlinkSync(written);
   });
 });
 
