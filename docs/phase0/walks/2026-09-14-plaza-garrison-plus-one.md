@@ -249,3 +249,51 @@ claim, and nothing more.
 
 A set prints a mass answer dealing exactly 2 to units at a battlefield without a combat, or a
 board-wide static +Might outside the ten swept in §3.
+
+---
+
+## 10. Addendum, same day: the brief answered at catalogue scale — 97 of 100, and the 3 are not defects
+
+The walk above answers *which Plaza lines are live* for 23 entries. The same question is askable of
+every entry with an exposed garrison, and the answer set is small enough to read end to end.
+
+> **PREDICATE**: rc-emit's `garrisonFloor()` verbatim, floor 0 or 1. A protection card counts only if
+> **103.1.b lets the identity run it** (identity ∪ its domains ≤ 2 domains) **AND its grant is big
+> enough** — and that second clause is the one §1 earned: **a floor-0 board needs +2, because a +1
+> lands on Might 1 and 143.2.a still kills it on 1 damage.** Ten protection cards, folded by
+> name+type.
+
+| | count |
+|---|---|
+| entries with a garrison floor of 0 or 1 | **100** |
+| …with at least one usable garrison-wide +Might in their own identity | **97** |
+| …with none | **3** |
+
+Usable options per entry: 0→3 · 1→7 · 2→2 · 4→1 · 5→21 · 6→11 · 7→18 · 9→27 · 10→10. **The median
+exposed entry can reach seven of the ten.**
+
+### All three of the three were read, and none is a defect
+
+All three are floor **0** and all three stand on `UNL-081 Keeper of Masks`, whose Reflections are
+Might 0 by 187.6 with R27 — so each needs a +2, and the +2 cards are chaos or fury, a third domain
+for a calm/mind or body/mind line.
+
+- **`keeper-of-masks-flurry-of-blades-centaur-simultaneous-fodder`** (ENGINE, body/mind) — **the
+  bodies are DELIBERATE FODDER.** Its own step 4 plays `OGN-133 Flurry of Blades` **itself**, and step
+  5 says *"143.2.a kills Keeper of Masks at Might 1 and both Reflections at Might 0"* — feeding three
+  `UNL-068 Spectral Centaur` triggers to put him at Might 11. **Being killed by a 1-damage sweep is
+  what this line is FOR.** No predicate reading Might can see that, and the entry is correct.
+- **`petal-pixie-keeper-of-masks-might-wall`** (ENGINE, calm/mind) — the wall is **designed to be
+  temporary**: its own `terminatesIn` says *"the wall dies at the start of your own Beginning Phase
+  before scoring (816.1.b) and the legend rebuilds one body of it every turn"*. Losing it early costs
+  a turn of wall, not the line.
+- **`keeper-of-masks-flurry-plaza-window`** (ALT_WIN, calm/mind) — genuinely exposed with no
+  in-identity repair, **and it already carries the correction** (2026-09-13), which says in its own
+  words that the named repair does nothing on a board of Reflections.
+
+**So the honest catalogue-wide answer is 97 of 100 answered, 2 of the remaining 3 not exposed in the
+first place, and 1 already corrected — nothing owed.** My first count said three entries had no
+answer; reading all three turned a three-defect list into a zero-defect one, which is this project's
+own rule arriving for the fourth time in one lane: **sample the top hits and ask which sanctioned
+exception you forgot.** Here the exception is one no numeric predicate can ever encode — **an entry
+whose bodies are meant to die.**
