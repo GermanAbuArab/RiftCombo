@@ -567,3 +567,97 @@ sources that cost no body slot besides it.
 **And the discipline is the point rather than the digit: quote the SPLIT, not the total.** *"17
 printings match, 14 of them gain"* cannot be subtracted from twice; *"sixteen point cards"* can, and
 was.
+
+### §13b. Two different sixteens, same total, different members — which is the rule one level up
+
+I diagnosed the sixteen as *"this predicate minus `OGN-276` alone"*, and the manager, verifying rather
+than accepting, measured **their** sixteen and found it contains `OGN-276` **and** `VEN-053` and is
+missing `OGN-290 The Arena's Greatest`. Same total, and **two of the three non-gains sit in it instead
+of one — so sixteen minus two is fourteen by a different route.**
+
+**Both diagnoses are correct, about different populations.** `CLAUDE.md`'s sixteen is checkable from
+its own printed domain list and its colourless three reads *"`OGN-293 The Grand Plaza` (hold),
+`SFD-214 Power Nexus` (hold) and `OGN-290`, which is banned in both formats"* — so **it holds
+`OGN-290` and excludes `OGN-276`**, which is what I described. The manager's sixteen is their own
+predicate's output and is the mirror of that. **Two sets called "the sixteen point cards", agreeing on
+the total and disagreeing on two members.**
+
+**That is this project's two standing rules needing each other rather than either one alone.** *State
+the predicate with the number* distinguishes the populations; *name the members of any counted set*
+proves which one you meant. A total can COLLIDE across two predicates, and when it does, stating your
+predicate does not tell a reader you were talking about a different sixteen — only the members do.
+Both of us stated our predicate. Neither of us listed our sixteen, and that is the step that would
+have caught it in one line.
+
+---
+
+## 14. body/mind refused, and the refusal closes the spanning question for all fifteen pairs
+
+§13 left two cells unexamined — body/fury, which became
+`trinity-tryndamere-both-phases-chain`, and **body/mind**. The manager predicted a refusal, and it is
+one, but **not for the reason predicted**, and the difference is the whole content of this section.
+
+### Route two is structurally impossible there, by §12's own measurement
+
+Route two needs a Hold-gated half and a combat-gated half so the two want opposite boards. §12 swept
+the pool for a point card whose gate names an attack or a combat win and found **two rows: `OGN-034
+Tryndamere` (mono-fury) and `SFD-148 Draven` (mono-chaos)**. Neither is Body and neither is Mind, so
+**no body/mind line can ever take route two.** That is not an absence of design, it is the census.
+
+### Route one IS available, and the cell is genuinely open
+
+Trinity Force is the Equipment, so a Mind point card beside it costs no body slot. `scripts/have.mjs`
+reports no entry using `SFD-115` with `SFD-088 Renata Glasc, Mastermind`, and none using it with
+`VEN-065 Swain, Visionary`. **This was a real open cell, not a closed one**, which is why it had to be
+priced rather than waved off.
+
+### And it is refused by arithmetic, exactly
+
+`blue-sentinel-trinity-force-hold` already reaches **ten points in one Hold** — two `UNL-087 Blue
+Sentinel` and three `SFD-115 Trinity Force`, so each Trinity fires 1 + 2 = three times for nine
+ability Gains on top of the Hold's own Score. Against that board, the two ways to add a point:
+
+| addition | cost | points added |
+|---|---|---:|
+| a **third** `UNL-087 Blue Sentinel` | **E4 + 1 Power**, once | **+3** |
+| `SFD-088 Renata Glasc, Mastermind` | **E5** to deploy, then **E4 + 4 Mind Power and her exhaust every turn** | **+1** |
+
+**Three times the points for a quarter of the recurring Power and no recurring Energy at all.** The
+mixing route is dominated on every axis, and by a wide margin rather than a close one.
+
+### The reason is a rule and not a price, which is what makes it general
+
+**Points from one source scale as N × (1 + K)** — N copies of the point card, K multipliers. A
+multiplier adds **N**; a second point card of a different kind adds **1**. And the second card can
+never be rescued by the first's multiplier, because `UNL-087` reads *"Your **hold effects** for
+holding here trigger an additional time"*, **383.4.d.3** makes a Hold Effect a **Triggered** Ability
+(*"These Triggered Abilities can be referred to as Hold Effects"*, with 383.4.d.1 giving the wording
+as *"When I hold…"*), and **377.1** makes Renata's *"[cost]**:** Score 1 point"* an **Activated**
+Ability by the presence of the colon. The Sentinel's clause has nothing to bite on.
+
+This is `CLAUDE.md`'s own rule — *"A MULTIPLIER MULTIPLIES THE KIND OF EFFECT IT NAMES"* — arriving
+from the other side, and it is a **better account of §13's 32-against-4 split than the body slot
+was**: the 32 spend their partner domain on a **multiplier**, which scales the point source they
+already have, and the 4 spend it on a **second point card**, which adds one. **Mixing is dominated
+wherever the partner domain prints a multiplier at all.**
+
+### Where the manager's predicted reason does not hold, stated because it matters
+
+The prediction was that *"a board-independent plan needs nothing from the board, so there is no
+support role for Body to fill, and Body has no non-Hold points to offer instead."* **The direction
+that works in body/mind is the opposite one**: Body supplies the POINT (Trinity Force) and Mind
+supplies the SUPPORT (Blue Sentinel), and `blue-sentinel-trinity-force-hold` is a live BURST reaching
+ten. **body/mind is not a pair with nothing to say; it is a pair whose best line is already built and
+whose mixing version is dominated.** The refusal is sound and the stated reason was not.
+
+### What this closes
+
+Every one of the fifteen pairs is now accounted for on the mixing question. **Route two is available
+only to a pair holding one of the two combat-gated point cards** — fury or chaos — **and fury/chaos,
+which holds both, is the one pair where they cannot be combined (§5).** **Route one is available only
+to a pair containing Body**, because `SFD-115 Trinity Force` is the pool's only Equipment point
+source; of those five, three are built (body/calm, body/chaos, body/order), **body/fury is now built
+and takes both routes at once**, and **body/mind is dominated by its own multiplier.**
+
+**There is no sixteenth cell and no third route. The question is closed**, which is worth more than a
+fifth entry would have been.
