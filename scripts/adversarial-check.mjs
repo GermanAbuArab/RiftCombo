@@ -666,9 +666,22 @@ const facing = gearKills.filter((g) => ENEMY_FACING.includes(g.base))
       `143.2.a kills on marked damage at or above Might, so it kills every 1-Might body on the board ` +
       `SIMULTANEOUSLY however many there are - the binding constraint is Might PER BODY, not the number of bodies, ` +
       `so no amount of going wider answers it - and 813.1.c.1 lets it land in any Closed State on either player's ` +
-      `turn. The repairs in the pool are narrow: UNL-077 Soul Shepherd ("Your token units have +1 Might") is the ` +
-      `only permanent board-wide token-scoped one and is Mind, OGN-266 Siphon Power is one turn and one ` +
-      `battlefield, and UNL-T03 Brush reaches only Bird, Cat, Dog, Poro and Ivern units.`);
+      `turn. THE REPAIR IS NOT AS NARROW AS THIS SENTENCE USED TO SAY, AND THE CORRECTION IS THE USEFUL HALF: it ` +
+      `named UNL-077 Soul Shepherd as "the only permanent board-wide" fix, which is true only of the word ` +
+      `TOKEN-SCOPED and reads as an identity sentence it is not. Swept over text+effect of every printing for a ` +
+      `STATIC, non-"this turn" +N Might reaching more than one friendly body, folded by name+type and read card ` +
+      `by card: FIVE OF THE SIX DOMAINS PRINT ONE. Board-wide and ungated - VEN-018 Rage Amplifier (fury, E4 + 1 ` +
+      `Power, GEAR, "Your units have +1 Might", +2 while Empowered, so 359.2.d enters it ready at base and it ` +
+      `costs no body slot and carries no location clause), UNL-077 Soul Shepherd (mind, E5, token units only), ` +
+      `UNL-147 Baron Nashor (chaos, E10 + 3 Power, +2 to other friendly units) and UNL-191 Wuju Master ` +
+      `(calm/body, a LEGEND at [Level 6], so no card slot at all). Location-scoped, which costs a body slot AND ` +
+      `fills one of the places the bodies have to stand - OGS-013 Garen, Commander and OGN-243 Darius, Executioner ` +
+      `(both order, E6 + 1 Power, "Other friendly units have +1 Might HERE"). What is genuinely narrow is the rest: ` +
+      `OGN-266 Siphon Power is one turn and one battlefield, and the three battlefield answers (OGN-294 Trifarian ` +
+      `War Camp, UNL-T03 Brush, VEN-159 Kinkou Temple) are unavailable to any line that already needs a ` +
+      `battlefield of its own, since 485.4.a puts one of your three on the table and 103.4.c forbids duplicate ` +
+      `names. So check your OWN identity against that list before treating the sweeper as unanswerable: this ` +
+      `sentence is generated, and the predicate is the one stated above - re-run npm run adversarial to derive it.`);
   }
   const HANDLED = new Set(["equipment", "fragile-body"]);
   const unhandled = [...new Set(f.holes.map((h) => h.kind))].filter((k) => !HANDLED.has(k));
