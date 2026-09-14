@@ -678,6 +678,28 @@ the masking effect `CLAUDE.md` already records about itself, one level up. This 
 says the check *"gets weaker exactly as the problem gets worse"*; the scope rule is a second, quieter
 instance of the same geometry.
 
+**MEASURED AFTERWARDS, AND MY CONCERN DOES NOT HOLD — recorded because a withdrawn worry is a
+result.** Across all 108 walk documents, using the SHIPPED extractor rather than a worse copy:
+**1,578 passages are in the guard's scope and 3,055 are outside it**, of which **581 resolve in no
+source at all**. Reading those 581, they are **overwhelmingly THE AUTHOR'S OWN PROSE**, because
+`*"…"*` in this project's markdown means **both quotation and emphasis** — *"Loop until seven or more
+Recruits exist."*, *"Community-documented deck, not a loop"*, *"Opponent already controls the
+battlefield"*. **You cannot check a population where one syntax means two things, and the
+rule-number-nearby test is exactly what separates the two.** The scope is well chosen.
+
+A hypothesis that the residue was card text with rune symbols spelled out was **REFUTED by
+measurement: 1 of 581 rescued by symbol-insensitive matching.** And the single instance of #202's
+bracketed-alteration class in the whole out-of-scope population — `execute[s]` for the rulebook's
+*"execute the instructions of this chain item one additional time during resolution"* — is a
+grammatical inflection marker that changes no meaning, not the *"bracketed gist"* substitution that
+class is about. **Benign, and named so nobody re-finds it.**
+
+And the guard's owner had already considered the related point and declined it IN THE CODE, with
+reasons: the passage detector deliberately keeps the four-trap lookbehind rather than the five-trap
+counter form, because a rule-PAIR slash is a genuine citation *here* and should open the window, and
+the sentence-closing period is already allowed by the trailing `[^0-9a-z]*$`. **That is the system
+working; the observation was received and correctly refused.**
+
 `.scratch-gap3/selfcheck.mjs` is the stricter pass that caught it: it takes a **120-character** lead
 window and checks **against the two rulebooks only**, so a quotation of `CLAUDE.md` fails there and has
 to be verified by hand against `CLAUDE.md`. That is deliberate — **the whole point is to stop the file
