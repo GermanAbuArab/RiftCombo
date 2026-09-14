@@ -99,3 +99,61 @@ Three instruments, three independent descriptions of one pool, three diffs, thre
 answer set was one wording short, the gear answer set was one FAMILY short, the garrison protection
 set was clean — and now one synergy predicate is one PHASE short. **In every case the thing the
 predicate could not see was already written down somewhere else in this repository by a human.**
+
+---
+
+## 6. Addendum, same day: the second real shortfall is one WORD, and the disposition splits per rule
+
+Reading the remaining fifteen 100%-miss rules, fourteen are the sanctioned second meaning. The
+fifteenth, `fiora-buff-ready`, is the highest absolute miss count in the file (4 of 10) and opening it
+found a second genuine shortfall — **in the predicate SIX other rules share.**
+
+### One word
+
+The shared buff predicate is `[Bb]uff (a|all|another|me|up to|your)`. `SFD-166 Rally the Troops`
+(order, E2, [Action]) reads *"When a friendly unit is played this turn, buff it."* **"buff it" is not
+in the alternation**, so seven rules that hunt buff sources cannot see a card that buffs.
+
+> **PREDICATE, and it is exactly one card wide**: swept over text+effect of every deckable card folded
+> by name+type, the widened alternation adds **`SFD-166` and nothing else**. Verified per rule with the
+> project's own `partnersOf()`: **strictly additive on all seven, nothing lost.**
+
+### A regression caught only by printing what a change LOSES
+
+My first attempt swapped the shared predicate into every rule. `fiora-buff-ready` does not use the
+shared predicate — it carries a **third alternation arm** for `[Gg]ive … +N :rb_might:` grants, which
+is how it reaches 98 partners — and the swap took it **98 → 34, losing 64 cards.** It was caught
+because the harness prints `LOST` beside `ADDED`. The shipped edit is instead **minimal and rule by
+rule: add one member to that rule's own alternation**, which leaves every other arm untouched and
+takes Fiora 98 → 99.
+
+> **A widening is not safe because it is a widening. State what it LOSES, every time.**
+
+### `buff as` matched `buff a`, and the humans had already caught it
+
+The same missing word boundary means `[Bb]uff (a|…)` matches **"spend a buff **as** an additional
+cost"** — `OGN-146 Wallop` and `OGN-207 Call to Glory`, the two cards that SPEND a buff, which
+CLAUDE.md records as the exact opposite of placing one. **This is not a defect**: both are listed in
+`partner.excludes` on all six rules where they would be wrong, and absent from `wallop-buff-spend`,
+which is anchored on Wallop and wants them. **A human read the match list and wrote the reason down,
+which is the project's stated discipline doing exactly its job.** Reported here as a confirmation, not
+a finding.
+
+### The disposition splits, and one rule gets a refusal instead of a partner
+
+Six rules gain `SFD-166` as a legitimate partner. **`blade-dancer-buff-is-choosing` does not**, and
+the reason is a paragraph pair:
+
+`SFD-195 Blade Dancer` reads *"When you choose a friendly unit…"*, and **383.4.b.3**: *"Although these
+abilities say 'choose' in their Condition, they trigger specifically"* when an appropriate Game Object
+is Targeted. Rally buffs **the unit that was played** — so **355.10.d** applies (*"It is
+programmatically selected based on its characteristics rather than chosen by the spell or"* ability),
+and **355.10.d.1** settles it: *"This exception applies solely to objects for which no choice is ever
+possible."* No choice is ever possible here. 702.2.a's *"a player chooses a Unit"* is the buff
+ACTION's internal description, and 383.4.b.3 exists to stop that word being read across — the same
+correction CLAUDE.md already records for `OGN-223 Peak Guardian` and `OGN-153 Overt Operation`.
+
+So that rule's predicate is widened for consistency **and** gains an `excludes` entry carrying the
+refusal, which is where a reader will find it. **Eight fixes staged in
+`.scratch-plaza/synergy-fixes.json`**, every old fingerprint reproduced before the new one was
+computed, all 19 quoted passages proved verbatim against the rulebooks and the corpus.
