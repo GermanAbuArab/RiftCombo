@@ -76,24 +76,35 @@ describe("a play rendered", () => {
   /**
    * The one a reader would see: a marker left in the text is a construct the renderer walked past.
    *
-   * WIDENING THIS TO A SINGLE ASTERISK IS A REAL AND UNFINISHED IMPROVEMENT — see the handoff in
-   * `docs/phase0/walks/2026-09-13-ordering-in-the-turn-clock.md`. `parseInline` closes a `*` emphasis
-   * at the NEXT `*`, which is the first half of a nested `**`, so **bold inside an italic quotation
-   * never parses** and the italic's own markers reach the reader. The rendered text then holds single
-   * asterisks and no double ones, which is exactly what this pattern cannot see. Widened on
-   * 2026-09-13 it found FOUR live defects across the corpus in as many minutes (all now repaired);
-   * it was reverted only because the session was stood down mid-sweep, not because it was wrong.
-   * Whoever finishes it: remove `code` alongside `pre` first, because 45 printings carry an alt-art
-   * base code ending in `*` and a play quoting one would trip a bare asterisk check correctly.
+   * IT CATCHES A LONE `*`, AND THAT IS THE WHOLE POINT OF IT. `parseInline` closes a `*` emphasis at
+   * the NEXT `*`, which is the first half of a nested `**` — so **bold inside an italic quotation
+   * never parses**, and the italic's own markers reach the reader while the bold's do not. The
+   * rendered text then holds single asterisks and no double ones, which is exactly what a `\*\*`
+   * pattern cannot see. Widened on 2026-09-13 it found four live defects in as many minutes and was
+   * reverted mid-sweep when the session was stood down; finished on 2026-09-14 over a corpus that had
+   * grown from 4 plays to 12, it found exactly ONE more, in
+   * `2026-09-13-the-loop-that-wants-a-contested-board` — `*"… +1 Might **here**."*`, which was also a
+   * quotation with emphasis added inside it, the #202 defect. Both halves were repaired by dropping
+   * the inner bold.
+   *
+   * `code` is removed alongside `pre` as a PRECAUTION with no instance in the corpus today: 45 of the
+   * 1,189 printings in `data/cards.json` are alt-arts whose code ends in `*` (`OGN-299*`), so a play
+   * quoting one would trip a bare-asterisk check correctly and uselessly — and zero plays quote one
+   * yet (measured 2026-09-14). Removing the element cannot blind the check, because a marker only
+   * reaches the text when the renderer FAILED to build the element: a correctly parsed
+   * ``**`code`**`` is `<strong><code>` and carries no asterisk at all, while a leaked one leaves its
+   * `**` outside the span where this still sees it.
    */
   it("leaves no raw markdown marker in the rendered text", async () => {
     for (const p of PLAYS) {
       const host = await open(`#/plays/${p.slug}`);
       // Fenced blocks are verbatim by design and a turn table may legitimately hold any character.
-      for (const pre of host.querySelectorAll("pre")) pre.remove();
+      // Code spans go with them: 45 printings are alt-arts whose base code ENDS in `*`, so a play
+      // quoting one would trip the single-asterisk check below, correctly and uselessly.
+      for (const el of host.querySelectorAll("pre, code")) el.remove();
       const text = host.textContent ?? "";
       expect(text.length, p.slug).toBeGreaterThan(2000);
-      expect(text, `${p.slug} carries a marker`).not.toMatch(/\*\*|`|\]\(/);
+      expect(text, `${p.slug} carries a marker`).not.toMatch(/\*|`|\]\(/);
     }
   });
 

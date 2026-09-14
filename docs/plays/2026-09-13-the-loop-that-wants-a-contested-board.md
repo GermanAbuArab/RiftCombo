@@ -163,7 +163,7 @@ exposure, and it is where this line is actually decided.
     (`desert-call-vi-sand-soldier-plaza`, `ferrous-forerunner-karthus-mech-plaza`) — nobody had
     connected it to the two Fury/Order Recruit engines.
   - `OGS-013 Garen, Commander` and `OGN-243 Darius, Executioner` — Order, E6 + 1 Power, M5 and M6:
-    *"Other friendly units have +1 Might **here**."* The **here** is load-bearing and a first draft of
+    *"Other friendly units have +1 Might here."* The **here** is load-bearing and a first draft of
     this play missed it — they must stand at the Plaza themselves, which costs a body slot and also
     fills one of the seven.
   - `OGN-294 Trifarian War Camp` and `UNL-T03 Brush` are battlefields and are therefore **mutually
