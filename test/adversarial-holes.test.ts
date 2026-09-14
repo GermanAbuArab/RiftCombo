@@ -296,6 +296,31 @@ describe("the stalled-board buckets", () => {
  * whether the opponent would cast it at all. The EQUIPMENT arm has said this about Thermo Beam from the
  * start; the garrison arm did not.
  */
+/**
+ * "Nothing answers this" and "we do not know how big this is" are different claims, and --holds printed
+ * the same sentence for both. All five rows saying "no swept mass answer reaches it" had a floor of M?
+ * — CANNOT DETERMINE — so a reader was being told the garrison is too big for everything in the pool
+ * when the truth is that its size is unknown. Asserting a conclusion the mode cannot support is the
+ * family every defect in this script belongs to.
+ */
+describe("a row that names no answer", () => {
+  const h = execFileSync("node", ["scripts/adversarial-check.mjs", "--holds"], { encoding: "utf8", maxBuffer: 1 << 24 });
+  const lines = h.split("\n");
+
+  it("never says nothing reaches when the floor is unknown", () => {
+    let checked = 0;
+    for (let i = 0; i < lines.length; i++) {
+      const m = lines[i]!.match(/floor M(\S+)/);
+      if (!m) continue;
+      checked++;
+      if (m[1] === "?") {
+        expect(lines[i + 1], `${lines[i]!.trim()} has an unknown floor`).not.toMatch(/no swept mass answer reaches it/);
+      }
+    }
+    expect(checked, "no row was parsed — the --holds layout may have moved").toBeGreaterThan(5);
+  });
+});
+
 describe("the emitted answer", () => {
   it("says whether its answer costs the opponent their own board", () => {
     const out = execFileSync("node", ["scripts/adversarial-check.mjs", "--holds-notables", "--out", HOLDS_PROBE], { encoding: "utf8", maxBuffer: 1 << 22 });

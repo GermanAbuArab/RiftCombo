@@ -1791,7 +1791,14 @@ if (holds) {
       ? `${r.cheapest.base} ${r.cheapest.name} E${r.cheapest.e}/P${r.cheapest.p} dmg${r.cheapest.dmg === Infinity ? "-kill" : r.cheapest.dmg}`
       : r.scaled.length
         ? "NOT COMPUTABLE from printed Might - this line's bodies scale with the garrison"
-        : "no swept mass answer reaches it";
+        // THREE REASONS, NOT ONE, and the mode was printing the same sentence for two of them. A reader
+        // told "no swept mass answer reaches it" concludes the garrison is too big for everything in
+        // the pool; when the floor is null the truth is that WE DO NOT KNOW HOW BIG IT IS, and every
+        // one of the five rows printing that sentence was in fact a null floor. Asserting a conclusion
+        // the mode cannot support is the same family as every other defect in this file.
+        : r.floor === null
+          ? "CANNOT DETERMINE - the garrison floor is unknown (no unit at zone BATTLEFIELD in uses[] and no token played by a card this entry uses), so no answer can be ranked. This is NOT 'nothing answers it'"
+          : "no swept mass answer reaches it";
     console.log(`${r.cls.padEnd(8)} ${r.identity.padEnd(12)} floor M${r.floor ?? "?"}  ${r.id}`);
     console.log(`     cheapest answer: ${ans}${!r.cheapest ? "" : r.named ? "  [entry names it]" : "  <- NOT NAMED"}${sc}`);
     if (r.protection.length) console.log(`     identity HOLDS a protection: ${r.protection.slice(0, 3).join("; ")}`);
