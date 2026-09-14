@@ -32,6 +32,25 @@
 //   - regex artifacts spanning a clause boundary (OGN-202, SFD-058, UNL-051).
 //   - OGN-182 Scrapheap is banned in both formats.
 //
+// WHAT TO DO WITH A HIT - the follow-up question, measured 2026-09-14 and worth more than the hit:
+// A VERB-PAIR CARD IS ONLY AT RISK OF HALF-RATE PRICING WHEN BOTH WINDOWS ARE INDEPENDENTLY PAYABLE.
+//   - If the trigger costs its own EXHAUST, 315.1.b readies it once at your Awakening, so the pair
+//     buys a CHOICE OF WINDOW and never a second activation. UNL-199 Deceiver ("discard 1 and exhaust
+//     me") is the worked case: all three entries using him price him at one and are RIGHT. Same shape
+//     CLAUDE.md records for a 2v2 ally's hold - "it buys a choice of window, never a second trigger".
+//   - If the trigger costs NOTHING per use, the two windows genuinely double. SFD-150 Last Rites
+//     ("[Effect] When I conquer or hold, you may play a unit from your trash") is the worked case,
+//     and `attack OR defend` produced SIX repriced entries for exactly this reason: an attack trigger
+//     and a defend trigger share no cost.
+// AND THE DEFECT ONLY BITES AN ENGINE. A BURST, CHAIN or ALT_WIN fires ONCE, so naming a single
+// window is the design - the seven Ivern finishers name one window each and are all correct.
+//
+// A PREDICATE FOR THIS WAS BUILT AND DELIBERATELY NOT SHIPPED. Flagging entries whose rate language
+// names one window gives 23 hits, 15 after narrowing to ENGINEs, and reading them they are steady-
+// state descriptions rather than defects - plus "as long as the board holds" is a HOMONYM of the Hold
+// keyword. The one real candidate was found by READING. Same verdict as the TARGET/CAUSE distinction:
+// a check grounded in a RULE finds things; one that needs a judgement per row is a human reading.
+//
 // TWO LIMITS, STATED SO NOBODY OVER-READS A CLEAN RUN:
 //   1. It catches a card that escapes by printing "A or B" and NEVER one that escapes by a SYNONYM.
 //   2. It is exhaustive over the CURRENT pool only. A new set is a new population - which is why
