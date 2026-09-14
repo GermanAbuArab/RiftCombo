@@ -7280,6 +7280,41 @@
       "reviewed": "2026-09-14",
       "reviewedCount": 29,
       "reviewedSet": "9bcc8898"
+    },
+    {
+      "id": "factory-recall-reready-gear",
+      "name": "Factory Recall buys a SECOND activation the same turn, because 149.1 enters the replayed gear ready",
+      "anchor": "SFD-135",
+      "partner": {
+        "types": [
+          "gear"
+        ],
+        "textMatches": ":rb_exhaust:",
+        "textExcludes": "This enters exhausted|Kill this[.:,]",
+        "excludes": [
+          {
+            "card": "SFD-117",
+            "why": "\"Pay any amount of Energy to [Add] that much rainbow\" has no per-activation cap, so the first activation already converts everything and a second is worth zero - the trap this project records by card."
+          },
+          {
+            "card": "SFD-083",
+            "why": "\"Pay any amount of rainbow to [Add] that much Energy\" is the same uncapped shape as Ancient Henge and fails for the same reason."
+          }
+        ]
+      },
+      "why": "149.1 is three words - \"Gear enter play Ready.\" - and it is what makes a bounce buy a SECOND activation in the SAME turn rather than a second one next turn. Exhaust the gear for its ability, return it to hand with Factory Recall (E1, [Action], so it fits inside your own Main Phase or a showdown), replay it, and 149.1 enters it READY with its ability available again; without 149.1 the replay would buy nothing, because 315.1.b would not ready it until your next Awaken. THE PRICE IS 1 ENERGY PLUS THE GEAR'S OWN COST, which is why the six Seals are the sharpest partners at Energy cost 0: one Energy for one Power, at [Action] speed, on a card the deck was already running as its Power base. `SFD-044 Legion Quartermaster` does the same bounce as an ADDITIONAL COST rather than a card (Calm, and it names a FRIENDLY gear), so a Calm deck pays a body instead of an Energy. THIS IS NOT THE EQUIPMENT RULE AND THE TWO LISTS ARE DISJOINT BY CONSTRUCTION: `factory-recall-equipment-rehost` stands on 718.2 - an [Equip] is Inactive only WHILE attached - and its 40 partners are the Equipment, which carry ZERO exhaust symbols anywhere in their text, so no card can be in both lists (measured 2026-09-14: overlap 0). TWO STRUCTURAL EXCLUSIONS ARE IN THE PREDICATE RATHER THAN IN `excludes`, because each is a whole class. \"This enters exhausted\" is five gear whose own text overrides 149.1 under rule 002, so the replay enters them exhausted and the rule's premise fails on them outright (`OGN-017 Iron Ballista`, `UNL-049 Honeyfruit`, `UNL-136 Scryer's Bloom`, `VEN-062 Hextech Formula`, `VEN-075 Platewyrm Egg`). And a cost that KILLS the gear is a one-way door with nothing left to bounce - matched as \"Kill this\" followed by a period, colon or comma, which is the COST form and deliberately not the [Temporary] reminder \"Kill this at the start of its controller's Beginning Phase\" (verified 2026-09-14: the predicate catches exactly the six cost forms and none of the three [Temporary] gear, which carry no exhaust ability and were never candidates anyway).",
+      "basis": {
+        "rules": [
+          "149.1",
+          "315.1.b",
+          "806.1.b"
+        ],
+        "combos": []
+      },
+      "status": "rule-verified",
+      "reviewed": "2026-09-14",
+      "reviewedCount": 29,
+      "reviewedSet": "e05816ad"
     }
   ]
 }
