@@ -460,3 +460,80 @@ So the identity whose every point source is a credential — the property `CLAUD
 worth its slot — is the identity that cannot put two of them on one board. **The empty cell is not an
 oversight in the catalogue. It is where two cards the pool printed in different domains meet a rule
 that keeps them apart, and the pair that owns both is the only pair that ever had to care.**
+
+---
+
+## 13. The law behind all four refusals: a second point card competes, and the pool prints one exception
+
+Four separate refusals in this lane came out the same way — fury/chaos twice, fury/order, mind/chaos —
+and each time the sentence was *"the richer domain's point card reaches eight alone, and the partner's
+is more expensive per point."* Four coincidences is a law nobody has stated, so it was measured.
+
+**Over every spanning finisher — an entry whose NON-LEGEND cards span two domains — does each half
+contribute a POINT SOURCE, or does one contribute points and the other support?** At 769 entries,
+with the point census re-derived from `corpus_flat.txt` rather than typed (17 printings gain a point
+or win the game):
+
+| | count |
+|---|---:|
+| spanning finishers | **62** |
+| **both** domains contribute a point card | **4** |
+| **one** points, the other supports | **32** |
+| neither — the payoff is colourless, or an ability with no domain-bound point card | 26 |
+
+**Of the 36 that have any domain-bound point card at all, 32 — 89% — take their points from ONE
+domain.** Concentrating is not an authoring habit; it is what the arithmetic pays.
+
+### Why, in one sentence: a second point card competes for the board the first one needs
+
+Sorted by type, the 17 point-gaining printings are **9 units, 4 battlefields and 3 gear** — and the
+distinction that matters is not the type but **whether the card costs a body slot**:
+
+- a **unit** point card stands in the garrison, so a second one takes a slot the first one wanted, and
+  at a battlefield whose Score 470 caps at once per turn anyway;
+- a **battlefield** costs no body but 485.4.a gives each player three of which **one** is used, so two
+  of them never share a board;
+- **`UNL-088 Gutter Palace` and `VEN-067 Bottled Constellation`** are standalone gear — a card slot,
+  no body;
+- and **`SFD-115 Trinity Force` is the ONLY EQUIPMENT among the seventeen.** It rides on a body that
+  is already there for another reason and costs no extra slot at all.
+
+### Which is exactly what the four exceptions are
+
+| entry | the two point sources | why it escapes |
+|---|---|---|
+| `ahri-trinity-svellsongur-hold` | `OGN-066 Ahri` (calm) + **Trinity Force** (body) | the Equipment rides on a body already holding |
+| `blue-sentinel`-family `trinity-force-yasuo-battle-mistress-hold-and-moves` | `OGN-205 Yasuo` (chaos) + **Trinity Force** (body) | same |
+| `ivern-arena-trinity-body-order-hold` | `UNL-177 Ivern` (order) + **Trinity Force** (body) | same |
+| `ivern-arena-draven-chaos-order-chain` | `UNL-177 Ivern` (order) + `SFD-148 Draven` (chaos) | **the other route** |
+
+**Three of the four are the same card**, and the fourth has its own mechanism already recorded in
+`CLAUDE.md`: *"a Hold-gated half and a combat-gated half want OPPOSITE boards … neither half covers
+both board states and TOGETHER THEY DO."*
+
+**So there are exactly two ways to mix point sources in this pool, and the catalogue has found both:
+put one of them on an Equipment, or make the two halves want opposite boards.**
+
+### What that predicts, and what it says about §1–§12
+
+A spanning finisher that mixes point sources needs **Body** — for the one Equipment — **or
+complementary board gates.** **fury/chaos has neither**, and now for a reason more general than the
+three mechanisms above:
+
+- Neither `OGN-034 Tryndamere` nor `SFD-148 Draven` is an Equipment. Both are **units**, so the second
+  one competes for the garrison the first is standing in.
+- And their gates are not opposite **boards** — §5 showed they are opposite **outcomes of the same
+  damage step**, which is worse: the board that switches one on is the board that lets the opponent
+  choose which of your bodies dies.
+
+That is the same conclusion §3 to §5 reached card by card, arrived at from a census of the whole
+catalogue that never mentions fury or chaos. **Four refusals were one refusal.**
+
+### The instrument, and the bug in it, because the first answer was zero
+
+The first run reported **0 spanning finishers**, which is implausible on its face — §10 had already
+counted 61. The cause was mine and it is this project's own recorded shape: `[...D(rows)]` is an
+ARRAY, and `ds.size` on an array is `undefined`, so `ds.size !== 2` was true for every entry and the
+loop `continue`d past all of them. The same class as `Card.type` being an array, in a probe written to
+audit a different one. **It was caught only because the number was implausible**, which is the whole
+argument for knowing roughly what you expect before you run anything.
