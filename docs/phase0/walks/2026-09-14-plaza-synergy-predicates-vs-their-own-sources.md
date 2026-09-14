@@ -226,3 +226,49 @@ settled by no paragraph I read. **That needs a walk, not a predicate change.**
 **Twelve fixes staged. Every one was a predicate written from the wording of the card its author had
 already met — and in every case the card it could not see was already written down somewhere else in
 this repository, by a human, often in the rule's own source entry.**
+
+---
+
+## 9. Addendum 3: the ratchet refused my own stamp, and the control says the stamp should not have moved
+
+rc-manager9 applied seven of the eight buff fixes and **handed `blade-dancer-buff-is-choosing` back**:
+I declared `reviewedCount: 33` / `reviewedSet: d0ac27a5` and the actual is **32 / `c3d9eca0`**.
+
+**I fingerprinted the WIDENING ALONE and never applied my own `excludes` entry — which removes the very
+card the widening adds.** My own sentence three sections up is both why it was caught and why I should
+have caught it: *a fingerprint you cannot reproduce backwards is not a fingerprint*, **and that applies
+to a declaration as much as to a file.** I ran the reproduce check on the rule's LIVE state and then
+failed to run it on my own PROPOSED state.
+
+### The control, and it says something sharper than "off by one"
+
+Recomputed with `loadCardIndex()` + `partnersOf()` + `fingerprintOf()`, live state reproduced first:
+
+| state | count | fingerprint | `SFD-166` |
+|---|---|---|---|
+| live (in the file today) | 32 | `c3d9eca0` | absent |
+| widening alone — **what I declared** | 33 | `d0ac27a5` | **present** |
+| widening **and** the excludes entry — the edit I actually staged | **32** | **`c3d9eca0`** | absent |
+
+**The stamp does not move at all.** The partner list after this edit is byte-identical to the one in
+the file today, because the two halves of my own edit cancel.
+
+### So why make an edit that changes no list?
+
+**Because it changes the REASON, and the reason is now load-bearing.** Today the rule fails to match
+`SFD-166 Rally the Troops` by a wording accident — the alternation lacks `it`. After the edit it fails
+to match it because a human read **383.4.b.3** and **355.10.d.1** and wrote the refusal down where the
+next reader will find it.
+
+That matters precisely **because the six sibling rules have now been widened**: without the exclude,
+the next person who aligns this predicate with its siblings silently pulls Rally the Troops into a rule
+that 383.4.b.3 says it cannot fire. It is exactly how `OGN-146 Wallop` and `OGN-207 Call to Glory` are
+already held out of these same six rules — matched by a regex accident, held out by an explicit
+`excludes` carrying its reason.
+
+Re-staged: `reviewedCount` **32**, `reviewedSet` **`c3d9eca0`** — unchanged — and only `reviewed` moves
+to 2026-09-14, because a human re-read the list and the list did not change.
+
+> **The standing form: a staged artifact is a QUEUE, and the ratchet is what makes it one. Compute your
+> stamp from the state your edit ACTUALLY produces — both halves of it — not from the half you were
+> thinking about.**
