@@ -990,7 +990,7 @@ describe("the editor can rebuild every registered list it should be able to", ()
      */
     expect(refused).toEqual(["utrecht-17.txt", "vancouver-06.txt"]);
     expect(rebuilt).toBe(FILES.length - 2);
-  });
+  }, 60_000); // 222 real lists: legitimately ~6s, and vitest's default 5s makes it flake under load
 });
 
 /**

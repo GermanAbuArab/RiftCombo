@@ -556,7 +556,7 @@ describe("checkBuild against the 222 registered tournament lists", () => {
     expect(notTheBanList).toEqual(ERRATA);
     expect(legal).toBeGreaterThan(100);
     expect(banOnly).toBeGreaterThan(50);
-  });
+  }, 60_000); // 222 real lists: legitimately ~6s, and vitest's default 5s makes it flake under load
 
   /**
    * 92 of these 222 lists — Riot's own published tournament results — hold a card that is banned TODAY:
