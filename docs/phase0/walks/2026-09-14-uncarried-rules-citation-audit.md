@@ -661,7 +661,7 @@ base"** while the Altar pays units **"here"**, so whether it is a partner at all
 ship on the way out of a vein.** Final ratio for the harvest: **two rules and four refusals from five
 leads** — reported as-is, because the standing instruction here is not to pad toward a round number.
 
-## A gap in the shipped quote guard's SCOPE, found by a defect in this very document
+## I raised a concern about the shipped quote guard's SCOPE and then measured it away — a WITHDRAWN worry, kept because a withdrawn worry is a result
 
 Writing the section above, I quoted `CLAUDE.md`'s own sentence about `attack OR defend` and **lowered
 its case inside the quotation marks** — the #202 defect, for the fourth time in one day, by the person
