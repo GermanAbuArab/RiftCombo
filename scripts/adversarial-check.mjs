@@ -274,6 +274,12 @@ function sweepMassAnswers(cards) {
     // carry the Chosen Champion Legend's tag, so naming one as "the answer" without its forced legend
     // overstates it. Three of the seven swept are Signature.
     out.push({ base: c.base, name: c.name, domains: c.domains || [], e: c.energy || 0, p: c.power || 0,
+      // DOES IT HIT THE CASTER TOO? Four of the seven sweep ALL units and three say "enemy units", and
+      // that decides whether an opponent will actually cast it - OGN-123 Unchecked Power kills their
+      // own board for 7 Energy. The EQUIPMENT arm already draws this conclusion about Thermo Beam
+      // ("symmetric, which makes it cheap for a gearless deck and expensive for anyone else"); the
+      // garrison arm quoted the text and left the reader to notice.
+      enemyOnly: /\benemy units?\b/i.test(t),
       dmg: scalable ? Infinity : m ? +m[1] : Infinity, scalable, signature: !!c.signature,
       tag: (c.tags || [])[0] || null, kills: !m && !scalable,
       reaction: /\[Reaction\]/i.test(t), action: /\[Action\]/i.test(t),
@@ -1907,6 +1913,9 @@ if (holdNotables) {
         `${answer.base} ${answer.name} is ${(acard.domains || []).join("+")}, ${answer.e} Energy${answer.p ? ` + ${answer.p} Power` : ""}: "${atext}". ` +
         (tokenFloor ? `This line's garrison is ${toks.join(" and ")} tokens, whose Might is fixed by rule 187 (${toks.map((k) => `${k} ${TOKEN_MIGHT[k]}`).join(", ")}) rather than by any card in uses[] - which is why no ingredient row warns you. ` : "") +
         `143.2.a kills on marked damage at or above Might, so it kills every body at or below Might ${answer.dmg} SIMULTANEOUSLY however many there are: the binding constraint is MIGHT PER BODY, not the number of bodies, so going wider answers nothing. ` +
+        (answer.enemyOnly
+          ? `It reads "enemy units", so it costs the opponent NOTHING on their own board - there is no board state in which they would decline to cast it for that reason. `
+          : `IT IS SYMMETRIC, WHICH IS HALF THE PRICE AND THE QUOTED TEXT SAYS SO: it sweeps ALL units at battlefields, the caster's included. Against a deck with a board of its own it is a two-sided trade and they may not want it; against one playing from hand it is free. Read the matchup, not the Energy. `) +
         (sigAnswer && sigAnswer.e + Math.max(floor, 1) < answer.e + answer.p
           ? `A CHEAPER ANSWER EXISTS AND IT IS NOT AVAILABLE TO EVERY OPPONENT: ${sigAnswer.base} ${sigAnswer.name} costs ${sigAnswer.e} Energy + ${Math.max(floor, 1)} Power here${sigAnswer.scalable ? " (it pays per point of damage, so it scales to any garrison)" : ""}${sigAnswer.action ? " and is [Action], so 806.1.c.1 puts it inside any showdown on any player's turn" : ""} - but it is a SIGNATURE card tagged ${sigAnswer.tag}, and 103.2.d.2 requires every Signature card to carry the Chosen Champion Legend's tag, so only a ${sigAnswer.tag} legend can run it. Count it as a matchup, not as the field. `
           : "") +

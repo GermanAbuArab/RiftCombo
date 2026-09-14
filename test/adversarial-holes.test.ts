@@ -288,6 +288,28 @@ describe("the stalled-board buckets", () => {
  *
  * Found by reading the four pending rows before handing them over, not by any check.
  */
+/**
+ * A sweeper that hits the caster's own board is half the price of one that does not, and the emitter
+ * quoted the text without drawing the conclusion. `OGN-123 Unchecked Power` reads "Exhaust all friendly
+ * units, then deal 12 to ALL units at battlefields"; `OGS-002 Firestorm` reads "all ENEMY units". Four
+ * of the seven swept answers are symmetric and three are enemy-only, and which one a row names changes
+ * whether the opponent would cast it at all. The EQUIPMENT arm has said this about Thermo Beam from the
+ * start; the garrison arm did not.
+ */
+describe("the emitted answer", () => {
+  it("says whether its answer costs the opponent their own board", () => {
+    const out = execFileSync("node", ["scripts/adversarial-check.mjs", "--holds-notables", "--out", HOLDS_PROBE], { encoding: "utf8", maxBuffer: 1 << 22 });
+    expect(out).toMatch(/append a missing one/);
+    const rows = JSON.parse(readFileSync(HOLDS_PROBE, "utf8")) as { notables_to_append: string[] }[];
+    unlinkSync(HOLDS_PROBE);
+    // Only meaningful if rows exist; when the mode goes quiet this is vacuous and says so.
+    if (!rows.length) return;
+    for (const r of rows)
+      expect(r.notables_to_append[0], "an emitted answer says nothing about whether it is symmetric")
+        .toMatch(/IT IS SYMMETRIC|It reads "enemy units"/);
+  });
+});
+
 describe("a garrison protection", () => {
   const h = execFileSync("node", ["scripts/adversarial-check.mjs", "--holds"], { encoding: "utf8", maxBuffer: 1 << 24 });
   const rows = h.split("\n");
