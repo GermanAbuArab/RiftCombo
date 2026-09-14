@@ -1629,9 +1629,16 @@ if (stalled) {
       buckets.hold.push(`${e.class.padEnd(8)} ${e.id}  <- payoff is ${holdPayoff}, "when you hold here"${also}`);
     } else if (why.length) buckets.attack.push(row + fuelRider + rider(ATTACK) + gateRider(e, text));
     else if (conq) buckets.conquer.push(row + tag(conq) + fuelRider + rider(new RegExp(`${ATTACK.source}|${CONQUER.source}`, "i")) + gateRider(e, text));
-    else if (hold) buckets.hold.push(row + tag(hold) + fuelRider + gateRider(e, text));
+    // CARD TEXT BEATS PROSE, and this ordering is the reason. `gutter-palace-reaction-dials` landed in
+    // HOLD because its steps say "End your turn HOLDING ready runes rather than spending them" - the
+    // other sense of the word entirely - while no card it uses prints a hold clause and UNL-088 prints
+    // the garrison gate outright. A homonym in an author's prose was outranking a printed requirement.
+    // So a card-text garrison gate is tested BEFORE a hold inferred only from steps; a hold found in
+    // CARD text still wins, because then both signals are card facts and the hold is the scoring one.
+    else if (hold === "cards") buckets.hold.push(row + tag(hold) + fuelRider + gateRider(e, text));
     else if (LOCATION_GATE.test(text)) buckets.located.push(`${e.class.padEnd(8)} ${e.id}${fuelRider}${gateRider(e, text)}`);
-    else if (GARRISON_GATE.test(text)) buckets.garrisoned.push(`${e.class.padEnd(8)} ${e.id}  <- ${text.match(GARRISON_GATE)[0].trim()}`);
+    else if (GARRISON_GATE.test(text)) buckets.garrisoned.push(`${e.class.padEnd(8)} ${e.id}${fuelRider}  <- ${text.match(GARRISON_GATE)[0].trim()}`);
+    else if (hold) buckets.hold.push(row + tag(hold) + fuelRider + gateRider(e, text));
     else buckets.independent.push(row + fuelRider);
   }
   const n = Object.values(buckets).reduce((a2, b2) => a2 + b2.length, 0);
