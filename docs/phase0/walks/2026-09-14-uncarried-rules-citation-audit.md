@@ -740,3 +740,47 @@ document, 20 → 4 with the second): a count of OCCURRENCES in a file is not a c
 collide (*"9 rule-pair slashes"*, *"one paragraph short"*); and **a ZERO cannot collide**, because an
 empty set is an empty set and naming its members is impossible — which excluded every *"cited by zero
 entries"* row in the Tournament Rules survey.
+
+## `r.jina.ai` ANSWERS 200 WHILE RELAYING A 403, SO A STATUS-CODE CHECK ON IT IS A FALSE PASS
+
+Found closing `#137` on 2026-09-14. `CLAUDE.md` records that route as still working for TCGplayer,
+so anyone using it needs this: **the proxy's own HTTP status describes the PROXY, not the target.**
+
+| route | status | body |
+|---|---|---|
+| `curl` → `old.reddit.com/...` | **403** | — |
+| `curl` → `www.reddit.com/.../.json` | **403** | reddit's own `Blocked` page |
+| `r.jina.ai/<url>` | **200** | `Warning: Target URL returned error 403: Forbidden` |
+
+**Check the BODY, never the code.** The failure direction is the dangerous one: a fetch that looks
+successful and returns an error page reads as content.
+
+That is the same geometry as the two instrument defects at the top of this document — an instrument
+reporting success while the thing it measures failed — and the same remedy: **read the output, not the
+summary.**
+
+### And the answer to `#137` is that the field cannot honestly be filled
+
+Re-measured: the issue's *"20 citations across 12 entries"* is from the 2026-09-06 review; the
+population is now **8 across 6**, and **all eight are `old.reddit.com`**. `CLAUDE.md` defines
+`accessed` as *"the date somebody on this project opened the url and read it there"*, so **a date on a
+page nobody can open is a fabrication rather than hygiene.** The staged remedy is a sentence in each
+entry's `notes` recording that the thread is unreachable, that the entry does not rest on it, and that
+the link is kept as a **lead** — the exact distinction the issue says a reader cannot currently make.
+
+### A NEEDLE THAT MATCHES ZERO IS WORSE THAN ONE THAT MATCHES TWICE
+
+Splicing those six notes took three attempts, and each failure is worth carrying:
+
+1. **A fixed-length tail collided.** Two of the six cross-reference each other with an **identical
+   145-character closing sentence**, so a 90-character tail matched twice and would have spliced into
+   the wrong entry.
+2. **Growing the needle then matched ZERO**, for an unrelated reason: `json.dumps` escapes a curly
+   apostrophe as `’` and `combos.json` stores it **literally**, so the longer needle could never
+   match. `ensure_ascii=False` is the fix.
+3. **The loop could not tell the two apart**, because it only broke on a count of exactly one and ran
+   silently to the end of the field.
+
+**Two splices the wrong thing LOUDLY; zero is a SILENT NO-OP.** Both must be rejected explicitly and
+the generator must report which it saw — a uniqueness gate that only tests `== 1` hides the worse of
+the two failures behind the same symptom.
