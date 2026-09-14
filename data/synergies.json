@@ -7025,8 +7025,8 @@
     },
     {
       "id": "highlander-kill-cost-shield",
-      "name": "Highlander is the Reaction form of Zhonya's trick: the kill-a-friendly-unit cost is paid and the body comes back",
-      "anchor": "OGS-020",
+      "name": "Tactical Retreat is the Reaction form of Zhonya's trick: the kill-a-friendly-unit cost is paid and the body comes back",
+      "anchor": "UNL-175",
       "partner": {
         "textMatches": "[Kk]ill (a|any number of|two|one|another) friendly( \\[Mighty\\])? unit",
         "excludes": [
@@ -7040,7 +7040,7 @@
           }
         ]
       },
-      "why": "357.2.a is the rule and its worked example is this exact interaction with the other card: \"Costs that are replaced with other events by replacement effects are still considered paid\", worked through Cruel Patron paying its kill-a-friendly-unit cost into a Zhonya's Hourglass. Highlander does the same job from hand — \"[Reaction] Choose a friendly unit. The next time it would die this turn, heal it, exhaust it, and recall it instead\" — and the difference from OGN-077 Zhonya's Hourglass is worth a deck slot in both directions. The Hourglass is a permanent that must be on the board or hidden BEFORE the turn, and it kills itself to work, so it is one use and it is visible; Highlander is 4 Energy and no Power, sits in hand, is aimed after the cost has been announced (813.1.c.1 admits it in any Closed State on any player's turn), and costs no board presence. What it costs instead is position and the Deathknell: 455 defines a Recall as relocation \"from anywhere to its Base without it being a Move\", so anything the body was doing at a battlefield stops until it walks back, and 808.1.d.1 removes that body's own Deathknell from the chain because it never reaches the Trash. One trap belongs beside every use of this family and it is not about the partner at all: 390.5.a gives the delayed shield a window only \"as long as that Game Object is in an appropriate zone\", and 359.3.e.4 says a game object that leaves and returns \"is no longer a legal target, because it's not treated as the same object\" — so returning your own shielded unit to hand CLOSES the shield you already paid for, and replaying it does not restore it. The other three members of the family are OGN-023 Unlicensed Armory, UNL-175 Tactical Retreat and SFD-194 Counter Strike, and the last one is different in kind: it PREVENTS the damage instead, so it moves nothing and is the only one of the four that keeps a \"while I'm at a battlefield\" static switched on.",
+      "why": "357.2.a is the rule and its worked example is this exact interaction with the other card: \"Costs that are replaced with other events by replacement effects are still considered paid\", worked through Cruel Patron paying its kill-a-friendly-unit cost into a Zhonya's Hourglass. Tactical Retreat does the same job from hand — \"[Reaction] Choose a friendly unit. The next time it would die this turn, heal it, exhaust it, and recall it instead\" — and the difference from OGN-077 Zhonya's Hourglass is worth a deck slot in both directions. The Hourglass is a permanent that must be on the board or hidden BEFORE the turn, and it kills itself to work, so it is one use and it is visible; Tactical Retreat is 2 Energy and no Power, sits in hand, is aimed after the cost has been announced (813.1.c.1 admits it in any Closed State on any player's turn), and costs no board presence. What it costs instead is position and the Deathknell: 455 defines a Recall as relocation \"from anywhere to its Base without it being a Move\", so anything the body was doing at a battlefield stops until it walks back, and 808.1.d.1 removes that body's own Deathknell from the chain because it never reaches the Trash. One trap belongs beside every use of this family and it is not about the partner at all: 390.5.a gives the delayed shield a window only \"as long as that Game Object is in an appropriate zone\", and 359.3.e.4 says a game object that leaves and returns \"is no longer a legal target, because it's not treated as the same object\" — so returning your own shielded unit to hand CLOSES the shield you already paid for, and replaying it does not restore it. The other three members of the family are OGN-023 Unlicensed Armory, OGS-020 Highlander and SFD-194 Counter Strike, and the last one is different in kind: it PREVENTS the damage instead, so it moves nothing and is the only one of the four that keeps a \"while I'm at a battlefield\" static switched on. RE-ANCHORED 2026-09-13 FROM OGS-020 HIGHLANDER, WHICH COULD NEVER FIRE (#221). Highlander is the word-for-word twin of this card and is calm/body, while EVERY card in the pool whose cost kills a friendly unit is order (eight), mind (one) or chaos (one) - swept over the whole corpus, ZERO are calm or body - so anchor plus any partner was THREE domains and 103.1.b forbade all eight pairings. Widening the predicate could not have saved it, because the shortfall was the POOL and not the wording. Highlander is also a Signature card carrying the Master Yi tag, so 103.2.d.2 fixes its identity at calm/body and no future partner can rescue it either. Tactical Retreat is order, E2 rather than E4, and carries no Signature marker, so all EIGHT partners are legal: the six order ones sit at one domain and the chaos and mind ones at two. The rules reasoning above is unchanged because the two cards' replacement clauses are identical, which is the whole reason the re-anchor costs nothing.",
       "basis": {
         "rules": [
           "357.2.a",
@@ -7060,7 +7060,7 @@
         ]
       },
       "status": "rule-verified",
-      "reviewed": "2026-09-12",
+      "reviewed": "2026-09-13",
       "reviewedCount": 8,
       "reviewedSet": "2d60512e"
     },
