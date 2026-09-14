@@ -6,6 +6,7 @@
 //   node scripts/adversarial-check.mjs --engines  when the ENGINE class is deployable, and only that
 //   node scripts/adversarial-check.mjs --recheck-notables   corrections that REPLACE a stale shipped notable
 //   node scripts/adversarial-check.mjs --selftest-holes    the hole sweep + notable emitter, on synthetic entries
+//   node scripts/adversarial-check.mjs --selftest-garrison the garrison Might floor, on real entries with hand-derived answers
 //
 // It asks two questions of every INFINITE / BURST / CHAIN / ALT_WIN entry:
 //
@@ -627,6 +628,119 @@ const baselineTurn = (domains) => ([...domains].some((d) => CHEAP_BODY_DOMAINS.h
  * numbers are true and they answer different questions, so the report prints both.
  */
 const CONTESTED_BASELINE = 9;
+
+// ---------------------------------------------------------------- the garrison an entry stands
+/**
+ * WHICH BODIES THIS ENTRY ACTUALLY PUTS AT A BATTLEFIELD, and every clause of it is a defect this
+ * emitter has already shipped.
+ *
+ * THE SELF-FEEDING ONE IS THE WORST AND IT IS NEW. Both Hold modes used to fold
+ * `prerequisites.notable` into the prose they scanned for token names - and this script WRITES those
+ * notables. `scope()` emits the parenthetical "(Mech bodies only)" into an answer list in order to say
+ * that answer does NOT apply here; the next run matched the word Mech inside it and concluded the
+ * garrison was Might-3 Mechs. Eight entries were offered a 6-Energy answer for a board whose real
+ * floor is 4, and none of the eight plays a token at all. An instrument that reads its own output has
+ * no fixed point and grows more confident the more often it runs. Prose here is the AUTHOR'S alone:
+ * steps and terminatesIn.
+ *
+ * A TOKEN NAMED IN PROSE IS NOT A TOKEN ON THE BOARD. 439.2.c: this pool PLAYS its tokens ("Play a 1
+ * [M] Recruit token"), so the evidence is a card THIS ENTRY USES whose own text plays one. `uses` is
+ * already the entry's declared ingredient list, which is what makes card text sufficient here and not
+ * the pool-wide over-count this project warns about - a card in `uses` is a card the line plays.
+ *
+ * A FIRST VERSION ALSO REQUIRED THE ENTRY'S STEPS TO NAME THE TOKEN, and it was too strict in a way
+ * only measuring showed: `UNL-044 Flurry of Feathers` has no text except playing four Bird tokens, and
+ * its steps call them bodies, so the AND lost a garrison that is unambiguously Birds. Requiring a
+ * second mention buys nothing once the first is the card's own printed text. When nothing qualifies at
+ * all the caller reports CANNOT DETERMINE rather than guessing, because a floor that is too LOW is
+ * worse than no floor - it names a confident answer that does not work.
+ *
+ * ZONE. The answer cards sweep "at a battlefield", so a body the entry declares at BASE is out of
+ * their reach and must not set the floor - the identical distinction that shipped a false Flurry
+ * notable in the fragile-body arm.
+ *
+ * `--holds` already called its token scan "a FLAG that says read it, never a verdict". The EMITTER
+ * used the same scan as a verdict and wrote it into the catalogue. One helper now, so the two cannot
+ * disagree about what a garrison is.
+ */
+function tokensPlayedBy(used) {
+  const out = new Set();
+  for (const c of used) {
+    const t = `${c.text || ""} ${c.effect || ""}`;
+    for (const k of Object.keys(TOKEN_MIGHT)) {
+      const m = t.match(new RegExp(`play[^.]{0,40}\\b${k}\\b[^.]{0,60}`, "i"));
+      if (!m) continue;
+      // 355.2.a's default is your base OR a battlefield you control, and a card that NAMES the base
+      // puts the body where a battlefield sweep cannot reach it.
+      if (/to (your|their|his|her) base|into (your|their) base/i.test(m[0])) continue;
+      out.add(k);
+    }
+  }
+  return [...out];
+}
+
+function garrisonFloor(e, used, scaling) {
+  const prose = `${(e.steps || []).join(" ")} ${e.terminatesIn || ""}`;
+  const printed = (e.uses || [])
+    .filter((u) => u.zone === "BATTLEFIELD")
+    .map((u) => byBase.get(u.card))
+    .filter((c) => c && (c.type || []).includes("unit") && c.might !== null && !scaling.has(c.base))
+    .map((c) => c.might);
+  const toks = tokensPlayedBy(used);
+  const cands = [...printed, ...toks.map((k) => TOKEN_MIGHT[k])];
+  return { floor: cands.length ? Math.min(...cands) : null, toks, printed };
+}
+
+// ---------------------------------------------------------------- --selftest-garrison
+/**
+ * The garrison floor decides which answer card the Hold modes name to a player, and it has now been
+ * wrong TWICE in ways no test could see: a printed Might read off a self-scaling body (#200 batch 17),
+ * and a phantom Mech read out of this script's own emitted prose. Both shipped, and both were caught by
+ * a person reading the output.
+ *
+ * So it is pinned against HAND-DERIVED answers, in BOTH directions, over REAL entries - a floor that is
+ * too LOW is the dangerous one, because it names a confident answer that does not work, and a sweep
+ * that only ever checks "did it find something" cannot see that at all.
+ *
+ *   the three that were given a phantom Mech  -> floor 4, NO tokens (their bodies are printed Might 4)
+ *   three genuine token garrisons             -> floor 1, and the right token kinds
+ *   an entry whose bodies come from `needs`   -> null, i.e. CANNOT DETERMINE rather than a guess
+ */
+if (args.includes("--selftest-garrison")) {
+  const scaling = new Set(selfScaling(cards).map((c) => c.base));
+  const byId = new Map(db.combos.map((e) => [e.id, e]));
+  const cases = [
+    ["ahri-blue-sentinel-hold", 4, [], "3 Ahri and 2 Blue Sentinel, both printed Might 4; the emitter read Might-3 Mechs out of its own answer-list prose"],
+    ["blue-sentinel-trinity-force-hold", 4, [], "same phantom Mech, same real floor"],
+    ["shen-sentinel-time-warp-chain", 4, [], "same phantom Mech, same real floor"],
+    ["flurry-of-feathers-grand-plaza-win", 1, ["Bird"], "UNL-044 plays four 1-Might Bird tokens and has no other text - a first version lost this by also demanding the steps name them"],
+    ["corina-svellsongur-plaza", 1, ["Recruit"], "Corina is Might 6 at the battlefield but PLAYS three 1-Might Recruits, so the floor is the token"],
+    ["arise-sand-soldiers-plaza", 1, ["Sand Soldier", "Recruit"], "two token makers; the floor is the smaller (rule 187: Recruit 1, Sand Soldier 2)"],
+    ["ready-recruits-grand-plaza", null, [], "its bodies come from a `needs` engine, so this entry's own board cannot say - null, never a guess"],
+    // The two clauses the first version of this self-test left UNPINNED, found by breaking each one and
+    // watching nothing go red. Both are real entries and both hand-derive to 4.
+    ["rumble-scrapper-sentinel-mechs", 4, [], "SFD-089 Rumble plays a 3-Might Mech TO YOUR BASE, which a battlefield sweep cannot reach, so the garrison is his own Might 4 beside Blue Sentinel's. Without the base exclusion this reads 3 - the same wrong number the phantom Mech produced, off the same card"],
+    ["ivern-nurturer-hold-tutor", 4, [], "UNL-051 Ivern, Nurturer MENTIONS Bird and plays none, so a name-matcher reads 1 and the truth is her own printed Might 4. This is the play-versus-name clause the whole defect turned on"],
+    ["spiderling-swarm-grand-plaza", null, [], "VEN-097 Spiderling is printed Might 1 and reads \"I have +1 Might for each other unit you control here with my name\", so its PRINTED value is meaningless on a board of seven. Excluding it leaves nothing, and null is the honest answer - this is the entry the first false notable shipped on"],
+  ];
+  console.log(`# --selftest-garrison: ${cases.length} real entries with hand-derived floors`);
+  console.log(`# ${cases.filter((c) => c[1] !== null).length} expect a floor, ${cases.filter((c) => c[1] === null).length} expect CANNOT DETERMINE; ` +
+              `${cases.filter((c) => c[2].length).length} expect token bodies and ${cases.filter((c) => !c[2].length && c[1] !== null).length} expect none`);
+  let bad = 0;
+  for (const [id, wantFloor, wantToks, why] of cases) {
+    const e = byId.get(id);
+    if (!e) { bad++; console.log(`  FAIL  ${id} - no such entry (the catalogue moved; re-derive this case by hand)`); continue; }
+    const used = (e.uses || []).map((u) => byBase.get(u.card)).filter(Boolean);
+    const got = garrisonFloor(e, used, scaling);
+    const ok = got.floor === wantFloor && [...got.toks].sort().join(",") === [...wantToks].sort().join(",");
+    if (!ok) bad++;
+    console.log(`  ${ok ? "ok  " : "FAIL"}  ${id}`);
+    console.log(`          floor=${got.floor} want ${wantFloor}  tokens=[${got.toks.join(", ")}] want [${wantToks.join(", ")}]`);
+    console.log(`          ${why}`);
+  }
+  console.log(bad ? `# ${bad} FAILED` : "# all pass");
+  process.exit(bad ? 1 : 0);
+}
 
 // ---------------------------------------------------------------- where a corrections file goes
 /**
@@ -1527,13 +1641,10 @@ if (holds) {
     if (!holdIds.has(e.id)) continue;
     const used = (e.uses || []).map((u) => byBase.get(u.card)).filter(Boolean);
     const domains = new Set(); for (const c of used) for (const d of c.domains || []) domains.add(d);
-    const prose = `${(e.steps || []).join(" ")} ${(e.prerequisites?.notable || []).join(" ")} ${e.terminatesIn || ""}`;
-    // garrison Might floor: printed units in uses[], PLUS token bodies named in the entry's own prose
-    const printed = used.filter((c) => (c.type || []).includes("unit") && c.might !== null && !scaling.has(c.base)).map((c) => c.might);
+    // garrison Might floor: see garrisonFloor - uses[] rows AT A BATTLEFIELD plus tokens a card this
+    // entry actually PLAYS. A null floor means CANNOT DETERMINE and must stay null.
+    const { floor, toks } = garrisonFloor(e, used, scaling);
     const scaled = used.filter((c) => scaling.has(c.base)).map((c) => c.name);
-    const toks = Object.keys(TOKEN_MIGHT).filter((k) => new RegExp(`\\b${k}`, "i").test(prose));
-    const floorCands = [...printed, ...toks.map((k) => TOKEN_MIGHT[k])];
-    const floor = floorCands.length ? Math.min(...floorCands) : null;
     const blob = JSON.stringify(e);
     // A self-scaling body makes the PRINTED floor meaningless, so do not name an answer off it. This
     // is the exact defect this mode was built after: a notable reading "ONE ENERGY ANSWERS THE
@@ -1612,6 +1723,7 @@ if (holdNotables) {
   // copy of it - the same reason the recheck mode slices its needle out of REACTION_NOTABLE.
   const HOLDS_REPLACEMENT_HEAD = "THE CHEAPEST ANSWER IS A SINGLE KILL, NOT A SWEEPER, AND OGN-133 FLURRY OF BLADES DOES NOT TOUCH THIS LINE.";
   const rows = [];
+  const undetermined = [];
   for (const e of db.combos) {
     if (!FINISHER.has(e.class)) continue;
     const used = (e.uses || []).map((u) => byBase.get(u.card)).filter(Boolean);
@@ -1619,7 +1731,7 @@ if (holdNotables) {
     const t = used.map((c) => `${c.text || ""} ${c.effect || ""}`).join(" ");
     if (!isHoldBf && !/when i hold|when you hold/i.test(t)) continue;
     const domains = new Set(); for (const c of used) for (const d of c.domains || []) domains.add(d);
-    const prose = `${(e.steps || []).join(" ")} ${(e.prerequisites?.notable || []).join(" ")} ${e.terminatesIn || ""}`;
+    const prose = `${(e.steps || []).join(" ")} ${e.terminatesIn || ""}`;
     const scaled = used.filter((c) => scaling.has(c.base));
     const blob = JSON.stringify(e);
 
@@ -1650,14 +1762,20 @@ if (holdNotables) {
     }
 
     // (2) a MISSING warning: the garrison's Might floor comes from TOKENS, which uses[] cannot see.
-    const printed = used.filter((c) => (c.type || []).includes("unit") && c.might !== null && !scaling.has(c.base)).map((c) => c.might);
-    const toks = Object.keys(TOKEN_MIGHT).filter((k) => new RegExp(`\\b${k}`, "i").test(prose));
-    const cands = [...printed, ...toks.map((k) => TOKEN_MIGHT[k])];
-    if (!cands.length || scaled.length) continue;
-    const floor = Math.min(...cands);
+    const { floor, toks, printed } = garrisonFloor(e, used, scaling);
+    // CANNOT DETERMINE: no body at a battlefield and no token this entry's own cards play. Guessing a
+    // floor here is exactly how the Mech notable happened, so it is counted and reported, not invented.
+    if (floor === null || scaled.length) { if (floor === null) undetermined.push(e.id); continue; }
     // Did a TOKEN set the floor, or a printed unit? The headline says "the bodies are tokens" and it
     // must only say so when that is true - the token half is the reason uses[] cannot see the body.
-    const tokenFloor = toks.length > 0 && Math.min(...toks.map((k) => TOKEN_MIGHT[k])) === floor;
+    // STRICTLY below, not merely equal. The headline this feeds says "THE BODIES ARE TOKENS SO NO
+    // uses[] ROW SHOWS IT", and that is only true when the token is the REASON the floor is that low.
+    // Two entries were about to be told it while uses[] showed a printed Might-3 body at a battlefield
+    // setting the identical floor - true by a hair, and false in the reason it gives, which is the same
+    // defect class as everything else this emitter has shipped. Caught by reading the output.
+    const tokenFloor = toks.length > 0 &&
+      Math.min(...toks.map((k) => TOKEN_MIGHT[k])) === floor &&
+      (!printed.length || Math.min(...printed) > floor);
     // Rank by what the opponent actually pays to clear THIS floor, and prefer an answer any deck may
     // run: a Signature answer forces the opponent's legend (103.2.d.2), so it is reported separately
     // rather than as the headline.
@@ -1705,6 +1823,13 @@ if (holdNotables) {
       ],
     });
   }
+  // A row this mode REFUSED to guess at is as much a result as one it emits, and a reader who sees
+  // only the emitted rows cannot tell a clean sweep from a mode that could not read the board.
+  if (undetermined.length)
+    console.log(`\n# --holds-notables: ${undetermined.length} Hold entries were SKIPPED because their garrison could not be` +
+                `\n# determined from the board - no unit at zone BATTLEFIELD in uses[] and no token played by a card they` +
+                `\n# use (439.2.c). Naming an answer for those is how the Mech notable happened. ${undetermined.slice(0, 6).join(", ")}` +
+                `${undetermined.length > 6 ? `, and ${undetermined.length - 6} more` : ""}`);
   const out2 = outPath("holds");
   writeFileSync(out2, JSON.stringify(rows, null, 1) + "\n");
   const repl = rows.filter((r) => r.action.startsWith("REPLACE")).length;

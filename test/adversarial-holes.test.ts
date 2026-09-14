@@ -1,5 +1,5 @@
 import { execFileSync } from "node:child_process";
-import { existsSync, unlinkSync } from "node:fs";
+import { existsSync, readFileSync, unlinkSync } from "node:fs";
 import { describe, expect, it } from "vitest";
 
 /**
@@ -154,6 +154,58 @@ describe("the corrections file", () => {
     expect(written).toMatch(/rc-synth-recheck-\d+\.json$/);
     expect(existsSync(written), "the printed path does not exist").toBe(true);
     unlinkSync(written);
+  });
+});
+
+/**
+ * THE GARRISON FLOOR, which decides WHICH answer card the Hold modes name to a player.
+ *
+ * It has been wrong twice, both times shipping a false notable, and neither was visible to any test.
+ * The second one is the one worth remembering: both Hold modes folded `prerequisites.notable` into the
+ * prose they scanned for token names — and this script WRITES those notables. Its own `scope()` emits
+ * "(Mech bodies only)" into an answer list, in a sentence saying that answer does NOT apply; the next
+ * run matched the word Mech inside it and told eight entries their garrison was Might-3 Mechs. None of
+ * the eight plays a token at all; their real floor is 4. An instrument that reads its own emissions has
+ * no fixed point, and it grows more confident the more often it runs.
+ *
+ * `--selftest-garrison` pins it against HAND-DERIVED answers on REAL entries, in both directions,
+ * because a floor that is too LOW is the dangerous one — it names a confident answer that does not work,
+ * and a check that only asks "did it find something" cannot see that at all.
+ *
+ * Every clause was proved to FIRE out of band, and the FIRST version of the self-test pinned only one
+ * of the four — the other three were added only because breaking them changed nothing:
+ *   zone filter dropped                    -> ready-recruits-grand-plaza FAILs
+ *   token played to the BASE counted       -> rumble-scrapper-sentinel-mechs FAILs (reads 3, off the
+ *                                             same card whose prose caused the original bug)
+ *   a token NAME matched instead of a PLAY -> ivern-nurturer-hold-tutor FAILs (the clause the whole
+ *                                             defect turned on)
+ *   self-scaling body counted              -> spiderling-swarm-grand-plaza FAILs (the FIRST false notable)
+ */
+describe("the garrison Might floor", () => {
+  const g = execFileSync("node", ["scripts/adversarial-check.mjs", "--selftest-garrison"], { encoding: "utf8", maxBuffer: 1 << 22 });
+
+  it("runs real entries in both directions, so it cannot pass by finding nothing", () => {
+    const m = g.match(/(\d+) real entries with hand-derived floors/);
+    expect(m, "the non-vacuity header is missing").toBeTruthy();
+    expect(Number(m![1])).toBeGreaterThanOrEqual(8);
+    const d = g.match(/# (\d+) expect a floor, (\d+) expect CANNOT DETERMINE; (\d+) expect token bodies/);
+    expect(d, "the direction split is missing").toBeTruthy();
+    expect(Number(d![1]), "no case expects a floor").toBeGreaterThan(0);
+    expect(Number(d![2]), "no case expects CANNOT DETERMINE — a wrong floor would pass").toBeGreaterThan(0);
+    expect(Number(d![3]), "no case expects token bodies").toBeGreaterThan(0);
+  });
+
+  it("agrees with every hand-derived floor", () => {
+    expect(g.split("\n").filter((l) => l.startsWith("  FAIL")).join("\n")).toBe("");
+    expect(g).toContain("# all pass");
+  });
+
+  /** The emitter must never read what the emitter wrote. */
+  it("does not fold prerequisites.notable into the prose either Hold mode scans", () => {
+    const src = readFileSync("scripts/adversarial-check.mjs", "utf8");
+    const proseLines = src.split("\n").filter((l) => /const prose = /.test(l));
+    expect(proseLines.length, "the prose definitions moved; re-read them").toBeGreaterThanOrEqual(3);
+    for (const l of proseLines) expect(l, "a prose scan reads this script's own emitted notables").not.toContain("notable");
   });
 });
 
