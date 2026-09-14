@@ -635,7 +635,7 @@ const facing = gearKills.filter((g) => ENEMY_FACING.includes(g.base))
   const eqHole = f.holes.find((h) => h.kind === "equipment");
   if (eqHole) {
     const eq = eqHole.items.join(", ");
-    const copies = [...eq.matchAll(/x(\d+)/g)].reduce((n, m) => n + Number(m[1]), 0);
+    const copies = eqHole.copies;
     // One copy is answered most cheaply by a single-target kill; several by the one card that
     // kills them all. Naming Thermo Beam against a lone Equipment would overstate the threat.
     const headline = copies >= 2
@@ -711,13 +711,18 @@ const facing = gearKills.filter((g) => ENEMY_FACING.includes(g.base))
  */
 function holesFor(e) {
   const blob = JSON.stringify(e.prerequisites) + JSON.stringify(e.steps) + (e.notes || "") + (e.terminatesIn || "");
+  // `copies` rides with the hole because the emitter's headline turns on it, and it used to recover
+  // the number by running /x(\d+)/g over the label this same line builds - a consumer parsing a
+  // producer's string, which is #220's shape one notch less severe. LATENT rather than live: no card
+  // name in the pool contains x<digit> (swept over all 935 distinct names), so the count is correct
+  // today and would go quietly wrong for a future printing, or for anyone who rewords the label.
   const equipment = [];
   const fragile = [];
   for (const u of e.uses || []) {
     const c = byBase.get(u.card);
     if (!c) continue;
     if (c.type.includes("legend") || c.type.includes("battlefield")) continue;
-    if (c.type.includes("gear") && c.tags.includes("Equipment")) equipment.push(`${c.name} x${u.quantity}`);
+    if (c.type.includes("gear") && c.tags.includes("Equipment")) equipment.push({ label: `${c.name} x${u.quantity}`, quantity: u.quantity });
     // OGN-133 Flurry of Blades reads "Deal 1 to all units AT BATTLEFIELDS", so it cannot reach a body
     // the entry itself declares in zone BASE. Four of the ten finishers with a Might<=1 unit declare it
     // there (a tag-carrier for Ivern, or a "played this turn" enabler for Swain, neither of which ever
@@ -729,8 +734,9 @@ function holesFor(e) {
   }
   const holes = [];
   if (equipment.length && !namesAnswer(blob, gearAnswers).length)
-    holes.push({ kind: "equipment", items: equipment,
-                 text: `stands on Equipment (${equipment.join(", ")}) and names no gear answer` });
+    holes.push({ kind: "equipment", items: equipment.map((x) => x.label),
+                 copies: equipment.reduce((n, x) => n + x.quantity, 0),
+                 text: `stands on Equipment (${equipment.map((x) => x.label).join(", ")}) and names no gear answer` });
   if (fragile.length && !namesAnswer(blob, [SWEEPER]).length)
     holes.push({ kind: "fragile-body", items: fragile,
                  text: `stands on a Might-1-or-less body at a battlefield (${fragile.join(", ")}) and never names OGN-133 Flurry of Blades` });
