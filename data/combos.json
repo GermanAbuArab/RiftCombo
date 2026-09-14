@@ -57805,6 +57805,80 @@
       ],
       "rulesVersion": "2026-07-16",
       "notes": "SYNTHESIZED and PREDICTED (#200). §13 of the companion walk measured that only four of 62 spanning finishers draw points from both of their domains, and that the exceptions take one of exactly two routes — an Equipment point source, which the pool prints once in SFD-115 Trinity Force, or two halves that want opposite boards. Cross-tabbing which body/X pairs had taken the Equipment route returned body/calm, body/chaos and body/order as covered and BODY/FURY and BODY/MIND as empty; body/fury is the one that can take BOTH routes at once, because Trinity Force is Hold-gated and its only Fury partner is combat-gated. scripts/have.mjs confirmed SFD-115 + OGN-034 appears in no entry or subset. Hand-walked afterwards with every cited paragraph opened and pasted. The configuration choice, the gear answer in its own domain, and the garrison ceiling that switches the attack half off are all stated rather than left to a reader."
+    },
+    {
+      "id": "ahri-draven-wildclaw-calm-chaos-opposite-boards",
+      "name": "Four off the Hold, three off the combat and the eighth off the Conquer that combat wins: Calm/Chaos had a combat plan, a conquer plan and NO Hold plan of its own domains",
+      "class": "CHAIN",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "OGN-066",
+          "quantity": 3,
+          "role": "payoff",
+          "zone": "BATTLEFIELD",
+          "state": "all three standing at the battlefield you ALREADY control, not the one you attack",
+          "note": "Calm unit, E5 P1 M4. 'When I hold, you score 1 point.' 383.4.d.2.a puts a unit's Hold Ability on the Chain only for a unit 'present at a Battlefield when a player maintains control of it and Gains 1 Victory Point during their Beginning Phase from Holding', so all three must stand at the HELD battlefield. R2 = A makes each 'you score 1 point' a 194.1.c point GAIN rather than a 469 Score, so 470's once-per-battlefield-per-turn cap does not touch them and three copies are three points. 103.2.b caps the name at three."
+        },
+        {
+          "card": "SFD-148",
+          "quantity": 3,
+          "role": "payoff",
+          "zone": "BATTLEFIELD",
+          "state": "attacking the OTHER battlefield, the one the opponent garrisons",
+          "note": "Chaos unit, E6 P1 M6, [Deflect]. 'The first time I win a combat each turn, you score 1 point. When I die in combat, choose an opponent. They score 1 point.' 466.3.c - 'Units at this battlefield inherit the same combat result as their controllers' - gives every Draven present the win, and each carries its own once-per-turn trigger, so three copies are three points rather than one. THE SECOND SENTENCE IS THE PRICE AND IT IS PAID TO THE OPPONENT: every Draven that dies in the combat hands them a point, which is why the garrison ceiling below is part of the line rather than a caveat."
+        },
+        {
+          "card": "UNL-057",
+          "quantity": 1,
+          "role": "enabler",
+          "zone": "BATTLEFIELD",
+          "state": "moved in with the Draven, as part of the same one-action Standard Move",
+          "note": "Calm unit, E6 P2 M7, [Tank]. 'Your units here with less Might than me can't be chosen by enemy spells and abilities.' He does BOTH jobs the combat half needs. 815.1.c.2 - 'Units without Tank are invalid assignments until all units with Tank have lethal damage assigned to them' - forces the defender to spend 7 on him before a single point may legally be assigned to a Draven, which is what keeps Draven's death clause from paying the opponent. And at M7 he is one Might above Draven's 6, so his second sentence makes all three Draven unchoosable by enemy spells and abilities while they stand there."
+        }
+      ],
+      "needs": [],
+      "produces": [],
+      "prerequisites": {
+        "easy": [
+          "Calm/Chaos. GENERATED from cards.json 2026-09-14 by .scratch-gap3/legendq.ts, not typed: 127 legend printings scanned, and the pool prints exactly THREE Calm/Chaos legend NAMES - Unforgiven (OGN-259, OGN-305); Blade Dancer (SFD-195, SFD-246); Gloomist (UNL-193, UNL-232).",
+          "A battlefield you ALREADY control at the start of the turn, with the three Ahri standing on it. No battlefield card is named, so 485.5's random selection never touches this line.",
+          "The opponent garrisoning the OTHER battlefield, with summed Might under 13. That is the line's real gate and it is measured below."
+        ],
+        "notable": [
+          "THIS IS THE HOLD PLAN CALM/CHAOS DID NOT HAVE, AND THAT IS THE ENTRY'S WHOLE REASON. Measured over data/combos.json 2026-09-14: of the pair's five finishers, `draven-svellsongur-bloodless-combat-burst` is COMBAT-gated, `nasus-svellsongur-conquer-burst` is CONQUER-gated, and the only Hold plans - `spiderling-swarm-grand-plaza` and `flurry-of-feathers-grand-plaza-win` - both stand on `OGN-293 The Grand Plaza`, which is COLOURLESS and therefore available to all fifteen legend pairs. Calm/Chaos had NO Hold finisher of its own domains, and `OGN-066 Ahri, Alluring` appeared in ZERO Calm/Chaos entries.",
+          "THE TWO HALVES WANT DIFFERENT BATTLEFIELDS, WHICH IS THE POINT AND NOT A COINCIDENCE. 383.4.d.2.a needs the Ahri present where you HOLD; 464.2.c.1 makes you the Attacker where you MOVE IN. So the Hold half and the combat half never compete for the same body slot - which is exactly the escape from the body-slot cost that makes 89% of finishers with a domain-bound point card concentrate on ONE half instead of spanning.",
+          "IT PASSES THROUGH 471.1.b.1 AND A LINE THAT DOES NOT IS ONE CLAUSE LESS FRAGILE. Seven points arrive before the Conquer, so the eighth is a Conquer Gain made at 1 from the Victory Score: 471.1.b.1 - 'If the player has Scored every Battlefield this turn, that player Gains the Final Point. If the player has not Scored every Battlefield this turn, that player draws a card instead.' Holding one battlefield and Conquering the other IS Scoring every battlefield, so it lands - but it is the one clause between this line and seven points plus a card.",
+          "THE GARRISON CEILING IS 12 SUMMED MIGHT AND IT IS ARITHMETIC, NOT A CAVEAT. 815.1.c.2 forces the defender's whole assignment into Alpha Wildclaw until he has lethal 7; 143.2.a then needs 6 more per Draven. So at summed Might 13 the first Draven dies and 'When I die in combat, choose an opponent. They score 1 point' hands the opponent one back, turning eight into eight-against-one. Above 18 a second follows. Your own summed Might is 25 (3 x 6 + 7), and 465.2.c.4 caps each assignment at minimum lethal, so 25 clears a garrison totalling up to 25.",
+          "E39 AND 8 POWER IS THE HONEST PRICE AND IT IS THE WORST THING ABOUT THIS LINE. Three Ahri at E5 + 1 Calm, three Draven at E6 + 1 Chaos, Alpha Wildclaw at E6 + 2 Calm. Nothing here is trimmable: two Ahri give 3 instead of 4 and two Draven give 2 instead of 3, and either way the total is 7 with the Conquer. It is a late-game board, and against an opponent who lets you hold two battlefields the do-nothing curve has already paid 8 by turn 5 or 6 - this line exists for the board where you hold ONE and they garrison the other."
+        ]
+      },
+      "steps": [
+        "Board before the turn: a battlefield you already control (190.1 - 'Control is established over Battlefields through the course of play') with three Ahri, Alluring standing on it, and Alpha Wildclaw plus three Draven, Audacious ready at your base.",
+        "Beginning Phase, Scoring Step. 315.2.b.2 Holds every battlefield you control, and 471.1 Gains 1 point for the Score. That is point 1.",
+        "383.4.d.2.a puts each Ahri's Hold Ability on the Chain - they are present at the battlefield when you maintain control of it and Gain 1 Victory Point from Holding. Three copies, three card-text Gains. R2 = A makes these 194.1.c Gains rather than 469 Scores, so 470's cap never sees them. Points 2, 3 and 4.",
+        "Main Phase. Standard-move all three Draven AND Alpha Wildclaw to the garrisoned battlefield as ONE action - 144.3, 'Players may perform multiple Units' standard move simultaneously. This is treated as one game action performed on multiple Units', with 144.3.a giving them a shared destination, 144.3.b freeing their origins and 144.3.c paying the four exhausts simultaneously.",
+        "190.3.a.1 applies Contested and 464.2.c.1 makes you the Attacker. The Combat stages at the next Cleanup (323.9) and opens at 323.13.",
+        "Combat Damage Step. 465.2.c assigns each side its summed Might - yours is 25, theirs is whatever the garrison sums to. 815.1.c.2 forces every point of theirs into Alpha Wildclaw until he has lethal 7, so below 13 no Draven takes a scratch. 465.2.c.4 caps each of your assignments at minimum lethal, so 25 clears a garrison totalling up to 25.",
+        "466.3.a: you are the only player with units remaining, so you won the combat. 466.3.c - 'Units at this battlefield inherit the same combat result as their controllers' - gives the win to every Draven present, and each fires its own 'The first time I win a combat each turn, you score 1 point'. Points 5, 6 and 7.",
+        "466.5 establishes Control and 466.5.d makes that a Conquer, so 469.1.b and 471.1 try to Gain point 8. You are at 7, one from the Victory Score, so 471.1.b.1 applies - and you Scored the first battlefield by Holding and this one by Conquering, so you have Scored every Battlefield this turn and the Final Point lands. That is 8."
+      ],
+      "terminatesIn": "chain of eight points in one turn with no opponent turn in between - four in the Beginning Phase off a battlefield you already hold, three off a combat at the battlefield you do not, and the eighth from the Conquer that combat wins. It costs E39 and 8 Power and nothing in it is trimmable, and it is written for the ONE board it fits: you hold one battlefield and they garrison the other. Against an opponent who lets you hold both, the do-nothing Hold curve has already paid 8 by turn 5 or 6 and this line is redundant; against one who garrisons nothing, the whole Chaos half is dead and only the four Hold points arrive.",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "accessed": "2026-09-14",
+          "quote": "466.3.c: 'Units at this battlefield inherit the same combat result as their controllers' 471.1.b.1: 'If the player has Scored every Battlefield this turn, that player Gains the Final Point. If the player has not Scored every Battlefield this turn, that player draws a card instead.' 815.1.c.2: 'Units without Tank are invalid assignments until all units with Tank have lethal damage assigned to them.'"
+        },
+        {
+          "title": "Hand walk 2026-09-14 (docs/phase0/walks/2026-09-14-uncarried-rules-citation-audit.md)",
+          "kind": "manual-walk",
+          "date": "2026-09-14"
+        }
+      ],
+      "rulesVersion": "2026-07-16"
     }
   ]
 }
