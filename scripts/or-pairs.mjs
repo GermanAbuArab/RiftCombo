@@ -20,7 +20,11 @@
 //     payoff" - true of the pool's ONE such payoff (SFD-175 Undertitan) and false as a statement
 //     about what Predict feeds. Nocturne was in ZERO synergy rules; he now has one.
 //   - `attack OR defend` -> 11 cards (2026-09-12). Both kinds of trigger at once, firing twice per
-//     turn cycle, and SIX ENTRIES HAD PRICED IT AT HALF RATE.
+//     turn cycle, and SIX ENTRIES HAD PRICED IT AT HALF RATE. MEMBERS NAMED, NOT JUST COUNTED:
+//     OGN-055, OGN-060, OGN-119, SFD-016, SFD-020, SFD-082, SFD-110, SFD-190, UNL-056, UNL-143,
+//     VEN-079. A TOTAL CAN COLLIDE ACROSS TWO PREDICATES while the sets differ - two lanes both
+//     published 'sixteen point cards' on 2026-09-14 from sets two members apart, and both had
+//     stated their predicates. test/or-pairs.test.ts pins this list rather than its length.
 //
 // THE OTHER THIRTEEN ARE CLEAN AND EACH HAS A REASON - read 2026-09-14, recorded so the next reader
 // checks the DELTA rather than re-reading all fifteen:

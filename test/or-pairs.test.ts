@@ -41,9 +41,22 @@ describe("or-pairs: cards worded to satisfy both halves of a distinction", () =>
     expect(orPairs(corpus).get("look at OR reveal")).toEqual(["OGN-194"]);
   });
 
-  it("finds the other known historical defect, an eleven-card family", () => {
+  it("finds the other known historical defect, and pins its MEMBERS rather than its count", () => {
     // `attack OR defend` was found on 2026-09-12 with six entries priced at half rate. It is the one
     // member whose defect was found AND fixed, so it is the natural control for the whole signature.
-    expect(orPairs(corpus).get("attack OR defend")?.length).toBe(11);
+    //
+    // PINNED AS A MEMBER LIST, NOT A COUNT, and that is the whole point of this assertion. A TOTAL CAN
+    // COLLIDE ACROSS TWO PREDICATES while the sets differ - two lanes both published "sixteen point
+    // cards" on 2026-09-14 from predicates whose sets were two members apart, and both had stated
+    // their predicates. Stating the predicate and naming the members are ONE rule and neither half is
+    // sufficient. A count of 11 would go green for any future predicate that happens to land on 11.
+    //
+    // No collision was DEMONSTRATED for this claim: varying the match window 12/18/25/40 gives
+    // 11/11/10/10 and the shorter sets are strict SUBSETS. Pinned anyway, because pinning a clean
+    // state costs nothing and can only be paid for once.
+    expect(orPairs(corpus).get("attack OR defend")).toEqual([
+      "OGN-055", "OGN-060", "OGN-119", "SFD-016", "SFD-020", "SFD-082",
+      "SFD-110", "SFD-190", "UNL-056", "UNL-143", "VEN-079",
+    ]);
   });
 });

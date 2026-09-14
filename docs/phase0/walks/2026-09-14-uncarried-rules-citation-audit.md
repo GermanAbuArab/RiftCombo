@@ -59,7 +59,9 @@ a sentence rests on — Nocturne prints *"look at **or** reveal"*. So sweep the 
 is readable in one screen. **Control:** `look at OR reveal` → `OGN-194`, present.
 
 **TWO OF THE FIFTEEN HAVE ALREADY BEEN REAL DEFECTS IN THIS PROJECT**, found seven weeks apart by two
-unrelated routes — `look at OR reveal` (Nocturne, 2026-09-14) and `attack OR defend` (11 cards,
+unrelated routes — `look at OR reveal` (Nocturne, 2026-09-14) and `attack OR defend` (**`OGN-055`,
+`OGN-060`, `OGN-119`, `SFD-016`, `SFD-020`, `SFD-082`, `SFD-110`, `SFD-190`, `UNL-056`, `UNL-143`,
+`VEN-079` — eleven cards, NAMED rather than counted, for the reason in the closing section),
 2026-09-12, and the file shouts it in its own voice: *"AN \"ATTACK OR DEFEND\" TRIGGER IS BOTH KINDS AT
 ONCE AND FIRES TWICE PER TURN CYCLE, AND SIX ENTRIES PRICED IT AT HALF RATE"*). Same shape, same mechanism.
 
@@ -705,3 +707,36 @@ window and checks **against the two rulebooks only**, so a quotation of `CLAUDE.
 to be verified by hand against `CLAUDE.md`. That is deliberate — **the whole point is to stop the file
 validating a quotation of itself.** Both remaining flags on this document were checked by hand and are
 present in their claimed sources (one in `CLAUDE.md`, one in `combos.json`).
+
+## A TOTAL CAN COLLIDE ACROSS TWO PREDICATES, AND ONLY THE MEMBERS DISAMBIGUATE
+
+On 2026-09-14 two lanes both published **"sixteen point cards"**, both having stated their predicates,
+and **the sets were two members apart** — one a regex output holding `OGN-276` and missing `OGN-290`,
+the other a printed domain list holding `OGN-290` and excluding `OGN-276`. The collision then caused a
+subtraction from the wrong base.
+
+**`CLAUDE.md` carries *state the predicate with the number* and *name the members of any counted set*
+as two separate rules. They are ONE rule, and neither half is sufficient**: both lanes obeyed the
+first and it did not help.
+
+**Audited against this corpus, and it found one real hit — in something shipped the same day.** The
+signature is a counted set given as a TOTAL with no member named nearby. Over this document and
+`scripts/or-pairs.mjs`: 24 counted sets, 20 naming a member, **4 bare — and reading them, three are
+not counted sets at all** (*"refuted by ONE CARD"*, *"two members apart"*, *"the overlap of the two
+partner sets"*).
+
+**The one real hit was `attack OR defend`, asserted as a COUNT of 11 in both the docblock and
+`test/or-pairs.test.ts`.** A count goes green for any future predicate that happens to land on 11 with
+a different set — the exact failure mode. **Both now name the eleven and the test pins the member
+LIST.**
+
+**And the control is honest: no collision was DEMONSTRATED for that claim.** Varying the match window
+12 / 18 / 25 / 40 gives 11 / 11 / 10 / 10, and the shorter sets are strict **SUBSETS** — nested, not
+different-at-the-same-total. It was pinned anyway, because **pinning a clean state costs nothing and
+can only be paid for once.**
+
+**Two exceptions the first predicate forgot, both found by reading the hits** (26 → 2 on this
+document, 20 → 4 with the second): a count of OCCURRENCES in a file is not a counted SET and cannot
+collide (*"9 rule-pair slashes"*, *"one paragraph short"*); and **a ZERO cannot collide**, because an
+empty set is an empty set and naming its members is impossible — which excluded every *"cited by zero
+entries"* row in the Tournament Rules survey.
