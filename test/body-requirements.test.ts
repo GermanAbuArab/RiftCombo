@@ -135,12 +135,72 @@ describe("bodies a line needs that no card supplies (Combo.anyBodies)", () => {
      * whose legs genuinely share a body, and over-reporting is the direction that costs a player a
      * card they did not need - which is better than flattering, but it is not free and it is not
      * needed by anything today.
+     *
+     * WHY IT IS ZERO IS STRUCTURAL AND NOT COINCIDENCE, and that is a stronger statement than the
+     * count (rc-emit2, 2026-09-14; predicate stated so it can be re-run). `expand` folds a second
+     * entry in through ONE mechanism, `combo.needs`, and **ZERO of the 83 entries carrying
+     * `anyBodies` declares `needs`** - 33 entries in the whole catalogue declare one at all. With
+     * no eligible OUTER contributor the merge cannot fire whatever the inner side looks like, so
+     * "no pair has happened to co-occur" understates it: there is no pair to co-occur.
+     *
+     * WHAT THE FIRST LIVE CASE LOOKS LIKE, because a ratchet nobody can picture is a ratchet nobody
+     * reads. It is ONE AUTHORED FIELD away: give any body-requiring entry a `needs` on a tag that
+     * an `anyBodies` entry already produces. Three tags qualify today - they are both needed by
+     * somebody and produced by a body-requiring entry - and behind them sit **28 distinct eligible
+     * inner contributors**: `conquer-engine` (8), `resource-engine` (19), `token-body-engine` (1),
+     * disjoint, 8 + 19 + 1 = 28. Domain Identity and the legend check would still have to pass, so
+     * 28 is a ceiling on the pairs, not a prediction. The moment that field is authored, read the
+     * two entries and ask whether ONE board serves both legs; do not answer it from here.
      */
-    const byId = new Map(live.map((c) => [c.id, c]));
     const merged = variantsOf(live).filter((v) => v.comboIds.filter((id) => byId.get(id)?.anyBodies).length > 1);
     expect(variantsOf(live).length, "no variants were generated, so this proves nothing").toBeGreaterThan(1000);
     expect(variantsOf(live).filter((v) => v.comboIds.length > 1).length).toBeGreaterThan(500);
     expect(merged.map((v) => v.id)).toEqual([]);
+    // The structural reason, asserted rather than left in prose: no entry is an eligible OUTER
+    // contributor. This is NOT a gate - an entry carrying both fields is a legitimate thing to
+    // author and blocking it would stop a merge over work this file may not do - so it is pinned
+    // as the count it is, beside the ratchet that does gate. If it moves, the comment above is the
+    // thing to re-read, not the thing to re-number.
+    expect(live.filter((c) => c.anyBodies && c.needs.length > 0).map((c) => c.id)).toEqual([]);
+  });
+
+  /**
+   * THE HALF OF THE MERGE THAT IS LIVE, AND IT WAS NOT PINNED. Everything above is about the
+   * two-contributor case, which has never happened. The ONE-contributor case happens 68 times: a
+   * variant folds a body-requiring entry in with one that carries no requirement, and
+   * `bothBodies(a, undefined)` has to hand back `a` unchanged.
+   *
+   * IT FAILS IN THE FLATTERING DIRECTION, which is why it is worth a test at zero defects. Make
+   * that merge return `undefined` - the shape of a "tidy up the optional field" edit - and 68
+   * variants silently stop asking for a body at all, on lines whose whole reason for carrying the
+   * field is that the site was telling a player something false. Nothing above would notice: the
+   * ratchet reads the CONTRIBUTING ENTRIES rather than the variant's field, deliberately and
+   * correctly, so it is blind to the field being dropped.
+   *
+   * Measured 2026-09-14: 1,641 variants, 905 multi-entry, 68 with exactly one contributor, 0 that
+   * lost the field, 0 whose count disagrees with that contributor, and 0 carrying the field with no
+   * contributor at all. A check that comes back clean is the one worth pinning, because pinning it
+   * costs nothing at a clean state and can only ever be paid for once.
+   *
+   * VALIDATED BY BREAKING IT, not by watching it pass - in a throwaway worktree at HEAD, since
+   * `src/combos.ts` is another lane's file. Making `bothBodies` return `undefined` for a one-sided
+   * merge turns THIS test red and leaves the ratchet above GREEN, 17 of 18 passing, which is the
+   * measurement behind the paragraph above rather than a prediction of it. The COUNT clause is
+   * belt-and-braces - a count drift turns seven tests red - and the phantom clause is its mirror,
+   * cheap and not independently demonstrated. Only the first clause is uniquely pinned here.
+   */
+  it("keeps the requirement when a body-requiring entry is folded in with one that has none", () => {
+    const contributors = (v: { comboIds: string[] }) => v.comboIds.filter((id) => byId.get(id)?.anyBodies);
+    const multi = variantsOf(live).filter((v) => v.comboIds.length > 1);
+    const one = multi.filter((v) => contributors(v).length === 1);
+    // Non-vacuity first: a filter that empties reads exactly like a pass.
+    expect(multi.length, "no multi-entry variants, so this proves nothing").toBeGreaterThan(500);
+    expect(one.length, "no one-sided merges, so this proves nothing").toBeGreaterThan(40);
+    expect(one.filter((v) => !v.anyBodies).map((v) => v.id), "these merges dropped the requirement").toEqual([]);
+    expect(one.filter((v) => v.anyBodies!.count !== byId.get(contributors(v)[0]!)!.anyBodies!.count)
+      .map((v) => v.id), "these merges changed the count of their single contributor").toEqual([]);
+    // And the reverse, which would be the over-reporting mirror: a requirement out of nowhere.
+    expect(variantsOf(live).filter((v) => v.anyBodies && contributors(v).length === 0).map((v) => v.id)).toEqual([]);
   });
 
   it("keeps every requirement quoted from the entry or the card, not retyped", () => {
@@ -256,6 +316,9 @@ const saysYou = (base: string) => {
   return /\byour?\b/i.test(`${c?.text ?? ""} ${c?.effect ?? ""}`);
 };
 const live = combos.filter((c) => c.status !== "refuted");
+/** Hoisted out of the merge test when a second test needed it: two copies of one index is how the
+ *  two drift apart. */
+const byId = new Map(live.map((c) => [c.id, c]));
 // `Card.type` is an ARRAY and a `uses` row keys on `.card`, not `.base`. Either mistake returns a
 // confident EMPTY that reads as a clean pass; both have shipped in this project before.
 const flagged = live.filter((c) =>

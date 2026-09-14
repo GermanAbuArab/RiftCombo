@@ -163,4 +163,34 @@ describe("the site says a line needs bodies no card supplies", () => {
     expect(drawer).toContain("Bodies no card supplies");
     expect(drawer).toContain("exactly 4 units at battlefields");
   });
+
+  /**
+   * THE OTHER HALF OF THE SAME MITIGATION, AND IT WAS PINNED IN ONE STATE OF TWO. The issue names
+   * two surfaces that state the requirement whether or not the list is short of it - the drawer and
+   * the diagram's route node - and the test above covered only the drawer for a list that is NOT
+   * short. The node's own case ran on the near-miss list, so between them the node was asserted
+   * only in the state where `missingBodies` is set, which is exactly the state a conditional would
+   * still satisfy. A reader who made the node conditional would have turned one test red and the
+   * other green, and the green one is the one that reads like coverage.
+   *
+   * The node is structurally the harder of the two to break - `web/graph.ts` is handed a `Combo`
+   * and has no `missingBodies` to be conditional ON, so making it conditional means plumbing a hit
+   * through. That is an argument for asserting it, not against: a surface nobody can break by
+   * accident is a surface whose pin costs nothing, and this project's own rule is that a check
+   * which comes back clean is the one worth pinning, because pinning it can only be paid for once.
+   */
+  it("says it on the route node too for a list that is NOT short of bodies", async () => {
+    // Continues from the case above: the deck already holds the three Mind bodies, so the route is
+    // COMPLETE and sits in the default view. The node is drawn only by the layered layout, which
+    // `web/graph.ts` records as complete rather than partial - the circular layout draws no combo
+    // node at all, so there is nothing there to carry the sentence.
+    const layered = [...document.querySelectorAll<HTMLInputElement>("input[name=layout]")]
+      .find((r) => r.value === "layered");
+    if (layered) { layered.checked = true; layered.dispatchEvent(new Event("change", { bubbles: true })); await settle(); }
+    const node = [...document.querySelectorAll("g.route")]
+      .find((g) => (g.querySelector("title")?.textContent ?? "").includes("Gutter Palace"));
+    expect(node, "no Gutter Palace route node in the layered diagram for a complete route").toBeDefined();
+    expect(node!.querySelector(".route-class")!.textContent).toContain("NEEDS 1 UNIT CARD");
+    expect(node!.querySelector("title")!.textContent).toContain("exactly 4 units at battlefields");
+  });
 });

@@ -34,6 +34,55 @@ export interface BodyShortfall {
  * supplies four Birds, and the authored count is 3. Keeping the parser out of the matcher keeps one
  * number authored and checkable instead of two numbers disagreeing.
  *
+ * WHICH DIRECTION IT FAILS IN, MEASURED AT CORPUS SCALE (#218; rc-emit2, 2026-09-14). The two
+ * directions are not equally bad - over-reporting costs a player a card they did not need, while
+ * under-reporting tells them their deck is closer than it is, which is this very defect wearing a
+ * smaller number. THE ARITHMETIC CAN ONLY FLATTER: `Math.max(0, count - spare)` is floored at zero
+ * and capped at the authored count, and `spare` counts every unit CARD in the list. Over the 222
+ * registered tournament lists in `test/fixtures/tournament-lists/`, **477 matched routes across 190
+ * of the 222 lists carry a body requirement and 477 of 477 report a shortfall of ZERO** (predicate:
+ * `matchDeck` at `maxMissing: 2`, included + almostIncluded, constructed). That is the corpus-scale
+ * companion to the three fixtures' 24 of 24 - twenty times the population, same answer.
+ *
+ * AND YET IT IS ONE BODY FROM FIRING, WHICH IS THE HALF THE WORD "VACUOUS" HIDES. Slack per row
+ * (spare minus count) over those 477: **min 0, p10 5, median 16, max 30**; 11 rows sit at 2 or
+ * less. ONE row is at exactly zero - `barcelona-31.txt` against
+ * `targons-peak-defy-delayed-ready+amateur-recital-free-evacuation`, spare 2 and needs 2 - and that
+ * list is an Azir deck with exactly TWO unit cards in its Main Deck, every other body a Sand
+ * Soldier token. So this check is vacuous in the MEDIAN and live at the TAIL, and the tail is
+ * precisely the shape it was written for: a list whose bodies are tokens, which it deliberately
+ * does not count. "It fires nowhere" and "it fires nowhere, and one body stricter it fires" are
+ * different facts, and only the second says where this sits.
+ *
+ * THE ONE MECHANISM THAT CAN OVER-REPORT IS ON THE INPUT SIDE, NOT IN THE ARITHMETIC, and it is
+ * reachable in this repo today. `held` reads the parsed bags, so a unit line the parser could not
+ * resolve is invisible to it: `sydney-07.txt` carries `x2 Adaptatron`, which lands in
+ * `deck.unresolved`, and `OGN-056 Adaptatron` is a UNIT - two unit copies the check cannot see, on
+ * a real registered list. The arithmetic claim stands; the sentence "it flatters and cannot do
+ * otherwise" is true of the ARITHMETIC and not of the INPUT. Latent by a wide margin there (that
+ * list's tightest slack is 14), and the honest statement is that the direction is one-way in every
+ * path except a parse failure. `test/tournament-lists.test.ts` pins those four unresolved lines by
+ * name, so this cannot grow silently.
+ *
+ * TWO FLATTERING PATHS THAT LOOK REACHABLE AND ARE NOT, checked so nobody re-opens them. A unit in
+ * the `battlefields` bag would inflate `held`; it cannot get there, because BOTH construction paths
+ * classify by the CARD'S OWN TYPE before any section header - `normalizeDeck` since #133, and
+ * `zoneOf` in `src/builder.ts`. And `deck.champion` is not a bag here, which would UNDER-count by
+ * one; it cannot, because both paths also put the champion in `main` (`normalizeDeck` falls through
+ * to `add(deck.main, ...)`, and `setChampion` bumps it in when absent). 0 of 222 lists exhibit
+ * either, which is corroboration rather than the proof. Two unit `uses` rows that are equivalents
+ * of each other would make `committed` double-count and therefore OVER-report: 0 of 1,641 variants.
+ *
+ * A BANNED UNIT STILL COUNTS AS A BODY, DELIBERATELY - and the coverage argument is `deckRestrictions`
+ * rather than `hit.illegal`, which is the correction #218 needs. There are TWO such cards, not one:
+ * `OGN-177 Stealthy Pursuer` and `SFD-020 Draven, Vanquisher`, both banned in both formats
+ * (measured two ways - `data/legality.json`'s own `entity` field, and the card's type - which agree;
+ * 0 of the 222 lists hold either). `hit.illegal` reads only the LINE'S cards, so it cannot see a
+ * banned unit sitting in the list as a SPARE body, which is exactly the flattering case.
+ * `deckRestrictions` can: it reads main, battlefields, runes, sideboard and the legend, and the
+ * panel it feeds is the FIRST thing in the deck column. So the player is told, and making this
+ * function format-aware would couple it to a concern it does not have for a case already covered.
+ *
  * Returns a factory, because the deck-side total is the same for every variant and the callers walk
  * 1,638 of them.
  */
