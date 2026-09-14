@@ -137,3 +137,51 @@ Everything here is a report or a recommendation for **rc-emit**, who owns
 9-entry `cheapest removal` correction should be emitted by the fixed predicate, not hand-written nine
 times, for the same reason the Crescent Strike correction should not be hand-written a hundred times.
 Probes are in `.scratch-plaza/entries-vs-sweeps{,2,3}.mjs` and `.scratch-plaza/gear-blast.mjs`.
+
+---
+
+## 7. Addendum, same day: the sweep is EXACTLY clean over its population, and the whole gap is one class
+
+Splitting the Equipment-bearing population by class settles what the 90 means.
+
+> **PREDICATE**: entry whose `uses[]` carries a card tagged `Equipment`; *answered* = names a card from
+> the shipped 17 **or** from the bounce family. Probe: `SFD-059 Svellsongur` reads as Equipment,
+> `OGN-293 The Grand Plaza` does not.
+
+| | count |
+|---|---|
+| entries standing on an Equipment | 137 |
+| …that are **finishers** (INFINITE / BURST / CHAIN / ALT_WIN) | **33** |
+| …of those 33, naming an answer | **33 — one hundred per cent** |
+| …that are **ENGINE** and name no answer | **90** |
+| finishers naming no answer | **0** |
+
+**All 90 are ENGINEs. Not most — all of them.** So `--strict`'s *"zero unanswered holes"* is not a
+predicate that happens to be lenient; over the population it covers it is **exactly right**, and the
+entire debt sits in the class it does not cover. That is CLAUDE.md's own sentence — *a clean sweep is
+clean over its POPULATION* — measured on a fourth independent axis.
+
+**Reconciled against the recorded figure**: CLAUDE.md carries *"96 ENGINEs use Equipment with no gear
+answer named"*. Mine is **90**, or **91** on the shipped instrument's own view (which cannot count the
+bounce family as an answer). The delta is catalogue drift plus the one bounce-only entry. **The count
+is perishable and the structure is not**: 33 of 33 answered, 90 of 90 outside.
+
+### The third instance of one pattern, and the sentence that unifies it
+
+Exactly **one** entry of 767 names a bounce and no kill: **`spinning-axe-factory-recall-inactive-
+temporary`** — and, like `crescent-strike-frostcoat-cub-sweep-threshold`, **its own id names the card
+the sweep cannot see.** Both missing families are represented in this catalogue exactly once, and both
+times by an entry whose title is the card.
+
+CLAUDE.md already records the same shape for a third card: `SFD-011 Angle Shot` is *"already
+catalogued, in `jax-angle-shot-attach-draw`, used on your OWN gear for draw; the enemy-facing use is in
+no entry."* `SFD-135 Factory Recall` is that sentence word for word — its one entry plays it to
+**rescue your own Spinning Axe** (step 3: *"If the carrier is about to die, play Factory Recall … and
+return the Axe to your hand"*), never to answer an opponent's.
+
+> **THE UNIFYING SENTENCE: THIS CATALOGUE DESCRIBES WHAT A CARD DOES *FOR* YOU FAR MORE OFTEN THAN WHAT
+> IT DOES *TO* YOU, AND THE ANSWER-SWEEPS INHERIT EXACTLY THAT BLIND SPOT, BECAUSE EACH WAS SEEDED FROM
+> THE WORDING OF A CARD SOMEBODY HAD ALREADY MET AS A THREAT.** Angle Shot, Factory Recall and Crescent
+> Strike are three cards this project has read carefully, written up correctly, and never turned
+> around. A diff between the swept sets and the entries is the cheapest way to turn them around,
+> because the entries have already done the reading.
