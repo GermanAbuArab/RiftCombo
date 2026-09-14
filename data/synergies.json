@@ -386,7 +386,7 @@
       "name": "Fiora, Worthy readies a unit a buff pushes over 5 Might",
       "anchor": "SFD-180",
       "partner": {
-        "textMatches": "\\[Buff\\]|[Bb]uff (a|all|another|me|up to|your)|[Gg]ive (me|it|a unit|a friendly unit|another friendly unit|your units)[^.]{0,60}\\+\\d+ :rb_might:",
+        "textMatches": "\\[Buff\\]|[Bb]uff (a|all|another|me|up to|your|it)|[Gg]ive (me|it|a unit|a friendly unit|another friendly unit|your units)[^.]{0,60}\\+\\d+ :rb_might:",
         "excludes": [
           {
             "card": "OGN-146",
@@ -428,9 +428,9 @@
         ]
       },
       "status": "rule-verified",
-      "reviewed": "2026-09-04",
-      "reviewedCount": 98,
-      "reviewedSet": "8584be57"
+      "reviewed": "2026-09-14",
+      "reviewedCount": 99,
+      "reviewedSet": "20d306da"
     },
     {
       "id": "fiora-equipment-ready",
@@ -713,7 +713,7 @@
       "name": "Wallop is free the moment you have a buff to spend",
       "anchor": "OGN-146",
       "partner": {
-        "textMatches": "\\[Buff\\]|[Bb]uff (a|all|another|me|up to|your)",
+        "textMatches": "\\[Buff\\]|[Bb]uff (a|all|another|me|up to|your|it)",
         "textExcludes": "spend a buff as an additional cost",
         "excludes": [
           {
@@ -740,9 +740,9 @@
         ]
       },
       "status": "rule-verified",
-      "reviewed": "2026-09-04",
-      "reviewedCount": 33,
-      "reviewedSet": "01d99c57"
+      "reviewed": "2026-09-14",
+      "reviewedCount": 34,
+      "reviewedSet": "76dd79a2"
     },
     {
       "id": "time-warp-once-per-turn",
@@ -4944,7 +4944,7 @@
       "name": "Mistfall readies any friendly unit a buff source touches",
       "anchor": "OGN-152",
       "partner": {
-        "textMatches": "\\[Buff\\]|[Bb]uff (a|all|another|me|up to|your)",
+        "textMatches": "\\[Buff\\]|[Bb]uff (a|all|another|me|up to|your|it)",
         "excludes": [
           {
             "card": "OGN-146",
@@ -4967,16 +4967,16 @@
         ]
       },
       "status": "rule-verified",
-      "reviewed": "2026-09-07",
-      "reviewedCount": 34,
-      "reviewedSet": "78f8476c"
+      "reviewed": "2026-09-14",
+      "reviewedCount": 35,
+      "reviewedSet": "e7554931"
     },
     {
       "id": "simian-ancestor-buff-ready",
       "name": "Simian Ancestor readies himself off any buff that lands on him",
       "anchor": "SFD-047",
       "partner": {
-        "textMatches": "\\[Buff\\]|[Bb]uff (a|all|another|me|up to|your)",
+        "textMatches": "\\[Buff\\]|[Bb]uff (a|all|another|me|up to|your|it)",
         "excludes": [
           {
             "card": "OGN-146",
@@ -4999,9 +4999,9 @@
         ]
       },
       "status": "rule-verified",
-      "reviewed": "2026-09-07",
-      "reviewedCount": 34,
-      "reviewedSet": "545f1426"
+      "reviewed": "2026-09-14",
+      "reviewedCount": 35,
+      "reviewedSet": "a60a1fc3"
     },
     {
       "id": "prize-of-progress-gear-activation",
@@ -5127,7 +5127,7 @@
       "name": "Vanguard Helm needs a buff SOURCE, not a kill enabler — the sibling rule already owns the active-kill half",
       "anchor": "OGN-228",
       "partner": {
-        "textMatches": "\\[Buff\\]|[Bb]uff (a|all|another|me|up to|your)",
+        "textMatches": "\\[Buff\\]|[Bb]uff (a|all|another|me|up to|your|it)",
         "excludes": [
           {
             "card": "OGN-146",
@@ -5163,16 +5163,16 @@
         ]
       },
       "status": "rule-verified",
-      "reviewed": "2026-09-07",
-      "reviewedCount": 32,
-      "reviewedSet": "db824006"
+      "reviewed": "2026-09-14",
+      "reviewedCount": 33,
+      "reviewedSet": "fbba6e63"
     },
     {
       "id": "monastery-hirana-buff-supply",
       "name": "Monastery of Hirana spends a buff for a card, so it wants the same buff-source partner as every other buff spender",
       "anchor": "OGN-282",
       "partner": {
-        "textMatches": "\\[Buff\\]|[Bb]uff (a|all|another|me|up to|your)",
+        "textMatches": "\\[Buff\\]|[Bb]uff (a|all|another|me|up to|your|it)",
         "excludes": [
           {
             "card": "OGN-146",
@@ -5205,9 +5205,9 @@
         ]
       },
       "status": "rule-verified",
-      "reviewed": "2026-09-07",
-      "reviewedCount": 31,
-      "reviewedSet": "22d9564e"
+      "reviewed": "2026-09-14",
+      "reviewedCount": 32,
+      "reviewedSet": "86e5a0db"
     },
     {
       "id": "irelia-fervent-choose-cost",
