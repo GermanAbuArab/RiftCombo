@@ -1,6 +1,6 @@
 import { addCard, emptyDeck } from "./builder.js";
 import type { CardIndex } from "./cards.js";
-import { COMBO_KEYS, ZONES } from "./types.js";
+import { COMBO_KEYS, INGREDIENT_ROLES, ZONES } from "./types.js";
 import type { Combo, ComboClass, ComboStatus, Domain, Feature, Variant } from "./types.js";
 
 /**
@@ -66,6 +66,14 @@ export function validateCombos(combos: Combo[], features: Feature[], cards: Card
       // on 24 rows while the type declared eight members and nothing anywhere noticed.
       if (ing.zone && !(ZONES as readonly string[]).includes(ing.zone)) {
         errors.push(`${c.id}: ${ing.card} has unknown zone ${ing.zone}`);
+      }
+      // Same reason, one field over, and this one REACHED A PLAYER: `role: "multiplier"` was authored
+      // on three rows and `web/main.ts` renders `u.role` straight into the route card's sub-line, so
+      // three entries told a reader "multiplier" where every other entry using the same card said
+      // "engine". The union was compile-time only while the docblock beside it already said why that
+      // never works here.
+      if (!(INGREDIENT_ROLES as readonly string[]).includes(ing.role)) {
+        errors.push(`${c.id}: ${ing.card} has unknown role ${ing.role}`);
       }
     }
     for (const f of [...c.needs, ...c.produces, ...(c.removes ?? [])]) {

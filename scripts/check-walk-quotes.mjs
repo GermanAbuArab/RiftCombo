@@ -59,7 +59,15 @@ for (const f of files) {
   const s = fs.readFileSync(`${dir}/${f}`, "utf8");
   for (const m of s.matchAll(/\*"([^"]{30,})"\*/g)) {
     const lead = s.slice(Math.max(0, m.index - 40), m.index);
-    if (!/\d{3}(\.[0-9a-z]+)*[^0-9a-z]*$/.test(lead)) continue;   // it claims to be rules text
+    // "It claims to be rules text" = a rule number in the preceding 40 characters. The lookbehind is
+    // the whole correctness of that test, and without one BOTH documented traps fire: `#153` reads as
+    // rule 153 and `OGN-205` reads as rule 205. Two lanes hit it independently in one session, from a
+    // different variant each time, on passages that were a legitimate quotation of `CLAUDE.md` and of
+    // a script's own output. The direction is FALSE-POSITIVE only, so the checker stayed sound - but
+    // the cost is worse than a wrong number: both lanes REWORDED THEIR PROSE to get past it, which
+    // teaches authors to write around the instrument instead of the instrument reading the prose.
+    // Card codes are everywhere in walk documents, so some of the standing flags were this artifact.
+    if (!/(?<![-#0-9.])\d{3}(\.[0-9a-z]+)*[^0-9a-z]*$/.test(lead)) continue;
     total++;
     const parts = norm(m[1]).replace(/^…\s*/, "").replace(/\s*…$/, "").split(/\s*…\s*/);
     if (!parts.every((p) => p.length < 12 || hay.includes(p))) flags.push([f, norm(m[1])]);

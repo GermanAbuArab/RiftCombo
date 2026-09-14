@@ -5013,11 +5013,12 @@
         ],
         "textMatches": ":rb_exhaust:"
       },
-      "why": "\"When you use an activated ability of a gear, give me +1 Might this turn\" counts activations, not gear, and the verified engine (prize-of-progress-seal-gear-might) is deliberately the cheapest possible partner: Seal of Insight is the Mind deck's E0 Power base, so its exhaust is already being paid every turn regardless of Prize of Progress. Every gear in the list carries an exhaust cost of its own, but the honest ceiling is small — an exhaust cost allows one activation per copy per turn (315.1.b readies it at the next Awaken), so the real count is however many gear abilities a given turn actually uses, not the size of this list.",
+      "why": "\"When you use an activated ability of a gear, give me +1 Might this turn\" counts activations, not gear, and the verified engine (prize-of-progress-seal-gear-might) is deliberately the cheapest possible partner: Seal of Insight is the Mind deck's E0 Power base, so its exhaust is already being paid every turn regardless of Prize of Progress. Every gear in the list carries an exhaust cost of its own, but the honest ceiling is small — an exhaust cost allows one activation per copy per turn (315.1.b readies it at the next Awaken), so the real count is however many gear abilities a given turn actually uses, not the size of this list. 377.2.a adds WHEN it pays, and the answer is a credential rather than the caveat it looks like: \"If 'using' or 'playing' an Activated Ability is part of a trigger condition, that condition is fulfilled when the Activated Ability resolves.\" So the +1 Might rides on the activation RESOLVING and an activation answered on the chain pays nothing - and in this pool it practically cannot be answered. The only two cards that counter an ability at all are SFD-045 Not So Fast and UNL-106 Repulse (swept 2026-09-14: 11 counter printings, 9 say \"a spell\", these two say \"spell or ability\", none names a unit), and BOTH are confined to an ability that CHOOSES a friendly unit or gear. Measured over this rule's own 39 partners, exactly ONE qualifies - UNL-045 Forgotten Signpost - so 38 of 39 gear activations here are un-counterable by anything the pool prints.",
       "basis": {
         "rules": [
           "143.4",
           "315.1.b",
+          "377.2.a",
           "709"
         ],
         "combos": [
@@ -7250,6 +7251,35 @@
       "reviewed": "2026-09-13",
       "reviewedCount": 10,
       "reviewedSet": "ef0174c5"
+    },
+    {
+      "id": "nocturne-horrifying-deck-top-look",
+      "name": "Nocturne, Horrifying is fired by LOOKING at the top of your deck, which no other deck-top payoff in the pool is",
+      "anchor": "OGN-194",
+      "partner": {
+        "textMatches": "[Ll]ook at the top",
+        "excludes": [
+          {
+            "card": "SFD-018",
+            "why": "\"If you would reveal cards from a deck, look at the top card first\" is a rider on somebody else's reveal, not a look of its own - and any reveal that triggers it has already triggered Nocturne, so it supplies no extra window."
+          }
+        ]
+      },
+      "why": "Nocturne prints \"As you look at or reveal me from the top of your deck, you may banish me. If you do, you may play me for [rainbow]\" - and the word LOOK is the whole rule. 436.1 defines Predicting as \"the act of looking at a single card from the top of the Main Deck\" and 817.1.b makes [Vision] functionally short for \"When this is played, predict\", so the entire Predict and Vision pool is a LOOK and never a REVEAL. 424.1.a.1 - \"Other cards, including the card being revealed, can reference the act of being Revealed\" - is what lets a card in a deck watch its own presentation at all, and Nocturne is the only card in the pool that watches BOTH verbs. That matters because the pool's other deck-top payoff, SFD-175 Undertitan, is worded \"As I'm revealed from your deck\" and is therefore fed by none of these 29: undertitan-reveal-fuel and undertitan-reveal-payoff both match on \"reveal\", and the two lists barely overlap. 052 makes \"your deck\" the Main Deck. The payoff is a 4-Energy 4-Might [Ganking] body for one rainbow Power, and it costs no card and no play from hand - the price is that Nocturne must be on top when the look happens, which is why every partner here is a card the deck was already going to run for its own reasons.",
+      "basis": {
+        "rules": [
+          "424.1.a.1",
+          "436.1",
+          "436.1.a",
+          "817.1.b",
+          "052"
+        ],
+        "combos": []
+      },
+      "status": "rule-verified",
+      "reviewed": "2026-09-14",
+      "reviewedCount": 29,
+      "reviewedSet": "9bcc8898"
     }
   ]
 }

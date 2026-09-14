@@ -59,7 +59,39 @@ export interface LegalityEntry {
 
 export type ComboClass = "INFINITE" | "BURST" | "CHAIN" | "ALT_WIN" | "ENGINE";
 export type ComboStatus = "verified" | "candidate" | "refuted";
-export type IngredientRole = "engine" | "enabler" | "payoff" | "resource" | "ready" | "battlefield" | "legend";
+/**
+ * What a piece DOES in the line. A RUNTIME list with the type derived from it — the FIFTH in this
+ * file after `SOURCE_KINDS`, `ZONES`, `COMBO_KEYS` and `CARD_TYPES`, and it is here because it was
+ * the one this file had already stated the rule for and then left behind: the docblock three lines
+ * below says *"nothing this project authors is ever WRITTEN in TypeScript"*, and `IngredientRole`
+ * sat directly above it as a compile-time union anyway.
+ *
+ * The cost was not hypothetical and it reached a player. `role: "multiplier"` was authored on THREE
+ * `uses` rows and is not a member of this union; nothing checked, because no `Ingredient` is ever
+ * written in TypeScript — they are authored in `data/combos.json` and arrive through an unchecked
+ * cast in `src/load.ts`. `web/main.ts` renders `u.role` straight into the route card's sub-line, so
+ * three entries showed a reader *"multiplier"* where every other entry using the same card showed
+ * *"engine"*.
+ *
+ * The three were NORMALISED rather than the union EXTENDED, and the catalogue settled that rather
+ * than anybody's taste: across the pool's three trigger multipliers the convention is
+ * `UNL-029` engine 11 / multiplier 2, `UNL-087` engine 20 / multiplier 0, `OGN-236` engine 10 /
+ * multiplier 1 — forty-one rows to three, and the most-used of the three is `engine` in all twenty.
+ * A category the catalogue wanted would not lose 41 to 3 on its own best-covered card.
+ *
+ * Found by cross-tabbing roles and reading a cell of size ONE. That is the argument for reading the
+ * small cells: the defect is never in the big ones, because a big cell is a convention.
+ */
+export const INGREDIENT_ROLES = [
+  "engine",
+  "enabler",
+  "payoff",
+  "resource",
+  "ready",
+  "battlefield",
+  "legend",
+] as const;
+export type IngredientRole = (typeof INGREDIENT_ROLES)[number];
 /**
  * Where a piece has to be for the line to work. A RUNTIME list with the type derived from it, for
  * the reason `SOURCE_KINDS` below is one: a union that exists only at compile time is checked only

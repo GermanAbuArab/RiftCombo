@@ -19,7 +19,11 @@ import { describe, expect, it } from "vitest";
  * When you legitimately lower it, lower CEILING in the same commit. If you raise it, you are papering
  * over a defect — fix the quotation instead.
  */
-const CEILING = 75;
+const CEILING = 74;  // lowered from 75 on 2026-09-14 in the same commit as the lookbehind fix in
+// scripts/check-walk-quotes.mjs: one standing flag was the instrument's own artifact, a passage whose
+// lead contained `#153` and was read as rule 153. Two lanes hit that trap independently and BOTH
+// REWORDED THEIR PROSE to get past it, which is the real cost - a false positive that teaches authors
+// to write around the checker rather than the checker to read the prose.
 
 const out = execFileSync("node", ["scripts/check-walk-quotes.mjs", "--count"], { encoding: "utf8" });
 const { files, claiming, flagged } = JSON.parse(out) as { files: number; claiming: number; flagged: number };
