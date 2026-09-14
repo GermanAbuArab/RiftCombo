@@ -5705,9 +5705,12 @@
       "name": "Eye of Twilight's [Action] Tank grant lands on a [Shield] body, whose defending Might is the threshold nothing can clear",
       "anchor": "VEN-147",
       "partner": {
-        "textMatches": "\\[Shield"
+        "textMatches": "\\[Shield",
+        "types": [
+          "unit"
+        ]
       },
-      "why": "815.1.c.2 is the load-bearing sentence: \"Units without Tank are invalid assignments until all units with Tank have lethal damage assigned to them.\" So an attack whose summed Might cannot reach the Tank's CURRENT Might assigns nothing anywhere, and the whole garrison survives — the Tank's own Might is the only lever, because 815.2 makes a second Tank grant redundant. 814.1.c makes [Shield] \"While I am a defender, I have +X [M]\" and 814.1.d.1 keeps it in effect as long as the Defender designation lasts, so a [Shield] body's threshold is exactly the number that matters and exists only at the moment it matters; 814.2 sums a second granted instance on top. The legend's ability is [Action], and 806.1.c.2 lets it be activated during showdowns on any player's turn, so the grant is bought AFTER 464.2.c.3 has designated the attackers and their summed Might is countable. It must NOT go on the [Backline] body: 465.2.c.8 names Caitlyn, Patrolling by name as the worked example of an exclusionary pair and hands the choice back to the attacker. This rule REPLACES `eye-of-twilight-protects-backline`, refuted 2026-09-09: 465.2.c.6 already puts a Backline body last, so granting Tank to some OTHER body left its position unchanged and the Backline card was a bystander rather than a partner.",
+      "why": "815.1.c.2 is the load-bearing sentence: \"Units without Tank are invalid assignments until all units with Tank have lethal damage assigned to them.\" So an attack whose summed Might cannot reach the Tank's CURRENT Might assigns nothing anywhere, and the whole garrison survives — the Tank's own Might is the only lever, because 815.2 makes a second Tank grant redundant. 814.1.c makes [Shield] \"While I am a defender, I have +X [M]\" and 814.1.d.1 keeps it in effect as long as the Defender designation lasts, so a [Shield] body's threshold is exactly the number that matters and exists only at the moment it matters; 814.2 sums a second granted instance on top. The legend's ability is [Action], and 806.1.c.2 lets it be activated during showdowns on any player's turn, so the grant is bought AFTER 464.2.c.3 has designated the attackers and their summed Might is countable. It must NOT go on the [Backline] body: 465.2.c.8 names Caitlyn, Patrolling by name as the worked example of an exclusionary pair and hands the choice back to the attacker. This rule REPLACES `eye-of-twilight-protects-backline`, refuted 2026-09-09: 465.2.c.6 already puts a Backline body last, so granting Tank to some OTHER body left its position unchanged and the Backline card was a bystander rather than a partner. PARTNER NARROWED TO UNITS 2026-09-14: the anchor's own text says \"a friendly unit\", and the bare \\\\[Shield predicate was matching Shield SOURCES as well as Shield BODIES - five of the 27 were not units at all (UNL-208 Black Flame Altar and OGN-279 Fortified Position are battlefields, OGN-057 Block is a spell, SFD-064 Cloth Armor an Equipment, SFD-181 Mechanized Menace a legend). All five GRANT Shield to somebody else and none has a Shield threshold of its own, which is the quantity this rule is about. OGN-057 Block is the sharpest case for the Tank half specifically: it grants [Tank] itself, so pairing it with a Tank-granting legend is 815.2's redundancy rather than a synergy. One judgement call is deliberately LEFT IN rather than excluded silently: UNL-071 Chakram Dancer is a unit that GRANTS [Shield] to its neighbours and carries none itself, so it survives the types filter while having no threshold of its own - flagged here for the author rather than dropped.",
       "basis": {
         "rules": [
           "815.1.b",
@@ -5728,9 +5731,9 @@
         ]
       },
       "status": "rule-verified",
-      "reviewed": "2026-09-09",
-      "reviewedCount": 27,
-      "reviewedSet": "bff98d26"
+      "reviewed": "2026-09-14",
+      "reviewedCount": 22,
+      "reviewedSet": "ea728e38"
     },
     {
       "id": "counter-strike-protects-while-at-battlefield",
@@ -6479,9 +6482,12 @@
       "name": "Last Stand doubles a defender's CURRENT Might, so the [Shield] half is counted and then kept",
       "anchor": "OGN-069",
       "partner": {
-        "textMatches": "\\[Shield"
+        "textMatches": "\\[Shield",
+        "types": [
+          "unit"
+        ]
       },
-      "why": "432 was cited by nothing in this project until now, and its only worked example is this card. 432.1: \"Doubling is the act of increasing a numeric attribute by an amount equal to that attribute’s current value\" — the current value, not the printed one — and 432.1.a fixes that amount for the stated duration. The example is worth reading whole: \"A unit with 3 base Might and Shield 2 is in combat as a Defender. Since Shield applies, its current Might is 5\", Last Stand then gives it +5, \"for a current Might of 10. After combat, Shield no longer applies, but the +5 Might from Last Stand does, so the unit’s Might is 8.\" Two consequences a builder needs: play it AFTER the Defender designation (Last Stand is [Action], so 806.1.b reaches the showdown) and the Shield value is doubled as well as counted; and the increase SURVIVES the designation lapsing, which no other pump in the pool does. 814.1.c is why the timing matters at all (\"While I am a defender, I have +X [M]\") and 814.2 sums a second granted instance before the doubling reads the total. The rider is real: the body is given [Temporary] and 816.1.b kills it at the start of your own Beginning Phase before scoring, so it can never hold a battlefield the following turn. `eye-of-twilight-tank-on-a-shield-body` uses the same partner list for a different reason — there the Shield raises an unclearable Tank threshold; here it is the number being doubled.",
+      "why": "432 was cited by nothing in this project until now, and its only worked example is this card. 432.1: \"Doubling is the act of increasing a numeric attribute by an amount equal to that attribute’s current value\" — the current value, not the printed one — and 432.1.a fixes that amount for the stated duration. The example is worth reading whole: \"A unit with 3 base Might and Shield 2 is in combat as a Defender. Since Shield applies, its current Might is 5\", Last Stand then gives it +5, \"for a current Might of 10. After combat, Shield no longer applies, but the +5 Might from Last Stand does, so the unit’s Might is 8.\" Two consequences a builder needs: play it AFTER the Defender designation (Last Stand is [Action], so 806.1.b reaches the showdown) and the Shield value is doubled as well as counted; and the increase SURVIVES the designation lapsing, which no other pump in the pool does. 814.1.c is why the timing matters at all (\"While I am a defender, I have +X [M]\") and 814.2 sums a second granted instance before the doubling reads the total. The rider is real: the body is given [Temporary] and 816.1.b kills it at the start of your own Beginning Phase before scoring, so it can never hold a battlefield the following turn. `eye-of-twilight-tank-on-a-shield-body` uses the same partner list for a different reason — there the Shield raises an unclearable Tank threshold; here it is the number being doubled. PARTNER NARROWED TO UNITS 2026-09-14: the anchor's own text says \"a friendly unit\", and the bare \\\\[Shield predicate was matching Shield SOURCES as well as Shield BODIES - five of the 27 were not units at all (UNL-208 Black Flame Altar and OGN-279 Fortified Position are battlefields, OGN-057 Block is a spell, SFD-064 Cloth Armor an Equipment, SFD-181 Mechanized Menace a legend). All five GRANT Shield to somebody else and none has a Shield threshold of its own, which is the quantity this rule is about. OGN-057 Block is the sharpest case for the Tank half specifically: it grants [Tank] itself, so pairing it with a Tank-granting legend is 815.2's redundancy rather than a synergy. One judgement call is deliberately LEFT IN rather than excluded silently: UNL-071 Chakram Dancer is a unit that GRANTS [Shield] to its neighbours and carries none itself, so it survives the types filter while having no threshold of its own - flagged here for the author rather than dropped.",
       "basis": {
         "rules": [
           "432.1",
@@ -6498,9 +6504,9 @@
         ]
       },
       "status": "rule-verified",
-      "reviewed": "2026-09-09",
-      "reviewedCount": 27,
-      "reviewedSet": "bff98d26"
+      "reviewed": "2026-09-14",
+      "reviewedCount": 22,
+      "reviewedSet": "ea728e38"
     },
     {
       "id": "dune-surfer-one-way-tank-ignore",
