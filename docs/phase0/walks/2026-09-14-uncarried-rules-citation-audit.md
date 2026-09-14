@@ -290,3 +290,108 @@ Its FIRST version reported **8 not-verbatim on batches 1-3 and all 8 were false*
 quotations, because it invented its own normalisation instead of using the project's. **Fourth
 over-count on my own instrument in one task**, after the redundancy family, the idempotence gate and
 the slash regression. Sampling the hits fixed it every time.
+
+---
+
+# Part two: harvesting the findings into `data/synergies.json`
+
+Several of the 63 are not only facts about the rules — they are **anchor + partner value exchanges**,
+which is what a synergy rule is. Four leads were worked. **One became a rule, one became an amendment
+to an existing rule, and three were refused with their counts.** That yield is reported as-is; the
+fleet has a standing instruction not to pad toward the user's 1,000.
+
+## The rule — `nocturne-horrifying-deck-top-look`, anchor `OGN-194`, 29 partners
+
+`OGN-194 Nocturne, Horrifying` is in **zero** synergy rules today and is the sharper of the pool's two
+deck-top payoffs. He prints *"As you look at or reveal me from the top of your deck, you may banish
+me. If you do, you may play me for [rainbow]."*
+
+**The word LOOK is the whole rule**, and both halves were verified at source: **436.1**, *"Predicting
+a card is the act of looking at a single card from the top of the Main Deck"*, and **817.1.b**, *"It
+is functionally short for 'When this is played, predict.'"* So the entire Predict and Vision pool is a
+**LOOK** and never a **REVEAL**, and **Nocturne is the only card in the pool that watches both
+verbs.** `052` makes *"your deck"* the Main Deck; `424.1.a.1` is what lets a card in a deck reference
+its own presentation at all.
+
+**It is not a duplicate of the two existing Undertitan rules**, which were read in full first.
+`SFD-175 Undertitan` is worded *"As I'm revealed from your deck"*; `undertitan-reveal-fuel` and
+`undertitan-reveal-payoff` both match on *"reveal"*, and **none of these 29 partners is reached by
+either.** Different anchor, different verb, near-disjoint lists.
+
+**Discipline, all of it run:** the whole match list was printed and read card by card — 30 raw, 29
+after one exclude, well inside the 150 cap; **103.1.b over every pairing gives 0 of 29 exceeding two
+domains**, so it is not the domain-dead failure `#221` found, and Nocturne being mono-Chaos is exactly
+what makes it wide; and one `excludes` entry carries its reason, the second of the four
+false-positive shapes — **`SFD-018 Void Hatchling`**, a rider on somebody else's reveal, where **any
+reveal that triggers it has already triggered Nocturne**.
+
+## The correction it forces, and it is the MIRROR of the shape this audit was built to find
+
+`CLAUDE.md` says: *"Predict (436.1) and Vision (817.1.b) are defined with 'look at', never 'reveal'
+(424.1 is public presentation), so neither fires an 'as I'm revealed' payoff."*
+
+**Every word is true.** The pool prints exactly one *"as I'm revealed"* payoff and Predict/Vision do
+not fire it. **But a reader takes it to mean Predict and Vision feed no deck-top payoff in this pool,
+and that is false** — they feed Nocturne, whose clause reads *"look at or reveal"*.
+
+**The six cases this file names — `355.7`, `136.2.c`, `811.6`, `384`, `316.8.b.1`, `355.8` — are all
+THE EXCEPTION IS CARRIED AND THE RULE IS NOT. This one runs the other way: THE GENERAL STATEMENT IS
+CARRIED AND THE EXCEPTION IS NOT.** Same cause — a file built by promoting findings keeps whichever
+half surprised somebody — and it is worth knowing that the defect has two directions, because only one
+of them has ever been looked for.
+
+## The amendment, where measuring it reversed the claim
+
+`prize-of-progress-gear-activation` owes **`377.2.a`**: *"If 'using' or 'playing' an Activated Ability
+is part of a trigger condition, that condition is fulfilled when the Activated Ability resolves."*
+
+The first draft read that as a caveat — *a countered activation pays nothing*. **Measured, it is a
+CREDENTIAL.** Swept 2026-09-14: **11 counter printings; 9 say *"a spell"*; exactly two say *"spell or
+ability"*** (`SFD-045 Not So Fast`, `UNL-106 Repulse`); **none names a unit.** Both of those two are
+confined to an ability that **CHOOSES a friendly unit or gear**, and run against that rule's own **39
+partners exactly ONE qualifies** (`UNL-045 Forgotten Signpost`). **So 38 of 39 gear activations there
+are un-counterable by anything the pool prints** — a fact about the rule's robustness that nobody had
+stated, in place of a warning that is false 38 times in 39.
+
+**Two predicate errors on the way, both caught by a second look.** A first counter sweep used
+`Counter a ` and returned **seven**, contradicting the file's published **eleven** — the file was
+right and the sweep was one ARTICLE short, since both ability-counters print *"Counter **an** enemy
+spell or ability"*; widening to `Counter (a|that|it|target)` returns exactly 11. And that same narrow
+sweep caught `UNL-044 Flurry of Feathers` on its `[Reaction]` REMINDER text — the false positive
+`CLAUDE.md` names by card, arriving on schedule.
+
+## Three refusals, each with its count
+
+- **`822.1.d`, Ambush as a VERB — REFUSED. The pool prints TWO**: `UNL-120 Rengar, Trophy Hunter` and
+  `UNL-166 Stalking Wolf`, and `CLAUDE.md` already carries Stalking Wolf's clause in full. A synergy
+  rule needs a partner PREDICATE over the pool; this is a reading of two cards' own text with nothing
+  to pair them with. Right as a citation, not a rule.
+- **`355.11.b`, a group target shrinking to a legal subset — REFUSED. The pool prints ONE**
+  total-Might-gated group removal, `OGN-256 Fox-Fire` — and the "partner" in Riot's example is the
+  **opponent's** Reaction pump, which is not an in-deck exchange.
+- **`359.3.e.16`, a delayed ability whose duration has ended — REFUSED, and it is the wrong KIND.**
+  Two cards (`UNL-184 Thrill of the Hunt`, Riot's own example, and `OGN-160 Dazzling Aurora`), and the
+  interaction is an **ANTI-synergy** — the trigger is NOT generated. The UI presents a rule as *"pairs
+  its anchor with"*, so shipping a cancellation as a synergy would tell a player the opposite of the
+  truth.
+
+## Two method results that generalise
+
+**A BANNED PARTNER IS NOT EXCLUDED HERE, AND THAT WAS MEASURED RATHER THAN DECIDED.** `SFD-122 Called
+Shot` is banned in both formats and sits in the Nocturne list. Before inventing a policy: **20 of 220
+live rules contain a banned card in their match list and only 3 exclude one by name** —
+`karma-channeler-recycle-main`, `syndra-transcendent-repeat-grant` and `prepared-neophyte-repeat-cost`
+all carry Called Shot without excluding it. Legality is format-scoped and handled elsewhere; an
+`excludes` entry is for a card the RULE does not reach. A bespoke exclude would have been inconsistent
+with nineteen rules.
+
+**AN AMENDMENT MUST BE VALIDATED BY SUBSTITUTION, WITH THE FINGERPRINT HELD CONSTANT.** The amended
+rule is substituted for the live one of the same id, the merged file must still validate, and
+`fingerprintOf(partnersOf(...))` must be **UNCHANGED** — which is what makes it an amendment rather
+than a rewrite, and is checkable rather than asserted. The check also printed `fields changed = why,
+basis`, which is the same *"prove what you did NOT touch"* discipline `#204` established for
+`combos.json`.
+
+**And the file's own validator earned its keep on this lane**: a staging marker placed inside a rule
+object failed with *"unknown field `_amendment`"* and *"duplicate id"*, both correct, which is why new
+rules and amendments are staged in two separate files.
