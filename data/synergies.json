@@ -749,9 +749,9 @@
       "name": "Time Warp runs every once-a-turn trigger a second time",
       "anchor": "OGN-122",
       "partner": {
-        "textMatches": "[Aa]t the (start of (your|my) Beginning Phase|end of your turn)"
+        "textMatches": "[Aa]t the (start of (your|my) (Beginning|Main) Phase|end of your turn)"
       },
-      "why": "The extra turn brings a whole Beginning Phase and a whole end of turn with it, so anything keyed to those fires again — and you score your held battlefields again on the way in.",
+      "why": "The extra turn brings a whole Beginning Phase, a whole MAIN Phase and a whole end of turn with it, so anything keyed to any of the three fires again — and you score your held battlefields again on the way in. 735: an effect that says \"take a turn after this\" creates a temporary Additional Turn inserted into the turn queue, which is a FULL turn and not a fragment, so 316 Main Phase arrives with 315 Beginning Phase and 317 Ending Phase. The Main Phase half was missing from this predicate until 2026-09-14 and the rule's own basis entry was the proof: `bottled-constellation-time-warp` exists BECAUSE Time Warp runs `VEN-067 Bottled Constellation`'s \"At the start of your Main Phase\" a second time, and this rule could not see the card.",
       "basis": {
         "rules": [
           "383.3",
@@ -766,9 +766,9 @@
         ]
       },
       "status": "rule-verified",
-      "reviewed": "2026-09-04",
-      "reviewedCount": 13,
-      "reviewedSet": "9a937eba"
+      "reviewed": "2026-09-14",
+      "reviewedCount": 14,
+      "reviewedSet": "64d47399"
     },
     {
       "id": "gardens-of-becoming-xp",

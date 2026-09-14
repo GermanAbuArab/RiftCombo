@@ -67,6 +67,12 @@ for (const f of files) {
     // the cost is worse than a wrong number: both lanes REWORDED THEIR PROSE to get past it, which
     // teaches authors to write around the instrument instead of the instrument reading the prose.
     // Card codes are everywhere in walk documents, so some of the standing flags were this artifact.
+    // This deliberately keeps the FOUR-trap lookbehind and NOT the five-trap counter form used
+    // against CLAUDE.md, because this is a PASSAGE DETECTOR and not a citation counter, and the
+    // two want different answers. A rule-PAIR slash (`420.1/420.2.a`) is a genuine rules citation
+    // here and SHOULD open the window, where the counter must exclude it to avoid double-counting;
+    // and the sentence-closing period is already allowed by the trailing `[^0-9a-z]*$`. What remains
+    // is a URL slash, whose direction is false-positive only. Flagged by rc-gap3 and left on purpose.
     if (!/(?<![-#0-9.])\d{3}(\.[0-9a-z]+)*[^0-9a-z]*$/.test(lead)) continue;
     total++;
     const parts = norm(m[1]).replace(/^…\s*/, "").replace(/\s*…$/, "").split(/\s*…\s*/);
