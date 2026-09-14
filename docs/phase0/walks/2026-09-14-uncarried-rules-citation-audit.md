@@ -446,3 +446,70 @@ staged file still held both. **The validator caught it as `duplicate id`** — n
 it is handed over again, exactly as an apply-list does; the record is git. That is the same hazard
 recorded earlier in this document for `apply.json`, arriving in a different file, which is what makes
 it a class rather than an incident.
+
+## Three defects in live rules, and a generalisation that FAILED — the failure being the better result
+
+Turning the eight-member redundancy family into a check — *a rule whose ANCHOR grants keyword K and
+whose list holds a card that already HAS K is pairing with a no-op* — flagged **six rules**. Reading
+them, **five were the probe's fault, not the catalogue's**: the predicate matched a **MENTION** of a
+bracketed keyword rather than **POSSESSION** of it, which is the `/\[hidden\]/` trap `CLAUDE.md` names
+by name. `UNL-208 Black Flame Altar` *reads* `[Temporary]`, `UNL-048 Trevor Snoozebottom` *makes* a
+`[Temporary]` token, `UNL-075 Gustwalker`'s `[Ganking]` is at `[Level 3]`, `UNL-108 Wily Newtfish`'s is
+XP-gated, `SFD-007 Gem Jammer` *grants* it.
+
+**The redundancy check therefore yielded almost nothing — and following its one survivor into the
+RULE's own predicate is where the real defects were.**
+
+**THREE LIVE RULES PAIR AN ANCHOR WITH PARTNERS THAT CANNOT BE WHAT IT ACTS ON**, each fixed by one
+field (`types: ["unit"]`), each with its new `reviewedCount` and `reviewedSet` declared:
+
+| rule | anchor text | non-unit partners dropped | count |
+|---|---|---|---|
+| `eye-of-twilight-tank-on-a-shield-body` | *"Give a friendly unit [Tank] this turn"* | Black Flame Altar, Block, Cloth Armor, Fortified Position, Mechanized Menace | 27 → 22 |
+| `last-stand-doubles-a-shield-body` | *"Double a friendly unit's Might this turn"* | the same five | 27 → 22 |
+| `ki-barrier-tank-raises-the-toll` | *"Choose a unit. Prevent the next 7 damage"* | Block, Doran's Shield, Eye of Twilight, Kinkou Temple | 25 → 21 |
+
+Every dropped card **GRANTS** the keyword to somebody else and none has a threshold of its own, which
+is the quantity all three rules are about. **`OGN-057 Block` is the sharpest case and is actively
+backwards for Eye of Twilight**: it grants `[Tank]` itself, so pairing it with a Tank-granting legend
+is `815.2`'s redundancy rather than a synergy. **One judgement call was left IN and flagged rather
+than dropped silently** — `UNL-071 Chakram Dancer` is a unit that grants `[Shield]` to its neighbours
+and carries none, so it survives a `types` filter with no threshold of its own.
+
+### The generalisation, and why it fails
+
+Widened to *"the anchor acts only on a unit AND no `types` filter AND a non-unit partner"*, the check
+flags **33 rules and 353 pairings** — and reading them, **the overwhelming majority are correct by
+design.** The distinction that decides it is invisible to any predicate over card text:
+
+- **TARGET shape** — the anchor acts **ON** the partner (*"Give a friendly unit [Tank]"*) → the
+  partner must be a unit.
+- **CAUSE shape** — the partner **TRIGGERS or ANSWERS** the anchor (*"when you ready a friendly
+  unit"*) → any type is right.
+
+`pirates-haven-any-friendly-ready` is the clearest: `OGN-143` triggers **when you ready** a friendly
+unit, so a SPELL that readies is exactly the partner and all 17 of its "non-unit partners" are
+correct. `hidden-blade-would-die-shield` is the same from the defensive side — a gear shield is the
+ANSWER to the anchor and belongs there.
+
+**A proxy built to separate the two is also unreliable, and is recorded rather than shipped**: *"a
+partner predicate matching a bracketed keyword is a body, one matching a verb is a cause"* labels 12
+of 33 as TARGET, and most of those are cause-shaped — `blade-dancer-buff-is-choosing`,
+`mistfall-buff-ready`, `vanguard-helm-buff-supply` and `wallop-buff-spend` all match *"buff"* as a
+VERB and only LOOK keyword-shaped because the regex opens with `\[Buff\]`.
+
+**So: three of 33, the other 30 are not debts, and no rate is claimed.** The three are genuinely
+special — they are the rare TARGET shape. **This is the same result this document already records for
+the ENGINE-class audits: a check grounded in a RULE finds things and needs one narrowing; one that
+needs a judgement per row is a human reading, not a test.**
+
+## The queue hazard, hit three times in one session, now automated
+
+`apply.json`, `.scratch-gap3/synergies.json` and `.scratch-gap3/synergies-amendments.json` each held
+an item the manager had already merged, and **every time a validator caught it rather than the
+author** — as `duplicate id`, or as an amendment reporting *"fields changed = "* with nothing in it.
+
+`.scratch-gap3/retire.mjs` now drops any staged rule whose id is live and any amendment
+**byte-identical** to the live rule, and runs before every handover. **A staged artifact is a QUEUE,
+not a record; the record is git.** Three occurrences in three different files in one session is what
+makes it a class rather than carelessness.
