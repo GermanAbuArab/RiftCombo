@@ -211,7 +211,7 @@
       "name": "Svellsongur gives a unit its own recurring trigger twice",
       "anchor": "SFD-059",
       "partner": {
-        "textMatches": "[Ww]hen I (hold|conquer|move|attack|win a combat)\\b",
+        "textMatches": "[Ww]hen I (hold|conquer|move|attack|win a combat)\\b|[Tt]he \\w+ time I (hold|conquer|move|attack|win a combat)\\b",
         "types": [
           "unit"
         ],
@@ -275,9 +275,9 @@
         ]
       },
       "status": "rule-verified",
-      "reviewed": "2026-09-06",
-      "reviewedCount": 102,
-      "reviewedSet": "71ff5d77"
+      "reviewed": "2026-09-14",
+      "reviewedCount": 107,
+      "reviewedSet": "2ceca66b"
     },
     {
       "id": "renata-industrialist-tokens",
