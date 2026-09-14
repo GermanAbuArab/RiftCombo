@@ -1286,7 +1286,19 @@ if (emit) {
       notables_to_append: notables,
     });
   }
-  process.stdout.write("\n");
+  // The JSON is the deliverable, but an empty array carries no context once it is extracted from the
+  // report above it - and this mode HAS been empty every day since the last batch merged, for the same
+  // dormancy that hid #220. So state the denominator on the same page as the payload.
+  //
+  // It does NOT get the [SPENT]/[INDETERMINATE] treatment the two corrections modes have, and the
+  // difference is worth stating because it is easy to over-apply: --recheck-notables is a ONE-SHOT
+  // repair whose 0 means "already applied", while an empty emit is a legitimate CLEAN result - every
+  // finisher currently names its answer. The only reading that would be wrong here is an empty
+  // POPULATION, so that is what is called out.
+  const pop = db.combos.filter((c) => FINISHER.has(c.class)).length;
+  console.log(`\n# --emit-notables: ${rows.length} correction row${rows.length === 1 ? "" : "s"} from ${findings.length} ` +
+              `finding${findings.length === 1 ? "" : "s"} over ${pop} finishers` +
+              `${pop ? (findings.length ? "" : " - every finisher names an answer, which is a CLEAN result and not a spent mode") : " [INDETERMINATE] - the finisher population is EMPTY, so this says nothing"}`);
   console.log(JSON.stringify(rows, null, 1));
 }
 
