@@ -237,3 +237,80 @@ evacuation.
    destination clause — *"to a location where there's a unit with the same controller"* — makes it
    conditional on the opponent's board in a way Isolate is not, and pricing that properly is a walk of
    its own.
+
+---
+
+## 10. The axis audited against itself, and the ENGINE class measured for the first time
+
+Written after §1-§9, because the sample in §4 turned up an entry that "spanned" fury/chaos on the
+strength of a single card holding both domains. If that card is a **legend**, the entry is a
+mono-domain line wearing a two-domain hat: every deck has a legend, it costs no Main Deck slot, and
+**all 127 legend printings in `cards.json` have exactly two domains** (measured; none has one or
+three). **115 entries name a legend card in `uses`.** So the axis had a structural confound and
+nobody had sized it.
+
+Three definitions, run over the whole catalogue at 767 entries on 2026-09-14:
+
+- **A** — the union of every `uses` card's domains contains both. (What §1 used, and what `CLAUDE.md`
+  describes.)
+- **B** — the union of the **non-legend** `uses` cards contains both.
+- **C** — two **distinct** non-legend cards supply the halves, so no single dual card does all the work.
+
+| class | available (pair,entry) cells | A | B | C |
+|---|---:|---:|---:|---:|
+| FINISHER (n=80) | 152 | **62** | **61** | **61** |
+| ENGINE (n=687) | 2,089 | **344** | **293** | **284** |
+
+**For finishers the confound is worth exactly ONE row, and the axis this project has been using
+holds.** For engines it is 60 cells, **17%**, which is worth knowing before anybody quotes an engine
+spanning count.
+
+**And one entry carries the entire confound, in both directions.** The single finisher that spans
+only on its legend is `yasuo-windrider-ride-the-wind-chain`: its non-legend cards are
+`OGN-205 Yasuo, Windrider` and `OGN-173 Ride the Wind`, **both mono-chaos**, and it reads calm/chaos
+only because `OGN-259 Unforgiven` is. Swept for the mirror — finishers excluded from a pair *only*
+by a legend row, which would mean the availability count is understating a pair — the answer across
+all 15 pairs is **four cells and they are the same entry**, in fury/chaos, mind/chaos, body/chaos and
+chaos/order.
+
+**The exclusion is correct, which is why this is an audit result and not a defect.** That legend is
+load-bearing: `OGN-259` reads *"2 Energy, exhaust: Move a friendly unit to or from its base"*, which
+is one of Yasuo's three moves, free, every turn — and
+`docs/plays/2026-09-12-chaos-fury-yasuo-shuttle.md` already walks what a Fury/Chaos deck pays instead
+(a card, `OGN-173`, per Yasuo per turn). The play knew; the axis did not; the two agree once the axis
+is asked the right question.
+
+### What this does to §1's conclusion: nothing, and that is the point
+
+**fury/chaos is zero under A, B and C alike.** And on the engine side it is not merely non-empty, it
+is the **largest** spanning count of any pair under all three definitions — **52 / 45 / 45**, against
+`fury/calm`'s 4 / 4 / 4 at the other end.
+
+So the pair with no spanning finisher is **the most cross-explored pair in the catalogue at the
+engine level.** Whatever is stopping a fury/chaos finisher, it is not that nobody has combined those
+two domains: 45 entries do it, more than for any other pair. That is an independent confirmation of
+§3-§5 from a direction none of them used.
+
+### A correction I owe my own first reading
+
+Seeing fury/chaos at the top of the engine column and the bottom of the finisher column, and
+`fury/calm` at the opposite corner of both, I read it as an inversion and nearly wrote it down.
+**Spearman rho between the two span RATES, over the 14 pairs with at least four available finishers,
+is 0.15 — no relationship at all.** Two corners are not a trend, and `mind/order` sits high in both
+(38 engines, 16 finishers) which the inversion story cannot accommodate. What survives is the single
+cell, not a law about the table.
+
+What *does* explain the engine column is the pool rather than the authors: folded by pair, the
+non-legend dual-domain card count predicts the engine span rate monotonically in the means — 1 dual
+card gives 4%, 7%, 9%; three give 9-16%; four give 14-23%; five and six give 15-35%. **fury/chaos at
+35% is the clear outlier above that line**, which is the same finding as the paragraph above, reached
+from the supply side.
+
+### Dating, because the tree moved underneath this
+
+The catalogue went from **766 to 767 entries mid-session** while the manager merged, and the
+fury/chaos engine count went 51 → 52 between two runs twenty minutes apart. §1-§9 are measured at
+766 and this section at 767; neither is wrong and both are dated. **This is a characterisation, not a
+correctness property, so it gets a date and its denominators rather than a test** — pinning "the
+confound is worth one row" would fail the day somebody writes a second entry that names a dual legend
+and uses one domain, which is a legal thing to write.
