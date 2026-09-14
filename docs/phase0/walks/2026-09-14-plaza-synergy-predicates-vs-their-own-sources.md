@@ -90,8 +90,13 @@ and refuse to continue if it does not match.**
 
 The other **54** anchor-present misses are **not** claimed as defects. Four were read, three were the
 documented second meaning, and **a count of unread rows is not a finding** — the same refusal this
-lane already made about 96 unshipped notables. The rows are in `.scratch-plaza/syn-group.mjs`, ranked
-by miss rate, for whoever reads them next; the 19 at 100% are where to start.
+lane already made about 96 unshipped notables. **The 19 rules that miss on 100% of their own sources
+are the place to start, and they are all read in sections 6 and 7 — the residue is the 22 rules that
+miss on SOME sources, which section 7 also reads end to end.** The scratch probe that ranked them is
+gitignored and does not survive; it is four lines and is reproduced here so nobody needs it: for each
+rule with a `basis.combos`, for each of those entries that RUNS the anchor and holds at least one
+OTHER card, test the rule's `partner.textMatches` against those other cards' text+effect, and keep
+the rules whose miss count equals their total.
 
 ## 5. Third confirmation of one shape
 

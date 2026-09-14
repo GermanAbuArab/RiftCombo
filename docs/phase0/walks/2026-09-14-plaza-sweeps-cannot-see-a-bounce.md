@@ -136,7 +136,11 @@ Everything here is a report or a recommendation for **rc-emit**, who owns
 `scripts/adversarial-check.mjs`. Nothing was staged into `data/combos.json` from this walk: the
 9-entry `cheapest removal` correction should be emitted by the fixed predicate, not hand-written nine
 times, for the same reason the Crescent Strike correction should not be hand-written a hundred times.
-Probes are in `.scratch-plaza/entries-vs-sweeps{,2,3}.mjs` and `.scratch-plaza/gear-blast.mjs`.
+**The probe is committed as `scripts/sweep-vs-prose.mjs`** and reproduces everything above:
+`node scripts/sweep-vs-prose.mjs` for the three diffs, `--selftest` for the validation in both
+directions. The exploratory versions lived in `.scratch-plaza/`, which is gitignored and does not
+survive this lane — a pointer to it would have been a pointer to nothing, which is the `/tmp` rule
+in a second costume.
 
 ---
 
