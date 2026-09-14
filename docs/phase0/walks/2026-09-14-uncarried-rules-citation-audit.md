@@ -784,3 +784,65 @@ Splicing those six notes took three attempts, and each failure is worth carrying
 **Two splices the wrong thing LOUDLY; zero is a SILENT NO-OP.** Both must be rejected explicitly and
 the generator must report which it saw — a uniqueness gate that only tests `== 1` hides the worse of
 the two failures behind the same symptom.
+
+## Second read on OQ-SVELL-CAP: the one argument that appeared to LEAN is symmetric
+
+`SFD-059 Svellsongur` copies the carrier's text, so *v* copies are 2^v instances. Where the copied
+clause is a *"the first time … each turn"* trigger, **`383.3.e.1` caps *"a Triggered Ability"*,
+singular, and never says what individuates one.** Read independently of rc-plaza's write-up, which is
+the whole value of a second reader.
+
+### 1. THE DEAD-LETTER ARGUMENT CUTS BOTH WAYS AND CANNOT FAVOUR PER-INSTANCE
+
+- **`817.1`** — *"Vision is a Triggered Ability keyword."* → **`817.2`** — *"Multiple instances of
+  Vision **trigger separately**."*
+- **`819.1`** — *"Quick-Draw is a Triggered Ability keyword."* → **`819.2`** — *"Multiple instances of
+  Quick-Draw **do not trigger separately** and have no effect beyond the first."*
+
+**Two Triggered Ability keywords, opposite explicit answers.** `819.2` is dead letter under a CAPPED
+default; **`817.2` is dead letter under an UNCAPPED one.** So the R28-shaped test rejects **both**
+defaults and establishes only that there is none. **It cannot lean**, and the write-up used it as
+though it did. The question is genuinely OPEN rather than leaning — which makes the shipped BURST's
+dependency **sharper, not softer**.
+
+### 2. THE RULEBOOK *DOES* STATE THE INSTANCE-IS-AN-ABILITY RELATION — TWICE, BOTH FOR THE OTHER CLASS
+
+**`818.4`**: *"Multiple instances of Equip are equivalent to multiple Activated Abilities and can each
+be activated separately by paying the corresponding costs."* **`827.3`** is the identical sentence for
+Empower. **Those are the only two places the Core Rules equate an INSTANCE with an ABILITY, and both
+answer YES** — the nearest textual support the per-instance reading has, and it was not cited.
+
+**The scope is the counter-argument**: the ACTIVATED class is legislated **uniformly**, the TRIGGERED
+class **per keyword and in both directions**.
+
+### 3. A BETTER REASON FOR THE SILENCE THAN AN OMISSION
+
+Swept every card that copies a unit's text onto another object: **`SFD-059` is the ONLY printing in
+the pool that ADDITIVELY duplicates a non-keyword triggered ability onto ONE object.**
+`VEN-137 Shady Spectacles` is an Equipment copy effect whose clause **replaces identity** (*"the
+equipped unit becomes a copy"*), so two never compound; `UNL-199 Deceiver` and `UNL-200 Mirror Image`
+make **separate token objects**, which nobody disputes; and `UNL-174 Shard of Undoing`, the pool's only
+limiter-bearing gear, is **not tagged Equipment**, so two copies are two objects. **The rules are
+silent because ONE card reaches the question** — a far better reason than a gap.
+
+### 4. TWO MEASUREMENTS CORRECTED, ONE OF THEM LOAD-BEARING INSIDE THE ENTRY
+
+The entry's own caveat ends *"383.3.e.1, 819.2, 817.2 and 821.1.c.7 are cited by ZERO entries in the
+whole catalogue, so nothing in this catalogue argues the point"* — **and that zero is the
+justification for the whole caveat.** Measured 2026-09-14: **`383.3.e.1` is cited by THIRTEEN entries
+and 41 times**, `817.2` by three, `819.2` by three, `821.1.c.7` by two; only 5 of the 41 are in that
+entry. **The true and much weaker sentence is that none of those entries argues THIS question.**
+
+And the census is **15**, not 13 — the two missed are **`812.2`** (Legion) and **`829.1.c.3`** (Flow).
+Our counts do **not** disagree about membership: my redundancy eight is their seven *"redundant"* plus
+`819.2` folded in by CONCEPT — seven by the word, eight by the concept, as recorded above.
+
+**One paragraph reported with its weakness rather than as a find**: `427.3.a` *is* a multiple-instance
+rule **outside** the keyword block, and its worked example says *"If more than one of these effects is
+played, each one triggers separately"* — but its main clause is scoped to **banishing** and its example
+is **two separate spell cards**, each creating its own delayed trigger, not N instances appended to one
+object. **It does not settle it.** So *"every one is inside the keyword block"* is false as stated,
+while the load-bearing half — that none reaches a copy effect appending non-keyword Rules Text —
+**survives**.
+
+**Verdict: the open question stands and is stronger. No R-number filed.**
