@@ -57714,6 +57714,96 @@
       ],
       "rulesVersion": "2026-07-16",
       "notes": "SYNTHESIZED, not extracted (#200), and the target was a BOARD SHAPE rather than a legend pair or a card. Sweeping data/corpus_flat.txt for a printed exactness returns eight cards and seven of them ask for the same thing — a battlefield where you control exactly two units — which is a designed Vendetta cycle across Calm and Order. The catalogue held it pairwise: two entries use two members each and none used three, and the one that pairs the cycle's defensive cards says in its own terminatesIn that nothing there scores. This is that half put under the cycle's point card. Hand-walked with every cited paragraph opened and pasted; the partner trade-off against shen-duo-mutual-hold and the one-Energy answer to the Disciple are both stated rather than left for a reader to find."
+    },
+    {
+      "id": "trinity-tryndamere-both-phases-chain",
+      "name": "Both phases of one turn — a Hold that pays and an attack that pays, in the pair that can do both",
+      "class": "CHAIN",
+      "status": "verified",
+      "uses": [
+        {
+          "card": "SFD-115",
+          "quantity": 3,
+          "role": "payoff",
+          "zone": "ATTACHED",
+          "note": "Body gear, E4, M+2, [Equip] one Body rune. '[Effect] When I hold, score 1 point.' Carrier-independent, so it rides on whatever body is already holding — and it is the ONLY Equipment among the pool's seventeen point-gaining printings, which is why it can be a SECOND point source without competing for a garrison slot."
+        },
+        {
+          "card": "OGN-034",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BATTLEFIELD",
+          "note": "Fury unit, E7 P2 M8. 'When I conquer after an attack, if you assigned 5 or more excess damage to enemy units, you score 1 point.' Gated on the OPPONENT's garrison, which is the board the Trinity half is switched off on."
+        },
+        {
+          "card": "UNL-029",
+          "quantity": 2,
+          "role": "engine",
+          "zone": "BATTLEFIELD",
+          "note": "Fury unit, E4 P1 M4, [Accelerate]. 'Your conquer effects for conquering here trigger an additional time.' Two copies take Tryndamere from one instance to three (R1 = A with stacking), and [Accelerate] at E1 + 1 Fury each lets them attack the turn they are played."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "ability-points",
+        "burst-points"
+      ],
+      "anyBodies": {
+        "count": 1,
+        "note": "One unit card to carry the three Trinity Forces and hold the battlefield: 818.1.c.2 makes [Equip] short for 'Attach this gear to a unit you control', and 434.1.c appends the Effect Text of ALL attached cards to the Top-Most Card, so three on ONE body is three instances of 'When I hold, score 1 point' rather than one. Spreading them across three bodies is the same four points and a different risk profile — see the notables."
+      },
+      "prerequisites": {
+        "easy": [
+          "Any Body/Fury legend. The pool prints FOUR names across eleven printings, measured against data/cards.json rather than typed: Relentless Storm (OGN-249 / OGN-300), Purifier (SFD-183 / SFD-241), Pridestalker (UNL-183 / UNL-227), Butcher of the Sands (VEN-141 / VEN-190). SFD-115 is mono-Body and OGN-034 and UNL-029 are mono-Fury, so the union is exactly {body, fury} under 103.1.b and all four are legal.",
+          "None of SFD-115, OGN-034 or UNL-029 appears in data/legality.json, whose 21 rows were checked on 2026-09-14, and none carries the Signature supertype."
+        ],
+        "notable": [
+          "THE TWO HALVES WANT OPPOSITE BOARDS, WHICH IS THE POINT AND NOT A COMPROMISE. Trinity Force pays on a HOLD — 469.2, 'A player maintains Control of a Battlefield they did not yet Score this turn during their Beginning Phase' — so it needs a battlefield you ALREADY control and is worth nothing on a board you have been pushed off. Tryndamere pays on a conquer AFTER AN ATTACK, and 807.1.d with 323.9 make the Attacker designation impossible without an enemy garrison, so he is worth nothing on a board the opponent has left empty. Neither half covers both states; TOGETHER THEY COVER THE MIDDLE ONE, which is the board a Duel normally reaches — you hold one battlefield, they hold and garrison the other.",
+          "WHY A SECOND POINT CARD IS USUALLY WRONG, AND WHY THIS ONE IS NOT. Measured over the 62 spanning finishers in the catalogue on 2026-09-14, only FOUR draw points from both of their domains; 32 take points from one and support from the other. The reason is that a point card normally costs a BODY SLOT: of the seventeen printings in the pool that gain a point or win the game, nine are units standing in a garrison whose Score 470 caps at once per turn anyway, four are battlefields of which 485.4.a uses one of your three, two are standalone gear — and SFD-115 Trinity Force is the ONLY EQUIPMENT. It rides on a body that is there for another reason. Three of those four exceptions run this card; the fourth, ivern-arena-draven-chaos-order-chain, is the opposite-boards route above. This entry is the only line in the catalogue that takes BOTH routes at once.",
+          "THE ARITHMETIC, AND IT IS EIGHT RATHER THAN NINE ON PURPOSE. Beginning Phase: 315.2.b.2 Holds every battlefield you control; 471.1 gains the Hold's own Score point and 471.2.b triggers the Hold abilities there, which is three instances of Trinity Force — FOUR. Main Phase: Tryndamere and two Bramblebacks attack, 466.5 establishes Control and 466.5.d makes it a Conquer for a second Score point, and Tryndamere's clause fires 1 + 2 = THREE times — FOUR again. Eight across two scoring events in one turn with no opponent turn between, which is a CHAIN by this project's definition rather than a BURST. A third Brambleback makes it nine and costs E4 + 1 Fury Power; 103.2.b caps Trinity Force at three, so the Hold half cannot go past four.",
+          "THREE ON ONE BODY OR ONE EACH ON THREE, AND THE CHOICE IS ABOUT WHAT ANSWERS IT. 434.1.c appends the Effect Text of all attached cards to the Top-Most Card, so three Trinity Forces on a single carrier are three separate 'When I hold, score 1 point' instances. That is the cheap configuration — one body — and it is the fragile one: killing the carrier takes all four Beginning-Phase points at once, because 323.6 also strips your Control of the battlefield the moment your last body leaves it. Spread across three carriers the same four points survive one removal and cost two more bodies. State which you are running; the entry prices the one-body version.",
+          "THE GEAR ANSWER, NAMED, BECAUSE TWELVE ENTRIES STANDING ON ATTACHED EQUIPMENT NAMED NONE. 718.5.b keeps an attached card 'chosen or targeted by game effects while Attached', so the Trinity Forces are removable where they stand. OGN-022 Thermo Beam is Fury, E5 + 2 Power, [Action], and reads 'Kill all gear' — it takes all three at once and it is IN THIS ENTRY'S OWN DOMAIN, so an opponent on a Fury legend has it. SFD-005 Detonate at E1 + 1 Power takes one and draws its controller two. Spreading the Equipment across three bodies does nothing against Thermo Beam and everything against Detonate, which is the second half of the configuration choice above.",
+          "THE EXCESS THRESHOLD IS A CEILING ON THEIR GARRISON, NOT ON YOUR BOARD. R28 = A makes excess damage attacking Might that was never assigned, and 465.2.c.4 is what leaves any — 'Units cannot have more damage assigned to them than the minimum required to constitute lethal damage'. Tryndamere at 8 plus two Bramblebacks at 4 is sixteen summed Might (465.2.a), so the clause is met against any garrison of summed Might ELEVEN OR LESS. Above that the attack half pays only its Conquer point and the turn is five rather than eight — which is the honest failure mode and the reason the Hold half is worth carrying.",
+          "[Accelerate] IS WHAT MAKES IT ONE TURN RATHER THAN TWO. 143.4 enters units exhausted and 144.2 charges the Standard Move their exhaust, so a Brambleback played this turn could not attack this turn — except that UNL-029 prints [Accelerate] at E1 + one Fury rune, and 805.1.a.1 requires that Power to match one of the unit's OWN domains, which Fury does. Tryndamere has no Accelerate and must be deployed a turn early.",
+          "THE THREE BRAMBLEBACK INSTANCES ARE ON TRYNDAMERE'S CONQUER AND NOT ON TRINITY FORCE'S HOLD. UNL-029 reads 'Your conquer effects for conquering here trigger an additional time' — CONQUER, and 471.2.a and 471.2.b keep Conquer abilities and Hold abilities apart — so the Bramblebacks do nothing for the Beginning Phase and the Hold half is unmultipliable in this identity. SFD-030 Skyfall of Areion would bridge them ('My hold effects are also conquer effects, and vice versa') and is already the subject of brambleback-trinity-skyfall-conquer, which is the same three cards WITHOUT Tryndamere — that entry turns the Hold into a Conquer and scores everything in the Main Phase, where this one deliberately scores in both phases so that the two halves fail independently."
+        ]
+      },
+      "steps": [
+        "Earlier turns: take a battlefield, stand one unit on it, and attach three Trinity Force to it — E4 and one Body rune each (818.1 makes [Equip] a separate Activated Ability with its own cost, and 359.2.d had already entered each gear ready at your base). Deploy Tryndamere (E7 + 2 Fury Power) so 315.1.b has readied him.",
+        "The board this is for: you control and garrison ONE battlefield, the opponent controls and garrisons the other with a summed Might of eleven or less. Either extreme is worth less and the notables say by how much.",
+        "Beginning Phase. 315.2.b.2 Holds every battlefield you control. 471.1 gains the Hold's own point, and 471.2.b — 'Hold abilities trigger at a Battlefield that was Held' — fires the carrier's appended text, which 434.1.c has made three copies of 'When I hold, score 1 point'. FOUR POINTS, and 194.1.c makes three of them ability Gains that 470's cap never sees (R2 = A).",
+        "Main Phase. Play two Red Brambleback, paying [Accelerate] at E1 + one Fury rune each so 143.4 does not cost them the turn, and Standard-Move them with Tryndamere from your base into the enemy battlefield — 144.4.a, one action for all three under 144.3, each paying its own exhaust (144.2, 144.3.c).",
+        "450 applies Contested, 464.2.c.1 makes you the Attacker and 464.2.c.3 designates all three. 465.2.a sums your Might at 16; 465.2.c assigns, 465.2.c.4 caps each defender at its own minimum lethal, and what is left over is the excess R28 = A names — five or more against any garrison summing eleven or less.",
+        "466.3.a gives you the combat, 466.5 establishes Control and 466.5.d makes it a Conquer, which 471.1 pays. Tryndamere's condition is met and each Brambleback adds an instance at that battlefield, so his clause fires three times. FOUR MORE POINTS, and eight in the turn.",
+        "Nothing here needs a following turn and the opponent never acts between the two halves — the Hold is in 315.2 and the attack in 316, which is why this is a CHAIN across two scoring events rather than a BURST in one."
+      ],
+      "terminatesIn": "eight points in one turn across two scoring events in two different phases — four from a Hold at a battlefield you already control and four from a Conquer at one the opponent garrisons — with no opponent turn in between; a third Brambleback makes it nine, and on either extreme board only one half pays",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Card text verbatim from data/corpus_flat.txt (SFD-115, OGN-034, UNL-029, OGN-022, SFD-005, SFD-030)",
+          "kind": "riot",
+          "date": "2026-07-16"
+        },
+        {
+          "title": "Rules readings R1 = A with stacking (2026-09-03) and R28 = A (2026-09-04), GitHub issue #11",
+          "kind": "manual-walk",
+          "url": "https://github.com/GermanAbuArab/RiftCombo/issues/11",
+          "date": "2026-09-04",
+          "accessed": "2026-09-14"
+        },
+        {
+          "title": "Hand walk 2026-09-14 (docs/phase0/walks/2026-09-14-fury-chaos-the-empty-cell.md §13), issue #200 — this entry was PREDICTED by that census before it was walked",
+          "kind": "manual-walk",
+          "date": "2026-09-14"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "SYNTHESIZED and PREDICTED (#200). §13 of the companion walk measured that only four of 62 spanning finishers draw points from both of their domains, and that the exceptions take one of exactly two routes — an Equipment point source, which the pool prints once in SFD-115 Trinity Force, or two halves that want opposite boards. Cross-tabbing which body/X pairs had taken the Equipment route returned body/calm, body/chaos and body/order as covered and BODY/FURY and BODY/MIND as empty; body/fury is the one that can take BOTH routes at once, because Trinity Force is Hold-gated and its only Fury partner is combat-gated. scripts/have.mjs confirmed SFD-115 + OGN-034 appears in no entry or subset. Hand-walked afterwards with every cited paragraph opened and pasted. The configuration choice, the gear answer in its own domain, and the garrison ceiling that switches the attack half off are all stated rather than left to a reader."
     }
   ]
 }
