@@ -7082,9 +7082,12 @@
             "card": "VEN-004",
             "why": "Dune Surfer reads \"You ignore [Tank] while assigning combat damage here\" — it is the pool's answer to a Tank wall, not a member of one. 766 makes an ignored ability \"treated as inactive for the purposes of the game action or procedure\", so a Dune Surfer on your own board switches off the mandatory-assignment rule this whole rule stands on."
           }
+        ],
+        "types": [
+          "unit"
         ]
       },
-      "why": "The naive reading of a Prevent is that it absorbs damage after the fact. 437.5.a says it is counted before any is dealt: \"Damage can be assigned to a Unit up to a value that would be Lethal considering the Prevent Value of all Prevent Actions on a Unit, following the normal rules for damage assignment\", and Riot's example is a 2 Might unit with a 3-point Prevent needing 5 assigned. Put that on a [Tank] and 815.1.c.2 does the rest: \"Units without Tank are invalid assignments until all units with Tank have lethal damage assigned to them.\" So Ki Barrier's seven is not seven damage saved on one body, it is seven more the attacker must find before a single point may legally be assigned to anything else you control, and 465.2.c.4 forbids them from banking the surplus elsewhere. 437.3 is what makes it hold up across a turn rather than one hit — \"reduce the Prevent Value being tracked on the Unit affected by the Prevent action by the prevented amount\" — a pool spent down, so several small pings eat it one at a time instead of one ping wasting it. Ki Barrier is Order, 2 Energy and 1 Power, [Reaction], and it cantrips, so it is bought after the attackers are designated (464.2.c.3) and before 465.2.c assigns. Two limits. 465.2.c.10 marks the far end of the scale — \"If a unit cannot be dealt damage, then no amount of damage can be considered lethal. Such a unit is exempt from any considerations of mandatory assignment\" — so a FULL immunity would take the body out of the assignment order entirely and switch the wall off; a finite Prevent Value is what keeps it a legal, expensive assignment. And this rule is about the ASSIGNMENT order only: 437.5 keeps the damage assignable in the first place, and nothing here protects the body from a kill by effect, which reads Might and not damage.",
+      "why": "The naive reading of a Prevent is that it absorbs damage after the fact. 437.5.a says it is counted before any is dealt: \"Damage can be assigned to a Unit up to a value that would be Lethal considering the Prevent Value of all Prevent Actions on a Unit, following the normal rules for damage assignment\", and Riot's example is a 2 Might unit with a 3-point Prevent needing 5 assigned. Put that on a [Tank] and 815.1.c.2 does the rest: \"Units without Tank are invalid assignments until all units with Tank have lethal damage assigned to them.\" So Ki Barrier's seven is not seven damage saved on one body, it is seven more the attacker must find before a single point may legally be assigned to anything else you control, and 465.2.c.4 forbids them from banking the surplus elsewhere. 437.3 is what makes it hold up across a turn rather than one hit — \"reduce the Prevent Value being tracked on the Unit affected by the Prevent action by the prevented amount\" — a pool spent down, so several small pings eat it one at a time instead of one ping wasting it. Ki Barrier is Order, 2 Energy and 1 Power, [Reaction], and it cantrips, so it is bought after the attackers are designated (464.2.c.3) and before 465.2.c assigns. Two limits. 465.2.c.10 marks the far end of the scale — \"If a unit cannot be dealt damage, then no amount of damage can be considered lethal. Such a unit is exempt from any considerations of mandatory assignment\" — so a FULL immunity would take the body out of the assignment order entirely and switch the wall off; a finite Prevent Value is what keeps it a legal, expensive assignment. And this rule is about the ASSIGNMENT order only: 437.5 keeps the damage assignable in the first place, and nothing here protects the body from a kill by effect, which reads Might and not damage. PARTNER NARROWED TO UNITS 2026-09-14, the same correction as eye-of-twilight-tank-on-a-shield-body and last-stand-doubles-a-shield-body and on the same reasoning: Ki Barrier reads \"Choose a unit\", so the partner is the BODY the Prevent goes on, and this rule's own why says \"Put that on a [Tank]\". The bare \\[Tank\\] predicate was also matching Tank GRANTERS - OGN-057 Block is a spell, SFD-033 Doran's Shield an Equipment, VEN-147 Eye of Twilight a legend, VEN-159 Kinkou Temple a battlefield - and none of the four is a unit Ki Barrier could choose. A granter plus a body plus Ki Barrier is a legitimate three-card line and is not the pair this rule states.",
       "basis": {
         "rules": [
           "437.3",
@@ -7103,9 +7106,9 @@
         ]
       },
       "status": "rule-verified",
-      "reviewed": "2026-09-12",
-      "reviewedCount": 25,
-      "reviewedSet": "d8d80a27"
+      "reviewed": "2026-09-14",
+      "reviewedCount": 21,
+      "reviewedSet": "be92fd05"
     },
     {
       "id": "flurry-of-blades-one-sided-sweep",
