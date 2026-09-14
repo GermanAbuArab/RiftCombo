@@ -37,7 +37,16 @@ const norm = (s) =>
     .replace(/\*/g, "")
     .replace(/(\w)`(\w)/g, "$1@$2")   // a backtick standing in for an apostrophe
     .replace(/[‘’ʼ"“”']/g, "@")        // fold quote characters, nothing else
-    .replace(/[–—]/g, "-")
+    // NO DASH FOLD. It was here, and the comment above was false while it was: an en/em-dash folded
+    // to a hyphen makes a HOUSE-STYLE REWRITE invisible, which is the #202 defect class rather than a
+    // typographic nicety. Riot prints hyphens; this project's markdown style prefers em-dashes, so
+    // substituting one inside a quotation is exactly the "memory repairs the sentence on the way past"
+    // failure #202 records - with house style as the rewriter, which is worse, because house style is
+    // applied deliberately. Demonstrated: rc-gap3's own verifier adopted this normalisation and MISSED
+    // an em-dash-for-hyphen substitution in a quoted catalogue sentence that a non-folding checker
+    // caught. Removing it costs NOTHING measurable - the corpus flags 75 passages with the fold and 75
+    // without - so it was pure blind spot. Fold quote characters and whitespace; never case, never
+    // brackets, never dashes, because each of those is a defect class in its own right.
     .replace(/​/g, "")
     .replace(/`/g, "")
     .replace(/\s+/g, " ")
