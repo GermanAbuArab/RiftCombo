@@ -183,6 +183,45 @@ describe("the corrections file", () => {
  * scratch copy of data/combos.json with the landed replacements stripped (15 notables) makes both
  * modes print it, and data/combos.json was verified untouched afterwards.
  */
+/**
+ * The allocator's own trust signal has to NAME what it distrusts.
+ *
+ * CLAUDE.md's standing instruction is that a row priced by the greedy fallback is "a row to re-derive
+ * by hand rather than quote" — which a reader cannot act on when the header only says how many. It also
+ * counted the wrong population: `greedyFallbacks` counts every call to `deployTurn`, and the
+ * needs/produces fold prices candidate closures that never reach the table, so the line read "exact on
+ * 79 of 80 rows" while all 80 PUBLISHED rows were exact.
+ *
+ * Measured 2026-09-14: one fallback, at the fold's candidate-pricing call site (stack-traced), and with
+ * `RC_GUARD=4000000` making every intermediate price exact (~32s against ~0.4s) the table is
+ * BYTE-IDENTICAL. So it changes nothing today, and the header says that rather than implying a bad row.
+ */
+describe("the allocator's trust signal", () => {
+  const turns = execFileSync("node", ["scripts/adversarial-check.mjs", "--turns"], { encoding: "utf8", maxBuffer: 1 << 24 });
+
+  it("names the rows it priced greedily, rather than only counting them", () => {
+    const m = turns.match(/# allocator: exact on (\d+) of (\d+) rows, greedy fallback on (\d+)(.*)/);
+    expect(m, "the allocator line is missing").toBeTruthy();
+    const [exact, total, greedy] = [Number(m![1]), Number(m![2]), Number(m![3])];
+    expect(total, "the row population went empty").toBeGreaterThan(40);
+    expect(exact + greedy).toBe(total);
+    // The population it counts must be the PUBLISHED rows, not every call to the allocator.
+    const rows = turns.split("\n").filter((l) => /^ {2}T\s*(\d+|Infinity) vs T\d+ baseline/.test(l)).length;
+    expect(rows).toBe(total);
+    // If any row IS greedy, it has to be named — that is the whole point of the signal.
+    if (greedy > 0) expect(m![4], "greedy rows are counted but not named").toMatch(/\S/);
+  });
+
+  it("reports an intermediate fallback separately from a row, so neither can hide in the other", () => {
+    const note = turns.match(/# NOTE (\d+) fallbacks? priced a CANDIDATE closure/);
+    if (note) {
+      // It must say what it costs, not merely that it happened.
+      expect(turns).toContain("Every published turn is still exact");
+      expect(turns).toMatch(/RC_GUARD=\d+/);
+    }
+  });
+});
+
 describe("a spent mode says so", () => {
   it("explains its own zero, with the positive evidence and a date", () => {
     const out = execFileSync("node", ["scripts/adversarial-check.mjs", "--recheck-notables"], { encoding: "utf8", maxBuffer: 1 << 22 });

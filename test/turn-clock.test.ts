@@ -21,8 +21,14 @@ import { describe, expect, it } from "vitest";
  * `dragonstorm-brambleback-trinity-conquer`. Pricing `[Equip]` added a second cost per Equipment and
  * pushed that row past the state guard; modelling ORDERING later the same day (an `[Equip]` cannot be
  * paid before its own gear — 818.1 with 380) pruned the search back down, so `--turns` is ~0.2s again
- * and the allocator is exact on 79 of the 80 rows. Quote the header's own line for that count rather
- * than this comment: a row priced by the greedy fallback is a row priced by the defect #205 removed.
+ * and the allocator is exact on all 80 rows. Quote the header's own line for that count rather than
+ * this comment: a row priced by the greedy fallback is a row priced by the defect #205 removed.
+ *
+ * This comment said "79 of the 80" until 2026-09-14, and so did the header it points at — because the
+ * counter counted every CALL to `deployTurn`, including the candidate closures the needs/produces fold
+ * prices and then discards. Every PUBLISHED row was exact the whole time, so the line understated its
+ * own result and sent a reader to re-derive a row that did not need it. The header now names the rows
+ * it means and reports intermediate fallbacks separately.
  *
  * The assertions are deliberately about entries whose turn was established BY HAND against the Core
  * Rules, not about the headline count, which is perishable and moves with the catalogue.

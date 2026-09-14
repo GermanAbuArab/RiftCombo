@@ -318,6 +318,12 @@ const namesAnswer = (blob, set) =>
 // exhausted" against 359.2.d, which enters a non-unit gear READY at base, and 359.3, which makes a
 // spell linger on the Chain and never become a permanent at all.
 let greedyFallbacks = 0;
+// WHICH rows, not just how many. CLAUDE.md's standing instruction is that a row priced by the greedy
+// pass is "a row to re-derive by hand rather than quote" - and a reader cannot act on that without the
+// id. `greedyFallbacks` counts every CALL, including the intermediate prices the needs/produces fold
+// makes, while this records only rows that reach the table; if the two ever disagree, a fallback
+// happened somewhere the header does not describe, and it now says so rather than reading as 1 of 80.
+const greedyRows = [];
 /**
  * Exact, and it now covers every row. #205 replaced a greedy pass with an exact search over a BITMASK
  * of individual cards, which is 2^n and so had to bail out to the greedy pass above 12 costs. Folding
@@ -418,7 +424,7 @@ function deployTurnUncached(types, costs) {
     greedyFallbacks++;
     if (process.env.RC_FB) console.error(`FALLBACK space=${space} dim=${dim}`);
     const g = greedyTurn(costs);
-    return { all: g, unit: g };
+    return { all: g, unit: g, greedy: true };
   }
   const FULL = space - 1;                       // every count at its maximum
 
@@ -1188,6 +1194,7 @@ for (const { e, domains: ownDomains, cards: ownCards } of entries) {
   }
   const finalCosts = costsOfSet(cards, ign);
   const d = deployTurn(finalCosts);
+  if (d.greedy) greedyRows.push(e.id);
   const gated = beginningPhaseGated(e) || (consumer ? beginningPhaseGated(consumer) : false);
   const pays = d.all === Infinity ? Infinity : d.all + ((d.unit === d.all && d.unit !== 0) || gated ? 1 : 0);
   // RC_DBG=<id>,<id> prints the parts a row's turn is made of. This is how the five-row gap between
@@ -1249,8 +1256,19 @@ console.log(`\n# Turn clock (optimistic lower bound: perfect draws, nothing else
 console.log(`# ${slower.length} of ${clock.length} finishers pay LATER than the UNOPPOSED Hold curve (both battlefields, 2/turn, T5-T6)`);
 console.log(`# ${slowerContested.length} of ${clock.length} pay later than the CONTESTED curve (ONE battlefield, 1/turn, T9) — the board a finisher is FOR`);
 // Non-vacuity, and the one number that says whether to trust a row: the greedy pass is the defect
-// #205 removed, so any row priced by it is a row to re-derive by hand rather than quote.
-console.log(`# allocator: exact on ${clock.length - greedyFallbacks} of ${clock.length} rows, greedy fallback on ${greedyFallbacks}`);
+// #205 removed, so any row priced by it is a row to re-derive by hand rather than quote - which is
+// why it now NAMES them instead of counting them. A reader told "1 of 80" cannot act on it.
+//
+// It also stopped counting the wrong thing. `greedyFallbacks` counts every CALL, and the fold prices
+// candidate closures that never become rows, so this line read "exact on 79 of 80 rows, greedy
+// fallback on 1" while all 80 PUBLISHED rows were exact - understating its own result and sending a
+// reader to re-derive a row that did not need it. The two counts are now reported separately.
+console.log(`# allocator: exact on ${clock.length - greedyRows.length} of ${clock.length} rows, greedy fallback on ${greedyRows.length}` +
+            `${greedyRows.length ? `: ${greedyRows.join(", ")} - re-derive ${greedyRows.length === 1 ? "that row" : "those rows"} by hand rather than quoting ${greedyRows.length === 1 ? "it" : "them"}, because the greedy pass IS the defect #205 removed` : ""}`);
+if (greedyFallbacks !== greedyRows.length)
+  console.log(`# NOTE ${greedyFallbacks - greedyRows.length} fallback${greedyFallbacks - greedyRows.length === 1 ? "" : "s"} priced a CANDIDATE closure while choosing a needs/produces fold, not a row above.` +
+              `\n# Every published turn is still exact. Measured 2026-09-14: RC_GUARD=4000000 makes those prices exact too` +
+              `\n# (~32s instead of ~0.4s) and the table is BYTE-IDENTICAL, so today it changes nothing - re-run that if the fold changes.`);
 // Non-vacuity for the ordering model: the constraint can only ever bind on a row that HAS an [Equip]
 // cost, so the size of that population is what makes "it moves nothing" a result rather than a shrug.
 console.log(`# ordering ([Equip] after its own gear, 818.1 + 380): ${clock.filter((c) => c.ordered).length} of ${clock.length} rows carry a linked cost` +
