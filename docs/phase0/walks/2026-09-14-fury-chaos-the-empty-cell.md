@@ -314,3 +314,88 @@ fury/chaos engine count went 51 → 52 between two runs twenty minutes apart. §
 correctness property, so it gets a date and its denominators rather than a test** — pinning "the
 confound is worth one row" would fail the day somebody writes a second entry that names a dual legend
 and uses one domain, which is a legal thing to write.
+
+---
+
+## 11. "Spans both domains" is not the same question for an ENGINE, and the table in §10 should not be read as a gap-finder
+
+§10 ported the finisher question to the ENGINE class unchanged. That was the wrong move and the
+distribution says so. **An ENGINE's claim is a RATE and a finisher's is a QUANTITY**, and the objects
+they are made of differ accordingly.
+
+Measured at 767 entries, counting **non-legend** `uses` cards:
+
+| class | spans | n | median cards | distribution |
+|---|---|---:|---:|---|
+| ENGINE | spans two domains | 293 | **2** | 1:7 **2:198** 3:64 4:21 5:3 |
+| ENGINE | mono-domain | 394 | 2 | 0:1 1:51 2:275 3:60 4:7 |
+| FINISHER | spans two domains | 61 | **3** | 2:6 **3:28** 4:14 5:8 6:2 7:1 8:1 11:1 |
+| FINISHER | mono-domain | 19 | 2 | 1:1 2:9 3:4 4:4 5:1 |
+
+**Sixty-nine per cent of ENGINEs are two-card entries, against nineteen per cent of finishers** (473
+of 687 against 15 of 80). And **198 of the 293 spanning ENGINEs — 68% — are exactly two cards.**
+
+So for two thirds of them, *"this entry spans fury and chaos"* means nothing more than *"one of these
+two cards is fury and the other is chaos."* That is a fact about which pair of cards an author
+happened to write down. For a finisher, whose median spanning entry is three cards and whose tail
+runs to eleven, the same word means a **line recruiting both halves of an identity** — which is what
+the axis was built to detect. **Same word, two different questions, and only one of them is about
+design.**
+
+A second cut says the same thing from the role side. Asking whether the two domains occupy
+**disjoint** roles — a directed exchange, one domain supplying the repeatable part and the other the
+payoff — the spanning ENGINEs are **56% disjoint** and the spanning finishers only **44%**. Engines
+are *more* often a clean two-role exchange, because most of them are an anchor and a partner and
+nothing else. `CLAUDE.md` already records the shape from the other end, in this project's own words
+rather than the rulebook's, as a finding of the orphan-synergy walk: *"a synergy rule is an
+anchor+partner VALUE EXCHANGE, while every INFINITE / BURST / CHAIN / ALT_WIN stands on a
+three-to-five-card LINE — a different object."* This is that sentence measured.
+
+### The consequence, which is a refusal to build something
+
+**Do not port the spanning axis to the ENGINE class as a gap-finder.** Counting spanning engines per
+legend pair measures how many cross-domain CARD PAIRS somebody has written, which is a coverage
+statistic — and this project already has a purpose-built instrument for exactly that, the synergy
+matrix of #161, which folds coverage from every `partnersOf` pair *and* every entry card set and is
+keyed on the anchor rather than on an accident of domains. The axis would be a worse duplicate of it,
+and `CLAUDE.md` already records the trap that instrument taught: *"a high uncovered-partner count is
+a warning flag, not a prize"*, because such a column ranks predicate width rather than opportunity.
+
+**What the ENGINE measurement IS good for is the single use §10 made of it: a CONTROL on a finisher
+null.** *"fury/chaos has 45 spanning engines and zero spanning finishers"* is worth saying precisely
+because it rules out neglect — and that argument needs **one number for one pair**, not a table of
+fifteen. Read §10's engine column that way and nothing else.
+
+### The small cells, read as instructed, and the one defect in them
+
+18 of the 37 role-exchange cells hold two entries or fewer, covering 20 entries; all were printed and
+read. Nineteen are legitimate multi-card engines whose rarity is an artifact of keying on a role
+*vector*, which has high cardinality by construction — `jhin-relentless-pursuit-wallop`,
+`lucian-skyfinity-double-conquer`, `malzahar-gate-sprite-fountain-power` and the rest are ordinary
+entries that happen to have a unique role signature.
+
+**The twentieth was a real defect and it sat in a cell of size one.** A shape reading
+`engine <-> multiplier` is impossible, because `multiplier` is not a member of `IngredientRole`
+(`src/types.ts:62`). Swept: **three `uses` rows carry it** —
+`swain-brambleback-conquer-burst` and `swain-bard-brambleback-double-conquer-chain` on `UNL-029`, and
+`undercover-agent-karthus-empty-hand-draw` on `OGN-236` — and nothing validates the field, so they
+arrived through the unchecked cast `src/load.ts` performs.
+
+This is the **fourth** member of a family `src/types.ts` documents three times in its own docblocks:
+`ZONES` became a runtime list because `ATTACHED` was undeclared on 24 rows, `SOURCE_KINDS` because
+`video` sat in the catalogue 54 times, `COMBO_KEYS` because a top-level `notable` was inert and
+invisible. The rule is written three lines above the field that still lacks it. **And it reaches a
+reader**: `web/main.ts:852` renders `u.role` straight into the route card's sub-line.
+
+The catalogue settles the repair without anybody's taste entering it. Role convention across every
+entry using the pool's three trigger multipliers: `UNL-029 Red Brambleback` 13 entries, engine 11 /
+multiplier 2; `UNL-087 Blue Sentinel` 20 entries, **engine 20 / multiplier 0**; `OGN-236 Karthus,
+Eternal` 11 entries, engine 10 / multiplier 1. **Forty-one rows to three, and the most-used of the
+three is `engine` in all twenty** — so `multiplier` is a typo three times over rather than a category
+the catalogue wanted. Normalise to `engine` and make `IngredientRole` a runtime list like its three
+siblings. Reported to the manager, who owns both files.
+
+**The method note is the durable half, and it is the manager's instruction paying on its first
+outing: measure the distribution before writing the predicate, and read every small cell.** The
+defect was not something a predicate would have been pointed at — it was a cell of size one in a
+cross-tab built to answer an entirely different question.
