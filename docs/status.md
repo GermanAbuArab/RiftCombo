@@ -4,7 +4,7 @@ This is the orientation document. `docs/plan.md` and `docs/phase0-findings.md` a
 spike of 2026-09-02 and are kept as history: they describe decisions that were later taken
 differently. Read them for the reasoning, not for the current state.
 
-Every number below carries the command that produces it, measured against commit **`ab63517`** on
+Every number below carries the command that produces it, measured against commit **`77dfaf2`** on
 2026-09-14. The catalogue grows with every walk: **if a number does not match, the command is the
 truth and this is a photo.**
 
@@ -52,9 +52,9 @@ decides what is visible; `web/account.ts` sets the attribute.
 
 | What | Value | Command |
 |---|---:|---|
-| Entries in the catalogue | **770** | `node -pe 'require("./data/combos.json").combos.length'` |
+| Entries in the catalogue | **771** | `node -pe 'require("./data/combos.json").combos.length'` |
 | Unverified | **0** | `node -pe 'require("./data/combos.json").combos.filter(e=>e.status!=="verified").length'` |
-| By class | INFINITE 14 · BURST 23 · CHAIN 18 · ALT_WIN 27 · ENGINE 688 | `node -pe 'const a=require("./data/combos.json").combos,b={};for(const e of a)b[e.class]=(b[e.class]||0)+1;JSON.stringify(b)'` |
+| By class | INFINITE 14 · BURST 23 · CHAIN 19 · ALT_WIN 27 · ENGINE 688 | `node -pe 'const a=require("./data/combos.json").combos,b={};for(const e of a)b[e.class]=(b[e.class]||0)+1;JSON.stringify(b)'` |
 | Entries by card count (`uses.length`) | 1:26 · 2:468 · 3:194 · 4:53 · 5:17 · 6:5 · 8:2 · 11:1 | `node -pe 'const a=require("./data/combos.json").combos,b={};for(const e of a)b[e.uses.length]=(b[e.uses.length]\|\|0)+1;Object.keys(b).map(Number).sort((x,y)=>x-y).map(k=>k+":"+b[k]).join(" · ")'` |
 | Entries declaring `anyBodies` | **82** | `node -pe 'require("./data/combos.json").combos.filter(e=>e.anyBodies).length'` |
 | Distinct cards used by some entry | **897** | `node -pe 'const a=require("./data/combos.json").combos,s=new Set();for(const e of a)for(const u of e.uses)s.add(u.card);s.size'` |
@@ -65,9 +65,9 @@ decides what is visible; `web/account.ts` sets the attribute.
 | Flat corpus lines | **947** | `wc -l < data/corpus_flat.txt` |
 | Errata replacements | **52** | `node -pe 'require("./data/errata.json").entries.length'` |
 | Legality rows (ban/restricted) | **21** | `node -pe 'require("./data/legality.json").entries.length'` |
-| Hand walks archived | **107** | `ls docs/phase0/walks/*.md \| grep -v README \| wc -l` |
-| Run plays | **12** | `ls docs/plays/*.md \| wc -l` |
-| Tests | **696 in 51 files** | `npm test` |
+| Hand walks archived | **108** | `ls docs/phase0/walks/*.md \| grep -v README \| wc -l` |
+| Run plays | **16** | `ls docs/plays/*.md \| wc -l` |
+| Tests | **698 in 51 files** | `npm test` |
 | Typecheck | clean | `npm run typecheck` |
 
 All 766 entries are `verified`: somebody walked the loop by hand against card text and the Core
