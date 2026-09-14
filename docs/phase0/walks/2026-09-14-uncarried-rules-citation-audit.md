@@ -195,3 +195,98 @@ a queue; the record is git.
 5. **Writing the apply-JSON forced the splice-versus-append decision per item**, which is the decision
    prose leaves to the applier. 13 of 21 became splices rather than the 2 originally named, because a
    splice cannot leave the stale half standing.
+
+---
+
+# Addendum, same day: the fix to the false positive created a false negative
+
+The form published above — `(?<![-#/=_0-9.A-Za-z])HEAD(?![0-9a-z]|\.[0-9a-z])` — **excludes a
+preceding slash, and this project writes rule PAIRS with a slash.** `CLAUDE.md` contains *"R9 because
+**420.1/420.2.a** make an effect move the primary kind of Move"*, so the corrected predicate reported
+`420.2.a` as **uncarried when it is carried**, and dropped 2 of its 35 catalogue hits.
+
+**That is the dangerous direction, introduced by my own fix to the other one.** It was caught by the
+project's standing rule and by nothing else: reading the hits rather than trusting the count.
+
+Both slash cases are real and the disambiguator is exact — measured over `CLAUDE.md`:
+
+| form | count | example |
+|---|---|---|
+| `<digit>/<rule>` — a rule PAIR | 9 | `420.1/420.2.a` |
+| `<letter>/<digits>` — a URL | 15 | `issues/115` |
+
+**What precedes the slash** decides it. The form that survives all five traps — hyphen, hash,
+sub-part dot, sentence-closing period, rule-pair slash:
+
+```
+(?<![-#=_0-9.A-Za-z])(?<![A-Za-z]/)HEAD(?![0-9a-z]|\.[0-9a-z])
+```
+
+Two lookbehinds: the first excludes everything that cannot precede a citation; the second excludes a
+slash **only when a letter precedes it**.
+
+**Re-validated with controls in both directions.** `355.10.d` = 15 in `CLAUDE.md` (the corrected
+self-audit figure), `816.3` = 5, `420.2.a` = 1 — all carried, all seen. And **the four refusals hold
+independently of the predicate that produced them**: `115`, `370`, `800`, `829` are catalogue ZERO
+under v3 as well.
+
+## What the corrected predicate does to `scripts/claude-md-gap.mjs`
+
+At `minCitations=10`, gaps move **10 → 11**:
+
+- **`383.4.d.2.c` appears** — catalogue 6 under the old count, **10** under the fix, because the
+  sub-part-dot correction applies on the CATALOGUE side too. It was **below the threshold and
+  therefore invisible to the entire 63-token audit.**
+- **`420.2.a` correctly leaves** the gap list once v3 sees that it is carried.
+- **`315.4.b.1` leaves** — 10 → 9 catalogue, legitimately below the threshold.
+- Bare heads needing manual reading drop **56 → 53**.
+
+## The one rule the audit could not have found
+
+**`383.4.d.2.c`** — *"If the act of gaining one point from Holding is negated or replaced in any way,
+the Hold Effect will still trigger."* Catalogue **10**, this file 0.
+
+It is the **Hold twin, printed in the same words**, of the `383.4.c.2.c` dispositioned in batch 2, and
+it matters **more** than its Conquer sibling for two reasons this file carries separately and never
+joins: `315.2.b.2` Holds EVERY battlefield you control and the Hold is mandatory, so the Hold side is
+where most of the catalogue's multiplied payoffs live (Blue Sentinel, Trinity Force, Ahri,
+Svellsongur are all Hold effects); and `VEN-053 Otterpus` plus `471.1.b.1` both take the POINT and
+neither takes the PAYOFFS. A catalogue entry states it unprompted: *"383.4.d.2.c is a bonus the entry
+never claimed: negating or replacing the Hold point does not stop the Ahri triggers."*
+
+With it, both sibling families are complete on both sides — `.c.2.a/.b/.c` for Conquer and
+`.d.2.a/.b/.c` for Hold — and `.d.2.c` was the last member of either that was missing.
+
+## Three items returned for the #202 class, and none was a content error
+
+`4.3`, `4.4` and `4.7` were returned by rc-manager9 because their quoted passages were not what the
+source says. Diagnosed against the pasted originals, **all three were HOUSE STYLE rewriting the source
+on the way past**:
+
+- **em-dashes where the catalogue prints hyphens** (4.3, 4.7);
+- **`**bold**` inside the quotation marks** (4.3);
+- **case LOWERED inside the marks** — the catalogue shouts *"AND THIS ENTRY HAD ONLY 355.5.b"* and I
+  did not (4.4);
+- a semicolon turned into a comma and an unmarked elision (4.4);
+- **a truncation closed with a period**, so it read as a complete sentence when the source continues
+  (4.7) — the exact defect `#202` names.
+
+`CLAUDE.md` already records that a TYPED quote is wrong where the source is ungrammatical, *because
+memory repairs a broken sentence on the way past.* **This is the same mechanism with HOUSE STYLE as
+the rewriter, and it is worse, because house style is applied deliberately.** A fourth case in the
+same batch was caught by the manager and is the one most worth watching: a **paraphrase inside
+quotation marks**, attributing to the catalogue a sentence that is nowhere in it — *invisible to a
+reference check and to a reader who already agrees with the sentence.*
+
+`.scratch-gap3/verify-quotes.mjs` checks every 40+ character quoted passage in an apply-list against
+both rulebooks, `combos.json`, `synergies.json`, the corpus and `CLAUDE.md`. **It is honestly 2 of 3**:
+injecting each original defect one at a time it catches the truncation and the lowered case and
+**misses the em-dash**, because it adopts the normalisation from `scripts/check-walk-quotes.mjs`,
+which folds en/em-dashes to a hyphen at line 40. The manager's own checker caught the em-dash, so the
+two disagree — **which means the shipped walk-quote guard cannot see an em-dash substituted into a
+Riot quotation.** Recorded, not fixed; that script is not this lane's.
+
+Its FIRST version reported **8 not-verbatim on batches 1-3 and all 8 were false** — nested
+quotations, because it invented its own normalisation instead of using the project's. **Fourth
+over-count on my own instrument in one task**, after the redundancy family, the idempotence gate and
+the slash regression. Sampling the hits fixed it every time.
