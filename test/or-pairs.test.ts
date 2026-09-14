@@ -1,5 +1,7 @@
 import { readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
+// @ts-expect-error plain .mjs so it stays runnable as `node scripts/or-pairs.mjs`, which is how the
+// docblock tells a reader to re-run it; same convention as test/markdown.test.ts.
 import { orPairs } from "../scripts/or-pairs.mjs";
 
 /**
