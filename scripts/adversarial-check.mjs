@@ -1756,9 +1756,13 @@ if (holds) {
       }) });
   }
   console.log(`\n# --holds: ${rows.length} finishers whose scoring payoff is a Hold.`);
-  console.log("# Garrison Might FLOOR is read from uses[] printed Might AND from token bodies named in the");
-  console.log("# entry's own prose (rule 187), because no entry names a token base code. The token half is a");
-  console.log("# TEXT SCAN of the entry's prose, so it is a FLAG that says read it, never a verdict.");
+  console.log("# Garrison Might FLOOR is read from the entry's OWN BOARD: uses[] rows at zone BATTLEFIELD, plus");
+  console.log("# token bodies a card the entry USES actually PLAYS (439.2.c), excluding any the card sends to your");
+  console.log("# base, since the answer cards all sweep \"at a battlefield\". A null floor prints as M? and means");
+  console.log("# CANNOT DETERMINE - guessing one is how this mode shipped a false notable. Pinned by");
+  console.log("# --selftest-garrison against hand-derived floors on real entries.");
+  console.log("# This header described a TEXT SCAN OF THE ENTRY'S PROSE until 2026-09-14. That scan included");
+  console.log("# prerequisites.notable, which THIS SCRIPT WRITES, so the mode was reading its own output.");
   console.log(`# Mass answers swept: ${massAnswers.length}. Garrison-wide protections swept: ${protection.length}.\n`);
   const unanswered = [];
   for (const r of rows.sort((a, b) => (a.floor ?? 99) - (b.floor ?? 99))) {
