@@ -1474,6 +1474,20 @@ if (stalled) {
   // same 15. Swept from card text rather than a typed list so it cannot go stale against a new set.
   const HOLD_HERE = /when you hold here/i;
   const CONQUER = /when i conquer|when you conquer|conquer here/i;
+  // SIXTH SIGNAL. A printed REQUIREMENT for bodies at battlefields is a board gate that none of the
+  // five above can see: it is not a Hold, not a Conquer, not an attack, and not a restriction on the
+  // card's own abilities. `UNL-088 Gutter Palace` reads "if you have exactly 4 cards in hand and
+  // exactly 4 units at battlefields, YOU WIN THE GAME" - so a stall that costs you battlefields costs
+  // you the win condition, and both Gutter Palace entries were sitting in BOARD-INDEPENDENT.
+  //
+  // CLAUDE.md had already diagnosed this ("two more are UNL-088 Gutter Palace, which needs four units
+  // AT BATTLEFIELDS") and it had never reached the classifier - the diagnosed-but-unapplied pattern.
+  //
+  // Narrow on purpose, and swept rather than typed: /units? at battlefields?/i matches 5 name+type
+  // groups in the pool and FOUR are damage effects (Unchecked Power, Flurry of Blades, Tibbers, Alpha
+  // Strike). Requiring the conditional "if you have ... units at battlefields" leaves exactly one, and
+  // an effect that HITS bodies at battlefields is the opposite of a line that NEEDS them there.
+  const GARRISON_GATE = /if you have[^.]{0,60}units? at battlefields?/i;
   // FIFTH BUCKET, added 2026-09-13 after rc-synth2 measured that INDEPENDENT was half wrong and its
   // LABEL overclaimed. It was the else branch of three regexes over hold/conquer/attack, with no
   // predicate for a LOCATION GATE at all - so four of its eight rows stood on `SFD-088 Renata Glasc,
@@ -1499,7 +1513,7 @@ if (stalled) {
       .map((x) => x.name);
     return `  [+ LOCATION-GATED: ${who.join(", ")} works only at a battlefield]`;
   };
-  const buckets = { attack: [], conquer: [], hold: [], located: [], independent: [] };
+  const buckets = { attack: [], conquer: [], hold: [], located: [], garrisoned: [], independent: [] };
   for (const e of db.combos) {
     if (!FINISHER.has(e.class)) continue;
     let text = "";
@@ -1537,6 +1551,7 @@ if (stalled) {
     else if (conq) buckets.conquer.push(row + tag(conq) + gateRider(e, text));
     else if (hold) buckets.hold.push(row + tag(hold) + gateRider(e, text));
     else if (LOCATION_GATE.test(text)) buckets.located.push(`${e.class.padEnd(8)} ${e.id}${gateRider(e, text)}`);
+    else if (GARRISON_GATE.test(text)) buckets.garrisoned.push(`${e.class.padEnd(8)} ${e.id}  <- ${text.match(GARRISON_GATE)[0].trim()}`);
     else buckets.independent.push(row);
   }
   const n = Object.values(buckets).reduce((a2, b2) => a2 + b2.length, 0);
@@ -1548,9 +1563,10 @@ if (stalled) {
     conquer: "SURVIVES A STALL. Scores on a Conquer, and a battlefield the opponent took is a Conquer target, so the stall does not switch it off.",
     hold: "NEEDS ONE BATTLEFIELD, AND IS AT ITS BEST WITH EXACTLY ONE. Scores on a Hold, which needs a battlefield you ALREADY control. There are THREE board states and this bucket only dies on the third: hold BOTH and the free curve wins on T5-T6 without you, so the line is redundant; hold ONE and the free curve pays 1 a turn and does not reach 8 until T9, which is where a Hold finisher is worth its slot; hold NONE and it is switched off. The earlier label said 'the stall that makes this line necessary is the same stall that switches it off', which is true of a TOTAL stall and false of the ordinary contested game.",
     located: "LOCATION-GATED. The card's OWN abilities are switched off unless it stands at a battlefield, and 355.2.a makes that one you CONTROL - so a stall takes it away exactly as it takes away a Hold. These read as board-independent to a hold/conquer/attack predicate and are not.",
-    independent: "BOARD-INDEPENDENT. No Hold, no Conquer and no attack in the printed text, so nothing about the board switches it off.",
+    garrisoned: "GARRISON-GATED. The printed win condition REQUIRES a number of your units to be standing at battlefields, which is not a Hold, a Conquer, an attack, or a restriction on the card's own abilities - so all five predicates above are blind to it. A stall that costs you battlefields costs you the win condition outright.",
+    independent: "BOARD-INDEPENDENT. No Hold, no Conquer, no attack, no location gate and no garrison requirement in the printed text, so nothing about the board switches it off. This bucket has been WRONG TWICE by being the else branch of too few predicates; treat a row landing here as a claim to check, not a conclusion.",
   };
-  for (const k of ["attack", "conquer", "hold", "located", "independent"]) {
+  for (const k of ["attack", "conquer", "hold", "located", "garrisoned", "independent"]) {
     console.log(`\n## ${k.toUpperCase()}  (${buckets[k].length})\n   ${label[k]}\n`);
     for (const r of buckets[k].sort()) console.log(`     ${r}`);
   }

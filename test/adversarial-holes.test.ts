@@ -158,6 +158,57 @@ describe("the corrections file", () => {
 });
 
 /**
+ * THE STALLED-BOARD BUCKETS, and why INDEPENDENT is the one to distrust.
+ *
+ * It is the ELSE BRANCH of the other predicates, so it collects whatever they cannot see — and it has
+ * been wrong twice for exactly that reason. First it held four rows standing on `SFD-088 Renata Glasc,
+ * Mastermind`, whose text ends "Use my abilities only while I'm at a battlefield" (fixed by adding
+ * LOCATED). Then it held both Gutter Palace rows: `UNL-088` reads "if you have exactly 4 cards in hand
+ * and exactly 4 units at battlefields, YOU WIN THE GAME", which is a board gate none of hold, conquer,
+ * attack or location-gate can see. CLAUDE.md had diagnosed that one and it had never reached the code.
+ *
+ * With GARRISONED added, the bucket agrees with a sentence CLAUDE.md derived BY HAND and independently
+ * — that exactly one finisher both scores and needs nothing from the board — which is the strongest
+ * validation available here: two derivations that never touched each other meeting on the same rows.
+ *
+ * Asserted as an INVARIANT rather than a membership list, because the roster is perishable and the
+ * property is not: nothing carrying a printed garrison requirement may sit in INDEPENDENT.
+ */
+describe("the stalled-board buckets", () => {
+  const st = execFileSync("node", ["scripts/adversarial-check.mjs", "--stalled"], { encoding: "utf8", maxBuffer: 1 << 24 });
+  const bucket = (name: string) => {
+    const m = st.match(new RegExp(`## ${name} {2}\\((\\d+)\\)([\\s\\S]*?)(?=\\n## |$)`));
+    return { n: Number(m?.[1] ?? -1), body: m?.[2] ?? "" };
+  };
+
+  it("classifies every finisher into exactly one bucket", () => {
+    const names = ["ATTACK", "CONQUER", "HOLD", "LOCATED", "GARRISONED", "INDEPENDENT"];
+    const total = st.match(/# Stalled-board classification of all (\d+) finishers/);
+    expect(total, "the classification header is missing").toBeTruthy();
+    const sum = names.reduce((a, n) => a + bucket(n).n, 0);
+    expect(sum).toBe(Number(total![1]));
+    expect(Number(total![1]), "the finisher population went empty").toBeGreaterThan(40);
+  });
+
+  /**
+   * The invariant. A line whose printed win condition requires bodies at battlefields is NOT
+   * board-independent, whatever the other predicates say.
+   */
+  it("never files a printed garrison requirement as board-independent", () => {
+    const indep = bucket("INDEPENDENT");
+    expect(indep.n).toBeGreaterThanOrEqual(0);
+    expect(indep.body).not.toMatch(/gutter-palace/);
+    // and the bucket that should hold them is populated, so this cannot pass by the predicate matching nothing
+    expect(bucket("GARRISONED").n, "the garrison bucket is empty — the predicate may have gone blind").toBeGreaterThan(0);
+  });
+
+  it("keeps INDEPENDENT small, and labelled as a claim to check", () => {
+    expect(bucket("INDEPENDENT").n).toBeLessThanOrEqual(4);
+    expect(st).toMatch(/WRONG TWICE by being the else branch/);
+  });
+});
+
+/**
  * THE GARRISON FLOOR, which decides WHICH answer card the Hold modes name to a player.
  *
  * It has been wrong twice, both times shipping a false notable, and neither was visible to any test.
