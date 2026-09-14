@@ -1447,7 +1447,28 @@ if (recheck) {
   // the manager applies a FILE. --out overrides the default path.
   const out = outPath("recheck");
   writeFileSync(out, JSON.stringify(rows, null, 1) + "\n");
-  console.log(`\n# --recheck-notables: ${rows.length} entries carry the stale sentence -> ${out}`);
+  // A 0 FROM THIS MODE IS NOT A RESULT UNTIL YOU KNOW WHICH 0 IT IS. That is #220's lesson one level
+  // up - a detector with no known positive cannot tell "nothing is wrong" from "I am not looking" -
+  // and this mode is a ONE-SHOT repair, so it will print 0 forever once it has run. The positive
+  // evidence is the replacement it installs, so count that too and name the three states apart. The
+  // needle is sliced from REACTION_NOTABLE rather than retyped, because a hardcoded copy of a string
+  // that lives three hundred lines away is the drift this file spent #220 on.
+  // Each state prints ONE stable token - [SPENT] or [INDETERMINATE] - so a reader greps for the token
+  // and the prose beside it stays free to be reworded. Matching on the prose is the thing #220 was.
+  const LANDED = REACTION_NOTABLE.slice(0, 80);
+  const landed = db.combos.filter((e) => (((e.prerequisites || {}).notable) || []).some((n) => n.includes(LANDED))).length;
+  if (rows.length) {
+    console.log(`\n# --recheck-notables: ${rows.length} entries carry the stale sentence -> ${out}`);
+  } else if (landed) {
+    console.log(`\n# --recheck-notables: 0 stale [SPENT] - Verified 2026-09-14 over ${db.combos.length} entries.`);
+    console.log(`# Not silent: the ${landed} entries this mode targeted now carry its replacement, which is POSITIVE`);
+    console.log(`# evidence and not an absence. Do NOT read this 0 as "the catalogue is clean" - it means only that`);
+    console.log(`# this one repair landed. -> ${out} (empty)`);
+  } else {
+    console.log(`\n# --recheck-notables: 0 stale [INDETERMINATE] - and 0 replaced, so NEITHER the defect nor its`);
+    console.log(`# repair is in the catalogue. This 0 is evidence of NOTHING: something changed underneath this`);
+    console.log(`# mode and the needle should be re-derived before anyone trusts it. -> ${out} (empty)`);
+  }
 }
 
 
@@ -1557,6 +1578,9 @@ if (holdNotables) {
     "immediately before it. The cost of that is yours, not theirs: your own Main Phase comes AFTER your " +
     "Beginning Phase (315 then 316), so there is no window in which to rebuild the garrison. Holding up " +
     "a [Reaction] on their turn is the only response this line has.";
+  // Hoisted so the "did this land" count below derives from the sentence itself rather than a retyped
+  // copy of it - the same reason the recheck mode slices its needle out of REACTION_NOTABLE.
+  const HOLDS_REPLACEMENT_HEAD = "THE CHEAPEST ANSWER IS A SINGLE KILL, NOT A SWEEPER, AND OGN-133 FLURRY OF BLADES DOES NOT TOUCH THIS LINE.";
   const rows = [];
   for (const e of db.combos) {
     if (!FINISHER.has(e.class)) continue;
@@ -1583,7 +1607,7 @@ if (holdNotables) {
           match_contains: "ANSWERS THE MIGHT-1 BODY",
           why: `${sc.name} is printed Might ${sc.might} but reads "${clause}". This entry stands ${e.uses.find((u) => u.card === sc.base).quantity} of them at one battlefield, so each sees the others and none is a Might-1 body. The shipped notable tells a player that 1 Energy answers the line, and it does not.`,
           replacement:
-            `THE CHEAPEST ANSWER IS A SINGLE KILL, NOT A SWEEPER, AND OGN-133 FLURRY OF BLADES DOES NOT TOUCH THIS LINE. ` +
+            `${HOLDS_REPLACEMENT_HEAD} ` +
             `${sc.name} reads "${clause}", so the seven bodies The Grand Plaza requires are Might 7 each and 1 damage kills none of them - ` +
             `143.2.a kills on marked damage at or above Might and 142.4.b defines Lethal Damage as "a non-zero amount greater than or equal to that Unit's Might". ` +
             `What answers it instead is ONE removal spell, because the Plaza reads "if you have 7+ units here" and this board is exactly seven: OGN-229 Vengeance (Order, 4 Energy + 2 Power, "Kill a unit.") is the pool's only single-target kill with neither a location clause nor any other gate. ` +
@@ -1655,6 +1679,18 @@ if (holdNotables) {
   writeFileSync(out2, JSON.stringify(rows, null, 1) + "\n");
   const repl = rows.filter((r) => r.action.startsWith("REPLACE")).length;
   console.log(`\n# --holds-notables: ${rows.length} corrections (${repl} REPLACE a false shipped sentence, ${rows.length - repl} append a missing one) -> ${out2}`);
+  // THIS MODE HAS TWO HALVES AND THEY ARE IN DIFFERENT STATES, which a single row count hides. The
+  // REPLACE half is a one-shot repair like --recheck-notables and goes quiet once applied; the APPEND
+  // half is a standing sweep and stays live. Say which is which, for the same reason as above: a 0
+  // that cannot explain itself is indistinguishable from a broken predicate.
+  if (!repl) {
+    const landed = db.combos.filter((e) => (((e.prerequisites || {}).notable) || []).some((n) => n.includes(HOLDS_REPLACEMENT_HEAD))).length;
+    console.log(landed
+      ? `# The REPLACE half is [SPENT]: ${landed} ${landed === 1 ? "entry carries" : "entries carry"} its replacement. Its gate needs a\n` +
+        `# body whose own text scales its Might, and that repair landed. Verified 2026-09-14.`
+      : `# The REPLACE half is [INDETERMINATE]: it found nothing AND its replacement is nowhere in the\n` +
+        `# catalogue, so its 0 is evidence of NOTHING - re-derive the gate before trusting it.`);
+  }
 }
 
 if (strict && findings.length) process.exit(1);

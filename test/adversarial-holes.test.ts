@@ -52,6 +52,9 @@ function selftest(): { status: number; out: string } {
 }
 const { status, out } = selftest();
 
+/** Written by the --holds-notables assertion below; gitignored, and removed by the test itself. */
+const HOLDS_PROBE = ".scratch-emit/holds-test-probe.json";
+
 describe("the hole sweep and its notable emitter", () => {
   /** A probe that silently runs no cases prints a clean pass. Assert the population first. */
   it("runs a non-trivial number of cases, in both directions", () => {
@@ -151,6 +154,57 @@ describe("the corrections file", () => {
     expect(written).toMatch(/rc-synth-recheck-\d+\.json$/);
     expect(existsSync(written), "the printed path does not exist").toBe(true);
     unlinkSync(written);
+  });
+});
+
+/**
+ * A ZERO THAT CANNOT EXPLAIN ITSELF IS NOT A RESULT — #220's lesson one level up.
+ *
+ * `--recheck-notables` is a ONE-SHOT repair: it finds a shipped notable that turned out to be wrong
+ * and emits a replacement row per entry. Once applied it prints 0 forever, and a reader cannot tell
+ * that from "the predicate is broken" or "the catalogue changed underneath it". Measured 2026-09-14
+ * over 766 entries: ZERO carry the stale needle and FOURTEEN carry the replacement — so the mode is
+ * SPENT, and the evidence for that is POSITIVE rather than an absence.
+ *
+ * It was kept rather than deleted or generalised. Deleting it would throw away the only worked example
+ * in this repo of replacing a shipped sentence by machine, and notables here have shipped wrong at
+ * least four times (the Spiderling Might count, the zone/false-Flurry claim, the kill-predicate
+ * Reaction claim, and the "repairs are narrow" list, which a manager then applied BY HAND to six
+ * entries). Generalising it would mean parameterising a thirty-line replacement constant with
+ * interpolated measurements and a bespoke `why` — an interface nobody asked for, and the kind of
+ * widening that makes a mode go looking for work.
+ *
+ * What it now does instead is tell the three states apart, which is the only thing that was actually
+ * wrong. `--holds-notables` has the same shape in HALF of it: its REPLACE half is spent (1 entry
+ * carries the replacement) while its APPEND half is live (8 corrections at the time of writing), and
+ * a single row count hid that.
+ *
+ * The "means NOTHING" branch was proved OUT OF BAND, the same way every other assertion here was: a
+ * scratch copy of data/combos.json with the landed replacements stripped (15 notables) makes both
+ * modes print it, and data/combos.json was verified untouched afterwards.
+ */
+describe("a spent mode says so", () => {
+  it("explains its own zero, with the positive evidence and a date", () => {
+    const out = execFileSync("node", ["scripts/adversarial-check.mjs", "--recheck-notables"], { encoding: "utf8", maxBuffer: 1 << 22 });
+    const m = out.match(/# --recheck-notables: (\d+) /);
+    expect(m, "the mode does not report a count").toBeTruthy();
+    if (Number(m![1]) === 0) {
+      // It must say WHICH zero. Either is acceptable; silence is not.
+      // Keyed on the STATE TOKEN, never on the prose beside it. Matching prose is exactly the defect
+      // this file exists for, and the first version of this assertion committed it.
+      expect(out).toMatch(/\[SPENT\]|\[INDETERMINATE\]/);
+      expect(out).toMatch(/Verified \d{4}-\d{2}-\d{2}|re-derive/);
+    }
+    const written = out.match(/-> (\S+)/)![1] as string;
+    unlinkSync(written);
+  });
+
+  it("reports the two halves of --holds-notables separately when one is spent", () => {
+    const out = execFileSync("node", ["scripts/adversarial-check.mjs", "--holds-notables", "--out", HOLDS_PROBE], { encoding: "utf8", maxBuffer: 1 << 22 });
+    const m = out.match(/\((\d+) REPLACE[^,]*, (\d+) append/);
+    expect(m, "the mode does not split its two halves").toBeTruthy();
+    if (Number(m![1]) === 0) expect(out).toMatch(/REPLACE half is \[SPENT\]|REPLACE half is \[INDETERMINATE\]/);
+    unlinkSync(HOLDS_PROBE);
   });
 });
 
