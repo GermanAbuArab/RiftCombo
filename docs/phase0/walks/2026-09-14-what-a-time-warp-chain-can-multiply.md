@@ -141,7 +141,43 @@ fury/chaos refusals in the companion walk.
 4. **Fury cannot contribute a point to one at all**, and that is a fact about a domain rather than
    about a card.
 
-## 6. Open
+## 6. The rule applied: the two empty Mind cells, disposed of
+
+A Time Warp is Mind, so an Additional-Turn CHAIN lives in one of five identities. Folded by the
+non-legend cards of the eleven entries: **mind/order 5, mono-mind 4, mind/body 1, mind/chaos 1** —
+and **mind/calm and mind/fury have none at all.** Both are refusals, and each for its own reason.
+
+**mind/fury is refused by this walk's own rule.** Fury's only point card is `OGN-034 Tryndamere,
+Barbarian` and §3 shows it is combat-gated, so fury can contribute no point to an extra turn. Every
+point in such a chain would therefore come from Mind or from colourless — which is exactly the card
+set of `power-nexus-atlas-sentinel-time-warp`, already catalogued as mono-Mind. A fury card could
+only add a body or a protection, which changes the shell and not the line. **There is no spanning
+mind/fury Time Warp chain to find, and the reason is a property of a domain rather than a gap.**
+
+**mind/calm is refused by arithmetic instead.** Calm's point card is `OGN-066 Ahri, Alluring` —
+*"When I hold, you score 1 point"* — which IS Hold-gated and therefore Time-Warp-compatible, so the
+rule permits it. It is `ahri-blue-sentinel-hold` that refuses it: three Ahri under two
+`UNL-087 Blue Sentinel` already fire nine ability instances **in a single Hold**, so the line reaches
+eight without an extra turn and a Time Warp at E10 + 4 Power would buy a second helping of a meal
+already finished. **A Time Warp is worth nothing to a rate that already clears the Victory Score in
+one turn**, which is the boundary of the rule from the other side: it multiplies a rate of three to
+seven, and below three it is too slow while at eight or more it is redundant.
+
+## 7. Worth pinning, and it is the manager's path rather than mine
+
+The §2 result is **clean at eleven of eleven and rules-grounded**, which by this project's own
+standard is exactly the shape worth pinning while it is free: *no entry using `OGN-122` may carry a
+point card whose gate is a Conquer or a combat win.* A violation would not be a matter of taste — its
+arithmetic would over-count, because the second and third turns of the chain would be priced as if
+they paid and 348.2.a or 323.9 would give them nothing.
+
+The assertion is one sweep: for every entry whose `uses` contains `OGN-122`, no `uses` card may be
+`VEN-046`, `VEN-065` (conquer-gated) or `OGN-034`, `SFD-148` (combat-gated), with `UNL-177 Ivern,
+Friend to All` **excluded by name and with its reason**, because 823.1.b makes *"when I conquer or
+hold"* both kinds of effect and its hold half survives the extra turn. Offered rather than written:
+`test/` outside `test/dom/plays.dom.test.ts` is not this lane's path.
+
+## 8. Open
 
 - **`SFD-214 Power Nexus` is Hold-gated, colourless, and payable out of runes in any identity**
   (444.2.c with 164.2, which this lane established in the companion walk). It is therefore a
