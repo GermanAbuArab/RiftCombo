@@ -471,8 +471,9 @@ is more expensive per point."* Four coincidences is a law nobody has stated, so 
 
 **Over every spanning finisher — an entry whose NON-LEGEND cards span two domains — does each half
 contribute a POINT SOURCE, or does one contribute points and the other support?** At 769 entries,
-with the point census re-derived from `corpus_flat.txt` rather than typed (17 printings gain a point
-or win the game):
+with the point census re-derived from `corpus_flat.txt` rather than typed — the predicate
+`/score N point|gains? N point|win the game/i` matches **17 printings**, of which **14 are live gains**
+(§13a below states the split, because the total is the wrong number to quote):
 
 | | count |
 |---|---:|
@@ -486,16 +487,17 @@ domain.** Concentrating is not an authoring habit; it is what the arithmetic pay
 
 ### Why, in one sentence: a second point card competes for the board the first one needs
 
-Sorted by type, the 17 point-gaining printings are **9 units, 4 battlefields and 3 gear** — and the
-distinction that matters is not the type but **whether the card costs a body slot**:
+Sorted by type, the **14 live** point-gaining printings are **9 units, 2 battlefields and 3 gear** —
+and the distinction that matters is not the type but **whether the card costs a body slot**:
 
 - a **unit** point card stands in the garrison, so a second one takes a slot the first one wanted, and
   at a battlefield whose Score 470 caps at once per turn anyway;
 - a **battlefield** costs no body but 485.4.a gives each player three of which **one** is used, so two
-  of them never share a board;
+  of them never share a board — and there are only **two** live ones, `OGN-293` and `SFD-214`, because
+  the other two battlefields that gain a point are both banned;
 - **`UNL-088 Gutter Palace` and `VEN-067 Bottled Constellation`** are standalone gear — a card slot,
   no body;
-- and **`SFD-115 Trinity Force` is the ONLY EQUIPMENT among the seventeen.** It rides on a body that
+- and **`SFD-115 Trinity Force` is the ONLY EQUIPMENT among the fourteen.** It rides on a body that
   is already there for another reason and costs no extra slot at all.
 
 ### Which is exactly what the four exceptions are
@@ -537,3 +539,31 @@ ARRAY, and `ds.size` on an array is `undefined`, so `ds.size !== 2` was true for
 loop `continue`d past all of them. The same class as `Card.type` being an array, in a probe written to
 audit a different one. **It was caught only because the number was implausible**, which is the whole
 argument for knowing roughly what you expect before you run anything.
+
+### §13a. The census resolved, because three numbers were in circulation and none of them was the same
+
+`CLAUDE.md` carries **16**, a manager brief carried **16 minus three = 13**, and the predicate above
+returns **17**. All three are now reconciled, by reading every hit rather than by a second regex:
+
+| | |
+|---|---:|
+| printings matching the predicate | **17** |
+| `OGN-276 Aspirant's Climb` — *"Increase the points needed to win the game by 1"*, which RAISES the Victory Score and gains nobody anything; banned in both formats | −1 |
+| `VEN-053 Otterpus` — DENIAL: it replaces an opponent's early Score with a draw, so nobody gains | −1 |
+| `OGN-290 The Arena's Greatest` — a real gain, but banned in both formats | −1 |
+| **LIVE GAINING** | **14** |
+
+**`CLAUDE.md`'s 16 is this predicate minus `OGN-276` alone**, which is checkable from the file's own
+domain list: one body, two calm, two chaos, one fury, two order, five mind and three colourless sums
+to sixteen, its mind five includes Otterpus and its colourless three includes The Arena's Greatest,
+and Aspirant's Climb appears nowhere in it. **So the file had already excluded the one that is not a
+gain, and subtracting three from sixteen double-counts it. Sixteen minus two is FOURTEEN.**
+
+Nothing in §13 turns on the difference — Trinity Force is the only Equipment under every one of the
+three counts, and the correction makes the argument *stronger* rather than weaker, because dropping
+two dead battlefields leaves only `OGN-293 The Grand Plaza` and `SFD-214 Power Nexus` as point
+sources that cost no body slot besides it.
+
+**And the discipline is the point rather than the digit: quote the SPLIT, not the total.** *"17
+printings match, 14 of them gain"* cannot be subtracted from twice; *"sixteen point cards"* can, and
+was.
