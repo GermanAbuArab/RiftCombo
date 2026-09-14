@@ -7,6 +7,7 @@
 //   node scripts/adversarial-check.mjs --recheck-notables   corrections that REPLACE a stale shipped notable
 //   node scripts/adversarial-check.mjs --selftest-holes    the hole sweep + notable emitter, on synthetic entries
 //   node scripts/adversarial-check.mjs --selftest-garrison the garrison Might floor, on real entries with hand-derived answers
+//   node scripts/adversarial-check.mjs --selftest-answer   which answer the Hold modes name, incl. a counterfactual pool
 //   node scripts/adversarial-check.mjs --recheck-garrison  garrison notables that no longer match their board
 //
 // It asks two questions of every INFINITE / BURST / CHAIN / ALT_WIN entry:
@@ -297,6 +298,49 @@ function sweepMassAnswers(cards) {
   }
   return out.sort((a, b) => a.dmg - b.dmg || a.e + a.p - (b.e + b.p));
 }
+
+/**
+ * WHICH ANSWER TO NAME, ONCE, FOR BOTH HOLD ARMS. `--holds` and `--holds-notables` each picked their
+ * own and they AGREED BY COINCIDENCE, which is the two-consumers-of-one-producer family this script
+ * has already paid for twice.
+ *
+ * `sweepMassAnswers` returns the array sorted by DAMAGE, so `--holds` took the first reaching card in
+ * damage order and printed it as the "cheapest answer". It is not: measured 2026-09-14, on 23 of the
+ * 37 rows with a computable floor the price-order cheapest is a DIFFERENT card (`OGN-268 Bullet Time`
+ * at 5 against `OGN-123 Unchecked Power` at 9). The notables arm sorted by price and split Signature
+ * off; `--holds` did neither.
+ *
+ * AND THE CARD IT NAMED WAS RIGHT ANYWAY, ON ALL 37 - which is why nothing caught it and why the
+ * repair is worth stating rather than just making. Bullet Time is Signature, so it is not the answer a
+ * reader wants (103.2.d.2 binds a Signature card to the legend carrying its champion tag, so naming
+ * one as THE answer claims an availability every opponent does not have). Against the right
+ * comparand - the cheapest NON-Signature answer - damage order and price order agree 37 of 37, because
+ * the four non-Signature answers happen to rank the same way on both axes.
+ *
+ * THE COINCIDENCE IS THREE POINTS OF COST WIDE, and that is the number that locates it. `OGS-018
+ * Tibbers` IS a non-scalable Signature answer at dmg 3; it loses the dmg-3 tie to `OGS-002 Firestorm`
+ * only on the cost tiebreak, E8+P2 against E6+P1. Reprice Tibbers to E4/P0 - changing nothing else -
+ * and the old `--holds` names a Signature card on SIX rows, none of which name it, so the emitter
+ * would then have written that claim into `data/combos.json`. `--selftest-answer` runs exactly that
+ * counterfactual, which is the one shape the coincidence cannot save.
+ *
+ * `reaches` spells out `scalable` and `kills` although `dmg` is already Infinity for both: the two
+ * arms differed there in FORM and not in behaviour, and a reader should not have to know the Infinity
+ * encoding to see that they now agree.
+ */
+function answersFor(massAnswers, floor) {
+  const need = Math.max(floor, 1);
+  const reaches = (a) => a.scalable || a.kills || a.dmg >= need;
+  // A scalable answer pays PER POINT of damage, so its price depends on the floor it has to clear.
+  const priceFor = (a) => a.e + (a.scalable ? need : a.p);
+  const usable = massAnswers.filter(reaches).sort((x, y) => priceFor(x) - priceFor(y));
+  return {
+    answer: usable.find((a) => !a.signature) || null,
+    sigAnswer: usable.find((a) => a.signature) || null,
+    priceFor,
+  };
+}
+
 // Swept, not typed: the only thing that lifts a whole garrison at once is a PERMANENT, garrison-wide
 // +Might. Single-target pumps are useless against a sweep that hits seven bodies simultaneously.
 function sweepGarrisonProtection(cards) {
@@ -776,6 +820,76 @@ if (args.includes("--selftest-garrison")) {
   console.log(bad ? `# ${bad} FAILED` : "# all pass");
   process.exit(bad ? 1 : 0);
 }
+
+// ---------------------------------------------------------------- --selftest-answer
+/**
+ * WHICH CARD THE HOLD MODES NAME, pinned against hand-derived answers - and the case that matters is
+ * a COUNTERFACTUAL, because the live pool cannot distinguish a correct filter from a lucky one.
+ *
+ * `--holds` had no Signature carve-out at all and named the right card anyway on all 37 rows with a
+ * computable floor. The reason was a coincidence: the swept array is sorted by DAMAGE, and the only
+ * Signature answer that could win on damage, `OGS-018 Tibbers` at dmg 3, loses the dmg-3 tie to
+ * `OGS-002 Firestorm` on cost alone - E8+P2 against E6+P1, THREE POINTS. Reprice Tibbers below
+ * Firestorm and the old selection names a Signature card on SIX rows, none of which name it, so
+ * `--holds-notables` would then have written that claim into `data/combos.json`.
+ *
+ * MEASURED against every wrong selection I could build, which is the only way to know what a case is
+ * worth. Each variant differs from the shipped one by the single clause named:
+ *
+ *   damage order + NO Signature split  (the code as it was)   -> 1 case fails: the COUNTERFACTUAL alone
+ *   price order  + NO Signature split                         -> 3 cases fail (M2, M4, CF)
+ *   damage order + split KEPT                                 -> 0 cases fail, CORRECTLY
+ *
+ * The last row is the one worth reading. It is not a gap: with the split in place the two orderings
+ * pick the SAME non-Signature card on all 37 live rows, so this self-test pins the ANSWER and not the
+ * algorithm, which is what it should do. And the first row is why case 4 exists at all - it is the
+ * only case that fails against the code this replaced.
+ *
+ * THE COUNTERFACTUAL WAS INERT WHEN I FIRST WROTE IT and passed against every wrong selection
+ * including the original, because I repriced the SWEPT ARRAY when the damage-tie is broken by cost
+ * INSIDE `sweepMassAnswers`. It is built by re-sweeping perturbed CARDS for that reason. I found it
+ * only by reconstructing the original selection and watching all four cases go green: a self-test is
+ * validated by failing when it should, never by passing.
+ *
+ * Expectations are hand-derived from the printed sweep, and each was checked against the line the
+ * script actually prints rather than against the line it was meant to print.
+ */
+if (args.includes("--selftest-answer")) {
+  const real = sweepMassAnswers(cards);
+  /**
+   * The counterfactual pool: same seven cards, same damage, same Signature flags, ONE PRICE MOVED.
+   *
+   * IT MUST BE BUILT BY RE-SWEEPING PERTURBED CARDS, NOT BY MAPPING THE SWEPT ARRAY, and the first
+   * version of this self-test did the latter and was therefore inert. `sweepMassAnswers` ends with
+   * `sort((a, b) => a.dmg - b.dmg || a.e + a.p - (b.e + b.p))`, so the damage-tie between Firestorm
+   * and Tibbers is broken by cost INSIDE the sweep - repricing afterwards leaves that order already
+   * fixed, and the case passed against every wrong selection I could build, including the original.
+   * Caught by reconstructing the original selection and watching all four cases go green.
+   */
+  const cfCards = cards.map((c) => (c.base === "OGS-018" ? { ...c, energy: 4, power: 0 } : c));
+  const cf = sweepMassAnswers(cfCards);
+  const cases = [
+    [real, 1, "OGN-133", true, "floor M1: OGN-133 Flurry of Blades at E1 deals 1 and is not Signature - the cheapest answer in the pool at any floor it reaches"],
+    [real, 2, "OGS-002", true, "floor M2: Flurry's 1 no longer reaches, so the cheapest unrestricted answer is OGS-002 Firestorm (dmg 3)"],
+    [real, 4, "OGN-123", true, "floor M4: only OGN-123 Unchecked Power (dmg 12) and the scalables reach, and Unchecked Power is the cheapest that forces no legend"],
+    [cf, 3, "OGS-002", true, "COUNTERFACTUAL - Tibbers repriced to E4/P0, so a SIGNATURE card is now the cheapest thing that reaches. The answer must still be OGS-002 Firestorm: 103.2.d.2 binds a Signature card to the legend carrying its champion tag, so it is not an answer every opponent holds. It is the ONLY case that fails against the selection this replaced (damage order, no split), where it names OGS-018 Tibbers - measured, not assumed"],
+  ];
+  console.log(`# --selftest-answer: ${cases.length} hand-derived answer selections (${cases.filter((c) => c[0] === cf).length} counterfactual)`);
+  console.log(`# swept answers: ${real.length}, of which Signature: ${real.filter((a) => a.signature).length} (${real.filter((a) => a.signature).map((a) => a.base).join(", ")})`);
+  let bad = 0;
+  for (const [pool, floor, wantBase, wantSig, why] of cases) {
+    const { answer, sigAnswer } = answersFor(pool, floor);
+    const gotSig = !!sigAnswer;
+    const ok = answer && answer.base === wantBase && !answer.signature && gotSig === wantSig;
+    if (!ok) bad++;
+    console.log(`  ${ok ? "ok  " : "FAIL"}  floor M${floor}${pool === cf ? " [COUNTERFACTUAL]" : ""}`);
+    console.log(`          answer=${answer ? `${answer.base} ${answer.name}` : "none"} want ${wantBase}; signature-flagged=${answer ? answer.signature : "-"} want false; a Signature alternative exists=${gotSig} want ${wantSig}`);
+    console.log(`          ${why}`);
+  }
+  console.log(bad ? `\n# ${bad} FAILED` : "\n# all pass");
+  process.exit(bad ? 1 : 0);
+}
+
 
 // ---------------------------------------------------------------- where a corrections file goes
 /**
@@ -1755,7 +1869,12 @@ if (holds) {
     // the seven bodies The Grand Plaza requires are M7 each, because Spiderling reads "I have +1
     // Might for each other unit you control here with my name". Reporting no answer is correct here;
     // asserting the cheapest one is how the false notable happened.
-    const cheapest = floor === null || scaled.length ? null : massAnswers.find((a) => a.dmg >= Math.max(floor, 1));
+    // ONE selection, shared with --holds-notables (see answersFor). `cheapest` is the cheapest answer
+    // NO LEGEND IS REQUIRED TO RUN; a Signature alternative is reported beside it rather than as the
+    // headline, because 103.2.d.2 binds it to one legend.
+    const picked = floor === null || scaled.length ? { answer: null, sigAnswer: null } : answersFor(massAnswers, floor);
+    const cheapest = picked.answer;
+    const sigAnswer = picked.sigAnswer;
     const named = cheapest ? blob.includes(cheapest.base) || blob.includes(cheapest.name) : false;
     // Which protections this deck may ACTUALLY run. Three corrections over a naive domain test:
     //  - 103.1.b is a subset test against a legend's TWO domains, so the right question is whether
@@ -1786,7 +1905,7 @@ if (holds) {
       return true;
     });
     rows.push({ id: e.id, cls: e.class, identity: [...domains].sort().join("/") || "colourless",
-      floor, tokens: toks, scaled, cheapest, named,
+      floor, tokens: toks, scaled, cheapest, sigAnswer, named,
       protection: prot.map((x) => {
         const scope = /token/i.test(x.clause) ? " [TOKEN bodies only]" : /Mechs/i.test(x.clause) ? " [MECH bodies only]" : /units here/i.test(x.clause) ? " [that battlefield only]" : "";
         return `${x.base} ${x.name} +${x.plus}${scope}`;
@@ -1817,7 +1936,12 @@ if (holds) {
           ? "CANNOT DETERMINE - the garrison floor is unknown (no unit at zone BATTLEFIELD in uses[] and no token played by a card this entry uses), so no answer can be ranked. This is NOT 'nothing answers it'"
           : "no swept mass answer reaches it";
     console.log(`${r.cls.padEnd(8)} ${r.identity.padEnd(12)} floor M${r.floor ?? "?"}  ${r.id}`);
-    console.log(`     cheapest answer: ${ans}${!r.cheapest ? "" : r.named ? "  [entry names it]" : "  <- NOT NAMED"}${sc}`);
+    // THE LABEL NAMES ITS AXIS. This said "cheapest answer" and the card is not the cheapest in the
+    // pool - it is the cheapest one that does not force the opponent's legend, which is the useful
+    // question and a different one. Saying "cheapest" invited the reader to conclude nothing cheaper
+    // exists, and on 23 of 37 rows something does.
+    console.log(`     cheapest unrestricted answer: ${ans}${!r.cheapest ? "" : r.named ? "  [entry names it]" : "  <- NOT NAMED"}${sc}`);
+    if (r.sigAnswer) console.log(`     cheaper but SIGNATURE (103.2.d.2 forces the opponent's legend, so it is not every deck's): ${r.sigAnswer.base} ${r.sigAnswer.name}`);
     if (r.protection.length) console.log(`     identity HOLDS a protection: ${r.protection.slice(0, 3).join("; ")}`);
     if (r.cheapest && !r.named) unanswered.push(r);
   }
@@ -1955,11 +2079,7 @@ if (holdNotables) {
     // Rank by what the opponent actually pays to clear THIS floor, and prefer an answer any deck may
     // run: a Signature answer forces the opponent's legend (103.2.d.2), so it is reported separately
     // rather than as the headline.
-    const reaches = (a) => a.scalable || a.kills || a.dmg >= Math.max(floor, 1);
-    const priceFor = (a) => a.e + (a.scalable ? Math.max(floor, 1) : a.p);
-    const usable = massAnswers.filter(reaches).sort((x, y) => priceFor(x) - priceFor(y));
-    const answer = usable.find((a) => !a.signature) || null;
-    const sigAnswer = usable.find((a) => a.signature) || null;
+    const { answer, sigAnswer } = answersFor(massAnswers, floor);
     if (!answer) continue;
     if (blob.includes(answer.base) || blob.includes(answer.name)) continue;
     const acard = byBase.get(answer.base);

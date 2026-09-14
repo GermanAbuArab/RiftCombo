@@ -345,13 +345,37 @@ describe("a garrison protection", () => {
   const h = execFileSync("node", ["scripts/adversarial-check.mjs", "--holds"], { encoding: "utf8", maxBuffer: 1 << 24 });
   const rows = h.split("\n");
 
+  /**
+   * BLOCK-SCANNED, NOT OFFSET-INDEXED. This read `rows[i + 1]` for the answer and `rows[i + 2]` for
+   * the protection, so inserting ONE line into the per-row output - the Signature alternative - moved
+   * the protection out from under it and `checked` went to zero. The non-vacuity assertion caught it
+   * immediately, which is the whole reason it is there; without it this would have passed silently
+   * while checking nothing at all.
+   *
+   * A LINE OFFSET IS AS MUCH OF A FALSE INTERFACE AS A PROSE MATCH, and this script's own history is
+   * the argument: #220 was a consumer keyed on a producer's wording. Scanning the block a row owns,
+   * bounded by the next `floor M` line, survives any line added between the two it reads.
+   *
+   * IT FOUND NOTHING, AND THAT IS THE HONEST REPORT. Against the output as it stood before the
+   * Signature line was added, the two parsers check the SAME 16 rows - measured, not assumed - so the
+   * offset version was never blind to a row and the gate was clean both ways. The one failure this
+   * rewrite produced was my own: the terminator below.
+   */
   it("is never claimed when it cannot lift the garrison above the answer", () => {
     let checked = 0;
     for (let i = 0; i < rows.length; i++) {
       const f = rows[i]!.match(/floor M(\d+)/);
       if (!f) continue;
-      const ans = rows[i + 1]?.match(/dmg(\d+)/);
-      const prot = rows[i + 2]?.match(/identity HOLDS a protection: (.*)/);
+      // TERMINATE ON `floor M`, NOT ON `floor M\d+`. A null floor prints `floor M?` - the mode's
+      // CANNOT DETERMINE token - so a numeric terminator runs straight through that row and pairs
+      // ITS protection line with the PREVIOUS row's damage. That produced one confident failure
+      // naming a real entry, and the entry was innocent. Written from the line I had in mind rather
+      // than from the lines the script prints, which is this script's oldest mistake.
+      let end = i + 1;
+      while (end < rows.length && !/floor M/.test(rows[end]!)) end++;
+      const block = rows.slice(i + 1, end);
+      const ans = block.map((l) => l.match(/dmg(\d+)/)).find(Boolean);
+      const prot = block.map((l) => l.match(/identity HOLDS a protection: (.*)/)).find(Boolean);
       if (!ans || !prot) continue;
       checked++;
       const floor = Number(f[1]), dmg = Number(ans[1]);
@@ -505,5 +529,54 @@ describe("the live sweep", () => {
     const m = live.match(/# Unanswered holes: (\d+) of/);
     const listed = live.split("\n").filter((l) => /^\s{9}stands on /.test(l)).length;
     expect(listed).toBe(Number(m![1]));
+  });
+});
+
+/**
+ * WHICH CARD THE HOLD MODES NAME (`--selftest-answer`). `--holds` and `--holds-notables` each picked
+ * their own answer out of one swept array and AGREED BY COINCIDENCE - the sweep is sorted by DAMAGE,
+ * `--holds` took the first reaching card and printed it as the "cheapest answer", and the notables arm
+ * sorted by PRICE and split Signature off. On 23 of the 37 rows with a computable floor the price-order
+ * cheapest is a different card, and the one `--holds` named was right anyway because the only Signature
+ * answer that can win on damage loses a dmg-3 tie on cost by three points.
+ *
+ * THE LIVE POOL CANNOT TELL A CORRECT FILTER FROM A LUCKY ONE, which is why the self-test carries a
+ * COUNTERFACTUAL: reprice `OGS-018 Tibbers` below `OGS-002 Firestorm` and nothing else. Measured
+ * against every wrong selection buildable from the shipped one by a single clause - damage order with
+ * no Signature split (the code as it was) fails ONE case, the counterfactual alone; price order with
+ * no split fails three; damage order WITH the split fails none, correctly, because the two orderings
+ * pick the same non-Signature card on all 37 live rows.
+ *
+ * Asserted here rather than left as a mode nobody runs, which is the state `--strict` is still in.
+ */
+function answerSelftest(): { status: number; out: string } {
+  try {
+    return { status: 0, out: execFileSync("node", ["scripts/adversarial-check.mjs", "--selftest-answer"], { encoding: "utf8", maxBuffer: 1 << 22 }) };
+  } catch (e) {
+    const err = e as { status?: number; stdout?: string; stderr?: string };
+    return { status: err.status ?? 1, out: `${err.stdout ?? ""}${err.stderr ?? ""}` };
+  }
+}
+
+describe("which answer the Hold modes name", () => {
+  const { status: aStatus, out: aOut } = answerSelftest();
+
+  it("runs a non-trivial number of cases, one of which is a counterfactual", () => {
+    // A self-test that silently runs nothing prints a clean pass. The population first, then the
+    // shape: a live-pool-only suite here would be green against a missing Signature filter.
+    const m = aOut.match(/# --selftest-answer: (\d+) hand-derived answer selections \((\d+) counterfactual\)/);
+    expect(m, "the non-vacuity header is missing").toBeTruthy();
+    expect(Number(m![1])).toBeGreaterThanOrEqual(4);
+    expect(Number(m![2]), "no counterfactual case, so the live coincidence is all that is tested").toBeGreaterThan(0);
+    // The sweep behind it, so an empty answer set cannot read as a pass either.
+    const sw = aOut.match(/# swept answers: (\d+), of which Signature: (\d+)/);
+    expect(sw, "the sweep header is missing").toBeTruthy();
+    expect(Number(sw![1])).toBeGreaterThan(3);
+    expect(Number(sw![2]), "no Signature answer in the pool, so the carve-out tests nothing").toBeGreaterThan(0);
+  });
+
+  it("names an answer no legend is required to run, in every case", () => {
+    expect(aOut).toContain("# all pass");
+    expect(aStatus, aOut).toBe(0);
   });
 });
