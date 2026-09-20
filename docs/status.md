@@ -1,11 +1,11 @@
-# RiftCombo — status as of 2026-09-14
+# RiftCombo — status as of 2026-09-20
 
 This is the orientation document. `docs/plan.md` and `docs/phase0-findings.md` are the plan and the
 spike of 2026-09-02 and are kept as history: they describe decisions that were later taken
 differently. Read them for the reasoning, not for the current state.
 
-Every number below carries the command that produces it, measured against commit **`77dfaf2`** on
-2026-09-14. The catalogue grows with every walk: **if a number does not match, the command is the
+Every number below carries the command that produces it, measured against commit **`ecf7a88`** on
+2026-09-20 (branch `feat/2026-09-20-rc-manager13`). The catalogue grows with every walk: **if a number does not match, the command is the
 truth and this is a photo.**
 
 ---
@@ -41,6 +41,10 @@ decides what is visible; `web/account.ts` sets the attribute.
   **Rendered markdown from `docs/plays/`, with no schema and no `data/plays.json`**: the value of a
   play is the prose and the verdict, and a `turns[]` array would carry the table and lose the
   reasoning between the rows. The markdown is the single source of truth; nothing is authored twice.
+  **Withheld on 2026-09-19** (15 of 15 carried text addressed to another agent — a "For the manager"
+  punch-list rendered beside the Riot disclaimer) and **republished on 2026-09-20** after all sixteen
+  were edited for a reader; `test/plays-reader.test.ts` pins that standard, and the index shows the
+  subject entry's name rather than its id (`scripts/web-plays.mjs`, resolved from `combos.json`).
 - **Guide** (`#/guide`) — what the classes mean (INFINITE, BURST, CHAIN, ALT WIN, ENGINE) and how to
   read an entry.
 - **Sources** (`#/sources`) — where each thing comes from: Riot's gallery API, the Rules Hub, the Core
@@ -56,9 +60,9 @@ decides what is visible; `web/account.ts` sets the attribute.
 | Unverified | **0** | `node -pe 'require("./data/combos.json").combos.filter(e=>e.status!=="verified").length'` |
 | By class | INFINITE 14 · BURST 23 · CHAIN 19 · ALT_WIN 27 · ENGINE 688 | `node -pe 'const a=require("./data/combos.json").combos,b={};for(const e of a)b[e.class]=(b[e.class]||0)+1;JSON.stringify(b)'` |
 | Entries by card count (`uses.length`) | 1:26 · 2:468 · 3:194 · 4:53 · 5:17 · 6:5 · 8:2 · 11:1 | `node -pe 'const a=require("./data/combos.json").combos,b={};for(const e of a)b[e.uses.length]=(b[e.uses.length]\|\|0)+1;Object.keys(b).map(Number).sort((x,y)=>x-y).map(k=>k+":"+b[k]).join(" · ")'` |
-| Entries declaring `anyBodies` | **82** | `node -pe 'require("./data/combos.json").combos.filter(e=>e.anyBodies).length'` |
+| Entries declaring `anyBodies` | **84** | `node -pe 'require("./data/combos.json").combos.filter(e=>e.anyBodies).length'` |
 | Distinct cards used by some entry | **897** | `node -pe 'const a=require("./data/combos.json").combos,s=new Set();for(const e of a)for(const u of e.uses)s.add(u.card);s.size'` |
-| Sources cited | **2264** | `node -pe 'require("./data/combos.json").combos.reduce((n,e)=>n+(e.sources\|\|[]).length,0)'` |
+| Sources cited | **2281** | `node -pe 'require("./data/combos.json").combos.reduce((n,e)=>n+(e.sources\|\|[]).length,0)'` |
 | Synergy rules | **222** | `node -pe 'require("./data/synergies.json").synergies.length'` |
 | Anchor–partner pairs produced | **5475** | `npm run synergies \| tail -1` |
 | Printings in the pool | **1189** | `node -pe 'require("./data/cards.json").cards.length'` |
@@ -67,7 +71,8 @@ decides what is visible; `web/account.ts` sets the attribute.
 | Legality rows (ban/restricted) | **21** | `node -pe 'require("./data/legality.json").entries.length'` |
 | Hand walks archived | **108** | `ls docs/phase0/walks/*.md \| grep -v README \| wc -l` |
 | Run plays | **16** | `ls docs/plays/*.md \| wc -l` |
-| Tests | **698 in 51 files** | `npm test` |
+| Tests | **710 in 52 files** | `npm test` |
+| Adversarial check | exit 0 | `npm run adversarial` |
 | Typecheck | clean | `npm run typecheck` |
 
 All 766 entries are `verified`: somebody walked the loop by hand against card text and the Core
@@ -135,7 +140,7 @@ command, so it is committed); `check-rls.mjs` proves row isolation with two real
 hosted project; `adversarial-check.mjs` is the turn clock and the answer sweeps; `claude-md-gap.mjs`
 joins the catalogue's rule citations against `CLAUDE.md`.
 
-**`test/` — 525 tests in 40 files** with vitest. `headers.test.ts` is the one that watches the posture:
+**`test/` — 710 tests in 52 files** with vitest (the 525/40 figure dated 2026-09-13). `headers.test.ts` is the one that watches the posture:
 it fails if the `service_role` name or the database password appears anywhere under `web/`, if there
 is more than one sign-in button, or if the `data-auth` default stops being `pending`.
 **#138 (HIGH, ultrareview 2026-09-06)** found that day's whole DOM layer untested — no DOM environment
@@ -280,16 +285,14 @@ below covers 18 of them and is itself now behind: five more walks have landed si
 
 | Issue | What |
 |---|---|
-| #137 | LOW: external citations that still carry no `accessed` date; the rest are CAPTCHA/login walls with no readable route from this machine (old.reddit.com threads, one riftbound.gg/decks page) |
 | #187 | Walk: the Core Rules blocks this catalogue has never cited |
 | #191 | Walk: uncited Core Rules sub-rules 500–829, mined by worked example |
-| #195 | Synergies, fifteenth batch — tracking issue for a merged batch |
-| #198 | Synergies, sixteenth batch: audit three syn15 rules (one refuted) and add nine |
-| #199 | Five loose ends the architecture map found |
 | #200 | Synthesise combos and run plays instead of only extracting them |
+| #218 | `bodyCheck`'s approximation fails flattering, and the mitigation that covers it is one edit from disappearing |
 
-`gh issue list --state open` is the live list; **this table is a photo of 2026-09-13 and goes stale
-the way every count here does.** Closed since the previous photo: #143, #196, #201, #205, #206, #207.
+`gh issue list --state open` is the live list; **this table is a photo of 2026-09-20 and goes stale
+the way every count here does.** Closed since the 2026-09-13 photo: #137, #143, #195, #196, #198,
+#199, #201, #205, #206, #207, #216, #217, #219, #220, #221, #222.
 
 The mechanic lenses are all swept, as are the six unit-domain hunts (Order / Fury / Chaos / Body /
 Calm / Mind) and the legend hunt, so what remains open is residual: pending citations, two veins of
@@ -297,3 +300,28 @@ never-cited rules, and quality audits over the newest entries. **The card vein i
 926 deckable names with only a few dozen walkable ones left — which is why the rules file replaced it
 as the source of new work, and why #200's synthesis direction (design from a target rather than from
 a card) is the standing brief rather than another lens.
+
+---
+
+## 8. Plan items closed or deferred, 2026-09-20
+
+`docs/plan.md` (2026-09-02) and the 2026-09-02 `tasks/todo.md` still carried unchecked items for the
+app. Session rc-manager13 closed each one or deferred it here with the reason; `tasks/todo.md` now
+holds that session's own plan. The UI/UX review that went with it is
+[`docs/reviews/2026-09-20-ui-ux-review.md`](reviews/2026-09-20-ui-ux-review.md) (9 findings fixed,
+8 deferred with reasons, all on this branch).
+
+| Item | Disposition |
+|---|---|
+| todo §3: re-run the hunt agents L1–L6, refute pass, "Lux and Recruits rediscovered by an agent" | **Superseded.** The lens hunts and the 108 hand walks replaced the agent re-hunt entirely (§5 above); the catalogue holds 771 verified entries including both loops. Nothing to re-run. |
+| todo §5: esbuild bundle, paste / code / URL → buckets → SVG, Riot disclaimer, CSP/COOP | **Done** (Vercel replaced the Worker in #12; `test/headers.test.ts` pins the headers and the disclaimer). |
+| todo §5: "renders the Lux fixture legibly at 375px and 1280px" | **Done 2026-09-20** in the review: screenshots at both widths, console clean. |
+| todo §6: name plates overlapping the qty badge; combo names truncated in route boxes; circular + drawer + near misses in a browser; mobile pass at 375 | **Done 2026-09-20**: not reproducible / wrapped since the graph model gained `lines` / all walked in the review. |
+| todo §6 and plan D1/D2: Riot API key application; card images | **Deferred — user decision.** Images come from Riot's own `cmsassets` URLs as returned by the gallery API (the source of the text too); applying for `riftbound-content-v1` is the owner's call and was never on the critical path (plan §5, option A). |
+| todo §6: deploy via `wrangler login` and set the GitHub remote | **Done long ago** (Vercel from a push to `master`, repo public); the line was obsolete. |
+| plan Phase 3: pan/zoom, PNG export, theme-aware | Pan and zoom exist (`web/graph.ts`). **PNG export and a light theme deferred**: neither was requested after 2026-09-02, the site is dark by decision (CLAUDE.md "UI — visual identity"), and export is a feature, not a gap. |
+| plan Phase 4: rate limiting on `/api/deck-url` | **Deferred.** The proxy has a host allowlist, an honest User-Agent and a short cache; Vercel's Edge runtime has no shared state for a counter without adding a store. Recorded in #199's loose ends. |
+| rc-manager10 §5.1: HSTS `includeSubDomains` | **Deferred — user decision** (a two-year commitment for every future subdomain). |
+| rc-manager10 §5.3: the off-domain reason in the pool is tooltip-only | **Deferred** (review D5); the `Not <tag>` Signature badge does render and is pinned by `test/dom/builder.dom.test.ts`. |
+| rc-manager11 §4.3: the Neon migration | **Out of scope for this branch** — ceded to the `neon-migration` worktree and its spec (`docs/superpowers/specs/2026-09-19-neon-migration.md`), which rc-manager12 finished reviewing; it needs the owner. |
+| rc-manager11 §3: URL import happy path | **Untestable locally** — needs `/api/deck-url`, which exists only on a Vercel deploy (`vercel dev` self-recurses, §4). The error path and the empty-URL guard are tested. |
