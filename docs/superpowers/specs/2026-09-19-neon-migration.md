@@ -437,11 +437,17 @@ get **whether the `UPDATE` touched a row or touched none** — so a negative che
 delete, written the obvious way, cannot tell *denied* from *applied*. That is the same defect as the
 other five, one layer lower: not in the assertion, in the protocol.
 
-**`scripts/check-rls.mjs` is safe from it by luck.** Checks 5 and 6 chain `.select("id")` after the
-update and the delete, which forces `return=representation` and produces the row array the assertion
-reads. **Nothing in the file says that is why**, and a port that dropped the `.select` — an obviously
-harmless tidy-up, since the value is discarded — would silently turn both checks into assertions that
-can no longer fail. The Neon port sends the header explicitly and says so in a comment.
+**This was true of `scripts/check-rls.mjs` until `3603382` and is no longer — and the correction is
+the more useful half.** Checks 5 and 6 chain `.select("id")`, which forces `return=representation`,
+and **nothing in the file says that is why**; under the original predicate `(data?.length ?? 0) === 0`
+dropping it would have turned both into assertions that can never fail. Measured by running four
+response shapes through both predicates: **without the `.select`, the original passes for a denial AND
+for a row that was actually changed — indistinguishable — while today's helper fails both.** **The
+load-bearing token is not the `.select`, it is the `Array.isArray(data)`**: `return=minimal` yields
+`null`, an array test rejects it, a `?? 0` test converts it to a passing zero. **So the rule for the
+port is about how the assertion is written, not about the header: require a POSITIVE SHAPE — an array
+of length zero — never a numeric comparison a missing value can satisfy.** Sending the header
+explicitly, as the Neon port does, is right as well; it is belt to the array test's braces.
 
 **The response shapes the port must distinguish, verified against PostgREST's error reference:**
 
