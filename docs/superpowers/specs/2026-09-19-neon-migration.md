@@ -354,7 +354,22 @@ error away — so *"correctly denied"* and *"the request blew up"* arrive at the
 answer. That is why the fix is not merely a louder log: the helper has to assert **that the request
 SUCCEEDED and returned zero rows**, and the precondition has to **throw** rather than print a failure
 line. The same property holds on Neon, because the Data API is PostgREST-derived, so port the fixed
-predicate rather than the original one. What rescues them is that checks 1, 2 and 8 are positive controls —
+predicate rather than the original one.
+
+**The general rule underneath, and it is why this class exists at all: A POSITIVE ASSERTION FAILS
+SAFE WHEN THE REQUEST BREAKS; A NEGATIVE ONE PASSES.** If the call fails, `Boolean(undefined)` is
+false and a positive check goes red on its own. A negative check reads the same broken answer as
+proof. **That is why four of the fourteen were wrong while the positives beside them were fine all
+along, and it is the rule to apply to any new check rather than a fact about these four.**
+
+**A fifth instance was then found in the file that had just been fixed for four** (`8b69ab7`), and
+it matters to the port because **it needs a DIFFERENT fix.** Check 12 read
+`admin.auth.admin.getUserById(b.id)` and destructured the error away, so *"that account is really
+gone"* printed pass whether the account was deleted or the admin call had simply failed. Demanding
+`error === null` would be wrong here: **deleting the user is exactly what makes the lookup answer
+404**, so the success case carries an error. The shape that works accepts **either** a clean response
+with no user **or** a 404, and fails anything else by name. Port that shape too, not only the
+`denied()` helper — the Neon equivalent of check 12 has the same structure. What rescues them is that checks 1, 2 and 8 are positive controls —
 a deck really was saved, and it really survived — so the negatives are measured against something
 known to be there. That is currently an accident of ordering rather than a stated property. Make it
 explicit: **the script prints a non-vacuity line before any negative check** — how many users it
@@ -612,7 +627,7 @@ Each step ends in a state that either works or is one `git revert` from working.
 |---|---|---|
 | 1 | Create the Neon project, one branch, enable the Data API on it. | Yes — delete the project. Costs nothing, touches nothing. |
 | 2 | Apply the §3.4 schema. Configure Neon Auth with Google. | Yes — nothing points at it. |
-| 3 | Write the Neon `check-rls.mjs` (16 checks) and **run it against an empty Neon database**. Do not proceed until all 16 pass. | Yes. **This is the highest-value step and it must come before any application code.** A policy set proved on an empty database costs nothing to fix; one discovered after cutover costs a user's data. |
+| 3 | Write the Neon `check-rls.mjs` (16 checks) and run it. **"All 16 pass" is NOT the gate — see below.** | Yes. **This is the highest-value step and it must come before any application code.** A policy set proved before cutover costs nothing to fix; one discovered after costs a user's data. |
 | 4 | Build `api/delete-account.ts`. Prove checks 10-14 against it. | Yes — no caller yet. |
 | 5 | Swap the body of `web/supabase.ts`, keeping every export identical. Run the full suite: the nine DOM tests must pass untouched. | Yes — one file, one `git revert`. |
 | 6 | Update `site-config.mjs`, `build-headers.mjs`, `test/headers.test.ts`; regenerate and commit `vercel.json`. | Yes. |
@@ -622,8 +637,21 @@ Each step ends in a state that either works or is one `git revert` from working.
 | 10 | Wait one week with both alive. Then delete the Supabase project. | No, after this. |
 | 11 | Update the Obsidian README's **Infraestructura** section and the decision note, including the §0 correction. | — |
 
-**Gate at every step:** `npm run typecheck` **and** `npm test` **and** `npm run build:web`. A passing
-vitest run is not evidence the code typechecks; that has bitten this project.
+**Step 3 needs its own gate, and the first draft of this plan got it wrong.** It said *"run it
+against an empty Neon database, do not proceed until all 16 pass"* — and panel3 pointed out that **an
+empty database is precisely the state the vacuous checks report green on**, so as written, step 3
+would have announced sixteen of sixteen against a branch with no table. The gate that does not
+collapse is:
+
+1. **The positive controls run first and THROW**, not print, if they fail. A deck really was
+   created and read back, so the negatives that follow are measured against something known to be
+   there. rc-manager11 made exactly this change on the Supabase script (`3603382`).
+2. **The non-vacuity line is non-zero** — users created, rows present, branch host — or the run is
+   red regardless of what the checks say.
+3. Only then does *"16 of 16"* mean anything.
+
+**Gate at every other step:** `npm run typecheck` **and** `npm test` **and** `npm run build:web`. A
+passing vitest run is not evidence the code typechecks; that has bitten this project.
 
 ---
 
