@@ -19,3 +19,4 @@ docs/architecture/*.visual-check.*
 strix_runs/
 .playwright-cli/
 security_runs/
+.gstack/
