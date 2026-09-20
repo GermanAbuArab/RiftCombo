@@ -119,8 +119,20 @@ try {
 
   const { error: bDeletesSelf } = await b.client.rpc("delete_account");
   check("a signed-in user can delete their own account", !bDeletesSelf, bDeletesSelf?.message ?? "");
-  const { data: bGone } = await admin.auth.admin.getUserById(b.id);
-  check("that account is really gone", !bGone?.user, bGone?.user ? "still there" : "");
+  // The same defect as the four above, in its last hiding place, and it needs a DIFFERENT fix.
+  // `!bGone?.user` is true when `bGone` is null because the admin call itself failed, so a network
+  // or key problem printed "that account is really gone" without asking anything. But unlike the
+  // RLS reads, an error here is not automatically a failure: deleting the user is exactly what makes
+  // `getUserById` answer 404, so demanding `error === null` would fail the success case. Accept the
+  // two shapes that both mean gone — a clean response with no user, or a 404 — and fail anything
+  // else by name, so an auth or network error can never again read as proof of deletion.
+  const { data: bGone, error: bGoneError } = await admin.auth.admin.getUserById(b.id);
+  const reallyGone = bGoneError ? bGoneError.status === 404 : !bGone?.user;
+  check("that account is really gone", reallyGone,
+    bGoneError && bGoneError.status !== 404 ? `could not tell: ${bGoneError.message}` : bGone?.user ? "still there" : "");
+  // The POSITIVE checks below need no such guard, and the asymmetry is the whole lesson: if the call
+  // fails, `Boolean(undefined)` is false and they FAIL. A positive assertion fails safe when the
+  // request breaks; a negative one passes. That is why the absences are the ones to armour.
   const { data: aSurvives } = await admin.auth.admin.getUserById(a.id);
   check("deleting one account leaves the other user alone", Boolean(aSurvives?.user));
   const { data: aDeckSurvives } = await a.client.from("decks").select("id").eq("id", aDeck.id);
