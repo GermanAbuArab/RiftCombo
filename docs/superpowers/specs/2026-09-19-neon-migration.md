@@ -49,14 +49,16 @@ claim from a corrected one by reading forward. This block is the index of what i
 | Cutover order | **Auth before schema** (auth creates `neon_auth`), staging table **mandatory** (the FK forbids the alternative), `security-scan` before the push. §8, §6 |
 | Cost | Free tier, demonstrated by a working project rather than read off the pricing page. §10 — **but the headroom arithmetic rests on an unsourced compute size; see open item 8** |
 
-**OPEN — three, all cheap now that a project exists, and none blocking design work:**
+**OPEN — four, all cheap now that a project exists, and none blocking design work:**
 
 1. Can a Neon upgrade recreate `neon_auth` and take the FK with it? The cascade is load-bearing for
    deletion, so this is the one with teeth. §9 item 1.
 2. Does the Data API hostname survive a **branch reset**? If not, the committed CSP goes stale and
    every request fails closed. §9 item 5.
-3. Does an idle signed-in tab **wake the compute**? The only thing that could break the Free-tier
-   arithmetic. §9 item 6, §10.
+3. Does an idle signed-in tab **wake the compute**? It exceeds Free at any compute size. §9 item 6.
+4. **What compute size does a new Free project default to?** §10's headroom arithmetic was written on
+   an unsourced figure and the honest range spans a factor of eight. One glance at the console. §9
+   item 8.
 
 **KEPT AS REFUTED HISTORY, not as instructions** — §5.2 and §5.4 (an account-deletion gate that was
 false), §3.3's opening (a `text` column decision, right on its premise and reversed when the premise
