@@ -86,9 +86,23 @@ create trigger decks_touch_updated_at
 --
 -- This grant is blanket across the schema, which means RLS is the only thing between a signed-in
 -- player and every table in `public`. That is the same posture PostgREST gives us on Supabase
--- today, so it is not a regression -- but it is why any future table added to `public` is exposed
--- the moment it exists, and why it must ship with its own policies in the same migration.
+-- today, so it is not a regression -- but it is why a future table added to `public` must ship with
+-- its own policies in the same migration that creates it.
+--
+-- `for role` on the default-privileges line is deliberate and is NOT what Neon's own examples show.
+-- Written without it, `alter default privileges` silently means "for the role running this
+-- statement", so it covers future tables only when the same role creates them. A later migration
+-- run as a different role would produce a table with no grant, and the failure is not obvious from
+-- here: it surfaces as the Data API answering "permission denied" for a table that plainly exists.
+-- Neon documents that symptom and its remedy -- re-run these grants -- at
+-- <https://neon.com/docs/data-api/access-control>, which is the same bug seen from the far end.
+--
+-- `neondb_owner` is the role Neon creates with a project, and Neon's own FAQ hedges it as
+-- "typically" that name. VERIFY IT against the real project when the schema is first applied
+-- (`select current_user`) and correct this line if it differs -- a wrong name here does not error,
+-- it just quietly does nothing.
 grant usage on schema public to authenticated;
 grant select, insert, update, delete on all tables in schema public to authenticated;
-alter default privileges in schema public grant select, insert, update, delete on tables to authenticated;
+alter default privileges for role neondb_owner in schema public
+  grant select, insert, update, delete on tables to authenticated;
 grant usage, select on all sequences in schema public to authenticated;
