@@ -77,6 +77,16 @@ files do:
 - `test/supabase-account.test.ts:3` — imports the `Session` **type**. Removing the dependency breaks
   this import even though no runtime call is involved.
 
+**And that grep was itself short, which is the more useful half of this row.** It was scoped to a
+**named list of directories** (`web/ src/ test/ scripts/ api/`). A walk of the whole repository —
+`grep -rli supabase . --exclude-dir=node_modules --exclude-dir=.git --exclude-dir=supabase
+--exclude=package-lock.json --exclude=app.js` — returns **seven more files this plan would otherwise
+have missed**: `web/account.ts`, `web/decks.ts` and `web/main.ts` (which import the *module*, not the
+SDK — see §2.4), `test/xss.test.ts` (a comment), and `README.md`, `docs/status.md` and
+`scripts/build-web.mjs`, all of which carry real setup instructions or build wiring. They are handled
+in §7.5 and §7.6. **A named directory list is a guess about where things are; a walk is a
+measurement.**
+
 ---
 
 ## 2. Six couplings the summary does not mention
@@ -306,6 +316,16 @@ The 14 checks, and what each becomes:
     all pass on a database where every policy is accidentally `true` — they only prove that *some*
     separation exists, not that it is keyed to the right claim.
 
+**The suite must refuse to pass vacuously, and today's one only does so by accident.** Checks 3, 4,
+6 and 9 are all of the form *"X cannot see / cannot change this row"*, and **every one of them passes
+against a database where the row does not exist, the table does not exist, or the Data API is
+pointed at the wrong branch.** What rescues them is that checks 1, 2 and 8 are positive controls —
+a deck really was saved, and it really survived — so the negatives are measured against something
+known to be there. That is currently an accident of ordering rather than a stated property. Make it
+explicit: **the script prints a non-vacuity line before any negative check** — how many users it
+created, how many rows exist, and which branch host it is talking to — and exits non-zero if any of
+those is zero. A probe that silently matches nothing must not be able to read as a pass.
+
 **How the two test users are created is the part that has no drop-in.** Today `check-rls.mjs` uses
 `SUPABASE_SERVICE_ROLE_KEY` with `auth.admin.createUser` and `signInWithPassword`. There is no
 service-role key in Neon. The replacement is Neon's Management API with a `NEON_API_KEY` — the same
@@ -316,7 +336,7 @@ that reads a privileged key.
 
 ---
 
-## 5. `delete_account`, in full — the hard part, and the one that can stop the migration
+## 5. `delete_account`, in full — the hard part, and the section that was wrong
 
 ### 5.1 What exists today
 
@@ -336,30 +356,72 @@ It is reached from `web/supabase.ts:130` via `.rpc("delete_account")`, wired at
 
 That sentence is a promise, it is published, and it is the tightest constraint in this document.
 
-### 5.2 What Neon offers, verified
+### 5.2 What Neon offers — corrected 2026-09-19, after this section was wrong
 
-Deleting a Neon Auth user is a **control-plane** operation, not a SQL one:
+**The first version of this section said account deletion was a control-plane call that soft-deletes
+a row in `neon_auth.users_sync`, and declared that the gate on the whole migration. That was wrong.**
+panel3 challenged it with evidence; the challenge was verified at source before being accepted, and
+it holds.
 
-```
-DELETE /api/v2/projects/{project_id}/branches/{branch_id}/auth/users/{auth_user_id}
-Authorization: Bearer $NEON_API_KEY
-→ 204 No Content
-```
+`neon_auth.users_sync` and the control-plane delete belong to the **legacy** Neon Auth product. The
+page documenting that endpoint lives under `/docs/reference/api/auth-legacy/` and carries its own
+banner: *"Deprecated. Use `/projects/{project_id}/branches/{branch_id}/auth/users/{auth_user_id}`
+instead. Removal scheduled for March 1, 2026."*
 
-Two properties of it matter, and both cut against the promise above:
+The current product, **Managed Better Auth**, keeps authentication in ordinary tables inside the
+project's own database. From <https://neon.com/docs/auth/authentication-flow>, fetched 2026-09-19:
 
-1. **It needs `NEON_API_KEY`, a server secret.** It cannot be called from the browser. So
-   `delete_account` stops being a database function and becomes a server endpoint.
-2. **It is documented as a soft delete in `neon_auth.users_sync`** — the row is marked with a
-   `deleted_at` timestamp rather than removed, and consumers are told to filter deleted users out.
+> All authentication data (users, sessions, OAuth configurations) lives in your database's
+> `neon_auth` schema.
 
-Generic Better Auth does expose `authClient.deleteUser()`, but it is **disabled by default** and
-requires `user.deleteUser.enabled` in server config. **Neon's own JavaScript SDK reference does not
-document a `deleteUser` method at all.** Under a *managed* Better Auth it is not established that the
-application can set that flag.
+…that you can *"query these tables directly with SQL"*, that *"Changes are immediate (no sync
+delays)"*, and *"You own your data"*. The tables are named: **`neon_auth.user`,
+`neon_auth.account`, `neon_auth.session`, `neon_auth.verification`.** `users_sync` is not mentioned
+on that page at all.
+
+**So deleting an account is a real SQL `DELETE` against `neon_auth.user`, not a tombstone.** Three
+consequences, all of them good:
+
+1. **`web/privacy.html` line 53 can stand unchanged.** *"At once and for good; there is no copy
+   kept"* remains true. The page still needs its Supabase names swapped (§2.3), but the deletion
+   paragraph does not need rewording.
+2. **The `on delete cascade` may be recoverable.** §5.3 gave it up on the assumption that the
+   identity lived in a managed mirror. If a foreign key from `public.decks` onto `neon_auth.user`
+   is supported, the database can guarantee again that deleting a user removes their decks. This is
+   open item 1 of §9 and it is worth the check, because it restores a safety property rather than
+   an optimisation.
+3. **The migration is no longer gated.** It has open questions; it does not have a blocker.
+
+**Why the error happened, because the cause is more reusable than the correction.** The soft-delete
+claim came from a **web-search result summary that was never fetched and read.** This project's own
+rule covers it exactly — *a URL you haven't read is not a citation*, and *pessimistic verdicts are
+extra load-bearing*. The verdict was the most pessimistic one available, it went into the document
+as the gate, and it survived a first review because it was written with a citation-shaped sentence.
+**The fetched page said the opposite of the summary, and my own earlier fetch of the Neon Auth
+overview had already said "There is no separate synced users table" — I had the refuting evidence in
+hand and went with the search summary anyway.**
+
+One thing genuinely does not survive the correction, and it is worth keeping: generic Better Auth's
+`authClient.deleteUser()` is **disabled by default** behind `user.deleteUser.enabled`, and Neon's own
+JavaScript SDK reference does not document a `deleteUser` method. So *how* the delete is issued is
+still open — see §5.3.
 
 ### 5.3 The design
 
+With §5.2 corrected there are two candidate designs, and which one is right depends on open item 1
+of §9. **Design both on paper; build only the one the check selects.**
+
+**Design A — the database does it (preferred, if the FK is supported).** Restore
+`user_id references neon_auth.user(id) on delete cascade`. Account deletion is then a single
+`delete from neon_auth.user where id = auth.user_id()`, and the decks go with it exactly as they do
+today. This is the closest thing to the current `SECURITY DEFINER` function and it keeps the
+property that made that function safe: **the row is chosen by the session, so there is nothing to
+aim.** Whether the browser may issue that delete directly is a separate question — `neon_auth` is not
+the `public` schema the Data API exposes by default, and exposing an auth schema to the browser is
+not obviously wise — so the likely shape is still a small server endpoint, but one that runs *one*
+statement and needs no control-plane key.
+
+**Design B — a server endpoint does it in two steps (fallback, if the FK is not supported).**
 There is a home for this already: `api/` runs a Vercel Edge Function today (`api/deck-url.ts`).
 
 **New file: `api/delete-account.ts`.**
@@ -371,7 +433,8 @@ There is a home for this already: `api/` runs a Vercel Edge Function today (`api
    the step that must happen first**: if the identity is deleted first and this fails, the rows are
    orphaned with no owner who can ever reach them, and RLS guarantees nobody can clean them up
    through the app.
-3. Call the Neon Management API to delete the auth user.
+3. `delete from neon_auth.user where id = $sub` — a real SQL delete, per §5.2, **not** the
+   deprecated control-plane endpoint.
 4. Return 204. The browser then does what it does today: clear the local session.
 
 `web/supabase.ts`'s `deleteAccount()` keeps its exact signature — `Promise<void>`, no argument — so
@@ -380,32 +443,35 @@ There is a home for this already: `api/` runs a Vercel Edge Function today (`api
 
 **What this costs, stated plainly rather than hidden:**
 
-- **The `api/` directory gains a secret.** `api/deck-url.ts` needs none today. Adding `NEON_API_KEY`
-  and a connection string changes the security posture of that directory and means
-  `test/headers.test.ts:147` — *"never mentions the service_role key or the database password in
-  `web/`"* — should be widened to cover the new names, not just the Supabase ones.
-- **The `on delete cascade` safety property is gone.** Today the database guarantees that deleting a
-  user removes their decks; after the migration it is guaranteed by two statements in an endpoint,
-  in the right order. That is strictly weaker and check 14 of §4 is what stops it rotting.
+- **The `api/` directory gains a secret.** `api/deck-url.ts` needs none today. Adding a privileged
+  connection string changes the security posture of that directory and means
+  `test/headers.test.ts:150` — *"never mentions the service_role key or the database password in
+  `web/`"* — should be widened to cover the new names, not just the Supabase ones. Note this cost is
+  **smaller than the first draft claimed**: with §5.2 corrected, no `NEON_API_KEY` is needed in the
+  request path at all.
+- **The `on delete cascade` safety property is at risk, not necessarily gone.** Under Design A it
+  survives untouched. Under Design B it is replaced by two statements in an endpoint, in the right
+  order, which is strictly weaker — and check 14 of §4 is what stops that rotting.
 - **The function's best property is gone: it took no argument.** The whole `SECURITY DEFINER` design
   rests on there being nothing to aim. The endpoint *does* take an identity — the `sub` of a token —
   so the JWT verification in step 1 is now load-bearing in a way nothing was before. A bug there is a
   "delete anybody's account" bug. **This is the single most dangerous line of code the migration
   introduces and it should be reviewed as such.**
 
-### 5.4 The blocking question
+### 5.4 The question that was the gate, and is not
 
-**Does a Neon Auth deletion leave "a copy kept"?** If `neon_auth.users_sync` retains a `deleted_at`
-row carrying the email and name, then `web/privacy.html`'s *"there is no copy kept"* is false as
-written, and one of these must happen before the migration ships:
+**Resolved 2026-09-19. There is no gate.** The question was whether a Neon Auth deletion leaves *"a
+copy kept"* and so falsifies `web/privacy.html`. §5.2 answers it: identities are ordinary rows in
+`neon_auth.user` inside the project's own database, a delete is a delete, and the privacy page's
+deletion paragraph stands as written.
 
-- confirm that the identity itself is hard-deleted and only the local *mirror* keeps a tombstone,
-  and say so precisely in the privacy page; or
-- reword the privacy page to describe what actually happens; or
-- choose Option B (§3.2), where there is no user record at all — at the cost of hourly sign-outs.
+**What remains is an open question, not a blocker:** *how* the delete is issued — Design A or Design
+B of §5.3 — which open item 1 of §9 decides. Either way the promise holds.
 
-**This is the gate. It is a published promise, not an implementation detail, and it is the reason
-this plan is not a cutover checklist yet.**
+Kept deliberately, because a refuted claim is worth more than a deleted one: **the shape to distrust
+in this document is a pessimistic verdict wearing a citation.** This section carried one for several
+hours. It read as the most careful paragraph in the plan precisely because it was the most alarming,
+and that is what stopped it being checked.
 
 ---
 
@@ -467,6 +533,27 @@ Widen line 150's secret-name check to cover `NEON_API_KEY` and the connection st
 auth client. Rename the `check:rls` script's target if the filename changes; **prefer keeping the
 filename `scripts/check-rls.mjs`**, since RLS is still exactly what it proves.
 
+**7.5 `scripts/build-web.mjs:80-81` and `:93`** — the esbuild `define` block substitutes
+`__SUPABASE_URL__` and `__SUPABASE_ANON_KEY__` into the bundle, and line 93 prints them at build
+time. Both names move with the environment variables in §7.1. This file was missing from the first
+draft of this list; it was found by the walk described in §1.
+
+**7.6 The documentation set, which is not optional.** Six files describe the Supabase setup to a
+human and will be wrong the moment the migration lands:
+
+| File | What is in it |
+|---|---|
+| `web/privacy.html` | Names Supabase 3 times. Published, dated, legally load-bearing. §2.3 |
+| `public/privacy.html` | The built copy — regenerates from the above, no manual edit |
+| `README.md:52-79` | The setup instructions, including `supabase db push` and the three env vars |
+| `docs/status.md` | 8 references, including the hosted project ref. CLAUDE.md says this file is the measured state of the project and is read first |
+| `test/xss.test.ts:9` | A comment describing where a deck name comes from |
+| `web/account.ts`, `web/decks.ts` | Docblocks that explain supabase-js behaviour by name |
+
+`docs/plan.md`, `docs/reviews/`, `docs/superpowers/specs/2026-09-05*`, `2026-09-06*` and
+`tasks/lessons.md` also name Supabase and are **history — leave them alone.** The project's rule is
+that dated records are not retro-edited.
+
 Nothing else in `vercel.json` moves. In particular the `ignoreCommand` path list is untouched: `api`
 is already on it, so a new `api/delete-account.ts` correctly triggers a build.
 
@@ -498,19 +585,28 @@ vitest run is not evidence the code typechecks; that has bitten this project.
 
 ## 9. What is UNVERIFIED, and must be answered before step 1
 
-Each of these was searched for and not found in Neon's own documentation. None should be assumed.
+Each was searched for and not settled from Neon's own documentation. None should be assumed.
+**Item 2 of the first draft — "does a deletion leave a copy" — is resolved and removed; see §5.2.**
+Ordered by what they block.
 
-1. **Can a signed-in user delete their own account without a server secret** — i.e. does Neon's
-   managed Better Auth expose `deleteUser()`? Neon's SDK reference does not document it. **If the
-   answer is yes, §5's endpoint shrinks to almost nothing.** Check first; it is the cheapest possible
-   win in this document.
-2. **Does deleting a Neon Auth user leave a copy?** §5.4. This is the gate.
-3. **Is the `sub` issued by Neon Auth a UUID?** §3.3 chooses `text` so that the answer stops
-   mattering, but it should still be known.
-4. **`neon_auth.users_sync`'s exact columns and types, and whether a foreign key onto it is
-   supported or warned against.** §3.4 drops the FK on the assumption that it is not safe against a
-   managed, soft-deleting mirror. If an FK *is* supported, the cascade can be restored and §5's
-   ordering risk goes away.
+1. **Can `public.decks` carry a foreign key onto `neon_auth.user` with `on delete cascade`, and does
+   Neon manage that schema in a way that could drop or recreate it on an upgrade?** This selects
+   Design A over Design B in §5.3, and with it whether the database or an endpoint guarantees that
+   deleting a user removes their decks. **Highest value question in this document.** A managed schema
+   that is recreated on upgrade would take the FK with it, which argues for Design B even if the FK
+   is accepted today — so ask both halves, not just the first.
+2. **Is the Data API available on the Free plan?** The pricing page's "All plans include" list ends
+   *"and a Data API for querying over HTTP"* (fetched 2026-09-19), which is the basis for §10 and for
+   the whole cost case. It is a marketing line rather than a plan-matrix row, and **panel3 is right
+   that the dashboard settles it in two minutes.** Do that before step 1: if it is wrong, the plan
+   needs Launch and §10's arithmetic changes.
+3. **How is the delete actually issued?** Generic Better Auth's `authClient.deleteUser()` is disabled
+   by default behind `user.deleteUser.enabled`, and Neon's own JavaScript SDK reference does not
+   document the method. If a managed deployment cannot set that flag, the delete is a server-side
+   SQL statement (§5.3). Either way the promise in §5.1 holds; this decides how much code it costs.
+4. **Is the `sub` issued by Neon Auth a UUID?** §3.3 chooses `text` so the answer stops mattering
+   for the schema, but it is still worth knowing — and if item 1 is answered yes, the FK's type has
+   to match `neon_auth.user.id` exactly, so this stops being cosmetic.
 5. **Is the Data API hostname stable across a branch reset?** It is enabled per branch. If a reset
    changes the host, the CSP is stale and every request fails closed. This decides whether §7.1's
    validator can be strict.
@@ -553,9 +649,15 @@ the Supabase bill this migration exists to remove — **so it is worth measuring
 - **It does not replace RLS with an application-level `where` clause.** §0.
 - **It does not rename `web/supabase.ts`.** §2.4 — nine tests are worth more than a tidy filename.
 - **It does not estimate the work in hours.** The decision note says *"horas de trabajo, no
-  semanas"*, and for the table, the policies and the four CRUD functions that is right. It is not
-  right for §5: account deletion goes from a 6-line SQL function to a JWT-verifying server endpoint
-  holding a privileged key, and it carries a published promise that may not survive the move.
+  semanas"*, and for the table, the policies and the four CRUD functions that is right. §5's
+  correction moved account deletion much closer to that estimate than the first draft claimed — it
+  is a SQL delete, not a control-plane dance — but it is still the one piece that turns a database
+  function taking **no argument** into something that must verify a JWT and act on the identity
+  inside it. Price that line on its own.
+- **It does not treat its own refuted section as embarrassing.** §5.2 and §5.4 keep the wrong
+  verdict, the evidence that killed it, and the reason it survived review. A plan that quietly
+  deletes its mistakes teaches the next reader nothing about which of its remaining claims to
+  distrust.
 - **It does not delete the Supabase project at cutover.** §8 step 10.
 
 ---
