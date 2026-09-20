@@ -592,6 +592,13 @@ body[data-auth="out"] .gate { display: flex; align-items: center; justify-conten
 .gate-links { margin: 0; font-size: 0.78125rem; color: var(--muted); }
 .gate-links a { color: var(--muted); }
 .gate-links a:hover { color: var(--accent); }
+/* Measured at 390px: these were 44x15 and 37x15, under WCAG 2.2 2.5.8's 24x24 floor, and they are
+   the two links Google's OAuth branding page requires us to show. The inline exception does not
+   cover them — this <p> holds nothing but the links, so they are not targets inside a sentence.
+   The padding buys the hit area and the equal negative margin gives the layout back, so nothing
+   moves on screen; the inline padding stays at 4px so the two boxes cannot overlap across the
+   10px separator and a tap near the dot still resolves to the link it looks nearest. */
+.gate-links a { display: inline-block; padding: 15px 4px; margin: -15px -4px; }
 
 /* My decks (#43) — the library and the deck detail. */
 .decks { max-width: 1000px; margin: 0 auto; padding: 30px 24px 44px; display: flex; flex-direction: column; gap: 18px; }
@@ -753,7 +760,14 @@ body[data-auth="out"] .gate { display: flex; align-items: center; justify-conten
 .pool-name { display: flex; align-items: center; gap: 2px; min-width: 0; margin: 0; font-size: 0.71875rem; color: var(--muted); }
 .pool-name-txt { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .pool-name .sig-tag, .pool-name .ban-tag { flex: 0 0 auto; }
-.pool-view { align-self: flex-start; font-size: 0.6875rem; }
+/* Measured at 390px: 25x17, under WCAG 2.2 2.5.8's 24x24 floor, and it repeats for every card in
+   the pool — 48 failures on one screen. The 2.5.8 "equivalent control" exception does NOT cover it:
+   the cell's other button is .pool-add at 106x76, but that ADDS the card, a different function, so
+   viewing has no large target anywhere. Padding buys the hit area and the equal negative margin
+   gives the layout back. The vertical padding is 11px and not more BY MEASUREMENT: .pool-add ends
+   23px above this, so 11px leaves a 12px gap and a tap meant for View can never land on Add — the
+   two do different things and swapping them is worse than a small target. */
+.pool-view { align-self: flex-start; font-size: 0.6875rem; padding: 11px 10px; margin: -11px -10px; }
 .pool-more { margin-top: 16px; }
 /* Signature is a supertype (133.7.b), not a warning: it reads as a quiet mark, unlike BANNED. */
 .sig-tag { margin-left: 5px; padding: 0 3px; border: 1px solid var(--line-2); border-radius: 4px; font: 500 0.59375rem var(--mono); color: var(--muted); }
