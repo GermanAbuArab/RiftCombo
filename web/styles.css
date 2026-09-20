@@ -482,7 +482,7 @@ textarea::placeholder, input::placeholder { color: var(--faint); }
 .ban-meta a:hover { color: var(--accent); }
 /* The deck-size row is in the same panel as the bans but is not one: a list of 36 is not illegal to
    own, it is just not a deck yet. Neutral rule colour, no status tag. */
-.size-row { padding: 8px 10px; border: 1px solid var(--line); border-left: 2px solid var(--rule); border-radius: 6px; background: var(--panel); }
+.size-row { padding: 8px 10px; border: 1px solid var(--line); border-left: 2px solid var(--line-2); border-radius: 6px; background: var(--panel); }
 .size-row + .ban-row, .size-row + .size-row { margin-top: 7px; }
 /* The audit register, closed by default: it is evidence the reader can open, not the first thing the
    drawer says. Same disclosure shape as a synergy rule (#72). */
