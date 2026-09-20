@@ -960,11 +960,12 @@ Ordered by what they block.
    with it?* Nothing on the advisor page addresses it. It no longer selects a design — it decides
    whether a future Neon upgrade can break the migration — so ask it, and do not let the first half's
    answer stand in for it.
-2. **Is the Data API available on the Free plan?** The pricing page's "All plans include" list ends
-   *"and a Data API for querying over HTTP"* (fetched 2026-09-19), which is the basis for §10 and for
-   the whole cost case. It is a marketing line rather than a plan-matrix row, and **panel3 is right
-   that the dashboard settles it in two minutes.** Do that before step 1: if it is wrong, the plan
-   needs Launch and §10's arithmetic changes.
+2. ~~**Is the Data API available on the Free plan?**~~ **ANSWERED — yes, demonstrated rather than
+   read.** The live project is in a Free org with the Data API enabled and a verifier talking to it,
+   which is stronger evidence than the pricing page's *"All plans include … a Data API for querying
+   over HTTP"* that §10 was resting on. **This was the item the entire cost case depended on**, and it
+   was the right thing to be nervous about: it was a marketing line, not a plan-matrix row. It is now
+   a working endpoint.
 3. ~~**How is the delete actually issued?**~~ **ANSWERED, and it closed in the opposite direction to
    this plan's recommendation (§5.3).** Route A is dead — `POST delete-user` answers `404` with an
    empty body and the auth-config `PATCH` takes only `name`, so there is no flag to set. Route C is
