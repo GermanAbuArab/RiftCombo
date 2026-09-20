@@ -11,9 +11,10 @@ import { loadPlays } from "../scripts/web-plays.mjs";
  * have: a play that is half a work order is half a work order in the browser too.
  *
  * All sixteen were edited for a reader on 2026-09-20 and republished. This is what keeps them that
- * way. The predicate is the fleet's own vocabulary and nothing else — a lane, a manager, a session
- * id, a handoff, a brief, the scratch directory, text that is "not mine" — so it cannot catch a
- * rules term (a Combat is *staged* under 323.9, and that word is deliberately not in it).
+ * way. The predicate is the fleet's own vocabulary and nothing else — a lane, a manager, a lane's
+ * `rc-<name><digits>` handle, a handoff, a brief, the scratch directory, text that is "not mine" —
+ * so it cannot catch a rules term (a Combat is *staged* under 323.9, and that word is deliberately
+ * not in it). It is a vocabulary list, not a classifier: a new internal name has to be added here.
  *
  * Non-vacuity, twice: the control string must MATCH, or the predicate is looking at nothing; and the
  * directory must hold at least the sixteen plays that were edited, or a loader reading an empty
