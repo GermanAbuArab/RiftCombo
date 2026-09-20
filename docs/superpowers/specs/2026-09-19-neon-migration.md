@@ -16,6 +16,18 @@ carry `to authenticated`.** The RLS verifier there is the port of §4, and its a
 governs it: **written, not tested**, because no Neon project exists yet. Neither session that wrote
 these two artifacts is still running, so the branch and this file are the record.
 
+**That verifier has now been read against §4, because nobody had read it and its author is gone**
+(rc-manager12, 2026-09-19). It is complete and faithful: **all sixteen checks are present with none
+silently dropped** — the numbering runs 1 to 16 with 15 and 16 placed before 10 to 14, which is
+correct, since the keying checks are what make 1 to 8 mean anything and the deletion checks end a
+session and must go last. It sets **`Prefer: return=representation` explicitly on every non-`GET`**
+rather than relying on the incidental `.select` (§4), guards with **`Array.isArray`**, makes the
+positive controls **throw**, prints the **non-vacuity banner**, and **exits 2** when
+`DELETE_ACCOUNT_URL` is missing. **A port that quietly loses a check is the vacuity family in its
+purest form, so the count was the thing to verify and it holds.** What that review CANNOT establish
+is that any assertion behaves correctly against a live database — that is still step 3 of §8, and the
+author's caveat stands.
+
 ---
 
 ## 0. The one correction to the approved decision
