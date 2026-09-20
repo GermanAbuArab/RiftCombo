@@ -58,6 +58,8 @@ const form = $<HTMLFormElement>("#deck-form");
 const input = $<HTMLTextAreaElement>("#deck-input");
 const urlInput = $<HTMLInputElement>("#deck-url");
 const analyze = $<HTMLButtonElement>("#analyze");
+const loadUrl = $<HTMLButtonElement>("#load-url");
+const loadExample = $<HTMLButtonElement>("#load-example");
 const statusCard = $<HTMLElement>("#status-card");
 const graphHost = $<HTMLElement>("#graph-host");
 const empty = $<HTMLElement>("#empty");
@@ -177,6 +179,10 @@ async function boot() {
   gate();
   setStatus("Loading", "Fetching the card index…");
   const res = await fetch("/data/cards.json");
+  // Without this the body is parsed as JSON whatever came back, so an error page throws deep inside
+  // `res.json()` and the rejection lands on a `void boot()` nobody was catching: every init below
+  // is skipped and the page sits on "Loading" for ever with nothing on screen saying why.
+  if (!res.ok) throw new Error(`the card index returned ${res.status}`);
   const data = (await res.json()) as { cards: Card[]; resultsUpdatedAt: string };
   cards = new CardIndex(data.cards, legality);
   variants = generateVariants(combos, cards);
@@ -229,13 +235,22 @@ async function fromUrl(url: string): Promise<Deck> {
   return d;
 }
 
+// Only `#analyze` used to be disabled while a run was in flight, but "Load from URL" and "Load
+// example" call `run` too and were never disabled — so a slow URL import that resolved after a
+// later run had already rendered would overwrite the textarea (`fromUrl` writes it, #74) and paint
+// its own results over the newer ones, with nothing on screen saying a stale request had won. The
+// flag is what makes that safe for every call site, including the two `void run()` on boot and on
+// a route; disabling the buttons is the affordance that says so.
+let running = false;
+
 async function run(source: "text" | "url" = "text") {
-  if (!cards) return;
+  if (!cards || running) return;
   const text = input.value.trim();
   const url = urlInput.value.trim();
   if (source === "url" && !url) { setStatus("No link", "Paste a Piltover Archive deck link first.", "error"); return; }
   if (source === "text" && !text) { setStatus("No deck", "Paste a deck list or deck code first.", "error"); return; }
-  analyze.disabled = true;
+  running = true;
+  analyze.disabled = loadUrl.disabled = loadExample.disabled = true;
   setStatus("Matching", "Reading the list and checking known combos…");
   try {
     deck = source === "url" ? await fromUrl(url) : /^https?:\/\//i.test(text) ? await fromUrl(text) : loadDeck(text, cards);
@@ -267,7 +282,8 @@ async function run(source: "text" | "url" = "text") {
     // Whatever was on screen, the text that failed has to be reachable to be fixed.
     setForm(false);
   } finally {
-    analyze.disabled = false;
+    running = false;
+    analyze.disabled = loadUrl.disabled = loadExample.disabled = false;
   }
 }
 
@@ -1083,8 +1099,8 @@ graphHost.addEventListener("dblclick", (ev) => {
 
 // --- wiring ---------------------------------------------------------------------------
 form.addEventListener("submit", (ev) => { ev.preventDefault(); void run("text"); });
-$<HTMLButtonElement>("#load-url").addEventListener("click", () => void run("url"));
-$<HTMLButtonElement>("#load-example").addEventListener("click", () => { input.value = EXAMPLE; analyzing = null; void run("text"); });
+loadUrl.addEventListener("click", () => void run("url"));
+loadExample.addEventListener("click", () => { input.value = EXAMPLE; analyzing = null; void run("text"); });
 // A list pasted here becomes a new deck in the library, opened for naming rather than saved behind the
 // player's back: nothing is written until they press Save there.
 $<HTMLButtonElement>("#save-to-decks").addEventListener("click", () => {
@@ -1133,4 +1149,6 @@ const refit = () => { refitPending = view ? !view.fit() : false; };
 window.addEventListener("resize", () => { window.clearTimeout(resizeTimer); resizeTimer = window.setTimeout(refit, 150); });
 onRoute((r) => { if (r.view === "combos" && refitPending) refit(); });
 
-void boot();
+void boot().catch((err: unknown) => {
+  setStatus("Could not start", `${(err as Error).message}. Reload the page to try again.`, "error");
+});

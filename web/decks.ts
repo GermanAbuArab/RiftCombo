@@ -79,8 +79,17 @@ export function initDecks(h: DeckHooks): void {
     say: (msg) => { message = msg; const el = maybe<HTMLElement>("#decks-msg"); if (el) el.textContent = msg; },
   });
 
+  // `onAccount` is `onAuthStateChange`, which fires on far more than signing in and out: on a timer
+  // for TOKEN_REFRESHED (`autoRefreshToken` is on) and on USER_UPDATED when the header renames you.
+  // Resetting on those threw `draft` away with no warning, because `guardUnsaved` only covers route
+  // changes — so an unsaved list died on a rename, or on its own after ~an hour of an open tab. Key
+  // the reset on the identity actually changing rather than on an allowlist of event names, which
+  // the next supabase-js can outgrow silently. The initial state below already equals the reset, so
+  // a first event while signed out needs no special case.
   onAccount((next) => {
+    const switched = account?.id !== next?.id;
     account = next;
+    if (!switched) { render(); return; }
     decks = [];
     draft = null;
     loaded = false;
