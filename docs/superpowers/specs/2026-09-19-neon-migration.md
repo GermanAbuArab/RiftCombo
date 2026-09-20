@@ -755,9 +755,9 @@ Ordered by what they block.
    until then (§7.1) and the CSP generator takes a list (§7.2), so **nothing is blocked on this**; it
    is here to be closed cheaply rather than guessed. If a branch reset changes the host, the committed
    CSP is stale and every request fails closed.
+6. **Does an idle signed-in tab wake the compute?** See §10.
 7. **Does `@neondatabase/serverless` fit the Edge code-size limit?** 1 MB gzipped on Hobby, covering
    the function's JavaScript and everything bundled with it (§5.5). Only matters if Design B is built.
-6. **Does an idle signed-in tab wake the compute?** See §10.
 
 ---
 
