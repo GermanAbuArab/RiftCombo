@@ -30,6 +30,45 @@ author's caveat stands.
 
 ---
 
+## Status at a glance — read this before anything else
+
+**This document keeps its own refuted sections on purpose (§11), so a fresh reader cannot tell a live
+claim from a corrected one by reading forward. This block is the index of what is currently true.**
+
+**DECIDED, each on a measurement rather than an argument:**
+
+| | |
+|---|---|
+| Replaces Supabase | Neon **Data API** (PostgREST-derived) + **Neon Auth** with Google. §3.1, §3.2 |
+| Schema | `user_id uuid not null default auth.uid() references neon_auth.user (id) on delete cascade`. §3.4 |
+| Policies | **A verbatim port of the four Supabase ones**, on `auth.uid()`, plus `to authenticated`. §3.4 |
+| Deck deletion | The **cascade**. No statement to write, no order to get wrong. §3.3 |
+| Identity deletion | **Route C**, the Management API, with a project-scoped key. The tombstone objection was measured and is false. §5.3 |
+| `connect-src` | **Two origins** — `apirest` and `neonauth` on one endpoint id — and the generator takes a list. §7.2 |
+| Origin validator | **`https` + a host ending `.neon.tech`, nothing finer.** The label count varies between projects. §7.1 |
+| Cutover order | **Auth before schema** (auth creates `neon_auth`), staging table **mandatory** (the FK forbids the alternative), `security-scan` before the push. §8, §6 |
+| Cost | Free tier, demonstrated by a working project rather than read off the pricing page. §10 |
+
+**OPEN — three, all cheap now that a project exists, and none blocking design work:**
+
+1. Can a Neon upgrade recreate `neon_auth` and take the FK with it? The cascade is load-bearing for
+   deletion, so this is the one with teeth. §9 item 1.
+2. Does the Data API hostname survive a **branch reset**? If not, the committed CSP goes stale and
+   every request fails closed. §9 item 5.
+3. Does an idle signed-in tab **wake the compute**? The only thing that could break the Free-tier
+   arithmetic. §9 item 6, §10.
+
+**KEPT AS REFUTED HISTORY, not as instructions** — §5.2 and §5.4 (an account-deletion gate that was
+false), §3.3's opening (a `text` column decision, right on its premise and reversed when the premise
+was measured), and §5.3's two-statement endpoint (superseded by the cascade). §11 says why they are
+still here.
+
+**Nothing in this document has been executed by its author.** An implementation branch exists — the
+paragraph describing it is at the head of this file, above §0 — and a live Neon project exists, which
+is where the measurements above come from.
+
+---
+
 ## 0. The one correction to the approved decision
 
 The decision note and the project README both say, in the same words:
@@ -67,11 +106,13 @@ So the four policies move — and by the end of the day's editing, **verbatim ra
 `on delete cascade` comes back with it. The security boundary stays in the database and the privacy
 page's sentence stays true.
 
-**Two things are genuinely not like-for-like, and neither is the one this plan first expected.** The
-identity behind `auth.uid()` was the open risk and is now closed on evidence. What remains is
-**account deletion** — one question, three routes, §5.3 — and **the runtime of `api/`**, which has no
-TCP and therefore cannot open a Postgres connection at all (§5.5). The second was found on a third
-review pass and would otherwise have failed at deploy rather than at review.
+**Everything this plan expected to be hard turned out to be settleable, and all of it was settled by
+measurement rather than by argument.** The identity behind `auth.uid()` was the open risk and closed
+on evidence (§3.3); account deletion had three candidate routes and closed on evidence (§5.3); the
+`api/` runtime cannot open a Postgres connection at all, which was found on a third review pass and
+would otherwise have failed at deploy rather than at review — and then stopped being on the critical
+path when the selected route turned out to need only `fetch` (§5.5). **What is left is three questions
+that need the live project and nothing else. See the status block below.**
 
 The rest of the decision note stands. Nothing below argues with the cost case or with keeping
 `sir-loin` on Supabase.
