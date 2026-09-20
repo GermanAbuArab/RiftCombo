@@ -164,8 +164,8 @@ behaviour, and it costs one table and four more policies that are copies of the 
 | Supabase Auth (Google) | **Neon Auth** (Managed Better Auth), Google provider |
 | Supabase PostgREST + anon key | **Neon Data API** (per branch), anonymous + authenticated roles |
 | `@supabase/supabase-js` | `@neondatabase/postgrest-js` + the Neon auth client |
-| `auth.uid()` in policies | `auth.user_id()` from `pg_session_jwt` |
-| `auth.users` | `neon_auth.users_sync` (a managed mirror — see §5) |
+| `auth.uid()` in policies | **`auth.uid()` from `pg_session_jwt` — unchanged, see §3.3** |
+| `auth.users` | **`neon_auth.user`, an ordinary table the FK can reference (§3.3)** |
 | `public.delete_account()` (SECURITY DEFINER) | a new Vercel Edge Function at `api/delete-account.ts` |
 | `scripts/check-rls.mjs` (14 checks) | the same 14 checks against Neon |
 
@@ -365,11 +365,15 @@ The 14 checks, and what each becomes:
 
 15. **A JWT whose `sub` does not match any row returns nothing rather than erroring.** This is the
     guard against the §3.3 silent-lockout failure: it distinguishes "correctly denied" from
-    "`auth.user_id()` returned NULL and denied everything".
-16. **`auth.user_id()` inside a policy equals the `sub` of the presented token.** One `select`
-    through the Data API, asserted against the token the script minted. Without it, checks 1-8 can
-    all pass on a database where every policy is accidentally `true` — they only prove that *some*
-    separation exists, not that it is keyed to the right claim.
+    "`auth.uid()` returned NULL and denied everything". §3.3 retires the *risk* on evidence; this
+    retires the *silence*, which is a different thing and is why it stays.
+16. **`auth.uid()` inside a policy equals the `sub` of the presented token.** Without it, checks 1-8
+    can all pass on a database where every policy is accidentally `true` — they prove that *some*
+    separation exists, not that it is keyed to the right claim. **panel3's implementation is better
+    than the one this section first described and is the one to build**: insert a row **without**
+    `user_id`, let the `default auth.uid()` fill it, then compare what landed against the `sub` of the
+    token that was presented. A `select` merely reads what RLS allows; this proves the *default* and
+    the *policies* are both reading the presented token, in one statement.
 
 **The suite must refuse to pass vacuously, and today's one only does so by accident.** Checks 3, 4,
 6 and 9 are all of the form *"X cannot see / cannot change this row"*, and **every one of them passes
@@ -553,9 +557,9 @@ delete this whole section.**
 The two-design framing below predates the cascade and is kept because its cost analysis still
 applies to whichever endpoint gets built.
 
-**Design A — the database does it (preferred, if the FK is supported).** Restore
-`user_id references neon_auth.user(id) on delete cascade`. Account deletion is then a single
-`delete from neon_auth.user where id = auth.user_id()`, and the decks go with it exactly as they do
+**Design A — the database does it. SELECTED: §3.3 confirmed the FK and restored the cascade.**
+`user_id uuid references neon_auth.user (id) on delete cascade` is in §3.4. Account deletion is then a
+single `delete from neon_auth.user where id = auth.uid()`, and the decks go with it exactly as they do
 today. This is the closest thing to the current `SECURITY DEFINER` function and it keeps the
 property that made that function safe: **the row is chosen by the session, so there is nothing to
 aim.** Whether the browser may issue that delete directly is a separate question — `neon_auth` is not
@@ -593,9 +597,10 @@ There is a home for this already: `api/` runs a Vercel Edge Function today (`api
   `web/`"* — should be widened to cover the new names, not just the Supabase ones. Note this cost is
   **smaller than the first draft claimed**: with §5.2 corrected, no `NEON_API_KEY` is needed in the
   request path at all.
-- **The `on delete cascade` safety property is at risk, not necessarily gone.** Under Design A it
-  survives untouched. Under Design B it is replaced by two statements in an endpoint, in the right
-  order, which is strictly weaker — and check 14 of §4 is what stops that rotting.
+- ~~**The `on delete cascade` safety property is at risk.**~~ **Settled: it survives (§3.3), and the
+  two-ordered-statements version never has to be built.** Check 14 of §4 still earns its place, now as
+  the thing that would notice if a Neon upgrade ever recreated `neon_auth` and took the FK with it —
+  which is the half of open item 1 nobody has answered.
 - **The privileged credential shrinks, and which one it is depends on the route.** Route B puts a
   database connection string in `api/`; route C puts a `NEON_API_KEY` there instead, which is a
   control-plane credential rather than one with write access to your tables. **Route C is genuinely
@@ -813,7 +818,7 @@ Each step ends in a state that either works or is one `git revert` from working.
 | 6 | Update `site-config.mjs`, `build-headers.mjs`, `test/headers.test.ts`; regenerate and commit `vercel.json`. | Yes. |
 | 7 | Rewrite `web/privacy.html` (§2.3, §5.4) and move its "Last changed" date. | Yes. |
 | 8 | Export from Supabase, import into Neon, re-key (§6). | Yes, until step 9. |
-| 8b | **Run `strix-scan`.** This repo carries a `.strix-gate`, so `git push` and `gh pr create` are blocked until a run exists that is newer than the branch's merge-base — and a commit that puts a privileged connection string into `api/` is exactly what that gate is for. Do not reach for `STRIX_SKIP`. | Yes. |
+| 8b | **Run the `security-scan` skill.** This repo carries a **`.security-gate`**, so a push and `gh pr create` are blocked until a run exists newer than the branch's merge-base — and a commit that puts a privileged credential into `api/` is exactly what that gate is for. Do not reach for the skip variable. **Names verified 2026-09-19 and they changed during the writing of this plan**: the gate was `.strix-gate` with a `strix-scan` skill, was measured as present, fired on this session, and was replaced by `8ab00bb` *"Remove Strix gate (replaced by security-scan skill)"* while §8 was being edited. If a future reader finds neither name, `~/.personal-claude/settings.json` holds the hook path and is the thing to read. | Yes. |
 | 9 | Deploy. **Point of no return** — the first real write diverges the two databases. | No. |
 | 10 | Wait one week with both alive. Then delete the Supabase project. | No, after this. |
 | 11 | Update the Obsidian README's **Infraestructura** section and the decision note, including the §0 correction. | — |
