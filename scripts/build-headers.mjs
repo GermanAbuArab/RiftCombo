@@ -48,8 +48,17 @@ const config = {
   // The braces and the `|| exit 1` are load-bearing: Vercel reads 0 as skip and 1 as build, and a bare
   // `git cat-file` on a missing object exits 128, which #126 measured as NEITHER — the deployment errors.
   // So every failure path is normalised to 1.
+  // 2026-09-18: `docs/plays` is on this list because #206 made it SHIPPED CONTENT — `web-plays.mjs`
+  // builds `docs/plays/*.md` into `public/data/plays.json` and the site renders it at #/plays. The
+  // list was written when every path under docs/ was prose nobody deployed, the comment above still
+  // uses "a docs/ commit" as its example of the undeployable kind, and nobody widened it when the
+  // fifth view shipped. Measured cost: `b65e57d` added a play, touched that one file, was Canceled,
+  // and production served 15 plays against master's 16 for four days. Only `docs/plays` is listed —
+  // walks, handoffs and status.md genuinely do not ship, and widening to all of `docs` would rebuild
+  // on every walk document. This is the third time this step has skipped something it should have
+  // built (#126, then the HEAD^ fallback): when a new thing starts shipping, it belongs here.
   ignoreCommand:
-    "base=$VERCEL_GIT_PREVIOUS_SHA; { [ -n \"$base\" ] && git cat-file -e \"$base^{commit}\" 2>/dev/null && git diff --quiet \"$base\" HEAD -- web src data scripts api package.json package-lock.json tsconfig.json vercel.json ; } || exit 1",
+    "base=$VERCEL_GIT_PREVIOUS_SHA; { [ -n \"$base\" ] && git cat-file -e \"$base^{commit}\" 2>/dev/null && git diff --quiet \"$base\" HEAD -- web src data scripts api docs/plays package.json package-lock.json tsconfig.json vercel.json ; } || exit 1",
   outputDirectory: "public",
   framework: null,
   // The Vercel build cap is per ACCOUNT, not per project, and this account carries another project —
@@ -84,7 +93,10 @@ const config = {
             "default-src 'self'",
             "script-src 'self'",
             "style-src 'self' https://fonts.googleapis.com",
-            "font-src https://fonts.gstatic.com",
+            // 'self' is here so a self-hosted font is not a silent 404 the day someone drops Google
+            // Fonts; the remote origin alone would reject it with nothing in the console but a CSP
+            // violation, and there is no reporting endpoint to catch it.
+            "font-src 'self' https://fonts.gstatic.com",
             "img-src 'self' data: https://cmsassets.rgpub.io",
             `connect-src ${connect}`,
             "frame-ancestors 'none'",

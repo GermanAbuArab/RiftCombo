@@ -243,3 +243,34 @@ describe("the deck editor is the builder", () => {
     expect(styles).toMatch(/\.builder\[data-tab="deck"\] \.bld-pool \{ display: none; \}/);
   });
 });
+
+/**
+ * The Ignored Build Step decides whether a push to master deploys at all, and it has now skipped
+ * something it should have built THREE times: #126 (reading only the tip of a push), the HEAD^
+ * fallback that cancelled a whole promotion batch, and `docs/plays` — where `b65e57d` added a run
+ * play, touched that one file, was Canceled, and production served 15 plays against master's 16 for
+ * four days. Nothing in the suite guarded any of the three. This pins the property that matters:
+ * every directory the BUILD reads from has to be a path the step watches, or its content can be
+ * written, reviewed, merged and never shipped, with every gate green the whole way.
+ */
+describe("the ignored build step watches everything the build reads (#126)", () => {
+  const cfg = JSON.parse(readFileSync(new URL("../vercel.json", import.meta.url), "utf8")) as { ignoreCommand: string };
+  const watched = (cfg.ignoreCommand.split(" -- ")[1] ?? "").split(/\s+/).filter((p) => p && p !== ";" && p !== "}" && p !== "||");
+
+  it("watches the sources build:web actually reads", () => {
+    // Derived from the build rather than typed: `build-web.mjs` bundles web/ and src/, reads data/,
+    // and `web-plays.mjs` turns docs/plays/*.md into public/data/plays.json (#206).
+    for (const dir of ["web", "src", "data", "scripts", "docs/plays"]) {
+      expect(watched, `a change under ${dir}/ changes what the site serves, so it must trigger a build`).toContain(dir);
+    }
+  });
+
+  it("does NOT watch the prose that genuinely does not ship", () => {
+    // The fix stays narrow on purpose: widening to all of `docs` would spend a deployment on every
+    // walk document, and this account's Vercel cap is shared with another project.
+    for (const dir of ["docs/phase0", "docs/handoffs"]) {
+      expect(watched).not.toContain(dir);
+    }
+    expect(watched, "watching all of docs/ would rebuild on every walk document").not.toContain("docs");
+  });
+});
