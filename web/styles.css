@@ -458,6 +458,11 @@ textarea::placeholder, input::placeholder { color: var(--faint); }
   .topbar-right .segmented { grid-area: format; }
   .topbar-right .segmented span { padding: 5px 10px; font-size: 0.78125rem; }
   .acct-label { display: none; }
+  /* Five links fit in the 347px the nav has at 375 (design review 2026-09-20, FINDING-004). Above
+     this width they scroll with the scrollbar hidden, which at 375 clipped "Sources" at x=437 with no
+     sign there was more to the right: a swipe nobody is told about is a link nobody finds. */
+  .topnav { padding-left: 10px; gap: 0; }
+  .topnav a { padding: 0 8px; font-size: 0.8125rem; }
 }
 @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
 
