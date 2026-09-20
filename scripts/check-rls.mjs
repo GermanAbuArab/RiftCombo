@@ -49,6 +49,16 @@ const check = (name, ok, detail = "") => {
  * failed — but that is an accident of sequence rather than a property anything enforces, which is
  * why the precondition below is now a hard throw rather than a printed FAIL. Asserting the request
  * SUCCEEDED and returned zero rows is what makes the absence of rows evidence of anything.
+ *
+ * `Array.isArray(data)` is load-bearing and is not a style choice — do not relax it to a length
+ * comparison. PostgREST defaults every write to `Prefer: return=minimal`, which answers 204 with NO
+ * BODY whether the UPDATE touched a row or touched none, and supabase-js surfaces that as
+ * `data: null`. An array test rejects null and the check fails loudly; `(data?.length ?? 0) === 0`
+ * turns it into a passing zero, which is what this predicate used to be. Measured both ways: without
+ * the `.select("id")` the old form passed for a denial AND for a row that was really changed, and
+ * this form fails both. The `.select` calls below force `return=representation` and are why the
+ * payload is an array at all — keep them, and keep this test even so, because they are two
+ * independent reasons and the next tidy-up will only think about one.
  */
 const denied = (name, { data, error }) => {
   if (error) return check(name, false, `the request itself failed, so nothing was proved: ${error.message}`);
