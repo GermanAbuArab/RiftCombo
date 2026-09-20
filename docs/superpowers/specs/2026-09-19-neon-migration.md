@@ -47,7 +47,7 @@ claim from a corrected one by reading forward. This block is the index of what i
 | `connect-src` | **Two origins** — `apirest` and `neonauth` on one endpoint id — and the generator takes a list. §7.2 |
 | Origin validator | **`https` + a host ending `.neon.tech`, nothing finer.** The label count varies between projects. §7.1 |
 | Cutover order | **Auth before schema** (auth creates `neon_auth`), staging table **mandatory** (the FK forbids the alternative), `security-scan` before the push. §8, §6 |
-| Cost | Free tier, demonstrated by a working project rather than read off the pricing page. §10 |
+| Cost | Free tier, demonstrated by a working project rather than read off the pricing page. §10 — **but the headroom arithmetic rests on an unsourced compute size; see open item 8** |
 
 **OPEN — three, all cheap now that a project exists, and none blocking design work:**
 
@@ -1022,7 +1022,11 @@ Ordered by what they block.
    **What is still open is only whether the host survives a BRANCH RESET** — if it changes, the
    committed CSP is stale and every request fails closed. If a branch reset changes the host, the committed
    CSP is stale and every request fails closed.
-6. **Does an idle signed-in tab wake the compute?** See §10.
+6. **Does an idle signed-in tab wake the compute?** See §10. Independent of item 8 and the more
+   dangerous of the two, because a poller exceeds Free at every compute size.
+8. **What compute size does a new Free project default to?** §10's arithmetic was written on an
+   unsourced `0.25 CU` and the honest range is 0.25 to the documented Free ceiling of 2 CU, which is a
+   factor of eight in headroom. **One glance at the console answers it**, and the project exists.
 7. ~~**Does `@neondatabase/serverless` fit the Edge code-size limit?**~~ **MOOT: route C was selected
    and needs only `fetch`.** Note how it stopped mattering, because the reasoning was wrong even though
    the outcome is right: this item warned against *"closing this by choosing route C, which is trading
@@ -1047,16 +1051,31 @@ Verified from <https://neon.com/pricing>, 2026-09-19:
 (`src/saved.ts:25` caps a list at 20,000 characters and notes a 40-card list is ~1 KB). 0.5 GB is
 five orders of magnitude of headroom.
 
-**Compute is the only thing that could bite, and it does not.** The Free default compute is 0.25 CU,
-so 100 CU-hours is **400 compute-hours a month**. With a 5-minute idle suspend, a burst of activity
-costs at least 5 minutes, so the budget is about **4,800 five-minute windows a month — roughly 160 a
-day**. A personal tool with a handful of signed-in players is nowhere near that.
+**Compute is the only thing that could bite, and HOW MUCH headroom there is rests on a number this
+section asserted without a source.** An earlier draft opened *"the Free default compute is 0.25 CU"*
+and did the whole arithmetic on it. **That figure appears in nothing this plan fetched** — the pricing
+page gives the 100 CU-hours and not the compute size, and `neon.com/docs/manage/computes` states only
+that *"The Neon Free plan supports computes with up to 2 CU (8 GB of RAM)"*, without saying what a new
+project is created at. **It was almost certainly recalled rather than read, which is the one thing
+this project's research rules forbid outright, and it sits under the entire reason for the
+migration.** Corrected to a range rather than deleted, because the conclusion may well survive:
 
-**The one way to lose that headroom is a background poller.** If anything wakes the database on a
-timer — a health check, or a token-refresh path that touches the Data API rather than the auth
-service — the compute never sleeps, 730 hours of wall clock at 0.25 CU is 182.5 CU-hours, and Free is
-exceeded. That is item 6 of §9. At Launch prices the overrun would be about US$9 a month, which is
-the Supabase bill this migration exists to remove — **so it is worth measuring rather than assuming.**
+| If a new Free project defaults to | 100 CU-hours buys | 5-minute wake windows per day |
+|---|---|---|
+| **0.25 CU** (the asserted figure) | 400 compute-hours | ~160 |
+| **1 CU** | 100 compute-hours | ~40 |
+| **2 CU** (the documented Free ceiling) | 50 compute-hours | ~20 |
+
+**A personal tool is comfortably inside the first row and probably inside the third, so the cost case
+is likely fine either way — but "likely" is doing real work in that sentence and it did not need to.**
+The measurement is one glance at the compute size in a console that now exists (§9 item 8).
+
+**The one way to lose the headroom outright is a background poller**, and that is independent of which
+row is true. If anything wakes the database on a timer — a health check, or a token-refresh path that
+touches the Data API rather than the auth service — the compute never sleeps, and 730 hours of wall
+clock exceeds Free at **every** size in the table. That is item 6 of §9. At Launch prices the overrun
+is roughly US$9 a month at 0.25 CU, which is the Supabase bill this migration exists to remove — **so
+it is worth measuring rather than assuming**, which is advice this section failed to take itself.
 
 **Saving:** US$10/month, US$120/year, plus a slot under Supabase Free's two-active-project cap.
 
