@@ -716,17 +716,29 @@ So:
 1. **Export** from Supabase: `select id, user_id, name, deck_text, format, created_at, updated_at
    from public.decks` **and** the email for each distinct `user_id` from `auth.users`. The email is
    the join key, because it is the only stable thing Google gives both systems.
-2. **Import** into Neon with `user_id` left NULL-able temporarily, or into a staging table.
-3. **Re-key on first sign-in.** Each player signs in once through Neon Auth; a one-shot claim step
-   matches their verified email to the staged rows and stamps the new `sub` onto them.
+2. **Import into a STAGING TABLE. The foreign key makes this mandatory rather than a choice, and an
+   earlier draft of this step offered the alternative it forecloses.** §3.3 made `user_id` `uuid not
+   null references neon_auth.user (id)`, so a deck row **cannot be inserted before its owner exists
+   in `neon_auth.user`** — and "leave `user_id` NULL-able temporarily" would now mean dropping the
+   `not null` and the FK, importing, and adding both back, which is a schema mutation performed
+   mid-migration on the one constraint the whole deletion design rests on. **Stage the rows in a table
+   with no FK, keyed by email.**
+3. **Re-key on first sign-in.** Each player signs in once through Neon Auth — **which is what creates
+   their `neon_auth.user` row and therefore what makes the insert legal at all** — and a one-shot
+   claim step matches their verified email to the staged rows and inserts them with the new `sub`.
 4. Drop the staging table when it is empty.
 
 **Preferred alternative, and it should be checked first:** count the distinct `user_id` values in
 `public.decks`. **If it is one — German's own account — every word of steps 1-4 collapses into a
 single `update ... set user_id = '<his new sub>'`,** and the whole re-keying design is unnecessary
-complexity. Measure before building it.
+complexity. Measure before building it. **The one ordering constraint survives even in that
+collapsed form**: he has to sign in to Neon Auth once before the rows can carry his id, because until
+then there is no row for the foreign key to point at. **That is the same dependency as §8 step 2** —
+auth before schema, auth before data — and it is worth noticing that the FK, which is a safety
+property, is also the thing that makes the migration's order rigid. Both facts come from the same
+constraint.
 
-**Rollback.** Reversible at every point below, and this is the reason for the ordering in §7:
+**Rollback.** Reversible at every point below, and this is the reason for the ordering in **§8**:
 
 - The Supabase project is **not deleted** until the Neon side has been live and correct for at least
   one full week. Reverting is then a rebuild of `vercel.json` with the old origin and a redeploy.
