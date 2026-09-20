@@ -272,6 +272,32 @@ ALTER DEFAULT PRIVILEGES IN SCHEMA public GRANT SELECT, UPDATE, INSERT, DELETE O
 GRANT USAGE, SELECT ON ALL SEQUENCES IN SCHEMA public TO authenticated;
 ```
 
+**Do not paste that block as written — the third statement has a silent hole.** Found by panel3 and
+confirmed against the **Postgres** documentation rather than Neon's. `ALTER DEFAULT PRIVILEGES` with
+no `FOR ROLE` clause applies to *"objects created by the target_role, or the **current role if
+unspecified**"*, and the manual is blunter still about what does not rescue you: *"at object creation
+time, new object permissions are only affected by the default privileges of the current role, and
+are **not inherited from any roles in which the current role is a member**."*
+
+So the future-tables grant covers only tables created by **whichever role ran that statement**. If a
+later migration runs as a different role — even one that is a member of it — the new table is created
+with no grant to `authenticated`, and **the symptom looks nothing like the cause**: the Data API
+answers `permission denied` for a table that plainly exists and whose RLS policies are correct. Neon
+documents that symptom and its remedy under `/docs/data-api/access-control` without connecting it to
+this clause.
+
+Name the role instead of letting it default:
+
+```sql
+ALTER DEFAULT PRIVILEGES FOR ROLE neondb_owner IN SCHEMA public
+GRANT SELECT, UPDATE, INSERT, DELETE ON TABLES TO authenticated;
+```
+
+**Verify that role name against the real project rather than trusting it here.** Neon's own FAQ
+hedges `neondb_owner` as the *typical* owner, not a guaranteed one. `select current_user;` on the
+connection the migrations actually run through settles it, and getting it wrong reintroduces exactly
+the hole this paragraph closes, with the same misleading symptom.
+
 That grant is **blanket across the schema**, which means RLS is the only thing between a signed-in
 player and every table in `public`. This is the same posture PostgREST gives Supabase today, so it is
 not a regression — but it is the reason §4's proof matters more than the policy text does, and it is
