@@ -23,6 +23,13 @@ export interface GraphContext {
   owned: (base: string) => number;
   illegal: (base: string) => boolean;
   legend: string | null;
+  /**
+   * How many hits the list holds in all, when the diagram draws only the nearest slice of them (the
+   * tray cap in web/main.ts). The hub's big number is what is DRAWN; without this the near-miss hub
+   * said "9 combos" under a pill saying 33 and a reader saw two answers to one question (design
+   * review 2026-09-20, FINDING-009). Omitted or equal to the drawn count, the hub says nothing more.
+   */
+  total?: number;
   /** Fired when a combo is pinned (or unpinned with null). */
   onSelect: (comboId: string | null) => void;
   onZoom: (percent: number) => void;
@@ -511,7 +518,9 @@ export function renderGraph(host: HTMLElement, hits: Hit[], layout: Layout, ctx:
     g.append(el("circle", { r: 66, class: "hub-disc" }));
     g.append(el("text", { y: -20, class: "hub-eyebrow", "text-anchor": "middle" }, legend ? short(legend.name.replace(/ - Starter$/, ""), 20) : "Legend"));
     g.append(el("text", { y: 18, class: "hub-count", "text-anchor": "middle" }, String(m.combos.length)));
-    g.append(el("text", { y: 38, class: "hub-sub", "text-anchor": "middle" }, m.combos.length === 1 ? "combo" : "combos"));
+    const n = m.combos.length;
+    const sub = ctx.total && ctx.total > n ? `of ${ctx.total} combos` : n === 1 ? "combo" : "combos";
+    g.append(el("text", { y: 38, class: "hub-sub", "text-anchor": "middle" }, sub));
     gNodes.append(g);
   }
 

@@ -729,6 +729,7 @@ function render() {
     view = renderGraph(graphHost, hits, layout(), {
       combos: combosById, features: featuresById,
       card: (b) => cards.get(b), owned: own, illegal: (b) => !!cards.legality(b, fmt()), legend: deck.legend,
+      total: all.length,
       onSelect: (id) => { selected = id; showDetail(id); markChips(); },
       onZoom: (p) => { zoomLabel.textContent = `${p}%`; },
     }, dim);
