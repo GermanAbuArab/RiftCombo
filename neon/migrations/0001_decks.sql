@@ -7,30 +7,56 @@
 -- request path. That is why every one of the four verbs needs its own policy: without the insert
 -- policy nobody can save at all, and without the delete policy anybody could delete anybody's row.
 --
--- Three things differ from the Supabase version, each deliberate:
+-- Two things differ from the Supabase version, each deliberate:
 --
---   1. `user_id` is `text`, not `uuid`, and the policies call `auth.user_id()`, not `auth.uid()`.
---      `auth.uid()` returns NULL when the JWT's `sub` claim is not a valid UUID, and a policy
---      comparing NULL denies every row -- which reads to the player as "you have no decks" rather
---      than as an error. A silent total lockout is the worst failure this table can have, so the
---      column type is chosen to make it impossible instead of unlikely. `text` is right for a UUID
---      `sub` and for a provider's numeric `sub` alike.
---
---   2. `user_id` gains a default. Today the browser sends it and the policy checks it; letting the
+--   1. `user_id` gains a default. Today the browser sends it and the policy checks it; letting the
 --      database supply it means the common path cannot get it wrong. The `with check` stays anyway,
 --      because a client can still send a value and override a default.
 --
---   3. There is no foreign key to the user, so there is no `on delete cascade` either. Under
---      Supabase this pointed at `auth.users`. Neon's Managed Better Auth does keep its identities
---      in a real table in this same database (`neon_auth.user`), so an FK looks possible -- but
---      whether Neon permits one into a schema it manages, and whether it survives Neon recreating
---      that schema on an upgrade, is UNVERIFIED. Betting the migration on it is not worth it for a
---      table that will hold tens of rows. Deleting the rows is therefore the job of the
---      delete-account endpoint, in the documented order. See §5 of the spec.
+--   2. The foreign key points at `neon_auth.user(id)` instead of `auth.users(id)`. Everything else
+--      about it -- the type, the cascade, the guarantee -- is unchanged, and that is the point.
+--
+-- ORDER MATTERS: THIS MIGRATION REQUIRES NEON AUTH TO BE ENABLED FIRST. The `neon_auth` schema is
+-- created by enabling Managed Better Auth on the branch, so applying this against a project without
+-- it fails at the foreign key. That inverts step 2 of the cutover plan, which had the schema and the
+-- auth setup in the other order.
+--
+-- Why the FK is here at all, after a first draft deliberately left it out: the draft assumed Neon's
+-- auth identities lived in a managed, soft-deleting mirror that it would be unsafe to reference.
+-- That is the LEGACY product (`neon_auth.users_sync`), deprecated with removal announced for
+-- 1 March 2026. Under Managed Better Auth the identity is an ordinary row in this same database, and
+-- referencing it is the pattern Neon documents:
+--
+--     id uuid NOT NULL REFERENCES neon_auth.user ON DELETE CASCADE
+--     -- https://neon.com/docs/data-api/database-advisor
+--
+-- The one documented restriction does not apply here: "Foreign keys referencing unique constraints
+-- (rather than primary keys) in the neon_auth schema are not supported [...] these unique
+-- constraints may change in future updates". This references the primary key.
+--
+-- The cascade is worth insisting on. `web/privacy.html` promises that deleting an account removes
+-- every deck "at once and for good; there is no copy kept". With the cascade that is a property of
+-- the database. Without it, it is two statements in an endpoint that have to run in the right order,
+-- and the failure mode is orphaned rows that RLS then makes unreachable by anyone -- including the
+-- person whose rows they are.
+--
+-- `uuid` rather than `text`, and `auth.uid()` rather than `auth.user_id()`: an earlier draft chose
+-- text to stay safe against a `sub` claim that might not be a UUID, because `auth.uid()` returns
+-- NULL for a non-UUID sub and a policy comparing NULL denies every row -- a silent total lockout
+-- that reads to the player as "you have no decks". That risk is now measured rather than guessed.
+-- Neon's own JWT example shows `id` and `sub` carrying the same UUID:
+--
+--     "id": "41a5f680-89d2-474d-ae59-e27bfbbbd293", "sub": "41a5f680-89d2-474d-ae59-e27bfbbbd293"
+--     -- https://neon.com/docs/data-api/troubleshooting
+--
+-- And the foreign key turns that measurement into an assertion the database enforces: if
+-- `neon_auth.user.id` were not a uuid, THIS MIGRATION WOULD FAIL TO APPLY, loudly, before anything
+-- depends on it. The quiet failure the text column was defending against can no longer happen
+-- quietly.
 
 create table public.decks (
   id         uuid primary key default gen_random_uuid(),
-  user_id    text not null default auth.user_id(),
+  user_id    uuid not null default auth.uid() references neon_auth.user (id) on delete cascade,
   name       text not null,
   deck_text  text not null,
   format     text not null,
@@ -48,16 +74,17 @@ create unique index decks_user_name_idx on public.decks (user_id, lower(name));
 
 alter table public.decks enable row level security;
 
--- The four policies, one per verb, unchanged in shape from the Supabase original.
+-- The four policies, one per verb, unchanged in shape AND in expression from the Supabase original:
+-- `auth.uid()` means the same thing on both platforms.
 --
 -- `to authenticated` is new and is not in the original. It is belt-and-braces: the grants below go
 -- only to `authenticated`, so the anonymous role could not reach this table anyway, but naming the
 -- role on the policy means a future grant widened by accident does not silently widen these too.
 -- This is also the shape Neon's own Data API documentation uses.
-create policy "owner reads own decks"   on public.decks for select to authenticated using (user_id = auth.user_id());
-create policy "owner inserts own decks" on public.decks for insert to authenticated with check (user_id = auth.user_id());
-create policy "owner updates own decks" on public.decks for update to authenticated using (user_id = auth.user_id()) with check (user_id = auth.user_id());
-create policy "owner deletes own decks" on public.decks for delete to authenticated using (user_id = auth.user_id());
+create policy "owner reads own decks"   on public.decks for select to authenticated using (user_id = auth.uid());
+create policy "owner inserts own decks" on public.decks for insert to authenticated with check (user_id = auth.uid());
+create policy "owner updates own decks" on public.decks for update to authenticated using (user_id = auth.uid()) with check (user_id = auth.uid());
+create policy "owner deletes own decks" on public.decks for delete to authenticated using (user_id = auth.uid());
 
 -- The list is ordered by updated_at, so the database keeps it rather than the client: a client that
 -- forgot to send it -- or sent a wrong one -- would silently reorder somebody's saved decks.
