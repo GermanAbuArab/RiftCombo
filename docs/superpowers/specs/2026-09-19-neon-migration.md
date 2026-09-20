@@ -345,7 +345,16 @@ The 14 checks, and what each becomes:
 **The suite must refuse to pass vacuously, and today's one only does so by accident.** Checks 3, 4,
 6 and 9 are all of the form *"X cannot see / cannot change this row"*, and **every one of them passes
 against a database where the row does not exist, the table does not exist, or the Data API is
-pointed at the wrong branch.** What rescues them is that checks 1, 2 and 8 are positive controls —
+pointed at the wrong branch.**
+
+**The root cause is one step past "vacuous", and rc-manager11 named it while fixing this on the
+Supabase side (`3603382`): under RLS a denied read, update or delete is NOT AN ERROR.** PostgREST
+filters the rows out and returns an empty array with `error` null, and the checks destructure the
+error away — so *"correctly denied"* and *"the request blew up"* arrive at the assertion as the same
+answer. That is why the fix is not merely a louder log: the helper has to assert **that the request
+SUCCEEDED and returned zero rows**, and the precondition has to **throw** rather than print a failure
+line. The same property holds on Neon, because the Data API is PostgREST-derived, so port the fixed
+predicate rather than the original one. What rescues them is that checks 1, 2 and 8 are positive controls —
 a deck really was saved, and it really survived — so the negatives are measured against something
 known to be there. That is currently an accident of ordering rather than a stated property. Make it
 explicit: **the script prints a non-vacuity line before any negative check** — how many users it
@@ -561,10 +570,17 @@ Widen line 150's secret-name check to cover `NEON_API_KEY` and the connection st
 auth client. Rename the `check:rls` script's target if the filename changes; **prefer keeping the
 filename `scripts/check-rls.mjs`**, since RLS is still exactly what it proves.
 
-**7.5 `scripts/build-web.mjs:80-81` and `:93`** — the esbuild `define` block substitutes
-`__SUPABASE_URL__` and `__SUPABASE_ANON_KEY__` into the bundle, and line 93 prints them at build
-time. Both names move with the environment variables in §7.1. This file was missing from the first
+**7.5 `scripts/build-web.mjs`** — the esbuild `define` block substitutes `__SUPABASE_URL__` and
+`__SUPABASE_ANON_KEY__` into the bundle, and the build-time `console.log` prints the configured
+origin. All three move with the environment variables in §7.1. This file was missing from the first
 draft of this list; it was found by the walk described in §1.
+
+**Grep for those three identifiers rather than for a line number.** An earlier draft cited
+`:80-81` and `:93`. Re-measured after rc-manager11 committed to that file twice, those numbers are
+**still correct** — so this is not a stale-citation correction — but the reasoning for dropping them
+does not depend on whether they happen to be right today: **this is a shared tree with several
+sessions writing to it, and a line number is a claim about a file's state at an instant, while an
+identifier is a claim about its contents.** Cite identifiers in a plan that will be executed later.
 
 **7.6 The documentation set, which is not optional.** Six files describe the Supabase setup to a
 human and will be wrong the moment the migration lands:
