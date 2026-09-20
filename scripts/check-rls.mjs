@@ -34,6 +34,27 @@ const check = (name, ok, detail = "") => {
   console.log(`${ok ? "pass" : "FAIL"}  ${name}${detail ? `  — ${detail}` : ""}`);
 };
 
+/**
+ * A NEGATIVE check, and the reason it is not just `check(..., rows.length === 0)`.
+ *
+ * Under RLS a denied read, update or delete is not an error: PostgREST filters the rows and returns
+ * an empty array with `error` null. So "you were correctly denied" and "the request blew up" both
+ * arrive as no rows — and the four negative checks below used to destructure the error away and
+ * compare `(data?.length ?? 0) === 0`, which is TRUE when `data` is null because the request failed.
+ * Every one of them therefore PASSED against a database where the table does not exist, the row was
+ * never inserted, or the client is pointed at the wrong project. Four of fourteen checks in a script
+ * whose entire job is to prove isolation.
+ *
+ * What rescued it in practice was ordering — the positive controls above run first and would have
+ * failed — but that is an accident of sequence rather than a property anything enforces, which is
+ * why the precondition below is now a hard throw rather than a printed FAIL. Asserting the request
+ * SUCCEEDED and returned zero rows is what makes the absence of rows evidence of anything.
+ */
+const denied = (name, { data, error }) => {
+  if (error) return check(name, false, `the request itself failed, so nothing was proved: ${error.message}`);
+  check(name, Array.isArray(data) && data.length === 0, `${data?.length ?? "no"} rows`);
+};
+
 /** A signed-in browser: the anon key plus one user's own JWT, exactly what the app uses. */
 async function makeUser(tag) {
   const email = `rls-${tag}-${randomUUID()}@riftcombo.test`;
@@ -59,17 +80,24 @@ try {
   check("the second user can save one too", !bError, bError?.message ?? "");
   if (!aDeck) throw new Error("nothing to test isolation against");
 
-  const { data: aList } = await a.client.from("decks").select("id,name");
+  const { data: aList, error: aListError } = await a.client.from("decks").select("id,name");
   check("a user's list holds only their own decks", aList?.length === 1 && aList[0].id === aDeck.id, `${aList?.length ?? 0} rows`);
+  // NON-VACUITY GATE. Everything below is an absence — no rows, no rename, no delete — and an
+  // absence only means something once the thing being hidden is known to be there. If the row this
+  // whole script is about is not readable by its own owner, the negatives below would all print
+  // "pass" while testing nothing, so stop here instead of reporting a green run.
+  if (aListError || aList?.length !== 1 || aList[0].id !== aDeck.id) {
+    throw new Error(`cannot prove isolation: the owner cannot see their own row (${aListError?.message ?? `${aList?.length ?? 0} rows`})`);
+  }
 
-  const { data: bSees } = await b.client.from("decks").select("id").eq("id", aDeck.id);
-  check("the other user cannot read that row even knowing its id", (bSees?.length ?? 0) === 0, `${bSees?.length ?? 0} rows`);
+  denied("the other user cannot read that row even knowing its id",
+    await b.client.from("decks").select("id").eq("id", aDeck.id));
 
-  const { data: bRenames } = await b.client.from("decks").update({ name: "stolen" }).eq("id", aDeck.id).select("id");
-  check("the other user cannot rename it", (bRenames?.length ?? 0) === 0);
+  denied("the other user cannot rename it",
+    await b.client.from("decks").update({ name: "stolen" }).eq("id", aDeck.id).select("id"));
 
-  const { data: bDeletes } = await b.client.from("decks").delete().eq("id", aDeck.id).select("id");
-  check("the other user cannot delete it", (bDeletes?.length ?? 0) === 0);
+  denied("the other user cannot delete it",
+    await b.client.from("decks").delete().eq("id", aDeck.id).select("id"));
 
   const { error: forged } = await b.client.from("decks")
     .insert({ user_id: a.id, name: "planted", deck_text: "1 Lux, Illuminated", format: "constructed" });
@@ -78,9 +106,9 @@ try {
   const { data: stillThere } = await a.client.from("decks").select("id,name").eq("id", aDeck.id).single();
   check("the owner's row survived all of that unchanged", stillThere?.name === "A's deck", stillThere?.name ?? "gone");
 
-  const { data: anon } = await createClient(SUPABASE_URL, SUPABASE_ANON_KEY, { auth: { persistSession: false } })
-    .from("decks").select("id");
-  check("a signed-out visitor reads nothing", (anon?.length ?? 0) === 0, `${anon?.length ?? 0} rows`);
+  denied("a signed-out visitor reads nothing",
+    await createClient(SUPABASE_URL, SUPABASE_ANON_KEY, { auth: { persistSession: false } })
+      .from("decks").select("id"));
 
   // delete_account() is the one function that reaches auth.users, so it gets the hardest look.
   // It takes no argument: the row is chosen by auth.uid(), which is why B calling it can only ever
