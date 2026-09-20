@@ -405,6 +405,40 @@ explicit: **the script prints a non-vacuity line before any negative check** —
 created, how many rows exist, and which branch host it is talking to — and exits non-zero if any of
 those is zero. A probe that silently matches nothing must not be able to read as a pass.
 
+**A SIXTH INSTANCE OF THE SAME CLASS, AND IT IS THE ONE THE SUPABASE SCRIPT SURVIVED BY ACCIDENT.**
+Found by panel3 writing the port, re-verified here against PostgREST's own reference. **`Prefer:
+return=minimal` is the default for every write**: *"With `Prefer: return=minimal`, no response body
+will be returned. This is the default mode for all write requests."* A `204` with no body is what you
+get **whether the `UPDATE` touched a row or touched none** — so a negative check on an update or a
+delete, written the obvious way, cannot tell *denied* from *applied*. That is the same defect as the
+other five, one layer lower: not in the assertion, in the protocol.
+
+**`scripts/check-rls.mjs` is safe from it by luck.** Checks 5 and 6 chain `.select("id")` after the
+update and the delete, which forces `return=representation` and produces the row array the assertion
+reads. **Nothing in the file says that is why**, and a port that dropped the `.select` — an obviously
+harmless tidy-up, since the value is discarded — would silently turn both checks into assertions that
+can no longer fail. The Neon port sends the header explicitly and says so in a comment.
+
+**The response shapes the port must distinguish, verified against PostgREST's error reference:**
+
+| Situation | Shape |
+|---|---|
+| Read denied by RLS | **`200` with `[]` and `error` null — NOT an error** |
+| Write denied by RLS `with check` | Postgres `42501`, *"insufficient privileges"*, → `403` authenticated |
+| Table missing or not exposed | `PGRST205` (404) |
+| Schema not exposed | `PGRST106` (406) |
+| JWT invalid | `PGRST301` (401) |
+| Database unreachable | `PGRST000`–`PGRST003` (503/504) |
+
+**The point of the table is the first row and the last four**: every one of those four is a way for a
+negative check to come back looking like a denial, and each has a distinguishable code. So a *denied*
+helper must require **success with zero rows**, a *rejected* helper must require **exactly `42501`**,
+and anything else must be **named and failed** rather than counted as a denial. One calibration, since
+it is an inference rather than a quotation: the error page maps `42501` to *insufficient privileges*
+and does **not** say in so many words that an RLS `with check` violation returns it. Requiring it
+exactly is still right, because if the real code differs the check fails and names what it saw —
+**which is the safe direction for a guess about a security assertion.**
+
 **How the two test users are created is the part that has no drop-in.** Today `check-rls.mjs` uses
 `SUPABASE_SERVICE_ROLE_KEY` with `auth.admin.createUser` and `signInWithPassword`. There is no
 service-role key in Neon. The replacement is Neon's Management API with a `NEON_API_KEY` — the same
@@ -790,6 +824,12 @@ empty database is precisely the state the vacuous checks report green on**, so a
 would have announced sixteen of sixteen against a branch with no table. The gate that does not
 collapse is:
 
+0. **The script is WRITTEN, not TESTED, until a Neon project exists** — panel3 says so of their own
+   port and it belongs in the gate rather than in a footnote. Everything in it is request and response
+   shapes taken from documentation; the only path exercised so far is the missing-configuration one.
+   **A script whose assertions have never run is not evidence, and step 3 is where that changes.**
+   Relatedly: if `DELETE_ACCOUNT_URL` is absent the run must exit **2**, not 0 — checks 10 to 12 are
+   the ones guarding `web/privacy.html`, and a run that could not test deletion must not read green.
 1. **The positive controls run first and THROW**, not print, if they fail. A deck really was
    created and read back, so the negatives that follow are measured against something known to be
    there. rc-manager11 made exactly this change on the Supabase script (`3603382`).
