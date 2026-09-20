@@ -31,20 +31,13 @@ writeFileSync(join(OUT, "data", "cards.json"), JSON.stringify(slim));
 // Fetched rather than bundled, and only when the view is first opened: the plays are prose, nobody
 // reading a deck list needs them, and keeping them out of app.js keeps the cost on the page that
 // asks for it. The markdown ships verbatim; web/plays.ts renders it.
-// 2026-09-19: the plays are WITHHELD, and this flag is the whole switch. Measured that day: 15 of 15 published
-// plays carried internal fleet language, and `2026-09-13-the-entry-the-clock-condemned-hardest`
-// carried a section headed "## 6. For the manager" — a work punch-list from one lane to another,
-// with script paths and "not mine to edit" — rendered under an h1 on a public page that also
-// carries the Riot disclaimer. The source IS the render (`readPlay` ships each file verbatim), so
-// nothing filtered it. #206's "ship later if good" was tested on the first four plays, which carry
-// none of that; the internal sections accreted afterwards and nobody re-checked.
-// Hiding the nav alone would not have been enough — the text was readable at /data/plays.json,
-// so the payload ships EMPTY rather than not shipping: the view, its route and its renderer all
-// stay wired and simply have nothing to list, which keeps the blast radius at this one line.
-// Everything else is deliberately left standing (docs/plays/, web-plays.mjs, web/plays.ts), so
-// republishing after the plays are edited for a reader is reverting this commit.
-const PUBLISH_PLAYS = false;
-const plays = PUBLISH_PLAYS ? loadPlays(ROOT) : [];
+// The source IS the render, so the only filter is the one on the prose itself: the plays were
+// WITHHELD on 2026-09-19 (15 of 15 carried sentences addressed to another agent — a "For the
+// manager" punch-list rendered under an h1 beside the Riot disclaimer) and republished on 2026-09-20
+// after every one was edited for a reader. `test/plays-reader.test.ts` pins that standard, so the
+// next play written for a colleague fails the suite instead of reaching /data/plays.json.
+const comboNames = new Map(JSON.parse(readFileSync(join(ROOT, "data", "combos.json"), "utf8")).combos.map((e) => [e.id, e.name]));
+const plays = loadPlays(ROOT, (id) => comboNames.get(id) ?? null);
 writeFileSync(join(OUT, "data", "plays.json"), JSON.stringify({ plays }));
 // 404.html is served by Vercel for any address that matches nothing, so it carries no script: it has
 // to work in the case where the bundle is what went wrong (#77).
@@ -63,7 +56,8 @@ const site = siteConfig(ROOT);
 // measured 2026-09-19 and live on the site that day. Filtering in the render path would have hidden
 // the panel and still shipped the bytes; this way they are never in the bundle.
 // `data/combos.json` is untouched on purpose: the audit trail is real provenance for us, and the
-// reader is the one who should not get it. Same shape as PUBLISH_PLAYS above.
+// reader is the one who should not get it. The plays above had the same defect and were edited
+// at the source instead, because a play is written FOR the reader and an audit note is not.
 const stripComboProse = stripProsePlugin(ROOT, readFileSync);
 
 const options = {

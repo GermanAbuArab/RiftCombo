@@ -94,6 +94,24 @@ describe("the run plays the browser downloads", () => {
     }
   });
 
+  it("prints the subject entry's NAME in the lede, never its id", () => {
+    // Twelve plays open "**Subject: `<id>`**, …" and that paragraph is the lede. The id is an address
+    // for the page to link; an index reader gets the name. Resolved through the same `nameOf` the
+    // build passes, from the real catalogue, so a play naming an entry the catalogue lost keeps the
+    // raw id rather than inventing a name — and is then caught by the raw-id assertion below.
+    const names = new Map(((JSON.parse(readFileSync("data/combos.json", "utf8")) as { combos: { id: string; name: string }[] }).combos).map((e) => [e.id, e.name]));
+    const nameOf = (id: string) => names.get(id) ?? null;
+    const one = readPlay("2026-09-12-x.md", "# Play — x\n\nIssue #200, 2026-09-12.\n\n**Subject: `svellsongur-copy-hold`.** Rest.\n", nameOf);
+    expect(one.lede).toBe(`Subject: ${names.get("svellsongur-copy-hold")}. Rest.`);
+    // Control: an id the catalogue does not know stays as written, minus the backticks `plain` strips.
+    expect(readPlay("2026-09-12-x.md", "# Play — x\n\n**Subject: `no-such-entry`.** Rest.\n", nameOf).lede).toBe("Subject: no-such-entry. Rest.");
+    const resolved = loadPlays(".", nameOf) as { slug: string; lede: string }[];
+    expect(resolved.filter((p) => /^Subject: /.test(p.lede)).length, "the Subject-opener shape exists in the corpus").toBeGreaterThan(0);
+    for (const p of resolved) {
+      for (const id of names.keys()) expect(p.lede, `${p.slug} lede prints the id ${id}`).not.toContain(id);
+    }
+  });
+
   it("sorts newest first, which is the order an index wants", () => {
     const dates = plays.map((p) => p.slug);
     expect(dates).toEqual([...dates].sort().reverse());

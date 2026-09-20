@@ -1,6 +1,6 @@
 # Play — what the idle mana buys: denial is a wash, removal is a turn
 
-Issue #200, lane rc-synth, 2026-09-12. Constructed, Duel (485). Rules version 2026-07-16.
+Issue #200, 2026-09-12. Constructed, Duel (485). Rules version 2026-07-16.
 Card text verbatim from `data/corpus_flat.txt`; rules pasted from
 `data/Riftbound-Core-Rules-2026-07-16.txt`.
 

@@ -1,6 +1,6 @@
 # Play — the spell that taxes the cheap curve, and why its threshold is exactly where it is
 
-Issue #200, lane rc-synth2, 2026-09-13. Constructed, Duel (485). Rules version 2026-07-16. Card text
+Issue #200, 2026-09-13. Constructed, Duel (485). Rules version 2026-07-16. Card text
 verbatim from `data/corpus_flat.txt`; rules pasted from `data/Riftbound-Core-Rules-2026-07-16.txt`.
 Read [the unopposed clock](2026-09-12-the-unopposed-clock.md) first — the whole play is measured
 against the curve it establishes.
@@ -141,7 +141,7 @@ free-win line of the format at a rate the rune curve pays for.
 One card, one rune a kill, and the rune comes back at two a turn — against the exact body sizes the
 format's fastest opening is obliged to use.
 
-The general form is worth more than the line, and it is the same trade every play this lane has
+The general form is worth more than the line, and it is the same trade every play in this series has
 written has landed on, arriving this time from the removal side rather than the finisher side:
 
 > **The cheap bodies that make an opening fast are the cheap bodies that removal is priced to kill,
@@ -154,10 +154,3 @@ Every earlier play here found that a **finisher** buys its speed with small bodi
 fragility. This is the same sentence read from the other end of the table: the reason small bodies are
 fragile is that the pool prices its removal exactly there.
 
-## 7. For the manager
-
-Nothing to apply and no defect found. The entry is correct, its Signature legend line is correct and
-was rebuilt by `test/legend-lines.test.ts`, and `UNL-186` and `OGN-037` are clean in
-`data/legality.json`. The two numbers above that are worth having somewhere durable are the
-Energy-to-Might table in §1 and the two-speeds distinction in §3, and both are reproducible from the
-commands in the walk document.

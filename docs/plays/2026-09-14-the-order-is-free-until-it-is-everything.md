@@ -1,6 +1,6 @@
 # Play — the order is free until it is everything, and a package that scores nothing
 
-Issue #200, lane rc-synth4, 2026-09-14. Constructed, Duel (485). Rules version 2026-07-16.
+Issue #200, 2026-09-14. Constructed, Duel (485). Rules version 2026-07-16.
 Card text verbatim from `data/corpus_flat.txt`; rules pasted from
 `data/Riftbound-Core-Rules-2026-07-16.txt`. Read
 [the unopposed clock](2026-09-12-the-unopposed-clock.md) for the baseline.

@@ -1,6 +1,6 @@
 # Play — the entry the clock condemned hardest, and the board it was never measured on
 
-Issue #200, lane rc-synth2, 2026-09-13. Constructed, Duel (485). Rules version 2026-07-16. Card text
+Issue #200, 2026-09-13. Constructed, Duel (485). Rules version 2026-07-16. Card text
 verbatim from `data/corpus_flat.txt`; rules pasted from
 `data/Riftbound-Core-Rules-2026-07-16.txt`. Read [the unopposed clock](2026-09-12-the-unopposed-clock.md)
 first — this play is about what that document's baseline is and is not for.
@@ -90,7 +90,7 @@ Channel Phase. The opponent has taken the other battlefield and garrisoned it; y
 | **T6** | 4 | Beginning Phase: **Hold. 1 Score + 16 Gains = 17.** You were on 4. **Win.** |
 
 **Turn 6 — and the two earlier versions of this table both said T7, for two different wrong reasons.
-That is worth the space, because the second wrong reason became a line in `CLAUDE.md` and a brief.**
+That is worth the space, because the second wrong reason became a line in `CLAUDE.md`.**
 
 The first version said the clock's T6 "does not include" the Equip costs. It did not: `costsOfSet`
 read a card's printed Energy and Power while 818.1 makes `[Equip]` a **separate Activated Ability with
@@ -160,27 +160,3 @@ comparison condemned hardest:
 > this line necessary is the same stall that switches it off"*, which is true of a total stall and
 > false of the ordinary contested game. Three board states, and both instruments were modelling two.
 
-## 6. For the manager
-
-1. **`scripts/adversarial-check.mjs` now prints both baselines** (mine, shipped): 41 of 80 against
-   the unopposed curve and 6 of 80 against the contested one, per class as well as in the headline.
-2. **The `--stalled` HOLD label is too strong** and is not mine to edit. It is correct for a board
-   where you control nothing and wrong for the one-battlefield board, which is the common case. A
-   third bucket is not needed — one clause in the label is.
-3. **`[Equip]` is now priced** (rc-synth2, shipped): parsed from card text, 35 of the 39 gear that
-   print one parse to pure Energy and rune symbols — reproducing this file's own independent count of
-   29 one-rune plus 6 Energy-and-rune exactly — with the other four named and charged their mana part
-   only, `[Quick-Draw]` skipped and `[Weaponmaster]` freeing the cheapest attach. It moved the
-   unopposed headline from 41 to 45 of 80.
-4. **ORDERING is now modelled too** (rc-synth3, shipped, 2026-09-13) and **it moves nothing**: 33 of
-   the 80 rows carry a linked `[Equip]` cost and the constraint constrains none of them. The sentence
-   this play used to carry — that ordering is what separates this line's T6 from its T7 — **is
-   withdrawn**; the T7 was a suboptimal hand schedule that assumed a gear cannot be attached the turn
-   it is played, which 359.2.d refutes. Checked before writing this: `CLAUDE.md` does **not** carry
-   the claim, so nothing of the manager's needs editing. It reached the rc-synth2 handoff, which is
-   a dated document and is left as written.
-5. **The clock's last unmodelled ordering fact is the CARRIER** (818.1.c.2, *"a unit you control"*),
-   and it is bounded rather than open: probed in `.scratch-gap/probe-carrier.mjs` it moves no row, and
-   the only row it touches is `arise-sand-soldiers-plaza` — the one finisher with an Equipment and no
-   unit in `uses`, which already declares `anyBodies`. Inert wherever it is expressible, and
-   unmodellable on the last row without inventing a decklist.

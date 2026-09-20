@@ -1,6 +1,6 @@
 # Play — the catalogue's fastest win: what an empty Main Deck actually costs
 
-Issue #200, lane rc-synth2, 2026-09-13. Constructed, Duel (485) unless a Match (486) is named.
+Issue #200, 2026-09-13. Constructed, Duel (485) unless a Match (486) is named.
 Rules version 2026-07-16. Card text verbatim from `data/corpus_flat.txt`; rules pasted from
 `data/Riftbound-Core-Rules-2026-07-16.txt`. Read
 [the unopposed clock](2026-09-12-the-unopposed-clock.md) first — every turn number below is measured
@@ -341,23 +341,3 @@ all.** Uniform boilerplate is how a correct sentence ends up on an entry it was 
 and the tell here is that the entries' own `netPerIteration` fields contradict it in their own words
 — *"0 Energy, 0 Power and 0 cards spent"*.
 
-### Three suggested changes, none made here
-
-`data/combos.json` is single-owner and this lane does not hold it, and
-`scripts/adversarial-check.mjs` is the clock's own file. Both are for the manager:
-
-1. **`--stalled` needs a fifth signal.** Swept over `data/corpus_flat.txt` with the predicate
-   `/while I'?m at a battlefield|if I'?m at a battlefield/i`, **17 printings** carry a self-location
-   gate. Narrowed to the ones that state it as an outright restriction on their own abilities —
-   predicate `/use (this ability|my abilities) only while/i`, minus `UNL-049 Honeyfruit`, whose gate
-   is an XP threshold and not a location — the answer is **four**: `OGN-068 Caitlyn, Patrolling`,
-   `SFD-088 Renata Glasc, Mastermind`, `UNL-026 Xerath, Freed`, `UNL-160 Ultrasoft Poro`. A `GATED`
-   bucket reading that phrase would move four rows out of INDEPENDENT and is a two-line change.
-2. **The clock should fold `needs` upward.** `generateVariants` already builds the correct card set
-   and caps the domains; using it for the 8 rows that declare unfunded needs is a strictly better
-   number than the one printed today. It does not reach the empty-deck cost, which is not a mana cost
-   at all and would need a draw model — but the citation belongs in the prose of the eight that
-   really carry it, which costs nothing: **they assert an empty Main Deck and not one of them cites
-   315.4.b.1, the paragraph that makes the state last one Main Phase.**
-3. **The TR 505 notable should say the right thing on the six that do not recycle** — one sentence,
-   not the pasted one. A uniform paragraph is worth auditing wherever it reaches a whole class.

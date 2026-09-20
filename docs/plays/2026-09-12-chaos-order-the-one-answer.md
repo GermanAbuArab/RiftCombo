@@ -1,11 +1,11 @@
 # Play — Chaos/Order, the identity with one answer: is it actually viable?
 
-Issue #200, lane rc-synth, 2026-09-12. Constructed, Duel (485). Rules version 2026-07-16.
+Issue #200, 2026-09-12. Constructed, Duel (485). Rules version 2026-07-16.
 Card text verbatim from `data/corpus_flat.txt`; rules pasted from
 `data/Riftbound-Core-Rules-2026-07-16.txt`.
 
-The user asked for run plays as *"things to check if they are viable"*. This is the first one written
-for a **specific line** rather than for the baseline, and the line is the one this lane wrote for the
+Run plays exist to check whether a line is viable in a real game. This is the first one written
+for a **specific line** rather than for the baseline, and the line is the one written for the
 only identity that had no legal finisher surviving a stalled board —
 `ivern-ride-the-wind-double-conquer`. The catalogue says it reaches eight points. **A run play asks a
 different question: on which turn, against an opponent who is doing something, and does that beat

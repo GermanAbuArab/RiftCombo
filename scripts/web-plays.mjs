@@ -39,8 +39,18 @@ const plain = (para) =>
     .replace(/\[([^\]]+)\]\([^)]*\)/g, "$1")
     .trim();
 
+/**
+ * Twelve of the sixteen plays open "**Subject: `<entry id>`**, …", and that paragraph IS the lede.
+ * An id is an address for the play page to link, not a phrase for an index to print, so the lede
+ * swaps each backticked id the catalogue knows for that entry's name; an id the catalogue does not
+ * know is left as written, because a wrong name is worse than a raw one. `nameOf` is supplied by
+ * `build-web.mjs` from `data/combos.json`; the default resolves nothing, which keeps this module
+ * free of the catalogue and the tests honest about which half they exercise.
+ */
+const nameIds = (para, nameOf) => para.replace(/`([a-z0-9]+(?:-[a-z0-9]+)*)`/g, (m, id) => nameOf(id) ?? m);
+
 /** Read one play file into its payload record. `name` is the file name, `markdown` its contents. */
-export const readPlay = (name, markdown) => {
+export const readPlay = (name, markdown, nameOf = () => null) => {
   const slug = name.replace(/\.md$/, "");
   if (!SLUG.test(slug)) throw new Error(`docs/plays/${name}: slug "${slug}" is not URL-safe`);
   const lines = markdown.split("\n");
@@ -60,18 +70,18 @@ export const readPlay = (name, markdown) => {
     .map((p) => p.trim())
     .filter((p) => p && !BLOCK.test(p.split("\n")[0] ?? ""));
   const lede = paragraphs.find((p) => !isProvenance(p));
-  return { slug, date, title: stripKind(lines[h1].slice(2).trim()), lede: lede ? plain(lede) : "", markdown };
+  return { slug, date, title: stripKind(lines[h1].slice(2).trim()), lede: lede ? plain(nameIds(lede, nameOf)) : "", markdown };
 };
 
 /**
  * Every play in `docs/plays/`, newest first — which is the order an index wants and the order the
  * dated slugs already encode, so nothing has to carry an explicit rank.
  */
-export const loadPlays = (root) => {
+export const loadPlays = (root, nameOf = () => null) => {
   const dir = join(root, PLAYS_DIR);
   return readdirSync(dir)
     .filter((f) => f.endsWith(".md"))
     .sort()
     .reverse()
-    .map((f) => readPlay(f, readFileSync(join(dir, f), "utf8")));
+    .map((f) => readPlay(f, readFileSync(join(dir, f), "utf8"), nameOf));
 };

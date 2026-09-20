@@ -1,13 +1,13 @@
 # Play — Chaos/Fury: the only point in the identity the opponent cannot deny
 
-Issue #200, lane rc-synth, 2026-09-12. Constructed, Duel (485). Rules version 2026-07-16.
+Issue #200, 2026-09-12. Constructed, Duel (485). Rules version 2026-07-16.
 Card text verbatim from `data/corpus_flat.txt`; rules paragraphs pasted from
 `data/Riftbound-Core-Rules-2026-07-16.txt`. Read
 [the unopposed clock](2026-09-12-the-unopposed-clock.md) first — this play is measured against it.
 
 **Built on** `yasuo-windrider-ride-the-wind-chain` (CHAIN), which is the same two non-legend cards
-under a Calm/Chaos legend. `.scratch/have.mjs OGN-205 OGN-173` returns no entry on that pair alone,
-so the Chaos/Fury version below is not catalogued; it is written here as a play rather than staged as
+under a Calm/Chaos legend. No catalogued entry uses that pair alone,
+so the Chaos/Fury version below is not catalogued; it is written here as a play rather than as
 an entry because what is new about it is the TURN COUNT and the contested-board case, not the card
 set.
 

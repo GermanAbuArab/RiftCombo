@@ -1,6 +1,6 @@
 # Play — the elegance is the slowness, and the clock is right by the wrong road
 
-Issue #200, lane rc-synth3, 2026-09-13. Constructed, Duel (485). Rules version 2026-07-16, opened in
+Issue #200, 2026-09-13. Constructed, Duel (485). Rules version 2026-07-16, opened in
 `data/Riftbound-Core-Rules-2026-07-16.txt`; card text verbatim from `data/corpus_flat.txt`. Read
 [the unopposed clock](2026-09-12-the-unopposed-clock.md) first for what a baseline is.
 
@@ -104,7 +104,7 @@ late and irrelevant, because a player holding both battlefields has already won.
 **contested** curve it is one turn late — and one turn late is a real verdict rather than a
 condemnation, since the contested curve's eighth point on T9 is a *baseline* and not a *plan*.
 
-**The constructive lead, which is not mine to write.** This is a mind/order line, and mind/order is
+**The constructive lead, not yet catalogued.** This is a mind/order line, and mind/order is
 the one identity that prints an infinite-Energy engine. Measured: the union of this entry's cards with
 `lux-infinite-energy` is two domains and therefore legal under 103.1.b, this entry declares
 `needs: []`, no twin exists on its card set, and sixteen entries already declare

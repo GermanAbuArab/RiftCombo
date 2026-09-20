@@ -1,6 +1,6 @@
 # Play — the answer is one Energy, the window is one Showdown, and a free reordering closes it
 
-Issue #200, lane rc-plaza, 2026-09-14. Constructed, Duel (485). Rules version 2026-07-16.
+Issue #200, 2026-09-14. Constructed, Duel (485). Rules version 2026-07-16.
 Card text verbatim from `data/corpus_flat.txt`; rules pasted from
 `data/Riftbound-Core-Rules-2026-07-16.txt`. This walks the OPPONENT's side of the line in
 [one body carries four points](2026-09-14-one-body-carries-four-points.md), whose own section 9 says

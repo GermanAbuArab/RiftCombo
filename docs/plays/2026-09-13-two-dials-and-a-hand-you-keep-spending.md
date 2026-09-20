@@ -1,6 +1,6 @@
 # Play — two dials and a hand you keep spending: what "exactly 4 and exactly 4" costs
 
-Issue #200, lane rc-synth2, 2026-09-13. Constructed, Duel (485). Rules version 2026-07-16. Card text
+Issue #200, 2026-09-13. Constructed, Duel (485). Rules version 2026-07-16. Card text
 verbatim from `data/corpus_flat.txt`; rules pasted from `data/Riftbound-Core-Rules-2026-07-16.txt`.
 Read [the unopposed clock](2026-09-12-the-unopposed-clock.md) for the baseline.
 
@@ -140,18 +140,3 @@ other finisher here is broken by **removal** — take a body away and the line s
 broken in **both directions**, including by being handed a card, and it is the only row in the file of
 which that is true.
 
-## 6. For the manager
-
-`data/combos.json` is single-owner and this lane does not hold it.
-
-1. **`gutter-palace`'s `uses[]` is one row and the line needs four cards.** `UNL-088` alone reports as
-   a complete ALT_WIN through `matchDeck` — I ran it: a deck holding `3 Gutter Palace` and nothing
-   else comes back `included: gutter-palace`. The two bodies and the draw spell are the missing
-   `uses`, and until they are there `planDeck` cannot suggest them either. It is the same defect as
-   `flurry-of-feathers-grand-plaza-win` and the same one CLAUDE.md records for
-   `shen-kinkou-svellsongur-hold`, with the schema problem stated in my report: the card says *"4
-   units"* and names none, so pinning four specific bodies invents a decklist. A caveat may be the
-   honest fix rather than a `uses` row.
-2. **Neither Gutter Palace entry names `OGN-133 Flurry of Blades`**, and the Bird the Palace's own
-   dial makes is Might 1 by 187.7. One Energy is the answer to the dial itself, which is worth saying
-   on both rows.

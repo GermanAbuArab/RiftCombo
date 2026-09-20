@@ -1,6 +1,6 @@
 # Play — the loop that WANTS a contested board, and what its seven bodies cost
 
-Issue #200, lane rc-synth2, 2026-09-13. Constructed, Duel (485). Rules version 2026-07-16. Card text
+Issue #200, 2026-09-13. Constructed, Duel (485). Rules version 2026-07-16. Card text
 verbatim from `data/corpus_flat.txt`; rules pasted from `data/Riftbound-Core-Rules-2026-07-16.txt`.
 Read [the unopposed clock](2026-09-12-the-unopposed-clock.md) for the baseline and
 [the catalogue's fastest win](2026-09-13-the-fastest-win-needs-an-empty-deck.md) for why this subject
@@ -179,7 +179,7 @@ exposure, and it is where this line is actually decided.
   battlefield and only reaches units at itself. **Nineteen of the 23 Plaza entries named `OGN-133` when
   this was written on 2026-09-13 and
   exactly one named anything larger** — the family had been measured against a single one-Energy card.
-  **It is 20 of 23 within the day**, because the manager applied this finding; the three that still do
+  **It is 20 of 23 within the day**, because the finding was applied to the catalogue the same day; the three that still do
   not are `dragonstorm-confront-grand-plaza`, `leblanc-bashful-bloom-trevor-plaza` and
   `desert-call-vi-sand-soldier-plaza`. The count is perishable and the point is not: one Energy was
   the only threat the family had ever been priced against.
@@ -250,16 +250,3 @@ control, so a stall feeds it rather than starving it.
 
 ---
 
-## 8. What this play is asking the manager for
-
-Neither is made here; `data/combos.json` is single-owner.
-
-1. **`ready-recruits-grand-plaza` should name a Fury-legal protection.** Its Soul Shepherd note is
-   correct and correctly scoped to an all-Order line, and the two Fury/Order engines that feed this row
-   (`jhin-fiora-facebreaker-recall`, `twilight-reveler-eye-facebreaker-recruits`) cannot run him at
-   all. `VEN-018 Rage Amplifier` is the answer, it is already in the catalogue twice, and the
-   composition is legal.
-2. **The Plaza family is measured against one Energy.** Nineteen of 23 entries name `OGN-133 Flurry of
-   Blades` and one names anything larger. The four that reach a Might-2 board are named in §6 with
-   their costs, and `VEN-133 Glowstone` at E2 is a fifth answer of a different kind that nothing in the
-   catalogue mentions — cheap, total, and beaten only by a payoff that fires in the Beginning Phase.

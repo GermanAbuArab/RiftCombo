@@ -1,6 +1,6 @@
 # Play — the defender's chair, and why the attacker's own window is the only one you get
 
-Issue #200, lane rc-synth3, 2026-09-13. Constructed, Duel (485). Rules version 2026-07-16, opened in
+Issue #200, 2026-09-13. Constructed, Duel (485). Rules version 2026-07-16, opened in
 `data/Riftbound-Core-Rules-2026-07-16.txt`; card text verbatim from `data/corpus_flat.txt`.
 
 **Subject: `keeper-of-masks-flurry-plaza-window`.** Every play in this folder so far has been written

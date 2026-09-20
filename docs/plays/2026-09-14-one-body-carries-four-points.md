@@ -1,6 +1,6 @@
 # Play — one body carries four points a turn, and one Energy takes it back
 
-Issue #200, lane rc-synth4, 2026-09-14. Constructed, Duel (485). Rules version 2026-07-16.
+Issue #200, 2026-09-14. Constructed, Duel (485). Rules version 2026-07-16.
 Card text verbatim from `data/corpus_flat.txt`; rules pasted from
 `data/Riftbound-Core-Rules-2026-07-16.txt`. Read
 [the unopposed clock](2026-09-12-the-unopposed-clock.md) for the baseline this is measured against.
@@ -82,8 +82,8 @@ sees (R2 = A).
 line reaches eight with three of its six cards uncast, so T7 is the turn the whole board is affordable
 and has nothing to do with the turn it wins. An entry has one `terminatesIn` and cannot say that.
 
-**A SECOND CLAIM STOOD HERE AND IT IS REFUTED — BY THE MANAGER, AGAINST ME, AND IT WAS WRONG.** I
-wrote that `baselineTurn` is one turn too fast for the eight identities that reach one cheap body and
+**A SECOND CLAIM STOOD HERE AND IT IS REFUTED, AND IT WAS WRONG.** An earlier draft
+said that `baselineTurn` is one turn too fast for the eight identities that reach one cheap body and
 not two, because `CHEAP_BODY_DOMAINS` is `{body, calm}` and the pool's only two units at Energy 1 or
 less are `UNL-111 Determined Sentry` (Body) and `VEN-043 Steel Paws` (Calm), so only calm/body can
 field **both cards**.
