@@ -99,8 +99,11 @@ create trigger decks_touch_updated_at
 --
 -- `neondb_owner` is the role Neon creates with a project, and Neon's own FAQ hedges it as
 -- "typically" that name. VERIFY IT against the real project when the schema is first applied
--- (`select current_user`) and correct this line if it differs -- a wrong name here does not error,
--- it just quietly does nothing.
+-- (`select current_user`) and correct this line if it differs. The two ways it can be wrong do not
+-- look alike: a name that matches no role at all fails loudly right here, with
+-- `ERROR: role "..." does not exist`, so a typo cannot reach production. A name that IS a real role
+-- but is not the one that creates future tables is the silent one -- it applies cleanly and then
+-- covers nothing, which is the failure this whole `for role` clause exists to make visible.
 grant usage on schema public to authenticated;
 grant select, insert, update, delete on all tables in schema public to authenticated;
 alter default privileges for role neondb_owner in schema public
