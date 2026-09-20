@@ -7,6 +7,8 @@ import { partnersOf } from "../src/synergies.js";
 import { slimCard, WEB_CARD_FIELDS } from "../scripts/web-card-fields.mjs";
 // @ts-expect-error same: the build script is .mjs, so the loader it imports has to be too.
 import { loadPlays, PLAYS_DIR, readPlay } from "../scripts/web-plays.mjs";
+// @ts-expect-error same: shared with scripts/build-web.mjs, which cannot import TypeScript.
+import { INTERNAL, stripInternalDeep } from "../scripts/web-combo-prose.mjs";
 
 const cards = loadCardIndex();
 const synergies = loadSynergies();
@@ -102,5 +104,63 @@ describe("the run plays the browser downloads", () => {
     expect(() => readPlay("Not A Slug.md", "# Play — x\n\nbody\n")).toThrow(/URL-safe/);
     expect(() => readPlay("2026-09-12-ok.md", "no heading here\n")).toThrow(/no h1/);
     expect(() => readPlay("undated-play.md", "# Play — x\n\nbody\n")).toThrow(/date/);
+  });
+});
+
+/**
+ * The combo catalogue and its siblings are IMPORTED by `web/main.ts`, so esbuild inlines them whole
+ * into app.js, and `web/main.ts` renders every entry's `notes` in a panel titled "How this entry was
+ * audited". Measured 2026-09-19: 127 of 771 entries carried sentences addressed to another agent —
+ * `NOTE FOR THE MANAGER, not a wrong verdict: …`, `at rc-manager5's direction after this lane raised
+ * it …` — and `data/combos.json` was byte-identical to master, so a player could read them on the
+ * site that day. Same defect the run plays were pulled for, in a corpus nobody had looked at.
+ *
+ * `scripts/build-web.mjs` strips them at BUILD time, because filtering in the render path would hide
+ * the panel and still ship the bytes. This asserts the property the strip exists for, over the same
+ * files the build reads. THE ENUMERATION IS THE POINT: a named list of files was written twice and
+ * was short BOTH times — the first covered `combos.json` and missed `synergies.json`, the second
+ * covered those two and missed `data/features.json` — so this walks what `web/main.ts` actually
+ * imports rather than what anyone remembered.
+ */
+describe("the authored prose the browser downloads", () => {
+  const imported = [...readFileSync(new URL("../web/main.ts", import.meta.url), "utf8")
+    .matchAll(/from "\.\.\/(data\/[^"]+\.json)"/g)].map((m) => m[1]).filter((f): f is string => Boolean(f));
+  const strings = (node: unknown, out: string[] = []): string[] => {
+    if (typeof node === "string") out.push(node);
+    else if (Array.isArray(node)) node.forEach((n) => strings(n, out));
+    else if (node && typeof node === "object") Object.values(node).forEach((n) => strings(n, out));
+    return out;
+  };
+  const read = (f: string) => JSON.parse(readFileSync(new URL(`../${f}`, import.meta.url), "utf8")) as unknown;
+
+  it("knows which files the bundle actually imports", () => {
+    // A sweep that matches nothing reads as a pass. Assert the population before asserting the property.
+    expect(imported.length, "web/main.ts imports no data JSON — the regex above has rotted").toBeGreaterThanOrEqual(4);
+    expect(imported).toContain("data/combos.json");
+    expect(imported).toContain("data/synergies.json");
+    expect(imported).toContain("data/features.json");
+  });
+
+  it("has something to strip, so a broken strip cannot read as green", () => {
+    const hits = imported.flatMap((f) => strings(read(f))).filter((s) => INTERNAL.test(s));
+    expect(hits.length, "no internal language in the sources at all — is INTERNAL still correct?").toBeGreaterThan(50);
+  });
+
+  it("ships none of it to the browser", () => {
+    for (const f of imported) {
+      const leaked = strings(stripInternalDeep(read(f))).filter((s) => INTERNAL.test(s));
+      // A string with no second sentence cannot be stripped without emptying it, so the strip leaves
+      // it alone and this fails on purpose: fix it by hand in the authored file, as the twelve
+      // `name` and `sources[].title` cases were on 2026-09-19. Never widen the strip to eat a title.
+      expect(leaked, `${f} still reaches the browser with: ${leaked[0]?.slice(0, 160)}`).toEqual([]);
+    }
+  });
+
+  it("keeps the audit trail it exists to protect", () => {
+    const db = read("data/combos.json") as { combos: { id: string; notes?: string }[] };
+    const kept = stripInternalDeep(db) as { combos: { id: string; notes?: string }[] };
+    expect(strings(kept).filter((s) => s.includes("HAND-WALKED")).length).toBeGreaterThan(400);
+    const lost = db.combos.filter((c, i) => c.notes && !kept.combos[i]?.notes).map((c) => c.id);
+    expect(lost, "an entry lost its whole audit note — the strip is too wide").toEqual([]);
   });
 });

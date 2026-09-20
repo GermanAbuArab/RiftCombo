@@ -26668,7 +26668,7 @@
           "date": "2026-09-06"
         },
         {
-          "title": "Cause/trigger matrix over the pool, rows 25-30 (friendly-dies), built by rc-walk153b — .scratch/matrix.ts and .scratch/cands.json",
+          "title": "Cause/trigger matrix over the pool, rows 25-30 (friendly-dies)",
           "kind": "agent",
           "date": "2026-09-06"
         }
@@ -26736,7 +26736,7 @@
           "date": "2026-09-06"
         },
         {
-          "title": "Cause/trigger matrix over the pool, row 22 (play-token-unit, 45 partners), built by rc-walk153b — .scratch/matrix.ts and .scratch/cands.json",
+          "title": "Cause/trigger matrix over the pool, row 22 (play-token-unit, 45 partners)",
           "kind": "agent",
           "date": "2026-09-06"
         }
@@ -26799,7 +26799,7 @@
           "date": "2026-09-06"
         },
         {
-          "title": "Cause/trigger matrix over the pool, row 19 (recycle-main, 35 partners), built by rc-walk153b — .scratch/matrix.ts and .scratch/cands.json",
+          "title": "Cause/trigger matrix over the pool, row 19 (recycle-main, 35 partners)",
           "kind": "agent",
           "date": "2026-09-06"
         }
@@ -27751,7 +27751,7 @@
           "date": "2026-09-06"
         },
         {
-          "title": "Cause/trigger matrix over the pool, group 33 (empower-other, 8 partners), built by rc-walk153b — .scratch/matrix.ts and .scratch/cands.json",
+          "title": "Cause/trigger matrix over the pool, group 33 (empower-other, 8 partners)",
           "kind": "agent",
           "date": "2026-09-06"
         }
@@ -27814,7 +27814,7 @@
           "date": "2026-09-06"
         },
         {
-          "title": "Cause/trigger matrix over the pool, group 37 (empower-other, 37 partners), built by rc-walk153b — .scratch/matrix.ts and .scratch/cands.json",
+          "title": "Cause/trigger matrix over the pool, group 37 (empower-other, 37 partners)",
           "kind": "agent",
           "date": "2026-09-06"
         }
@@ -49915,7 +49915,7 @@
     },
     {
       "id": "kinkou-lifeblade-shadow-fiend-empower-package",
-      "name": "Two permanent upgrades priced in different currencies, and the keyword one of them buys is the one this lane keeps needing",
+      "name": "Two permanent upgrades priced in different currencies",
       "class": "ENGINE",
       "status": "verified",
       "uses": [
@@ -49978,7 +49978,7 @@
     },
     {
       "id": "incinerate-blast-corps-cadet-optional-cost-ping",
-      "name": "The Cadet's damage is an optional ADDITIONAL cost, so it survives being played for free — and it is the only ping in the lane that leaves a body behind",
+      "name": "The Cadet's damage is an optional ADDITIONAL cost, so it survives being played for free — and it leaves a body behind",
       "class": "ENGINE",
       "status": "verified",
       "uses": [
@@ -56381,7 +56381,7 @@
       "terminatesIn": "engine - one Tryndamere point per Conquer, and 470 with 485.4 cap a Duel at two Conquers a turn; it needs an enemy garrison every time, since 807.1.d and 323.9 make an attack impossible without one",
       "sources": [
         {
-          "title": "Hand walk 2026-09-12, issue #200 (docs/phase0/walks/2026-09-12-synthesised-lines.md) - synthesis lane, batch 4: rc-manager5's Angle Shot lead applied to Chaos/Fury, the identity whose only finisher is mono-Fury",
+          "title": "Hand walk 2026-09-12, issue #200 (docs/phase0/walks/2026-09-12-synthesised-lines.md): Angle Shot applied to Chaos/Fury, the identity whose only finisher is mono-Fury",
           "kind": "manual-walk",
           "date": "2026-09-12"
         },
@@ -57258,7 +57258,7 @@
       "terminatesIn": "eight points in one turn across two Conquers - two Scores and six ability Gains that 470 does not cap - on a board the opponent controls, which is the board its identity previously had no legal finisher for; E26 + 3 Chaos Power counted whole, E6 + 3 Power on the finishing turn itself",
       "sources": [
         {
-          "title": "Hand walk 2026-09-12, synthesis lane rc-synth batch 11 (docs/phase0/walks/2026-09-12-synthesised-lines.md section 20)",
+          "title": "Hand walk 2026-09-12, issue #200 (docs/phase0/walks/2026-09-12-synthesised-lines.md section 20)",
           "kind": "manual-walk",
           "date": "2026-09-12"
         }
@@ -57331,7 +57331,7 @@
       "terminatesIn": "nine points in one scoring event on a battlefield you do not already control - one Conquer Score and eight ability Gains that 470 does not cap - for E20 and 8 Power counted whole, of which only 6 Energy, 2 Calm Power and 1 Mind Power is paid on the finishing turn",
       "sources": [
         {
-          "title": "Hand walk 2026-09-12, synthesis lane rc-synth batch 14 (docs/phase0/walks/2026-09-12-synthesised-lines.md section 23)",
+          "title": "Hand walk 2026-09-12, issue #200 (docs/phase0/walks/2026-09-12-synthesised-lines.md section 23)",
           "kind": "manual-walk",
           "date": "2026-09-12"
         }
@@ -57398,7 +57398,7 @@
       "terminatesIn": "ten points in one scoring event for E28 and 2 Fury Power - one Conquer Score and nine ability Gains that 470 does not cap - and unlike its Fury sibling it needs no attack and no excess damage, so it also pays on an open battlefield through 344.2",
       "sources": [
         {
-          "title": "Hand walk 2026-09-12, synthesis lane rc-synth batch 17 (docs/phase0/walks/2026-09-12-synthesised-lines.md section 26)",
+          "title": "Hand walk 2026-09-12, issue #200 (docs/phase0/walks/2026-09-12-synthesised-lines.md section 26)",
           "kind": "manual-walk",
           "date": "2026-09-12"
         }
@@ -57457,7 +57457,7 @@
       "terminatesIn": "ten points in one scoring event for E26, 4 Fury Power and 6 Calm Power - one Conquer Score and nine ability Gains that 470 does not cap - against any garrison of summed Might 11 or less",
       "sources": [
         {
-          "title": "Hand walk 2026-09-12, synthesis lane rc-synth batch 18 (docs/phase0/walks/2026-09-12-synthesised-lines.md section 27)",
+          "title": "Hand walk 2026-09-12, issue #200 (docs/phase0/walks/2026-09-12-synthesised-lines.md section 27)",
           "kind": "manual-walk",
           "date": "2026-09-12"
         }

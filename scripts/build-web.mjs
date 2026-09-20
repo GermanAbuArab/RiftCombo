@@ -13,6 +13,7 @@ import { fileURLToPath } from "node:url";
 import { siteConfig } from "./site-config.mjs";
 import { slimCard } from "./web-card-fields.mjs";
 import { loadPlays } from "./web-plays.mjs";
+import { stripInternalDeep } from "./web-combo-prose.mjs";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
 const OUT = join(ROOT, "public");
@@ -54,6 +55,29 @@ for (const f of ["index.html", "privacy.html", "terms.html", "404.html", "styles
 // switches the whole thing off and leaves the anonymous app exactly as it was.
 const site = siteConfig(ROOT);
 
+// The combo catalogue is IMPORTED by web/main.ts, not fetched, so esbuild inlines all of it into
+// app.js. This plugin is the only point at which the browser's copy can differ from the audited file,
+// and it exists because `web/main.ts` renders every entry's `notes` in a panel titled "How this entry
+// was audited" — which was showing sentences addressed to another agent ("NOTE FOR THE MANAGER…",
+// "at rc-manager5's direction after this lane raised it…"). 127 of 771 entries, 140 sentences,
+// measured 2026-09-19 and live on the site that day. Filtering in the render path would have hidden
+// the panel and still shipped the bytes; this way they are never in the bundle.
+// `data/combos.json` is untouched on purpose: the audit trail is real provenance for us, and the
+// reader is the one who should not get it. Same shape as PUBLISH_PLAYS above.
+const stripComboProse = {
+  name: "strip-combo-prose",
+  setup(b) {
+    // EVERY json under data/, not a named list. Two named lists were written and both were short:
+    // the first covered `combos.json` and missed `synergies.json`; the second covered those two and
+    // missed `data/features.json`. `web/main.ts` imports four, and the set can grow. Matching the
+    // directory cannot go stale, and a file with nothing to strip costs one parse.
+    b.onLoad({ filter: /data[\\/][^\\/]+\.json$/ }, (args) => ({
+      contents: JSON.stringify(stripInternalDeep(JSON.parse(readFileSync(args.path, "utf8")))),
+      loader: "json",
+    }));
+  },
+};
+
 const options = {
   entryPoints: [join(ROOT, "web", "main.ts")],
   bundle: true,
@@ -63,6 +87,7 @@ const options = {
   sourcemap: true,
   outfile: join(OUT, "app.js"),
   logLevel: "info",
+  plugins: [stripComboProse],
   define: {
     __SUPABASE_URL__: JSON.stringify(site.url),
     __SUPABASE_ANON_KEY__: JSON.stringify(site.anonKey),
