@@ -205,20 +205,47 @@ signed in). Second, "Delete account … deletes the account" stops being a true 
 Technically fine and named here only so nobody re-derives it: it keeps the Supabase project alive and
 therefore keeps the US$10/month, which is the entire point of the move. Rejected.
 
-### 3.3 The schema decision that makes the auth fork non-load-bearing
+### 3.3 The schema decision — reversed 2026-09-19, and the reversal is the good news
 
-`auth.uid()` returns `uuid`, **or NULL when the `sub` claim is not a valid UUID**. Today's policies
-are `auth.uid() = user_id` against a `uuid` column. If the migration keeps that shape and the issued
-`sub` is not a UUID, every policy evaluates `NULL = user_id`, which is NULL, which denies everything —
-**a total, silent lockout that looks to the player like "you have no decks" rather than like an
-error.** Better Auth's documented default is UUIDs, and for Postgres adapters it lets the database
-generate them, so this would *probably* work; "probably" is not good enough for a failure this quiet.
+**This section first chose `text`. It is `uuid`, and the whole of §5 shrinks because of it.** The
+reasoning that produced `text` was sound and its premise was an unknown that has since been measured:
+`auth.uid()` returns `uuid` **or NULL when `sub` is not a valid UUID**, so a verbatim port of today's
+`auth.uid() = user_id` policies would deny everything if the issued `sub` were not a UUID — **a total,
+silent lockout that reads to the player as "you have no decks" rather than as an error.** `text` with
+`auth.user_id()` dodged that and kept Option B (§3.2) alive as a fallback.
 
-**Decision: `user_id` becomes `text` and the policies use `auth.user_id()`.** `text` is correct for a
-UUID `sub` and for a Google numeric `sub` alike, so the column type stops depending on which auth
-option is chosen, and Option B stays available as a fallback without a second data migration. The
-cost is one column type change and the loss of `uuid` storage compactness on a table that will hold
-tens of rows.
+**Two measurements from `neon.com/docs/data-api`, brought by panel3 and re-fetched here rather than
+taken on trust, retire it.** The example JWT in `troubleshooting` carries `"sub":
+"41a5f680-89d2-474d-ae59-e27bfbbbd293"` and an `"id"` of the same value — **a UUID** — and
+`database-advisor` prints the application-table pattern outright:
+
+```sql
+CREATE TABLE public.profiles (
+  id uuid NOT NULL REFERENCES neon_auth.user ON DELETE CASCADE,
+  display_name text,
+  PRIMARY KEY (id)
+);
+```
+
+**`uuid`, referencing `neon_auth.user`, `ON DELETE CASCADE` — Neon documents the exact thing §5.3
+was designed around not having.** The one prohibition on the page is narrow and is not this: *"Foreign
+keys referencing unique constraints (rather than primary keys) in the `neon_auth` schema are not
+supported"*, with the resolution being to reference the primary key, which is what this does.
+
+**Decision: `user_id` is `uuid`, carries the foreign key with `on delete cascade`, and the four
+policies are a VERBATIM port of the Supabase ones.** What that buys is not tidiness: **the database
+guarantees again that deleting a user removes their decks**, which §5.3 correctly called a strictly
+weaker property when an endpoint had to do it in two ordered statements.
+
+**The cost, stated because panel3's message did not weigh it: this re-couples the schema to Neon Auth
+and kills Option B as a cheap fallback.** A Google-numeric `sub` will not fit a `uuid` column, so
+switching later is a second data migration rather than a config change. That is worth paying — Option
+B was already not recommended for an independent reason (hourly sign-outs, §3.2) — but it is a real
+door being closed and the next reader should know it was closed deliberately.
+
+**And the check stays even though the risk is retired.** §4's checks 15 and 16 exist because
+`auth.uid()` returning NULL is a *silent* failure, and evidence that it will not happen is not the
+same as an instrument that would notice if it did. One example JWT is one sample.
 
 ### 3.4 The schema, as it will be written
 
@@ -227,11 +254,12 @@ tens of rows.
 -- each of which is deliberate and explained where it sits.
 create table public.decks (
   id         uuid primary key default gen_random_uuid(),
-  -- 1. text, not uuid, and no foreign key. See §3.3 for the type and §5 for the missing FK.
+  -- 1. uuid with the foreign key and the cascade, matching the pattern Neon prints in
+  --    docs/data-api/database-advisor. See §3.3 for why this reversed from text.
   --    The default is new: today the browser sends user_id and the policy checks it. Letting the
   --    database supply it means the common path cannot get it wrong. The with-check below stays
   --    anyway, because a client can still send a value and override a default.
-  user_id    text not null default auth.user_id(),
+  user_id    uuid not null default auth.uid() references neon_auth.user (id) on delete cascade,
   name       text not null,
   deck_text  text not null,
   format     text not null,
@@ -247,11 +275,12 @@ create unique index decks_user_name_idx on public.decks (user_id, lower(name));
 
 alter table public.decks enable row level security;
 
--- The four policies, one per verb, unchanged in shape. auth.uid() becomes auth.user_id().
-create policy "owner reads own decks"   on public.decks for select using (user_id = auth.user_id());
-create policy "owner inserts own decks" on public.decks for insert with check (user_id = auth.user_id());
-create policy "owner updates own decks" on public.decks for update using (user_id = auth.user_id()) with check (user_id = auth.user_id());
-create policy "owner deletes own decks" on public.decks for delete using (user_id = auth.user_id());
+-- The four policies, VERBATIM from the Supabase migration: auth.uid() means the same thing under
+-- pg_session_jwt that it meant under Supabase, now that §3.3 has established sub is a uuid.
+create policy "owner reads own decks"   on public.decks for select using (auth.uid() = user_id);
+create policy "owner inserts own decks" on public.decks for insert with check (auth.uid() = user_id);
+create policy "owner updates own decks" on public.decks for update using (auth.uid() = user_id) with check (auth.uid() = user_id);
+create policy "owner deletes own decks" on public.decks for delete using (auth.uid() = user_id);
 
 -- Unchanged from the Supabase migration, including `security invoker` and the empty search_path.
 create function public.touch_updated_at() returns trigger
@@ -458,8 +487,37 @@ still open — see §5.3.
 
 ### 5.3 The design
 
-With §5.2 corrected there are two candidate designs, and which one is right depends on open item 1
-of §9. **Design both on paper; build only the one the check selects.**
+**Rewritten 2026-09-19, after §3.3 got the cascade back. The decks half of this section is gone.**
+`public.decks.user_id` now carries `references neon_auth.user (id) on delete cascade`, so **deleting
+the identity deletes the decks, in the database, with no statement to write and no order to get
+right.** Everything below about orphaned rows and two ordered statements is retained only as the
+record of what the cascade buys.
+
+**What remains is ONE question: how is the identity row deleted?** There are three routes and they
+differ in what they cost, not in what they achieve. **panel3 picked the third and, in doing so, put
+back the one uncertainty §5.2 had just removed** — which is the thing to notice before building it.
+
+| Route | Needs | Status |
+|---|---|---|
+| **A — the browser does it** | nothing | Better Auth's `authClient.deleteUser()`, **open item 3**; if it works there is no endpoint at all |
+| **B — an endpoint runs one SQL delete** | a driver (§5.5) | `delete from neon_auth.user where id = auth.uid()` — a real delete, per §5.2 |
+| **C — an endpoint calls the Management API** | `NEON_API_KEY` | only `fetch`, no driver — **but this is the control-plane path whose tombstone behaviour is UNVERIFIED** |
+
+**C is what §5.2 argued against and its attraction is real**: no driver, so the Edge constraint of
+§5.5 never bites and nothing is added to the bundle. **Its price is that the privacy promise goes
+back to being unverified.** §5.2 established that Managed Better Auth keeps identities in ordinary
+tables in the project's own database precisely so that a delete can be a delete; routing around that
+through the control plane re-inherits the question of whether a tombstone is left. panel3 says so
+themselves — *"sigue UNVERIFIED … solo se mide creando un usuario descartable"* — which is the right
+flag and the right measurement, and it is a reason to prefer B rather than a reason to accept C.
+
+**So the Edge runtime constraint is NOT off the critical path.** It is off it only under route C, and
+route C is the one that owes an answer about `web/privacy.html`. Under B it is squarely on the path
+and §5.5 is what makes B buildable. Under A neither applies. **Resolve open item 3 first; it can
+delete this whole section.**
+
+The two-design framing below predates the cascade and is kept because its cost analysis still
+applies to whichever endpoint gets built.
 
 **Design A — the database does it (preferred, if the FK is supported).** Restore
 `user_id references neon_auth.user(id) on delete cascade`. Account deletion is then a single
@@ -479,13 +537,14 @@ There is a home for this already: `api/` runs a Vercel Edge Function today (`api
 
 1. Read the caller's JWT from the `Authorization` header. **Verify it** against the issuer's JWKS —
    do not trust the claims unverified. Extract `sub`.
-2. `delete from public.decks where user_id = $sub`, over **`@neondatabase/serverless`** — NOT an
-   ordinary Postgres driver; see §5.5. **This step is why losing the FK cascade is affordable, and it
-   is the step that must happen first**: if the identity is deleted first and this fails, the rows are
-   orphaned with no owner who can ever reach them, and RLS guarantees nobody can clean them up
-   through the app.
-3. `delete from neon_auth.user where id = $sub` — a real SQL delete, per §5.2, **not** the
-   deprecated control-plane endpoint.
+2. ~~`delete from public.decks`~~ — **DELETED. The cascade does it (§3.3).** Kept struck through
+   because the reason it existed is the reason the cascade is worth having: without it, the identity
+   could be deleted first and this could fail, leaving rows orphaned with no owner who can ever reach
+   them and RLS guaranteeing nobody can clean them up through the app. **That failure mode is now
+   unreachable rather than merely unlikely.**
+3. `delete from neon_auth.user where id = auth.uid()` — a real SQL delete, per §5.2, **not** the
+   deprecated control-plane endpoint. Under route B this needs the driver of §5.5; under route C it
+   is replaced by a `fetch` and a `NEON_API_KEY`.
 4. Return 204. The browser then does what it does today: clear the local session.
 
 `web/supabase.ts`'s `deleteAccount()` keeps its exact signature — `Promise<void>`, no argument — so
@@ -503,6 +562,11 @@ There is a home for this already: `api/` runs a Vercel Edge Function today (`api
 - **The `on delete cascade` safety property is at risk, not necessarily gone.** Under Design A it
   survives untouched. Under Design B it is replaced by two statements in an endpoint, in the right
   order, which is strictly weaker — and check 14 of §4 is what stops that rotting.
+- **The privileged credential shrinks, and which one it is depends on the route.** Route B puts a
+  database connection string in `api/`; route C puts a `NEON_API_KEY` there instead, which is a
+  control-plane credential rather than one with write access to your tables. **Route C is genuinely
+  the smaller secret**, and that is its second real argument after the missing driver — it is only
+  the tombstone question that makes it the worse choice.
 - **Under Design B the function's best property is gone: it took no argument.** The whole
   `SECURITY DEFINER` design rests on there being nothing to aim, and Design A keeps that — the row is
   still chosen by the session. Design B's endpoint *does* take an identity, the `sub` of a token, so
@@ -529,6 +593,12 @@ and that is what stopped it being checked.
 ---
 
 ### 5.5 The runtime constraint — `api/` cannot open a Postgres connection at all
+
+**Scope, after §3.3 restored the cascade: this section is live only under route B of §5.3** — the
+endpoint that issues a SQL delete. Route A needs no endpoint and route C needs only `fetch`. It is
+kept in full because route B is the route that keeps the privacy promise verified, and because the
+constraint is a property of the `api/` directory that the next person to put anything there will
+meet.
 
 **`api/deck-url.ts` line 9 declares `export const config = { runtime: "edge" }`, and the Vercel Edge
 runtime has no TCP.** Its documentation lists the Node modules that *are* importable — `async_hooks`,
@@ -618,29 +688,36 @@ same URL**:
 | `neon.com/docs/data-api/get-started` | `https://ep-example.apirest.us-east-1.aws.neon.tech/neondb/rest/v1/posts?select=*` |
 | `neon.com/guides/react-neon-auth-data-api` | `https://ep-xxx.us-east-1.aws.neon.tech/neondb/rest/v1` |
 
-Neither of us invented it and **it is not resolvable from documentation** — which is the whole
-argument, because this project's rule for conflicting values is to resolve them by measuring or carry
-the uncertainty, never to pick one quietly. **The design conclusion does not depend on which wins, and
+**RESOLVED the same day, and in favour of `apirest`.** panel3 withdrew their challenge and supplied
+the deciding evidence: the example JWT in `neon.com/docs/data-api/troubleshooting` carries `iss` and
+`aud` of **`https://ep-spring-silence-ad3hu80n.neonauth.c-2.us-east-1.aws.neon.tech`** — a concrete
+hostname rather than a placeholder, carrying a **`neonauth`** service segment in exactly the slot
+`apirest` occupies. So the shape is `ep-<id>.<service>.<region>.aws.neon.tech` with the service naming
+the product, the guide's `ep-xxx.us-east-1.aws.neon.tech` was an abbreviation, and **the page that
+looked like a contradiction was a simplification.** Note also the `c-2` label, which no template
+anybody guessed contained. **The design conclusion does not depend on which wins, and
 it is panel3's: the validator must not encode a guessed subdomain at all.** Both pages agree the URL
 is *read* rather than templated — *"You can find the matching Data API URL on the Data API page in the
 Neon Console or with `neon data-api get`"* — so a template is guessing at something the platform hands
-you. **And the failure mode is the reason to care**: guess wrong and either the build throws or the
-correct origin is rejected, and a rejected origin means the CSP blocks every request the browser makes,
-which presents as a dead app rather than as a bad regex. Require **`https` and a host ending in
-`.neon.tech`**, and nothing finer until somebody can measure it against a real project. The Data API is
+you. **And the failure mode is the reason to care, which is why the resolution above changes nothing
+here**: guess wrong and either the build throws or the correct origin is rejected, and a rejected
+origin means the CSP blocks every request the browser makes — **which presents as a dead app, and
+which `site-config.mjs`'s own comment says the validator exists to prevent** (*"a typo here would
+disable the account layer without saying so"*). Knowing the shape is not the same as being able to
+write a regex for it that a real project will satisfy; the `c-2` label is the standing evidence that
+these hostnames carry segments nobody predicted. Require **`https` and a host ending in
+`.neon.tech`**, and nothing finer until somebody measures it against a real project. The Data API is
 enabled **per branch**, so the origin is a property of the branch and not of the project. Keep a
 loopback form for local work. Rename `SUPABASE_URL` / `SUPABASE_ANON_KEY` to names that describe what
 they now are; the comment explaining that both are public by design stays true and stays.
 
 **7.2 `scripts/build-headers.mjs`** — `connect-src` carries exactly one origin today because Supabase
-serves Auth and PostgREST from the same host. **Whether Neon needs one or two is also unresolved, and
-the guide panel3 cites for "same origin" does not show one.** Its own environment block prints
-`https://ep-xxx.us-east-1.aws.neon.tech/neondb/rest/v1` for the Data API against
-`https://ep-xxx.aws.neon.tech/neondb/auth` for Auth — **same shape, different host, the region segment
-present in one and absent in the other** — while both `ep-xxx` are placeholders, so the real values may
-or may not coincide. So the *"less work than budgeted"* reading is plausible and unproven. **Write the
-generator to take a LIST and join it**, which is correct under both answers and costs nothing extra
-under the one-origin one; that is strictly safer than assuming either. The generator's comment
+serves Auth and PostgREST from the same host. **Under Neon it is TWO, and that is now evidence rather
+than an expectation.** The service segment identified in §7.1 is what separates them: `apirest` for the
+Data API, **`neonauth`** for Auth, in the same slot of the same hostname shape. A same-origin reading
+was proposed and **withdrawn by its own author**, who had read an abbreviated hostname in a guide as a
+literal one. **Write the generator to take a LIST and join it** — which the two-origin answer now
+requires, and which would have been the safe shape under either. The generator's comment
 (`build-headers.mjs:19-20`) asserts the one-origin fact as a *reason* and must be rewritten whichever
 way it lands, or the next reader will trust it. A wildcard remains forbidden for exactly the reason
 already written there.
@@ -695,7 +772,7 @@ Each step ends in a state that either works or is one `git revert` from working.
 | # | Step | Reversible? |
 |---|---|---|
 | 1 | Create the Neon project, one branch, enable the Data API on it. | Yes — delete the project. Costs nothing, touches nothing. |
-| 2 | Apply the §3.4 schema. Configure Neon Auth with Google. | Yes — nothing points at it. |
+| 2 | **Enable Neon Auth (Managed Better Auth) with Google FIRST, and only then apply the §3.4 schema.** The order is not cosmetic and an earlier draft had it backwards: **enabling Managed Better Auth is what CREATES the `neon_auth` schema**, and §3.4's `user_id` now carries `references neon_auth.user (id)`, so applying the schema to a project without it fails on the foreign key. Caught by panel3. | Yes — nothing points at it. |
 | 3 | Write the Neon `check-rls.mjs` (16 checks) and run it. **"All 16 pass" is NOT the gate — see below.** | Yes. **This is the highest-value step and it must come before any application code.** A policy set proved before cutover costs nothing to fix; one discovered after costs a user's data. |
 | 4 | Build `api/delete-account.ts`. Prove checks 10-14 against it. | Yes — no caller yet. |
 | 5 | Swap the body of `web/supabase.ts`, keeping every export identical. Run the full suite: the nine DOM tests must pass untouched. | Yes — one file, one `git revert`. |
@@ -731,12 +808,13 @@ Each was searched for and not settled from Neon's own documentation. None should
 **Item 2 of the first draft — "does a deletion leave a copy" — is resolved and removed; see §5.2.**
 Ordered by what they block.
 
-1. **Can `public.decks` carry a foreign key onto `neon_auth.user` with `on delete cascade`, and does
-   Neon manage that schema in a way that could drop or recreate it on an upgrade?** This selects
-   Design A over Design B in §5.3, and with it whether the database or an endpoint guarantees that
-   deleting a user removes their decks. **Highest value question in this document.** A managed schema
-   that is recreated on upgrade would take the FK with it, which argues for Design B even if the FK
-   is accepted today — so ask both halves, not just the first.
+1. ~~**Can `public.decks` carry a foreign key onto `neon_auth.user` with `on delete cascade`?**~~
+   **ANSWERED 2026-09-19 — Neon documents the exact pattern (§3.3), the cascade is back, and §5.3's
+   decks half is gone.** **The second half of the question was never answered and is still live**:
+   *does Neon manage that schema in a way that could drop or recreate it on an upgrade, taking the FK
+   with it?* Nothing on the advisor page addresses it. It no longer selects a design — it decides
+   whether a future Neon upgrade can break the migration — so ask it, and do not let the first half's
+   answer stand in for it.
 2. **Is the Data API available on the Free plan?** The pricing page's "All plans include" list ends
    *"and a Data API for querying over HTTP"* (fetched 2026-09-19), which is the basis for §10 and for
    the whole cost case. It is a marketing line rather than a plan-matrix row, and **panel3 is right
@@ -746,9 +824,10 @@ Ordered by what they block.
    by default behind `user.deleteUser.enabled`, and Neon's own JavaScript SDK reference does not
    document the method. If a managed deployment cannot set that flag, the delete is a server-side
    SQL statement (§5.3). Either way the promise in §5.1 holds; this decides how much code it costs.
-4. **Is the `sub` issued by Neon Auth a UUID?** §3.3 chooses `text` so the answer stops mattering
-   for the schema, but it is still worth knowing — and if item 1 is answered yes, the FK's type has
-   to match `neon_auth.user.id` exactly, so this stops being cosmetic.
+4. ~~**Is the `sub` issued by Neon Auth a UUID?**~~ **ANSWERED — yes, in the one example available
+   (§3.3), which is why the column is `uuid` again.** Recorded as answered rather than closed,
+   because one example JWT is one sample; §4's checks 15 and 16 are the instrument that would notice
+   if a real token ever disagreed, and they stay for that reason.
 5. **What is the Data API hostname, is it stable across a branch reset, and is the Auth origin the
    same host?** Three questions with one answer each, all read off the console in the same minute —
    and §7.1 documents two official Neon pages that disagree about the first. The validator stays loose
@@ -757,7 +836,9 @@ Ordered by what they block.
    CSP is stale and every request fails closed.
 6. **Does an idle signed-in tab wake the compute?** See §10.
 7. **Does `@neondatabase/serverless` fit the Edge code-size limit?** 1 MB gzipped on Hobby, covering
-   the function's JavaScript and everything bundled with it (§5.5). Only matters if Design B is built.
+   the function's JavaScript and everything bundled with it (§5.5). **Only under route B of §5.3** —
+   route A adds nothing and route C needs only `fetch`. Do not close this by choosing route C, which
+   is trading a measurable question for an unmeasured one.
 
 ---
 
