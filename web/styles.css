@@ -153,6 +153,11 @@ textarea::placeholder, input::placeholder { color: var(--faint); }
 .status-dot { width: 10px; height: 10px; flex: 0 0 auto; border-radius: 50%; border: 1.5px solid var(--line-2); }
 .status-card.ok .status-dot { border-color: var(--ok); background: var(--ok); }
 .status-card.error .status-dot { border-color: var(--danger); background: var(--danger); }
+/* A destructive link reads as one. `linklike danger` was written at three call sites (delete a deck,
+   delete the account) and defined nowhere, so "Delete for good" rendered in the same grey as "Keep it"
+   beside it (design review 2026-09-20, FINDING-001). --danger-text is the red that clears AA on text. */
+.linklike.danger { color: var(--danger-text); }
+.linklike.danger:hover:not(:disabled) { color: var(--danger-text); text-decoration-color: var(--danger); }
 .legal { margin: auto 0 0; font-size: 0.71875rem; line-height: 1.5; color: var(--faint); }
 
 /* Workspace */
