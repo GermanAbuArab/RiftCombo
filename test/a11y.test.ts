@@ -173,7 +173,12 @@ describe("what a screen reader is told", () => {
     for (const f of ["privacy.html", "terms.html", "404.html"]) {
       const nav = /<nav class="topnav">([\s\S]*?)<\/nav>/.exec(read(`web/${f}`))?.[1] ?? "";
       expect(nav, `${f} has no top nav`).not.toBe("");
-      for (const view of VIEWS) expect(nav, `${f} → /#/${view}`).toContain(`href="/#/${view}"`);
+      // "plays" is excepted while the Run plays payload is withheld (scripts/build-web.mjs,
+      // PUBLISH_PLAYS): the view and its route stay wired, but the nav must not offer a reader a
+      // page with nothing on it. Delete this filter in the same commit that flips the flag back —
+      // the point of the check is that a view in VIEWS is reachable from every static page, and an
+      // exception that outlives its reason silently turns that guarantee off for one view.
+      for (const view of VIEWS.filter((v) => v !== "plays")) expect(nav, `${f} → /#/${view}`).toContain(`href="/#/${view}"`);
     }
   });
 });
