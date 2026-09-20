@@ -31,23 +31,23 @@ reason in `docs/status.md` §8. Summary:
       Signature card shows the badge → verify: test passes (fix the cell if it fails). Result: it
       renders; the case rc-manager10 looked at was an OFF-DOMAIN card, where the badge is hidden by
       the 2026-09-06 decision. Test pins both.
-- [ ] B5. Gates → verify: `npm test && npm run typecheck && npm run adversarial` all exit 0, output
+- [x] B5. Gates → verify: `npm test && npm run typecheck && npm run adversarial` all exit 0, output
       shown in the final report.
 
 ## C. UI/UX review (gstack:design-review, local build only)
 
-- [ ] C1. Build with `SUPABASE_URL=` (open mode), serve `public/` statically, review at 375 and
+- [x] C1. Build with `SUPABASE_URL=` (open mode), serve `public/` statically, review at 375 and
       1280 with playwright-cli: Combos (Lux fixture, tray, drawer, circular, near misses), My decks
       + builder, Plays, Guide, Sources, privacy/terms → verify: screenshots in `.playwright-cli/`,
       console clean.
-- [ ] C2. Fix what is fixable in this session; write the rest to
+- [x] C2. Fix what is fixable in this session; write the rest to
       `docs/reviews/2026-09-20-ui-ux-review.md` → verify: file exists with findings + fixed list.
 
 ## D. Close
 
-- [ ] D1. `docs/status.md`: re-photograph the numbers at the final sha; add §8 "Plan items closed
+- [x] D1. `docs/status.md`: re-photograph the numbers at the final sha; add §8 "Plan items closed
       or deferred, 2026-09-20" → verify: every unchecked item of the old todo and of plan.md §4–5
       is named there.
-- [ ] D2. Commit with `git commit --only`, run the security-scan skill (the repo's `.security-gate`
+- [x] D2. Commit with `git commit --only`, run the security-scan skill (the repo's `.security-gate`
       asks for it before a push), push, open the PR against `infra-audit-fixes-2026-09-13` →
       verify: `git status` clean, PR URL.
