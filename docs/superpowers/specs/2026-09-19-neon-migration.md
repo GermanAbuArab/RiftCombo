@@ -354,8 +354,10 @@ ALTER DEFAULT PRIVILEGES FOR ROLE neondb_owner IN SCHEMA public
 GRANT SELECT, UPDATE, INSERT, DELETE ON TABLES TO authenticated;
 ```
 
-**Verify that role name against the real project rather than trusting it here.** Neon's own FAQ
-hedges `neondb_owner` as the *typical* owner, not a guaranteed one. `select current_user;` on the
+**VERIFIED against the live project: `current_user` is `neondb_owner`, so the line above is correct
+as written and needs no change.** The hedge below is kept because it was the right posture and remains
+right for any *other* project. Neon's own FAQ calls `neondb_owner` the *typical* owner, not a
+guaranteed one. `select current_user;` on the
 connection the migrations actually run through settles it, and getting it wrong reintroduces exactly
 the hole this paragraph closes, with the same misleading symptom.
 
@@ -475,11 +477,30 @@ explicitly, as the Neon port does, is right as well; it is belt to the array tes
 **The point of the table is the first row and the last four**: every one of those four is a way for a
 negative check to come back looking like a denial, and each has a distinguishable code. So a *denied*
 helper must require **success with zero rows**, a *rejected* helper must require **exactly `42501`**,
-and anything else must be **named and failed** rather than counted as a denial. One calibration, since
-it is an inference rather than a quotation: the error page maps `42501` to *insufficient privileges*
-and does **not** say in so many words that an RLS `with check` violation returns it. Requiring it
-exactly is still right, because if the real code differs the check fails and names what it saw —
-**which is the safe direction for a guess about a security assertion.**
+and anything else must be **named and failed** rather than counted as a denial. **The one inference in that table is now a measurement.** It read that the error page maps `42501` to
+*insufficient privileges* without saying an RLS `with check` violation returns it, and that requiring
+it exactly was right anyway because a wrong guess fails loudly. **Check 7 passed against the live
+database**, so the violation does return exactly `42501` and the line hardens from *require it and
+accept the risk* to *require it*. **The flagged inference was the thing that got measured first, which
+is the argument for flagging them.**
+
+**AND A SEVENTH INSTANCE OF THE VACUITY CLASS WAS FOUND HERE AND AVOIDED RATHER THAN SHIPPED.** Check 9
+— *a signed-out visitor reads nothing* — does not behave as the table above predicts. **The Data API
+rejects a credential-less request at the door with `400` and a null code, before PostgREST is reached
+at all**, rather than filtering to zero rows. The trap is the next sentence: **a database with no
+table answers that same `400`**, so a check that accepted a bare `400` as proof of denial would pass
+against an empty project — the exact failure this section exists to prevent, arriving in the one shape
+the table could not predict because it is *upstream of PostgREST*. The fix is the general one and is
+worth copying: **pair the rejection with a positive control on the SAME EXACT URL carrying a token.**
+If the credential-less call is refused and the credentialled call succeeds, the refusal was about the
+credential; if both fail, nothing was proved. **A rejection at the edge is indistinguishable from a
+missing resource, and only a positive control on the same address tells them apart.**
+
+**Two of the sixteen checks could never have worked and were fixed against reality**: the Management
+API has **no GET-user-by-id endpoint — it answers `405`** — so checks 12 and 13 as written could not
+have passed at any time. That is not a defect of the port so much as a demonstration of the author's
+own caveat: **written, not tested, is a real distinction, and this is what it cost when the two were
+finally compared.**
 
 **How the two test users are created is the part that has no drop-in.** Today `check-rls.mjs` uses
 `SUPABASE_SERVICE_ROLE_KEY` with `auth.admin.createUser` and `signInWithPassword`. There is no
@@ -534,6 +555,16 @@ delays)"*, and *"You own your data"*. The tables are named: **`neon_auth.user`,
 `neon_auth.account`, `neon_auth.session`, `neon_auth.verification`.** `users_sync` is not mentioned
 on that page at all.
 
+**CONFIRMED AGAINST THE LIVE PROJECT, and the confirmation is sharper than the argument.** `neon_auth`
+holds real Better Auth tables — **`user`, `session`, `account`, `verification`, `jwks`** — and
+**`users_sync` does not exist in it at all.** The reason this was ever in doubt is worth recording,
+because it will mislead the next reader too: **Neon's own Management API reference for the DELETE
+endpoint STILL says it removes the user from `users_sync`.** That page is stale against the product;
+measured behaviour is a delete from `neon_auth.user`, with §3.3's cascade taking the decks. **A
+vendor's reference page can describe a table its own product no longer has** — the third distinct way
+this migration was misled by Neon's documentation, after two pages disagreeing about a hostname (§7.1)
+and the legacy deprecation banner below.
+
 **So deleting an account is a real SQL `DELETE` against `neon_auth.user`, not a tombstone.** Three
 consequences, all of them good:
 
@@ -575,22 +606,31 @@ back the one uncertainty §5.2 had just removed** — which is the thing to noti
 
 | Route | Needs | Status |
 |---|---|---|
-| **A — the browser does it** | nothing | Better Auth's `authClient.deleteUser()`, **open item 3**; if it works there is no endpoint at all |
-| **B — an endpoint runs one SQL delete** | a driver (§5.5) | `delete from neon_auth.user where id = auth.uid()` — a real delete, per §5.2 |
-| **C — an endpoint calls the Management API** | `NEON_API_KEY` | only `fetch`, no driver — **but this is the control-plane path whose tombstone behaviour is UNVERIFIED** |
+| **A — the browser does it** | nothing | **DEAD, measured twice.** `POST delete-user` answers **404 with an empty body — identical to a route that does not exist** — and the auth-config `PATCH` accepts only `name`, proved by sending false fields and getting *"invalid, name field required"*. **There is no toggle to turn on.** |
+| **B — an endpoint runs one SQL delete** | a driver (§5.5) | Works, and is now the fallback rather than the recommendation |
+| **C — an endpoint calls the Management API** | a **project-scoped** `NEON_API_KEY` | **SELECTED.** Only `fetch`, no driver — and the tombstone objection is measured and false |
 
-**C is what §5.2 argued against and its attraction is real**: no driver, so the Edge constraint of
-§5.5 never bites and nothing is added to the bundle. **Its price is that the privacy promise goes
-back to being unverified.** §5.2 established that Managed Better Auth keeps identities in ordinary
-tables in the project's own database precisely so that a delete can be a delete; routing around that
-through the control plane re-inherits the question of whether a tombstone is left. panel3 says so
-themselves — *"sigue UNVERIFIED … solo se mide creando un usuario descartable"* — which is the right
-flag and the right measurement, and it is a reason to prefer B rather than a reason to accept C.
+**THE RECOMMENDATION FLIPPED, AND IT FLIPPED AGAINST THE ARGUMENT THIS SECTION MADE TWICE.** This
+plan argued for B over C on the ground that routing through the control plane re-inherits the
+tombstone question §5.2 had removed. **That was the right thing to say while it was unmeasured and it
+is now simply wrong.** Measured against the live project: after a Management API delete there are
+**zero rows in `user`, `session`, `account` and `decks`** — the cascade from §3.3 carrying the decks —
+and **`neon_auth.user` has no `deleted_at` column at all**, so a tombstone is **impossible by
+structure rather than merely absent**, which is a stronger result than the one being asked for. The
+remaining objection was the secret, and that is smaller than stated too: **a Neon API key can be
+scoped to a single project**, so `api/` gains a key that can reach one project rather than the
+account.
 
-**So the Edge runtime constraint is NOT off the critical path.** It is off it only under route C, and
-route C is the one that owes an answer about `web/privacy.html`. Under B it is squarely on the path
-and §5.5 is what makes B buildable. Under A neither applies. **Resolve open item 3 first; it can
-delete this whole section.**
+**C therefore wins on every axis that was ever in dispute**: no driver, so §5.5 never bites and
+nothing enters the bundle; a smaller secret than B's database credential; and a deletion whose
+completeness is measured rather than argued. **B stays documented as the fallback** — it is what you
+build if the Management API endpoint is ever withdrawn — and §5.5 stays for the same reason plus the
+general one, that it is a property of `api/` anybody putting anything there will meet.
+
+**So the Edge runtime constraint IS off the critical path, by the route that was selected** — which
+is the opposite of what this paragraph said an hour earlier, and the reason is that the thing making
+C unattractive was measured and disappeared. It remains on the path for route B, and §5.5 remains the
+section that makes B buildable. **Route A would have deleted this whole section and it is dead.**
 
 The two-design framing below predates the cascade and is kept because its cost analysis still
 applies to whichever endpoint gets built.
@@ -784,7 +824,16 @@ hostname rather than a placeholder, carrying a **`neonauth`** service segment in
 `apirest` occupies. So the shape is `ep-<id>.<service>.<region>.aws.neon.tech` with the service naming
 the product, the guide's `ep-xxx.us-east-1.aws.neon.tech` was an abbreviation, and **the page that
 looked like a contradiction was a simplification.** Note also the `c-2` label, which no template
-anybody guessed contained. **The design conclusion does not depend on which wins, and
+anybody guessed contained.
+
+**MEASURED AGAINST THE LIVE PROJECT, and it settles the question while strengthening the conclusion.**
+The real issuer is **`ep-lucky-shadow-acwqx6jp.neonauth.sa-east-1.aws.neon.tech`** and the Data API is
+**the same endpoint id with `apirest`** in the service slot. So `apirest` is real, the service segment
+is real, and **`connect-src` carries two origins differing in one label.** **And the `c-2` is ABSENT
+here** — present in the documented host, missing from this one. **That is the argument against pinning
+a regex, made stronger rather than weaker by finally knowing the shape**: it is not merely that the
+labels are unguessable, it is that **the NUMBER of labels varies between projects**, so a pattern
+fitted to either host rejects the other. Read the URL; do not derive it. **The design conclusion does not depend on which wins, and
 it is panel3's: the validator must not encode a guessed subdomain at all.** Both pages agree the URL
 is *read* rather than templated — *"You can find the matching Data API URL on the Data API page in the
 Neon Console or with `neon data-api get`"* — so a template is guessing at something the platform hands
@@ -795,7 +844,8 @@ which `site-config.mjs`'s own comment says the validator exists to prevent** (*"
 disable the account layer without saying so"*). Knowing the shape is not the same as being able to
 write a regex for it that a real project will satisfy; the `c-2` label is the standing evidence that
 these hostnames carry segments nobody predicted. Require **`https` and a host ending in
-`.neon.tech`**, and nothing finer until somebody measures it against a real project. The Data API is
+`.neon.tech`**, and nothing finer. **Somebody has now measured it against a real project and the answer
+is that the loose check was right** — see the paragraph above. The Data API is
 enabled **per branch**, so the origin is a property of the branch and not of the project. Keep a
 loopback form for local work. Rename `SUPABASE_URL` / `SUPABASE_ANON_KEY` to names that describe what
 they now are; the comment explaining that both are public by design stays true and stays.
@@ -860,7 +910,7 @@ Each step ends in a state that either works or is one `git revert` from working.
 
 | # | Step | Reversible? |
 |---|---|---|
-| 1 | Create the Neon project, one branch, enable the Data API on it. | Yes — delete the project. Costs nothing, touches nothing. |
+| 1 | Create the Neon project, one branch, enable the Data API on it. **NOT in the Vercel-managed org** — `neonctl projects create` there fails with *"action restricted, organization is managed by Vercel"*, which is the platform refusing, not a local misconfiguration. Use the Neon-console-managed org; both are on Free. The live project sits in **`sa-east-1`**. | Yes — delete the project. Costs nothing, touches nothing. |
 | 2 | **Enable Neon Auth (Managed Better Auth) with Google FIRST, and only then apply the §3.4 schema.** The order is not cosmetic and an earlier draft had it backwards: **enabling Managed Better Auth is what CREATES the `neon_auth` schema**, and §3.4's `user_id` now carries `references neon_auth.user (id)`, so applying the schema to a project without it fails on the foreign key. Caught by panel3. | Yes — nothing points at it. |
 | 3 | Write the Neon `check-rls.mjs` (16 checks) and run it. **"All 16 pass" is NOT the gate — see below.** | Yes. **This is the highest-value step and it must come before any application code.** A policy set proved before cutover costs nothing to fix; one discovered after costs a user's data. |
 | 4 | Build `api/delete-account.ts`. Prove checks 10-14 against it. | Yes — no caller yet. |
@@ -915,25 +965,28 @@ Ordered by what they block.
    the whole cost case. It is a marketing line rather than a plan-matrix row, and **panel3 is right
    that the dashboard settles it in two minutes.** Do that before step 1: if it is wrong, the plan
    needs Launch and §10's arithmetic changes.
-3. **How is the delete actually issued?** Generic Better Auth's `authClient.deleteUser()` is disabled
-   by default behind `user.deleteUser.enabled`, and Neon's own JavaScript SDK reference does not
-   document the method. If a managed deployment cannot set that flag, the delete is a server-side
-   SQL statement (§5.3). Either way the promise in §5.1 holds; this decides how much code it costs.
+3. ~~**How is the delete actually issued?**~~ **ANSWERED, and it closed in the opposite direction to
+   this plan's recommendation (§5.3).** Route A is dead — `POST delete-user` answers `404` with an
+   empty body and the auth-config `PATCH` takes only `name`, so there is no flag to set. Route C is
+   selected, because the tombstone objection this document raised against it was measured and is
+   false: zero rows left in `user`, `session`, `account` and `decks`, and **no `deleted_at` column
+   exists**, so a tombstone is structurally impossible. The key is project-scoped.
 4. ~~**Is the `sub` issued by Neon Auth a UUID?**~~ **ANSWERED — yes, in the one example available
    (§3.3), which is why the column is `uuid` again.** Recorded as answered rather than closed,
    because one example JWT is one sample; §4's checks 15 and 16 are the instrument that would notice
    if a real token ever disagreed, and they stay for that reason.
-5. **What is the Data API hostname, is it stable across a branch reset, and is the Auth origin the
-   same host?** Three questions with one answer each, all read off the console in the same minute —
-   and §7.1 documents two official Neon pages that disagree about the first. The validator stays loose
-   until then (§7.1) and the CSP generator takes a list (§7.2), so **nothing is blocked on this**; it
-   is here to be closed cheaply rather than guessed. If a branch reset changes the host, the committed
+5. **Partly answered.** The hostname and the Auth origin are measured (§7.1): `apirest` and `neonauth`
+   in the service slot of one endpoint id, two origins, and a label count that varies between projects.
+   **What is still open is only whether the host survives a BRANCH RESET** — if it changes, the
+   committed CSP is stale and every request fails closed. If a branch reset changes the host, the committed
    CSP is stale and every request fails closed.
 6. **Does an idle signed-in tab wake the compute?** See §10.
-7. **Does `@neondatabase/serverless` fit the Edge code-size limit?** 1 MB gzipped on Hobby, covering
-   the function's JavaScript and everything bundled with it (§5.5). **Only under route B of §5.3** —
-   route A adds nothing and route C needs only `fetch`. Do not close this by choosing route C, which
-   is trading a measurable question for an unmeasured one.
+7. ~~**Does `@neondatabase/serverless` fit the Edge code-size limit?**~~ **MOOT: route C was selected
+   and needs only `fetch`.** Note how it stopped mattering, because the reasoning was wrong even though
+   the outcome is right: this item warned against *"closing this by choosing route C, which is trading
+   a measurable question for an unmeasured one"* — and route C's unmeasured question then got measured
+   and came back clean. **The warning was correct at the time and the decision is correct now.** It
+   reopens only if route B is ever built.
 
 ---
 
