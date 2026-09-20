@@ -1,4 +1,5 @@
-// Does every passage in a walk document that CLAIMS to be rules text actually say what the source says?
+// Does every passage in a walk document or a published run play that CLAIMS to be rules text actually
+// say what the source says?
 //   node scripts/check-walk-quotes.mjs            (list the flags)
 //   node scripts/check-walk-quotes.mjs --count    (just the number, for the test)
 //
@@ -7,6 +8,14 @@
 // after it had already reported them fixed - diagnosed-but-unapplied inside one day, in the work of
 // someone who had spent the day reading the rule against it. That is the argument for a standing check.
 //
+// WIDENED 2026-09-19 to also cover `docs/plays/` - the run-play documents #206 turned into the ONE
+// corpus this project actually RENDERS on the live site (`#/plays`, `#/plays/<slug>`). A walk document
+// is read here, by us; a play is read by a stranger clicking a link. Nothing had ever checked its
+// quoted rules passages, and a one-off probe over a single play found a real defect before this
+// widening shipped: a NESTED QUOTE, where the rulebook wraps a card's own printed phrase in its own
+// quotation marks, so the naive "everything inside the outer *"…"*" capture pulled in the wrong span.
+// See the nested-quote note below the main loop for how that is handled.
+//
 // PRECISION IS THE WHOLE DESIGN. A naive sweep of every quoted passage over 25 characters flags 638 of
 // 4,452 (14.3%) and is NOT a defect rate: reading the worst file shows every flag is an author
 // paraphrasing this project's own trap list as a Spanish checklist label, which is legitimate, and the
@@ -14,6 +23,9 @@
 // a passage that CLAIMS to be rules text - a rule number within the 40 characters immediately before it.
 // That is 80 of 1,569, and even that is a CEILING rather than a defect count: some are glosses no reader
 // would take for a quotation, and a passage elided with three dots fails where a proper ellipsis passes.
+// This scoping rule is unchanged by the widening below: `docs/plays/` uses the identical `*"…"*` markup
+// for BOTH emphasis and quotation, exactly as the walk documents do, so the same rule-number-nearby gate
+// is the only thing separating "Riot said this" from "we are shouting this word" in either corpus.
 //
 // THREE NORMALISATION TRAPS, each of which bit while this was built, and all three generalise:
 //   - fold quote CHARACTERS only, never case or brackets - those are two of the defect classes;
@@ -21,8 +33,13 @@
 //   - fold a BACKTICK used as an apostrophe, which CLAUDE.md does in places.
 import fs from "fs";
 
-const dir = "docs/phase0/walks";
-const files = fs.readdirSync(dir).filter((f) => f.endsWith(".md") && !/README/i.test(f));
+const dirs = ["docs/phase0/walks", "docs/plays"];
+const files = dirs.flatMap((dir) =>
+  fs
+    .readdirSync(dir)
+    .filter((f) => f.endsWith(".md") && !/README/i.test(f))
+    .map((f) => `${dir}/${f}`)
+);
 const sources = [
   "data/Riftbound-Core-Rules-2026-07-16.txt",
   "data/Riftbound-Tournament-Rules-2026-07-16.txt",
@@ -56,7 +73,7 @@ const hay = sources.map(norm).join(" ||| ");
 let total = 0;
 const flags = [];
 for (const f of files) {
-  const s = fs.readFileSync(`${dir}/${f}`, "utf8");
+  const s = fs.readFileSync(f, "utf8");
   for (const m of s.matchAll(/\*"([^"]{30,})"\*/g)) {
     const lead = s.slice(Math.max(0, m.index - 40), m.index);
     // "It claims to be rules text" = a rule number in the preceding 40 characters. The lookbehind is

@@ -83,8 +83,8 @@ clears a Might-0 body.
 
 **And it pays no `[Deflect]` tax.** The Birds have Deflect, and 809.1.c charges *"for each time they
 choose"* — but **355.10.d** makes an object *"programmatically selected based on its characteristics
-rather than chosen"* not a target, with Riot's own third example being that *"Kill all units at
-battlefields doesn't target anything."* *All units at battlefields* chooses nobody. Four Deflect
+rather than chosen"* not a target, with Riot's own third example being that *"'Kill all units at
+battlefields' doesn't target anything."* *All units at battlefields* chooses nobody. Four Deflect
 bodies, zero rainbow.
 
 **Seven bodies, one Energy, no tax** — and the Plaza's trigger is then placed at 315.2.b.2 into a
