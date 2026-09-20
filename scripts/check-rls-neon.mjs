@@ -117,6 +117,41 @@ const rechazado = (nombre, { data, error, status }) => {
   check(nombre, false, `RLS NO rechazo el insert, se insertaron ${Array.isArray(data) ? data.length : "?"} filas`);
 };
 
+/**
+ * A NEGATIVE check on a request that carries NO credentials at all.
+ *
+ * Measured against the real Data API, not assumed: it answers 400 with
+ * `{"message":"missing authentication credentials: ...","code":null}`. The gateway refuses the
+ * request before PostgREST ever sees it, which is why `code` is null and why none of the PGRST*
+ * codes apply here. That is STRICTER than RLS filtering, not weaker -- but it is a different shape,
+ * and `denegado()` is right to call it a broken request rather than a denial.
+ *
+ * Two shapes are accepted and each is named: the identified gateway refusal, or a 200 with zero
+ * rows should Neon ever start admitting anonymous callers as the `anonymous` role. Anything else --
+ * a 503, a missing table, rows -- fails.
+ *
+ * This helper is NOT self-sufficient and must not be used alone: the gateway rejects a
+ * credential-less request before it looks at the table, so a database with no `decks` table answers
+ * exactly the same 400. The caller pairs it with a positive control on the identical URL.
+ */
+const RECHAZOS_DE_LA_PUERTA = [
+  "missing authentication credentials",
+  "not a valid JWT encoding",
+  "missing key id",
+];
+
+const sinCredenciales = (nombre, { data, error, status }) => {
+  if (!error) {
+    if (!Array.isArray(data)) {
+      return check(nombre, false, `respuesta inesperada sin error, vino ${typeof data} (${status})`);
+    }
+    return check(nombre, data.length === 0, `${data.length} filas`);
+  }
+  const mensaje = String(error.message ?? "");
+  const reconocido = (status === 400 || status === 401) && RECHAZOS_DE_LA_PUERTA.some((r) => mensaje.includes(r));
+  check(nombre, reconocido, reconocido ? "" : `rechazo no reconocido (${status} ${error.code ?? "sin code"}: ${mensaje})`);
+};
+
 const sub = (jwt) => JSON.parse(Buffer.from(jwt.split(".")[1], "base64url")).sub;
 
 /** A signed-in browser: a real account, signed in the same way the app signs one in. */
@@ -202,7 +237,18 @@ try {
   check("8. la fila del dueno sobrevivio todo eso sin cambios",
     !errorSigue && sigue?.[0]?.name === "A's deck", errorSigue?.message ?? sigue?.[0]?.name ?? "no esta");
 
-  denegado("9. un visitante sin sesion no lee nada", await rest(null, "/decks?select=id"));
+  // The url is A's own row rather than the whole table, and it is requested TWICE: once with A's
+  // token and once with none. The authenticated call is a positive control and it throws, because
+  // the gateway refuses a credential-less request BEFORE it looks at the table -- a database with no
+  // `decks` table answers the anonymous call with the very same 400. Proving that this exact url
+  // returns the row when a token is attached is what makes the refusal mean "no credentials" rather
+  // than "nothing here to read".
+  const rutaDelVisitante = `/decks?select=id&id=eq.${mazoA.id}`;
+  const { data: conToken, error: errorConToken } = await rest(a.jwt, rutaDelVisitante);
+  exigir(!errorConToken && conToken?.length === 1,
+    `el control de la verificacion 9 no vale: con token la misma url devolvio ${errorConToken?.message ?? `${conToken?.length ?? 0} filas`}`);
+
+  sinCredenciales("9. un visitante sin sesion no lee nada", await rest(null, rutaDelVisitante));
 
   // ---- THE TWO CHECKS NEON NEEDS AND SUPABASE DID NOT.
   const { data: listaC, error: errorC } = await rest(c.jwt, "/decks?select=id");
