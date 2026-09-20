@@ -174,12 +174,20 @@ function ownedCopies(deck: Deck, cards: CardIndex): (base: string) => number {
 
 /**
  * Whether this deck could play a card at all: Domain Identity (103.1.b) caps it at its legend's two
- * domains, and a card carrying a legality entry in the format being matched is never named — the
- * same bar `src/plan.ts` holds card suggestions to, so nothing here recommends buying an illegal card.
+ * domains, and a card BANNED in the format being matched is never named — the same bar `src/plan.ts`
+ * holds card suggestions to, so nothing here recommends buying an illegal card.
+ *
+ * `status === "banned"`, not the presence of a legality entry. A RESTRICTED card is a cap and not an
+ * illegal card (#135, and plan.ts says so in its own comment), and treating the two alike was wrong
+ * in both directions at once: `matchSynergies` dropped a partner the deck legally runs, and
+ * `planSynergies` then reported a gap and told the player to add a card they already had. Today that
+ * reaches exactly one row — `OGS-019 Wuju Bladesman - Starter`, the pool's only restricted printing,
+ * restricted in 2v2 alone — so the same deck matched in Constructed and in 2v2 disagreed about a
+ * synergy it runs either way. The docblock above claimed parity with plan.ts before this line did.
  */
 function playableUnder(deck: Deck, cards: CardIndex, format: Format): (base: string) => boolean {
   const identity = new Set<Domain>(deck.legend ? cards.domainsOf(deck.legend) : []);
-  return (base) => cards.domainsOf(base).every((d) => identity.has(d)) && !cards.legality(base, format);
+  return (base) => cards.domainsOf(base).every((d) => identity.has(d)) && cards.legality(base, format)?.status !== "banned";
 }
 
 /**
