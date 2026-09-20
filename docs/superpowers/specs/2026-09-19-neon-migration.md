@@ -452,11 +452,13 @@ There is a home for this already: `api/` runs a Vercel Edge Function today (`api
 - **The `on delete cascade` safety property is at risk, not necessarily gone.** Under Design A it
   survives untouched. Under Design B it is replaced by two statements in an endpoint, in the right
   order, which is strictly weaker — and check 14 of §4 is what stops that rotting.
-- **The function's best property is gone: it took no argument.** The whole `SECURITY DEFINER` design
-  rests on there being nothing to aim. The endpoint *does* take an identity — the `sub` of a token —
-  so the JWT verification in step 1 is now load-bearing in a way nothing was before. A bug there is a
-  "delete anybody's account" bug. **This is the single most dangerous line of code the migration
-  introduces and it should be reviewed as such.**
+- **Under Design B the function's best property is gone: it took no argument.** The whole
+  `SECURITY DEFINER` design rests on there being nothing to aim, and Design A keeps that — the row is
+  still chosen by the session. Design B's endpoint *does* take an identity, the `sub` of a token, so
+  the JWT verification in step 1 becomes load-bearing in a way nothing was before. A bug there is a
+  "delete anybody's account" bug. **That is the single most dangerous line of code the migration
+  would introduce, it exists only in Design B, and it is a third reason to prefer Design A** — after
+  the cascade and the absent secret.
 
 ### 5.4 The question that was the gate, and is not
 
