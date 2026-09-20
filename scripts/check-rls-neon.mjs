@@ -11,9 +11,15 @@
 //
 //   set -a && . ./.env.local && set +a && node scripts/check-rls-neon.mjs
 //
-// NEON_API_KEY creates and deletes the test users through the Management API. It is a server key: it
-// belongs nowhere near the browser bundle, and this script is the only place in the repository that
-// reads it.
+// NEON_API_KEY deletes the test users at the end, and does NOTHING else. The users are created
+// through the ordinary sign-up endpoint, the way a player's account is created, and the account
+// deletion under test goes through `public.delete_account()` and carries no key at all. The key is
+// confined to cleanup on purpose: tidying up through the code path being verified would let a
+// broken delete_account erase its own evidence.
+//
+// It is a server key -- create it scoped to this project alone (`neonctl api-keys create
+// --project-id ...`), never an account-wide one -- it belongs nowhere near the browser bundle, and
+// this script is the only place in the repository that reads it.
 //
 // ---------------------------------------------------------------------------------------------
 // THE RULE THIS FILE IS BUILT AROUND, because the Supabase original got it wrong five times:
@@ -37,17 +43,20 @@ const {
   NEON_PROJECT_ID,
   NEON_BRANCH_ID,
   NEON_API_KEY,
-  DELETE_ACCOUNT_URL,     // the deployed api/delete-account endpoint
 } = process.env;
 
 const faltan = Object.entries({
-  NEON_DATA_API_URL, NEON_AUTH_URL, NEON_PROJECT_ID, NEON_BRANCH_ID, NEON_API_KEY, DELETE_ACCOUNT_URL,
+  NEON_DATA_API_URL, NEON_AUTH_URL, NEON_PROJECT_ID, NEON_BRANCH_ID, NEON_API_KEY,
 }).filter(([, v]) => !v).map(([k]) => k);
 
 if (faltan.length) {
-  // Exit 2, not 0. A run that could not test deletion must never read as a green run: checks 10-12
+  // Exit 2, not 0. A run that could not test deletion must never read as a green run: checks 10-13
   // are the ones guarding a published privacy promise, and skipping them silently is the same class
   // of lie as a vacuous check.
+  //
+  // NEON_API_KEY is here for the cleanup at the end and NOT for the deletion checks themselves.
+  // That separation is deliberate: cleanup must not run through the same code path it is verifying,
+  // or a broken delete_account would tidy up after itself and leave no evidence.
   console.error(`faltan en el entorno: ${faltan.join(", ")}`);
   process.exit(2);
 }
@@ -180,7 +189,7 @@ async function crearUsuario(tag) {
   const jwt = sesion.headers.get("Set-Auth-Jwt");
   exigir(jwt, `${tag} quedo sin JWT: get-session no devolvio Set-Auth-Jwt`);
 
-  return { id: sub(jwt), jwt, email };
+  return { id: sub(jwt), jwt, email, password, cookie: login.headers.get("set-cookie") ?? "" };
 }
 
 const borrarUsuario = (id) =>
@@ -194,6 +203,10 @@ const guardar = (u, nombre, extra = {}) => rest(u.jwt, "/decks", {
 const a = await crearUsuario("a");
 const b = await crearUsuario("b");
 const c = await crearUsuario("c");
+
+// Mutable, because check 12 proves the deletion by signing the freed email UP AGAIN, and the
+// account that creates has to be cleaned up like the other three.
+const creados = [a, b, c];
 
 try {
   // ---- POSITIVE CONTROLS. These throw. Everything below is an absence, and an absence only means
@@ -265,32 +278,89 @@ try {
     errorPropias?.message ?? `user_id=${propias?.[0]?.user_id ?? "?"} sub=${c.id}`);
 
   // ---- ACCOUNT DELETION. Runs last: it ends B's session.
-  const sinSesion = await fetch(DELETE_ACCOUNT_URL, { method: "POST" });
-  check("10. un visitante sin sesion no puede llamar a delete-account",
-    !sinSesion.ok, sinSesion.ok ? `la llamada fue aceptada (${sinSesion.status})` : "");
+  //
+  // There is NO endpoint. Deleting an account is `public.delete_account()`, a SECURITY DEFINER
+  // function reached through the Data API's rpc path -- the same shape the Supabase original used,
+  // so no secret rides in the browser and none sits in a deployed function either.
+  // neon/migrations/0002_delete_account.sql records why the three endpoint routes were rejected.
+  const borrarCuenta = (jwt) => rest(jwt, "/rpc/delete_account", { method: "POST", body: "{}" });
 
-  const propia = await fetch(DELETE_ACCOUNT_URL, { method: "POST", headers: { Authorization: `Bearer ${b.jwt}` } });
-  check("11. un usuario logueado puede borrar su propia cuenta", propia.ok, propia.ok ? "" : `${propia.status}`);
+  // Both calls are made before either is judged, because 10 is only meaningful if 11 worked: the
+  // gateway refuses a credential-less caller BEFORE it looks up the function, so "400 missing
+  // credentials" is also the answer a database with no `delete_account` would give. 11 succeeding
+  // on the identical path is what makes the refusal mean "no credentials" and not "no function".
+  const registrar = (u) => fetch(`${NEON_AUTH_URL}/sign-up/email`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json", Origin: new URL(NEON_AUTH_URL).origin },
+    body: JSON.stringify({ email: u.email, password: u.password, name: "rls otra vez", callbackURL: new URL(NEON_AUTH_URL).origin }),
+  });
 
-  // The fifth hiding place of the vacuity bug, and it needs a DIFFERENT fix from `denegado()`:
-  // deleting the user is exactly what makes this lookup answer 404, so demanding a clean response
-  // would fail the success case. Two shapes mean gone -- 200 with no user, or 404 -- and everything
-  // else is named, so an auth or network error can never again read as proof of deletion.
-  const consulta = await fetch(`${MANAGEMENT}/${b.id}`, { headers: { Authorization: `Bearer ${NEON_API_KEY}` } });
-  const cuerpo = consulta.ok ? await consulta.json().catch(() => null) : null;
-  const seFue = consulta.status === 404 || (consulta.ok && !cuerpo?.id);
-  check("12. esa cuenta realmente no esta", seFue,
-    !seFue && !consulta.ok ? `no se pudo saber: ${consulta.status}` : seFue ? "" : "sigue ahi");
+  // The first half of check 12's flip, taken WHILE B still exists. It throws: if the endpoint does
+  // not say USER_ALREADY_EXISTS here, then the 200 it gives after the delete proves nothing, and
+  // check 12 would be reporting on a sign-up endpoint rather than on a deletion.
+  const ocupado = await registrar(b);
+  exigir(ocupado.status === 422,
+    `el control de la verificacion 12 no vale: dar de alta el email de B mientras B existe devolvio ${ocupado.status}, se esperaba 422`);
 
-  const otra = await fetch(`${MANAGEMENT}/${a.id}`, { headers: { Authorization: `Bearer ${NEON_API_KEY}` } });
-  check("13. borrar una cuenta deja a la otra en paz", otra.ok);
+  const anonima = await borrarCuenta(null);
+  const propia = await borrarCuenta(b.jwt);
+
+  check("11. un usuario logueado puede borrar su propia cuenta",
+    !propia.error && (propia.status === 204 || propia.status === 200),
+    propia.error ? `${propia.status} ${propia.error.code ?? "sin code"}: ${propia.error.message ?? ""}` : "");
+
+  sinCredenciales("10. un visitante sin sesion no puede borrar una cuenta", anonima);
+
+  // Proving the account is GONE. The Management API cannot answer this: it has no GET for a single
+  // user -- measured, that path returns 405, not 404 -- so the lookup this check used to do could
+  // never have worked, and a 405 misread as "not found" would have been a green light for nothing.
+  //
+  // Signing in again as the deleted user was the next idea and it is WRONG: Neon Auth rate-limits
+  // sign-in, and the first run of this file proved it by answering 429 to a user that had NOT been
+  // deleted. A 429 is indistinguishable from a refusal, so that probe would have called a live
+  // account gone the moment the run got slightly too fast.
+  //
+  // So the probe is the email itself, and it is the same request before and after, required to
+  // FLIP. While the account exists the endpoint answers 422 USER_ALREADY_EXISTS; once the row is
+  // gone the address is free and the very same call succeeds. The 422 is taken first and throws,
+  // which is what makes the 200 mean "the row is gone" instead of "sign-up is broken today" -- a
+  // broken endpoint cannot produce the flip, only one of the two halves.
+  // A is untouched, so A's session must still resolve. This is check 13 and it is also the control
+  // that stops 12 from passing on an auth service that is simply down.
+  const sesionDeA = await fetch(`${NEON_AUTH_URL}/get-session`, { headers: { Cookie: a.cookie } });
+  const cuerpoDeA = await sesionDeA.text();
+  exigir(sesionDeA.status === 200 && cuerpoDeA !== "null" && Boolean(sesionDeA.headers.get("Set-Auth-Jwt")),
+    `el control de las verificaciones 12 y 13 no vale: la sesion de A, que no fue borrada, no resuelve (${sesionDeA.status} ${cuerpoDeA.slice(0, 60)})`);
+  check("13. borrar una cuenta deja a la otra en paz", true);
+
+  // B's session should have gone with the row: neon_auth.session has an ON DELETE CASCADE onto the
+  // user. Measured shape after a delete: 200 with the body `null` and no Set-Auth-Jwt header.
+  const sesionDeB = await fetch(`${NEON_AUTH_URL}/get-session`, { headers: { Cookie: b.cookie } });
+  const cuerpoDeB = await sesionDeB.text();
+  const sesionSeFue = sesionDeB.status === 200 && cuerpoDeB === "null" && !sesionDeB.headers.get("Set-Auth-Jwt");
+
+  const reintento = await registrar(b);
+  if (reintento.ok) {
+    const cuerpo = await reintento.json().catch(() => null);
+    if (cuerpo?.user?.id) creados.push({ id: cuerpo.user.id });
+  }
+  // The detail is built ONLY when the check fails. A passing line that still prints "the session
+  // survived" reads like a warning nobody has to act on, and this file is in the business of making
+  // its own output mean exactly one thing.
+  const seFue = reintento.status === 200 && sesionSeFue;
+  check("12. esa cuenta realmente no esta", seFue, seFue ? "" :
+    reintento.status === 422
+      ? "el alta con el mismo email sigue dando USER_ALREADY_EXISTS: la fila no se borro"
+      : reintento.status !== 200
+        ? `el alta con el email liberado no fue aceptada (${reintento.status}), asi que no prueba nada`
+        : `la sesion de la cuenta borrada todavia resuelve (${sesionDeB.status} ${cuerpoDeB.slice(0, 40)})`);
 
   const { data: mazosA, error: errorMazos } = await rest(a.jwt, `/decks?select=id&id=eq.${mazoA.id}`);
   check("14. y deja los mazos del otro usuario en paz",
     !errorMazos && mazosA?.length === 1, errorMazos?.message ?? `${mazosA?.length ?? 0} filas`);
 } finally {
-  for (const u of [a, b, c]) await borrarUsuario(u.id).catch(() => {});
-  console.log("limpieza: los tres usuarios de prueba fueron borrados");
+  for (const u of creados) await borrarUsuario(u.id).catch(() => {});
+  console.log(`limpieza: los ${creados.length} usuarios de prueba fueron borrados`);
 }
 
 process.exit(fallas ? 1 : 0);
