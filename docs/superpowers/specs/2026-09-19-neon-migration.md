@@ -7,6 +7,15 @@ explicitly that it is information, not an order to execute.
 Date: 2026-09-19 · Decision: [[personal/projects/_infra/decisions/2026-09-19-todo-a-neon-salvo-sir-loin]]
 · Owner of this file while it was written: rc-manager12, working beside rc-manager11.
 
+**An implementation branch already exists and you should read it before this document's §3 and §4.**
+`neon-migration` in this repo, written by panel3 in a worktree at `/private/tmp/rc-neon`, carrying
+`neon/migrations/0001_decks.sql` and `scripts/check-rls-neon.mjs`. **It agrees with §3.4 line for
+line** — `user_id uuid not null default auth.uid() references neon_auth.user (id) on delete cascade`,
+policies on `auth.uid()` — **and is ahead of it in one place, now folded back in above: the policies
+carry `to authenticated`.** The RLS verifier there is the port of §4, and its author's own caveat
+governs it: **written, not tested**, because no Neon project exists yet. Neither session that wrote
+these two artifacts is still running, so the branch and this file are the record.
+
 ---
 
 ## 0. The one correction to the approved decision
@@ -284,10 +293,14 @@ alter table public.decks enable row level security;
 
 -- The four policies, VERBATIM from the Supabase migration: auth.uid() means the same thing under
 -- pg_session_jwt that it meant under Supabase, now that §3.3 has established sub is a uuid.
-create policy "owner reads own decks"   on public.decks for select using (auth.uid() = user_id);
-create policy "owner inserts own decks" on public.decks for insert with check (auth.uid() = user_id);
-create policy "owner updates own decks" on public.decks for update using (auth.uid() = user_id) with check (auth.uid() = user_id);
-create policy "owner deletes own decks" on public.decks for delete using (auth.uid() = user_id);
+-- `to authenticated` is panel3's, from the implementation branch, and it is a real hardening this
+-- section did not have: Postgres defaults a policy with no TO clause to PUBLIC, so the policy would
+-- also apply to `anonymous` the day anybody granted that role anything. Today `anonymous` has no
+-- grants and it changes nothing; it is the day it does that this costs nothing and saves you.
+create policy "owner reads own decks"   on public.decks for select to authenticated using (auth.uid() = user_id);
+create policy "owner inserts own decks" on public.decks for insert to authenticated with check (auth.uid() = user_id);
+create policy "owner updates own decks" on public.decks for update to authenticated using (auth.uid() = user_id) with check (auth.uid() = user_id);
+create policy "owner deletes own decks" on public.decks for delete to authenticated using (auth.uid() = user_id);
 
 -- Unchanged from the Supabase migration, including `security invoker` and the empty search_path.
 create function public.touch_updated_at() returns trigger
