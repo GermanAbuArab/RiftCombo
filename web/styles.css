@@ -406,6 +406,13 @@ textarea::placeholder, input::placeholder { color: var(--faint); }
 .play-item-title { font-size: 1rem; font-weight: 600; line-height: 1.35; letter-spacing: -.01em; }
 .play-item-date { flex: 0 0 auto; font: 500 0.75rem var(--mono); color: var(--faint); font-variant-numeric: tabular-nums; }
 .play-item-lede { margin: 7px 0 0; font-size: 0.84375rem; color: var(--muted); line-height: 1.6; max-width: 72ch; }
+/* The lede is a whole first paragraph, and twelve of sixteen run five to nine lines: the index read
+   as a wall on desktop and as an unbroken scroll at 375. Three lines is a summary; the rest is one
+   click away (design review 2026-09-20, FINDING-006). The titles are filed lowercase ("Play — the
+   order is free…"); an index entry and a page heading start with a capital. */
+.play-item-lede { display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 3; overflow: hidden; }
+.play-item-title { display: block; }
+.play-item-title::first-letter, .play h1::first-letter { text-transform: uppercase; }
 
 /* Its own name: .empty is a page-wide absolute empty state and would throw this to the viewport. */
 .play-notice { margin: 0 0 14px; color: var(--muted); }
