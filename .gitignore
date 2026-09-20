@@ -17,3 +17,4 @@ public/
 docs/architecture/*.visual-check.*
 .scratch-*/
 strix_runs/
+.playwright-cli/
