@@ -13,7 +13,7 @@ import { fileURLToPath } from "node:url";
 import { siteConfig } from "./site-config.mjs";
 import { slimCard } from "./web-card-fields.mjs";
 import { loadPlays } from "./web-plays.mjs";
-import { stripInternalDeep } from "./web-combo-prose.mjs";
+import { stripProsePlugin } from "./web-combo-prose.mjs";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
 const OUT = join(ROOT, "public");
@@ -64,19 +64,7 @@ const site = siteConfig(ROOT);
 // the panel and still shipped the bytes; this way they are never in the bundle.
 // `data/combos.json` is untouched on purpose: the audit trail is real provenance for us, and the
 // reader is the one who should not get it. Same shape as PUBLISH_PLAYS above.
-const stripComboProse = {
-  name: "strip-combo-prose",
-  setup(b) {
-    // EVERY json under data/, not a named list. Two named lists were written and both were short:
-    // the first covered `combos.json` and missed `synergies.json`; the second covered those two and
-    // missed `data/features.json`. `web/main.ts` imports four, and the set can grow. Matching the
-    // directory cannot go stale, and a file with nothing to strip costs one parse.
-    b.onLoad({ filter: /data[\\/][^\\/]+\.json$/ }, (args) => ({
-      contents: JSON.stringify(stripInternalDeep(JSON.parse(readFileSync(args.path, "utf8")))),
-      loader: "json",
-    }));
-  },
-};
+const stripComboProse = stripProsePlugin(ROOT, readFileSync);
 
 const options = {
   entryPoints: [join(ROOT, "web", "main.ts")],

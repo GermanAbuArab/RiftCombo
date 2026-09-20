@@ -338,13 +338,22 @@ const shownHits = (): Hit[] => {
  * They are two views of ONE list, so they take it from one place. Before this, the tray capped at
  * twelve and the diagram beside it drew all 51 — two surfaces disagreeing about the same answer,
  * which is worse than either being long. Sorted closest-first by `missingCount`, the same number the
- * "Within N cards" control compares against, so the twelve kept are the twelve nearest.
+ * "Within N cards" control compares against, so the ones kept are the NEAREST ones.
+ *
+ * The size of the cap is `TRAY_LIMIT` and is documented where it is defined, not restated here: this
+ * docblock said "twelve" in two places long after the constant moved to 7 (it was introduced at 12,
+ * by a commit whose title still says so), and a number written down twice goes stale in one of them.
+ *
+ * ONE CONSEQUENCE IS EASY TO READ AS A BUG AND IS NOT. Widening "Within N cards" only ever adds
+ * combos that are FURTHER away, so the nearest few do not change: the count pill moves (17 → 33 → 62
+ * on the example list) while the diagram stays byte-identical. Measured 2026-09-19 through the real
+ * UI, and it is correct — the pill counts the uncapped list and the diagram draws the nearest slice.
  *
  * The cap never touches what the app CLAIMS: `#route-count` and the status card both count the
  * UNCAPPED list, and the expander reaches the rest. In Complete mode it is inert in practice — the
- * most complete combos any of the 222 registered fixture lists reaches is 6, against a cap of 12 —
- * but it is applied there too, because the moment the two surfaces cap differently they can disagree
- * again, and that is the defect this exists to prevent.
+ * most complete combos any of the 222 registered fixture lists reaches is 6 — but it is applied
+ * there too, because the moment the two surfaces cap differently they can disagree again, and that
+ * is the defect this exists to prevent.
  */
 const cappedHits = (all: Hit[]): Hit[] => {
   const sorted = [...all].sort((a, b) => a.missingCount - b.missingCount);

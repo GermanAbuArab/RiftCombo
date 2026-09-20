@@ -89,3 +89,36 @@ export function stripInternalDeep(node) {
   }
   return node;
 }
+
+/**
+ * The esbuild plugin, exported so it can be TESTED rather than only wired.
+ *
+ * It lives here and not inline in `scripts/build-web.mjs` because that file runs a build the moment
+ * it is imported, so a test can never reach into it: the check that the strip is actually connected
+ * had to be able to import the plugin on its own. A post-commit review caught exactly that — the
+ * first version of `test/web-payload.test.ts` called `stripInternalDeep` directly on files read from
+ * disk, so removing the plugin from `options.plugins`, or breaking its filter, would have shipped
+ * unstripped prose to the browser with the suite still green.
+ *
+ * `root` ANCHORS the filter. It used to be the unanchored /data[\/][^\/]+\.json$/, which matches
+ * any path containing a `data/` segment — including `node_modules/<pkg>/data/<name>.json` from a
+ * dependency in the same esbuild pass. Nothing in the bundle hits that today (checked against the
+ * sourcemap: no node_modules JSON is pulled in at all), so it was latent rather than live, but the
+ * failure would have been silent and ugly: `stripInternalDeep` drops empty strings out of arrays,
+ * so it can quietly MUTATE third-party data it was never meant to read.
+ */
+export function stripProsePlugin(root, readFileSync) {
+  const dataDir = `${root}/data/`.replace(/\\/g, "/");
+  return {
+    name: "strip-combo-prose",
+    setup(b) {
+      b.onLoad({ filter: /\.json$/ }, (args) => {
+        if (!args.path.replace(/\\/g, "/").startsWith(dataDir)) return null;
+        return {
+          contents: JSON.stringify(stripInternalDeep(JSON.parse(readFileSync(args.path, "utf8")))),
+          loader: "json",
+        };
+      });
+    },
+  };
+}

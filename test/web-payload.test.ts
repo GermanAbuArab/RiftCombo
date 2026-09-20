@@ -8,7 +8,7 @@ import { slimCard, WEB_CARD_FIELDS } from "../scripts/web-card-fields.mjs";
 // @ts-expect-error same: the build script is .mjs, so the loader it imports has to be too.
 import { loadPlays, PLAYS_DIR, readPlay } from "../scripts/web-plays.mjs";
 // @ts-expect-error same: shared with scripts/build-web.mjs, which cannot import TypeScript.
-import { INTERNAL, stripInternalDeep } from "../scripts/web-combo-prose.mjs";
+import { INTERNAL, stripInternalDeep, stripProsePlugin } from "../scripts/web-combo-prose.mjs";
 
 const cards = loadCardIndex();
 const synergies = loadSynergies();
@@ -152,8 +152,58 @@ describe("the authored prose the browser downloads", () => {
       // A string with no second sentence cannot be stripped without emptying it, so the strip leaves
       // it alone and this fails on purpose: fix it by hand in the authored file, as the twelve
       // `name` and `sources[].title` cases were on 2026-09-19. Never widen the strip to eat a title.
+      //
+      // KNOWN LIMIT, stated rather than engineered around: this re-checks with the SAME predicate the
+      // strip used, so it cannot see a lane name the predicate does not know (a future `rc-<word>`
+      // outside the alternation, or a new phrasing of "the manager"). That is inherent to any
+      // predicate-based check and no test here can close it — what closes it is a person reading the
+      // panel. What this DOES catch, and what it was written for, is a string the strip cannot clean.
       expect(leaked, `${f} still reaches the browser with: ${leaked[0]?.slice(0, 160)}`).toEqual([]);
     }
+  });
+
+  it("is actually WIRED INTO THE BUILD, not merely available to it", async () => {
+    // The three tests above call the strip directly, so they would ALL stay green if the plugin were
+    // dropped from `options.plugins` or its filter stopped matching — a post-commit review caught
+    // that, and it is the same shape as every other clean-sweep-over-the-wrong-population defect in
+    // this repo. So run esbuild for real, through the exported plugin, over an entry that imports
+    // what web/main.ts imports, and read the OUTPUT.
+    const { build } = await import("esbuild");
+    const root = new URL("..", import.meta.url).pathname.replace(/\/$/, "");
+    const entry = imported.map((f, i) => `import d${i} from "${root}/${f}" with { type: "json" };\nexport const e${i} = d${i};`).join("\n");
+    const out = await build({
+      stdin: { contents: entry, resolveDir: root, loader: "ts" },
+      bundle: true, write: false, format: "esm", logLevel: "silent",
+      plugins: [stripProsePlugin(root, readFileSync)],
+    });
+    const js = out.outputFiles?.[0]?.text ?? "";
+    expect(js.length, "the probe bundle is empty, so it proves nothing").toBeGreaterThan(100_000);
+    const hit = js.match(INTERNAL);
+    expect(hit?.[0], `the built bundle still carries: ${hit?.[0]}`).toBeUndefined();
+  });
+
+  it("has the plugin in the real build's plugins array", () => {
+    // The test above proves the PLUGIN works; this proves the BUILD uses it. They are two different
+    // regressions — a broken filter and an unwired plugin — and the first test cannot see the second,
+    // because it constructs its own esbuild call. scripts/build-web.mjs runs a build on import, so it
+    // cannot be imported to inspect; read its source instead.
+    const src = readFileSync(new URL("../scripts/build-web.mjs", import.meta.url), "utf8");
+    expect(src, "build-web.mjs no longer imports the strip").toMatch(/import \{[^}]*stripProsePlugin[^}]*\}\s*from\s*"\.\/web-combo-prose\.mjs"/);
+    const plugins = /plugins:\s*\[([^\]]*)\]/.exec(src)?.[1] ?? "";
+    expect(plugins, "the strip is no longer in esbuild's plugins array").toContain("stripComboProse");
+    expect(src).toMatch(/const stripComboProse = stripProsePlugin\(/);
+  });
+
+  it("leaves a json outside data/ alone, so a dependency's file is never rewritten", async () => {
+    // The filter was once an unanchored /data[\\/][^\\/]+\.json$/, which also matches
+    // node_modules/<pkg>/data/<name>.json. Nothing in the bundle hits that today, but stripInternalDeep
+    // drops empty strings out of arrays, so an accidental match MUTATES third-party data silently.
+    const plugin = stripProsePlugin("/repo", readFileSync);
+    const seen: { filter: RegExp; cb: (a: { path: string }) => unknown }[] = [];
+    plugin.setup({ onLoad: (opts: { filter: RegExp }, cb: (a: { path: string }) => unknown) => seen.push({ ...opts, cb }) });
+    expect(seen).toHaveLength(1);
+    expect(seen[0]?.cb({ path: "/repo/node_modules/pkg/data/table.json" }), "a dependency's data file must be left to esbuild").toBeNull();
+    expect(seen[0]?.cb({ path: "/elsewhere/data/x.json" })).toBeNull();
   });
 
   it("keeps the audit trail it exists to protect", () => {
