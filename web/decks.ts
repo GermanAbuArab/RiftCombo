@@ -55,7 +55,13 @@ let copied = false;
 const HANDOFF = "riftcombo:draft";
 
 export function initDecks(h: DeckHooks): void {
-  if (!accountsEnabled) return;
+  if (!accountsEnabled) {
+    // A build with no account layer (SUPABASE_URL unset) still routes #/decks and still shows the
+    // link, and until 2026-09-20 the view was a blank page: nothing said why (design review,
+    // FINDING-008). One sentence, written once, since nothing else here runs without an account.
+    $<HTMLElement>("#decks-host").innerHTML = `<h1>My decks</h1><p class="decks-sub">This build runs without accounts, so there is nowhere to save a list. Paste one on the Combos tab instead.</p>`;
+    return;
+  }
   hooks = h;
   host = $<HTMLElement>("#decks-host");
   host.addEventListener("click", onClick);
