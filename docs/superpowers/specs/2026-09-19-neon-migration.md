@@ -41,9 +41,16 @@ insert, change and delete."*
 - What used to be marketed as *Neon RLS / Neon Authorize* was **folded into the Data API**; it was
   not withdrawn.
 
-So the four policies move nearly verbatim, the security boundary stays in the database, and the
-privacy page's sentence stays true. **The rest of this plan is mostly about the two places where the
-move is genuinely not like-for-like: account deletion, and the identity behind `auth.uid()`.**
+So the four policies move — and by the end of the day's editing, **verbatim rather than nearly**
+(§3.3): `sub` is a UUID, `neon_auth.user` is an ordinary table the foreign key can reference, and the
+`on delete cascade` comes back with it. The security boundary stays in the database and the privacy
+page's sentence stays true.
+
+**Two things are genuinely not like-for-like, and neither is the one this plan first expected.** The
+identity behind `auth.uid()` was the open risk and is now closed on evidence. What remains is
+**account deletion** — one question, three routes, §5.3 — and **the runtime of `api/`**, which has no
+TCP and therefore cannot open a Postgres connection at all (§5.5). The second was found on a third
+review pass and would otherwise have failed at deploy rather than at review.
 
 The rest of the decision note stands. Nothing below argues with the cost case or with keeping
 `sir-loin` on Supabase.
@@ -927,10 +934,16 @@ the Supabase bill this migration exists to remove — **so it is worth measuring
   is a SQL delete, not a control-plane dance — but it is still the one piece that turns a database
   function taking **no argument** into something that must verify a JWT and act on the identity
   inside it. Price that line on its own.
-- **It does not treat its own refuted section as embarrassing.** §5.2 and §5.4 keep the wrong
-  verdict, the evidence that killed it, and the reason it survived review. A plan that quietly
-  deletes its mistakes teaches the next reader nothing about which of its remaining claims to
-  distrust.
+- **It does not treat its own refuted sections as embarrassing, and there are now three.** §5.2 and
+  §5.4 keep the account-deletion verdict that was wrong, the evidence that killed it, and the reason
+  it survived review; §3.3 keeps the `text` decision that was right on its premise and reversed the
+  moment the premise was measured; §5.5 records a design that could not have run. **All three were
+  overturned by somebody bringing evidence rather than by anybody being careful in the abstract**,
+  which is the only reason to keep them legible. A plan that quietly deletes its mistakes teaches the
+  next reader nothing about which of its remaining claims to distrust.
+- **It does not claim any of its numbers are safe to quote.** Two Neon doc pages disagreed about a
+  hostname (§7.1), a gate file was renamed mid-document (§8 step 8b), and the schema decision reversed
+  inside one day. Re-measure before relying on anything here.
 - **It does not delete the Supabase project at cutover.** §8 step 10.
 
 ---
@@ -941,6 +954,15 @@ the Supabase bill this migration exists to remove — **so it is worth measuring
 - [[personal/projects/_infra/decisions/2026-09-19-todo-a-neon-salvo-sir-loin]]
 - `supabase/migrations/20260905120000_decks.sql` · `supabase/migrations/20260905130000_delete_account.sql`
 - `web/supabase.ts` · `scripts/check-rls.mjs` · `scripts/site-config.mjs` · `scripts/build-headers.mjs`
+  · `api/deck-url.ts` (the Edge-runtime precedent, §5.5) · `api/tsconfig.json`
 - <https://neon.com/pricing> · <https://neon.com/docs/data-api/get-started>
   · <https://neon.com/docs/extensions/pg_session_jwt>
   · <https://neon.com/docs/data-api/custom-authentication-providers>
+- Load-bearing and added on later passes: <https://neon.com/docs/data-api/database-advisor> (the FK
+  and cascade pattern, §3.3) · <https://neon.com/docs/data-api/troubleshooting> (the example JWT —
+  `sub` as a UUID, and the `neonauth` hostname segment, §3.3 and §7.1)
+  · <https://neon.com/docs/auth/authentication-flow> (identities are ordinary tables, §5.2)
+  · <https://vercel.com/docs/functions/runtimes/edge> (no TCP, §5.5)
+  · <https://neon.com/docs/serverless/serverless-driver> (HTTP/WebSockets in place of TCP, §5.5)
+  · <https://docs.postgrest.org/en/stable/references/api/preferences.html> (`return=minimal` is the
+  default for writes, §4) · <https://docs.postgrest.org/en/stable/references/errors.html>
