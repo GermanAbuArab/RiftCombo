@@ -159,6 +159,12 @@ migrations: `decks.sql` and `delete_account.sql`.
 
 ## 4. How it deploys
 
+**Production is at `beb15b2` since 2026-09-21** (sub-project A of the 2026-09-20 program plan: PR #223
+merged, the branch's full history restored on the remote, 14 of 14 RLS checks on the hosted project,
+`scripts/promote.sh` gate green, deploy read live once — 16 plays served, CSP and HSTS present — and a
+signed-in smoke on production: Piltover URL import, save, rename, delete, the other deck untouched,
+console clean). Before that it had served `88470b1` (2026-09-14) for a week.
+
 **Deploying is a push to master.** The Vercel project has been connected to `GermanAbuArab/RiftCombo`
 since 2026-09-05, so every push to master runs `npm run build:web` on Vercel **against the committed
 tree** and goes to production. Check it with `npx vercel ls riftcombo`. `npx vercel deploy --prod`
