@@ -106,6 +106,18 @@ and re-verified in the rebuilt local site.
   account); their styles were verified by injecting the markup and reading computed styles, and
   the DOM tests cover the builder. Sign-in flows were reviewed on production by rc-manager10.
 
+## Second verification, by hand, with playwright-cli
+
+After the fixes were committed and the site rebuilt, every one of the nine was re-checked in a fresh
+`playwright-cli -s=rc13` session (not the gstack driver used for the audit), reading computed
+styles and DOM rather than screenshots alone. Measured: `.linklike.danger` colour `rgb(224,121,90)`;
+`.size-row` border-left `2px rgb(51,96,115)`; `.icon-btn.tiny::before` 26x26 at inset −3px;
+nav at 375 `scrollWidth 347 = clientWidth 347`, Sources' right edge 361, no document overflow;
+`color-scheme: dark`; plays ledes 3 lines, no raw entry id in any lede, page 2,727px; zoom buttons
+carry SVG paths; `#decks-host` prints the no-accounts sentence; near-miss radial hub reads
+"9 · of 33 combos" under a pill of 33. Console: only the three 404s from the security probe's
+own `/api/deck-url` calls. Screenshots in `.playwright-cli/qa/` (gitignored).
+
 ## Scores
 
 Grades start at A per category and drop one letter per high finding, half per medium.
