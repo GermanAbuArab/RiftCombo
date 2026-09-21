@@ -1156,9 +1156,12 @@ $<HTMLButtonElement>("#fullscreen").addEventListener("click", () => { const st =
  * D6 of the 2026-09-20 review: below 900px the deck panel stacks above the stage and the diagram is
  * roughly 1,800px down the page with nothing pointing at it.
  *
- * The href is real, so this works as a link in every way a link should — middle click, keyboard,
- * "Copy link", and a build whose script never ran. What the handler adds is that the ADDRESS does
- * not change, and that is the whole reason it exists: `parseHash("#stage")` is an unknown view and
+ * The href is real, so middle click (which fires `auxclick`, not `click`), "Copy link" and a build
+ * whose script never ran all still behave like a link. A MODIFIED click — cmd, ctrl, shift — is
+ * cancelled along with the plain one, and deliberately: the target is a fragment of THIS page, so a
+ * new tab of it would load the site from scratch at an unknown hash and land on an empty Combos.
+ * There is nothing there to open. What the handler adds is that the ADDRESS does not change, and
+ * that is the whole reason it exists: `parseHash("#stage")` is an unknown view and
  * falls back to Combos, which loses the `?deck=<id>` of `#/combos?deck=<id>` — the route My decks
  * hands over on. The results on screen survive either way; the address does not, and a reload or a
  * shared link after the jump would open an empty Combos. `test/router.test.ts` pins that fact.
