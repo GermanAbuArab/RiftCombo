@@ -33,6 +33,9 @@ const html = readFileSync(new URL("../web/index.html", import.meta.url), "utf8")
 describe("the headers the account layer has to survive", () => {
   it("keeps COOP at same-origin, which is only safe because sign-in redirects", () => {
     expect(header("Cross-Origin-Opener-Policy")).toBe("same-origin");
+    // Owner decision 2026-09-21: HSTS for two years including subdomains, stated in the committed
+    // file rather than left to Vercel's edge default (which sends it without includeSubDomains).
+    expect(header("Strict-Transport-Security")).toBe("max-age=63072000; includeSubDomains");
   });
 
   it("names every connect-src origin exactly, with no wildcard", () => {

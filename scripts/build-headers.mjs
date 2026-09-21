@@ -111,6 +111,11 @@ const config = {
         // Sign-in uses a full-page redirect, so this stays as it is. A popup flow would need
         // `same-origin-allow-popups`, and without it the popup never reports back at all.
         { key: "Cross-Origin-Opener-Policy", value: "same-origin" },
+        // Vercel already sends HSTS for the apex (max-age two years, measured live 2026-09-21);
+        // `includeSubDomains` is the owner's decision of 2026-09-21 and is stated here so the
+        // committed file says what production sends. It commits every future subdomain to HTTPS
+        // for two years after a visitor's first load — no subdomain exists today (`www` only redirects).
+        { key: "Strict-Transport-Security", value: "max-age=63072000; includeSubDomains" },
         { key: "X-Content-Type-Options", value: "nosniff" },
         { key: "X-Frame-Options", value: "DENY" },
         { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
