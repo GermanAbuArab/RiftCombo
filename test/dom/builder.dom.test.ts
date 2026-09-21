@@ -676,3 +676,48 @@ describe("the sideboard (Tournament Rules 403, 601.1.c)", () => {
     }
   });
 });
+
+/**
+ * D5 of the 2026-09-20 review. The dimming is the whole signal today: `capOf` computes a sentence
+ * ("Outside calm + mind — Domain Identity (103.1.b).") and it reaches a player only through the
+ * button's `title` and its accessible label, so a sighted mouse user who never hovers, and every
+ * touch user, sees a grid where some art is faded and nothing says why.
+ *
+ * The fix is one line UNDER the grid rather than anything painted on the art — the 2026-09-06
+ * decision that removed the "Off domain" badge stands. What is pinned here is that the count in that
+ * line is the same number as the cells it describes (a note that says "3" over four dimmed cards is
+ * worse than no note) and that it disappears in both states where it would be a lie: no legend, so
+ * there is no identity to be outside of, and nothing dimmed.
+ */
+describe("the off-domain reason is readable without hovering (D5)", () => {
+  const off = () => [...document.querySelectorAll<HTMLElement>(".pool-cell.off")];
+  const note = () => document.querySelector<HTMLElement>("#pool-off-note");
+
+  it("counts the dimmed cells it describes, and names the legend and the rule", async () => {
+    await mount("Legend\n1 Fire Below the Mountain\n");   // calm + mind
+    allDomains();
+    await search("Blazing");                             // OGN-001 Blazing Scorcher is mono-fury
+
+    expect(off().length).toBeGreaterThan(0);
+    const line = note();
+    expect(line).not.toBeNull();
+    expect(line!.textContent).toContain(String(off().length));
+    expect(line!.textContent).toContain("Fire Below the Mountain");
+    expect(line!.textContent).toContain("103.1.b");
+  });
+
+  it("says nothing when the grid holds nothing to explain", async () => {
+    await mount("Legend\n1 Fire Below the Mountain\n");
+    await search("Clockwork Keeper");                    // OGN-044, calm + mind: inside the identity
+    expect(off()).toEqual([]);
+    expect(note()).toBeNull();
+  });
+
+  it("says nothing with no legend, because there is no identity to be outside of (103.1.b.2)", async () => {
+    await mount("Main Deck\n1 Blazing Scorcher\n");      // no Legend line at all
+    allDomains();
+    await search("Blazing");
+    expect(off()).toEqual([]);
+    expect(note()).toBeNull();
+  });
+});

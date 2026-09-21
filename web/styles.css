@@ -778,6 +778,9 @@ body[data-auth="out"] .gate { display: flex; align-items: center; justify-conten
 
 .pool-count { margin: 0; margin-left: auto; flex: 0 0 auto; font-size: 0.75rem; color: var(--faint); }
 .pool-note { margin: 0 0 10px; font-size: 0.8125rem; color: var(--muted); }
+/* The one note that sits UNDER the grid rather than above it, because it is about the cells
+   that were drawn (design review 2026-09-20, D5). Same class, the margin the other way. */
+#pool-off-note { margin: 12px 0 0; }
 .pool-cells { display: grid; grid-template-columns: repeat(auto-fill, minmax(134px, 1fr)); gap: 14px 12px; }
 .pool-cell { display: flex; flex-direction: column; gap: 3px; min-width: 0; }
 .pool-add { position: relative; display: block; width: 100%; aspect-ratio: 5 / 7; padding: 0; overflow: hidden; border: 1px solid var(--line); border-radius: 9px; background: var(--panel); cursor: pointer; }

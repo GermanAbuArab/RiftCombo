@@ -28,6 +28,7 @@ import {
   zoneRows,
   COST_BUCKETS,
   SETS,
+  type Cap,
   type PoolFilters,
   type PoolType,
   type PoolZone,
@@ -243,20 +244,57 @@ function gridHtml(): string {
       : "";
   return `${note}
     <div class="pool-cells">${page.map(cellHtml).join("")}</div>
+    ${offNote(page)}
     ${rest > 0 ? `<button type="button" class="ghost pool-more" data-b="more">Show ${Math.min(rest, PAGE)} more</button>` : ""}`;
+}
+
+/**
+ * Why some of the art is faded (D5 of the 2026-09-20 review). The refusal itself has been right
+ * since #212 and is on the button in two places a screen reader reads — its accessible label and its
+ * title — and in neither place that a sighted mouse user who does not hover, or ANY touch user, will
+ * ever find. So the grid showed faded cards and gave no reason.
+ *
+ * It is one sentence UNDER the grid, and deliberately not a badge on the card: the user's decision of
+ * 2026-09-06 removed the "Off domain" badge from the art and that stands. The count is taken with
+ * `capFor`, the same call that dimmed the cells, so the number cannot drift from the thing it
+ * describes — and it counts the cells DRAWN rather than every hit, because a reader is looking at a
+ * page of art and not at a query.
+ *
+ * Silent in the two states where it would be a lie: with nothing dimmed, and with no legend at all,
+ * where 103.1.b.2 makes the identity the legend's own domains and there is therefore no identity to
+ * be outside of — the same answer `identityCap` gives by returning null and `identityRule` gives as
+ * `unknown`.
+ */
+function offNote(page: readonly Card[]): string {
+  if (!deck.legend) return "";
+  const n = page.filter((c) => capFor(c).offIdentity).length;
+  if (n === 0) return "";
+  const legend = cards().get(deck.legend);
+  const doms = cards().domainsOf(deck.legend).join(" + ");
+  return `<p class="pool-note" id="pool-off-note">${n === 1 ? "One card here is" : `${n} cards here are`} dimmed: outside ${esc(legend?.name ?? deck.legend)}'s ${esc(doms)} — Domain Identity (103.1.b).</p>`;
+}
+
+/**
+ * Which cap question this zone asks. Each zone's click has its own question, so each asks its own
+ * function and none of them is asked a question it cannot answer: the Champion zone DESIGNATES
+ * rather than adds, and `championCapOf` is what knows that a full copy cap refuses nothing when the
+ * copies are already in the list (#212's shape, applied to the third button — see its docblock).
+ *
+ * It is a function rather than four lines inside `cellHtml` so that the note under the grid counts
+ * the dimmed cells with the SAME call that dimmed them. Counting them any other way is how the two
+ * add buttons came to disagree in #212, one zone at a time.
+ */
+function capFor(card: Card): Cap {
+  if (filters.zone === "champion") return championCapOf(deck, card.base, cards());
+  if (filters.zone === "sideboard") return sideboardCapOf(deck, card.base, cards());
+  return capOf(deck, card.base, cards());
 }
 
 function cellHtml(card: Card): string {
   // The Sideboard zone of the pool adds to the sideboard, under its own three caps (601.1.c, 403.3).
   const toSide = filters.zone === "sideboard";
   const setChamp = filters.zone === "champion";
-  // Each zone's click has its own question, so each asks its own function and none of them is asked a
-  // question it cannot answer: the Champion zone DESIGNATES rather than adds, and `championCapOf` is
-  // what knows that a full copy cap refuses nothing when the copies are already in the list (#212's
-  // shape, applied to the third button — see its docblock).
-  const cap = setChamp
-    ? championCapOf(deck, card.base, cards())
-    : toSide ? sideboardCapOf(deck, card.base, cards()) : capOf(deck, card.base, cards());
+  const cap = capFor(card);
   const held = copiesOf(deck, card.base);
   // Domain Identity is a mark, not a filter: hiding a card is hiding the answer, so an out-of-domain
   // card stays in the grid, dimmed, with the reason on the button that will not take it -- in its
