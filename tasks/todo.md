@@ -1,53 +1,61 @@
-# RiftCombo — todo (session rc-manager13, 2026-09-20)
+# RiftCombo — todo (session rc-ux, 2026-09-21)
 
-Baseline before any change (worktree at `991ce48`): `npm test` 707 passed / 51 files, exit 0 ·
-`npm run typecheck` exit 0 · `npm run adversarial` exit 0.
+Sub-project **B** of `effervescent-imagining-globe.md`: the eight deferred UX items and the proxy
+hardening. Branch `feat/2026-09-21-ux-hardening` off `infra-audit-fixes-2026-09-13` at `beb15b2`.
+One commit per item, `git commit --only <paths>`.
 
-## A. Disposition of the 2026-09-02 todo (the previous contents of this file)
+## Baseline (measured 2026-09-21, before any change, at `beb15b2`)
 
-Every item that was still unchecked is either done by later work or deferred with a written
-reason in `docs/status.md` §8. Summary:
+| Gate | Result |
+|---|---|
+| `npm test` | **710 passed / 52 files**, exit 0 |
+| `npm run typecheck` | exit 0 |
+| `npm run adversarial` | exit 0 |
 
-- §3 re-hunt / refute pass / rediscovery → SUPERSEDED (the lens hunts and 108 hand walks replaced
-  it; 771 verified entries). Deferred-with-reason in status §8.
-- §5 esbuild bundle, UI (paste / code / URL → buckets → SVG), disclaimer + CSP/COOP → DONE (Vercel
-  replaced the Worker; `test/headers.test.ts` pins the headers and the disclaimer).
-- §5 "renders the Lux fixture legibly at 375px and 1280px" → item C below.
-- §6 polish (name plates vs qty badge, truncated route names, circular + drawer + near misses in a
-  browser, 375px pass) → item C below.
-- §6 D1/D2 (Riot API key / card images) → user decision, deferred in status §8.
-- §6 deploy → done (Vercel, push to master); the wrangler line is obsolete.
+## The eight items, in the plan's order
 
-## B. Open app items (from docs/plan.md, tasks/todo.md and the two 2026-09-19 handoffs)
+- [ ] **1. Type scale retune.** `.doc` 0.90625rem → 1rem, `.doc h1`/`.doc h3` up one step, `body`
+      0.9375rem → 1rem. The dense UI classes keep their own sizes (they were measured against the
+      320px panel and the `.pool-view` tap-target arithmetic).
+      → verify: `test/type-scale.test.ts` green; `.doc p` line length ≤ 75ch at 1280 (`max-width:
+      65ch` holds it); `.pool-view` still ≥ 24x24 at 390px; measured in the browser.
+- [ ] **2. Off-domain reason visible in the pool.** One `<p class="pool-note">` under `.pool-cells`,
+      counted in `gridHtml()`'s own loop; hidden at N = 0 or with no legend. Nothing painted on art.
+      → verify: DOM test in `test/dom/builder.dom.test.ts` — the count in the note equals
+      `.pool-cell.off`, and the note is absent with no legend.
+- [ ] **3. Mobile jump to the diagram.** A static link inside `#status-card` (so `setStatus`, which
+      writes only `#status-title`/`#status-body`, cannot destroy it), shown only ≤900px,
+      `scroll-margin-top` on `#stage` for the two-row topbar.
+      → verify: DOM test that it exists and targets a real element; playwright-cli at 375 — click,
+      `#stage` top inside the viewport, results intact, route state intact.
+- [ ] **4. SVG/PNG export of the diagram.** `web/export.ts`: `serialize`, `stripArt`, `download`.
+      SVG is primary (exact, never tainted); PNG is rendered from an art-free copy because
+      `cmsassets.rgpub.io` sends no `access-control-allow-origin` and a canvas holding the art
+      throws on `toBlob`.
+      → verify: unit tests on `serialize`/`stripArt`; the raster checked by hand in a real browser.
+- [ ] **5. `/api/deck-url` hardening** (no counter, by decision): 8s `AbortSignal.timeout`, a 5 MB
+      byte cap counted off the stream rather than trusted from `content-length`, and the post-fetch
+      hostname re-checked against the allowlist (a redirect can leave it). Pure guards in
+      `api/deck-url-guards.ts`.
+      → verify: `test/deck-url-guards.test.ts` covers each guard both ways; the route itself only
+      runs on a Vercel deploy, so it is exercised in sub-project A/D and NOT here.
+- [ ] **6. One de-emphasised base class.** Additive `.quiet` plus the class added at the five call
+      sites (`.tray-empty`, `.play-notice`, `.plan-note`, `.pool-noart`, `.dzone-empty`); the names
+      stay and their overrides shrink.
+      → verify: suite green; each of the five states seen in the rebuilt site.
+- [ ] **7. Tokens for the last raw colours.** `--accent-hover`, `--accent-disabled-text`,
+      `--stage-bg`, `--node-plate`, `--scrim`, `--scrim-2`, `--selection`.
+      → verify: a11y suite unchanged (its `token()` reads only the named contrast pairs, so new
+      tokens are inert); no six-digit hex outside `:root` except the six domain colours.
+- [ ] **8. The one play whose lede ends in a colon**
+      (`2026-09-13-the-entry-the-clock-condemned-hardest`): its first paragraph only.
+      → verify: `test/plays-reader.test.ts` and `test/web-payload.test.ts` green.
 
-- [x] B1. Run plays: edit the 16 plays for a reader (remove sections addressed to another agent,
-      reword lane/manager language) → verify: `grep -lE '\b(lane|manager|rc-[a-z]+[0-9]*|not mine)\b' docs/plays/*.md` is empty.
-- [x] B2. Pin it: a test asserts no play carries fleet language or a "For the manager" section →
-      verify: test fails when a fixture line is injected (proved out of band), then passes.
-- [x] B3. Republish: `PUBLISH_PLAYS = true`, restore the four nav links + the Guide bullet, delete
-      the `plays` exception in `test/a11y.test.ts` → verify: `public/data/plays.json` lists 16 plays;
-      `npm test` green.
-- [x] B4. Signature "Not <tag>" badge (rc-manager10 §5.3): DOM test that an in-domain, wrong-tag
-      Signature card shows the badge → verify: test passes (fix the cell if it fails). Result: it
-      renders; the case rc-manager10 looked at was an OFF-DOMAIN card, where the badge is hidden by
-      the 2026-09-06 decision. Test pins both.
-- [x] B5. Gates → verify: `npm test && npm run typecheck && npm run adversarial` all exit 0, output
-      shown in the final report.
+## Close
 
-## C. UI/UX review (gstack:design-review, local build only)
-
-- [x] C1. Build with `SUPABASE_URL=` (open mode), serve `public/` statically, review at 375 and
-      1280 with playwright-cli: Combos (Lux fixture, tray, drawer, circular, near misses), My decks
-      + builder, Plays, Guide, Sources, privacy/terms → verify: screenshots in `.playwright-cli/`,
-      console clean.
-- [x] C2. Fix what is fixable in this session; write the rest to
-      `docs/reviews/2026-09-20-ui-ux-review.md` → verify: file exists with findings + fixed list.
-
-## D. Close
-
-- [x] D1. `docs/status.md`: re-photograph the numbers at the final sha; add §8 "Plan items closed
-      or deferred, 2026-09-20" → verify: every unchecked item of the old todo and of plan.md §4–5
-      is named there.
-- [x] D2. Commit with `git commit --only`, run the security-scan skill (the repo's `.security-gate`
-      asks for it before a push), push, open the PR against `infra-audit-fixes-2026-09-13` →
-      verify: `git status` clean, PR URL.
+- [ ] Rebuild (`SUPABASE_URL= SUPABASE_ANON_KEY= npm run build:web`), serve `public/`, verify every
+      item with playwright-cli at 1280 and 375 reading computed styles and the DOM; write the
+      measurements into a new section of `docs/reviews/2026-09-20-ui-ux-review.md`.
+- [ ] All three gates exit 0; `security-scan`; push the branch; PR against
+      `infra-audit-fixes-2026-09-13` (do not merge).
+- [ ] `docs/handoffs/2026-09-21-rc-ux.md`; report the PR URL and the gate counts to rc-manager13.
