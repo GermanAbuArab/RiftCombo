@@ -35,6 +35,25 @@
 -- auth.uid() is null when nobody is signed in, and `where id = null` deletes no rows. It returns
 -- uuid, and neon_auth.user.id is uuid, so the comparison is a real one rather than a silent NULL.
 
+-- RE-VERIFIED 2026-09-21 (rc-neon2) against the live project, on a throwaway branch created from
+-- main and deleted afterwards. Every claim above was re-measured rather than taken from this header:
+--   * `set role authenticated; select public.delete_account();` SUCCEEDS. That is the one thing that
+--     was genuinely unknown -- the SECURITY DEFINER escalation works through the Data API's own role,
+--     which holds neither USAGE on schema neon_auth nor DELETE on neon_auth."user" (both measured
+--     false; neondb_owner's DELETE measured true). It deleted no rows, because auth.uid() is NULL
+--     with no JWT presented, which is exactly the safe no-op this header claims for a signed-out call.
+--   * `set role anonymous; select public.delete_account();` -> permission denied for function.
+--   * The cascade, end to end: a user with 1 session, 1 account and 1 deck deleted to 0/0/0, the
+--     other user's 2/1/1 untouched, and zero orphans in session, account or decks.
+--   * FIVE foreign keys cascade from neon_auth."user" -- session, account, member, invitation and
+--     public.decks -- and there are no rules, no event triggers and no user-defined triggers on it.
+--   * The Data API exposes `public` ALONE (db_schemas: ["public"]), so the browser can never reach
+--     neon_auth directly. This function is the only door, and it takes no argument.
+-- Still unproven and deliberately left to the cutover: the call through PostgREST's
+-- /rpc/delete_account with a real JWT. See docs/superpowers/plans/2026-09-21-neon-migration-plan.md
+-- step 3, which asserts the caller's deck count was NON-ZERO BEFORE -- without that, "deleted
+-- nothing" and "deleted everything" are the same answer.
+
 create function public.delete_account() returns void
   language plpgsql
   security definer
