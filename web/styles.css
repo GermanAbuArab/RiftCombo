@@ -153,6 +153,12 @@ textarea::placeholder, input::placeholder { color: var(--faint); }
 .status-card { display: flex; gap: 12px; align-items: center; padding: 13px; border: 1px solid var(--line); border-radius: 10px; background: var(--panel); }
 .status-card strong { display: block; font-size: 0.875rem; font-family: var(--font); font-weight: 600; }
 .status-card span { display: block; font-size: 0.78125rem; color: var(--muted); }
+/* The mobile-only jump to the diagram (design review 2026-09-20, D6). Above 900px the stage is
+   already beside the deck panel, so the link is off at every width but the one it exists for; the
+   `hidden` attribute on top of that is the OTHER question — whether there is a diagram to jump to.
+   `display: none` here rather than a media query the other way round, so a build that never reaches
+   the 900px block cannot leak it onto the desktop layout. */
+.jump-to-diagram { display: none; }
 .status-dot { width: 10px; height: 10px; flex: 0 0 auto; border-radius: 50%; border: 1.5px solid var(--line-2); }
 .status-card.ok .status-dot { border-color: var(--ok); background: var(--ok); }
 .status-card.error .status-dot { border-color: var(--danger); background: var(--danger); }
@@ -462,6 +468,15 @@ textarea::placeholder, input::placeholder { color: var(--faint); }
   .topnav a { padding: 0 12px; }
   .app-shell { display: block; height: auto; }
   .deck-panel { border-right: 0; border-bottom: 1px solid var(--line); }
+  .jump-to-diagram {
+    display: flex; align-items: center; justify-content: center; gap: 8px;
+    margin: 10px 0 0; padding: 11px 14px; border: 1px solid var(--line-2); border-radius: 6px;
+    background: var(--panel); color: var(--accent); font-size: 0.875rem; font-weight: 600;
+  }
+  .jump-to-diagram svg { width: 15px; height: 15px; fill: none; stroke: currentColor; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+  /* The topbar is not sticky at this width — measured, it scrolls away — so this is breathing room
+     above the stage rather than a compensation for a fixed header. */
+  .stage { scroll-margin-top: 12px; }
   .workspace { grid-template-rows: auto 68vh var(--tray-h); }
   .ws-head { flex-direction: column; align-items: flex-start; gap: 10px; padding: 14px; }
   .ws-controls { flex-wrap: wrap; }

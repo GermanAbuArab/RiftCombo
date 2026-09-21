@@ -18,6 +18,20 @@ describe("the hash routes", () => {
     }
   });
 
+  /**
+   * A plain in-page fragment is an unknown view, and the fall-back is LOSSY: it lands on Combos with
+   * no `?deck=`, so following `#stage` from `#/combos?deck=<id>` — the route My decks hands over on —
+   * would leave an address that reopens an empty Combos. That is why the mobile "See the diagram"
+   * link calls `preventDefault` and scrolls instead of letting the browser take the hash
+   * (`web/main.ts`, D6 of the 2026-09-20 review). Pinned here because it is a property of the
+   * ROUTER, so a later change that makes fragments survive is free to delete the workaround.
+   */
+  it("treats a bare in-page fragment as unknown, and loses the deck id doing it", () => {
+    expect(parseHash("#stage").view).toBe("combos");
+    expect(parseHash("#stage").analyzing).toBeNull();
+    expect(parseHash("#/combos?deck=8f3c-1").analyzing).toBe("8f3c-1");
+  });
+
   it("carries the saved deck id out of #/decks/<id>", () => {
     expect(parseHash("#/decks/8f3c-1").deckId).toBe("8f3c-1");
     expect(parseHash("#/decks/new").deckId).toBe("new");

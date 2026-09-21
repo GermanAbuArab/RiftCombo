@@ -63,6 +63,7 @@ const loadExample = $<HTMLButtonElement>("#load-example");
 const statusCard = $<HTMLElement>("#status-card");
 const graphHost = $<HTMLElement>("#graph-host");
 const empty = $<HTMLElement>("#empty");
+const jumpToDiagram = $<HTMLAnchorElement>("#jump-to-diagram");
 const detail = $<HTMLElement>("#detail");
 const tray = $<HTMLElement>("#tray");
 const routeCount = $<HTMLElement>("#route-count");
@@ -718,6 +719,7 @@ function render() {
   const hits = cappedHits(all);
   routeCount.textContent = String(all.length);
   empty.hidden = all.length > 0;
+  jumpToDiagram.hidden = all.length === 0;
   const legalHere = playableUnderLegend(fmt());
   $<HTMLElement>("#ws-sub").textContent = legalHere === null
     ? `${combos.length} combos catalogued`
@@ -1150,6 +1152,25 @@ $<HTMLButtonElement>("#zoom-in").addEventListener("click", () => view?.zoomBy(1 
 $<HTMLButtonElement>("#zoom-out").addEventListener("click", () => view?.zoomBy(1.25));
 dimToggle.addEventListener("click", () => { dim = !dim; dimToggle.classList.toggle("on", dim); dimToggle.setAttribute("aria-pressed", String(dim)); view?.setDim(dim); });
 $<HTMLButtonElement>("#fullscreen").addEventListener("click", () => { const st = $<HTMLElement>("#stage"); document.fullscreenElement ? void document.exitFullscreen() : void st.requestFullscreen(); });
+/**
+ * D6 of the 2026-09-20 review: below 900px the deck panel stacks above the stage and the diagram is
+ * roughly 1,800px down the page with nothing pointing at it.
+ *
+ * The href is real, so this works as a link in every way a link should — middle click, keyboard,
+ * "Copy link", and a build whose script never ran. What the handler adds is that the ADDRESS does
+ * not change, and that is the whole reason it exists: `parseHash("#stage")` is an unknown view and
+ * falls back to Combos, which loses the `?deck=<id>` of `#/combos?deck=<id>` — the route My decks
+ * hands over on. The results on screen survive either way; the address does not, and a reload or a
+ * shared link after the jump would open an empty Combos. `test/router.test.ts` pins that fact.
+ *
+ * Focus moves with the scroll, or a keyboard user is scrolled somewhere their Tab key has not gone.
+ */
+$<HTMLAnchorElement>("#jump-to-diagram").addEventListener("click", (ev) => {
+  ev.preventDefault();
+  const st = $<HTMLElement>("#stage");
+  st.scrollIntoView({ behavior: "smooth", block: "start" });
+  st.focus({ preventScroll: true });
+});
 let resizeTimer = 0;
 // A resize that lands while another view is on screen finds the stage with no box to measure. The fit
 // is not skipped and forgotten — the diagram is still sized for the old window — so it is held and
