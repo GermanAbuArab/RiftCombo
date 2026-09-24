@@ -575,18 +575,18 @@ function renderPlan() {
     // useful — it says the deck is on a road, not that it is empty.
     const named = plan.pieces.map((b) => name(b)).sort((a, b) => a.localeCompare(b));
     out.push(`<section class="plan-sec"><p class="plan-lab">Already in this list</p>
-      <p class="plan-note">No complete line yet. Pieces of one that are already here: <strong>${esc(named.slice(0, 6).join(", "))}</strong>${named.length > 6 ? ` and ${named.length - 6} more` : ""}.</p></section>`);
+      <p class="quiet plan-note">No complete line yet. Pieces of one that are already here: <strong>${esc(named.slice(0, 6).join(", "))}</strong>${named.length > 6 ? ` and ${named.length - 6} more` : ""}.</p></section>`);
   }
 
   const lead = plan.routes[0];
   if (!deck.legend) {
-    out.push(`<p class="plan-note">Name a legend in your list and this scopes to the two domains it can play.</p>`);
+    out.push(`<p class="quiet plan-note">Name a legend in your list and this scopes to the two domains it can play.</p>`);
   } else if (plan.legalHere === 0) {
     const deep = coverageByPair().filter((p) => p.count > 0).slice(0, 3);
-    out.push(`<p class="plan-note">Not one of the ${combos.length} combos RiftCombo knows fits inside <strong>${esc(pair!)}</strong>, so there is nothing here to build toward. This is a gap in our catalogue, not a judgement on your deck.</p>
-      <p class="plan-note">Deeper pairs: ${deep.map((p) => `${esc(pairLabel(p.pair))} <strong>${p.count}</strong>`).join(" · ")}.</p>`);
+    out.push(`<p class="quiet plan-note">Not one of the ${combos.length} combos RiftCombo knows fits inside <strong>${esc(pair!)}</strong>, so there is nothing here to build toward. This is a gap in our catalogue, not a judgement on your deck.</p>
+      <p class="quiet plan-note">Deeper pairs: ${deep.map((p) => `${esc(pairLabel(p.pair))} <strong>${p.count}</strong>`).join(" · ")}.</p>`);
   } else if (!lead) {
-    out.push(`<p class="plan-note">This list already has every catalogued line that fits inside <strong>${esc(pair!)}</strong>.</p>`);
+    out.push(`<p class="quiet plan-note">This list already has every catalogued line that fits inside <strong>${esc(pair!)}</strong>.</p>`);
   } else {
     const outcome = routeOutcome(lead);
     out.push(`<section class="plan-sec"><p class="plan-lab">First complete line</p>
@@ -611,7 +611,7 @@ function renderPlan() {
           <span class="plan-alt-cost">+${r.cost}</span>
           <span class="plan-alt-name">${esc(routeShort(r))}</span>
           <span class="plan-alt-class">${esc(r.variant.class.replace("_", " "))}</span></button>`).join("")}</div>
-        ${rest > 0 ? `<p class="plan-note">${rest} more line${rest === 1 ? "" : "s"} inside ${esc(pair!)} are further away.</p>` : ""}</section>`);
+        ${rest > 0 ? `<p class="quiet plan-note">${rest} more line${rest === 1 ? "" : "s"} inside ${esc(pair!)} are further away.</p>` : ""}</section>`);
     }
   }
 
@@ -786,7 +786,7 @@ let trayExpanded = false;
  *  and the tray can never be drawn from different slices of the same answer. */
 function renderTray(all: Hit[], shown: Hit[]) {
   tray.innerHTML = "";
-  if (!all.length) { tray.innerHTML = `<p class="tray-empty">${mode() === "network" ? "No complete combos to show." : "No near misses to show."}</p>`; return; }
+  if (!all.length) { tray.innerHTML = `<p class="quiet tray-empty">${mode() === "network" ? "No complete combos to show." : "No near misses to show."}</p>`; return; }
   const colors = outcomeColors(all);
   for (const hit of shown) {
     const v = hit.variant;

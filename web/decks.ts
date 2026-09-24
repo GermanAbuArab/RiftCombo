@@ -242,8 +242,8 @@ function libraryView(): string {
     ${decks.length
       ? `<div class="deck-grid">${decks.map(deckCard).join("")}</div>`
       : loaded
-        ? `<p class="plan-note">Press <strong>New deck</strong> to write one out, or paste a Piltover Archive link above.</p>`
-        : `<p class="plan-note">Loading your decks…</p>`}`;
+        ? `<p class="quiet plan-note">Press <strong>New deck</strong> to write one out, or paste a Piltover Archive link above.</p>`
+        : `<p class="quiet plan-note">Loading your decks…</p>`}`;
 }
 
 /**
@@ -417,7 +417,7 @@ function detailView(id: string): string {
   if (id !== "new" && !saved) {
     // Deleted in another browser, or a stale link. Say so instead of drawing an empty editor. Before the
     // first listDecks() answers we do not know which of the two it is, so we do not claim either.
-    if (!loaded) return `<p class="plan-note">Opening that deck…</p>`;
+    if (!loaded) return `<p class="quiet plan-note">Opening that deck…</p>`;
     message = "That deck is not in your account any more.";
     queueMicrotask(() => go("#/decks"));
     return "";
