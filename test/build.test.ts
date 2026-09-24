@@ -593,7 +593,7 @@ describe("checkBuild against the 222 registered tournament lists", () => {
     expect(withSide).toBe(FILES.length);                            // every list has one
     expect(rows).toBeGreaterThan(1000);                             // non-vacuity
     expect(off).toBe(0);
-  });
+  }, 60_000); // the same 222-list sweep as above: timed out at 5s under load on 2026-09-24
 });
 
 describe("601.1.c — the sideboard (#197)", () => {
