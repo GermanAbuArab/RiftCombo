@@ -12,14 +12,34 @@ passed.** The order is the spec's §8 order; where this plan departs from §8 it
 
 ## 0. Coordinates, so no step has to re-derive them
 
+**Updated 2026-09-24.** The owner decided on 2026-09-21 to recreate the project in a US region
+(`web/privacy.html` says the data is hosted in the United States), so every coordinate below is the
+NEW project. The São Paulo project `round-waterfall-07137684` is retired and holds nothing live.
+
 | | |
 |---|---|
 | Org | `org-billowing-dawn-47109886` (personal). **Not** the Vercel-managed org — it refuses `projects create`. |
-| Project | `round-waterfall-07137684` (`riftcombo`), `aws-sa-east-1`, Postgres 18 |
-| Branch | `main` = `br-tiny-bird-aczxgj3q` · Endpoint `ep-lucky-shadow-acwqx6jp` |
-| Data API | `https://ep-lucky-shadow-acwqx6jp.apirest.sa-east-1.aws.neon.tech/neondb/rest/v1` |
-| Auth origin | `https://ep-lucky-shadow-acwqx6jp.neonauth.sa-east-1.aws.neon.tech` — **re-read it at step 2; do not template it** (§7.1) |
-| Credential | **`neonctl` is already authenticated on this machine.** Use `neonctl api <path>` as an authenticated passthrough; no `NEON_API_KEY` needs to be handled, and per §12.6 none is deployed. |
+| Project | `quiet-breeze-27436036` (`riftcombo`), `aws-us-east-1` |
+| Branch | `main` = `br-wandering-haze-av7v6x9v` · Endpoint `ep-shiny-feather-avr21d2p` |
+| Data API | `https://ep-shiny-feather-avr21d2p.apirest.c-11.us-east-1.aws.neon.tech/neondb/rest/v1` |
+| Auth | `https://ep-shiny-feather-avr21d2p.neonauth.c-11.us-east-1.aws.neon.tech/neondb/auth` (read off `neon-auth enable`; note the `c-11` label) |
+| Google redirect URI | `<Auth>/callback/google` |
+| Credential | **`neonctl` is already authenticated on this machine.** No key is handled anywhere: `scripts/check-rls-neon.mjs` cleans up through `neonctl neon-auth user delete`. |
+
+## Progress, 2026-09-24 (session after rc-manager13)
+
+| Step | State |
+|---|---|
+| 1 Project, schema | **Done** on the new project: 0001–0004 applied and read back (indexes, trigger, FK cascade, 4 + 4 policies, grants, default ACL on `neondb_owner`, `anonymous` holds nothing). |
+| 2 Neon Auth | **Done except O1**: enabled (Better Auth), Data API provisioned with the old project's settings, trusted domain `https://riftcombo.app`. Google runs on Neon's SHARED credentials until the owner's own client is entered (O1, owner creating a new client). |
+| 3 RLS verifier | **Done**: 18 of 18, non-vacuity line non-zero; three live mutations prove it can go red (see commit `008c0bb`). |
+| 4 | Deleted (SQL function route). |
+| 5 App swap | **Done**: `web/supabase.ts` on `@neondatabase/neon-js` 0.7.0-beta, nine DOM tests unedited. Display name moved to `public.profiles` (0003). Verified in Chrome and WebKit against the live project, including session persistence across reloads (partitioned cookie). |
+| 6 Build, CSP | **Done**: `NEON_AUTH_URL` + `NEON_DATA_API_URL`, both origins in `connect-src`, `vercel.json` regenerated; both set as Vercel production env vars. |
+| 7 Privacy | **Done**, plus a correction the plan did not foresee: the Cookies paragraph had to change, because Neon Auth sets one partitioned cookie. |
+| 8 Data | **Built, not run**: Supabase holds 2 decks from 2 owners (7 Google accounts), so the one-line re-key does not apply. 0004 stages decks keyed to the owner's Google account id (not email: this Auth accepts email sign-ups) and `claim_staged_decks()` moves them on first sign-in. `scripts/stage-supabase-decks.mjs` runs at cutover. After the migrations, run `neonctl data-api refresh-schema`: a new table answered 404 for a few minutes before it did. |
+| 8b Scan | Running. |
+| 9 Cutover | Owner go given (O2) for when O1 is configured and the scan is clean. |
 
 **Three standing rules for every step.**
 
