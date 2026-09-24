@@ -30,28 +30,28 @@
 
 <main class="doc">
   <h1>Privacy</h1>
-  <p>Last changed 6 September 2026.</p>
+  <p>Last changed 24 September 2026.</p>
 
   <h3>Before you sign in</h3>
   <p>Without signing in you see only the entrance page. Nothing is collected there beyond what serving any page involves, which is described under "Other people's computers" below.</p>
 
   <h3>Signing in with Google</h3>
-  <p>Using the site requires signing in. Signing in gives this site, through Supabase Auth, the Google account identifier, email address, display name and profile picture URL that Google returns for your account. That is the whole of it: no contacts, no calendar, no Drive, nothing else.</p>
+  <p>Using the site requires signing in. Signing in gives this site, through Neon Auth, the Google account identifier, email address, display name and profile picture URL that Google returns for your account. That is the whole of it: no contacts, no calendar, no Drive, nothing else.</p>
   <p>Once signed in, your deck list is parsed and matched inside your browser. Matching alone uploads nothing, logs nothing and stores nothing. The only request that leaves your browser on your behalf while matching is the one that loads a public Piltover Archive deck: the link you paste is sent to this site's own server, which fetches that page and caches the result for ten minutes. Nothing about you is attached to it.</p>
-  <p>Pressing <strong>Save</strong> in <strong>My decks</strong> — <strong>Update</strong> once the list has been saved before — stores one row: the deck list exactly as you typed it, the name you gave it, which format you were matching against, and the times the row was created and last changed. Nothing derived from it is stored — the combos are recomputed in your browser each time you load a list, so a deck saved today is matched against tomorrow's catalogue rather than kept as a stale answer.</p>
+  <p>Pressing <strong>Save</strong> in <strong>My decks</strong> — <strong>Update</strong> once the list has been saved before — stores one row: the deck list exactly as you typed it, the name you gave it, which format you were matching against, and the times the row was created and last changed. Choosing a display name under <strong>Change name</strong> stores that name in one more row; clearing the field erases it. Nothing derived from it is stored — the combos are recomputed in your browser each time you load a list, so a deck saved today is matched against tomorrow's catalogue rather than kept as a stale answer.</p>
   <p>Only you can read your rows. That is enforced in the database itself by row-level security, which checks the signed-in account against the owner of every row on every read, insert, change and delete.</p>
 
   <h3>What is never collected</h3>
   <p>No advertising, no donations, no analytics, no tracking pixels, no play-rate or win-rate data, no profiling, and nothing sold or shared with anybody. There is no third-party script on any page of this site.</p>
 
   <h3>Other people's computers</h3>
-  <p>Sign-in and the saved decks run on <a href="https://supabase.com/privacy" target="_blank" rel="noopener noreferrer">Supabase</a>, in a Postgres database hosted in the United States. The pages themselves are served by <a href="https://vercel.com/legal/privacy-policy" target="_blank" rel="noopener noreferrer">Vercel</a>. Sign-in itself goes through <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">Google</a>. Every page also loads the Inter typeface from Google Fonts, which means Google sees the request and therefore your IP address; that happens whether you sign in or not.</p>
+  <p>Sign-in and the saved decks run on <a href="https://neon.com/privacy-policy" target="_blank" rel="noopener noreferrer">Neon</a>, in a Postgres database hosted in the United States. The pages themselves are served by <a href="https://vercel.com/legal/privacy-policy" target="_blank" rel="noopener noreferrer">Vercel</a>. Sign-in itself goes through <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">Google</a>. Every page also loads the Inter typeface from Google Fonts, which means Google sees the request and therefore your IP address; that happens whether you sign in or not.</p>
 
   <h3>Cookies</h3>
-  <p>This site sets no cookies. When you are signed in, your browser's local storage holds a session token so that you stay signed in between visits. Signing out deletes it.</p>
+  <p>This site sets no cookies of its own. When you sign in, the sign-in service (Neon Auth) sets one cookie that keeps you signed in between visits. It holds a session identifier and nothing else, it is readable only by the sign-in service and only while you are on this site (a <em>partitioned</em> cookie, so no other site can use it to recognise you), and signing out or deleting your account ends the session it points to.</p>
 
   <h3>Getting rid of it</h3>
-  <p><strong>Delete</strong>, on a deck you have open in <strong>My decks</strong>, deletes that row. <strong>Delete account</strong>, under <em>Account</em> at the foot of the deck panel in <strong>Combos</strong>, deletes the account and every deck attached to it at once and for good; there is no copy kept and no waiting period. Each of them asks once and then does it. You do not have to write to anybody to make either happen.</p>
+  <p><strong>Delete</strong>, on a deck you have open in <strong>My decks</strong>, deletes that row. <strong>Delete account</strong>, under <em>Account</em> at the foot of the deck panel in <strong>Combos</strong>, deletes the account, every deck and the display name attached to it, at once and for good; there is no copy kept and no waiting period. Each of them asks once and then does it. You do not have to write to anybody to make either happen.</p>
 
   <h3>Asking about any of this</h3>
   <p>Open an issue at <a href="https://github.com/GermanAbuArab/RiftCombo/issues" target="_blank" rel="noopener noreferrer">github.com/GermanAbuArab/RiftCombo</a>.</p>
