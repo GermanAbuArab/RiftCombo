@@ -147,3 +147,27 @@ B+ → A-, AI slop A → A.*
   cache question before it is a code question.**
 - The subagent's seven findings were 5 real, 2 declined — the ones declined were consistency
   preferences rather than defects. Its file:line evidence made the verification a grep each.
+
+## The eight deferred items, closed (sub-project B, 2026-09-21 → 2026-09-24)
+
+Branch `feat/2026-09-21-ux-hardening`. Rebuilt with `SUPABASE_URL= SUPABASE_ANON_KEY= npm run
+build:web` (the documented `data-auth="open"` build), served from `public/` on a static server, and
+measured with `playwright-cli` at 1280 and 375 by reading computed styles and the DOM. Gates at
+`d43fb68`: **745 tests / 55 files, typecheck 0, build:web 0.**
+
+| Item | Commit | Measured |
+|---|---|---|
+| 1. Type scale | `b139aa9` | `body` 16px; Guide `li` 16px; a play's intro `.doc p` 16px. The only prose under 16px is the plays-index summary (`.play-item-lede`, 13.5px), which is the FINDING-006 summary style, not reading prose. |
+| 2. Off-domain reason in the pool | `3c2d64d` | DOM test (count in the note equals `.pool-cell.off`; absent with no legend). Not measured in the browser: the open build has no My decks library to open an editor from (FINDING-008). |
+| 3. Mobile jump to the diagram | `596e038`, `39ab831` | At 1280 the link computes `display: none`. At 375, after a match, clicking it puts `#stage`'s top at 144px (inside the viewport); the route count reads 6 before and after, and the hash stays `#/combos`. |
+| 4. SVG/PNG export | `4c6def1`, `5105320`, `d43fb68` | Both buttons disabled with nothing drawn, enabled after a match. SVG: 28.6 KB, `viewBox="-64 -104 1388 1034"`, 29 `<image>` kept, no `has-selection`/`dim-unrelated`. PNG: 2776×2068 RGBA at 2×, no art, dark ground. **Reading the first PNG found a defect no test had**: route thumbnails were plated with `.no-art`, which is only styled inside card nodes, so they drew black — fixed in `d43fb68`. Name plates render in the fallback font (an SVG inside `<img>` fetches no web font), which is the loss `web/export.ts` already documents. |
+| 5. `/api/deck-url` hardening | `af89a4a`, `6463cae` | 8 s timeout, 5 MB cap counted off the stream, redirects followed **by hand** (`redirect: "manual"`, at most 3 hops, each `Location` checked before it is requested). `test/deck-url-guards.test.ts` drives the handler with `fetch` stubbed and proves an off-allowlist redirect target is never contacted; a mutation that allows every target turns three tests red. The live route runs only on a Vercel deploy. |
+| 6. `.quiet` base class | `0c96f06` | `.tray-empty` carries `quiet tray-empty` and still computes 13px `--faint` (rgb(129,153,164)); the other four keep their sizes. |
+| 7. Tokens | `1574b60` | Stage background computes rgb(12,22,26) through `--stage-bg`; no literal colour outside `:root`. |
+| 8. Play lede | `4fee829` | 0 of 16 index summaries end in a colon, pinned by a test that fails on the unedited play. |
+
+Console: zero errors throughout.
+
+Post-commit review raised three findings on this branch; all three verified and fixed with the
+owner's go-ahead: the redirect check ran after the request (`6463cae`), the byte-cap comment
+overstated the guarantee (`6463cae`), and `dim-unrelated` rode into exports (`5105320`, inert).

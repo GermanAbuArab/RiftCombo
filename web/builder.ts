@@ -28,6 +28,7 @@ import {
   zoneRows,
   COST_BUCKETS,
   SETS,
+  type Cap,
   type PoolFilters,
   type PoolType,
   type PoolZone,
@@ -243,20 +244,57 @@ function gridHtml(): string {
       : "";
   return `${note}
     <div class="pool-cells">${page.map(cellHtml).join("")}</div>
+    ${offNote(page)}
     ${rest > 0 ? `<button type="button" class="ghost pool-more" data-b="more">Show ${Math.min(rest, PAGE)} more</button>` : ""}`;
+}
+
+/**
+ * Why some of the art is faded (D5 of the 2026-09-20 review). The refusal itself has been right
+ * since #212 and is on the button in two places a screen reader reads — its accessible label and its
+ * title — and in neither place that a sighted mouse user who does not hover, or ANY touch user, will
+ * ever find. So the grid showed faded cards and gave no reason.
+ *
+ * It is one sentence UNDER the grid, and deliberately not a badge on the card: the user's decision of
+ * 2026-09-06 removed the "Off domain" badge from the art and that stands. The count is taken with
+ * `capFor`, the same call that dimmed the cells, so the number cannot drift from the thing it
+ * describes — and it counts the cells DRAWN rather than every hit, because a reader is looking at a
+ * page of art and not at a query.
+ *
+ * Silent in the two states where it would be a lie: with nothing dimmed, and with no legend at all,
+ * where 103.1.b.2 makes the identity the legend's own domains and there is therefore no identity to
+ * be outside of — the same answer `identityCap` gives by returning null and `identityRule` gives as
+ * `unknown`.
+ */
+function offNote(page: readonly Card[]): string {
+  if (!deck.legend) return "";
+  const n = page.filter((c) => capFor(c).offIdentity).length;
+  if (n === 0) return "";
+  const legend = cards().get(deck.legend);
+  const doms = cards().domainsOf(deck.legend).join(" + ");
+  return `<p class="pool-note" id="pool-off-note">${n === 1 ? "One card here is" : `${n} cards here are`} dimmed: outside ${esc(legend?.name ?? deck.legend)}'s ${esc(doms)} — Domain Identity (103.1.b).</p>`;
+}
+
+/**
+ * Which cap question this zone asks. Each zone's click has its own question, so each asks its own
+ * function and none of them is asked a question it cannot answer: the Champion zone DESIGNATES
+ * rather than adds, and `championCapOf` is what knows that a full copy cap refuses nothing when the
+ * copies are already in the list (#212's shape, applied to the third button — see its docblock).
+ *
+ * It is a function rather than four lines inside `cellHtml` so that the note under the grid counts
+ * the dimmed cells with the SAME call that dimmed them. Counting them any other way is how the two
+ * add buttons came to disagree in #212, one zone at a time.
+ */
+function capFor(card: Card): Cap {
+  if (filters.zone === "champion") return championCapOf(deck, card.base, cards());
+  if (filters.zone === "sideboard") return sideboardCapOf(deck, card.base, cards());
+  return capOf(deck, card.base, cards());
 }
 
 function cellHtml(card: Card): string {
   // The Sideboard zone of the pool adds to the sideboard, under its own three caps (601.1.c, 403.3).
   const toSide = filters.zone === "sideboard";
   const setChamp = filters.zone === "champion";
-  // Each zone's click has its own question, so each asks its own function and none of them is asked a
-  // question it cannot answer: the Champion zone DESIGNATES rather than adds, and `championCapOf` is
-  // what knows that a full copy cap refuses nothing when the copies are already in the list (#212's
-  // shape, applied to the third button — see its docblock).
-  const cap = setChamp
-    ? championCapOf(deck, card.base, cards())
-    : toSide ? sideboardCapOf(deck, card.base, cards()) : capOf(deck, card.base, cards());
+  const cap = capFor(card);
   const held = copiesOf(deck, card.base);
   // Domain Identity is a mark, not a filter: hiding a card is hiding the answer, so an out-of-domain
   // card stays in the grid, dimmed, with the reason on the button that will not take it -- in its
@@ -303,7 +341,7 @@ function cellHtml(card: Card): string {
   return `<div class="pool-cell${off ? " off" : ""}${land ? " land" : ""}"${others.length ? ` title="${esc(`Also printed as ${others.join(", ")}`)}"` : ""}>
     <button type="button" class="pool-add" data-b="${setChamp ? "champion" : toSide ? "side-add" : "add"}" data-base="${esc(card.base)}"
       aria-disabled="${blocked}" aria-label="${esc(label)}"${blocked ? ` title="${esc(why)}"` : ""}>
-      ${src ? `<img src="${esc(src)}" alt="" loading="lazy">` : `<span class="pool-noart">${esc(card.name)}</span>`}
+      ${src ? `<img src="${esc(src)}" alt="" loading="lazy">` : `<span class="quiet pool-noart">${esc(card.name)}</span>`}
       ${held ? `<span class="pool-n mono">${held}×</span>` : ""}
       ${blocked && !off && cap.badge ? `<span class="pool-full">${esc(cap.badge)}</span>` : ""}
     </button>
@@ -399,7 +437,7 @@ function sideboardHtml(): string {
       <button type="button" class="icon-btn tiny" data-b="side-minus" data-base="${esc(r.card.base)}" aria-label="One less ${esc(r.card.name)} in the sideboard">${MINUS_ICON}</button>
       <button type="button" class="icon-btn tiny" data-b="side-add" data-base="${esc(r.card.base)}" aria-label="One more ${esc(r.card.name)} in the sideboard"${cap.full ? ` aria-disabled="true" title="${esc(cap.why)}"` : ""}>${PLUS_ICON}</button>
     </div>`;
-    }).join("") : `<p class="dzone-empty">Up to ten Main Deck cards, swapped one for one between games (Tournament Rules 403, 601.1.c). Add from the pool's Sideboard zone.</p>`}
+    }).join("") : `<p class="quiet dzone-empty">Up to ten Main Deck cards, swapped one for one between games (Tournament Rules 403, 601.1.c). Add from the pool's Sideboard zone.</p>`}
   </section>`;
 }
 
@@ -408,7 +446,7 @@ function zoneHtml(zone: "legend" | "battlefields", label: string, target: number
   const held = zone === "legend" ? (deck.legend ? 1 : 0) : zoneCounts(deck).battlefields;
   return `<section class="dzone">
     <h3 class="dzone-head">${label}<span class="dzone-n mono">${held}/${target}</span></h3>
-    ${rows.length ? rows.map((r) => rowHtml(r.card, r.count, zone)).join("") : `<p class="dzone-empty">${zone === "legend" ? "Pick one from the Legend zone of the pool." : "Three, each with a different name (103.4.c)."}</p>`}
+    ${rows.length ? rows.map((r) => rowHtml(r.card, r.count, zone)).join("") : `<p class="quiet dzone-empty">${zone === "legend" ? "Pick one from the Legend zone of the pool." : "Three, each with a different name (103.4.c)."}</p>`}
   </section>`;
 }
 
@@ -424,7 +462,7 @@ function championHtml(): string {
           ${mightHtml(champ)}
           <button type="button" class="linklike drow-drop" data-b="unchampion">Clear</button>
         </div>`
-      : `<p class="dzone-empty">${tag ? `A unit tagged ${esc(tag)}, from the Champion zone of the pool.` : "Name a legend and its champions appear in the pool."}</p>`}
+      : `<p class="quiet dzone-empty">${tag ? `A unit tagged ${esc(tag)}, from the Champion zone of the pool.` : "Name a legend and its champions appear in the pool."}</p>`}
   </section>`;
 }
 
@@ -435,7 +473,7 @@ function runesHtml(): string {
     <h3 class="dzone-head">Runes<span class="dzone-n mono">${n}/${TARGETS.runes}</span>
       <button type="button" class="ghost tiny" data-b="auto-runes"${deck.legend ? "" : " disabled"}>Auto</button>
     </h3>
-    ${rows.length ? rows.map((r) => rowHtml(r.card, r.count, "runes")).join("") : `<p class="dzone-empty">${deck.legend ? "Auto splits twelve across the legend's two domains." : "Auto needs a legend: the split follows its two domains (103.3.a.1)."}</p>`}
+    ${rows.length ? rows.map((r) => rowHtml(r.card, r.count, "runes")).join("") : `<p class="quiet dzone-empty">${deck.legend ? "Auto splits twelve across the legend's two domains." : "Auto needs a legend: the split follows its two domains (103.3.a.1)."}</p>`}
   </section>`;
 }
 
@@ -445,7 +483,7 @@ function mainHtml(): string {
   return `<section class="dzone">
     <h3 class="dzone-head">Main deck<span class="dzone-n mono">${n}/${TARGETS.main}</span></h3>
     ${curveHtml()}
-    ${rows.length ? rows.map((r) => rowHtml(r.card, r.count, "main")).join("") : `<p class="dzone-empty">Forty cards, the Chosen Champion counted among them (Tournament Rules 402.1).</p>`}
+    ${rows.length ? rows.map((r) => rowHtml(r.card, r.count, "main")).join("") : `<p class="quiet dzone-empty">Forty cards, the Chosen Champion counted among them (Tournament Rules 402.1).</p>`}
   </section>`;
 }
 
@@ -523,7 +561,7 @@ function checkHtml(): string {
   if (isEmptyDeck(deck)) {
     return `<section class="bld-check">
       <h3 class="bld-check-head">Construction<span class="bld-check-fmt">${formatName}</span></h3>
-      <p class="dzone-empty">A legal list needs a legend, a champion, 40 main-deck cards, 12 runes and 3 battlefields.</p>
+      <p class="quiet dzone-empty">A legal list needs a legend, a champion, 40 main-deck cards, 12 runes and 3 battlefields.</p>
     </section>`;
   }
   const report = checkBuild(deck, cards(), format);

@@ -128,7 +128,7 @@ function render(): void {
   document.title = `${play.title} — RiftCombo`;
 }
 
-const notice = (text: string) => el("p", "play-notice", text);
+const notice = (text: string) => el("p", "quiet play-notice", text);
 
 function backLink(label: string): HTMLAnchorElement {
   const a = el("a", "play-back");

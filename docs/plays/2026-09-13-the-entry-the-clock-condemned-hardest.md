@@ -6,7 +6,7 @@ verbatim from `data/corpus_flat.txt`; rules pasted from
 first — this play is about what that document's baseline is and is not for.
 
 **Subject: `svellsongur-copy-hold`** — a BURST, T6, and a member of the worst-scoring population in
-the whole catalogue on the day's headline numbers. It is:
+the whole catalogue on the day's headline numbers, and three separate counts say so.
 
 - in **BURST**, the class where **20 of 23** rows pay later than the do-nothing Hold curve;
 - in the `--stalled` pass's **HOLD** bucket, labelled *"DIES WITH THE CURVE … the stall that makes

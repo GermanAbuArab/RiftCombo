@@ -1,5 +1,6 @@
 // Vercel Edge Function: proxies the one thing the browser cannot fetch itself — a Piltover
-// Archive deck page (CORS). Allowlisted host, honest User-Agent, short cache.
+// Archive deck page (CORS). Allowlisted host, honest User-Agent, short cache; the timeout, byte cap and hop-by-hop redirect check
+// live in ./_deck-url-guards.ts (underscore: Vercel does not deploy it as a route).
 //
 // Ported from the Cloudflare Worker that used to live at web/worker.ts, with the logic unchanged;
 // it only ever used standard web APIs. THAT FILE NO LONGER EXISTS - it was removed in b241bc6,
@@ -8,8 +9,9 @@
 
 export const config = { runtime: "edge" };
 
+import { MAX_UPSTREAM_BYTES, MAX_REDIRECTS, TooLargeError, UPSTREAM_TIMEOUT_MS, isAllowedUrl, readCapped, redirectTarget } from "./_deck-url-guards.js";
+
 const UA = "RiftCombo/0.1 (+https://github.com/GermanAbuArab/RiftCombo)";
-const ALLOWED_HOSTS = new Set(["piltoverarchive.com", "www.piltoverarchive.com"]);
 
 const json = (body: unknown, status = 200, extra: Record<string, string> = {}) =>
   new Response(JSON.stringify(body), { status, headers: { "content-type": "application/json; charset=utf-8", "cache-control": "no-store", ...extra } });
@@ -44,12 +46,24 @@ interface PADeck { name: string; legend?: { variantNumber: string }; champions: 
 const cleanCode = (v: string) => v.replace(/-(Foil|Nexus|Release)$/i, "");
 
 async function deckFromPiltover(target: URL): Promise<Response> {
-  if (!ALLOWED_HOSTS.has(target.hostname) || !/^\/decks\/view\/[a-z0-9-]+\/?$/i.test(target.pathname)) {
+  if (!isAllowedUrl(target) || !/^\/decks\/view\/[a-z0-9-]+\/?$/i.test(target.pathname)) {
     return json({ error: "Only Piltover Archive deck links (piltoverarchive.com/decks/view/…) are supported." }, 400);
   }
-  const upstream = await fetch(target.toString(), { headers: { "User-Agent": UA, RSC: "1", Accept: "text/x-component, text/html" } });
+  // Redirects are followed by hand so each hop is checked BEFORE it is requested; one shared timeout
+  // covers the whole chain.
+  const signal = AbortSignal.timeout(UPSTREAM_TIMEOUT_MS);
+  const get = (url: URL) => fetch(url.toString(), { headers: { "User-Agent": UA, RSC: "1", Accept: "text/x-component, text/html" }, redirect: "manual", signal });
+  let current = target;
+  let upstream = await get(current);
+  for (let hops = 0; upstream.status >= 300 && upstream.status < 400; hops++) {
+    await upstream.body?.cancel();
+    const next = hops < MAX_REDIRECTS ? redirectTarget(upstream.headers.get("location"), current) : null;
+    if (!next) return json({ error: "Piltover Archive redirected somewhere this import will not follow." }, 502);
+    current = next;
+    upstream = await get(current);
+  }
   if (!upstream.ok) return json({ error: `Piltover Archive answered ${upstream.status}.` }, 502);
-  const body = await upstream.text();
+  const body = await readCapped(upstream.body, MAX_UPSTREAM_BYTES);
   const text = body.includes("__next_f.push") ? flight(body) : body;
   const at = text.indexOf('"deck":{');
   if (at < 0) return json({ error: "That page does not contain a deck (private, deleted, or not a deck page)." }, 404);
@@ -74,5 +88,10 @@ export default async function handler(request: Request): Promise<Response> {
   try { target = new URL(raw); } catch { return json({ error: "Not a URL." }, 400); }
   if (target.protocol !== "https:") return json({ error: "https only" }, 400);
   try { return await deckFromPiltover(target); }
-  catch (err) { return json({ error: `Upstream failure: ${(err as Error).message}` }, 502); }
+  catch (err) {
+    const e = err as Error;
+    if (e.name === "TimeoutError") return json({ error: "Piltover Archive took too long to answer." }, 504);
+    if (e instanceof TooLargeError) return json({ error: `That page is too large to read (${e.message}).` }, 502);
+    return json({ error: `Upstream failure: ${e.message}` }, 502);
+  }
 }
