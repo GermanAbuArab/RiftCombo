@@ -19,6 +19,7 @@ import { esc } from "../src/html.js";
 import { classLabel, victoryNote } from "../src/victory.js";
 import { OUTCOME_PALETTE, renderGraph, thumb, type GraphView, type Layout } from "./graph.js";
 import { go, onRoute, route, startRouter } from "./router.js";
+import { download, graphCss, rasterise, serialize, stageBg, stripArt } from "./export.js";
 
 const combos = (combosJson as { combos: Combo[] }).combos;
 const features = (featuresJson as { features: Feature[] }).features;
@@ -64,6 +65,8 @@ const statusCard = $<HTMLElement>("#status-card");
 const graphHost = $<HTMLElement>("#graph-host");
 const empty = $<HTMLElement>("#empty");
 const jumpToDiagram = $<HTMLAnchorElement>("#jump-to-diagram");
+const dlSvg = $<HTMLButtonElement>("#dl-svg");
+const dlPng = $<HTMLButtonElement>("#dl-png");
 const detail = $<HTMLElement>("#detail");
 const tray = $<HTMLElement>("#tray");
 const routeCount = $<HTMLElement>("#route-count");
@@ -720,6 +723,9 @@ function render() {
   routeCount.textContent = String(all.length);
   empty.hidden = all.length > 0;
   jumpToDiagram.hidden = all.length === 0;
+  // Nothing drawn is nothing to download, and a button that produces an empty file is worse
+  // than one that is plainly off.
+  for (const b of [dlSvg, dlPng]) b.disabled = all.length === 0;
   const legalHere = playableUnderLegend(fmt());
   $<HTMLElement>("#ws-sub").textContent = legalHere === null
     ? `${combos.length} combos catalogued`
@@ -1152,6 +1158,45 @@ $<HTMLButtonElement>("#zoom-in").addEventListener("click", () => view?.zoomBy(1 
 $<HTMLButtonElement>("#zoom-out").addEventListener("click", () => view?.zoomBy(1.25));
 dimToggle.addEventListener("click", () => { dim = !dim; dimToggle.classList.toggle("on", dim); dimToggle.setAttribute("aria-pressed", String(dim)); view?.setDim(dim); });
 $<HTMLButtonElement>("#fullscreen").addEventListener("click", () => { const st = $<HTMLElement>("#stage"); document.fullscreenElement ? void document.exitFullscreen() : void st.requestFullscreen(); });
+
+/**
+ * Downloading the diagram (D4 of the 2026-09-20 review, and `docs/plan.md`'s Phase 3 "PNG export"
+ * from 2026-09-02). The mechanics and the CORS measurement that decided the shape of it are in
+ * `web/export.ts`; what lives here is the two clicks and the file names.
+ *
+ * The name is the deck's, when the list came from My decks, so a folder of exports is readable.
+ * `setStatus` reports both outcomes: a download that silently does not happen is the worst version
+ * of this feature, and a PNG can genuinely fail on a browser with no canvas.
+ */
+const exportName = (ext: string) => {
+  const base = (analyzing?.name ?? "riftcombo-diagram").trim().toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "") || "riftcombo-diagram";
+  return `${base}.${ext}`;
+};
+
+const exportSvg = () => {
+  const drawn = view?.exportable();
+  if (!drawn) return;
+  const text = serialize(drawn.svg, graphCss(document.styleSheets, drawn.svg), drawn.box, stageBg());
+  download(new Blob([text], { type: "image/svg+xml;charset=utf-8" }), exportName("svg"));
+};
+
+const exportPng = async () => {
+  const drawn = view?.exportable();
+  if (!drawn) return;
+  // The art goes FIRST and the CSS is read off the stripped copy, so a rule that only ever applied
+  // to an `<image>` does not ride along into a file that has none.
+  const plain = stripArt(drawn.svg);
+  const text = serialize(plain, graphCss(document.styleSheets, plain), drawn.box, stageBg());
+  try {
+    download(await rasterise(text, drawn.box.w, drawn.box.h), exportName("png"));
+  } catch (err: unknown) {
+    setStatus("Could not make a PNG", `${(err as Error).message}. The SVG download always works — it is the better file anyway.`, "error");
+  }
+};
+
+$<HTMLButtonElement>("#dl-svg").addEventListener("click", exportSvg);
+$<HTMLButtonElement>("#dl-png").addEventListener("click", () => { void exportPng(); });
 /**
  * D6 of the 2026-09-20 review: below 900px the deck panel stacks above the stage and the diagram is
  * roughly 1,800px down the page with nothing pointing at it.

@@ -173,6 +173,12 @@
         <button type="button" class="icon-btn" id="fit" aria-label="Fit diagram to view" title="Fit to view"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9V4h5M15 4h5v5M20 15v5h-5M9 20H4v-5"/></svg></button>
         <button type="button" class="icon-btn toggle on" id="dim-toggle" aria-pressed="true" aria-label="Fade unrelated combos when one is selected" title="Fade unrelated"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 12s3.5-6 10-6 10 6 10 6-3.5 6-10 6S2 12 2 12z"/><circle cx="12" cy="12" r="2.5"/></svg></button>
         <button type="button" class="icon-btn" id="fullscreen" aria-label="Fullscreen" title="Fullscreen"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9V4h5M15 4h5v5M20 15v5h-5M9 20H4v-5"/></svg></button>
+        <!-- Two buttons and not one, and the format is written on each rather than left to a download
+             glyph the reader has to guess at. SVG first because it is the better file: the art is
+             cross-origin with no CORS header, so a canvas that has drawn it cannot be encoded at all
+             and the PNG is rendered from an art-free copy. `web/export.ts` carries the measurement. -->
+        <button type="button" class="icon-btn wide" id="dl-svg" aria-label="Download the diagram as SVG, with the card art" title="Download SVG — vector, with the art" disabled><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11M8 11l4 4 4-4M5 19h14"/></svg><span class="btn-tag">SVG</span></button>
+        <button type="button" class="icon-btn wide" id="dl-png" aria-label="Download the diagram as PNG, with name plates instead of the card art" title="Download PNG — name plates instead of the art" disabled><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11M8 11l4 4 4-4M5 19h14"/></svg><span class="btn-tag">PNG</span></button>
       </div>
       <div class="zoom">
         <button type="button" class="icon-btn" id="zoom-in" aria-label="Zoom in"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 3.5v9M3.5 8h9"/></svg></button>

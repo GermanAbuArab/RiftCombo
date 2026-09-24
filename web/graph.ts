@@ -42,6 +42,11 @@ export interface GraphView {
   select: (comboId: string | null) => void;
   setDim: (on: boolean) => void;
   destroy: () => void;
+  /**
+   * The `<svg>` as drawn and the box the WHOLE diagram occupies, which is what an export needs
+   * (`web/export.ts`, D4). Not the viewBox: that one is wherever the reader has panned to.
+   */
+  exportable: () => { svg: SVGSVGElement; box: Box };
 }
 
 /** One accent, plus neutrals. Outcome identity is carried by the label, not by a colour code. */
@@ -770,5 +775,6 @@ export function renderGraph(host: HTMLElement, hits: Hit[], layout: Layout, ctx:
     select: (id) => { pinned = id; if (!id) { clear(); return; } if (nodeEls.get(id)?.classList.contains("route")) focusRoute(id); else if (m.combos.some((c) => c.id === id)) { const set = routeNodes(id); clear(); svg.classList.add("has-selection"); for (const [nid, g] of nodeEls) g.classList.add(set.has(nid) ? "hl" : "dimmed"); for (const { e, path } of edgeEls) path.classList.add(e.comboId === id ? "selected" : "dimmed"); } },
     setDim: (on) => svg.classList.toggle("dim-unrelated", on),
     destroy: () => svg.remove(),
+    exportable: () => ({ svg, box: { x: content.x, y: content.y, w: content.w, h: content.h } }),
   };
 }

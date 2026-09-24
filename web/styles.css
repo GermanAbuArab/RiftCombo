@@ -114,6 +114,12 @@ h1, h2, h3 { font-weight: 600; letter-spacing: -.02em; text-wrap: balance; }
 .icon-btn svg { width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
 .icon-btn:hover { color: var(--text); border-color: var(--muted); }
 .icon-btn.toggle.on { color: var(--accent); border-color: var(--accent); }
+/* An icon button that also names itself. The export buttons are two downloads, so a glyph
+   alone would be two identical arrows and a guess (design review 2026-09-20, D4). */
+.icon-btn.wide { width: auto; grid-auto-flow: column; gap: 5px; padding: 0 9px; }
+.icon-btn .btn-tag { font: 600 0.6875rem var(--mono); letter-spacing: .04em; }
+.icon-btn:disabled { opacity: .45; cursor: default; }
+.icon-btn:disabled:hover { color: var(--muted); border-color: var(--line-2); }
 
 /* Shell */
 .app-shell { display: grid; grid-template-columns: var(--panel-w) minmax(0, 1fr); height: calc(100vh - var(--topbar)); min-height: 620px; }
