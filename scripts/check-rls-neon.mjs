@@ -64,9 +64,17 @@ const neonctl = (head, tail = []) => execFileSync("neonctl",
   [...head, "--project-id", NEON_PROJECT_ID, "--branch", NEON_BRANCH_ID, ...tail],
   { encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
 
-/** One SQL value, as the table owner. Only for what RLS rightly hides from every Data API caller. */
-const sql = (query) => neonctl(["psql", "--role-name", "neondb_owner"], ["--", "-Atc", query])
-  .split("\n").map((l) => l.trim()).filter((l) => l && !l.startsWith("INFO"))[0] ?? "";
+/**
+ * One SQL value, as the table owner. Only for what RLS rightly hides from every Data API caller.
+ * The value is TAGGED in the query and only the tagged line is read, so a banner or a warning line
+ * on stdout can never be mistaken for the answer (post-commit review of 008c0bb). No tagged line is
+ * an empty string, which every caller treats as a failure.
+ */
+const sql = (query) => {
+  const out = neonctl(["psql", "--role-name", "neondb_owner"], ["--", "-Atc", `select 'v:' || (${query})`]);
+  const line = out.split("\n").map((l) => l.trim()).find((l) => l.startsWith("v:"));
+  return line ? line.slice(2) : "";
+};
 
 let fallas = 0;
 const check = (nombre, ok, detalle = "") => {
