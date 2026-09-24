@@ -91,6 +91,9 @@ describe("the run plays the browser downloads", () => {
       expect(p.lede, `${p.slug} shows its provenance block as its summary`).not.toMatch(/^Issue #\d/);
       // The lede is display text: its inline markup is flattened, so no marker survives into it.
       expect(p.lede, `${p.slug} lede carries raw markup`).not.toMatch(/[`*]|\]\(/);
+      // The index shows the lede as a summary, and one that ends by introducing a list it does not
+      // carry reads as cut off (2026-09-20 review, D8).
+      expect(p.lede, `${p.slug} lede ends in a colon`).not.toMatch(/:\s*$/);
     }
   });
 
