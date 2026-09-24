@@ -46,13 +46,18 @@ describe("stripArt (the PNG path's safety argument)", () => {
     expect(stripArt(svg).querySelectorAll("image").length).toBe(0);
   });
 
-  it("replaces each one with the no-art plate the site already draws, at the same geometry", () => {
-    const rects = [...stripArt(fixture()).querySelectorAll("rect.no-art")];
-    expect(rects.length).toBe(2);
+  it("replaces a card's art with the no-art plate the site already draws, at the same geometry", () => {
+    const rects = [...stripArt(fixture()).querySelectorAll(".node.card rect.no-art")];
+    expect(rects.length).toBe(1);
     expect(rects[0]!.getAttribute("width")).toBe("86");
     expect(rects[0]!.getAttribute("height")).toBe("118");
     expect(rects[0]!.getAttribute("x")).toBe("5");
-    expect(rects[1]!.getAttribute("width")).toBe("20");
+  });
+
+  it("drops a route thumbnail rather than plating it, since .no-art is unstyled there (it drew black)", () => {
+    const out = stripArt(fixture());
+    expect(out.querySelectorAll(".node.route rect.no-art").length).toBe(0);
+    expect(out.querySelectorAll(".node.route image").length).toBe(0);
   });
 
   it("keeps the name plate, which is what the reader is left reading", () => {

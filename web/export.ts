@@ -110,6 +110,9 @@ export function stripArt(svg: SVGSVGElement): SVGSVGElement {
   const clone = svg.cloneNode(true) as SVGSVGElement;
   const NS = "http://www.w3.org/2000/svg";
   for (const img of [...clone.querySelectorAll("image")]) {
+    // A route node's thumbnails sit on a `.mini-frame` that already draws the empty slot, and
+    // `.no-art` is only styled inside a card node — a plate there would render as a black square.
+    if (!img.closest(".node.card")) { img.remove(); continue; }
     const rect = clone.ownerDocument.createElementNS(NS, "rect");
     for (const a of ["x", "y", "width", "height"]) {
       const v = img.getAttribute(a);
