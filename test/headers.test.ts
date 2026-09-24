@@ -8,8 +8,8 @@ import { deckCountLine } from "../src/deck.js";
  *
  *  - a popup sign-in under `Cross-Origin-Opener-Policy: same-origin` never reports back at all, so
  *    the flow is a full-page redirect and the header stays as it is;
- *  - a `connect-src` that misses the Supabase origin blocks every call to it, and one widened to a
- *    wildcard would let any Supabase project on earth be called from this page;
+ *  - a `connect-src` that misses a Neon origin (Auth or the Data API, two hosts) blocks every call to
+ *    it, and one widened to a wildcard would let any Neon project on earth be called from this page;
  *  - the privacy notice is a promise the project made, and a signed-in Save is the moment it stops
  *    being true unless the wording says so.
  *
@@ -44,16 +44,19 @@ describe("the headers the account layer has to survive", () => {
     expect(sources).toContain("'self'");
     for (const src of sources) {
       if (src === "'self'") continue;
-      expect(src, "a wildcard here would open the page to every Supabase project").not.toContain("*");
-      expect(src).toMatch(/^https:\/\/[a-z0-9-]+\.supabase\.(co|in)$/);
+      expect(src, "a wildcard here would open the page to every Neon project").not.toContain("*");
+      // An ORIGIN on a Neon host, nothing finer: endpoint ids and regional labels vary (spec §7.1).
+      expect(src).toMatch(/^https:\/\/[a-z0-9.-]+\.neon\.tech$/);
     }
   });
 
-  it("carries the Supabase origin the build is configured for", () => {
-    const configured = (process.env["SUPABASE_URL"] ?? "").trim().replace(/\/+$/, "");
+  it("carries both Neon origins the build is configured for", () => {
+    const configured = ["NEON_AUTH_URL", "NEON_DATA_API_URL"]
+      .map((k) => (process.env[k] ?? "").trim()).filter(Boolean).map((u) => new URL(u).origin);
     // Unset in CI and on a fresh clone: then the only claim to check is the one above.
-    if (!configured) return;
-    expect(csp.get("connect-src"), "run `npm run headers` after changing SUPABASE_URL").toContain(configured);
+    for (const origin of configured) {
+      expect(csp.get("connect-src"), "run `npm run headers` after changing NEON_AUTH_URL or NEON_DATA_API_URL").toContain(origin);
+    }
   });
 });
 
@@ -147,10 +150,10 @@ describe("the order of the deck panel", () => {
 });
 
 describe("what the browser bundle is allowed to know", () => {
-  it("never mentions the service_role key or the database password in web/", () => {
+  it("never mentions a server key, a connection string or a database password in web/", () => {
     for (const f of ["main.ts", "account.ts", "decks.ts", "router.ts", "supabase.ts", "graph.ts", "index.html"]) {
       const src = readFileSync(new URL(`../web/${f}`, import.meta.url), "utf8");
-      expect(src, f).not.toMatch(/service_role|SERVICE_ROLE|DB_PASSWORD/);
+      expect(src, f).not.toMatch(/service_role|SERVICE_ROLE|DB_PASSWORD|DATABASE_URL|NEON_API_KEY|postgres(ql)?:\/\//);
     }
   });
 });

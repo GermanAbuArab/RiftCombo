@@ -1,12 +1,14 @@
 #!/usr/bin/env node
 // Generate vercel.json. The response headers are the one part of the app whose configuration cannot
-// live in the bundle, and the Supabase origin has to appear in `connect-src` verbatim — a wildcard
-// would let any Supabase project on earth be called from this page.
+// live in the bundle, and the Neon origins have to appear in `connect-src` verbatim — a wildcard
+// would let any Neon project on earth be called from this page.
 //
-// Run it after changing SUPABASE_URL, and commit the result: Vercel reads vercel.json from the
-// repository, before the build command runs, so generating it during the build would be too late.
+// Run it after changing NEON_AUTH_URL or NEON_DATA_API_URL, and commit the result: Vercel reads
+// vercel.json from the repository, before the build command runs, so generating it during the build
+// would be too late.
 //
-//   SUPABASE_URL=https://<ref>.supabase.co node scripts/build-headers.mjs
+//   NEON_AUTH_URL=https://<ep>.neonauth.<...>.neon.tech/neondb/auth \
+//   NEON_DATA_API_URL=https://<ep>.apirest.<...>.neon.tech/neondb/rest/v1 node scripts/build-headers.mjs
 
 import { writeFileSync } from "node:fs";
 import { dirname, join } from "node:path";
@@ -14,11 +16,11 @@ import { fileURLToPath } from "node:url";
 import { siteConfig } from "./site-config.mjs";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
-const { url } = siteConfig(ROOT);
+const { origins } = siteConfig(ROOT);
 
-// Supabase Auth and PostgREST are both served from the project origin, so one entry covers sign-in,
-// token refresh and every read and write of `public.decks`.
-const connect = ["'self'", url].filter(Boolean).join(" ");
+// Neon serves Auth (sign-in, session, JWT) and the Data API (every read and write of `public.decks`
+// and `public.profiles`) from two hosts on the same endpoint, so connect-src lists both.
+const connect = ["'self'", ...origins].join(" ");
 
 const config = {
   $schema: "https://openapi.vercel.sh/vercel.json",
@@ -126,4 +128,4 @@ const config = {
 };
 
 writeFileSync(join(ROOT, "vercel.json"), `${JSON.stringify(config, null, 2)}\n`);
-console.log(url ? `vercel.json: connect-src 'self' ${url}` : "vercel.json: connect-src 'self' (SUPABASE_URL unset — no account layer in this build)");
+console.log(origins.length ? `vercel.json: connect-src ${connect}` : "vercel.json: connect-src 'self' (NEON_* unset — no account layer in this build)");

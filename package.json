@@ -23,8 +23,8 @@
     "node": ">=22"
   },
   "dependencies": {
-    "@piltoverarchive/riftbound-deck-codes": "^1.4.0",
-    "@supabase/supabase-js": "^2.115.0"
+    "@neondatabase/neon-js": "0.7.0-beta",
+    "@piltoverarchive/riftbound-deck-codes": "^1.4.0"
   },
   "devDependencies": {
     "@types/node": "^26.4.1",
