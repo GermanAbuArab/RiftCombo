@@ -49,7 +49,14 @@ const get = async (path) => {
   return res.json();
 };
 
-const decks = await get("/rest/v1/decks?select=user_id,name,deck_text,format,created_at,updated_at");
+// PostgREST caps a response (1000 rows by default) without saying so in the body, so the total is
+// asked for separately and must equal what arrived. Without this a truncated export would stage the
+// truncated set and then report success, because the final check compares against the same fetch.
+const res = await fetch(`${sb}/rest/v1/decks?select=user_id,name,deck_text,format,created_at,updated_at`, { headers: { ...h, Prefer: "count=exact" } });
+if (!res.ok) throw new Error(`decks answered ${res.status}`);
+const decks = await res.json();
+const total = Number((res.headers.get("content-range") ?? "").split("/")[1]);
+if (!Number.isInteger(total) || total !== decks.length) throw new Error(`Supabase holds ${total} decks but ${decks.length} arrived; nothing staged`);
 const subOf = new Map();
 for (const id of new Set(decks.map((d) => d.user_id))) {
   const user = await get(`/auth/v1/admin/users/${id}`);

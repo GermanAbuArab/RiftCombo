@@ -34,43 +34,44 @@ revoke all on migration.staged_decks from public;
 -- Idempotent: once claimed, a row is gone from staging, so a second call moves nothing. Called by the
 -- app before it lists decks, which is why it must be cheap when there is nothing to do.
 --
--- A staged name that collides with a deck the player already made on Neon (the unique index is per
--- player, case-insensitive) is kept under a suffixed name rather than dropped: losing a deck in a
--- migration is the one outcome this function exists to prevent.
-create function public.claim_staged_decks() returns integer
+-- A staged name that collides with a deck the player already has on Neon (the unique index is per
+-- player, case-insensitive) is kept under the first free suffixed name — "X (moved)", then
+-- "X (moved 2)" and so on — rather than dropped, and row by row, so one awkward collision can never
+-- abort the whole claim (post-commit review of 7f31d80). Losing a deck in a migration is the one
+-- outcome this function exists to prevent.
+create or replace function public.claim_staged_decks() returns integer
   language plpgsql
   security definer
   set search_path = ''
 as $$
 declare
-  moved integer;
+  me uuid := (select auth.uid());
+  r record;
+  candidate text;
+  n integer;
+  moved integer := 0;
 begin
-  if (select auth.uid()) is null then
+  if me is null then
     return 0;
   end if;
 
-  with mine as (
-    select a."accountId" as sub
-    from neon_auth.account a
-    where a."userId" = (select auth.uid()) and a."providerId" = 'google'
-  ),
-  taken as (
+  for r in
     delete from migration.staged_decks s
-    using mine
-    where s.google_sub = mine.sub
+    using neon_auth.account a
+    where a."userId" = me and a."providerId" = 'google' and s.google_sub = a."accountId"
     returning s.name, s.deck_text, s.format, s.created_at, s.updated_at
-  )
-  insert into public.decks (user_id, name, deck_text, format, created_at, updated_at)
-  select (select auth.uid()),
-         case when exists (
-                select 1 from public.decks d
-                where d.user_id = (select auth.uid()) and lower(d.name) = lower(t.name))
-              then left(t.name, 50) || ' (moved)'
-              else t.name end,
-         t.deck_text, t.format, t.created_at, t.updated_at
-  from taken t;
+  loop
+    candidate := r.name;
+    n := 1;
+    while exists (select 1 from public.decks d where d.user_id = me and lower(d.name) = lower(candidate)) loop
+      candidate := left(r.name, 45) || case when n = 1 then ' (moved)' else ' (moved ' || n || ')' end;
+      n := n + 1;
+    end loop;
+    insert into public.decks (user_id, name, deck_text, format, created_at, updated_at)
+    values (me, candidate, r.deck_text, r.format, r.created_at, r.updated_at);
+    moved := moved + 1;
+  end loop;
 
-  get diagnostics moved = row_count;
   return moved;
 end;
 $$;
