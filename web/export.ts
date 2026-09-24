@@ -78,7 +78,7 @@ export function serialize(svg: SVGSVGElement, css: string, box?: Box, bg: string
   clone.setAttribute("height", String(h));
   // Interaction classes are state of the page, not of the picture: a file exported while one route
   // was selected would arrive with three quarters of itself faded out.
-  clone.classList.remove("dragging", "has-selection");
+  clone.classList.remove("dragging", "has-selection", "dim-unrelated");
   for (const n of clone.querySelectorAll(".dimmed, .hl, .selected")) n.classList.remove("dimmed", "hl", "selected");
   const NS = "http://www.w3.org/2000/svg";
   // The picture is designed on a dark ground and carries no page with it. Measured 2026-09-21: a

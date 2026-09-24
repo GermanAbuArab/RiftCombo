@@ -91,6 +91,9 @@ describe("serialize (a file that is readable away from this page)", () => {
     const out = serialize(fixture(), "");
     expect(out).not.toContain("dimmed");
     expect(out).not.toContain("has-selection");
+    // Inert today (every rule reading it also needs `has-selection`), but it is page state too, and a
+    // future rule keyed on it alone would fade the whole file (post-commit review of 4c6def1).
+    expect(out).not.toContain("dim-unrelated");
     expect(/class="[^"]*\bhl\b[^"]*"/.test(out)).toBe(false);
     // The control: the nodes those classes were on are still in the file, so this is a class being
     // stripped rather than half the diagram going missing.
