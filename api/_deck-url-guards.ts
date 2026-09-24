@@ -21,6 +21,16 @@ export function isAllowedHost(hostname: string): boolean {
   return ALLOWED_HOSTS.has(hostname.toLowerCase());
 }
 
+/**
+ * The whole test for a URL we are about to request: https, an allowlisted host, the DEFAULT port and
+ * no userinfo. The port matters: checking the hostname alone let `piltoverarchive.com:31337` through,
+ * which is a port-scan oracle against Piltover's own address (security-scan of 2026-09-24). `URL`
+ * normalises an explicit `:443` on https to "", so "" is the only port to accept.
+ */
+export function isAllowedUrl(url: URL): boolean {
+  return url.protocol === "https:" && isAllowedHost(url.hostname) && url.port === "" && !url.username && !url.password;
+}
+
 /** How many redirects one import may follow. Piltover answers a deck page directly or in one hop. */
 export const MAX_REDIRECTS = 3;
 
@@ -33,7 +43,7 @@ export function redirectTarget(location: string | null, from: URL): URL | null {
   if (!location) return null;
   let url: URL;
   try { url = new URL(location, from); } catch { return null; }
-  return url.protocol === "https:" && isAllowedHost(url.hostname) ? url : null;
+  return isAllowedUrl(url) ? url : null;
 }
 
 export function withinByteCap(bytes: number, cap: number = MAX_UPSTREAM_BYTES): boolean {

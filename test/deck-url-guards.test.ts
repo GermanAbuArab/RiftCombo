@@ -4,7 +4,7 @@
 import { describe, expect, it } from "vitest";
 import {
   MAX_REDIRECTS, MAX_UPSTREAM_BYTES, TooLargeError, UPSTREAM_TIMEOUT_MS,
-  isAllowedHost, readCapped, redirectTarget, withinByteCap,
+  isAllowedHost, isAllowedUrl, readCapped, redirectTarget, withinByteCap,
 } from "../api/_deck-url-guards.js";
 
 const requested = new URL("https://piltoverarchive.com/decks/view/abc");
@@ -36,6 +36,21 @@ describe("isAllowedHost", () => {
   });
 });
 
+describe("isAllowedUrl (the port and userinfo, not only the host)", () => {
+  it("accepts the default port, written or implied", () => {
+    expect(isAllowedUrl(new URL("https://piltoverarchive.com/decks/view/abc"))).toBe(true);
+    expect(isAllowedUrl(new URL("https://piltoverarchive.com:443/decks/view/abc"))).toBe(true);
+  });
+  it("refuses any other port on the right host — the scan's port-oracle finding", () => {
+    expect(isAllowedUrl(new URL("https://piltoverarchive.com:31337/decks/view/abc"))).toBe(false);
+    expect(isAllowedUrl(new URL("https://www.piltoverarchive.com:8443/decks/view/abc"))).toBe(false);
+  });
+  it("refuses userinfo and plain http", () => {
+    expect(isAllowedUrl(new URL("https://user:pw@piltoverarchive.com/decks/view/abc"))).toBe(false);
+    expect(isAllowedUrl(new URL("http://piltoverarchive.com/decks/view/abc"))).toBe(false);
+  });
+});
+
 describe("redirectTarget (checked BEFORE the next hop is requested)", () => {
   it("follows a redirect that stays on Piltover Archive, absolute or relative", () => {
     expect(redirectTarget("https://www.piltoverarchive.com/decks/view/abc", requested)?.href).toBe("https://www.piltoverarchive.com/decks/view/abc");
@@ -48,6 +63,7 @@ describe("redirectTarget (checked BEFORE the next hop is requested)", () => {
   });
   it("refuses a downgrade to plain http even on the right host", () => {
     expect(redirectTarget("http://piltoverarchive.com/decks/view/abc", requested)).toBeNull();
+    expect(redirectTarget("https://piltoverarchive.com:9443/decks/view/abc", requested)).toBeNull();
   });
   it("refuses a redirect with no Location, or one that is not a URL", () => {
     expect(redirectTarget(null, requested)).toBeNull();

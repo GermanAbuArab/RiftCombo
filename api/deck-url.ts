@@ -9,7 +9,7 @@
 
 export const config = { runtime: "edge" };
 
-import { MAX_UPSTREAM_BYTES, MAX_REDIRECTS, TooLargeError, UPSTREAM_TIMEOUT_MS, isAllowedHost, readCapped, redirectTarget } from "./_deck-url-guards.js";
+import { MAX_UPSTREAM_BYTES, MAX_REDIRECTS, TooLargeError, UPSTREAM_TIMEOUT_MS, isAllowedUrl, readCapped, redirectTarget } from "./_deck-url-guards.js";
 
 const UA = "RiftCombo/0.1 (+https://github.com/GermanAbuArab/RiftCombo)";
 
@@ -46,7 +46,7 @@ interface PADeck { name: string; legend?: { variantNumber: string }; champions: 
 const cleanCode = (v: string) => v.replace(/-(Foil|Nexus|Release)$/i, "");
 
 async function deckFromPiltover(target: URL): Promise<Response> {
-  if (!isAllowedHost(target.hostname) || !/^\/decks\/view\/[a-z0-9-]+\/?$/i.test(target.pathname)) {
+  if (!isAllowedUrl(target) || !/^\/decks\/view\/[a-z0-9-]+\/?$/i.test(target.pathname)) {
     return json({ error: "Only Piltover Archive deck links (piltoverarchive.com/decks/view/…) are supported." }, 400);
   }
   // Redirects are followed by hand so each hop is checked BEFORE it is requested; one shared timeout
