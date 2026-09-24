@@ -5,8 +5,9 @@
 //   1. a timeout, so a slow upstream cannot hold an Edge invocation open;
 //   2. a byte cap counted off the stream, because `content-length` is the upstream's claim, not a
 //      measurement — it can be absent, and a chunked response carries none;
-//   3. the host re-checked AFTER the fetch, because `fetch` follows redirects and the allowlist was
-//      only ever checked on the URL we asked for.
+//   3. redirects followed BY HAND, one hop at a time, each target checked against the allowlist
+//      BEFORE it is requested. Letting `fetch` follow them and checking afterwards is not a defence:
+//      the request to the off-list host has already been sent by then (post-commit review of af89a4a).
 
 export const ALLOWED_HOSTS: ReadonlySet<string> = new Set(["piltoverarchive.com", "www.piltoverarchive.com"]);
 
@@ -20,16 +21,19 @@ export function isAllowedHost(hostname: string): boolean {
   return ALLOWED_HOSTS.has(hostname.toLowerCase());
 }
 
+/** How many redirects one import may follow. Piltover answers a deck page directly or in one hop. */
+export const MAX_REDIRECTS = 3;
+
 /**
- * Where the response actually came from. `Response.url` is the final URL after redirects; it is the
- * empty string for a response that was constructed rather than fetched, in which case the requested
- * URL is the only one there is.
+ * Where a redirect points, or null if we must not go there. A relative `Location` resolves against
+ * the URL that answered; the result has to be https and on the allowlist, checked BEFORE the next
+ * request is made.
  */
-export function hostAfterRedirectAllowed(finalUrl: string, requested: URL): boolean {
-  if (!finalUrl) return isAllowedHost(requested.hostname);
+export function redirectTarget(location: string | null, from: URL): URL | null {
+  if (!location) return null;
   let url: URL;
-  try { url = new URL(finalUrl); } catch { return false; }
-  return url.protocol === "https:" && isAllowedHost(url.hostname);
+  try { url = new URL(location, from); } catch { return null; }
+  return url.protocol === "https:" && isAllowedHost(url.hostname) ? url : null;
 }
 
 export function withinByteCap(bytes: number, cap: number = MAX_UPSTREAM_BYTES): boolean {
@@ -42,8 +46,9 @@ export class TooLargeError extends Error {
 }
 
 /**
- * Read a body as text, counting bytes as they arrive and cancelling the stream the moment the cap is
- * passed — so an oversized response costs us at most `cap` bytes, never the whole thing.
+ * Read a body as text, counting bytes as they arrive and cancelling the stream at the first chunk
+ * that takes the total past the cap. The check is per chunk, so an oversized response costs at most
+ * the cap plus one chunk — never the whole body.
  */
 export async function readCapped(body: ReadableStream<Uint8Array> | null, cap: number = MAX_UPSTREAM_BYTES): Promise<string> {
   if (!body) return "";

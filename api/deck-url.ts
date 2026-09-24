@@ -1,5 +1,5 @@
 // Vercel Edge Function: proxies the one thing the browser cannot fetch itself — a Piltover
-// Archive deck page (CORS). Allowlisted host, honest User-Agent, short cache; the timeout, byte cap and post-redirect host check
+// Archive deck page (CORS). Allowlisted host, honest User-Agent, short cache; the timeout, byte cap and hop-by-hop redirect check
 // live in ./_deck-url-guards.ts (underscore: Vercel does not deploy it as a route).
 //
 // Ported from the Cloudflare Worker that used to live at web/worker.ts, with the logic unchanged;
@@ -9,7 +9,7 @@
 
 export const config = { runtime: "edge" };
 
-import { MAX_UPSTREAM_BYTES, TooLargeError, UPSTREAM_TIMEOUT_MS, hostAfterRedirectAllowed, isAllowedHost, readCapped } from "./_deck-url-guards.js";
+import { MAX_UPSTREAM_BYTES, MAX_REDIRECTS, TooLargeError, UPSTREAM_TIMEOUT_MS, isAllowedHost, readCapped, redirectTarget } from "./_deck-url-guards.js";
 
 const UA = "RiftCombo/0.1 (+https://github.com/GermanAbuArab/RiftCombo)";
 
@@ -49,14 +49,18 @@ async function deckFromPiltover(target: URL): Promise<Response> {
   if (!isAllowedHost(target.hostname) || !/^\/decks\/view\/[a-z0-9-]+\/?$/i.test(target.pathname)) {
     return json({ error: "Only Piltover Archive deck links (piltoverarchive.com/decks/view/…) are supported." }, 400);
   }
-  const upstream = await fetch(target.toString(), {
-    headers: { "User-Agent": UA, RSC: "1", Accept: "text/x-component, text/html" },
-    signal: AbortSignal.timeout(UPSTREAM_TIMEOUT_MS),
-  });
-  // `fetch` follows redirects, and the allowlist above only saw the URL we asked for.
-  if (!hostAfterRedirectAllowed(upstream.url, target)) {
+  // Redirects are followed by hand so each hop is checked BEFORE it is requested; one shared timeout
+  // covers the whole chain.
+  const signal = AbortSignal.timeout(UPSTREAM_TIMEOUT_MS);
+  const get = (url: URL) => fetch(url.toString(), { headers: { "User-Agent": UA, RSC: "1", Accept: "text/x-component, text/html" }, redirect: "manual", signal });
+  let current = target;
+  let upstream = await get(current);
+  for (let hops = 0; upstream.status >= 300 && upstream.status < 400; hops++) {
     await upstream.body?.cancel();
-    return json({ error: "Piltover Archive redirected somewhere that is not Piltover Archive." }, 502);
+    const next = hops < MAX_REDIRECTS ? redirectTarget(upstream.headers.get("location"), current) : null;
+    if (!next) return json({ error: "Piltover Archive redirected somewhere this import will not follow." }, 502);
+    current = next;
+    upstream = await get(current);
   }
   if (!upstream.ok) return json({ error: `Piltover Archive answered ${upstream.status}.` }, 502);
   const body = await readCapped(upstream.body, MAX_UPSTREAM_BYTES);
