@@ -9,17 +9,18 @@
 //
 // Credentials come from the environment only -- nothing here is ever written to a file or printed:
 //
-//   set -a && . ./.env.local && set +a && node scripts/check-rls-neon.mjs
+//   NEON_DATA_API_URL=... NEON_AUTH_URL=... NEON_PROJECT_ID=... NEON_BRANCH_ID=... \
+//     node scripts/check-rls-neon.mjs
 //
-// NEON_API_KEY deletes the test users at the end, and does NOTHING else. The users are created
-// through the ordinary sign-up endpoint, the way a player's account is created, and the account
-// deletion under test goes through `public.delete_account()` and carries no key at all. The key is
-// confined to cleanup on purpose: tidying up through the code path being verified would let a
-// broken delete_account erase its own evidence.
+// NO KEY IS HANDLED. The four values above are public coordinates (the two URLs ship in the browser
+// bundle). The two things that need operator rights -- deleting the test users at the end, and
+// reading the foreign key and the victim's row count in SQL (checks 17 and 18) -- go through
+// `neonctl`, which is already authenticated on the operator's machine, so no secret ever enters an
+// environment variable or a transcript (the posture rc-neon2 established, 2026-09-21).
 //
-// It is a server key -- create it scoped to this project alone (`neonctl api-keys create
-// --project-id ...`), never an account-wide one -- it belongs nowhere near the browser bundle, and
-// this script is the only place in the repository that reads it.
+// Cleanup goes through `neonctl neon-auth user delete` and NOT through `public.delete_account()` on
+// purpose: tidying up through the code path being verified would let a broken delete_account erase
+// its own evidence.
 //
 // ---------------------------------------------------------------------------------------------
 // THE RULE THIS FILE IS BUILT AROUND, because the Supabase original got it wrong five times:
@@ -42,26 +43,30 @@ const {
   NEON_AUTH_URL,          // https://ep-xxx.<...>.neon.tech/<db>/auth      (read off the Auth page)
   NEON_PROJECT_ID,
   NEON_BRANCH_ID,
-  NEON_API_KEY,
 } = process.env;
 
 const faltan = Object.entries({
-  NEON_DATA_API_URL, NEON_AUTH_URL, NEON_PROJECT_ID, NEON_BRANCH_ID, NEON_API_KEY,
+  NEON_DATA_API_URL, NEON_AUTH_URL, NEON_PROJECT_ID, NEON_BRANCH_ID,
 }).filter(([, v]) => !v).map(([k]) => k);
 
 if (faltan.length) {
   // Exit 2, not 0. A run that could not test deletion must never read as a green run: checks 10-13
   // are the ones guarding a published privacy promise, and skipping them silently is the same class
   // of lie as a vacuous check.
-  //
-  // NEON_API_KEY is here for the cleanup at the end and NOT for the deletion checks themselves.
-  // That separation is deliberate: cleanup must not run through the same code path it is verifying,
-  // or a broken delete_account would tidy up after itself and leave no evidence.
   console.error(`faltan en el entorno: ${faltan.join(", ")}`);
   process.exit(2);
 }
 
-const MANAGEMENT = `https://console.neon.tech/api/v2/projects/${NEON_PROJECT_ID}/branches/${NEON_BRANCH_ID}/auth/users`;
+import { execFileSync } from "node:child_process";
+
+/** `neonctl <head> --project-id … --branch … <tail>`; the tail is what follows psql's `--`. */
+const neonctl = (head, tail = []) => execFileSync("neonctl",
+  [...head, "--project-id", NEON_PROJECT_ID, "--branch", NEON_BRANCH_ID, ...tail],
+  { encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+
+/** One SQL value, as the table owner. Only for what RLS rightly hides from every Data API caller. */
+const sql = (query) => neonctl(["psql", "--role-name", "neondb_owner"], ["--", "-Atc", query])
+  .split("\n").map((l) => l.trim()).filter((l) => l && !l.startsWith("INFO"))[0] ?? "";
 
 let fallas = 0;
 const check = (nombre, ok, detalle = "") => {
@@ -192,8 +197,7 @@ async function crearUsuario(tag) {
   return { id: sub(jwt), jwt, email, password, cookie: login.headers.get("set-cookie") ?? "" };
 }
 
-const borrarUsuario = (id) =>
-  fetch(`${MANAGEMENT}/${id}`, { method: "DELETE", headers: { Authorization: `Bearer ${NEON_API_KEY}` } });
+const borrarUsuario = async (id) => { neonctl(["neon-auth", "user", "delete", id]); };
 
 const guardar = (u, nombre, extra = {}) => rest(u.jwt, "/decks", {
   method: "POST",
@@ -230,6 +234,12 @@ try {
   const host = new URL(NEON_DATA_API_URL).host;
   console.log(`\nno-vacuidad: 3 usuarios creados | 1 fila de A visible para A | host ${host}\n`);
   exigir(host && a.id && b.id && c.id, "banner de no-vacuidad incompleto");
+
+  // ---- 17. THE FOREIGN KEY. The cascade is what makes account deletion remove every deck, which is
+  // ---- the published privacy promise; a Neon-side re-creation of neon_auth would take it silently.
+  const fk = sql("select pg_get_constraintdef(oid) from pg_constraint where conname = 'decks_user_id_fkey'");
+  check("17. la FK de decks a neon_auth.user existe y borra en cascada",
+    fk.includes('REFERENCES neon_auth."user"(id) ON DELETE CASCADE'), fk || "no existe");
 
   // ---- NEGATIVE CHECKS.
   denegado("4. el otro usuario no puede leer esa fila ni sabiendo el id",
@@ -302,6 +312,11 @@ try {
   exigir(ocupado.status === 422,
     `el control de la verificacion 12 no vale: dar de alta el email de B mientras B existe devolvio ${ocupado.status}, se esperaba 422`);
 
+  // 18's BEFORE half: B's rows are counted while B exists, so "zero after" cannot mean "there were
+  // never any" -- without it, deleted-nothing and deleted-everything read the same.
+  const filasDeBAntes = sql(`select count(*) from public.decks where user_id = '${b.id}'`);
+  exigir(filasDeBAntes === "1", `el control de la verificacion 18 no vale: B tenia ${filasDeBAntes} filas antes de borrarse, se esperaba 1`);
+
   const anonima = await borrarCuenta(null);
   const propia = await borrarCuenta(b.jwt);
 
@@ -354,6 +369,10 @@ try {
       : reintento.status !== 200
         ? `el alta con el email liberado no fue aceptada (${reintento.status}), asi que no prueba nada`
         : `la sesion de la cuenta borrada todavia resuelve (${sesionDeB.status} ${cuerpoDeB.slice(0, 40)})`);
+
+  const filasDeBDespues = sql(`select count(*) from public.decks where user_id = '${b.id}'`);
+  check("18. los mazos de la cuenta borrada se fueron con ella (1 antes, 0 despues)",
+    filasDeBDespues === "0", `${filasDeBDespues} filas despues`);
 
   const { data: mazosA, error: errorMazos } = await rest(a.jwt, `/decks?select=id&id=eq.${mazoA.id}`);
   check("14. y deja los mazos del otro usuario en paz",
