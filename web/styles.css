@@ -31,6 +31,11 @@
      --panel-2. Measured like #81, and test/a11y.test.ts keeps --danger off text for good. */
   --danger-text: #e0795a;
   --ok: #6fa88b;
+  /* The last raw colours, named so a change of palette is one block (2026-09-20 review, D7). */
+  --accent-hover: #ff8c14; --accent-disabled-text: #d8c4ae;
+  --stage-bg: #0c161a; --node-plate: #0b1417;
+  --scrim: rgba(6, 12, 15, .84); --scrim-2: rgba(15, 26, 30, .74);
+  --selection: rgba(239, 125, 0, .3);
 
   /* Domain colours are reserved by Riot and must not be reused for anything else. */
   --dom-fury: #ce212d; --dom-calm: #15ac72; --dom-mind: #22799c;
@@ -52,7 +57,7 @@ html { color-scheme: dark; }
 body { font: 1rem/1.5 var(--font); -webkit-font-smoothing: antialiased; }
 a { color: inherit; text-decoration: none; }
 button, input, select, textarea { font: inherit; color: inherit; }
-::selection { background: rgba(239, 125, 0, .3); }
+::selection { background: var(--selection); }
 .mono { font-family: var(--mono); font-variant-numeric: tabular-nums; }
 /* Said to a screen reader and to nobody else: the word behind a mark, the name behind a colour. */
 .sr-only { position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden; clip-path: inset(50%); white-space: nowrap; border: 0; }
@@ -101,8 +106,8 @@ h1, h2, h3 { font-weight: 600; letter-spacing: -.02em; text-wrap: balance; }
   background: var(--accent); color: var(--accent-ink); font-weight: 600; font-size: 0.875rem; cursor: pointer;
 }
 .primary svg { width: 14px; height: 14px; fill: none; stroke: currentColor; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
-.primary:hover { background: #ff8c14; }
-.primary:disabled { background: var(--accent-dim); color: #d8c4ae; cursor: wait; }
+.primary:hover { background: var(--accent-hover); }
+.primary:disabled { background: var(--accent-dim); color: var(--accent-disabled-text); cursor: wait; }
 .ghost { padding: 8px 14px; border: 1px solid var(--line-2); border-radius: 6px; background: var(--panel); color: var(--text); font-weight: 500; font-size: 0.84375rem; cursor: pointer; }
 .ghost:hover:not(:disabled) { border-color: var(--accent); color: var(--accent); }
 .linklike { background: none; border: 0; padding: 0; color: var(--muted); font-size: 0.875rem; cursor: pointer; }
@@ -191,7 +196,7 @@ textarea::placeholder, input::placeholder { color: var(--faint); }
 .near-miss select { width: auto; padding: 8px 10px; font-size: 0.84375rem; cursor: pointer; }
 
 /* Stage — flat ground with three faint lanes, not a dot grid */
-.stage { position: relative; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); overflow: hidden; background: #0c161a; }
+.stage { position: relative; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); overflow: hidden; background: var(--stage-bg); }
 .graph-host { position: absolute; inset: 0; }
 .graph-host svg { position: absolute; inset: 0; width: 100%; height: 100%; display: block; cursor: grab; touch-action: none; }
 .graph-host svg.dragging { cursor: grabbing; }
@@ -228,9 +233,9 @@ textarea::placeholder, input::placeholder { color: var(--faint); }
 .node.card.missing .frame { stroke: var(--accent); stroke-dasharray: 6 4; }
 .node.card.missing image { opacity: .5; filter: grayscale(.85); }
 .node.card .no-art { fill: var(--panel-2); stroke: var(--line); }
-.node.card .name-bg { fill: #0b1417; stroke: var(--line-2); }
+.node.card .name-bg { fill: var(--node-plate); stroke: var(--line-2); }
 .node.card .name { fill: var(--text); font: 500 0.78125rem var(--font); }
-.node.card .qty-bg { fill: #0b1417; stroke: var(--line-2); }
+.node.card .qty-bg { fill: var(--node-plate); stroke: var(--line-2); }
 .node.card .qty { fill: var(--muted); font: 500 0.6875rem var(--mono); }
 .node.card.missing .qty { fill: var(--accent); }
 .node.card.hl .frame, .node.card.selected .frame, .node.card:hover .frame { stroke: var(--accent); stroke-width: 2; }
@@ -343,7 +348,7 @@ textarea::placeholder, input::placeholder { color: var(--faint); }
 .drawer .rules-version { margin-top: 16px; font: 500 0.6875rem var(--mono); color: var(--faint); }
 
 /* Card preview — click a thumbnail (or double-click a node) to read the card */
-.card-preview { position: fixed; inset: 0; z-index: 50; display: grid; place-items: center; padding: 24px; background: rgba(6, 12, 15, .84); }
+.card-preview { position: fixed; inset: 0; z-index: 50; display: grid; place-items: center; padding: 24px; background: var(--scrim); }
 .card-preview-box {
   position: relative; display: grid; grid-template-columns: auto minmax(0, 380px); gap: 26px; align-items: start;
   max-width: min(960px, 100%); max-height: 100%; overflow: auto; padding: 24px 24px 26px;
@@ -923,7 +928,7 @@ body[data-auth="out"] .gate { display: flex; align-items: center; justify-conten
 
 /* Import */
 .bld-dialog { width: min(560px, 92vw); padding: 20px; border: 1px solid var(--line-2); border-radius: 10px; background: var(--panel); color: var(--text); }
-.bld-dialog::backdrop { background: rgba(15, 26, 30, .74); }
+.bld-dialog::backdrop { background: var(--scrim-2); }
 .bld-dialog-head { display: flex; align-items: center; justify-content: space-between; margin: 0 0 10px; }
 .bld-dialog-title { margin: 0; font-size: 1.0625rem; }
 .bld-dialog textarea { width: 100%; margin: 10px 0; padding: 10px 12px; border: 1px solid var(--line-2); border-radius: 6px; background: var(--bg); color: var(--text); font: 0.78125rem/1.5 var(--mono); resize: vertical; }
