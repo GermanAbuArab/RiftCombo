@@ -82,7 +82,7 @@ saltea RLS, la lee ese script y nada más, y no aparece en `web/` ni en un commi
 ## Infraestructura
 
 - **Hosting**: Vercel project `riftcombo` (Pro team), production branch `master`. El último deploy figuraba CANCELED al momento del sync (2026-09-25); revisar antes de asumir que está sirviendo tráfico.
-- **Base de datos**: Supabase `bpbwsimgiyxzaorunqeo`, org **GermanAbuArab Free**; `SUPABASE_URL` de producción apunta ahí. Migración a Neon en curso, ver issue #226.
+- **Base de datos y auth**: Neon `quiet-breeze-27436036` (aws-us-east-1), branch `main` = `br-wandering-haze-av7v6x9v`; Neon Auth con el cliente OAuth de Google propio y Data API (RLS). Producción lee `NEON_AUTH_URL` y `NEON_DATA_API_URL`. El Supabase anterior (`bpbwsimgiyxzaorunqeo`, org **GermanAbuArab Free**) queda sin tráfico y con `SUPABASE_URL` todavía en Vercel hasta el paso 10 (O3, una semana después del corte), para que un rollback sea un redeploy. Ver issue #226.
 - **Decisión que lo respalda**: `_infra/decisions/2026-09-19-todo-a-neon-salvo-sir-loin`.
 
 ## Datos

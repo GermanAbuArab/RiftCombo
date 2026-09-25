@@ -71,8 +71,8 @@ const options = {
   logLevel: "info",
   plugins: [stripComboProse],
   define: {
-    __SUPABASE_URL__: JSON.stringify(site.url),
-    __SUPABASE_ANON_KEY__: JSON.stringify(site.anonKey),
+    __NEON_AUTH_URL__: JSON.stringify(site.authUrl),
+    __NEON_DATA_API_URL__: JSON.stringify(site.dataUrl),
   },
 };
 
@@ -84,5 +84,5 @@ if (watch) {
   await build(options);
   const size = (f) => `${(readFileSync(join(OUT, f)).length / 1024).toFixed(0)} KB`;
   console.log(`public/app.js ${size("app.js")} · public/data/cards.json ${size("data/cards.json")} · public/data/plays.json ${size("data/plays.json")} (${plays.length} plays)`);
-  console.log(site.url ? `accounts: ${site.url}` : "accounts: off (SUPABASE_URL / SUPABASE_ANON_KEY unset)");
+  console.log(site.authUrl ? `accounts: ${site.origins.join(" + ")}` : "accounts: off (NEON_AUTH_URL / NEON_DATA_API_URL unset)");
 }

@@ -43,22 +43,34 @@ claim from a corrected one by reading forward. This block is the index of what i
 | Schema | `user_id uuid not null default auth.uid() references neon_auth.user (id) on delete cascade`. §3.4 |
 | Policies | **A verbatim port of the four Supabase ones**, on `auth.uid()`, plus `to authenticated`. §3.4 |
 | Deck deletion | The **cascade**. No statement to write, no order to get wrong. §3.3 |
-| Identity deletion | **Route C**, the Management API, with a project-scoped key. The tombstone objection was measured and is false. §5.3 |
+| Identity deletion | **SUPERSEDED 2026-09-21 — it is the SQL function, not Route C.** `public.delete_account()`, `SECURITY DEFINER`, no parameter, no endpoint and **no deployed secret**; `authenticated` was measured able to call it and the five cascades were measured end to end. §12.6 is the live decision; the Route C reasoning is kept at §5.3. |
 | `connect-src` | **Two origins** — `apirest` and `neonauth` on one endpoint id — and the generator takes a list. §7.2 |
 | Origin validator | **`https` + a host ending `.neon.tech`, nothing finer.** The label count varies between projects. §7.1 |
 | Cutover order | **Auth before schema** (auth creates `neon_auth`), staging table **mandatory** (the FK forbids the alternative), `security-scan` before the push. §8, §6 |
 | Cost | Free tier, demonstrated by a working project rather than read off the pricing page. §10 — **but the headroom arithmetic rests on an unsourced compute size; see open item 8** |
 
-**OPEN — four, all cheap now that a project exists, and none blocking design work:**
+**OPEN — SUPERSEDED 2026-09-21. All four were measured; §12 carries the answers and the commands.
+The list below is kept as written, per §11, so a reader can see what was open and for how long.**
 
-1. Can a Neon upgrade recreate `neon_auth` and take the FK with it? The cascade is load-bearing for
-   deletion, so this is the one with teeth. §9 item 1.
-2. Does the Data API hostname survive a **branch reset**? If not, the committed CSP goes stale and
-   every request fails closed. §9 item 5.
-3. Does an idle signed-in tab **wake the compute**? It exceeds Free at any compute size. §9 item 6.
-4. **What compute size does a new Free project default to?** §10's headroom arithmetic was written on
-   an unsourced figure and the honest range spans a factor of eight. One glance at the console. §9
-   item 8.
+1. ~~Can a Neon upgrade recreate `neon_auth` and take the FK with it?~~ **§12.4 — partly answered.**
+   The integration record and the schema have independent lifetimes (the integration is *not found*
+   while the schema, its rows and all five cascading FKs are intact), and `--delete-data` is the
+   documented, **opt-in** flag that drops it. **Still open:** `neon_auth` is owned by a platform role,
+   so a Neon-side upgrade is outside this repository's control. Two measured mitigations are recorded.
+2. ~~Does the Data API hostname survive a **branch reset**?~~ **YES — §12.3, measured on a throwaway
+   branch. The URL and the endpoint id are byte-identical across `branches reset --parent`.** A NEW
+   branch, however, mints a new endpoint and therefore a **new origin**.
+3. ~~Does an idle signed-in tab **wake the compute**?~~ **§12.2 — the autosuspend is measured (5 min
+   13 s from `last_active` to `suspended_at`); the idle-tab half is NOT measurable before cutover and
+   the exact instrument is named in the plan rather than predicted here.**
+4. ~~**What compute size does a new Free project default to?**~~ **0.25 CU, min and max — §12.1.**
+   §10's unsourced figure was right and its top row is the live one: 400 compute-hours, ~160
+   five-minute wake windows a day. The factor-of-eight uncertainty is gone.
+
+**DECIDED 2026-09-21, on measurement — the delete-account route is the SQL function (§12.6), which
+supersedes §5.3's Route C.** No `NEON_API_KEY` is deployed and `api/delete-account.ts` is not built.
+
+**The cutover plan is `docs/superpowers/plans/2026-09-21-neon-migration-plan.md`.**
 
 **KEPT AS REFUTED HISTORY, not as instructions** — §5.2 and §5.4 (an account-deletion gate that was
 false), §3.3's opening (a `text` column decision, right on its premise and reversed when the premise
@@ -1106,6 +1118,298 @@ it is worth measuring rather than assuming**, which is advice this section faile
 - **It does not delete the Supabase project at cutover.** §8 step 10.
 
 ---
+
+---
+
+## 12. The measurements of 2026-09-21, and the fork they settle
+
+**Measured by rc-neon2 against the live project, read-only on `main` and destructively only on a
+throwaway branch that was created and deleted inside this session.** Nothing on `main` was written.
+Every command below is reproducible; run it before trusting the number, as §11 asks.
+
+**The credential question is answered and it is not an environment variable.** `neonctl` on this
+machine is already authenticated — `neonctl projects list` prompts for an organisation rather than
+for a login — so no `NEON_API_KEY` had to be handled, printed or stored by this session. That is the
+better posture and it should be kept: **`neonctl api <path>` is an authenticated passthrough to the
+Management API**, so every measurement below was taken without a secret ever entering a transcript.
+A deployed `NEON_API_KEY` is a separate question and, per the decision in §12.6, is no longer needed.
+
+**The coordinates, so nobody re-derives them:**
+
+| | |
+|---|---|
+| Org | `org-billowing-dawn-47109886` — the personal one. **Not** `org-square-field-00979315`, which is the Vercel-managed org §8 step 1 says refuses `projects create`. |
+| Project | `riftcombo` = `round-waterfall-07137684`, `aws-sa-east-1`, Postgres **18**, created 2026-09-20T02:07:57Z |
+| Branch | `main` = `br-tiny-bird-aczxgj3q` (primary, default, unprotected) |
+| Endpoint | `ep-lucky-shadow-acwqx6jp` |
+| Data API | `https://ep-lucky-shadow-acwqx6jp.apirest.sa-east-1.aws.neon.tech/neondb/rest/v1`, status **active** |
+| Roles on the branch | `authenticator`, `anonymous`, `authenticated`, `neondb_owner` |
+| Schemas | `auth` (owner `cloud_admin`), `neon_auth` (owner `neon_auth`), `pgrst` (owner `neon_service`), `public` |
+| Extensions | `pg_session_jwt 0.5.0`, `plpgsql 1.0` — and nothing else |
+
+**`neonctl data-api get` also prints the settings, and two of them are load-bearing:**
+`db_anon_role` is **`anonymous`** — the spec's warning against Supabase muscle memory is confirmed
+from the platform's own mouth — and `db_schemas` is **`["public"]` alone**, so `neon_auth` is not
+reachable through the Data API at all. That second one is not a detail; §12.6 rests on it.
+
+### 12.1 Open item 8 — the default compute size is 0.25 CU. ANSWERED.
+
+```
+neonctl api /projects/round-waterfall-07137684/endpoints
+  → "autoscaling_limit_min_cu": 0.25, "autoscaling_limit_max_cu": 0.25
+neonctl projects list --org-id org-billowing-dawn-47109886
+  → default_endpoint_settings: { autoscaling_limit_min_cu: 0.25, autoscaling_limit_max_cu: 0.25 }
+```
+
+Min and max are **both 0.25**, so it is a fixed size rather than an autoscaling range. **§10's
+unsourced figure was right, and the top row of its table is the live one**: 100 CU-hours ÷ 0.25 CU =
+**400 compute-hours**, about **160 five-minute wake windows a day**. The factor-of-eight uncertainty
+is gone and the cost case holds with the headroom §10 hoped for. **The correction §10 made to itself
+stands as the more useful half** — the figure was recalled rather than read, and it happened to be
+right, which is not the same as having been safe to state.
+
+### 12.2 Open item 6 — scale-to-zero is measured; the poller half is not, and cannot be yet.
+
+```
+"last_active":   "2026-09-20T02:26:34Z"
+"suspended_at":  "2026-09-20T02:31:47Z"     → 5 min 13 s
+"suspend_timeout_seconds": 0                → platform default, which on Free is 5 minutes
+"current_state": "idle"
+```
+
+**The compute really does suspend, on the documented 5-minute timer, on this project.** Project
+lifetime totals at the time of measurement: `active_time 1424 s` and `cpu_used_sec 358 s` — about
+0.1 CU-hours against 100, after a day of somebody building and probing it.
+
+**What is NOT answered is the question as §9 asked it**, and it cannot be until the app runs against
+Neon: *does an idle signed-in tab wake the compute?* The architecture predicts no — a Neon Auth token
+refresh addresses the **`neonauth`** host, which is the auth service, while only the **`apirest`**
+host reaches Postgres, and the compute wakes on database traffic — **but that is a prediction, and
+§10's own history is what a recalled number costs.** The instrument is named in the plan instead:
+after cutover, sign in, leave one tab open and untouched for an hour, then read `last_active` and
+`suspended_at` off the endpoint. If they stay 5 minutes apart the tab is not a poller; if
+`last_active` keeps advancing, it is, and 730 hours of wall clock exceeds Free at every compute size.
+
+### 12.3 Open item 5 — the Data API hostname SURVIVES a branch reset. ANSWERED.
+
+Measured on a throwaway branch (`rc-neon2-probe`, `br-winter-sun-acazjjuv`), created from `main` and
+deleted afterwards, so that `main` was never reset:
+
+| | Before `branches reset --parent` | After |
+|---|---|---|
+| Data API URL | `https://ep-noisy-rain-acnusu71.apirest.sa-east-1.aws.neon.tech/neondb/rest/v1` | **identical** |
+| Endpoint id | `ep-noisy-rain-acnusu71` | **identical** |
+| Data | 1 user deleted, 1 probe deck present | restored to the parent: 2 users, 1 deck |
+
+**A reset restores the DATA and leaves the ENDPOINT alone, so the committed CSP does not go stale.**
+The reason is structural rather than incidental and is worth keeping: the Data API URL is derived
+from the **endpoint** id, and a reset acts on the branch's data, not on the compute attached to it.
+
+**The finding beside it is the one that can still bite, and it is new.** Creating the probe branch
+minted a **new endpoint** (`ep-noisy-rain-acnusu71`, against `main`'s `ep-lucky-shadow-acwqx6jp`) and
+the child **inherited the Data API already active**, with its own URL. So **a new branch is a new
+origin.** The CSP is pinned to a branch, not to a project: branching for a test is free, and pointing
+the deployed app at a branch is a `vercel.json` change. That is an argument for §7.1's loose validator
+all over again — `https` plus a host ending `.neon.tech` accepts both hosts, and any regex fitted to
+one endpoint id rejects the other by construction.
+
+### 12.4 Open item 1 — partly answered, and the residual is named rather than waved away.
+
+**What is measured:** `neonctl neon-auth status` answers *"Neon Auth is not configured for this
+branch"* and `neonctl neon-auth disable` answers *"Neon Auth integration not found for branch"* —
+**while `neon_auth` holds nine live tables, two user rows, three sessions, and all five cascading
+foreign keys are intact.** So **the integration record and the schema have independent lifetimes, and
+losing the integration does not touch the schema, the data or the FK.** That is the reassuring half
+and it was not obvious.
+
+**What is documented by Neon's own tooling, and is the sharpest evidence available short of doing
+it:** `neonctl neon-auth disable --help` carries
+
+```
+--delete-data    Permanently delete all Neon Auth data and schema from the database
+                 [boolean] [default: false]
+```
+
+**So the operation that would drop the schema exists, is named, and is OPT-IN.** An ordinary disable
+does not reach it.
+
+**What is unmeasured and stays open:** whether a **Neon-side** upgrade can recreate the schema. The
+ownership measurement is why the question is legitimate rather than paranoid —
+
+```sql
+select n.nspname, pg_get_userbyid(n.nspowner) from pg_namespace n;
+  → neon_auth | neon_auth      auth | cloud_admin      pgrst | neon_service      public | pg_database_owner
+select c.relname, pg_get_userbyid(c.relowner) from pg_class c ... where n.nspname='neon_auth';
+  → all nine tables owned by neon_auth
+```
+
+**`neon_auth` and every table in it are owned by a platform role, not by `neondb_owner`.** The
+project owner cannot stop Neon migrating that schema, so "could an upgrade take the FK with it" is a
+question about Neon's release practice and not about anything in this repository.
+
+**Two structural mitigations, both measured, and the first is the one nobody had noticed:** the
+foreign key is a **two-way** guard — while `decks_user_id_fkey` exists, a plain
+`drop table neon_auth."user"` **fails** on the dependent constraint, so the destructive path has to
+be an explicit `cascade` and cannot happen by omission. And there are **no event triggers, no rules
+and no user-defined triggers** on `neon_auth."user"` (the ten triggers present are all internal
+`RI_ConstraintTrigger` cascade and no-action pairs), so nothing in that schema is watching or
+rewriting a delete.
+
+**Standing instrument rather than a standing worry:** §4's check 14 — *deleting one account leaves
+the other user's decks alone* — is what would notice if the cascade ever stopped existing, and §12.6
+below adds a cheaper one: a single `select pg_get_constraintdef` assertion in
+`scripts/check-rls-neon.mjs` costs nothing and fails loudly the day the FK is not there.
+
+### 12.5 The schema is already applied on `main`, and it matches §3.4.
+
+`neon/migrations/0001_decks.sql` and `0002_delete_account.sql` are **live on `br-tiny-bird-aczxgj3q`**
+— presumably applied by panel3 — and were read back rather than assumed:
+
+- `decks.user_id` is `uuid`, `not null`, `default auth.uid()`, and
+  `FOREIGN KEY (user_id) REFERENCES neon_auth."user"(id) ON DELETE CASCADE`. ✓ §3.4
+- The three CHECK constraints (`decks_name_length`, `decks_text_length`, `decks_format_known`) are
+  present with the printed bounds. ✓
+- **Four policies, every one `to authenticated`**, `using`/`with check` exactly
+  `(user_id = auth.uid())` on the four verbs. ✓ §3.4
+- `public.delete_account()` — **`prosecdef = t`**, `proconfig = {search_path=""}`, owner
+  `neondb_owner`. ✓ `public.touch_updated_at()` — `prosecdef = f`, same empty search path. ✓
+- Grants on `public.decks`: `authenticated` has `SELECT, INSERT, UPDATE, DELETE`; **`anonymous` has
+  nothing at all.** ✓
+- `has_function_privilege`: `authenticated` → `delete_account` **true**; `anonymous` **false**;
+  `authenticator` **false**. ✓ matches the `revoke`/`grant` block of `0002`.
+
+**Stated as a limit rather than left implied: three things in `0001` were NOT read back** — the two
+indexes (`decks_user_updated_idx`, `decks_user_name_idx`), the `decks_touch_updated_at` trigger, and
+the `ALTER DEFAULT PRIVILEGES FOR ROLE neondb_owner` line. They are cheap to check and the plan does
+it at step 3 rather than this section claiming them.
+
+### 12.6 THE FORK — the delete-account route is the SQL FUNCTION. §5.3's Route C is superseded.
+
+**§5.3 selected Route C (an Edge function calling the Management API with a project-scoped
+`NEON_API_KEY`). That selection is superseded by measurement, and the worktree's
+`neon/migrations/0002_delete_account.sql` — a `SECURITY DEFINER` function, no endpoint, no secret —
+is the route to build.** §5.3 is kept unedited above, as §11 requires; this is the live decision.
+
+**Route C was chosen on the strength of two claims. The first is still true and the second stopped
+being a reason.** It is true that the Management API delete works and leaves no tombstone. But §5.3's
+argument for it over Design A was that *"whether the browser may issue that delete directly is a
+separate question"* and that `neon_auth` is not exposed to the Data API — **and both of those are
+arguments against the browser doing it, not against a database function doing it.** A `SECURITY
+DEFINER` function in `public` is reachable through the Data API's `/rpc/` surface precisely because
+`public` is exposed and `neon_auth` is not; the function is the door, and it is the only one.
+
+**What was measured, on the throwaway branch, in this order:**
+
+```
+set role authenticated;  select public.delete_account();   → SUCCEEDS (returns void)
+set role anonymous;      select public.delete_account();   → ERROR: permission denied for function delete_account
+```
+
+The first line is the whole decision. `authenticated` has **no `USAGE` on schema `neon_auth`** and
+**no `DELETE` on `neon_auth."user"`** (both measured false, `neondb_owner`'s DELETE measured true),
+and the call still succeeds — **so the `SECURITY DEFINER` escalation works through the Data API's own
+role, which is the one thing that was genuinely unknown.** It deleted zero rows because `auth.uid()`
+is NULL with no JWT presented, which is the safe no-op the migration's header claims.
+
+**The cascade, measured end to end rather than inferred from the constraint definitions:**
+
+| | users | sessions | accounts | decks |
+|---|---|---|---|---|
+| victim before `delete from neon_auth."user" where id = <victim>` | 1 | 1 | 1 | 1 |
+| victim after | **0** | **0** | **0** | **0** |
+| the other user, after | 1 | 2 | 1 | 1 |
+| orphans anywhere (`session`, `account`, `decks`) | | | | **0** |
+
+**Five foreign keys cascade from `neon_auth."user"`** — `session`, `account`, `member`, `invitation`
+and `public.decks` — so one delete takes the sessions, the OAuth links, the org memberships and the
+decks. The worktree migration's header asserted exactly this from a Management API delete; it is now
+confirmed from the SQL side, which is the side the function actually uses.
+
+**Why the SQL function wins, on each axis §5.3 argued:**
+
+| Axis | Route C (Management API) | The SQL function |
+|---|---|---|
+| Secret in the deployed environment | a `NEON_API_KEY` in Vercel | **none** |
+| New attack surface | a new Edge endpoint | **none** — `api/` gains nothing |
+| What aims the delete | the `sub` of a token the endpoint verifies | **`auth.uid()` alone. The function takes no parameter, so there is nothing to aim.** |
+| Worst bug it can have | "delete anybody's account" | a no-op |
+| Distance from today's code | a new file plus JWT verification | `.rpc("delete_account")` → `.rpc("delete_account")` |
+| Completeness of the deletion | measured: zero rows | measured: the same five cascades, from the same one row |
+
+**The last row of that table is the one §5.3 could not have known.** It preferred C because C's
+completeness had been measured and A's had not. A's is measured now, it is the *same* cascade, and
+everything else on the table favours A. §5.3's own words — *"that is a third reason to prefer Design
+A"* — were right and were overruled by an asymmetry in evidence that no longer exists.
+
+**`web/privacy.html`'s promise is kept by the database rather than by an endpoint**, which is the
+sentence §0 spent its length defending: *"there is no copy kept"* is true because the row is gone and
+four other tables went with it, not because a server was careful.
+
+**What remains unproven and is a plan step, not a doubt:** the function has been called **as the
+`authenticated` role in SQL** and **not yet through PostgREST's `/rpc/delete_account` with a real
+JWT**. That is check 11 of §4 and it is step 3 of the cutover. Two specific things to assert there,
+because they are the ways this can still fail quietly:
+
+1. **PostgREST must expose the function.** `db_schemas` is `["public"]` and the function is in
+   `public` with `EXECUTE` granted to `authenticated`, so it should appear at `/rpc/delete_account` —
+   *should*, and the word is doing work.
+2. **`auth.uid()` must be non-NULL inside it.** With a JWT presented, the function deletes the
+   caller's row; with none, it deletes nothing. **A test that does not first prove the row existed
+   cannot tell those apart** — the vacuity class, in the one place where a false pass means an
+   account that was never deleted while the UI said it was.
+
+**`api/delete-account.ts` is therefore NOT built, `NEON_API_KEY` is NOT deployed, and §7.3's widening
+of the secret-name check shrinks to the connection string alone.** §5.5's Edge-runtime constraint
+stays refuted-history: it bites nothing, because nothing is built in `api/`.
+
+### 12.7 Two facts that are not in this spec and would each have cost a debugging session
+
+**(a) `authenticated` can EXECUTE `auth.uid()` and has NO `USAGE` on schema `auth`.**
+
+```sql
+select r.rolname, has_schema_privilege(r.rolname,'auth','USAGE'), has_function_privilege(r.rolname,'auth.uid()','EXECUTE')
+  → authenticated | f | t        anonymous | f | t        authenticator | f | t        neondb_owner | t | t
+set role authenticated; select auth.uid();
+  → ERROR: permission denied for schema auth
+set role authenticated; select count(*) from public.decks;
+  → 0 rows, NO ERROR
+```
+
+**A direct call to `auth.uid()` is refused and the RLS policy that calls it works.** The reason is
+ordinary Postgres and is worth stating so nobody "fixes" the grants: **schema `USAGE` is checked when
+a name is RESOLVED, and a stored policy expression already holds the function's OID**, so only
+`EXECUTE` is checked at run time. Neon has granted exactly the narrower privilege on purpose.
+
+**The consequence lands on `scripts/check-rls-neon.mjs` check 16** — *`auth.uid()` inside a policy
+equals the `sub` of the presented token*. **Do not implement it as a read of `auth.uid()`** through
+an `/rpc/` wrapper or a view: it fails with a permission error, and §4's own table is the reason that
+matters — a permission error is one more way for a check to come back looking like a denial. panel3's
+implementation — **insert a row without `user_id`, let `default auth.uid()` fill it, compare what
+landed against the token's `sub`** — is immune to this, and this is a second and independent reason
+to keep it.
+
+**(b) A signed-out visitor is refused at the GRANT, not filtered by RLS.**
+
+```sql
+set role anonymous; select count(*) from public.decks;
+  → ERROR: permission denied for table decks
+```
+
+`anonymous` holds no privilege on `public.decks` at all. **That is a stronger property than RLS
+filtering to zero rows** and it is what commit `e458b70` on the implementation branch means. It does
+**not** contradict §4's seventh vacuity instance, which observed the Data API rejecting a
+credential-less request at the door with `400` before PostgREST is reached — **the two are different
+layers and both hold**, and check 9 must still pair its rejection with a positive control on the same
+URL, because a `400` from an empty project is indistinguishable from a `400` from a refused one.
+
+### 12.8 What this session did NOT touch
+
+`main` was read from and never written to. The destructive tests ran on `rc-neon2-probe`
+(`br-winter-sun-acazjjuv`), created from `main` at `0/1BF9CB0` and **deleted at the end of the
+session**; `neonctl branches list` afterwards returns `main` alone. Neon Auth was not enabled, no
+OAuth client was created, no application code was changed, no Supabase project was touched, and
+nothing was deployed.
+
 
 ## Links
 

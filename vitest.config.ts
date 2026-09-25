@@ -22,5 +22,11 @@ import { configDefaults, defineConfig } from "vitest/config";
 export default defineConfig({
   test: {
     exclude: [...configDefaults.exclude, "**/.scratch-*/**"],
+    // A SECOND reason, added 2026-09-24. Seven DOM files import the whole app in `beforeAll` — every
+    // combo, synergy and card the bundle carries — and under the load this machine runs at (load
+    // average 55-60, several sessions at once) that import passed vitest's 10s hook default and the
+    // suite went red with "Hook timed out", which reads exactly like a failure. The same files pass
+    // at once when run alone. A hook whose cost is the point of it gets a budget, not a retry.
+    hookTimeout: 60_000,
   },
 });
