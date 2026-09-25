@@ -48,4 +48,4 @@ data); no Vercel env, no deploy, no merge; O2/O3 are the owner's.
 - [x] **Gates** at the final sha: typecheck 0, `npm test` exit 0 with a `Tests N passed` line and no
       `failed`, `build:web` 0.
       RAN: typecheck 0; `npm test` exit 0, `Tests 749 passed (749)`, 55 files, 0 `failed`; build:web 0.
-- [ ] **Handoff** `docs/handoffs/2026-09-25-rc-neon4.md`, committed; `git status` clean.
+- [x] **Handoff** `docs/handoffs/2026-09-25-rc-neon4.md`, committed; `git status` clean.
