@@ -17,8 +17,8 @@ import { loadPlays } from "../scripts/web-plays.mjs";
  * not in it). It is a vocabulary list, not a classifier: a new internal name has to be added here.
  *
  * Non-vacuity, twice: the control string must MATCH, or the predicate is looking at nothing; and the
- * directory must hold at least the sixteen plays that were edited, or a loader reading an empty
- * directory passes for free.
+ * directory must hold at least the eighteen plays published by 2026-09-25 (#231), or a loader
+ * reading an empty directory passes for free.
  */
 const FLEET = /\b(?:lane|manager|rc-[a-z]+\d*|handoff|brief|not mine|the user asked|\.scratch)\b|^#{2,3} .*\bfor the manager\b/im;
 
@@ -33,7 +33,7 @@ describe("the run plays are written for a reader", () => {
   });
 
   it("no published play carries fleet language", () => {
-    expect(plays.length).toBeGreaterThanOrEqual(16);
+    expect(plays.length).toBeGreaterThanOrEqual(18);
     const hits = plays.flatMap((p) =>
       p.markdown
         .split("\n")
