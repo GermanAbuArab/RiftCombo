@@ -49,7 +49,8 @@ NEW project. The São Paulo project `round-waterfall-07137684` is retired and ho
 | Review finding 3 | §0 already named `quiet-breeze-27436036` (`f6f0bf5`); the step bodies still named the sa-east-1 ids in six places, now replaced. `round-waterfall-07137684` is left alone: deleting it is the owner's call. |
 | 8 Data | **Rehearsed end to end, production run left for cutover.** The real script ran against a throwaway child of main, `br-aged-term-avkxc7iw` (`rehearsal-step8-2026-09-25`): `supabase decks: 2 from 2 owners \| staged on Neon: 2`, exit 0; 2 distinct numeric subs staged; `public.decks` 0; a second run refused (`already holds 2 rows`, exit 1, no export written); export `~/riftcombo-exports/2026-09-25-rehearsal-br-aged-term.json`, mode 0600, outside the repo. **Main untouched: staged 0, decks 0.** Not run on main because a run now strands any deck saved on Supabase before the deploy, and undoing it is a delete; it is the first command of the cutover sequence ("Step 8 at cutover"). |
 | 8b Scan | **Done**: `security_runs/RiftCombo_3ba7df34`, `completed` 2026-09-24T20:14Z, newer than every code commit on the branch, 3 findings, 0 blocking. Triage in Step 8b. |
-| O1 | **Still open**: `neonctl neon-auth oauth-provider list` → `google type: shared`. Trusted domain `https://riftcombo.app` present. |
+| O1 | **Done 2026-09-25.** `oauth-provider list` → `google standard` with the client Supabase already used; `<Auth>/callback/google` added beside the Supabase URI in Google Cloud Console (both persisted after reload). The curl chain now ends at `Sign in - Google Accounts`, no `redirect_uri_mismatch`. |
+| O1b | **Done 2026-09-25 (PR #225 review).** Email-and-password is **disabled on production main**: `/sign-up/email` → 400 `EMAIL_PASSWORD_SIGN_UP_DISABLED`, `/sign-in/email` → 400 `EMAIL_PASSWORD_DISABLED`, while the Google chain still reaches Google. Why, measured on a throwaway branch: an email sign-up for the owner's Gmail address followed by that owner's Google sign-in gave `error=account_not_linked` (outcome (b): a free lockout of any address); with email/password disabled on the same branch, `/sign-up/email` was refused and a fresh Google sign-in created a user (`emailVerified t`, provider `google`). A child branch inherits the disabled setting, so the RLS verifier runs only on a throwaway branch with `--enabled true` (header of `scripts/check-rls-neon.mjs`); rerun 2026-09-25 there: 18/18, exit 0; against main it throws at the first sign-up, 0 users written. |
 
 **Three standing rules for every step.**
 
@@ -319,13 +320,21 @@ the Supabase bill this migration exists to remove.
 ## Step 10 — delete the Supabase project, one week after step 9. **Blocked on O3.**
 
 **verify:** a week of real use has passed with no rollback.
-**verify:** the export file still exists outside the repository.
+**verify:** the export file still exists outside the repository — then delete it the same day
+(`web/privacy.html` promises the offline copy is gone on 2 October 2026, with the old database).
+**Also due:** any row still in `migration.staged_decks` on **31 December 2026** is deleted and the
+staging schema dropped (`0004`'s footer), the other date `web/privacy.html` publishes.
 **verify:** after deletion, `npm test` and `npm run build:web` still pass with no Supabase
 environment variable set at all — proving nothing still reads it.
 
 ---
 
 ## Step 11 — the records
+
+- **Beta pin.** `@neondatabase/neon-js` is pinned to `0.7.0-beta` (and ships `@neondatabase/auth`
+  0.5.0-beta). When a stable release exists: read its changelog for the auth adapter and the session
+  cache (the vendor HIGH in Step 8b), bump, rerun the three gates and `scripts/check-rls-neon.mjs`
+  on a throwaway branch, and repeat the Chrome/WebKit sign-in, save, reload smoke before promoting.
 
 - Obsidian `personal/projects/riftcombo/README.md` **Infraestructura**: the Neon row (Free, 0.25 CU,
   100 CU-hours, 0.5 GB, `aws-us-east-1`), and the Vercel Hobby row with the 100-deploys-a-day cap, which

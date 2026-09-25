@@ -7,6 +7,18 @@
 // the other's row: read it, list it, rename it, delete it, or insert a row under the other's id.
 // Every one of those must fail. The accounts are deleted at the end.
 //
+// RUN IT ON A THROWAWAY BRANCH, NEVER ON PRODUCTION `main`. It creates its users through
+// `/sign-up/email`, and production has email-and-password turned OFF (review of PR #225: an open
+// email sign-up lets anyone pre-register a player's Gmail address, and the managed server then
+// refuses that player's Google sign-in with `account_not_linked` -- measured 2026-09-25). A child
+// branch inherits that setting, so turn it back on for the branch first:
+//
+//   neonctl branches create --project-id <p> --parent <main> --name rls-<date>
+//   neonctl neon-auth config email-password update --project-id <p> --branch <child> --enabled true
+//
+// Against production the first sign-up is refused (EMAIL_PASSWORD_SIGN_UP_DISABLED) and the run
+// THROWS before any check, which is the intended failure.
+//
 // Credentials come from the environment only -- nothing here is ever written to a file or printed:
 //
 //   NEON_DATA_API_URL=... NEON_AUTH_URL=... NEON_PROJECT_ID=... NEON_BRANCH_ID=... \
@@ -35,7 +47,7 @@
 // TO RUN AGAINST AN EMPTY DATABASE, which is exactly the state those checks reported green on.
 //
 // Hence: the positive controls run FIRST and THROW rather than print, the non-vacuity banner must be
-// non-zero, and `denegado()` demands a specific successful shape rather than an absence of rows.
+// non-zero, and `denied()` demands a specific successful shape rather than an absence of rows.
 // ---------------------------------------------------------------------------------------------
 
 const {
@@ -45,15 +57,15 @@ const {
   NEON_BRANCH_ID,
 } = process.env;
 
-const faltan = Object.entries({
+const missing = Object.entries({
   NEON_DATA_API_URL, NEON_AUTH_URL, NEON_PROJECT_ID, NEON_BRANCH_ID,
 }).filter(([, v]) => !v).map(([k]) => k);
 
-if (faltan.length) {
+if (missing.length) {
   // Exit 2, not 0. A run that could not test deletion must never read as a green run: checks 10-13
   // are the ones guarding a published privacy promise, and skipping them silently is the same class
   // of lie as a vacuous check.
-  console.error(`faltan en el entorno: ${faltan.join(", ")}`);
+  console.error(`missing from the environment: ${missing.join(", ")}`);
   process.exit(2);
 }
 
@@ -76,15 +88,15 @@ const sql = (query) => {
   return line ? line.slice(2) : "";
 };
 
-let fallas = 0;
-const check = (nombre, ok, detalle = "") => {
-  if (!ok) fallas++;
-  console.log(`${ok ? "pass" : "FAIL"}  ${nombre}${detalle ? `  -- ${detalle}` : ""}`);
+let failures = 0;
+const check = (name, ok, detail = "") => {
+  if (!ok) failures++;
+  console.log(`${ok ? "pass" : "FAIL"}  ${name}${detail ? `  -- ${detail}` : ""}`);
 };
 
 /** A positive control. It THROWS, because everything after it is only meaningful if it held. */
-function exigir(condicion, mensaje) {
-  if (!condicion) throw new Error(`no se puede probar aislamiento: ${mensaje}`);
+function require(condition, message) {
+  if (!condition) throw new Error(`cannot prove isolation: ${message}`);
 }
 
 /**
@@ -94,21 +106,21 @@ function exigir(condicion, mensaje) {
  * responses exactly, and borrowing a library's idea of what counts as an error is the thing that
  * went wrong last time. Everything it decides is visible right here.
  */
-async function rest(jwt, ruta, opciones = {}) {
-  const cabeceras = { "Content-Type": "application/json", ...(opciones.headers ?? {}) };
-  if (jwt) cabeceras["Authorization"] = `Bearer ${jwt}`;
+async function rest(jwt, path, options = {}) {
+  const headers = { "Content-Type": "application/json", ...(options.headers ?? {}) };
+  if (jwt) headers["Authorization"] = `Bearer ${jwt}`;
   // `return=representation` on every write, never the default `return=minimal`. Minimal answers 204
   // with no body whether it changed one row or none, so a write checked under it cannot tell the two
   // apart -- the same indistinguishability this file exists to eliminate.
-  if (opciones.method && opciones.method !== "GET") cabeceras["Prefer"] = "return=representation";
+  if (options.method && options.method !== "GET") headers["Prefer"] = "return=representation";
 
-  const res = await fetch(`${NEON_DATA_API_URL}${ruta}`, { ...opciones, headers: cabeceras });
-  const texto = await res.text();
-  let cuerpo = null;
-  try { cuerpo = texto ? JSON.parse(texto) : null; } catch { cuerpo = texto; }
+  const res = await fetch(`${NEON_DATA_API_URL}${path}`, { ...options, headers: headers });
+  const text = await res.text();
+  let body = null;
+  try { body = text ? JSON.parse(text) : null; } catch { body = text; }
 
-  if (!res.ok) return { data: null, error: cuerpo ?? { message: res.statusText }, status: res.status };
-  return { data: cuerpo, error: null, status: res.status };
+  if (!res.ok) return { data: null, error: body ?? { message: res.statusText }, status: res.status };
+  return { data: body, error: null, status: res.status };
 }
 
 /**
@@ -119,24 +131,24 @@ async function rest(jwt, ruta, opciones = {}) {
  * fails -- an error means the request never got far enough to be denied, and rows mean RLS let it
  * through.
  */
-const denegado = (nombre, { data, error, status }) => {
+const denied = (name, { data, error, status }) => {
   if (error) {
-    return check(nombre, false, `la request FALLO, no fue denegada (${status} ${error.code ?? "?"}: ${error.message ?? ""})`);
+    return check(name, false, `the request FAILED, it was not denied (${status} ${error.code ?? "?"}: ${error.message ?? ""})`);
   }
   if (!Array.isArray(data)) {
-    return check(nombre, false, `respuesta inesperada, se esperaba un array y vino ${typeof data} (${status})`);
+    return check(name, false, `unexpected response, expected an array and got ${typeof data} (${status})`);
   }
-  check(nombre, data.length === 0, `${data.length} filas`);
+  check(name, data.length === 0, `${data.length} rows`);
 };
 
 /** A NEGATIVE check on an insert, where denial DOES arrive as an error, and only one code will do. */
-const rechazado = (nombre, { data, error, status }) => {
-  const codigo = error?.code;
-  if (codigo === "42501") return check(nombre, true);
+const refused = (name, { data, error, status }) => {
+  const code = error?.code;
+  if (code === "42501") return check(name, true);
   if (error) {
-    return check(nombre, false, `codigo inesperado, se esperaba 42501 (${status} ${codigo ?? "?"}: ${error.message ?? ""})`);
+    return check(name, false, `unexpected code, expected 42501 (${status} ${code ?? "?"}: ${error.message ?? ""})`);
   }
-  check(nombre, false, `RLS NO rechazo el insert, se insertaron ${Array.isArray(data) ? data.length : "?"} filas`);
+  check(name, false, `RLS did NOT refuse the insert, rows inserted: ${Array.isArray(data) ? data.length : "?"} rows`);
 };
 
 /**
@@ -146,7 +158,7 @@ const rechazado = (nombre, { data, error, status }) => {
  * `{"message":"missing authentication credentials: ...","code":null}`. The gateway refuses the
  * request before PostgREST ever sees it, which is why `code` is null and why none of the PGRST*
  * codes apply here. That is STRICTER than RLS filtering, not weaker -- but it is a different shape,
- * and `denegado()` is right to call it a broken request rather than a denial.
+ * and `denied()` is right to call it a broken request rather than a denial.
  *
  * Two shapes are accepted and each is named: the identified gateway refusal, or a 200 with zero
  * rows should Neon ever start admitting anonymous callers as the `anonymous` role. Anything else --
@@ -156,117 +168,117 @@ const rechazado = (nombre, { data, error, status }) => {
  * credential-less request before it looks at the table, so a database with no `decks` table answers
  * exactly the same 400. The caller pairs it with a positive control on the identical URL.
  */
-const RECHAZOS_DE_LA_PUERTA = [
+const GATEWAY_REFUSALS = [
   "missing authentication credentials",
   "not a valid JWT encoding",
   "missing key id",
 ];
 
-const sinCredenciales = (nombre, { data, error, status }) => {
+const noCredentials = (name, { data, error, status }) => {
   if (!error) {
     if (!Array.isArray(data)) {
-      return check(nombre, false, `respuesta inesperada sin error, vino ${typeof data} (${status})`);
+      return check(name, false, `unexpected response with no error, got ${typeof data} (${status})`);
     }
-    return check(nombre, data.length === 0, `${data.length} filas`);
+    return check(name, data.length === 0, `${data.length} rows`);
   }
-  const mensaje = String(error.message ?? "");
-  const reconocido = (status === 400 || status === 401) && RECHAZOS_DE_LA_PUERTA.some((r) => mensaje.includes(r));
-  check(nombre, reconocido, reconocido ? "" : `rechazo no reconocido (${status} ${error.code ?? "sin code"}: ${mensaje})`);
+  const message = String(error.message ?? "");
+  const recognised = (status === 400 || status === 401) && GATEWAY_REFUSALS.some((r) => message.includes(r));
+  check(name, recognised, recognised ? "" : `unrecognised refusal (${status} ${error.code ?? "no code"}: ${message})`);
 };
 
 const sub = (jwt) => JSON.parse(Buffer.from(jwt.split(".")[1], "base64url")).sub;
 
 /** A signed-in browser: a real account, signed in the same way the app signs one in. */
-async function crearUsuario(tag) {
+async function createUser(tag) {
   const email = `rls-${tag}-${crypto.randomUUID()}@riftcombo.test`;
   const password = crypto.randomUUID();
-  const origen = new URL(NEON_AUTH_URL).origin;
-  const json = { "Content-Type": "application/json", Origin: origen };
+  const origin = new URL(NEON_AUTH_URL).origin;
+  const json = { "Content-Type": "application/json", Origin: origin };
 
-  const alta = await fetch(`${NEON_AUTH_URL}/sign-up/email`, {
+  const signUp = await fetch(`${NEON_AUTH_URL}/sign-up/email`, {
     method: "POST", headers: json,
-    body: JSON.stringify({ email, password, name: `rls ${tag}`, callbackURL: origen }),
+    body: JSON.stringify({ email, password, name: `rls ${tag}`, callbackURL: origin }),
   });
-  exigir(alta.ok, `no se pudo crear ${tag}: ${alta.status} ${await alta.text()}`);
+  require(signUp.ok, `could not create ${tag}: ${signUp.status} ${await signUp.text()}`);
 
   const login = await fetch(`${NEON_AUTH_URL}/sign-in/email`, {
     method: "POST", headers: json, body: JSON.stringify({ email, password }),
   });
-  exigir(login.ok, `no se pudo loguear ${tag}: ${login.status}`);
+  require(login.ok, `could not sign in ${tag}: ${login.status}`);
 
-  const sesion = await fetch(`${NEON_AUTH_URL}/get-session`, {
+  const session = await fetch(`${NEON_AUTH_URL}/get-session`, {
     headers: { Cookie: login.headers.get("set-cookie") ?? "" },
   });
   // The JWT rides in a RESPONSE HEADER, not in the body. Reading the body here would yield a session
   // object with no token and the failure would look like a permissions problem three checks later.
-  const jwt = sesion.headers.get("Set-Auth-Jwt");
-  exigir(jwt, `${tag} quedo sin JWT: get-session no devolvio Set-Auth-Jwt`);
+  const jwt = session.headers.get("Set-Auth-Jwt");
+  require(jwt, `${tag} has no JWT: get-session returned no Set-Auth-Jwt`);
 
   return { id: sub(jwt), jwt, email, password, cookie: login.headers.get("set-cookie") ?? "" };
 }
 
-const borrarUsuario = async (id) => { neonctl(["neon-auth", "user", "delete", id]); };
+const deleteUser = async (id) => { neonctl(["neon-auth", "user", "delete", id]); };
 
-const guardar = (u, nombre, extra = {}) => rest(u.jwt, "/decks", {
+const saveDeck = (u, name, extra = {}) => rest(u.jwt, "/decks", {
   method: "POST",
-  body: JSON.stringify({ name: nombre, deck_text: "1 Lux, Illuminated", format: "constructed", ...extra }),
+  body: JSON.stringify({ name: name, deck_text: "1 Lux, Illuminated", format: "constructed", ...extra }),
 });
 
-const a = await crearUsuario("a");
-const b = await crearUsuario("b");
-const c = await crearUsuario("c");
+const a = await createUser("a");
+const b = await createUser("b");
+const c = await createUser("c");
 
 // Mutable, because check 12 proves the deletion by signing the freed email UP AGAIN, and the
 // account that creates has to be cleaned up like the other three.
-const creados = [a, b, c];
+const created = [a, b, c];
 
 try {
   // ---- POSITIVE CONTROLS. These throw. Everything below is an absence, and an absence only means
   // ---- something once the thing being hidden is known to be there.
-  const { data: filasA, error: errorA } = await guardar(a, "A's deck", { user_id: a.id });
-  exigir(!errorA, `A no pudo guardar un mazo: ${errorA?.code ?? ""} ${errorA?.message ?? ""}`);
-  const mazoA = filasA?.[0];
-  exigir(mazoA?.id, "el insert de A no devolvio la fila");
-  check("1. un usuario logueado puede guardar un mazo (existe la policy de insert)", true);
+  const { data: rowsA, error: errorA } = await saveDeck(a, "A's deck", { user_id: a.id });
+  require(!errorA, `A could not save a deck: ${errorA?.code ?? ""} ${errorA?.message ?? ""}`);
+  const deckA = rowsA?.[0];
+  require(deckA?.id, "A's insert did not return the row");
+  check("1. a signed-in user can save a deck (the insert policy exists)", true);
 
-  const { error: errorB } = await guardar(b, "B's deck", { user_id: b.id });
-  check("2. el segundo usuario tambien puede guardar", !errorB, errorB?.message ?? "");
+  const { error: errorB } = await saveDeck(b, "B's deck", { user_id: b.id });
+  check("2. the second user can save too", !errorB, errorB?.message ?? "");
 
-  const { data: listaA, error: errorLista } = await rest(a.jwt, "/decks?select=id,name");
-  exigir(!errorLista, `A no puede leer su propia lista: ${errorLista?.message ?? ""}`);
-  exigir(listaA?.length === 1 && listaA[0].id === mazoA.id,
-    `A no ve su propia fila (${listaA?.length ?? 0} filas), asi que nada de lo de abajo prueba nada`);
-  check("3. la lista de un usuario tiene solo sus propios mazos", true);
+  const { data: listA, error: errorList } = await rest(a.jwt, "/decks?select=id,name");
+  require(!errorList, `A cannot read their own list: ${errorList?.message ?? ""}`);
+  require(listA?.length === 1 && listA[0].id === deckA.id,
+    `A does not see their own row (${listA?.length ?? 0} rows), so nothing below proves anything`);
+  check("3. a user's list holds only their own decks", true);
 
   // ---- NON-VACUITY BANNER. If any of these is zero the run is red no matter what the checks say.
   const host = new URL(NEON_DATA_API_URL).host;
-  console.log(`\nno-vacuidad: 3 usuarios creados | 1 fila de A visible para A | host ${host}\n`);
-  exigir(host && a.id && b.id && c.id, "banner de no-vacuidad incompleto");
+  console.log(`\nnon-vacuity: 3 users created | 1 row of A visible to A | host ${host}\n`);
+  require(host && a.id && b.id && c.id, "non-vacuity banner incomplete");
 
   // ---- 17. THE FOREIGN KEY. The cascade is what makes account deletion remove every deck, which is
   // ---- the published privacy promise; a Neon-side re-creation of neon_auth would take it silently.
   const fk = sql("select pg_get_constraintdef(oid) from pg_constraint where conname = 'decks_user_id_fkey'");
-  check("17. la FK de decks a neon_auth.user existe y borra en cascada",
-    fk.includes('REFERENCES neon_auth."user"(id) ON DELETE CASCADE'), fk || "no existe");
+  check("17. the FK from decks to neon_auth.user exists and cascades on delete",
+    fk.includes('REFERENCES neon_auth."user"(id) ON DELETE CASCADE'), fk || "missing");
 
   // ---- NEGATIVE CHECKS.
-  denegado("4. el otro usuario no puede leer esa fila ni sabiendo el id",
-    await rest(b.jwt, `/decks?select=id&id=eq.${mazoA.id}`));
+  denied("4. the other user cannot read that row even knowing its id",
+    await rest(b.jwt, `/decks?select=id&id=eq.${deckA.id}`));
 
-  denegado("5. el otro usuario no la puede renombrar",
-    await rest(b.jwt, `/decks?id=eq.${mazoA.id}&select=id`, { method: "PATCH", body: JSON.stringify({ name: "stolen" }) }));
+  denied("5. the other user cannot rename it",
+    await rest(b.jwt, `/decks?id=eq.${deckA.id}&select=id`, { method: "PATCH", body: JSON.stringify({ name: "stolen" }) }));
 
-  denegado("6. el otro usuario no la puede borrar",
-    await rest(b.jwt, `/decks?id=eq.${mazoA.id}&select=id`, { method: "DELETE" }));
+  denied("6. the other user cannot delete it",
+    await rest(b.jwt, `/decks?id=eq.${deckA.id}&select=id`, { method: "DELETE" }));
 
   // Kept even though `user_id` now defaults to auth.uid(): a default does not stop a client from
   // sending a forged value, and the with-check is what refuses it.
-  rechazado("7. el otro usuario no puede plantar una fila bajo el id ajeno",
-    await guardar(b, "planted", { user_id: a.id }));
+  refused("7. the other user cannot plant a row under someone else's id",
+    await saveDeck(b, "planted", { user_id: a.id }));
 
-  const { data: sigue, error: errorSigue } = await rest(a.jwt, `/decks?select=id,name&id=eq.${mazoA.id}`);
-  check("8. la fila del dueno sobrevivio todo eso sin cambios",
-    !errorSigue && sigue?.[0]?.name === "A's deck", errorSigue?.message ?? sigue?.[0]?.name ?? "no esta");
+  const { data: survivor, error: errorSurvivor } = await rest(a.jwt, `/decks?select=id,name&id=eq.${deckA.id}`);
+  check("8. the owner's row survived all of that unchanged",
+    !errorSurvivor && survivor?.[0]?.name === "A's deck", errorSurvivor?.message ?? survivor?.[0]?.name ?? "missing");
 
   // The url is A's own row rather than the whole table, and it is requested TWICE: once with A's
   // token and once with none. The authenticated call is a positive control and it throws, because
@@ -274,26 +286,26 @@ try {
   // `decks` table answers the anonymous call with the very same 400. Proving that this exact url
   // returns the row when a token is attached is what makes the refusal mean "no credentials" rather
   // than "nothing here to read".
-  const rutaDelVisitante = `/decks?select=id&id=eq.${mazoA.id}`;
-  const { data: conToken, error: errorConToken } = await rest(a.jwt, rutaDelVisitante);
-  exigir(!errorConToken && conToken?.length === 1,
-    `el control de la verificacion 9 no vale: con token la misma url devolvio ${errorConToken?.message ?? `${conToken?.length ?? 0} filas`}`);
+  const visitorPath = `/decks?select=id&id=eq.${deckA.id}`;
+  const { data: withToken, error: errorWithToken } = await rest(a.jwt, visitorPath);
+  require(!errorWithToken && withToken?.length === 1,
+    `the control for check 9 does not hold: with a token the same url returned ${errorWithToken?.message ?? `${withToken?.length ?? 0} rows`}`);
 
-  sinCredenciales("9. un visitante sin sesion no lee nada", await rest(null, rutaDelVisitante));
+  noCredentials("9. a signed-out visitor reads nothing", await rest(null, visitorPath));
 
   // ---- THE TWO CHECKS NEON NEEDS AND SUPABASE DID NOT.
-  const { data: listaC, error: errorC } = await rest(c.jwt, "/decks?select=id");
-  check("15. un usuario sin filas recibe una lista vacia, no un error",
-    errorC === null && Array.isArray(listaC) && listaC.length === 0,
-    errorC ? `${errorC.code ?? "?"}: ${errorC.message ?? ""}` : `${listaC?.length ?? "?"} filas`);
+  const { data: listC, error: errorC } = await rest(c.jwt, "/decks?select=id");
+  check("15. a user with no rows gets an empty list, not an error",
+    errorC === null && Array.isArray(listC) && listC.length === 0,
+    errorC ? `${errorC.code ?? "?"}: ${errorC.message ?? ""}` : `${listC?.length ?? "?"} rows`);
 
   // The one that stops checks 1-8 from passing on a database where every policy is accidentally
   // `true`. Insert WITHOUT user_id and let the column default fill it: if what lands is C's own sub,
   // then auth.uid() really is reading the presented token and the policies are keyed to it.
-  const { data: propias, error: errorPropias } = await guardar(c, "C's deck");
-  check("16. auth.uid() dentro de la policy es el sub del token presentado",
-    !errorPropias && propias?.[0]?.user_id === c.id,
-    errorPropias?.message ?? `user_id=${propias?.[0]?.user_id ?? "?"} sub=${c.id}`);
+  const { data: ownRows, error: errorOwnRows } = await saveDeck(c, "C's deck");
+  check("16. auth.uid() inside the policy is the sub of the presented token",
+    !errorOwnRows && ownRows?.[0]?.user_id === c.id,
+    errorOwnRows?.message ?? `user_id=${ownRows?.[0]?.user_id ?? "?"} sub=${c.id}`);
 
   // ---- ACCOUNT DELETION. Runs last: it ends B's session.
   //
@@ -301,38 +313,38 @@ try {
   // function reached through the Data API's rpc path -- the same shape the Supabase original used,
   // so no secret rides in the browser and none sits in a deployed function either.
   // neon/migrations/0002_delete_account.sql records why the three endpoint routes were rejected.
-  const borrarCuenta = (jwt) => rest(jwt, "/rpc/delete_account", { method: "POST", body: "{}" });
+  const deleteAccount = (jwt) => rest(jwt, "/rpc/delete_account", { method: "POST", body: "{}" });
 
   // Both calls are made before either is judged, because 10 is only meaningful if 11 worked: the
   // gateway refuses a credential-less caller BEFORE it looks up the function, so "400 missing
   // credentials" is also the answer a database with no `delete_account` would give. 11 succeeding
   // on the identical path is what makes the refusal mean "no credentials" and not "no function".
-  const registrar = (u) => fetch(`${NEON_AUTH_URL}/sign-up/email`, {
+  const register = (u) => fetch(`${NEON_AUTH_URL}/sign-up/email`, {
     method: "POST",
     headers: { "Content-Type": "application/json", Origin: new URL(NEON_AUTH_URL).origin },
-    body: JSON.stringify({ email: u.email, password: u.password, name: "rls otra vez", callbackURL: new URL(NEON_AUTH_URL).origin }),
+    body: JSON.stringify({ email: u.email, password: u.password, name: "rls again", callbackURL: new URL(NEON_AUTH_URL).origin }),
   });
 
   // The first half of check 12's flip, taken WHILE B still exists. It throws: if the endpoint does
   // not say USER_ALREADY_EXISTS here, then the 200 it gives after the delete proves nothing, and
   // check 12 would be reporting on a sign-up endpoint rather than on a deletion.
-  const ocupado = await registrar(b);
-  exigir(ocupado.status === 422,
-    `el control de la verificacion 12 no vale: dar de alta el email de B mientras B existe devolvio ${ocupado.status}, se esperaba 422`);
+  const taken = await register(b);
+  require(taken.status === 422,
+    `the control for check 12 does not hold: signing up B's email while B exists returned ${taken.status}, expected 422`);
 
   // 18's BEFORE half: B's rows are counted while B exists, so "zero after" cannot mean "there were
   // never any" -- without it, deleted-nothing and deleted-everything read the same.
-  const filasDeBAntes = sql(`select count(*) from public.decks where user_id = '${b.id}'`);
-  exigir(filasDeBAntes === "1", `el control de la verificacion 18 no vale: B tenia ${filasDeBAntes} filas antes de borrarse, se esperaba 1`);
+  const rowsOfBBefore = sql(`select count(*) from public.decks where user_id = '${b.id}'`);
+  require(rowsOfBBefore === "1", `the control for check 18 does not hold: B had ${rowsOfBBefore} rows before deletion, expected 1`);
 
-  const anonima = await borrarCuenta(null);
-  const propia = await borrarCuenta(b.jwt);
+  const anonymous = await deleteAccount(null);
+  const own = await deleteAccount(b.jwt);
 
-  check("11. un usuario logueado puede borrar su propia cuenta",
-    !propia.error && (propia.status === 204 || propia.status === 200),
-    propia.error ? `${propia.status} ${propia.error.code ?? "sin code"}: ${propia.error.message ?? ""}` : "");
+  check("11. a signed-in user can delete their own account",
+    !own.error && (own.status === 204 || own.status === 200),
+    own.error ? `${own.status} ${own.error.code ?? "no code"}: ${own.error.message ?? ""}` : "");
 
-  sinCredenciales("10. un visitante sin sesion no puede borrar una cuenta", anonima);
+  noCredentials("10. a signed-out visitor cannot delete an account", anonymous);
 
   // Proving the account is GONE. The Management API cannot answer this: it has no GET for a single
   // user -- measured, that path returns 405, not 404 -- so the lookup this check used to do could
@@ -350,44 +362,44 @@ try {
   // broken endpoint cannot produce the flip, only one of the two halves.
   // A is untouched, so A's session must still resolve. This is check 13 and it is also the control
   // that stops 12 from passing on an auth service that is simply down.
-  const sesionDeA = await fetch(`${NEON_AUTH_URL}/get-session`, { headers: { Cookie: a.cookie } });
-  const cuerpoDeA = await sesionDeA.text();
-  exigir(sesionDeA.status === 200 && cuerpoDeA !== "null" && Boolean(sesionDeA.headers.get("Set-Auth-Jwt")),
-    `el control de las verificaciones 12 y 13 no vale: la sesion de A, que no fue borrada, no resuelve (${sesionDeA.status} ${cuerpoDeA.slice(0, 60)})`);
-  check("13. borrar una cuenta deja a la otra en paz", true);
+  const sessionA = await fetch(`${NEON_AUTH_URL}/get-session`, { headers: { Cookie: a.cookie } });
+  const bodyA = await sessionA.text();
+  require(sessionA.status === 200 && bodyA !== "null" && Boolean(sessionA.headers.get("Set-Auth-Jwt")),
+    `the control for checks 12 and 13 does not hold: A's session, which was not deleted, does not resolve (${sessionA.status} ${bodyA.slice(0, 60)})`);
+  check("13. deleting one account leaves the other alone", true);
 
   // B's session should have gone with the row: neon_auth.session has an ON DELETE CASCADE onto the
   // user. Measured shape after a delete: 200 with the body `null` and no Set-Auth-Jwt header.
-  const sesionDeB = await fetch(`${NEON_AUTH_URL}/get-session`, { headers: { Cookie: b.cookie } });
-  const cuerpoDeB = await sesionDeB.text();
-  const sesionSeFue = sesionDeB.status === 200 && cuerpoDeB === "null" && !sesionDeB.headers.get("Set-Auth-Jwt");
+  const sessionB = await fetch(`${NEON_AUTH_URL}/get-session`, { headers: { Cookie: b.cookie } });
+  const bodyB = await sessionB.text();
+  const sessionGone = sessionB.status === 200 && bodyB === "null" && !sessionB.headers.get("Set-Auth-Jwt");
 
-  const reintento = await registrar(b);
-  if (reintento.ok) {
-    const cuerpo = await reintento.json().catch(() => null);
-    if (cuerpo?.user?.id) creados.push({ id: cuerpo.user.id });
+  const retry = await register(b);
+  if (retry.ok) {
+    const body = await retry.json().catch(() => null);
+    if (body?.user?.id) created.push({ id: body.user.id });
   }
   // The detail is built ONLY when the check fails. A passing line that still prints "the session
   // survived" reads like a warning nobody has to act on, and this file is in the business of making
   // its own output mean exactly one thing.
-  const seFue = reintento.status === 200 && sesionSeFue;
-  check("12. esa cuenta realmente no esta", seFue, seFue ? "" :
-    reintento.status === 422
-      ? "el alta con el mismo email sigue dando USER_ALREADY_EXISTS: la fila no se borro"
-      : reintento.status !== 200
-        ? `el alta con el email liberado no fue aceptada (${reintento.status}), asi que no prueba nada`
-        : `la sesion de la cuenta borrada todavia resuelve (${sesionDeB.status} ${cuerpoDeB.slice(0, 40)})`);
+  const gone = retry.status === 200 && sessionGone;
+  check("12. that account is really gone", gone, gone ? "" :
+    retry.status === 422
+      ? "signing up the same email still gives USER_ALREADY_EXISTS: the row was not deleted"
+      : retry.status !== 200
+        ? `signing up the freed email was not accepted (${retry.status}), so it proves nothing`
+        : `the deleted account's session still resolves (${sessionB.status} ${bodyB.slice(0, 40)})`);
 
-  const filasDeBDespues = sql(`select count(*) from public.decks where user_id = '${b.id}'`);
-  check("18. los mazos de la cuenta borrada se fueron con ella (1 antes, 0 despues)",
-    filasDeBDespues === "0", `${filasDeBDespues} filas despues`);
+  const rowsOfBAfter = sql(`select count(*) from public.decks where user_id = '${b.id}'`);
+  check("18. the deleted account's decks went with it (1 before, 0 after)",
+    rowsOfBAfter === "0", `${rowsOfBAfter} rows after`);
 
-  const { data: mazosA, error: errorMazos } = await rest(a.jwt, `/decks?select=id&id=eq.${mazoA.id}`);
-  check("14. y deja los mazos del otro usuario en paz",
-    !errorMazos && mazosA?.length === 1, errorMazos?.message ?? `${mazosA?.length ?? 0} filas`);
+  const { data: decksA, error: errorDecks } = await rest(a.jwt, `/decks?select=id&id=eq.${deckA.id}`);
+  check("14. and leaves the other user's decks alone",
+    !errorDecks && decksA?.length === 1, errorDecks?.message ?? `${decksA?.length ?? 0} rows`);
 } finally {
-  for (const u of creados) await borrarUsuario(u.id).catch(() => {});
-  console.log(`limpieza: los ${creados.length} usuarios de prueba fueron borrados`);
+  for (const u of created) await deleteUser(u.id).catch(() => {});
+  console.log(`cleanup: all ${created.length} test users deleted`);
 }
 
-process.exit(fallas ? 1 : 0);
+process.exit(failures ? 1 : 0);
