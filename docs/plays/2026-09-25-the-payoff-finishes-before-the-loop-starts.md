@@ -165,8 +165,10 @@ battlefield they control, and Renata stands on yours.
 
 Against the loop turn itself I found nothing cheap that ends it. Its units resolve with no window,
 Malzahar's Add ability *"can't be reacted to"* in his own reminder text, and Ekko's [Deathknell]
-chooses nothing, so the pool's two ability counters, which both need a friendly unit of theirs to be
-chosen, cannot reach it. The windows are the spells: `OGN-045 Defy` (Calm, E1 + 1 Power) counters
+chooses nothing, so the pool's two ability counters cannot reach it: `SFD-045 Not So Fast` needs an
+ability that chooses one of the opponent's own units or gear, and `UNL-106 Repulse` one of their own
+units at a battlefield, and every ability in the loop chooses the loop player's own objects or
+nothing. The windows are the spells: `OGN-045 Defy` (Calm, E1 + 1 Power) counters
 Upstage Comedy or Consult the Past, and the countered card goes to the trash, where Vi recycles it
 for nothing. A counter costs the loop a pass, not the loop.
 

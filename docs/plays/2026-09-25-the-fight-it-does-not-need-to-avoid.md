@@ -50,6 +50,21 @@ The card text the play turns on:
 - Wind and Ghosts: an [Action] spell that chooses a unit at a battlefield, banishes it if it has 3
   Might or less, and otherwise returns it to its owner's hand.
 
+**Whether eight instances pay eight points is an OPEN QUESTION, and every point total in this play
+is given both ways.** 383.3.e.1 reads *"Such a Triggered Ability will only be performed the specified
+number of times each turn"*, and its subject is a Triggered Ability, singular. Nothing in the Core
+Rules says whether eight identical sentences appended to one carrier are eight abilities or one. The
+catalogue tracks this as OQ-SVELL-CAP and records the entry's per-instance reading as unsupported,
+not wrong. The two readings:
+
+- **Per instance** (the entry's): a won combat pays **8**, and a Draven who dies in combat hands the
+  opponent **8**. The burst is 8 + the Conquer = **9**.
+- **Per ability**: all eight copies are one ability, so a won combat pays **1** and a death pays the
+  opponent **1**. The burst is **2**, the three Svellsongur add nothing, and the line is not a BURST.
+
+Nothing in this play settles it. What the play can do is show which conclusions survive either
+reading, and §6 is the one that does.
+
 ## 2. The turns, going first — 485.7 gives the extra rune to the player going second
 
 `R` = runes on the board at the start of the Main Phase. A rune pays 1 Energy (164.2.a, the cost is
@@ -73,6 +88,8 @@ T7     8   3x [Equip] on Draven (E3 + 3 Calm)                  E2     +1 = 6   (
            466.5.d Conquer of B                                +1 = 15  WIN
 ```
 
+Per ability, the combat pays +1 and the Conquer +1: **6 + 2 = 8, still a win on T7.**
+
 **T7, and the brute-force search agrees**: over every way to buy the five permanents across turns
 under the rune model above, with the burst turn paying E6 + 4 Power, the earliest burst is T7 with
 Alpha Wildclaw and **T6 without him**. Wildclaw costs the line exactly one turn; §5 is about whether
@@ -92,7 +109,9 @@ The entry's steps carry two ordering claims in one sentence each. Walked, they a
 (818.1), and once Draven moves the next Cleanup stages the Combat (323.9) and opens it into a
 Showdown. 308.1.a: *"Only cards and abilities with the Action or Reaction keywords can be played or
 activated in a Showdown State."* [Equip] carries neither. **Equip after the move and the line is
-worth one instance of Draven's trigger: 1 + 1 = two points on T7, not nine.**
+worth one instance of Draven's trigger: 1 + 1 = two points on T7, not nine.** Per ability the reorder
+costs nothing, because one instance is all the gear ever bought; this trap only exists under the
+entry's reading.
 
 Equipping on an EARLIER turn is legal and costs less than the entry's notable suggests on this
 schedule. The entry warns against eight copies of *"When I die in combat…"* standing through an
@@ -110,7 +129,8 @@ Showdown or Combat ongoing there."* Battlefield B is now empty and uncontrolled.
 controlled by different players there, and the turn is in a Neutral Open State, a Showdown is opened
 during the next Cleanup."* A Showdown, no Combat. **Draven wins no combat, eight instances of his
 trigger never fire, and the turn scores the Conquer alone: one point instead of nine.** Same cards,
-same Energy, one spell cast one action early.
+same Energy, one spell cast one action early. Per ability it is one point instead of two, and that
+single point is still what the deck in §6 needs to reach eight, so the trap bites under both readings.
 
 ## 4. The fight is not the danger, and the spell is not the engine
 
@@ -128,9 +148,12 @@ assigns 13 (Draven's 6 and Wildclaw's 7), which kills any garrison of summed Mig
 | garrison's summed Might | without Wind and Ghosts | with it |
 |---|---|---|
 | 0 (empty) | no Combat, 1 point (§3) | no Combat, 1 point |
-| 1 to 12 | **garrison dies, Draven lives, you win the combat: 9 points** | 9 points |
-| 13 | both sides die; 466.3.d is No Result, and eight instances of *"They score 1 point"* hand the opponent eight | removes one body; you are back in the row above |
-| 14 or more | Draven dies, you do not win: the opponent scores eight | removes one body; if the rest is 12 or less, 9 points |
+| 1 to 12 | **garrison dies, Draven lives, you win the combat: 9 points (2 per ability)** | 9 (2) |
+| 13 | both sides die; 466.3.d is No Result, and the copies of *"They score 1 point"* hand the opponent eight (one per ability) | removes one body; you are back in the row above |
+| 14 or more | Draven dies, you do not win: the opponent scores eight (one per ability) | removes one body; if the rest is 12 or less, 9 (2) |
+
+The thresholds in this table are combat arithmetic and do not depend on the open question; only the
+point totals in its cells do.
 
 466.3.a is the test in the middle row: *"A Player has won a combat if they received either the
 attacker or defender designation and are the only Player that has units remaining at this battlefield
@@ -150,14 +173,18 @@ answer to that too, which is the honest reason to keep it in the list.
 He is the difference between T6 and T7. What he buys for it:
 
 - **The 13 in §4.** Without him your side assigns 6, so only a garrison of summed Might 6 or less
-  dies, and any garrison of 6 or more kills Draven — eight points to the opponent. With him the
+  dies, and any garrison of 6 or more kills Draven — eight points to the opponent, or one per
+  ability. With him the
   threshold is 13. On the contested board that is most of the difference between a line and a
   gamble.
-- **Draven's safety while he waits.** He stands at your base from T4. Of the sixteen spells in the
+- **Draven's safety while he waits.** He stands at your base from T4, and Wildclaw arrives only on
+  T5, so Draven is unprotected by him through the opponent's T4 turn. Of the sixteen spells in the
   pool whose text says *"kill a unit"*, *"kill an enemy unit"* or *"deal"* four to nine to a unit,
   eleven add *"at a battlefield"* and cannot reach
-  a base at all. The other five can, and Wildclaw's second sentence answers the ones that choose:
-  Draven has less Might than him, and *"here"* is wherever Wildclaw stands, base included.
+  a base at all. The other five can, and from T5 Wildclaw's second sentence answers the ones that
+  choose: Draven has less Might than him, and *"here"* is wherever Wildclaw stands, base included.
+  On T4 those five reach him; losing him then costs a card and a turn, not points, since he carries
+  one copy of his drawback and a base holds no combat.
 
 **Drop him and the line is a turn faster and depends on the garrison being tiny.** Against a deck
 that garrisons with Might 1 and 2 bodies, the T6 line without him is the better build.
@@ -170,8 +197,11 @@ board they take battlefield A on T2 and Hold it, **so by the start of T7 the dec
 before the burst begins.**
 
 That changes the arithmetic of every answer. The entry's burst needs eight from zero; this deck's
-burst needs two. §7's cheapest answer halves the payoff to five, and five on top of six is still a
-win.
+burst needs two. **And two is exactly what the combat pays under the per-ability reading**: one for
+the won combat, one for the Conquer. Six free points plus two from one combat is eight. This is the
+conclusion that survives the open question: the deck wins on T7 under both readings, and under the
+per-ability one it does so without the three Svellsongur doing anything. Per instance, §7's cheapest
+answer halves the payoff to five, and five on top of six is still a win.
 
 Steel Paws is Might 0, and 142.4.b makes lethal *"a non-zero amount greater than or equal to that
 Unit’s Might"*, so one point of damage at a battlefield removes him. Protecting the free curve is a
@@ -181,33 +211,43 @@ second problem this play does not solve; §9 names it.
 
 **`SFD-005 Detonate`** — Fury, E1 + 1 Power, *"Kill a gear. Its controller draws 2."* Cast on the
 opponent's own T6 turn, against a Svellsongur standing unattached at your base, it leaves two gear:
-two copies compose to four instances, so the burst is **4 + 1 = five points**. It costs the opponent
+two copies compose to four instances, so the burst is **4 + 1 = five points** per instance (per
+ability it changes nothing: the burst was two either way). It costs the opponent
 one Energy and a Fury rune and hands you two cards. On the burst turn itself the same job is done by
 `SFD-011 Angle Shot` (Fury, E2, [Reaction]), which detaches one Svellsongur after the Equips — and
 718.5.b, *"Attached cards still can be chosen or targeted by game effects while Attached"*, is why
 an attached one is still a legal choice.
 
-Against the entry as written (the burst from zero) either card beats it. Against the deck in §6 (the
-burst from six) neither does alone; the opponent has to answer the free curve too.
+Against the entry as written (the burst from zero) either card beats it, and per ability the entry
+as written never reached eight in the first place. Against the deck in §6 (the burst from six)
+neither does alone under either reading; the opponent has to answer the free curve too.
 
 ## 8. Verdict
 
-**The entry is correct and it is named for the wrong card.** Nine points off one combat is real. But
-the combat does not need to be bloodless: with Alpha Wildclaw soaking the first seven, Draven wins
+**The entry's arithmetic holds under its own reading, and that reading is an open question.** Nine
+points off one combat is what the per-instance reading pays; per ability it is two, and the entry is
+not a BURST. What survives both readings is §6: this deck reaches eight on T7 either way, because six
+of the eight were never the burst's job. Under either reading the entry is named for the wrong card,
+because the combat does not need to be bloodless: with Alpha Wildclaw soaking the first seven, Draven wins
 any fight against a garrison of summed Might 12 or less and never risks the eight points his own
-drawback would hand the opponent. The removal spell is insurance for the one board where the fight
+drawback would hand the opponent (eight or one, by the same open question). The removal spell is insurance for the one board where the fight
 itself is the danger.
 
 **The ordering is the line's real content, and it has one failure worth remembering.** Wind and
 Ghosts is an [Action] card, so it is castable before the move, and cast there it empties the
 battlefield, 323.6 strips its Control, 344.2 opens a Showdown instead of a Combat, and nine points
-become one. The cheapest way to lose this line is to play its removal a single action too early.
+become one (two become one, per ability). The cheapest way to lose this line is to play its removal a single action too early.
 
 **Priced as a game it is T7 against a T5 unopposed baseline and T9 contested** — two turns slower than
 doing nothing on the board where nothing was needed, two turns faster on the board it is for, and on
 that board it has already scored six by the time it swings.
 
 ## 9. Not verified
+
+The whole per-instance column rests on OQ-SVELL-CAP, which no paragraph of the Core Rules settles;
+§1 states both readings. A ruling for the per-ability reading would leave §2's turn, §3's Wind and
+Ghosts trap, §4's thresholds and §6's T7 win standing, and would reduce the three Svellsongur to dead
+cards in this list.
 
 I did not walk the opponent's best line against the two Steel Paws, which a single point of damage
 removes from battlefield A. If the free curve is broken, the burst needs eight from zero again and

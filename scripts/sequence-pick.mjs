@@ -23,7 +23,12 @@ const QTY = /\b\d+\b|\bone\b|\btwo\b|\bthree\b|\beight\b|\bnine\b|\bten\b/i;
 const ORD = /\bbefore\b|\bafter\b|\bresponse\b|\bwindow\b|\border\b|\bsequence\b|\bphase\b|\bturn\b/i;
 
 const args = process.argv.slice(2);
-const pairArg = args.includes("--pair") ? args[args.indexOf("--pair") + 1].split("/").sort().join("/") : null;
+const pairIdx = args.indexOf("--pair");
+if (pairIdx !== -1 && !/^[a-z]+\/[a-z]+$/.test(args[pairIdx + 1] ?? "")) {
+  console.error("usage: --pair <domain>/<domain>, e.g. --pair calm/chaos");
+  process.exit(2);
+}
+const pairArg = pairIdx !== -1 ? args[pairIdx + 1].split("/").sort().join("/") : null;
 
 const rows = [];
 for (const e of db) {
