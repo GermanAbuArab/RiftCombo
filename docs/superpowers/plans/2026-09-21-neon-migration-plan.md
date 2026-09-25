@@ -38,8 +38,18 @@ NEW project. The São Paulo project `round-waterfall-07137684` is retired and ho
 | 6 Build, CSP | **Done**: `NEON_AUTH_URL` + `NEON_DATA_API_URL`, both origins in `connect-src`, `vercel.json` regenerated; both set as Vercel production env vars. |
 | 7 Privacy | **Done**, plus a correction the plan did not foresee: the Cookies paragraph had to change, because Neon Auth sets one partitioned cookie. |
 | 8 Data | **Built, not run**: Supabase holds 2 decks from 2 owners (7 Google accounts), so the one-line re-key does not apply. 0004 stages decks keyed to the owner's Google account id (not email: this Auth accepts email sign-ups) and `claim_staged_decks()` moves them on first sign-in. `scripts/stage-supabase-decks.mjs` runs at cutover. After the migrations, run `neonctl data-api refresh-schema`: a new table answered 404 for a few minutes before it did. |
-| 8b Scan | Running. |
+| 8b Scan | **Done**: see Progress 2026-09-25 and the triage in Step 8b. |
 | 9 Cutover | Owner go given (O2) for when O1 is configured and the scan is clean. |
+
+## Progress, 2026-09-25 (rc-neon4)
+
+| Step | State |
+|---|---|
+| Review finding 5 | **Measured again, read-only**: Supabase `decks` = **2 rows, 2 distinct `user_id`**, 7 auth users; each of the two owners holds exactly one identity, Google, with a numeric `sub`. The staging design stands. |
+| Review finding 3 | §0 already named `quiet-breeze-27436036` (`f6f0bf5`); the step bodies still named the sa-east-1 ids in six places, now replaced. `round-waterfall-07137684` is left alone: deleting it is the owner's call. |
+| 8 Data | **Rehearsed end to end, production run left for cutover.** The real script ran against a throwaway child of main, `br-aged-term-avkxc7iw` (`rehearsal-step8-2026-09-25`): `supabase decks: 2 from 2 owners \| staged on Neon: 2`, exit 0; 2 distinct numeric subs staged; `public.decks` 0; a second run refused (`already holds 2 rows`, exit 1, no export written); export `~/riftcombo-exports/2026-09-25-rehearsal-br-aged-term.json`, mode 0600, outside the repo. **Main untouched: staged 0, decks 0.** Not run on main because a run now strands any deck saved on Supabase before the deploy, and undoing it is a delete; it is the first command of the cutover sequence ("Step 8 at cutover"). |
+| 8b Scan | **Done**: `security_runs/RiftCombo_3ba7df34`, `completed` 2026-09-24T20:14Z, newer than every code commit on the branch, 3 findings, 0 blocking. Triage in Step 8b. |
+| O1 | **Still open**: `neonctl neon-auth oauth-provider list` → `google type: shared`. Trusted domain `https://riftcombo.app` present. |
 
 **Three standing rules for every step.**
 
@@ -50,7 +60,7 @@ NEW project. The São Paulo project `round-waterfall-07137684` is retired and ho
 2. **A negative assertion passes when the request breaks.** Spec §4 records seven instances. Every
    check that proves something is *refused* must be paired with a positive control on the same URL.
 3. **Nothing on `main` is written until step 3.** Destructive probing goes on a throwaway branch,
-   which is free (`neonctl branches create --parent br-tiny-bird-aczxgj3q`) and deletable.
+   which is free (`neonctl branches create --parent br-wandering-haze-av7v6x9v`) and deletable.
 
 ---
 
@@ -58,11 +68,12 @@ NEW project. The São Paulo project `round-waterfall-07137684` is retired and ho
 
 | # | What | Where it blocks |
 |---|---|---|
+| **O0** | **Transfer the Supabase project `riftcombo` (`bpbwsimgiyxzaorunqeo`) to the Free org** "GermanAbuArab Free" (`ztrighjhwkqiiobrbuhd`), per `_infra/decisions/2026-09-24-supabase-pro-como-base-comun.md`. Done by session aures-p10 with the owner at the dashboard, independent of the Neon cutover. verify: production sign-in and deck list right after (review finding 1). | Nothing; costs money until done. |
 | **O1** | **Create a Google OAuth client for Neon Auth** (client id + secret) and enter it in the Neon console, plus the redirect URI Neon prints. **Never pasted into a transcript** — the 2026-09-05 secret-inspection lesson. Google can take minutes to hours to apply a new redirect URI. | **Step 2.** Everything from step 3 on is blocked until this exists. |
 | **O2** | **Go/no-go at step 9** — the deploy. First real write diverges the two databases; nothing after it is reversible. | Step 9 |
 | **O3** | **Go/no-go at step 10** — delete the Supabase project, one week after step 9. | Step 10 |
 
-**O1 has a decision attached that the owner should make with it:** `web/privacy.html` says today that
+**Settled 2026-09-21 — kept for the record.** The owner chose to recreate the project in `aws-us-east-1` (`quiet-breeze-27436036`), so the privacy sentence stays true. What follows is the question as it was asked: `web/privacy.html` says today that
 the data lives *"in a Postgres database hosted in the United States"*. The Neon project is in
 **`sa-east-1`, which is São Paulo**. Either the sentence changes to name Brazil, or the project is
 recreated in a US region before step 2 — **and recreating is cheap now and expensive after step 9**,
@@ -77,7 +88,7 @@ The project, branch, endpoint, Data API and the `0001`/`0002` schema are **alrea
 This step is a re-read rather than a creation.
 
 **verify:** `neonctl projects list --org-id org-billowing-dawn-47109886` names `riftcombo`;
-`neonctl data-api get --project-id round-waterfall-07137684 --branch br-tiny-bird-aczxgj3q` prints
+`neonctl data-api get --project-id quiet-breeze-27436036 --branch br-wandering-haze-av7v6x9v` prints
 `"status": "active"`, `db_anon_role: "anonymous"`, `db_schemas: ["public"]`.
 
 **verify (the three things §12.5 did NOT read back, so they are checked here rather than assumed):**
@@ -97,11 +108,11 @@ earlier enablement (§12.4). So this step is a re-enable, and §8's ordering war
 
 Blocked on **O1**.
 
-1. `neonctl neon-auth enable --project-id round-waterfall-07137684 --branch br-tiny-bird-aczxgj3q`
+1. `neonctl neon-auth enable --project-id quiet-breeze-27436036 --branch br-wandering-haze-av7v6x9v`
 2. Add the Google provider (`neonctl neon-auth oauth-provider ...` or the console) using O1's client.
 3. Add the redirect trusted domain for `https://riftcombo.app` (`neonctl neon-auth domain`).
 
-**verify:** `neonctl neon-auth status --branch br-tiny-bird-aczxgj3q` reports configured, Google
+**verify:** `neonctl neon-auth status --project-id quiet-breeze-27436036 --branch br-wandering-haze-av7v6x9v` reports configured, Google
 listed. **verify:** the `neon_auth` tables and the two user rows still exist and
 `select pg_get_constraintdef(oid) from pg_constraint where conname='decks_user_id_fkey'` still prints
 `REFERENCES neon_auth."user"(id) ON DELETE CASCADE` — **this is the live test of open item 1**, since
@@ -239,6 +250,23 @@ impossible to insert, so this verifies the import did not drop rows silently.
 
 ---
 
+### Step 8 at cutover — the production run (first command of the O2 sequence)
+
+Run immediately before the deploy, from a checkout whose root holds `.env.local` with
+`SUPABASE_URL` and `SUPABASE_SERVICE_ROLE_KEY` (a worktree without one can
+`set -a; . <main-tree>/.env.local; set +a` inside the same command):
+
+```
+NEON_PROJECT_ID=quiet-breeze-27436036 NEON_BRANCH_ID=br-wandering-haze-av7v6x9v \
+  node scripts/stage-supabase-decks.mjs ~/riftcombo-exports/<date>-cutover.json
+```
+
+**verify:** it prints `supabase decks: N from M owners | staged on Neon: N` and exits 0, where N is
+the Supabase count read the same minute (2 on 2026-09-25). **verify:** after the deploy, each owner
+signs in with Google and `listDecks()`'s claim moves their decks: `migration.staged_decks` drops by
+their count and `public.decks` rises by the same. Keep `SUPABASE_URL` in Vercel until step 10
+(review finding 6), so a rollback is a redeploy and not a reconfiguration.
+
 ## Step 8b — `security-scan`
 
 `.security-gate` is present, so a push is blocked until a run exists newer than the branch's
@@ -247,6 +275,19 @@ under those names, `~/.personal-claude/settings.json` holds the hook path (§8 s
 changed once already, mid-document).
 
 **verify:** the scan ran and its findings are triaged in writing, not merely that it exited.
+
+**Triage of `RiftCombo_3ba7df34`** (2026-09-24; targets `neon:quiet-breeze-27436036` and the Neon build on 127.0.0.1:8795):
+
+| Sev | Finding | Disposition |
+|---|---|---|
+| HIGH (vendor) | `@neondatabase/auth` 0.5.0-beta serves the PREVIOUS account from its session cache after an in-page `signUp()`, so Data API writes carry the old identity. | **Not reachable here**: RiftCombo never calls `signUp`/`signInWithPassword`; Google sign-in is a full-page redirect, so every return starts with an empty cache. **Standing constraint**: no account switcher and no scripted multi-sign-in in one page may rely on the SDK cache. Report upstream. |
+| MEDIUM (platform) | A Data API JWT captured before sign-out stays valid for its ~15 min TTL. | Accepted: stateless JWTs are not revocable; sign-out ends the server session and clears the cookie. |
+| LOW/INFO | The production CSP blocks a dependency's `new Function("")` probe on every load. | Accepted: try/catch fallback, no breakage; the CSP is doing its job. |
+
+Owed at the step-9 production smoke (not testable before): login-CSRF by replaying a used
+`neon_auth_session_verifier` in a second browser context; a foreign-project token; a concurrent
+double claim. The gate hook (`~/.personal-claude/hooks/security-gate.sh`) accepts this run: newest
+`run.json`, `completed`, `report.md` non-empty, mtime after the merge-base with `origin/master`.
 
 ---
 
@@ -266,7 +307,7 @@ account. Console clean.
 ## Step 9b — the idle-tab measurement (§12.2, open item 6). First thing after step 9.
 
 Sign in, leave **one tab open and untouched for an hour**, then read
-`neonctl api /projects/round-waterfall-07137684/endpoints`.
+`neonctl api /projects/quiet-breeze-27436036/endpoints`.
 
 **verify:** `suspended_at` is ~5 minutes after `last_active` and `current_state` is `idle`. **If
 `last_active` keeps advancing, something is polling** — find it before it runs for a month: 730 hours
@@ -287,7 +328,7 @@ environment variable set at all — proving nothing still reads it.
 ## Step 11 — the records
 
 - Obsidian `personal/projects/riftcombo/README.md` **Infraestructura**: the Neon row (Free, 0.25 CU,
-  100 CU-hours, 0.5 GB, `sa-east-1`), and the Vercel Hobby row with the 100-deploys-a-day cap, which
+  100 CU-hours, 0.5 GB, `aws-us-east-1`), and the Vercel Hobby row with the 100-deploys-a-day cap, which
   is missing today.
 - `personal/projects/_infra/decisions/` — a dated note for **the delete-account route** (§12.6: the
   SQL function, and why the Route C selection was superseded).

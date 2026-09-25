@@ -1,61 +1,51 @@
-# RiftCombo — todo (session rc-ux, 2026-09-21)
+# RiftCombo — todo (session rc-neon4, 2026-09-25)
 
-Sub-project **B** of `effervescent-imagining-globe.md`: the eight deferred UX items and the proxy
-hardening. Branch `feat/2026-09-21-ux-hardening` off `infra-audit-fixes-2026-09-13` at `beb15b2`.
-One commit per item, `git commit --only <paths>`.
+Neon migration, steps still open up to 8b, on the us-east-1 project `quiet-breeze-27436036`
+(branch `main` = `br-wandering-haze-av7v6x9v`). Worktree `/private/tmp/rc-neon3`, branch
+`neon-migration`, starting at `f6f0bf5`. Plan: `docs/superpowers/plans/2026-09-21-neon-migration-plan.md`.
 
-## Baseline (measured 2026-09-21, before any change, at `beb15b2`)
+Hard stops: nothing deleted or paused (Neon projects, the sa-east-1 orphan, Supabase, branches,
+data); no Vercel env, no deploy, no merge; O2/O3 are the owner's.
 
-| Gate | Result |
-|---|---|
-| `npm test` | **710 passed / 52 files**, exit 0 |
-| `npm run typecheck` | exit 0 |
-| `npm run adversarial` | exit 0 |
+## Steps
 
-## The eight items, in the plan's order
-
-- [x] **1. Type scale retune.** `.doc` 0.90625rem → 1rem, `.doc h1`/`.doc h3` up one step, `body`
-      0.9375rem → 1rem. The dense UI classes keep their own sizes (they were measured against the
-      320px panel and the `.pool-view` tap-target arithmetic).
-      → verify: `test/type-scale.test.ts` green; `.doc p` line length ≤ 75ch at 1280 (`max-width:
-      65ch` holds it); `.pool-view` still ≥ 24x24 at 390px; measured in the browser.
-- [x] **2. Off-domain reason visible in the pool.** One `<p class="pool-note">` under `.pool-cells`,
-      counted in `gridHtml()`'s own loop; hidden at N = 0 or with no legend. Nothing painted on art.
-      → verify: DOM test in `test/dom/builder.dom.test.ts` — the count in the note equals
-      `.pool-cell.off`, and the note is absent with no legend.
-- [x] **3. Mobile jump to the diagram.** A static link inside `#status-card` (so `setStatus`, which
-      writes only `#status-title`/`#status-body`, cannot destroy it), shown only ≤900px,
-      `scroll-margin-top` on `#stage` for the two-row topbar.
-      → verify: DOM test that it exists and targets a real element; playwright-cli at 375 — click,
-      `#stage` top inside the viewport, results intact, route state intact.
-- [x] **4. SVG/PNG export of the diagram.** `web/export.ts`: `serialize`, `stripArt`, `download`.
-      SVG is primary (exact, never tainted); PNG is rendered from an art-free copy because
-      `cmsassets.rgpub.io` sends no `access-control-allow-origin` and a canvas holding the art
-      throws on `toBlob`.
-      → verify: unit tests on `serialize`/`stripArt`; the raster checked by hand in a real browser.
-- [x] **5. `/api/deck-url` hardening** (no counter, by decision): 8s `AbortSignal.timeout`, a 5 MB
-      byte cap counted off the stream rather than trusted from `content-length`, and the post-fetch
-      hostname re-checked against the allowlist (a redirect can leave it). Pure guards in
-      `api/deck-url-guards.ts`.
-      → verify: `test/deck-url-guards.test.ts` covers each guard both ways; the route itself only
-      runs on a Vercel deploy, so it is exercised in sub-project A/D and NOT here.
-- [x] **6. One de-emphasised base class.** Additive `.quiet` plus the class added at the five call
-      sites (`.tray-empty`, `.play-notice`, `.plan-note`, `.pool-noart`, `.dzone-empty`); the names
-      stay and their overrides shrink.
-      → verify: suite green; each of the five states seen in the rebuilt site.
-- [x] **7. Tokens for the last raw colours.** `--accent-hover`, `--accent-disabled-text`,
-      `--stage-bg`, `--node-plate`, `--scrim`, `--scrim-2`, `--selection`.
-      → verify: a11y suite unchanged (its `token()` reads only the named contrast pairs, so new
-      tokens are inert); no six-digit hex outside `:root` except the six domain colours.
-- [x] **8. The one play whose lede ends in a colon**
-      (`2026-09-13-the-entry-the-clock-condemned-hardest`): its first paragraph only.
-      → verify: `test/plays-reader.test.ts` and `test/web-payload.test.ts` green.
-
-## Close
-
-- [x] Rebuild (`SUPABASE_URL= SUPABASE_ANON_KEY= npm run build:web`), serve `public/`, verify every
-      item with playwright-cli at 1280 and 375 reading computed styles and the DOM; write the
-      measurements into a new section of `docs/reviews/2026-09-20-ui-ux-review.md`.
-- [ ] All three gates exit 0; `security-scan`; push the branch; PR against
-      `infra-audit-fixes-2026-09-13` (do not merge).
-- [ ] `docs/handoffs/2026-09-21-rc-ux.md`; report the PR URL and the gate counts to rc-manager13.
+- [x] **R3. The two `riftcombo` projects (review finding 3).** Confirm §0 names the us-east-1 one.
+      → verify: `neonctl projects list --org-id org-billowing-dawn-47109886` →
+      `quiet-breeze-27436036 riftcombo aws-us-east-1` and `round-waterfall-07137684 riftcombo
+      aws-sa-east-1`; §0 of the plan names `quiet-breeze-27436036` (f6f0bf5 did it). The step BODIES
+      still named the sa-east-1 ids in six places — fixed in this session (item below).
+- [x] **R5. Distinct owners on Supabase (review finding 5), read-only.**
+      → verify: `node .scratch-neon/count-owners.mjs` → `status 200 | decks total(header) 2 | rows
+      arrived 2 | distinct user_id 2 | auth users 7`; `node .scratch-neon/owner-identities.mjs` →
+      both owners have exactly one identity, Google, numeric sub. Count is 2, so the staging design
+      (0004) stands and the one-line re-key does not apply.
+- [x] **Neon main is empty and ready.**
+      → verify: psql on main → `staged:0 decks:0 users:0 profiles:0`, FK
+      `REFERENCES neon_auth."user"(id) ON DELETE CASCADE`, `claim_staged_decks` and `delete_account` present.
+- [x] **Plan body: replace the stale sa-east-1 ids and the obsolete O1-region paragraph.**
+      → verify: `grep -n "round-waterfall\|br-tiny-bird\|sa-east" <plan>` returns only the lines
+      that name the orphan as retired. RAN: two hits, line 17 ("retired") and the O1 paragraph now
+      prefixed "Settled 2026-09-21 — kept for the record".
+- [x] **Step 8, rehearsal on a throwaway Neon branch** (not main: a run on main now would strand any
+      deck saved on Supabase before cutover, and undoing it is a delete). Run the real script
+      `scripts/stage-supabase-decks.mjs` against a child branch of main, export outside the repo.
+      → verify: script prints `supabase decks: 2 from 2 owners | staged on Neon: 2` and exits 0;
+      staged google_sub set = the two owners' subs (count of distinct = 2); export file mode 0600
+      outside the repo; `select count(*) from public.decks` still 0 on main.
+      RAN on `br-aged-term-avkxc7iw`: `supabase decks: 2 from 2 owners | staged on Neon: 2`, exit 0;
+      `staged:2 distinct subs:2 numeric subs:2`, branch `public.decks` 0; export 0600 in
+      `~/riftcombo-exports/`; main `staged:0 decks:0`; re-run refused `already holds 2 rows`, exit 1,
+      no export written.
+- [x] **Step 8, the production run is written as the first command of the O2 sequence** (it must run
+      at cutover, immediately before the deploy), with its verify. Done: plan section "Step 8 at cutover".
+- [x] **Step 8b.** A scan exists (`security_runs/RiftCombo_3ba7df34`, completed 2026-09-24T20:14Z,
+      3 findings, 0 blocking), newer than every commit it covered. Triage it in writing in the plan.
+      → verify: run.json `status: completed`, end_time later than the newest scanned commit;
+      triage table committed; the gate hook accepts it (checked by the push-time hook, not bypassed).
+      RAN: run.json `completed`, end 2026-09-24T20:14Z (17:14 -03) after f6f0bf5 (16:43 -03) and
+      the merge-base (15:36 -03); report.md non-empty; triage table in plan Step 8b. This session
+      changed docs only, so no new scan is owed.
+- [x] **Gates** at the final sha: typecheck 0, `npm test` exit 0 with a `Tests N passed` line and no
+      `failed`, `build:web` 0.
+      RAN: typecheck 0; `npm test` exit 0, `Tests 749 passed (749)`, 55 files, 0 `failed`; build:web 0.
+- [ ] **Handoff** `docs/handoffs/2026-09-25-rc-neon4.md`, committed; `git status` clean.
