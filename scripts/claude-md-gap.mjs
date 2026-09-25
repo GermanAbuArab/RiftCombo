@@ -4,11 +4,13 @@
 // The tractable version of "a rule carried in prose but never generalised":
 // rules the CATALOGUE cites often and CLAUDE.md does not carry at all.
 import fs from "fs";
+import { countCites } from "./citation-form.mjs";
 const blob=fs.readFileSync("data/combos.json","utf8")+fs.readFileSync("data/synergies.json","utf8");
 const CL=fs.readFileSync("CLAUDE.md","utf8");
 const R=fs.readFileSync("data/Riftbound-Core-Rules-2026-07-16.txt","utf8");
 const heads=[...new Set((R.match(/(^|[\s\f])(\d{3}(?:\.[0-9a-z]+)*)\.[\s\f]/gm)||[]).map(m=>m.trim().replace(/\.$/,"")))];
-// The counter has three exclusions and every one of them was paid for. Do not simplify it.
+// The counter lives in ./citation-form.mjs (#232), shared with uncited-examples.mjs; it has six
+// exclusions and every one of them was paid for. The first three, in detail:
 //  -  excludes a preceding HYPHEN: without it "304" matches the collector number OGN-304.
 //  -  excludes a preceding "#":    without it "153" matches the issue number #153 (131 false hits).
 //  -  excludes a following LETTER or DOT: without it a parent absorbs its whole block, so "417"
@@ -17,7 +19,7 @@ const heads=[...new Set((R.match(/(^|[\s\f])(\d{3}(?:\.[0-9a-z]+)*)\.[\s\f]/gm)|
 // carrying 419.4.a.1 used to read as carrying 419.4.a, so 16 real gaps were suppressed and never
 // printed - i.e. the tool was blind to the exact "exception carried, rule absent" shape it exists
 // to find, because a parent is always hidden by its own child.
-const cnt=(h,s)=>{const re=new RegExp("(?<![-#0-9.])"+h.replace(/\./g,"\\.")+"(?![0-9a-z.])","g");return (s.match(re)||[]).length;};
+const cnt=countCites;
 const MIN=Number(process.argv[2]||10);
 console.log(`# minCitations = ${MIN}`);
 // SECOND COUNTER BUG, found by rc-gap 2026-09-13 and reproduced independently. Fixing the
