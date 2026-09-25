@@ -79,6 +79,12 @@ npm run check:rls                   # dos usuarios reales; ninguno puede tocar l
 `npm run check:rls` necesita además `SUPABASE_SERVICE_ROLE_KEY`, que es una clave de servidor:
 saltea RLS, la lee ese script y nada más, y no aparece en `web/` ni en un commit.
 
+## Infraestructura
+
+- **Hosting**: Vercel project `riftcombo` (Pro team), production branch `master`. El último deploy figuraba CANCELED al momento del sync (2026-09-25); revisar antes de asumir que está sirviendo tráfico.
+- **Base de datos**: Supabase `bpbwsimgiyxzaorunqeo`, org **GermanAbuArab Free**; `SUPABASE_URL` de producción apunta ahí. Migración a Neon en curso, ver issue #226.
+- **Decisión que lo respalda**: `_infra/decisions/2026-09-19-todo-a-neon-salvo-sir-loin`.
+
 ## Datos
 
 | archivo | qué | fuente |
