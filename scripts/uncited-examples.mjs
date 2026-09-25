@@ -16,6 +16,7 @@
 // A probe that silently matches nothing prints a clean pass, so the population is printed FIRST and
 // the test asserts it is non-zero.
 import fs from "fs";
+import { citeRe } from "./citation-form.mjs";
 
 const R = fs.readFileSync("data/Riftbound-Core-Rules-2026-07-16.txt", "utf8");
 const walkDir = "docs/phase0/walks";
@@ -34,7 +35,7 @@ for (let i = 0; i < heads.length; i++) {
 }
 const withExample = subs.filter(s => s.example);
 
-const cite = h => new RegExp("(?<![-#=_0-9.A-Za-z])(?<![A-Za-z]/)" + h.replace(/\./g, "\\.") + "(?![0-9a-z]|\\.[0-9a-z])");
+const cite = h => citeRe(h);
 const tokens = (catalogue.match(/(?<![-#=_0-9.A-Za-z])\d{3}(?:\.[0-9a-z]+)+/g) || []).length;
 const rows = withExample.filter(s => !cite(s.h).test(hay)).map(s => s.h);
 
