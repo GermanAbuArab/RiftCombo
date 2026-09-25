@@ -17,7 +17,7 @@ const heads=[...new Set((R.match(/(^|[\s\f])(\d{3}(?:\.[0-9a-z]+)*)\.[\s\f]/gm)|
 // carrying 419.4.a.1 used to read as carrying 419.4.a, so 16 real gaps were suppressed and never
 // printed - i.e. the tool was blind to the exact "exception carried, rule absent" shape it exists
 // to find, because a parent is always hidden by its own child.
-const cnt=(h,s)=>{const re=new RegExp("(?<![-#0-9.])"+h.replace(/\./g,"\\.")+"(?![0-9a-z.])","g");return (s.match(re)||[]).length;};
+const cnt=(h,s)=>{const re=new RegExp("(?<![-#=_0-9.A-Za-z])(?<![A-Za-z]/)"+h.replace(/\./g,"\\.")+"(?![0-9a-z]|\\.[0-9a-z])","g");return (s.match(re)||[]).length;};
 const MIN=Number(process.argv[2]||10);
 console.log(`# minCitations = ${MIN}`);
 // SECOND COUNTER BUG, found by rc-gap 2026-09-13 and reproduced independently. Fixing the
