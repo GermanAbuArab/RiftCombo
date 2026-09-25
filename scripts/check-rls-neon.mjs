@@ -16,8 +16,9 @@
 //   neonctl branches create --project-id <p> --parent <main> --name rls-<date>
 //   neonctl neon-auth config email-password update --project-id <p> --branch <child> --enabled true
 //
-// Against production the first sign-up is refused (EMAIL_PASSWORD_SIGN_UP_DISABLED) and the run
-// THROWS before any check, which is the intended failure.
+// Two locks, so neither alone is load-bearing: the script refuses the project's default branch
+// before creating anyone (exit 2), and even past that production would refuse the first sign-up
+// (EMAIL_PASSWORD_SIGN_UP_DISABLED) and the run would THROW before any check.
 //
 // Credentials come from the environment only -- nothing here is ever written to a file or printed:
 //
@@ -75,6 +76,17 @@ import { execFileSync } from "node:child_process";
 const neonctl = (head, tail = []) => execFileSync("neonctl",
   [...head, "--project-id", NEON_PROJECT_ID, "--branch", NEON_BRANCH_ID, ...tail],
   { encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+
+// The runtime half of the header's rule. Production's email-and-password setting is what stops this
+// script today, and a configuration can be flipped back; so refuse the project's default branch here
+// too, before any account is created. Exit 2 like a missing variable: this run tested nothing.
+const branch = JSON.parse(execFileSync("neonctl",
+  ["branches", "get", NEON_BRANCH_ID, "--project-id", NEON_PROJECT_ID, "-o", "json"],
+  { encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] }));
+if ((branch.branch ?? branch).default !== false) {
+  console.error(`refusing: ${NEON_BRANCH_ID} is the project's default branch (production). Run this on a throwaway child branch.`);
+  process.exit(2);
+}
 
 /**
  * One SQL value, as the table owner. Only for what RLS rightly hides from every Data API caller.
