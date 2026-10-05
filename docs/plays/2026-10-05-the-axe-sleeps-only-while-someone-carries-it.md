@@ -86,7 +86,7 @@ their T2        They attack A. In the Combat Showdown: Factory Recall     (rescu
                 fight at M5.
 T3      5       Hold A if the Rearguard survived: +1. Replay the Axe      a body + Axe
                 (E2 + 1 Power) onto any body: [Quick-Draw], no Equip
-                cost. One rune left ready.
+                cost. Three runes left ready, 4 on board.
 ```
 
 Two Energy and a Power is the price of every redeploy; one Energy and one untapped rune is the price of
