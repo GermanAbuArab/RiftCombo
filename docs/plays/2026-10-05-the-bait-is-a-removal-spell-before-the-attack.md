@@ -112,8 +112,8 @@ Defy` for E1 + 1 Calm Power**, against your rune, your card, your garrison and t
 A deck without Calm has `UNL-131 Abandon` (Chaos, E2, *"Counter a spell. Return it to its owner's
 hand instead of putting it in their trash."*) and `SFD-136 Hard Bargain` (Chaos, E2, *"Counter a
 spell unless its controller pays :rb_energy_2:."*). Abandon gives the Strike back to your hand, so it
-can be hidden again for one more rune. Hard Bargain is paid with exactly the rune the T2 table leaves
-ready — **if** you left two; with one, it counters.
+can be hidden again for one more rune. The T2 table leaves one rune ready, so
+Hard Bargain counters the flip; leave two ready to pay it.
 
 **Or a big enough attack.** The Tank wall is a toll, not a shield: lethal on the Guardian costs 6, so
 an attack of summed Might 6 kills it and 9 kills both. The opponent cannot field that on T2; by T4 it
