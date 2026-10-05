@@ -94,7 +94,8 @@ LeBlanc arrives.
 **Combat does not reach her first.** [Backline] puts her last in line for damage, so an attacker has
 to kill every Sprite before a point lands on LeBlanc. That is exactly why the answer is a removal
 spell and not an attack — and why `OGN-133 Flurry of Blades` (*"Deal 1 to all units at
-battlefields."*) does nothing here: the Sprites are 3 Might and LeBlanc is 4.
+battlefields."*) does nothing to the army: the Sprites are 3 Might and LeBlanc is 4. It does kill the
+T3 garrison's `OGN-096 Watchful Sentry` (Might 1), whose [Deathknell] draws you a card.
 
 **A bounce is as good as a kill.** `UNL-128 Star-Crossed` (Chaos, E3 + 1 Power, [Reaction], *"Return
 a friendly unit and an enemy unit to their owners' hands."*) sends LeBlanc home on their turn; your
