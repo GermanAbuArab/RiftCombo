@@ -105,7 +105,7 @@ Combat ongoing there."* The Poro, or Soraka, is that body.
 
 ## 4. The half that is card advantage as written
 
-The entry's notable says it already: *"Saving into their Hidden Blade is a two-card profit."* That
+The entry's notable says it already: *"Saving into their Hidden Blade is a two-card profit"*. That
 is the strong form. Their Blade is a card, your Tactical Retreat is a card, and you draw 2, so you
 come out one card up and they come out one down. With Soraka standing beside the target it is two
 up, because nothing of yours was spent. Their hidden Blade targets at the battlefield it was hidden

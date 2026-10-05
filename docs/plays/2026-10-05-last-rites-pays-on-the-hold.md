@@ -97,7 +97,7 @@ Two consequences:
   entry says. Play it to Minefield (355.2.a: *"the controller’s Base or a Battlefield the controller
   controls"*) and it is a second holder.
 - **Minefield is the trash filler, and only once.** With one Conquer the mill happens once, so the
-  Burn Out ceiling the entry calls *"not optional"* never arrives in this game. The currency after
+  Burn Out ceiling the entry calls *"NOT OPTIONAL"* never arrives in this game. The currency after
   T2 is whatever else reaches the trash: the Disciple's Burn 1 each time it moves, spells you cast,
   your units that die.
 
