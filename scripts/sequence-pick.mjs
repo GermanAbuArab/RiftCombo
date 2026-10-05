@@ -4,13 +4,16 @@
 //   node scripts/sequence-pick.mjs              non-vacuity line, queue size, top ten of the queue
 //   node scripts/sequence-pick.mjs --count      non-vacuity line, then the queue size alone
 //   node scripts/sequence-pick.mjs --pair a/b   the whole queue restricted to one identity
+//   node scripts/sequence-pick.mjs --unplayed   the whole queue in rank order, skipping every entry
+//                                               that is the Subject of a play in docs/plays/,
+//                                               with its GLOBAL rank printed beside it
 //
 // The QUEUE is every entry whose `steps` carry forced-ordering language (FORCED) AND whose
 // `terminatesIn` is a bare quantity with no ordering word (QTY and not ORD). Identity is the union
 // of the domains of the entry's non-legend `uses` rows (103.1.b), "colourless" when there are none.
 // Rank: most forced-ordering hits, then most steps. First committed for #231 (2026-09-25); the
 // instrument was written for #200 on 2026-09-14 and read 771 entries / 262 / 102 then.
-import { readFileSync } from "node:fs";
+import { readFileSync, readdirSync } from "node:fs";
 const db = JSON.parse(readFileSync("data/combos.json", "utf8")).combos;
 const cards = JSON.parse(readFileSync("data/cards.json", "utf8")).cards;
 const dom = new Map(), isLeg = new Map();
@@ -48,6 +51,20 @@ const queue = rows.filter(r => r.bareQty).sort((a, b) => b.n - a.n || b.steps - 
 console.log(`NON-VACUITY: ${db.length} entries scanned, ${rows.length} carry forced-ordering language in their steps`);
 if (args.includes("--count")) { console.log(`QUEUE: ${queue.length}`); process.exit(0); }
 console.log(`of those, ${queue.length} have a terminatesIn that is a BARE QUANTITY with no ordering word\n`);
-const pick = pairArg ? queue.filter(r => r.dom === pairArg) : queue.slice(0, 10);
-console.log(pairArg ? `QUEUE IN ${pairArg}: ${pick.length}` : "TOP CANDIDATES — most forced-ordering language, terminatesIn a bare quantity:");
-for (const r of pick) console.log(`  ${String(r.n).padStart(2)}x  ${r.cls.padEnd(8)} ${r.dom.padEnd(12)} ${r.id.padEnd(46)} [${r.kinds}]\n        terminatesIn: ${r.t}`);
+queue.forEach((r, i) => { r.rank = i + 1; });
+let pick, head;
+if (args.includes("--unplayed")) {
+  // A play names its subject as **Subject: `<entry-id>`** (or **Subject:** `<entry-id>`).
+  const SUBJECT = /\*\*Subject:\s*\**\s*`([^`]+)`/;
+  const files = readdirSync("docs/plays").filter(f => f.endsWith(".md"));
+  const played = new Set(files.map(f => readFileSync(`docs/plays/${f}`, "utf8").match(SUBJECT)?.[1]).filter(Boolean));
+  pick = queue.filter(r => !played.has(r.id));
+  const inQueue = queue.filter(r => played.has(r.id)).length;
+  head = `PLAYS: ${files.length} files, ${played.size} distinct subjects, ${inQueue} of them in the queue
+UNPLAYED: ${pick.length} of ${queue.length}, global rank beside each:`;
+} else {
+  pick = pairArg ? queue.filter(r => r.dom === pairArg) : queue.slice(0, 10);
+  head = pairArg ? `QUEUE IN ${pairArg}: ${pick.length}` : "TOP CANDIDATES — most forced-ordering language, terminatesIn a bare quantity:";
+}
+console.log(head);
+for (const r of pick) console.log(`  #${String(r.rank).padStart(3)} ${String(r.n).padStart(2)}x  ${r.cls.padEnd(8)} ${r.dom.padEnd(12)} ${r.id.padEnd(46)} [${r.kinds}]\n        terminatesIn: ${r.t}`);
