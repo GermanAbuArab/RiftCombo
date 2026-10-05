@@ -7,6 +7,7 @@
 - Repo: `github.com/GermanAbuArab/RiftCombo`, **public** since the de-clone (issues #1–#3) was done — `gh repo view --json visibility` says `PUBLIC`, so the `docs/phase0/...` blob links `sourceHref` builds do resolve for a reader. Account `GermanAbuArab` — run `gh auth switch --user GermanAbuArab` before any push or PR.
 
 ## Workflow — GitHub issues are the backlog
+- **The owner does nothing; `needs-owner` is retired for this project (owner rule 2026-09-25, scope soluciones-panel, panorama, mamparas-web, aures and riftcombo, #237).** Tokens, env vars, production migrations and dashboard reads are done by the orchestrator or an agent it delegates to (playwright MCP on the logged-in profile, the CLIs); only a password, 2FA or captcha screen is handed to him, in the same window. Do not file items as `needs-owner`.
 - Every task the user names becomes a GitHub issue. Create it immediately with `gh issue create`, don't batch them up.
 - Labels: `de-clone`, `ui`, `bug`, `data`, `legal`, `infra`. Reuse them; only add a new label when none fits.
 - An issue body states what is wrong, the measured evidence, the files involved, and its dependencies on other issues. No vague one-liners.
@@ -537,4 +538,4 @@
 - Repo: GermanAbuArab/RiftCombo
 - Implementers: 1
 - Verify: npm run typecheck && npm test && npm run build:web
-- Needs the owner: production deploys, credentials, spending
+- Needs the owner: nothing (owner rule 2026-09-25: the orchestrator does it or delegates it; only a password, 2FA or captcha screen is handed over, in the same window)
