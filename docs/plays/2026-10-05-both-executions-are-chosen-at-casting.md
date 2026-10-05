@@ -65,21 +65,31 @@ follows (323.5). Three consequences:
 Mono-Mind. The opponent plays a body a turn to their base (143.4, *"Units enter the Board
 exhausted."*) and walks it next turn, so on your turn their base holds whatever they played last.
 
+The rows below are **alternatives, not one game**: each assumes no earlier recycle, because every
+Power paid sends a rune back to the Rune Deck (161.2.b) and the board loses it.
+
 ```
-turn   runes   your Main Phase                                        after
-T2     4       Rocket Barrage, one mode: exhaust 4 for E4, recycle    3 runes; one body of
-               one exhausted Mind rune for the Power (164.2.b)        Might <= 4 in their base dead
-T4     8       Rocket Barrage + Repeat: exhaust 8 for E8, recycle      6 runes, 0 Energy spare;
-               two exhausted Mind runes for 2 Mind Power               8 to one body, or two bodies
-T4*    7+Spire the same with Marai Spire controlled: E7 + 2 Mind       1 Energy spare
-T5     10      the same at E8 + 2, leaving 2 runes ready               2 Energy spare
+alternative                 runes   your Main Phase                               after
+A  single on T2             4       Rocket Barrage, one mode: exhaust 4 for E4,   3 runes; one body of
+                                    recycle one exhausted Mind rune for the       Might <= 4 in their
+                                    Power (164.2.b)                               base dead
+B  double on T4, nothing    8       Rocket Barrage + Repeat: exhaust 8 for E8,    6 runes, 0 Energy
+   cast before                      recycle two exhausted Mind runes for 2 Mind   spare; 8 to one
+                                    Power                                         body, or two bodies
+C  as B, Spire controlled   8       the same at E7 + 2 Mind                       1 Energy spare
+D  double on T5, nothing    10      the same at E8 + 2, leaving 2 runes ready     2 Energy spare
+   cast before
 ```
 
-- **T4 is the earliest double and it is the whole turn.** Eight runes pay E8 because 164.2.b's cost
-  is the recycle, not an exhaust (*"Recycle this: [Reaction] — Add [C]."*), so the two runes already
+**Carried through from A**, the board is 3 runes after T2, 5 on T3 and **7 on T4**, so E8 + 2 is not
+payable on T4: the double comes on T4 only with the Spire controlled (E7 + 2 exactly, 0 spare), or on
+T5 with 9 runes and 1 spare.
+
+- **T4 is the earliest double for a deck that skipped the T2 single, and it is the whole turn.**
+  Eight runes pay E8 because 164.2.b's cost is the recycle, not an exhaust (*"Recycle this: [Reaction] — Add [C]."*), so the two runes already
   tapped for Energy still pay the two Mind Power. You end at six runes with nothing ready.
 - **The Spire is worth exactly 1 Energy**, and only after you have walked a body in and taken it.
-- **T5 is the double that survives a tax**, for the reason in §4.
+- **T5 with nothing cast before is the double that survives a tax**, for the reason in §4.
 
 ## 4. Breaks to
 
@@ -93,6 +103,8 @@ costs."* That is E8 + 2 Mind Power and two runes off the board, for E1 + 1.
 
 **Outside Calm, `SFD-136 Hard Bargain`** — Chaos, E2, counters a spell unless its controller pays
 2 Energy. The T4 double leaves 0 ready and loses the spell to it; the T5 double leaves 2 and pays.
+A deck that also cast the T2 single never reaches 2 spare in time: 0 on T4 with the Spire, 1 on
+T5, so it loses the double to Hard Bargain through T5.
 
 **Keep nothing in the base.** 355.2.a lets them play a unit to *"the controller’s Base or a
 Battlefield the controller controls"*, so an opponent who holds a battlefield can play there and
@@ -105,8 +117,8 @@ Because the two choices are locked at casting and lethal is checked only after b
 strongest use is not the two different modes but the same body twice: eight damage to something in
 their base that four would not kill. The cost of that choice is that one dodge blanks the whole card.
 
-**It scores nothing:** E4 + 1 for one execution from T2, E8 + 2 for two from T4 (E7 + 2 with the
-Spire), and it breaks to `OGN-045 Defy` for E1 + 1 Power at any point, or to `SFD-136 Hard Bargain`
+**It scores nothing:** E4 + 1 for one execution from T2, E8 + 2 for two from T4 if nothing was cast
+before (E7 + 2 with the Spire, which is also the only T4 double after a T2 single), and it breaks to `OGN-045 Defy` for E1 + 1 Power at any point, or to `SFD-136 Hard Bargain`
 for E2 when you cast the double on T4 with nothing left ready.
 
 ## 6. Not verified
@@ -122,5 +134,6 @@ I did not walk which Reaction-speed moves can pull a unit out of a base in respo
 - Step 5 reads as if the second choice follows the first (*"Resolve the second. 820.2.a lets you
   choose the other mode"*). 820.2 makes both choices at the Make Relevant Choices step, so nothing
   learned from the first execution can change the second.
-- The ledger does not say the earliest double is T4 and leaves 0 Energy ready, which is what exposes
+- The ledger does not say the earliest double is T4 (for a deck that skipped the single on T2; after
+  it, T4 needs the Spire) and leaves 0 Energy ready, which is what exposes
   it to `SFD-136 Hard Bargain`; on T5 it has 2 spare.
