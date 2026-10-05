@@ -70,14 +70,15 @@ two come back each Channel Phase (315.3.b).
 T1     2   Daring Poro                                              E2          0
 T2     4   Poro walks to the empty battlefield A -> Conquer;
            Trusty Ramhound to A; Recurve Bow (unattached, at base)  E4          1
-  their T2: a body walks into B and Conquers it
+  their T2: a Might 2 body walks into B and Conquers it
 T3     6   Hold A. Vanguard Sergeant at base; [Equip] the Bow
            on him (one Fury rune, recycled -> R 5)                  E4+1P       2
-  their T3: they play a Might 6 body at B
+  their T3: they play a Might 6 body at B; B now holds 2 + 6
 T4     7   Hold A. Noxian Guillotine FIRST, on their Might 6 body
            (recycle -> R 6). Sergeant walks base -> B, attacks.
            Bow trigger: 2 to the marked body -> it dies.
-           No defender left: Conquer B. Legend adds 1 Energy.      E4+1P       4
+           Damage step: Sergeant (4) vs the Might 2 body (2):
+           it dies, he survives. Conquer B. Legend adds 1 E.       E4+1P       4
 T5         Hold A and B                                                         6
 T6         Hold A and B                                                         8
 ```
@@ -89,13 +90,20 @@ when the Sergeant is elsewhere.
 
 **Why the Bow and not just the combat.** Combat damage also arms the Guillotine — 417.1.a: damage
 assigned in the damage step *"will cause Damage to be Dealt when assignment is complete"* — so a
-plain attack into the marked body kills it too. But then it dies in the same step it hits back:
-465.2.c, *"each player assigns an amount of damage equal to their summed Might among the other's
-Units"*, and the Sergeant takes 6. The Bow's 2 lands at the attack trigger, before the damage step,
-so the marked body is gone and 465.1's tasks never run: *"If both Attacking and Defending units
-remain at this battlefield, the following Tasks become Outstanding"* — they do not. 466.5 then
-gives the Sergeant the battlefield. **The Bow buys a bloodless conquer against a body four times
-its damage.**
+plain attack into the marked body kills it too. But it dies in the same step it hits back. 465.2.c:
+*"each player assigns an amount of damage equal to their summed Might among the other's Units"*.
+Without the Bow the defenders sum 2 + 6 = 8 against the Sergeant's 4. He can spend 2 on the Might 2
+body (465.2.c.3 makes lethal come first) and 2 on the marked one, so both die — and so does he, and
+with no units left at B nobody conquers it.
+
+The Bow's 2 lands at the attack trigger, before the damage step, so the marked body is gone before
+465.2.c sums anything. The defenders now sum 2: the Sergeant takes 2 at Might 4, survives, and
+puts all 4 into the Might 2 body (465.2.c.4 allows it when *"no further units remain to have damage
+assigned to them"*). He is the only unit left and 466.5 gives him the battlefield. **The Bow does
+not make the conquer bloodless here — the small body still fights — it makes it survivable: it
+removes 6 of the 8 Might that would have killed the attacker.** Against a Might 6 body standing
+alone it is bloodless outright, because 465.1's tasks need *"both Attacking and Defending units"*
+and none remain.
 
 **On the board it scores what the bodies score.** Eight on **T6** only if they never retake B; on
 the ordinary board it is the contested curve, **T9**, and the Guillotine is the tool that keeps B
@@ -107,8 +115,8 @@ from being held against you. Three copies (103.2.b) is three such turns a game.
 :rb_energy_4: and no more than :rb_rune_rainbow:."* The Guillotine costs exactly E4 and one Power,
 so it is inside Defy's range by one point on each axis. Cast it on the Guillotine; 425.1.c:
 *"Countering does not refund any costs paid to play a card, activate an ability, or trigger an
-ability."* You lose the card and E4 + 1 Power, and the Sergeant now walks into a Might 6 body with
-Might 4. One Energy and one Power undo the turn.
+ability."* You lose the card and E4 + 1 Power, and the Sergeant now walks into 8 Might of defenders
+with Might 4. One Energy and one Power undo the turn.
 
 **Cheaper, if the carrier is small: `OGN-169 Gust`** — Chaos, E1, [Reaction]: *"Return a unit at a
 battlefield with 3 :rb_might: or less to its owner's hand."* Cast in response to the Bow's trigger,
@@ -125,8 +133,9 @@ Guillotine for you. The marked body dies to the first point of damage from anyon
 ## 5. Verdict
 
 **The rule is right, and the Bow's value is timing, not damage.** Played first in the turn, the
-Guillotine plus a Bow trigger kills a body of any Might before the damage step, so the attacker
-walks in, takes nothing, and conquers. Played second, it is a plain kill that one would-die shield
+Guillotine plus a Bow trigger kills a body of any Might before the damage step, so its Might never
+reaches the attacker: against the board walked here the Sergeant takes 2 instead of 8, survives,
+and conquers. Played second, it is a plain kill that one would-die shield
 answers whole.
 
 **It scores nothing; priced as a game it is the contested curve, T9**, with three turns a game
@@ -135,9 +144,9 @@ and to `OGN-169 Gust` for E1 if the carrier is printed at Might 3 or less.
 
 ## 6. Not verified
 
-I assumed perfect draws, runes in the domains the costs want (108.5.d), and an opponent with one
-body at B. I did not walk a second defender at B (the Sergeant then fights it at full summed Might),
-the defence half of the Bow on their turn, or a would-die shield on the marked body, which this
+I assumed perfect draws, runes in the domains the costs want (108.5.d), and an opponent with two
+bodies at B, the smaller one Might 2. I did not walk a larger second defender (from Might 4 up the
+Sergeant does not survive it), the defence half of the Bow on their turn, or a would-die shield on the marked body, which this
 mode survives only because the delayed kill is not spent by a death that did not happen.
 
 ## Leads
