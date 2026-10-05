@@ -158,7 +158,7 @@ describe("the allocator's ordering constraint", () => {
     expect(differ.length, differ.map(([id, r]) => `${id} ${r.pays}/${other.get(id)}`).join(" || ")).toBeLessThanOrEqual(6);
     // and every disagreement is at most one turn, which is what makes "T4 or T5" a statement
     for (const [id, r] of differ) expect(r.pays - (other.get(id) as number), id).toBeLessThanOrEqual(1);
-  });
+  }, 60_000); // spawns scripts/adversarial-check.mjs: 3.4s in a full run on the Windows tower (#244)
 
   it("still has a non-empty linked population, so 'it moves nothing' cannot go vacuous", () => {
     const m = out.match(/ordering \(\[Equip\] after its own gear[^)]*\): (\d+) of (\d+) rows carry a linked cost/);

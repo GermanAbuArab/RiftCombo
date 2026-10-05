@@ -87,6 +87,11 @@ const metaOf = (i: number) => tiles()[i]!.querySelector<HTMLElement>(".deck-card
 
 beforeEach(() => { api.decks = []; document.body.innerHTML = HTML; });
 
+// Every test here drives the whole app through happy-dom, and the slowest one measured 2.2s in a
+// full default-parallel run on the Windows tower (#244) against vitest's 5s default. Explicit budget,
+// like the 222-list sweeps: a slow test with no explicit timeout is a flake waiting for load.
+vi.setConfig({ testTimeout: 60_000 });
+
 describe("a deck tile says how many combos the list completes", () => {
   it("agrees with the engine on every fixture, rather than carrying its own number", async () => {
     const lists = [

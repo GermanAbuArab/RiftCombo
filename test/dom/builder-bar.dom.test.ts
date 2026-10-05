@@ -46,6 +46,11 @@ async function mount(actions = "") {
   return { host, mod };
 }
 
+// Every test here drives the whole app through happy-dom, and the slowest one measured 2.2s in a
+// full default-parallel run on the Windows tower (#244) against vitest's 5s default. Explicit budget,
+// like the 222-list sweeps: a slow test with no explicit timeout is a flake waiting for load.
+vi.setConfig({ testTimeout: 60_000 });
+
 describe("the fixed bar keeps Import reachable from the Pool tab (#127)", () => {
   beforeEach(() => { document.body.innerHTML = ""; });
 

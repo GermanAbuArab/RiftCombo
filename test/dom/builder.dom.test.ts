@@ -79,6 +79,11 @@ const setZone = (zone: string) => {
   radio.dispatchEvent(new Event("change", { bubbles: true }));
 };
 
+// Every test here drives the whole app through happy-dom, and the slowest one measured 3.1s in a
+// full default-parallel run on the Windows tower (#244) against vitest's 5s default. Explicit budget,
+// like the 222-list sweeps: a slow test with no explicit timeout is a flake waiting for load.
+vi.setConfig({ testTimeout: 60_000 });
+
 describe("the editor drawn from a real list", () => {
   beforeEach(() => { document.body.innerHTML = ""; });
 
