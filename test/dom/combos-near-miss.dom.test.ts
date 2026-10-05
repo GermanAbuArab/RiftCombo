@@ -62,6 +62,11 @@ beforeAll(async () => {
   await settle();
 });
 
+// Every test here drives the whole app through happy-dom, and the slowest one measured 5.3s in a
+// full default-parallel run on the Windows tower (#244) against vitest's 5s default. Explicit budget,
+// like the 222-list sweeps: a slow test with no explicit timeout is a flake waiting for load.
+vi.setConfig({ testTimeout: 60_000 });
+
 describe("where the near-miss distance lives", () => {
   it("sits beside the view it qualifies, not in the deck form on the other side of the window", () => {
     const label = $("#near-miss");

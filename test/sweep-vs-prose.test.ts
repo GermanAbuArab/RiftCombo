@@ -44,7 +44,7 @@ describe("sweep-vs-prose", () => {
     expect(block).toMatch(/\d+ candidates, \d+ correctly excluded, 0 GENUINE/);
     // and --strict must agree, since that is the exit code CI would gate on
     expect(() => run("--strict")).not.toThrow();
-  });
+  }, 60_000); // sweeps the whole catalogue prose: 3.3s in a full default-parallel run on the Windows tower (#244)
 
   it("can still SEE the two known misses, so a silent stop cannot read as clean", () => {
     const out = run();

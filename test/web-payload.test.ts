@@ -204,7 +204,7 @@ describe("the authored prose the browser downloads", () => {
     expect(js.length, "the probe bundle is empty, so it proves nothing").toBeGreaterThan(100_000);
     const hit = js.match(INTERNAL);
     expect(hit?.[0], `the built bundle still carries: ${hit?.[0]}`).toBeUndefined();
-  });
+  }, 60_000); // runs esbuild for real: 2.6s in a full run, and timed out at 5s under load on the Windows tower (#244)
 
   it("has the plugin in the real build's plugins array", () => {
     // The test above proves the PLUGIN works; this proves the BUILD uses it. They are two different

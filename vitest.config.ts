@@ -28,5 +28,12 @@ export default defineConfig({
     // suite went red with "Hook timed out", which reads exactly like a failure. The same files pass
     // at once when run alone. A hook whose cost is the point of it gets a budget, not a retry.
     hookTimeout: 60_000,
+    // A THIRD reason, added 2026-10-04 (#244). On the 12-core Windows tower vitest's default runs 11
+    // forks, and a fork that loads the catalogue peaks at 400-900 MB, so the default measured 5.7 GB of
+    // node at its peak; with other sessions holding the rest of the 32 GB that twice ended in "Worker
+    // exited unexpectedly", which reports as neither passed nor failed. Four forks peaked at 3.5 GB and
+    // were green. Linux CI (ubuntu-latest, 4 vCPU) defaults to 3 forks, so a cap of 4 changes nothing
+    // there.
+    maxWorkers: 4,
   },
 });
