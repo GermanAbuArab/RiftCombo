@@ -147,8 +147,9 @@ their summed Might among the other's Units."* Nasus is Might 8 and the Svellsong
 | 8 or more | Nasus dies; 719.5 — *"When a Top-Most Card changes zones from a board zone to a non-board zone, all Attached cards Detach from it, remaining in their current zones."* — and there is no Conquer at all |
 
 So the line does not need its removal package against a small garrison, and it does need one
-against a garrison of 8. [Deflect 2] copied eight times sums to 16 (809.2), which keeps every
-targeted answer off Nasus once the gears are on; it does nothing for him in a damage step.
+against a garrison of 8. Every instance carries his [Deflect 2] and 809.2 sums them: 8 with §4's two
+gears (four instances), 16 with the entry's three. That keeps every targeted answer off Nasus once
+the gears are on; it does nothing for him in a damage step.
 
 ## 6. Breaks to
 
@@ -161,13 +162,16 @@ the Conquer pays 1 + 1 = 2 and the deck stops at **7**, one short, with the turn
 5 Energy and 2 Fury Power and nothing else; 718.5.b — *"Attached cards still can be chosen or
 targeted by game effects while Attached"* — is not even needed, since it chooses nothing.
 
-**Wind Wall counters it**, and only Wind Wall does: `OGN-045 Defy` stops at *"a spell that costs no
-more than :rb_energy_4: and no more than :rb_rune_rainbow:"*, and Thermo Beam is E5 + 2. That is
-why §4's T6 turn keeps E3 + 2 Calm Power idle rather than spending it.
+**Of the mono-Calm counters, Wind Wall is the one that fits the T6 budget.** `OGN-045 Defy` stops at
+*"a spell that costs no more than :rb_energy_4: and no more than :rb_rune_rainbow:"*, and Thermo
+Beam is E5 + 2. `UNL-044 Flurry of Feathers` (Calm, [Reaction], *"Counter a spell"* as one mode)
+reaches it too, but costs E4 + 2 against the E3 the turn leaves idle. Under a Calm/Chaos legend
+`UNL-131 Abandon` and `SFD-136 Hard Bargain` also reach it. That is why §4's T6 turn keeps E3 + 2
+Calm Power idle rather than spending it.
 
 The single-gear answers only halve the burst, and two gears absorb them:
 `SFD-011 Angle Shot` (Fury, E2, [Reaction]) can choose a Steel Paws and a Svellsongur — same
-controller, and the Paws' [Deflect] costs one rainbow instead of Nasus's sixteen — and *"Attach that
+controller, and the Paws' [Deflect] costs one rainbow instead of Nasus's eight — and *"Attach that
 Equipment to that unit"*, moving one gear off Nasus (434.1.f). Two gears become one: 5 + 3 = 8,
 still a win. `SFD-005 Detonate` cannot be cast at all in time, because the gear does not exist until
 the swing turn and Detonate carries no [Action].
@@ -200,8 +204,9 @@ only his printed [Deflect 2], nor the one damage that removes a Might-0 Steel Pa
 - The entry's steps say *"ON THE TURN YOU SWING, and not before: attach"* but never say the Empower
   must precede the move. A notable that 308.1.a bars an Empower in the Showdown, and that a late
   Empower leaves all eight copies inactive for a one-point Conquer, would carry §3.
-- `OGN-064 Wind Wall` is the only counter in the identity that reaches `OGN-022 Thermo Beam` (Defy's
-  ceiling is E4 and one rainbow). The entry names Thermo Beam as the answer and no counter to it.
+- Of the mono-Calm counters that reach `OGN-022 Thermo Beam`, `OGN-064 Wind Wall` is the one that
+  fits beside the two-gear T6 swing (Defy's ceiling is E4 and one rainbow; `UNL-044 Flurry of
+  Feathers` costs E4 + 2). The entry names Thermo Beam as the answer and no counter to it.
 - Nasus Might 8 against the garrison: the entry's *"a garrison of summed Might 8 or more kills him"*
   is right; the converse, that any garrison of summed Might 7 or less dies with no removal at all,
   would let a reader leave the removal package out of a small-garrison matchup.

@@ -121,7 +121,7 @@ decide whether it ever scores:
   forced kill becomes a tax on a body they were going to make anyway. Against that deck the engine
   is one card a turn from the Lab and no tempo.
 
-So the honest price is in the entry's own words — *"attrition, not an answer"* — and the attrition
+So the honest price is in the entry's own words — *"Price it as attrition, not as an answer."* — and the attrition
 pays only against a deck that cannot spare a body.
 
 ## 5. Breaks to
