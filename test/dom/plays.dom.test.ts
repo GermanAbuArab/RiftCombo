@@ -33,6 +33,11 @@ const open = async (hash: string, plays: Play[] = PLAYS) => {
   return document.querySelector<HTMLElement>("#plays-host")!;
 };
 
+// Every test re-imports the view after vi.resetModules() and renders the real plays, so the file is
+// 28 of 28 alone and timed out at vitest's 5s default under full-suite load (#239). Explicit budget,
+// like the 222-list sweeps: a slow test with no explicit timeout is a flake waiting for load.
+vi.setConfig({ testTimeout: 60_000 });
+
 beforeEach(() => { document.body.innerHTML = HTML; });
 
 describe("the plays index", () => {
