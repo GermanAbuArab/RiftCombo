@@ -116,8 +116,9 @@ example.
 
 ## Leads
 
-- The entry says play the Monument *"on a turn when you expect targeted removal"*. The window is
-  narrower than that: only your own Main Phase, before the opponent's turn, because a gear with no
+- The entry says play the Monument *"On a turn when you expect targeted removal"* and *"in your Main
+  Phase"*. The Main Phase is right; the turn is not. Targeted removal comes on the opponent's turn, so
+  the Monument goes down on the turn before the one to cover — your own — because a gear with no
   [Reaction] cannot be played in response and a tax applies only to a spell being played.
 - The entry's sweeper list (`OGN-022 Thermo Beam`, `OGN-127 Cannon Barrage`, `OGN-268 Bullet Time`,
   `VEN-090 Cataclysmic Duel`) misses the cheapest: `OGN-133 Flurry of Blades`, E1, which chooses
