@@ -1,5 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { readdirSync, readFileSync } from "node:fs";
+import { fileURLToPath } from "node:url";
 import { CardIndex } from "../src/cards.js";
 import { loadCardIndex, loadSynergies } from "../src/load.js";
 import { partnersOf } from "../src/synergies.js";
@@ -190,7 +191,9 @@ describe("the authored prose the browser downloads", () => {
     // this repo. So run esbuild for real, through the exported plugin, over an entry that imports
     // what web/main.ts imports, and read the OUTPUT.
     const { build } = await import("esbuild");
-    const root = new URL("..", import.meta.url).pathname.replace(/\/$/, "");
+    // fileURLToPath, not URL.pathname: on Windows the pathname is "/C:/...", which esbuild cannot resolve.
+    // Forward slashes, because the root is spliced into import specifiers below.
+    const root = fileURLToPath(new URL("..", import.meta.url)).replace(/\\/g, "/").replace(/\/$/, "");
     const entry = imported.map((f, i) => `import d${i} from "${root}/${f}" with { type: "json" };\nexport const e${i} = d${i};`).join("\n");
     const out = await build({
       stdin: { contents: entry, resolveDir: root, loader: "ts" },
