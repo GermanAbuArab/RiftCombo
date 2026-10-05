@@ -569,7 +569,7 @@ describe("checkBuild against the 222 registered tournament lists", () => {
     const banned = FILES.filter((f) => report(f).rules.some((r) => r.rule === "103.2.e" && r.status === "fail"));
     expect(banned.length).toBeGreaterThan(FILES.length * 0.3);
     expect(banned.length).toBeLessThan(FILES.length);               // and not simply all of them
-  });
+  }, 60_000); // reads all 222 registered lists: 4.2s in a full default-parallel run on the Windows tower (#244)
 
   /**
    * The denominator that makes the `403.4.b` row's silence meaningful (#215). All 222 lists carry a
