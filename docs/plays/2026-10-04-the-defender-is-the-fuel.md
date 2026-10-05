@@ -106,7 +106,11 @@ stunned body of Might 4 or more takes one Reveler's three damage, heals in the c
 (466.1.a.1), and keeps 466.1.a.2 recalling your attackers. But on the turn you stop drawing, two
 ready bodies walking in together are one action under 144.3 — *"Players may perform multiple Units'
 standard move simultaneously. This is treated as one game action performed on multiple Units."* —
-and after A's attack readies Reveler B and the Stellacorn, those two walk into B for six damage. A
+and after A's attack readies Reveler B and the Stellacorn, those two walk into B for six damage —
+**but only on an A attack that finds the Stellacorn at your base.** The loop moves it base to A and
+back on alternate passes, a Standard Move from A to B needs [Ganking] (144.4, 144.4.c.1), and
+144.3.a gives the two movers one shared destination, not a shared route; so finish on the pass after
+the Stellacorn's move home, as in step 4 of the opening. A
 stunned defender of Might 6 or less dies, you are the only player with units there, and 466.5 gives
 you B: *"the player with Units remaining here Establishes Control if they didn’t already control
 this Battlefield."* You have not scored B this turn, so it is a point. The Stellacorn draws on that
@@ -166,4 +170,5 @@ into B, nor whether the opponent can answer Back Off itself.
   Stellacorn act before A's first attack, would carry §3.
 - `netPerIteration` is one card per pass of two Reveler attacks, not per attack.
 - The entry's notable sets the defender bar at 5+ Might. One Reveler deals three and 466.1.a.1 heals
-  between combats, so Might 4 suffices; and a defender of Might 6 or less is a Conquer at the end.
+  between combats, so Might 4 suffices; and a defender of Might 6 or less is a Conquer at the end,
+  on a Reveler A attack that finds the Stellacorn at base.

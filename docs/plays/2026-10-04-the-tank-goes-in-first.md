@@ -116,8 +116,11 @@ still A's only body when the friendly half moves it to B. Then the enemy half dr
 A, which now holds none of your units. After the spell resolves the turn is open again, and 323.6
 takes A from you: *"Players lose control of any controlled Battlefields without their Units
 occupying them if the turn is in an Open State and there is no Showdown or Combat ongoing there."*
-Their body is the only one at A, so 344.2 opens a Showdown and they Conquer it. You have traded A
-for B and paid two Energy and a Power for the privilege. **The Tank goes in first.**
+Their body is the only one at A, so 344.2 opens a Showdown and they Conquer it. And you do not take
+B either: they had two bodies there and the spell dragged one, so the Sentry lands at B against the
+other and is the Attacker (190.3.a.1, 464.2.c.1). A Might-1 Sentry dies to any body of Might 1 or
+more. You lose A, you do not take B, and you lose the Sentry, for two Energy and a Power. **The Tank
+goes in first.**
 
 The same rule protects the right order against a response. 323.6 needs an Open State, and while a
 Void Assault is still on the chain the state is Closed. So `OGN-133 Flurry of Blades` cast in
