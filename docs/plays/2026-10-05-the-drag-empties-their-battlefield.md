@@ -140,7 +140,10 @@ didn’t already control this Battlefield."* — hands them A on your turn. You 
 the Poro. **One Energy turns the drag into a swap of battlefields, and you paid two cards for it.**
 
 The cheaper defence is ordering, not a card: drag a body of Might 2. Evelynn alone still trades with
-it, and A stays yours.
+it, but A does not stay yours. Neither side has units left there, so 466.3.d makes the combat No
+Result; Evelynn #2 is not hidden yet, because the hide waits for the combat; and in the next Open
+State 323.6 strips your Control of A. **A ends uncontrolled rather than theirs**, B is open too, and
+the Poro takes one of them — one Conquer where the line was meant to leave you holding two.
 
 ## 5. Verdict
 
@@ -168,9 +171,11 @@ Teemo with Evelynn already hidden, where the [Reaction] flip ambush is the entry
 - The entry never says that the dragged body leaves a battlefield behind. A notable that 323.6
   strips their Control of an emptied battlefield in the same Cleanup that stages the combat, so a
   ready body at your base Conquers it afterwards, would carry §3.
-- *"A clean kill on anything at Might 5 or less"* is the ceiling, 5.8% of reveals with H = 23. The
+- *"a clean kill on anything at Might 5 or less"* is the ceiling, 5.8% of reveals with H = 23. The
   table in §3 is the honest version, and the combat column is the one that keeps the battlefield.
 - The turn order is forced and the steps do not say it: flip Evelynn, let the combat resolve, then
   hide the next one (811.1.b's one-facedown clause), then walk in (144.1.c).
 - `OGN-169 Gust` on Teemo in response to his trigger answers the line for one Energy and, against a
-  dragged body of Might 3 or more, gives the opponent A (466.3.a, 466.5).
+  dragged body of Might 3 or more, gives the opponent A (466.3.a, 466.5). Against a Might-2 body
+  Evelynn trades, 466.3.d makes it No Result and 323.6 leaves A uncontrolled, so the Poro takes A
+  or B and not both.

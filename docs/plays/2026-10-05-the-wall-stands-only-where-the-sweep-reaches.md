@@ -148,7 +148,7 @@ sweepers outside Body (`OGS-018 Tibbers` deals 3 to all units at battlefields an
   is on the turn the Tentacles walk.
 - Up from the Deep names no location, so 355.2.a lets the Tentacles land at a battlefield you
   control; the entry's steps put them at base only.
-- *"She may come before or after them"* is true in a Neutral Open State on your turn (312.2.a,
+- *"she may come before or after them"* is true in a Neutral Open State on your turn (312.2.a,
   337.2) and false across any chain you open (312.2.c) while 1-Might Tentacles stand at a
   battlefield.
 - The entry names Flurry and no answer to a 2-Might swarm. `OGN-127 Cannon Barrage` (E2 + 1 Body
