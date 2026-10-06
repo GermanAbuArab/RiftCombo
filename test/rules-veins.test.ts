@@ -13,15 +13,15 @@ import { describe, expect, it } from "vitest";
  * paragraph, promote it into CLAUDE.md or refuse it in a walk document with the reason.
  */
 describe("rules veins stay closed", () => {
-  it("Vein A: no rule cited 10+ times by the catalogue is missing from CLAUDE.md", () => {
+  it("Vein A: no rule cited 10+ times by the catalogue is missing from CLAUDE.md + docs/rules-notes", () => {
     const out = execFileSync("node", ["scripts/claude-md-gap.mjs"], { encoding: "utf8" });
-    const nv = out.match(/NON-VACUITY: (\d+) headings parsed; catalogue blob (\d+) bytes; CLAUDE\.md (\d+) bytes/);
+    const nv = out.match(/NON-VACUITY: (\d+) headings parsed; catalogue blob (\d+) bytes; CLAUDE\.md \+ docs\/rules-notes (\d+) bytes/);
     expect(nv).not.toBeNull();
     const [, heads, blob, claude] = nv!.map(Number);
     expect(heads).toBeGreaterThan(2000);
     expect(blob).toBeGreaterThan(1_000_000);
     expect(claude).toBeGreaterThan(100_000);
-    const pop = out.match(/ZERO times in CLAUDE\.md: (\d+)/);
+    const pop = out.match(/ZERO times in CLAUDE\.md \+ docs\/rules-notes: (\d+)/);
     expect(pop).not.toBeNull();
     expect(Number(pop![1])).toBe(0);
   }, 60_000); // the gap script scans 2,381 headings against 7 MB; ~5s alone, more under load

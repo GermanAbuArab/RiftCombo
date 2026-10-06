@@ -17,12 +17,13 @@
 // the test asserts it is non-zero.
 import fs from "fs";
 import { citeRe } from "./citation-form.mjs";
+import { rulesNotesText } from "./rules-notes.mjs";
 
 const R = fs.readFileSync("data/Riftbound-Core-Rules-2026-07-16.txt", "utf8");
 const walkDir = "docs/phase0/walks";
 const walks = fs.readdirSync(walkDir).filter(f => f.endsWith(".md")).map(f => fs.readFileSync(`${walkDir}/${f}`, "utf8"));
 const catalogue = fs.readFileSync("data/combos.json", "utf8") + fs.readFileSync("data/synergies.json", "utf8");
-const hay = [catalogue, fs.readFileSync("CLAUDE.md", "utf8"), ...walks].join("\n");
+const hay = [catalogue, rulesNotesText(), ...walks].join("\n");
 
 // Every heading line, in file order, so each sub-rule's block ends at the next heading of any depth.
 const headRe = /(?:^|[\n])[ \t\f]*(\d{3}(?:\.[0-9a-z]+)*)\.[ \t]/g;

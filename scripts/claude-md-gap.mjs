@@ -6,7 +6,8 @@
 import fs from "fs";
 import { countCites } from "./citation-form.mjs";
 const blob=fs.readFileSync("data/combos.json","utf8")+fs.readFileSync("data/synergies.json","utf8");
-const CL=fs.readFileSync("CLAUDE.md","utf8");
+import { rulesNotesText } from "./rules-notes.mjs";
+const CL=rulesNotesText();
 const R=fs.readFileSync("data/Riftbound-Core-Rules-2026-07-16.txt","utf8");
 const heads=[...new Set((R.match(/(^|[\s\f])(\d{3}(?:\.[0-9a-z]+)*)\.[\s\f]/gm)||[]).map(m=>m.trim().replace(/\.$/,"")))];
 // The counter lives in ./citation-form.mjs (#232), shared with uncited-examples.mjs; it has six
@@ -42,15 +43,15 @@ for(const h of heads){
   if(!h.includes(".")) verify.push({h,c,k});      // bare head + non-zero: a collision is possible
 }
 rows.sort((a,b)=>b.c-a.c);
-console.log(`NON-VACUITY: ${heads.length} headings parsed; catalogue blob ${blob.length} bytes; CLAUDE.md ${CL.length} bytes.`);
-console.log(`Rules cited ${MIN}+ times by the catalogue and ZERO times in CLAUDE.md: ${rows.length}\n`);
+console.log(`NON-VACUITY: ${heads.length} headings parsed; catalogue blob ${blob.length} bytes; CLAUDE.md + docs/rules-notes ${CL.length} bytes.`);
+console.log(`Rules cited ${MIN}+ times by the catalogue and ZERO times in CLAUDE.md + docs/rules-notes: ${rows.length}\n`);
 if(verify.length){
-  console.log(`# ${verify.length} BARE heads were suppressed by a non-zero CLAUDE.md count. A bare`);
+  console.log(`# ${verify.length} BARE heads were suppressed by a non-zero CLAUDE.md + docs/rules-notes count. A bare`);
   console.log(`# three-digit number in prose is indistinguishable from a citation, so READ THESE HITS`);
   console.log(`# rather than trusting the suppression - this is the second counter bug, not a ranking issue.`);
   for(const v of verify){
     const hits=(CL.match(new RegExp(".{30}(?<![-#0-9.])"+v.h+"(?![0-9a-z.]).{14}","g"))||[]).slice(0,2);
-    console.log(`  ${String(v.c).padStart(4)}x cat | ${v.k} in CLAUDE.md | ${v.h}`);
+    console.log(`  ${String(v.c).padStart(4)}x cat | ${v.k} in CLAUDE.md + docs/rules-notes | ${v.h}`);
     for(const x of hits) console.log(`         ...${x.replace(/\n/g," ")}...`);
   }
   console.log("");
