@@ -32,6 +32,7 @@
 //   - strip a markdown blockquote prefix, because it lands INSIDE a multi-line captured quote;
 //   - fold a BACKTICK used as an apostrophe, which CLAUDE.md does in places.
 import fs from "fs";
+import { rulesNotesFiles } from "./rules-notes.mjs";
 
 const dirs = ["docs/phase0/walks", "docs/plays"];
 const files = dirs.flatMap((dir) =>
@@ -44,7 +45,7 @@ const sources = [
   "data/Riftbound-Core-Rules-2026-07-16.txt",
   "data/Riftbound-Tournament-Rules-2026-07-16.txt",
   "data/corpus_flat.txt",
-  "CLAUDE.md",
+  ...rulesNotesFiles(), // CLAUDE.md + docs/rules-notes (#274)
 ].map((f) => fs.readFileSync(f, "utf8"));
 
 const norm = (s) =>
