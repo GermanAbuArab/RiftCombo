@@ -14,6 +14,7 @@ import { siteConfig } from "./site-config.mjs";
 import { slimCard } from "./web-card-fields.mjs";
 import { loadPlays } from "./web-plays.mjs";
 import { stripProsePlugin } from "./web-combo-prose.mjs";
+import { writeSeo } from "./web-seo.mjs";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
 const OUT = join(ROOT, "public");
@@ -42,6 +43,8 @@ writeFileSync(join(OUT, "data", "plays.json"), JSON.stringify({ plays }));
 // 404.html is served by Vercel for any address that matches nothing, so it carries no script: it has
 // to work in the case where the bundle is what went wrong (#77).
 for (const f of ["index.html", "privacy.html", "terms.html", "404.html", "styles.css", "favicon.svg"]) copyFileSync(join(ROOT, "web", f), join(OUT, f));
+// After the copy, because writeSeo checks every sitemap path against a file in public/ (#268).
+writeSeo(OUT);
 
 // Both values are public by design and are baked in rather than fetched, so the account layer is
 // either present in a build or absent from it — never half-configured at runtime. An empty pair
