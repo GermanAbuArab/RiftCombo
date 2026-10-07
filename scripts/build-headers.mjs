@@ -93,7 +93,11 @@ const config = {
   // preview before it was named here (#277). Any other unslashed branch name would still deploy:
   // Vercel's default for an unmatched branch is enabled, and the only pattern that would catch them all
   // is `"*": false`, which also catches master.
-  git: { deploymentEnabled: { "*/*": false, "*/**": false, work: false, "issue-*": false, master: true } },
+  //
+  // `pr-assets` is the orphan branch that holds PR screenshots; its first push built a preview (#281).
+  // Its own tree carries a `vercel.json` with this same key, since Vercel reads the pushed commit's
+  // file; naming it here too keeps it off if master is ever merged into it.
+  git: { deploymentEnabled: { "*/*": false, "*/**": false, work: false, "issue-*": false, "pr-assets": false, master: true } },
   // /privacy and /terms rather than /privacy.html: Google's OAuth branding page wants both links,
   // and they are printed in the footer of every page.
   cleanUrls: true,
