@@ -27,7 +27,7 @@ is rank 27, played in
 |---|---|
 | **Legend** | any legend with Chaos in its pair (103.1.b) |
 | **First** | a real unit on the board worth saving: `OGN-167 Ember Monk` (Chaos, E4, M4) |
-| **Held open** | 2 Energy and 1 Chaos Power through the opponent's turn |
+| **Held open** | two runes, one of them Chaos, through the opponent's turn (2 Energy and 1 Chaos Power) |
 | **Then** | `UNL-142 Heedless Resurrection` (Chaos, E2 + 1 Power), in response to their removal |
 
 The card text the play turns on:
@@ -80,7 +80,7 @@ turn    runes   your turn                                                 at bat
 T1      2       Mystic Poro (E2) at base
 T2      4       Poro walks to A, Conquer: +1. Ember Monk (E4) at base.    Poro
 T3      6       Hold A: +1. Monk walks to A. Shipyard Skulker (E3) at     Poro, Monk
-                base. 3 runes left open.
+                base. 3 runes left open; the line needs two.
 their T3        Void Seeker on the Monk (E3 + 1 Power). In response:
                 Heedless Resurrection (E2 + 1 Chaos Power): the Monk
                 dies as the cost and comes back to A, exhausted. Void
@@ -90,8 +90,11 @@ T4      7       Hold A: +1. 3 points.
 
 The Power comes from a rune, so it takes one off the board — 164.2.b: *"Recycle this: [Reaction] —
 Add [C]."* — and 161.2.b: *"When a Rune is Recycled it is returned to the Rune Deck, not the Main
-Deck."* That is why T4 has seven runes and not eight. The line cost you three runes held through
-their turn on T3, which is three runes you did not spend on a fourth body.
+Deck."* That is why T4 has seven runes and not eight. One rune pays both halves: 164.2.a's cost is
+the exhaust, *"[E]: [Reaction] — Add [1]."*, and 164.2.b's is the recycle, which asks nothing about
+readiness. So Heedless Resurrection needs **two** runes held through their turn, one of them Chaos:
+both exhaust for the 2 Energy and the Chaos one is then recycled for the Power. Those are two runes
+you did not spend on T3, and one of them does not come back.
 
 ## 5. Breaks to
 
@@ -102,20 +105,22 @@ Defy reaches it. Heedless Resurrection is countered, the Monk stays in the trash
 fizzles, because its target is gone. Count the cards. If you had let Void Seeker resolve you would be
 down the Monk and they would be down nothing, having drawn one for the card they spent. After Defy you
 are down the Monk **and** Heedless Resurrection, and they are down one card. Their T3 spends Void Seeker
-and Defy, E4 + 2 Power: six runes, which is everything they have by then.
+and Defy, E4 + 2 Power, which is **four** runes: four exhaust for the Energy and two of them are
+recycled for the Power. Going second they have seven by then — 485.7: *"First Turn Process: The player
+going second channels an extra Rune from their Rune Deck during their first Channel Phase of the
+game."* — so the counter costs them one rune beyond the removal, with three to spare.
 
 **Inside Chaos, `SFD-136 Hard Bargain`** (E2, *"Counter a spell unless its controller pays
-:rb_energy_2:."*) does the same unless you held five runes open instead of three, and **`UNL-131
+:rb_energy_2:."*) does the same unless you held four runes open instead of two, and **`UNL-131
 Abandon`** (E2) counters it and returns Heedless Resurrection to your hand, with the Monk still dead.
 
-**Waiting is also an answer, and it costs nothing.** The line works only while 2 Energy and 1 Chaos
-Power sit untapped through the opponent's turn. Removal cast on the turn you spent them meets no
+**Waiting is also an answer, and it costs nothing.** The line works only while two runes, one of them
+Chaos, sit untapped through the opponent's turn. Removal cast on the turn you spent them meets no
 response at all.
 
 ## 6. Verdict
 
-**One removal spell blanked for 2 Energy and 1 Power, unless the opponent holds one Energy and one
-Power more.** The ordering is forced on you twice: the kill is a mandatory cost, so it comes first, and
+**One removal spell blanked for two runes, unless the opponent holds one rune more.** The ordering is forced on you twice: the kill is a mandatory cost, so it comes first, and
 the spell is a [Reaction], so it lands in the one window where the opponent can still answer it. When
 they do, the counter keeps your unit in the trash. Nothing here scores; the points are the Hold curve
 from the Poro.
@@ -135,5 +140,6 @@ removal that chooses nothing.
 - The entry names no answer to the line. `OGN-045 Defy` (E1 + 1 Power) counters Heedless Resurrection
   after its cost is paid (425.1.c, 425.1.c.1), leaving the controller a card worse off than not
   responding.
-- The entry's *"In response"* step implies 2 Energy and 1 Chaos Power held untapped through the
-  opponent's turn. That is the line's real cost on the curve, and the entry does not state it.
+- The entry's *"In response"* step implies two runes, one of them Chaos, held untapped through the
+  opponent's turn (2 Energy and 1 Chaos Power, one rune paying both halves under 164.2.a and 164.2.b).
+  That is the line's real cost on the curve, and the entry does not state it.
