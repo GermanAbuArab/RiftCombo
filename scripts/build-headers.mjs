@@ -78,9 +78,11 @@ const config = {
   // the ACCOUNT over a rolling 86400s, and a build cancelled by the ignore step still counts against it
   // — which is why the branch has to not deploy at all rather than deploy and skip.
   //
-  // Any other unslashed branch name would still deploy: Vercel's default for an unmatched branch is
-  // enabled, and the only pattern that would catch them all is `"*": false`, which also catches master.
-  git: { deploymentEnabled: { "*/*": false, "*/**": false, work: false, master: true } },
+  // `issue-*` catches the implementer branches (`issue-<n>-<short>`, no slash): PR #276's branch built a
+  // preview before it was named here (#277). Any other unslashed branch name would still deploy:
+  // Vercel's default for an unmatched branch is enabled, and the only pattern that would catch them all
+  // is `"*": false`, which also catches master.
+  git: { deploymentEnabled: { "*/*": false, "*/**": false, work: false, "issue-*": false, master: true } },
   // /privacy and /terms rather than /privacy.html: Google's OAuth branding page wants both links,
   // and they are printed in the footer of every page.
   cleanUrls: true,

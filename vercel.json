@@ -9,6 +9,7 @@
       "*/*": false,
       "*/**": false,
       "work": false,
+      "issue-*": false,
       "master": true
     }
   },

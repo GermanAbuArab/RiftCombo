@@ -280,3 +280,33 @@ describe("the ignored build step watches everything the build reads (#126)", () 
     expect(watched, "watching all of docs/ would rebuild on every walk document").not.toContain("docs");
   });
 });
+
+/**
+ * Vercel's Hobby cap ("Deployments Created per Day: 100") is per ACCOUNT, and implementer branches are
+ * `issue-<n>-<short>` with no slash, so the slashed globs never caught them: PR #276's branch built a
+ * preview (#277). Vercel matches these keys as minimatch globs, where `*` never crosses a `/` and `**`
+ * does; `matches` below is that subset, which is every pattern this block uses.
+ */
+describe("only master deploys (#277)", () => {
+  const cfg = JSON.parse(readFileSync(new URL("../vercel.json", import.meta.url), "utf8")) as {
+    git: { deploymentEnabled: Record<string, boolean> };
+  };
+  const rules = cfg.git.deploymentEnabled;
+  const matches = (glob: string, branch: string) =>
+    new RegExp(`^${glob.split("**").map((s) => s.split("*").map((t) => t.replace(/[.+?^${}()|[\]\\]/g, "\\$&")).join("[^/]*")).join(".*")}$`).test(branch);
+  const disabled = (branch: string) => Object.entries(rules).some(([glob, on]) => !on && matches(glob, branch));
+
+  it("switches off implementer, backup and slashed branches", () => {
+    for (const branch of ["issue-268-robots-sitemap", "issue-277-preview-quota", "work", "feature/x", "a/b/c"]) {
+      expect(disabled(branch), `${branch} would spend a deployment from the shared cap`).toBe(true);
+    }
+  });
+
+  it("never switches off master", () => {
+    expect(rules.master).toBe(true);
+    for (const [glob, on] of Object.entries(rules)) {
+      if (!on) expect(matches(glob, "master"), `"${glob}": false would switch production off`).toBe(false);
+    }
+    expect(Object.keys(rules)).not.toContain("*");
+  });
+});
