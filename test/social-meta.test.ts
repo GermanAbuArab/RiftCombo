@@ -99,7 +99,7 @@ describe("JSON-LD (#269)", () => {
 
 describe("apple-touch-icon and web manifest (#269)", () => {
   const manifest = JSON.parse(page("manifest.webmanifest")) as {
-    name: string; short_name: string; background_color: string; theme_color: string;
+    name: string; short_name: string; display: string; background_color: string; theme_color: string;
     icons: { src: string; sizes: string; type: string }[];
   };
 
@@ -128,6 +128,12 @@ describe("apple-touch-icon and web manifest (#269)", () => {
       const { width, height } = png(`web${icon.src}`);
       expect(`${width}x${height}`).toBe(icon.sizes);
     }
+  });
+
+  it("opens in the browser, never as an installed app", () => {
+    // Sign-in is a full-page redirect through Google and Neon Auth, both outside the manifest's scope;
+    // a standalone launch (with iOS's separate cookie jar) can strand that round trip outside the app.
+    expect(manifest.display).toBe("browser");
   });
 
   it("is served as application/manifest+json", () => {
