@@ -10,7 +10,8 @@
 //   NEON_AUTH_URL=https://<ep>.neonauth.<...>.neon.tech/neondb/auth \
 //   NEON_DATA_API_URL=https://<ep>.apirest.<...>.neon.tech/neondb/rest/v1 node scripts/build-headers.mjs
 
-import { writeFileSync } from "node:fs";
+import { createHash } from "node:crypto";
+import { readFileSync, writeFileSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { siteConfig } from "./site-config.mjs";
@@ -21,6 +22,16 @@ const { origins } = siteConfig(ROOT);
 // Neon serves Auth (sign-in, session, JWT) and the Data API (every read and write of `public.decks`
 // and `public.profiles`) from two hosts on the same endpoint, so connect-src lists both.
 const connect = ["'self'", ...origins].join(" ");
+
+// The JSON-LD in index.html (#269) is an inline <script>, so script-src names its exact hash rather than
+// 'unsafe-inline'. Browsers do not execute a data block, but a hash keeps the policy true to the page
+// and a stale one fails test/social-meta.test.ts. Editing that block means re-running this script.
+function inlineScriptHashes(html) {
+  return [...html.matchAll(/<script\b[^>]*>([\s\S]*?)<\/script>/g)]
+    .filter((m) => m[1].length > 0)
+    .map((m) => `'sha256-${createHash("sha256").update(m[1], "utf8").digest("base64")}'`);
+}
+const scriptSrc = ["'self'", ...inlineScriptHashes(readFileSync(join(ROOT, "web", "index.html"), "utf8"))].join(" ");
 
 const config = {
   $schema: "https://openapi.vercel.sh/vercel.json",
@@ -95,7 +106,7 @@ const config = {
           key: "Content-Security-Policy",
           value: [
             "default-src 'self'",
-            "script-src 'self'",
+            `script-src ${scriptSrc}`,
             "style-src 'self' https://fonts.googleapis.com",
             // 'self' is here so a self-hosted font is not a silent 404 the day someone drops Google
             // Fonts; the remote origin alone would reject it with nothing in the console but a CSP
@@ -126,6 +137,8 @@ const config = {
         { key: "Permissions-Policy", value: "camera=(), microphone=(), geolocation=(), interest-cohort=()" },
       ],
     },
+    // Vercel's own type for .webmanifest is not documented, so the manifest's is stated here (#269).
+    { source: "/manifest.webmanifest", headers: [{ key: "Content-Type", value: "application/manifest+json" }] },
   ],
 };
 

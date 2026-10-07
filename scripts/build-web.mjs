@@ -42,7 +42,10 @@ const plays = loadPlays(ROOT, (id) => comboNames.get(id) ?? null);
 writeFileSync(join(OUT, "data", "plays.json"), JSON.stringify({ plays }));
 // 404.html is served by Vercel for any address that matches nothing, so it carries no script: it has
 // to work in the case where the bundle is what went wrong (#77).
-for (const f of ["index.html", "privacy.html", "terms.html", "404.html", "styles.css", "favicon.svg"]) copyFileSync(join(ROOT, "web", f), join(OUT, f));
+// The social card, the icons and the manifest (#269) are rendered once by scripts/build-brand-images.sh
+// and committed, so the build only copies them.
+const STATIC = ["index.html", "privacy.html", "terms.html", "404.html", "styles.css", "favicon.svg", "og.png", "apple-touch-icon.png", "icon-192.png", "icon-512.png", "manifest.webmanifest"];
+for (const f of STATIC) copyFileSync(join(ROOT, "web", f), join(OUT, f));
 // After the copy, because writeSeo checks every sitemap path against a file in public/ (#268).
 writeSeo(OUT);
 
