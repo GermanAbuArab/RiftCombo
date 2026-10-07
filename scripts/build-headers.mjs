@@ -111,11 +111,10 @@ const config = {
           value: [
             "default-src 'self'",
             `script-src ${scriptSrc}`,
-            "style-src 'self' https://fonts.googleapis.com",
-            // 'self' is here so a self-hosted font is not a silent 404 the day someone drops Google
-            // Fonts; the remote origin alone would reject it with nothing in the console but a CSP
-            // violation, and there is no reporting endpoint to catch it.
-            "font-src 'self' https://fonts.gstatic.com",
+            // Inter is self-hosted (#295): no stylesheet or font comes from another origin, and
+            // test/fonts.test.ts fails if Google Fonts comes back into either directive.
+            "style-src 'self'",
+            "font-src 'self'",
             "img-src 'self' data: https://cmsassets.rgpub.io",
             `connect-src ${connect}`,
             "frame-ancestors 'none'",
