@@ -1,4 +1,4 @@
-# Play — the refill held for the Burn Out is four bodies missing on T8
+# Play — the refill held for the Burn Out never gets a turn
 
 Issue #309 (a slice of #200), 2026-10-07. Constructed, Duel (485). Rules version 2026-07-16.
 Card text verbatim from `data/corpus_flat.txt`; rules pasted from
@@ -12,11 +12,12 @@ runs into a Burn Out: the trash is recycled into the deck, the opponent gains a 
 completed from the rebuilt deck. The entry is right about the rule. 431.2 orders the steps, and a
 Burn Out is a Replacement Effect inside one resolution. Walked as a game, the moment the entry waits
 for never comes. Going first, the deck is at one card on T10 at the earliest, and the race of Holds is
-decided by T9. Held for that moment, Progress Day is a draw-four that sits in hand while the deck runs
-out of bodies. On their T8 the opponent takes the Temple by one Might. Cast as a plain draw-four on T6,
-the same card is four more bodies at the Temple, and the attack never comes. What breaks the designed
-moment is `UNL-131 Abandon`, two runes. Countered, Progress Day draws nothing, and the Temple burns you
-out at the next Hold anyway.
+decided by T9. Held for that moment, Progress Day is a draw-four that sits in hand for five turns while
+runes idle. The Temple survives the opponent's one legal attack on their T8 by a single Might. Cast as a
+plain draw-four on T6, the same card is four more bodies at the Temple, and the attack is not worth
+making. Either way the Burn Out lands on T10, after the game. What breaks the designed moment is
+`UNL-131 Abandon`, two runes. Countered, Progress Day draws nothing, and the Temple burns you out at
+the next Hold anyway.
 
 **Why this line.** `scripts/sequence-pick.mjs --unplayed`, re-run on 2026-10-07 at `4015c20`, reads
 771 entries, 262 with forced-ordering language, **102 in the queue and 63 of them with no play**,
@@ -74,12 +75,20 @@ did not yet Score this turn during their Beginning Phase."* A Conquer on T2 and 
 to T9 is eight points on T9. The deck that empties itself on this battlefield is the deck that wins
 on it first.
 
-## 3. Their order: hold B, move the Temple's garrison home, and attack it once
+## 3. Their order: hold B, move the Temple's garrison home, and attack it from their base
 
 Calm/Chaos with `UNL-193 Gloomist`, holding B. They draw an extra card on every Hold. Going second they
 reach eight on their T9, a turn after you, so they have to take the Temple. Their tool for that is
 Maddened Marauder: every copy they play moves your biggest body at A to your base, where it has to walk
-back. On their T8 they play the third Marauder and attack with every ready unit at B.
+back.
+
+The attack has to come from their base. A Standard Move goes from a base to a battlefield or back
+(144.4.a, 144.4.b), and 144.4.c.1 reads *"Units with Ganking may use their Standard Move to Move from
+Battlefield to Battlefield."* None of their units has [Ganking], so nothing at B can reach A in one
+move. From their T6 they play new units to their base, which 355.2.a allows (*"By default, Valid
+locations include the controller’s Base or a Battlefield the controller controls."*). On their T7, after
+holding B, five of B's units walk home and Mystic Poro stays to keep B. On their T8 everything ready at
+the base walks to A.
 
 ## 4. The turns, going first
 
@@ -104,44 +113,49 @@ T5      9       21    Hold A: +1. Entourage walks back. A second Entourage      
                       Four idle. Progress Day stays in hand.
 their T5                Hold B, draw. Ember Monk (E4) and a Skulker (E3) to B.
 T6      10      17    Hold A: +1. A second Ol' Poro (E2) to A. Eight idle.      5
-their T6                Hold B, draw. A second Marauder: an Ol' Poro goes home.
-                        A second Sunlit Guardian (E3) to B.
+their T6                Hold B, draw. A second Marauder to their base: an Ol'
+                        Poro goes home. A second Sunlit Guardian (E3) to their
+                        base.
 T7      12      13    Hold A: +1. Ol' Poro walks back. A second Sentry (E2) to  6
                       A. Ten idle.
 their T7                Hold B, draw. A second Ember Monk (E4) and a third
-                        Skulker (E3) to B.
+                        Skulker (E3) to their base. Guardian, Marauder, Ember
+                        Monk and two Skulkers walk from B to their base; Mystic
+                        Poro keeps B.
 T8      12       9    Hold A: +1. A third Sunlit Guardian (E3) to A. Nine idle. 7
-their T8                Hold B, draw: 7. A third Marauder: an Ol' Poro goes
-                        home. Every ready unit at B attacks A, thirty-three
-                        against thirty-two. They conquer A.
+their T8                Hold B, draw: 7. A third Marauder to their base: an
+                        Ol' Poro goes home. Nine units walk from their base to
+                        A, thirty-one against thirty-two. A holds.
+T9      12       5    Hold A: +1. Eight against seven: you win at the cleanup.  8
 ```
 
 The hand ran out on T5. From T6 you drew one card a turn and played it, with eight, ten and nine
 runes idle and a draw-four in hand that the entry tells you to keep.
 
-**The fight on their T8.** 465.2.a sums the attackers: Mystic Poro 2, two Sunlit Guardians 3, three
-Skulkers 3, two Ember Monks 4 and two Marauders 4, thirty-three. 465.2.b sums the defenders: two
-Sentries 1, two Stalwart Poros and three Sunlit Guardians with their [Shield], two Royal Entourages 4,
-one Ol' Poro 4, thirty-two. 465.2.c: *"Starting with the Attacker, each player assigns an amount of
-damage equal to their summed Might among the other's Units."* Thirty-three kills every defender. Your
-thirty-two must go to their [Tank] units first (two Guardians and two Marauders, fourteen), and 465.2.c.3
-reads *"Units must have lethal damage assigned to them in full before damage is assigned to a different
-Unit."* The eighteen left can kill seventeen of the nineteen Might remaining, so one of theirs
-survives. 466.3.a: *"A Player has won a combat if they received either the attacker or defender
-designation and are the only Player that has units remaining at this battlefield during this step."*
+**The fight on their T8.** The units that walked home on T7 or were played there on T6 and T7 are ready
+on T8; the third Marauder, played that turn, entered exhausted (143.4) and stays. 465.2.a sums the
+attackers: two Sunlit Guardians 3, three Skulkers 3, two Ember Monks 4 and two Marauders 4,
+thirty-one. 465.2.b sums the defenders: two Sentries 1, two Stalwart Poros and three Sunlit Guardians
+with their [Shield], two Royal Entourages 4, one Ol' Poro 4, thirty-two. 465.2.c: *"Starting with the
+Attacker, each player assigns an amount of damage equal to their summed Might among the other's
+Units."* Your thirty-two kills every attacker. Their thirty-one cannot kill all thirty-two of yours,
+because 465.2.c.3 reads *"Units must have lethal damage assigned to them in full before damage is
+assigned to a different Unit."*, so at least one defender survives. 466.3.a: *"A Player has won a combat
+if they received either the attacker or defender designation and are the only Player that has units
+remaining at this battlefield during this step."* You win it, A stays yours, and you Hold it for eight
+on T9.
 
-They conquer A at seven points. 471.1.b.1: *"If the player has Scored every Battlefield this turn, that
-player Gains the Final Point."* They held B this turn and are scoring A, so they gain the eighth point,
-and 194.2 ends it at the cleanup, eight to seven.
+That is a margin of one Might. Two of the four cards Progress Day would have drawn were still in the
+deck, and the other two arrived a turn and two turns late.
 
 **The same game with Progress Day cast on T6.** On T6 there are ten runes and Ol' Poro is the only card
-in hand. Progress Day costs six tapped and one Mind recycled, and the Ol' Poro two more. It draws the
-second Sentry and the third Guardian one and two turns early, plus a third Royal Entourage and
-`OGN-119 Ahri, Inquisitive`. The second Sentry is played on T6. On T7, with eleven runes, the Guardian,
-the Entourage and Ahri go to A, and a third Stalwart Poro and a third Ol' Poro on T8. On their T8, after
-the third Marauder, A defends at forty-six, and Ahri reads *"When I attack or defend, give an enemy unit
-here -2 :rb_might: this turn, to a minimum of 1 :rb_might:."* Thirty-one into forty-six, so they do not
-attack. On T9 you Hold A for eight, and they have seven.
+in hand. Progress Day costs six tapped, one of them recycled for Mind, and the Ol' Poro two more. It
+draws the second Sentry and the third Guardian one and two turns early, plus a third Royal Entourage
+and `OGN-119 Ahri, Inquisitive`. The second Sentry is played on T6. On T7, with eleven runes, the
+Guardian, the Entourage and Ahri go to A, and a third Stalwart Poro and a third Ol' Poro on T8. On their
+T8, after the third Marauder, A defends at forty-six, and Ahri reads *"When I attack or defend, give an
+enemy unit here -2 :rb_might: this turn, to a minimum of 1 :rb_might:."* Twenty-nine into forty-six is
+not an attack worth making. On T9 you Hold A for eight, and they have seven.
 
 The deck: 13 at the end of T6, then 9, 5, and 1 at the end of T9. No Burn Out happened in either game.
 
@@ -167,11 +181,12 @@ time, even before spells and abilities resolve.) Counter a spell. Return it to i
 of putting it in their trash. [Predict]. (Look at the top card of your Main Deck. You may recycle
 it.)"* Progress Day is countered with a deck of three cards or fewer: you draw nothing, you do not burn
 out, and the card goes back to your hand. 425.1.c: *"Countering does not refund any costs paid to play
-a card, activate an ability, or trigger an ability."* The seven runes are gone. At your next Beginning
-Phase the Temple Holds, 431.1.b burns you out, and the opponent gains the point with no four cards
-drawn. `OGN-045 Defy` cannot do this, because it counters a spell that *"costs no more than
-:rb_energy_4:"* and Progress Day costs six. `OGN-064 Wind Wall` can, for five runes. Abandon is in the
-opponent's identity here, and two of their idle runes on any of T3 to T8 cover it.
+a card, activate an ability, or trigger an ability."* The six runes are spent, one of them off the
+board. At your next Beginning Phase the Temple Holds, 431.1.b burns you out, and the opponent gains the
+point with no four cards drawn. `OGN-045 Defy` cannot do this, because it counters a spell that *"costs
+no more than :rb_energy_4:"* and Progress Day costs six. `OGN-064 Wind Wall` can, for three runes, two
+of them recycled. Abandon is in the opponent's identity here, and two of their idle runes on any of T3
+to T8 cover it.
 
 An early Progress Day is just as easy to counter, but countering it then only costs you the runes, while the
 designed moment also gives the opponent the Burn Out point.
@@ -181,20 +196,20 @@ designed moment also gives the opponent the Burn Out point.
 **Right about the rule, and the moment it waits for comes after the game is decided.** The Burn Out is
 ordered as the entry says. The refill lands before the rest of the draw, and nobody can answer it
 between the steps. But going first on the Temple, the deck reaches one card on T10, and eight points
-from Holding the same battlefield arrive on T9. Holding Progress Day for that moment makes it a dead
-card for five turns in a deck whose hand runs out by T5, and in this game that was the gap between
-thirty-two and forty-six at A. Cast on T6, the same card wins the game, and the Burn Out still lands on
-T10. A two-rune counter on the designed cast costs you the seven runes, the four cards and the point.
+from Holding the same battlefield arrive on T9. Held for that moment, Progress Day is a dead card for
+five turns in a deck whose hand runs out by T5. In this game the Temple survived the one attack that
+could take it by one Might, where the same card cast on T6 would have made it seventeen. The Burn Out
+lands on T10 whichever way you play it. A two-rune counter on the designed cast costs you the six
+runes, the four cards and the point.
 
 ## 8. Not verified
 
-I read 471.1.b.1's *"Scored every Battlefield this turn"* as including the Conquer being scored when
-the Hold of the other battlefield is already in. If that reading is wrong, they draw a card instead of
-the eighth point. A is still theirs, so the Temple then burns *their* deck (190.6.d), and you have
-nothing to Hold on T9. That game goes on, and I did not walk it. I did not walk the T14 game of §5, a
-list with more draw than the Temple, or a game where 485.5 does not pick the Temple. The thirty-three
-against thirty-two is decided by one Might, which depends on the cards dealt in this walk. The
-arithmetic of §5 does not depend on them.
+The thirty-one against thirty-two depends on the cards dealt in this walk. A third Sunlit Guardian or
+Ember Monk in their hand by T7, played to their base, would have made it thirty-four or thirty-five, and
+the held Progress Day would then have cost the Temple and the game. The arithmetic of §5 does not
+depend on the cards. I did not walk the T14 game of §5, a list with more draw than the Temple, a game
+where 485.5 does not pick the Temple, or a game where they take the Temple, which would then burn their
+deck instead (190.6.d).
 
 ## Leads
 

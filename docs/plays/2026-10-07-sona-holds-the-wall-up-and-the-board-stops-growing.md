@@ -13,7 +13,7 @@ runes counter the two removal spells aimed at her on the opponent's T3 and T4. T
 Energy. Every Wind Wall recycles two runes, which is exactly what the Channel Phase brings back, so on
 the turns you hold the wall up your board does not grow: five runes on T4 and on T5, where it would
 have been eight and ten. When the opponent plays only units, the readied runes have nothing to counter.
-What breaks the line is `VEN-015 Decree of Rage`: two runes, cast on their own turn. It can't be
+What breaks the line is `VEN-015 Decree of Rage`: one rune, cast on their own turn. It can't be
 countered, and it names Sona's domain.
 
 **Why this line.** `scripts/sequence-pick.mjs --unplayed`, re-run on 2026-10-07 at `4015c20`, reads
@@ -21,7 +21,7 @@ countered, and it names Sona's domain.
 unchanged from the issue. The pick is by global rank, skipping entries that already have a play: this
 entry is rank 36 (a hit on *in response*), first in the list. The other entry of this slice is rank
 37, played in
-[the refill held for the Burn Out is four bodies missing on T8](2026-10-07-the-refill-held-for-the-burn-out-is-four-bodies-missing-on-t8.md).
+[the refill held for the Burn Out never gets a turn](2026-10-07-the-refill-held-for-the-burn-out-never-gets-a-turn.md).
 
 ---
 
@@ -133,14 +133,14 @@ reach eight on theirs, unless they take A first.
 
 ## 5. Breaks to
 
-**The line breaks to `VEN-015 Decree of Rage`** (Fury, E1 + 1 Power: two runes), cast on their T3 in
-place of Void Seeker: *"[Action] (Play on your turn or in showdowns.) This can't be countered. Deal 4
+**The line breaks to `VEN-015 Decree of Rage`** (Fury, E1 + 1 Power: one rune, tapped for the Energy and then
+recycled for the Power), cast on their T3 in place of Void Seeker: *"[Action] (Play on your turn or in showdowns.) This can't be countered. Deal 4
 to an enemy Calm (:rb_rune_calm:) unit."* Sona has four Might and is Calm, so she dies. Wind Wall
 cannot touch it. 425.1.a says *"A card or ability that is Countered does nothing and is cleared from
 the chain."*, and this card says it can't be countered. The runes she readied on T3 are still ready,
 because that trigger resolved before their turn began, so you keep five runes for one Wind Wall on
-something else. There is no second trigger. You paid five runes and a card for one turn of the engine;
-they paid two runes, and Decree of Rage is not a Signature card, so any Fury deck can run it.
+something else. There is no second trigger. You paid four runes and a card for one turn of the engine;
+they paid one rune, and Decree of Rage is not a Signature card, so any Fury deck can run it.
 
 The entry says the only window that beats Sona is *before* the Ending Step, on your turn. That is true of the trigger, and
 383.2.a.1 says so. It is not true of the engine. Decree of Rage is cast on their own turn, after the
@@ -149,12 +149,12 @@ trigger has resolved, and it ends every later cycle.
 The reply is a buff. In Calm/Body, `OGN-257 Blind Monk` reads *":rb_energy_1:, :rb_exhaust:: Buff a
 friendly unit. (If it doesn't have a buff, it gets a +1 :rb_might: buff.)"*. That puts Sona at five, so
 Decree of Rage and Void Seeker no longer kill her. In this Calm/Mind list the best reply is Allay at A:
-*"While I'm at a battlefield, your other units here have [Deflect]."* That raises Decree of Rage to
-three runes but does not stop it.
+*"While I'm at a battlefield, your other units here have [Deflect]."* That makes Decree of Rage E1 + 2 Power,
+two runes, but does not stop it.
 
 ## 6. Verdict
 
-**Right, and it pays for its own protection, but it holds the board still and it dies for two runes.**
+**Right, and it pays for its own protection, but it holds the board still and it dies for one rune.**
 The rules reading is right: the readied runes survive removal in response, and Sona's own runes
 countered both spells aimed at her. The play adds two prices. The Power for each Wind Wall is two runes
 the board does not get back until the twelfth rune is out, so a wall held up every round keeps you
@@ -173,13 +173,13 @@ that could hit Sona on your turn, which needs a Closed State there to be played 
 
 - The entry's notable says the only window that beats Sona is *"removal BEFORE the Ending Step, on your
   own turn"*. That is the window that beats one trigger. The engine dies to [Action] removal on the
-  opponent's own turn, after the trigger has resolved, and `VEN-015 Decree of Rage` does it for two
-  runes.
+  opponent's own turn, after the trigger has resolved, and `VEN-015 Decree of Rage` does it for one
+  rune.
 - The entry says *"The Power is already free"*. It is free in exhaust. Before the twelfth rune is out,
   every Power is a rune of growth lost (161.2.b, 416.1, 315.3.b). One Wind Wall a round is two
   recycles, the same two runes the Channel Phase brings, so the board does not grow on the rounds the
   wall is used. The walk sits at five runes on T4 and T5.
-- The entry names no answer. Decree of Rage (two runes, can't be countered) names Calm units and kills
+- The entry names no answer. Decree of Rage (one rune, can't be countered) names Calm units and kills
   a 4-Might Sona. A +1 buff, which `OGN-257 Blind Monk` offers in Calm/Body for one Energy, puts her
   out of its reach.
 - Units cannot be countered (337.2). On a turn the opponent plays only units, the readied runes have
