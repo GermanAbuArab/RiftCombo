@@ -425,7 +425,7 @@ function sideboardHtml(): string {
   if (!rows.length && filters.zone !== "sideboard") return "";
   const n = zoneCounts(deck).sideboard;
   return `<section class="dzone">
-    <h3 class="dzone-head">Sideboard<span class="dzone-n mono">${n}/10</span></h3>
+    <h2 class="dzone-head">Sideboard<span class="dzone-n mono">${n}/10</span></h2>
     ${rows.length ? rows.map((r) => {
       const cap = sideboardCapOf(deck, r.card.base, cards());
       return `<div class="drow" data-base="${esc(r.card.base)}">
@@ -445,7 +445,7 @@ function zoneHtml(zone: "legend" | "battlefields", label: string, target: number
   const rows = zoneRows(deck, cards(), zone);
   const held = zone === "legend" ? (deck.legend ? 1 : 0) : zoneCounts(deck).battlefields;
   return `<section class="dzone">
-    <h3 class="dzone-head">${label}<span class="dzone-n mono">${held}/${target}</span></h3>
+    <h2 class="dzone-head">${label}<span class="dzone-n mono">${held}/${target}</span></h2>
     ${rows.length ? rows.map((r) => rowHtml(r.card, r.count, zone)).join("") : `<p class="quiet dzone-empty">${zone === "legend" ? "Pick one from the Legend zone of the pool." : "Three, each with a different name (103.4.c)."}</p>`}
   </section>`;
 }
@@ -454,7 +454,7 @@ function championHtml(): string {
   const champ = deck.champion ? cards().get(deck.champion) : null;
   const tag = deck.legend ? championTagOf(deck.legend, cards()) : null;
   return `<section class="dzone">
-    <h3 class="dzone-head">Champion<span class="dzone-n mono">${champ ? 1 : 0}/1</span></h3>
+    <h2 class="dzone-head">Champion<span class="dzone-n mono">${champ ? 1 : 0}/1</span></h2>
     ${champ
       ? `<div class="drow" data-base="${esc(champ.base)}">
           ${rowLead(champ)}
@@ -470,9 +470,9 @@ function runesHtml(): string {
   const rows = zoneRows(deck, cards(), "runes");
   const n = zoneCounts(deck).runes;
   return `<section class="dzone">
-    <h3 class="dzone-head">Runes<span class="dzone-n mono">${n}/${TARGETS.runes}</span>
+    <h2 class="dzone-head">Runes<span class="dzone-n mono">${n}/${TARGETS.runes}</span>
       <button type="button" class="ghost tiny" data-b="auto-runes"${deck.legend ? "" : " disabled"}>Auto</button>
-    </h3>
+    </h2>
     ${rows.length ? rows.map((r) => rowHtml(r.card, r.count, "runes")).join("") : `<p class="quiet dzone-empty">${deck.legend ? "Auto splits twelve across the legend's two domains." : "Auto needs a legend: the split follows its two domains (103.3.a.1)."}</p>`}
   </section>`;
 }
@@ -481,7 +481,7 @@ function mainHtml(): string {
   const rows = zoneRows(deck, cards(), "main");
   const n = zoneCounts(deck).main;
   return `<section class="dzone">
-    <h3 class="dzone-head">Main deck<span class="dzone-n mono">${n}/${TARGETS.main}</span></h3>
+    <h2 class="dzone-head">Main deck<span class="dzone-n mono">${n}/${TARGETS.main}</span></h2>
     ${curveHtml()}
     ${rows.length ? rows.map((r) => rowHtml(r.card, r.count, "main")).join("") : `<p class="quiet dzone-empty">Forty cards, the Chosen Champion counted among them (Tournament Rules 402.1).</p>`}
   </section>`;
@@ -560,7 +560,7 @@ function checkHtml(): string {
   // An untouched list breaks all nine rules and says nothing by saying it nine times. One sentence.
   if (isEmptyDeck(deck)) {
     return `<section class="bld-check">
-      <h3 class="bld-check-head">Construction<span class="bld-check-fmt">${formatName}</span></h3>
+      <h2 class="bld-check-head">Construction<span class="bld-check-fmt">${formatName}</span></h2>
       <p class="quiet dzone-empty">A legal list needs a legend, a champion, 40 main-deck cards, 12 runes and 3 battlefields.</p>
     </section>`;
   }
@@ -580,7 +580,7 @@ function checkHtml(): string {
     </details>`;
   }).join("");
   return `<section class="bld-check">
-    <h3 class="bld-check-head">Construction<span class="bld-check-fmt">${formatName}</span><span class="bld-check-n ${broken ? "bad" : "ok"}">${broken ? `${broken} to fix` : "Legal"}</span></h3>
+    <h2 class="bld-check-head">Construction<span class="bld-check-fmt">${formatName}</span><span class="bld-check-n ${broken ? "bad" : "ok"}">${broken ? `${broken} to fix` : "Legal"}</span></h2>
     <div class="chk-rows">${rows}</div>
     <p class="fine">Every row cites the paragraph it stands on, in Riot's Core Rules of 2026-07-16 and the Tournament Rules of the same date. A row marked <strong>unchecked</strong> is a rule this site can state but cannot verify from Riot's card data.</p>
   </section>`;
