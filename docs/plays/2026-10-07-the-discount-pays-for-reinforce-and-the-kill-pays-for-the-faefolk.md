@@ -56,9 +56,9 @@ made it enter ready.
 The entry leaves out one sum. Reinforce costs five Energy and takes five off: 5 + 2 is 7, the Faefolk's
 printed Energy cost. With Accelerate, both ways cost eight Energy and one Calm Power, so a Faefolk drawn
 by T4 lands the same turn for the same runes. What Reinforce adds is the dig. Going first, T4 has seen
-4 + 4 cards of 39 (601.1.b makes the Main Deck exactly 40, and 103.2.a.1 sets the Chosen Champion
-aside), so 31 are left. With all three Faefolks among them, one is in the top five 42.2% of the time;
-with two (one already in hand), 30.1%.
+4 + 4 cards of 39 (Tournament Rules 601.1.b makes the Main Deck exactly 40, and 103.2.a.1 sets the
+Chosen Champion aside), so 31 are left. With all three Faefolks among them, one is in the top five
+42.2% of the time; with two (one already in hand), 30.1%.
 
 There is also a cost. Reinforce is a spell, so it waits on the chain. A unit cast from hand does not wait,
 337.2: *"If, after finalizing the Chain Item, that item is a Unit, Gear, or an ability that Adds
