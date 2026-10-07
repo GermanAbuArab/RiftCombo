@@ -296,8 +296,8 @@ describe("only master deploys (#277)", () => {
     new RegExp(`^${glob.split("**").map((s) => s.split("*").map((t) => t.replace(/[.+?^${}()|[\]\\]/g, "\\$&")).join("[^/]*")).join(".*")}$`).test(branch);
   const disabled = (branch: string) => Object.entries(rules).some(([glob, on]) => !on && matches(glob, branch));
 
-  it("switches off implementer, backup and slashed branches", () => {
-    for (const branch of ["issue-268-robots-sitemap", "issue-277-preview-quota", "work", "feature/x", "a/b/c"]) {
+  it("switches off implementer, backup, pr-assets and slashed branches", () => {
+    for (const branch of ["issue-268-robots-sitemap", "issue-277-preview-quota", "work", "pr-assets", "feature/x", "a/b/c"]) {
       expect(disabled(branch), `${branch} would spend a deployment from the shared cap`).toBe(true);
     }
   });

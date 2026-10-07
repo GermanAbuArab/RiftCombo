@@ -10,6 +10,7 @@
       "*/**": false,
       "work": false,
       "issue-*": false,
+      "pr-assets": false,
       "master": true
     }
   },
