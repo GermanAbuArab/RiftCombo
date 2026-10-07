@@ -109,7 +109,7 @@ their T1        Sunlit Guardian (E3) to base.
 T2      4       Enforcer walks to A, Conquer: +1. Death Mark (E2   5       1
                 + 1 Power: two tapped, one recycled). Burn 3:
                 Shadow Assassin and two others. The Shadow Clone
-                token goes to base. One rune idle.
+                token goes to base. Two runes idle.
 their T2        Guardian walks to B, Conquer. Stalwart Poro (E2)
                 to B, Wielder of Water (E3) to base.
 T3      5       Hold A: +1. Get Excited! (E2 + 1 Power),           7       2
@@ -125,7 +125,7 @@ T4      5       Rhasa walks into A: six against the Wielder's      8       3
                 four. The Wielder dies, Rhasa lives, Conquer: +1.
                 Shadow Assassin (E5) enters ready and stays at
                 base: B defends at seven, with a Hidden Blade.
-their T4        Hold B. Nine runes of bodies to base.
+their T4        Hold B. Eight runes of bodies to base.
 T5      7       Hold A: +1. Forgotten Relic (E5): Burn 1. The      9       4
                 third Lurker costs E1 for five Might, to A. One
                 rune idle.
@@ -136,12 +136,13 @@ Their points: 1 on T2, 3 on T3, 4 on T4. After your T5 it is 4 to 4, and Rhasa c
 
 The T3 order is the play. Get Excited! goes first, because it is two cards for the trash and the Lurker
 it discards is five damage. Then the count is seven and Rhasa costs three Energy. Played the other way
-round, Rhasa costs five Energy and one Power against five cards: six runes, where you have five.
+round, Rhasa costs five Energy and one Power against five cards. That is all five runes, and nothing
+is left for Get Excited!.
 
 **What the line bought.** Without Rhasa on T3, the T4 move into A is Shadow Assassin alone, five against
 the Wielder's four. It still wins A, so the swing is not a point. It is the board. Rhasa took A and
 lived. The Assassin stayed home, ready, and the third Lurker cost one rune on T5. Three bodies of five
-and six Might for ten runes across three turns, where the printed costs are twenty Energy.
+and six Might for nine runes across three turns, where the printed costs are twenty Energy.
 
 **How often this T3 happens.** Rhasa in the first seven cards: **45.7%** (three in 39). Death Mark by
 T2, in the first six: **40.3%**. The walk also needed a Lurker to discard on T1 and another for Get
@@ -170,7 +171,7 @@ walk never attacked with the token.
 **Right, and early, not mid-game.** The rules reading is right. 356.6 floors the Energy, 206 makes a
 discarded Rhasa or Lurker a 10 or a 5 for Get Excited!, and 431.2.b is the wall. The play moves the
 price. The entry says ten cards and a mid-game price. In the walk, seven cards on T3 made Rhasa a 6-Might
-body for four runes, and the card that got there is Death Mark, which the entry never names. The cost is
+body for three runes, and the card that got there is Death Mark, which the entry never names. The cost is
 the legend: Death Mark forces Master of Shadows. The answer is a one-rune Hidden Blade at the
 battlefield Rhasa attacks, and it gives you two cards for her.
 

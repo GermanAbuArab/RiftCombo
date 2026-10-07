@@ -11,7 +11,7 @@ an enemy unit onto Teemo's battlefield on your own turn. They become the Attacke
 his trigger deals one per [Hidden] card among the top five, plus three. The entry is right about the
 rules, and Riot's own example at 715.4 is this pair. Walked as a game, the line is a T5 line, and only
 when the one Deathcrown is found. In the walk `SFD-058 Ornn, Blacksmith` dug it on T4. That happens
-about three games in ten. On T5 the Deathcrown and a Charm took seven runes and killed their best
+about three games in ten. On T5 the Deathcrown and a Charm took five runes, three of them recycled, and killed their best
 unit before combat. Teemo's trigger had already killed a unit on their T3 without either card, when
 they attacked into him. What breaks the line is `OGN-045 Defy`, one rune, on the Charm.
 
@@ -103,11 +103,11 @@ turn    runes   your turn                                                 points
 T1      2       Clockwork Keeper (E2) to base.                            0
 their T1        Sunlit Guardian (E3) to base.
 T2      4       Keeper walks to A, Conquer: +1. Teemo (E2 + 1 Mind):       1
-                two tapped, one recycled. One rune idle.
+                two tapped, one recycled. Two idle.
 their T2        Guardian walks to B, Conquer. Stalwart Poro (E2) to B.
                 Pit Rookie (E2) to base, and buffs the Guardian to 4.
 T3      5       Hold A: +1. Teemo walks to A. Back Off hidden at A (one    2
-                rune recycled). Second Keeper (E2) to A. Two idle.
+                rune recycled). Second Keeper (E2) to A. Three idle.
 their T3        Hold B. First Mate (E3) to base. The Rookie walks into
                 A alone. Teemo defends: two [Hidden] among the five,
                 2 to the Rookie, which dies before combat damage. A
@@ -138,9 +138,11 @@ attack on T3 got the trigger for free, and it is why they stopped attacking A.
 
 **How often this T5 happens.** The Deathcrown is one card in 39. By Ornn's look on T4 you have seen
 four in the opening hand, four draws and four looked at, twelve: **30.8%**. Each later Hold with Ornn at a
-battlefield looks at four more. The trigger itself, at T5, reads five from about 26 unknown cards with
-about 12 [Hidden] left among them. E[k] is **2.31**, a whiff is **3.0%**, and the expected damage with
-the Deathcrown is **5.22**. That is above the entry's 4.70, which counts H = 15 in all 39.
+battlefield looks at four more. The trigger itself, at T5, reads five from 21 unknown cards. By then you
+have drawn ten: four opening, five turn draws, and the Deathcrown from Ornn. That leaves 29 in the deck,
+with eight known at the bottom, Ornn's three and the five from the T3 trigger. At most 11 of the 21 are
+[Hidden]: of the 15, Teemo and Back Off were drawn and two went to the bottom on T3. With 21 and 11,
+E[k] is **2.62**, a whiff is **1.2%**, and the expected damage with the Deathcrown is **5.58**. That is above the entry's 4.70, which counts H = 15 in all 39.
 
 ## 5. Breaks to
 
@@ -150,7 +152,7 @@ Power, inside Defy's limit. 425.1.a: *"A card or ability that is Countered does 
 from the chain."* Nothing moves, no one attacks, and Teemo does not defend. 425.1.c: *"Countering does not
 refund any costs paid to play a card, activate an ability, or trigger an ability."* It is one rune and
 one card each. You keep the Deathcrown and the trigger. They keep the Guardian, and the T5 line spent
-seven runes for +3 Might on Teemo.
+five runes, three of them recycled, for +3 Might on Teemo.
 
 The reply is the second Charm, the next turn, when Defy is spent. And Teemo still defends whenever they
 attack A. They can choose not to.
@@ -159,8 +161,8 @@ attack A. They can choose not to.
 
 **Right, and late.** The rules reading is right. Charm makes them the Attacker, 464.2.e.1 resolves Teemo's
 trigger first, and 715.4 takes the three away on a miss. The play adds two prices. The Deathcrown is one
-card that Ornn digs for, so the line runs on T5 about three games in ten. And it costs seven runes that
-turn. Charm is one rune each time after that, and the cheapest counter in the pool takes it for one rune.
+card that Ornn digs for, so the line runs on T5 about three games in ten. And it costs five runes that
+turn, three of them recycled. Charm is one rune each time after that, and the cheapest counter in the pool takes it for one rune.
 The trigger without the Deathcrown is worth something too: in the walk it killed a body on their turn
 and kept them out of A.
 
@@ -169,13 +171,13 @@ and kept them out of A.
 I did not deal the channel order. Teemo's Power is Mind, and Ornn's and Charm's are Calm. Four runes
 from six Calm and six Mind hold no Mind in 15 of 495 deals (3.0%), and the T2 Teemo then waits. I did
 not walk a T4 where the look misses, the second and third Charm, Forgefire Cape, the T5 reveal at 0 or
-1, Back Off, the mulligan, or 2v2. The hidden count at T5 is estimated from the cards in this walk.
+1, Back Off, the mulligan, or 2v2. The 11 at T5 is an upper bound: it takes Ornn's three and the other draws as not [Hidden].
 
 ## Leads
 
 - The entry prices the trigger and not when the line can run. The Deathcrown is one card. Ornn, Blacksmith
-  as the Chosen Champion finds it by T4 in 30.8% of games, and the Deathcrown and a Charm take seven
-  runes on T5.
+  as the Chosen Champion finds it by T4 in 30.8% of games, and the Deathcrown and a Charm take five
+  runes on T5, three of them recycled.
 - The entry's notable *"OVERLAP, DECLARED"* says this line and `charm-evacuate-conquer` *"cannot want the
   same copy on the same turn"*. One Charm can do both. If the unit dragged was alone on its battlefield,
   323.6 makes that battlefield uncontrolled in the same Cleanup: *"Players lose control of any controlled
