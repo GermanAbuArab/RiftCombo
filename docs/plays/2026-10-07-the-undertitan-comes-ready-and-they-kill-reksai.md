@@ -180,8 +180,9 @@ rune before anything is revealed. The better engine is the legend the deck is fo
 
 ## 7. Not verified
 
-The corpus prints Void Rush's Power as P1 without its domain; three Fury and three Order on T3 cover
-either. I did not walk the legend route as a game, a T3 that misses, `SFD-170 Rek'Sai, Swarm Queen` as
+I did not deal the channel order; two Order runes among six from six Fury and six Order fail in 37 of
+924 deals (4.0%). The corpus prints Void Rush's Power as P1 without its domain; three Fury and three
+Order on T3 cover either. I did not walk the legend route as a game, a T3 that misses, `SFD-170 Rek'Sai, Swarm Queen` as
 the Chosen Champion, the mulligan, or 2v2. The defender's choice is theirs: had they killed the
 Undertitan, Rek'Sai would hold B at three on their T3 against a Student at two, and they would still
 spend that turn on A.
