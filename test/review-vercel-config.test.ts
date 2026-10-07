@@ -90,8 +90,11 @@ describe("the Content-Security-Policy directives that fail silently", () => {
       }),
   );
 
-  it("runs no inline or eval'd script", () => {
-    expect(csp.get("script-src")).toBe("'self'");
+  it("runs no inline or eval'd script beyond blocks named by exact hash", () => {
+    // The one hash is the JSON-LD data block (#269), pinned against the page in test/social-meta.test.ts.
+    const [self, ...hashes] = (csp.get("script-src") ?? "").split(" ");
+    expect(self).toBe("'self'");
+    for (const h of hashes) expect(h).toMatch(/^'sha256-[A-Za-z0-9+/]{43}='$/);
   });
 
   it("allows no plugin content at all, rather than same-origin plugin content", () => {
