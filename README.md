@@ -84,6 +84,7 @@ saltea RLS, la lee ese script y nada más, y no aparece en `web/` ni en un commi
 - **Hosting**: Vercel project `riftcombo` (Pro team), production branch `master`. El último deploy figuraba CANCELED al momento del sync (2026-09-25); revisar antes de asumir que está sirviendo tráfico.
 - **Base de datos y auth**: Neon `quiet-breeze-27436036` (aws-us-east-1), branch `main` = `br-wandering-haze-av7v6x9v`; Neon Auth con el cliente OAuth de Google propio y Data API (RLS). Producción lee `NEON_AUTH_URL` y `NEON_DATA_API_URL`. El Supabase anterior (`bpbwsimgiyxzaorunqeo`, org **GermanAbuArab Free**) queda sin tráfico y con `SUPABASE_URL` todavía en Vercel hasta el paso 10 (O3, una semana después del corte), para que un rollback sea un redeploy. Ver issue #226.
 - **Decisión que lo respalda**: `_infra/decisions/2026-09-19-todo-a-neon-salvo-sir-loin`.
+- **Buscadores (#271, 2026-10-07)**: Google Search Console, propiedad de **dominio** `riftcombo.app`, verificada por DNS con el registro `TXT @ "google-site-verification=O7V2TlovaHfx_-ex5s7ZBLlH3kaBi7hYXlNRou8RHsw"` (Vercel DNS, team `germanabuarabs-projects`, `rec_dd3a9683fe204fc2892c09c7`; borrarlo des-verifica la propiedad). Bing Webmaster Tools, sitio `https://riftcombo.app/` importado desde Search Console (sin registro propio; Bing re-valida contra Search Console con acceso de sólo lectura). En los dos está enviado `https://riftcombo.app/sitemap.xml`. Cuenta: la de Google del dueño, en ambos.
 
 ## Datos
 
