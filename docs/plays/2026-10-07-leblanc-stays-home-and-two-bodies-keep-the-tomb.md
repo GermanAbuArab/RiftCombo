@@ -12,7 +12,7 @@ phase. The entry is right about the two steps and about the doubled Deathknell. 
 engine has two weak points and the entry names only half of one. A single body on the Tomb dies to a
 one-rune spell on the opponent's turn, and then the Tomb is not yours when it has to be held. And
 LeBlanc herself must never stand at a battlefield, because every card in the pool that banishes an
-enemy unit from the board reaches only units at a battlefield.
+enemy unit from the board and does not return it reaches only units at a battlefield.
 
 **Why this line.** `scripts/sequence-pick.mjs --unplayed`, re-run on 2026-10-07 at `4035579`, reads
 771 entries, 262 with forced-ordering language, **102 in the queue and 69 of them with no play**,
@@ -61,12 +61,18 @@ The order inside the phase is fixed by the rules, so your choices are elsewhere,
 **Where LeBlanc stands.** At your base, always. A unit is played to 355.2.a's default: *"By default,
 Valid locations include the controller's Base or a Battlefield the controller controls."* Her [Assault]
 invites an attack, and an attack puts her at a battlefield. Swept with `grep -i banish
-data/corpus_flat.txt` and read row by row: exactly three cards banish an enemy unit off the board, and
-all three say *at a battlefield*. `UNL-007 Smite` (Fury, E2 + 1 Power): *"Deal 3 to a unit at a
+data/corpus_flat.txt` and read row by row: exactly three cards banish an enemy unit off the board and do
+not return it, and all three say *at a battlefield*. `UNL-007 Smite` (Fury, E2 + 1 Power): *"Deal 3 to a unit at a
 battlefield. If it would die this turn, banish it instead."* `VEN-106 Wind and Ghosts` (Chaos, E3 + 1
 Power): *"Choose a unit at a battlefield. If it has 3 :rb_might: or less, banish it."* `VEN-110 Mel,
-Defiant Soul`: *"banish an enemy unit at a battlefield with 3 :rb_might: or less."* At the base, every
-answer to her is a kill, and a kill sends her where the Tomb looks. A banished card is somewhere else,
+Defiant Soul`: *"banish an enemy unit at a battlefield with 3 :rb_might: or less."* At the base, no
+card can banish her for good. Every lasting answer to her there is a kill, and a kill sends her where
+the Tomb looks. The one banish with no location is `VEN-066 Temporal Breach` (Mind, E2 + 1 Power):
+*"Banish a unit, then its owner plays it to the same location, ignoring its cost."* It reaches her at
+the base and gives her straight back, as a new object without the [Temporary] that Shadow's Call gave
+her. She then does not die in your Beginning Phase, draws nothing, and the Tomb has nothing to return:
+one cycle skipped, with Shadow's Call's two cards already drawn. It is Mind, so the Fury/Chaos opponent
+walked here cannot run it. A banished card is somewhere else,
 108.6.c: *"Represents cards that have been removed from play in a more difficult-to-recover way"*.
 
 **How many bodies stand on the Tomb.** Two, and neither is LeBlanc. She dies in the Beginning Step, so
@@ -141,7 +147,7 @@ That is not a race a garrison of Might-2 units wins.
 rules hold up: the kill is in the Beginning Step, the return in the Scoring Step, and the doubled
 Deathknell is real. The cost the entry leaves out is the garrison. It needs two bodies that are not
 LeBlanc, placed the turn Shadow's Call is cast, and LeBlanc must stay at her base, where nothing in the
-pool can banish her. The line breaks to a two-rune spell that kills both bodies, and a three-Energy
+pool can banish her for good. The line breaks to a two-rune spell that kills both bodies, and a three-Energy
 unit then removes LeBlanc from the trash for good.
 
 ## 7. Not verified
@@ -149,7 +155,9 @@ unit then removes LeBlanc from the trash for good.
 I did not walk the opponent killing LeBlanc on their own turn (she draws 1, and the Tomb still returns
 her at your Hold), `OGN-033 Shakedown` on her at base, or Deceiver's own Hold trigger, which could make
 a [Temporary] Reflection copy of a Broker and does not help the Hold because it dies in the Beginning
-Step too. Burn Out (431.1.a) after the third Shadow's Call was not counted. 2v2 was not walked.
+Step too. I did not walk a Mind opponent casting `VEN-066 Temporal Breach` on her after Shadow's Call,
+which skips one cycle (§2). Burn Out (431.1.a) after the third Shadow's Call was not counted. 2v2 was
+not walked.
 
 ## Leads
 
@@ -158,8 +166,9 @@ Step too. Burn Out (431.1.a) after the third Shadow's Call was not counted. 2v2 
   their cleanup and nothing returns LeBlanc. Two bodies other than LeBlanc, placed the turn Shadow's
   Call is cast.
 - The entry does not say where LeBlanc stands. The three cards that banish an enemy unit off the board
-  (`UNL-007 Smite`, `VEN-106 Wind and Ghosts`, `VEN-110 Mel, Defiant Soul`) all read *at a
-  battlefield*, so at her base the only removal is a kill, which feeds the Tomb.
+  and do not return it (`UNL-007 Smite`, `VEN-106 Wind and Ghosts`, `VEN-110 Mel, Defiant Soul`) all
+  read *at a battlefield*, so at her base the only lasting removal is a kill, which feeds the Tomb.
+  `VEN-066 Temporal Breach` reaches her at the base but replays her at once, without [Temporary].
 - The entry names no answer. `SFD-023 Piercing Light` kills both Might-2 holders for two runes, and
   `VEN-101 Gust Monk` (*"banish a card from any trash"*) then removes LeBlanc while she waits in the
   trash for a Hold that does not come.

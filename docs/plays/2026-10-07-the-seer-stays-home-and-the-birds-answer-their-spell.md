@@ -120,8 +120,8 @@ the engine is worse than the cards it spent. Answering Shakedown takes a second 
 four more runes you do not have on T3.
 
 `UNL-131 Abandon` (Chaos, E2) is cheaper and stops one dig: *"Counter a spell. Return it to its owner's
-hand instead of putting it in their trash."* You lose the turn's six runes of mana and keep the card and
-the Seer, so it delays the engine rather than breaking it. `OGN-045 Defy` cannot reach Flurry, which
+hand instead of putting it in their trash."* You lose the four runes Flurry spent, two of them off the
+board, and keep the card and the Seer, so it delays the engine rather than breaking it. `OGN-045 Defy` cannot reach Flurry, which
 costs two Power.
 
 ## 6. Verdict
