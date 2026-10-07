@@ -7,7 +7,7 @@
 //   node scripts/build-web.mjs --watch   # rebuild on change
 
 import { build, context } from "esbuild";
-import { copyFileSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
+import { copyFileSync, cpSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 import { siteConfig } from "./site-config.mjs";
@@ -46,6 +46,8 @@ writeFileSync(join(OUT, "data", "plays.json"), JSON.stringify({ plays }));
 // and committed, so the build only copies them.
 const STATIC = ["index.html", "privacy.html", "terms.html", "404.html", "styles.css", "favicon.svg", "og.png", "apple-touch-icon.png", "icon-192.png", "icon-512.png", "manifest.webmanifest", "riot.txt"];
 for (const f of STATIC) copyFileSync(join(ROOT, "web", f), join(OUT, f));
+// Inter is served from this origin (#295), so no page asks Google Fonts for it before any consent choice.
+cpSync(join(ROOT, "web", "fonts"), join(OUT, "fonts"), { recursive: true });
 // After the copy, because writeSeo checks every sitemap path against a file in public/ (#268).
 writeSeo(OUT);
 
