@@ -107,11 +107,11 @@ function render(): void {
   if (!host || current?.view !== "plays") return;
   host.replaceChildren();
   if (failed) {
-    host.append(el("h1", undefined, "Run plays"), notice("The plays could not be loaded. Reload the page to try again."));
+    host.append(el("h2", "doc-title", "Run plays"), notice("The plays could not be loaded. Reload the page to try again."));
     return;
   }
   if (!plays) {
-    host.append(el("h1", undefined, "Run plays"), notice("Loading…"));
+    host.append(el("h2", "doc-title", "Run plays"), notice("Loading…"));
     return;
   }
   const slug = current.playSlug;
@@ -120,7 +120,7 @@ function render(): void {
   // A slug nobody carries is a link that went stale, so it says so and offers the index rather than
   // leaving the reader on a page with a heading and nothing under it.
   if (!play) {
-    host.append(el("h1", undefined, "Run plays"), notice(`There is no play at “${slug}”.`), backLink("All plays"));
+    host.append(el("h2", "doc-title", "Run plays"), notice(`There is no play at “${slug}”.`), backLink("All plays"));
     return;
   }
   host.replaceChildren(...document_(play));
@@ -142,7 +142,7 @@ function backLink(label: string): HTMLAnchorElement {
  * titles and ledes rather than a table: there is nothing to sort by that the titles do not say.
  */
 function index(all: Play[]): Node[] {
-  const out: Node[] = [el("h1", undefined, "Run plays")];
+  const out: Node[] = [el("h2", "doc-title", "Run plays")];
   out.push(
     el(
       "p",
@@ -170,21 +170,22 @@ function index(all: Play[]): Node[] {
 
 /**
  * One play. The document's own h1 is dropped and replaced with the title the index shows, so the two
- * surfaces agree and the view keeps exactly one h1: the files are filed under a "Play — " prefix,
- * which is a filing convention and pure repetition inside a view already called Run plays.
+ * surfaces agree: the files are filed under a "Play — " prefix, which is a filing convention and pure
+ * repetition inside a view already called Run plays. The title is an h2, because the page's one h1 is
+ * the brand in the header (#270).
  */
 function document_(play: Play): Node[] {
   const blocks = parseMarkdown(play.markdown);
   const body = blocks[0]?.kind === "heading" && blocks[0].level === 1 ? blocks.slice(1) : blocks;
-  return [backLink("All plays"), el("h1", undefined, play.title), ...body.map(block)];
+  return [backLink("All plays"), el("h2", "doc-title", play.title), ...body.map(block)];
 }
 
 function block(b: Block): Node {
   switch (b.kind) {
     case "heading": {
-      // The document's remaining headings start at h2 whatever they were written as, because its own
-      // h1 has been replaced: a play that opened a section with `#` would otherwise give the page two.
-      const tag = (["h2", "h2", "h3", "h4", "h5", "h6"][Math.min(b.level, 6) - 1] ?? "h2") as "h2";
+      // The document's remaining headings start at h3 whatever they were written as, one under the
+      // title's h2: a play that opened a section with `#` would otherwise sit level with its title.
+      const tag = (["h3", "h3", "h4", "h5", "h6", "h6"][Math.min(b.level, 6) - 1] ?? "h3") as "h3";
       return inlineInto(el(tag), b.spans);
     }
     case "para":

@@ -268,6 +268,31 @@ describe("the library", () => {
     expect(host().querySelector<HTMLButtonElement>('[data-act="save"]')!.disabled).toBe(true);
     expect(host().querySelector('[data-act="save"]')!.textContent).toBe("Update");
   });
+
+  /**
+   * The page's one h1 is the brand in the header (#270), so every state of this view continues from
+   * it without skipping a level. The editor carries no title of its own (the deck name is an input),
+   * which is why its zone and Construction heads are h2 and not h3. A dialog's heading starts its own
+   * outline and is left out.
+   */
+  it("never skips a heading level under the header's h1, in the library or the editor", async () => {
+    api.decks = [row()];
+    const router = await boot();
+    const outline = () => [...host().querySelectorAll("h1, h2, h3, h4, h5, h6")].filter((h) => !h.closest("dialog"));
+    for (const hash of ["#/decks", "#/decks/d1", "#/decks/new"]) {
+      router.go(hash);
+      await tick();
+      const heads = outline();
+      expect(heads.length, hash).toBeGreaterThan(0);
+      let last = 1;
+      for (const h of heads) {
+        const level = Number(h.tagName[1]);
+        expect(level, `${hash}: ${h.tagName} "${h.textContent}" after h${last}`).toBeLessThanOrEqual(last + 1);
+        expect(level, `${hash}: ${h.tagName} "${h.textContent}"`).toBeGreaterThan(1);
+        last = level;
+      }
+    }
+  });
 });
 
 describe("writing to the account", () => {

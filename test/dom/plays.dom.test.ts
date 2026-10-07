@@ -50,7 +50,9 @@ describe("the plays index", () => {
       expect(link, p.slug).not.toBeNull();
       expect(link!.textContent).toContain(p.title);
     }
-    expect(host.querySelectorAll("h1")).toHaveLength(1);
+    // The page's one h1 is the brand in the header (#270), so the view's title is an h2.
+    expect(host.querySelectorAll("h1")).toHaveLength(0);
+    expect(host.querySelectorAll("h2.doc-title")).toHaveLength(1);
   });
 
   it("fetches the payload once, on the first visit rather than at boot", async () => {
@@ -64,11 +66,20 @@ describe("a play rendered", () => {
   it("renders every construct the corpus uses, on every play", async () => {
     for (const p of PLAYS) {
       const host = await open(`#/plays/${p.slug}`);
-      // Exactly one h1, and it is the index's title rather than the file's "Play — " prefix.
-      const h1s = host.querySelectorAll("h1");
-      expect(h1s, p.slug).toHaveLength(1);
-      expect(h1s[0]!.textContent, p.slug).toBe(p.title);
-      expect(host.querySelectorAll("h2").length, `${p.slug} h2`).toBeGreaterThan(0);
+      // No h1 (the page's one h1 is the brand in the header, #270) and one title, the index's title
+      // rather than the file's "Play — " prefix; the sections sit one level under it.
+      expect(host.querySelectorAll("h1"), p.slug).toHaveLength(0);
+      const titles = host.querySelectorAll("h2");
+      expect(titles, p.slug).toHaveLength(1);
+      expect(titles[0]!.textContent, p.slug).toBe(p.title);
+      expect(host.querySelectorAll("h3").length, `${p.slug} h3`).toBeGreaterThan(0);
+      // No skipped levels: under the header's h1, every heading is at most one below the last.
+      let last = 1;
+      for (const h of host.querySelectorAll("h1, h2, h3, h4, h5, h6")) {
+        const level = Number(h.tagName[1]);
+        expect(level, `${p.slug} ${h.tagName} "${h.textContent}" after h${last}`).toBeLessThanOrEqual(last + 1);
+        last = level;
+      }
       expect(host.querySelectorAll("p").length, `${p.slug} p`).toBeGreaterThan(3);
       expect(host.querySelectorAll(".play-table").length, `${p.slug} tables`).toBeGreaterThan(0);
       expect(host.querySelectorAll("code").length, `${p.slug} code`).toBeGreaterThan(5);
@@ -148,7 +159,8 @@ describe("what the view does when it cannot show a play", () => {
     const host = await open("#/plays/2026-09-12-never-written");
     expect(host.textContent).toContain("There is no play at");
     expect(host.querySelector<HTMLAnchorElement>(".play-back")!.getAttribute("href")).toBe("#/plays");
-    expect(host.querySelectorAll("h1")).toHaveLength(1);
+    expect(host.querySelectorAll("h1")).toHaveLength(0);
+    expect(host.querySelectorAll("h2.doc-title")).toHaveLength(1);
   });
 
   it("says so when the payload itself fails, rather than showing an empty page", async () => {
@@ -193,7 +205,7 @@ describe("what the view does when it cannot show a play", () => {
     expect(host.querySelector("i")).toBeNull();
     // The angle brackets survive as the characters they are, which is what the file actually said.
     expect(host.textContent).toContain("<script>alert(1)</script>");
-    expect(host.querySelector("h1")!.textContent).toBe('<img src=x onerror="alert(1)">');
+    expect(host.querySelector("h2.doc-title")!.textContent).toBe('<img src=x onerror="alert(1)">');
   });
 });
 

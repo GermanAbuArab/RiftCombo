@@ -59,7 +59,7 @@ export function initDecks(h: DeckHooks): void {
     // A build with no account layer (SUPABASE_URL unset) still routes #/decks and still shows the
     // link, and until 2026-09-20 the view was a blank page: nothing said why (design review,
     // FINDING-008). One sentence, written once, since nothing else here runs without an account.
-    $<HTMLElement>("#decks-host").innerHTML = `<h1>My decks</h1><p class="decks-sub">This build runs without accounts, so there is nowhere to save a list. Paste one on the Combos tab instead.</p>`;
+    $<HTMLElement>("#decks-host").innerHTML = `<h2 class="decks-title">My decks</h2><p class="decks-sub">This build runs without accounts, so there is nowhere to save a list. Paste one on the Combos tab instead.</p>`;
     return;
   }
   hooks = h;
@@ -225,7 +225,7 @@ const DOMAIN_ORDER: Domain[] = ["fury", "calm", "mind", "body", "chaos", "order"
 function libraryView(): string {
   return `<header class="decks-head">
       <div>
-        <h1 class="decks-title">My decks</h1>
+        <h2 class="decks-title">My decks</h2>
         <p class="decks-sub">${decks.length ? `${decks.length} saved list${decks.length === 1 ? "" : "s"}, readable only by you.` : "Nothing saved yet."}</p>
       </div>
       <button type="button" class="primary" data-act="new">New deck</button>
