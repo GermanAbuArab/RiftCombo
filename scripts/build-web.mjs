@@ -44,7 +44,7 @@ writeFileSync(join(OUT, "data", "plays.json"), JSON.stringify({ plays }));
 // to work in the case where the bundle is what went wrong (#77).
 // The social card, the icons and the manifest (#269) are rendered once by scripts/build-brand-images.sh
 // and committed, so the build only copies them.
-const STATIC = ["index.html", "privacy.html", "terms.html", "404.html", "styles.css", "favicon.svg", "og.png", "apple-touch-icon.png", "icon-192.png", "icon-512.png", "manifest.webmanifest"];
+const STATIC = ["index.html", "privacy.html", "terms.html", "404.html", "styles.css", "favicon.svg", "og.png", "apple-touch-icon.png", "icon-192.png", "icon-512.png", "manifest.webmanifest", "riot.txt"];
 for (const f of STATIC) copyFileSync(join(ROOT, "web", f), join(OUT, f));
 // After the copy, because writeSeo checks every sitemap path against a file in public/ (#268).
 writeSeo(OUT);
