@@ -35,7 +35,7 @@
 <header class="topbar">
   <a class="brand" href="/">
     <svg class="brand-mark" viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.5 18.5 10 10 18.5 1.5 10Z"/><path d="M10 6.2 13.8 10 10 13.8 6.2 10Z"/></svg>
-    <span class="brand-name">RIFTCOMBO</span>
+    <h1 class="brand-name">RIFTCOMBO</h1>
   </a>
   <nav class="topnav">
     <a href="#/combos" class="active">Combos</a>
@@ -61,7 +61,7 @@
 <section class="gate" id="gate" aria-labelledby="gate-title">
   <div class="gate-box">
     <svg class="gate-mark" viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.5 18.5 10 10 18.5 1.5 10Z"/><path d="M10 6.2 13.8 10 10 13.8 6.2 10Z"/></svg>
-    <h1 id="gate-title">RiftCombo</h1>
+    <h2 class="gate-title" id="gate-title">RiftCombo</h2>
     <p class="gate-lead">Paste a Riftbound deck list or deck code and see which known combos it already contains, and which it is a few cards short of. Every combo in the catalogue was walked by hand against the Core Rules.</p>
     <button type="button" class="primary gate-signin" id="gate-signin">Sign in with Google</button>
     <p class="gate-note">Signing in shares the name and email on your Google account with this site, and nothing else. Your lists are matched in your browser and stored only when you press Save.</p>
@@ -152,7 +152,7 @@
   <main class="workspace">
     <div class="ws-head">
       <div>
-        <h1 class="ws-title">Combos in this deck <span class="count-pill" id="route-count">0</span></h1>
+        <h2 class="ws-title">Combos in this deck <span class="count-pill" id="route-count">0</span></h2>
         <p class="ws-sub" id="ws-sub"></p>
       </div>
       <div class="ws-controls">
@@ -222,7 +222,7 @@
 
 <section class="view" id="view-guide" hidden>
 <main class="doc" id="how">
-  <h1>Guide</h1>
+  <h2 class="doc-title">Guide</h2>
   <ol>
     <li>Paste a deck list (any common export), a deck code, or a public Piltover Archive link, then press <strong>Find combos</strong>.</li>
     <li><strong>Complete</strong> shows combos your list already has every piece of. <strong>Near misses</strong> shows combos within a few cards, with the missing pieces outlined.</li>
@@ -241,7 +241,7 @@
 
 <section class="view" id="view-sources" hidden>
 <main class="doc colophon" id="data">
-  <h1>Sources</h1>
+  <h2 class="doc-title">Sources</h2>
   <p id="data-note">Card text and art come from Riot's official card gallery, with Riot's published errata applied. Legality follows the official Rules Hub. Combos are walked by hand against the Core Rules, card text and rule numbers cited.<span data-when="candidates"> Entries marked <em>candidate</em> were proposed by an automated sweep and not yet reviewed.</span> Pairs are a separate file with a weaker guarantee: the rule is walked once and cites its paragraphs, the instances are text matches, and every rule's whole match list was read card by card before it shipped.</p>
   <p>Saving a deck stores the list text you typed, not the result of matching it, so an old list is read again against today's catalogue and today's ban list every time you open it. Only you can read your own rows.</p>
   <p>RiftCombo was created under Riot Games' "Legal Jibber Jabber" policy using assets owned by Riot Games. Riot Games does not endorse or sponsor this project.</p>

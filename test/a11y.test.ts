@@ -146,16 +146,38 @@ describe("what a screen reader is told", () => {
     for (const view of VIEWS) expect(router).toMatch(new RegExp(`\\b${view}:\\s*"`));
   });
 
-  it("gives each view a main landmark and exactly one h1", () => {
+  it("carries exactly one h1, the brand in the header, so every view and the entrance share it (#270)", () => {
+    // The app is one document whose views are hidden sections, so an h1 per view put four in the
+    // file (two in hidden sections) and the signed-out entrance a fifth. The page's one h1 names the
+    // site and is the only heading visible in every state; each view's title is an h2 under it.
+    expect((home.match(/<h1[\s>]/g) ?? []).length).toBe(1);
+    const header = /<header class="topbar">([\s\S]*?)<\/header>/.exec(home)?.[1] ?? "";
+    expect(header).toMatch(/<h1 class="brand-name">RIFTCOMBO<\/h1>/);
+    // My decks and Run plays render their titles at runtime, so the h1 rule reaches their source too.
+    for (const f of ["web/decks.ts", "web/plays.ts", "web/main.ts", "web/builder.ts"]) {
+      expect(read(f), f).not.toMatch(/<h1[\s>]|el\("h1"/);
+    }
+  });
+
+  it("gives each view a main landmark and headings that never skip a level", () => {
+    const levels = (html: string) => [...html.matchAll(/<h([1-6])[\s>]/g)].map((m) => Number(m[1]));
+    const header = /<header class="topbar">[\s\S]*?<\/header>/.exec(home)?.[0] ?? "";
+    const gate = /<section class="gate"[\s\S]*?<\/section>/.exec(home)?.[0] ?? "";
+    const states: [string, string][] = [["entrance", gate]];
     for (const view of VIEWS) {
       const start = home.indexOf(`id="view-${view}"`);
       expect(start, view).toBeGreaterThan(-1);
       const end = home.indexOf(`id="view-`, start + 1);
       const section = home.slice(start, end === -1 ? home.indexOf("</body>") : end);
       expect(section, `view-${view} has no <main>`).toMatch(/<main[\s>]/);
-      // My decks writes its own heading from web/decks.ts, and Run plays writes the play's own title
-      // from web/plays.ts, so those two containers are the exceptions: their h1 is rendered, not typed.
-      if (view !== "decks" && view !== "plays") expect((section.match(/<h1[\s>]/g) ?? []).length, `view-${view} h1`).toBe(1);
+      expect((section.match(/<h1[\s>]/g) ?? []).length, `view-${view} h1`).toBe(0);
+      states.push([view, section]);
+    }
+    // Static markup only: the drawer, the dialogs and the rendered views are pinned in their DOM tests.
+    for (const [state, html] of states) {
+      const seq = levels(header + html);
+      expect(seq[0], state).toBe(1);
+      for (let i = 1; i < seq.length; i++) expect(seq[i]!, `${state}: h${seq[i]} after h${seq[i - 1]}`).toBeLessThanOrEqual(seq[i - 1]! + 1);
     }
   });
 
