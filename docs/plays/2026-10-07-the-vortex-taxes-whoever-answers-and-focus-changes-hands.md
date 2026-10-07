@@ -123,8 +123,10 @@ Dealing Damage."*
 1 Power, [Action], *"Deal 1 to up to three units at the same location."*) on their Focus would put one on
 each Bladekeeper and let the Dancer's 3 kill one. But you can answer it with `OGN-145 Unyielding Spirit`
 (Body, E1 + 1 Power, *"[Reaction] (Play any time, even before spells and abilities resolve.) Prevent all
-spell and ability damage this turn."*), and the Vortex charges you a rainbow for it: E1 + 2 Power, two of
-your three ready runes, both recycled. You pay the tax, and the line survives.
+spell and ability damage this turn."*), and the Vortex charges you a rainbow for it: E1 + 2 Power. One of
+your three ready runes exhausts for the Energy, and two of the three Overt Operation already exhausted
+are recycled for the Power, since 164.2.b's cost is the recycle alone. You pay the tax, and the line
+survives.
 
 ## 6. Verdict
 
