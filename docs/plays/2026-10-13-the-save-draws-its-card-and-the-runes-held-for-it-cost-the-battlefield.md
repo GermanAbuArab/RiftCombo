@@ -96,8 +96,8 @@ Awakening (415.3.a), so a Wheel used on their T3 is ready again on your T4.
 
 Fury/Body under `OGN-249 Relentless Storm`. It is idle: *"When you play a [Mighty] unit, you may
 exhaust me to channel 1 rune exhausted."* They play nothing with 5 Might. They take B on their T2 and
-hold it with one Legion Rearguard. Every body after that goes to base, and they spend every rune on
-their own turn. On T3 they do what a Fury deck does to a battlefield it cannot take. They burn one
+hold it with one Legion Rearguard. Every attacker after that goes to base; the one body they add to
+B is a Determined Sentry on T3. From T2 on they spend every rune on their own turn. On T3 they do what a Fury deck does to a battlefield it cannot take. They burn one
 body off it with `OGN-009 Hextech Ray` (Fury, E1 + 1 Power, *"[Action] (Play on your turn or in
 showdowns.) Deal 3 to a unit at a battlefield."*), then walk in with what they have.
 `OGN-016 Dangerous Duo` (Fury, E3, M3) adds the last two Might: *"[Legion] — When you play me, give a
@@ -162,8 +162,8 @@ control again (355.2.a).
 
 **What the line bought.** Play the same T3 without holding anything: the Skulker and Kennen (E3 + 1
 Chaos) to A, all six runes spent, and A stands at twelve. On their T3 the Ray kills the Skulker,
-leaving nine. They have seven to attack with, and the Rearguard at B cannot join them: 144.4 moves a
-unit from a battlefield only to its base, unless it has Ganking. So they do not attack. After their T3
+leaving nine. They have seven to attack with, and the Rearguard at B cannot join them: 144.4.b moves
+a unit from a battlefield only to its base, and the Rearguard has no Ganking (144.4.c.1). So they do not attack. After their T3
 it is 2 to 2. A is yours with three bodies on it, and Tactical Retreat is
 still in your hand. Your T4 opens with a Hold: 3 to 2. With the line, after their T3 it is 2 to 3,
 A is theirs, and your one body is the Skulker the save sent home. The save kept a three-drop and
@@ -202,8 +202,10 @@ answer it. A Gust on the shielded unit sends it to hand, and the card that comes
 you chose, 124: *"A Game Object that changes zones to or from a Non-Board Zone becomes a new object
 for the purposes of tracking that object."* The entry reaches the same result through 390.5.a:
 *"If that Ability affects a Game Object, the Delayed Linked Ability’s window will be as long as that
-Game Object is in an appropriate zone."* For one Energy, Tactical Retreat becomes a dead card and
-the Wheel's draw is all it bought. A Fury/Body opponent has no Gust. A Chaos one does.
+Game Object is in an appropriate zone."* Gust reaches only a unit of Might 3 or less: the Skulker
+here, but not Kennen or the Vanguard Sergeant at 4. On such a unit, for one Energy, Tactical Retreat
+becomes a dead card and the Wheel's draw is all it bought. A Fury/Body opponent has no Gust. A Chaos
+one does.
 
 ## 6. Verdict
 
@@ -240,9 +242,11 @@ this turn."* bringing Tactical Retreat back, T5 on, the mulligan, or 2v2.
 - The entry's last notable files the shield under 390.5 (Delayed Linked) rather than 391. 390.3 names
   Tactical Retreat's own wording: *"Delayed Replacements are Replacement Effects that can be recognized
   by specifying the effect they are replacing at a specific time, or “the [Nth] time” in the
-  description of the effect as it resolves."* And Riot's example under 391, Noxian Guillotine
-  (*"Choose a unit. Kill it the next time it takes damage this turn."*), has the same shape. The
-  bounce conclusion holds either way, by 124.
+  description of the effect as it resolves."* The reading rests on that *"the [Nth] time"* wording
+  alone. Riot's own *"next time"* example, Noxian Guillotine, is filed as a Delayed Trigger (390.2),
+  not a Delayed Replacement: *"When the chosen unit takes damage is the specified time, and killing it
+  is the condition for a Delayed Triggered Ability."* So it does not support the reading either way.
+  The bounce conclusion holds under 390.5, 390.3 or 390.2 alike, by 124.
 - Step 2's *"in combat"* needs the timing. The save has to be cast before the showdown closes (465.2),
-  so the opponent sees it while the damage is still to come, and a one-Energy Gust on the shielded
-  unit ends it.
+  so the opponent sees it while the damage is still to come, and a one-Energy Gust ends it on a
+  shielded unit of Might 3 or less.

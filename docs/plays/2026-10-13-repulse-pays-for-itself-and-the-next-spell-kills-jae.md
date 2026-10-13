@@ -62,7 +62,7 @@ turn, because 415.3.a readies only in your own Awakening: *"A player Readies all
 they Control during the Awakening Phase on their turn."* The Energy cannot be banked instead, 167:
 *"Every player's Rune Pool empties at the start of each player's Main Phase and the end of each
 player's turn."* So the price of holding the counter is one rune left unspent on your turn, and the
-price of casting it is that rune and one more off the board.
+price of casting it is that rune exhausted and one Body rune recycled off the board.
 
 **Jae goes to A.** Repulse chooses *"a friendly unit at a battlefield"*, so a Jae at your base cannot
 be protected at all. He is played to a battlefield you control, 355.2.a: *"By default, Valid locations
@@ -88,8 +88,9 @@ choosing him with Vengeance is them. The card comes only from your own spell cho
 Mind/Order under `OGN-265 Herald of the Arcane`, whose *":rb_energy_1:, :rb_exhaust:: Play a 1
 :rb_might: Recruit unit token."* soaks up a spare rune. They take B on their T2 and build it, which
 leaves both sides holding one battlefield: neither A's bodies nor B's can walk to the other
-battlefield, since 144.4.a moves a unit only out of base, *"Units may move from their Base to a
-Battlefield."* So the answer to a Jae standing at A is a removal spell, one a turn: Vengeance on T3 (no
+battlefield. A Standard Move goes from base to a battlefield, 144.4.a: *"Units may move from their
+Base to a Battlefield."* Or from a battlefield back to base, 144.4.b: *"Units may move from a
+Battlefield to their Base."* Only Ganking moves a unit between battlefields (144.4.c.1). So the answer to a Jae standing at A is a removal spell, one a turn: Vengeance on T3 (no
 [Action], so it is played on their own turn), Falling Comet on T4. Every rune they have is spent on
 their own turn.
 
@@ -131,9 +132,10 @@ and five on T4 where eight would have stood without the three Power. 315.3.b cha
 *"1. The Turn Player channels 2 runes from their Rune Deck."*, and nothing gives back the recycled ones
 sooner.
 
-**What the line bought.** Without Repulse, Vengeance kills Jae on their T3, and on their T4 the Comet
-kills the Ember Monk at A instead. A holds either way: it is eleven, then fifteen, against bodies that
-cannot reach it, and the score is 3 to 3 either way. With Repulse, they spent Vengeance and six of their
+**What the line bought.** Without Repulse, Vengeance kills Jae on their T3, and A is six: the Poro 2,
+the Skulker 3, the Sentry 1. On T4 the Ember Monk makes it ten, and on their T4 the Comet kills the
+Monk instead, which leaves six. A holds either way against bodies that cannot reach it, and the
+score is 3 to 3 either way. With Repulse, they spent Vengeance and six of their
 seven T3 resources on nothing, and you drew a card for it: one Energy and one rune turned their card
 into yours. It is card advantage and not a point, which is what the entry claims: *"nothing here
 scores"*.
