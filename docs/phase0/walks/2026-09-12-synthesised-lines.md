@@ -920,6 +920,15 @@ LEGEND against a mono-Mind line (103.1.b), and its Energy is restricted to *"pla
 abilities of units"*, which a Time Warp spell is not. **Refused, correctly, for the second time and
 for a different reason.**
 
+**REOPENED 2026-10-13 (#335): B3's conclusion does NOT survive.** The reason this row gives, short by
+2 Energy, is real only in a model that fires Time Warp and Renata on every turn and never pays the
+Nexus. Supplying the 2 Energy with `SFD-083 Hextech Anomaly`, a second Power-to-Energy conversion
+(#330, #334), leaves that model at 7. Using Renata once, on the last turn, and paying the Nexus with
+the runes the chain no longer needs reaches 8 from eight runes without Anomaly and from six with it.
+It is now the `candidate` CHAIN `power-nexus-sentinel-renata-time-warp-chain`. Walk:
+`docs/phase0/walks/2026-10-13-b3-renata-time-warp-anomaly.md`. The verdict column above and §14.5's
+reading of B3 are kept as written.
+
 ### 14.5 What the sweep says about refusals as a kind
 
 Two classes, four reopenings, and **the two misses are the useful part**: A2 was a body count wearing
