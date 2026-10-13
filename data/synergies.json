@@ -6120,7 +6120,7 @@
           "spell"
         ]
       },
-      "why": "\"If you've spent 4 Energy or more to play a spell this turn, I have +4 Might.\" The whole lens splits on one word: a \"costs N or more\" clause reads the PRINTED cost under 206 and a discount never touches it, while a \"spent N or more\" clause reads what actually left the Rune Pool (166.2, 203.1, 356.4.b) and a discount switches it off. The constructive half is this list. 820.1.c.1 makes a [Repeat] cost \"an Additional Cost to be paid during the steps of playing the spell or ability\" — so it is SPENT, in full, on top of the base cost — while 206's second worked example (Defy against Rocket Barrage) says a \"costs N\" check ignores it entirely. So a 2-Energy spell with a 2-Energy Repeat spends 4 and arms the Neophyte, where a 6-Energy spell discounted to 3 does not. Read each spell's own Repeat cost before counting it: several in this list price the repeat in Power alone, which spends no Energy and clears nothing here. The same arithmetic works from the other side, and it is the one place an opponent helps you — 809.1.c makes [Deflect] an additional cost too, so their tax on your spell pushes you over your own line.",
+      "why": "\"If you've spent 4 Energy or more to play a spell this turn, I have +4 Might.\" The whole lens splits on one word: a \"costs N or more\" clause reads the PRINTED cost under 206 and a discount never touches it, while a \"spent N or more\" clause reads what actually left the Rune Pool (166.2, 203.1, 356.4.b) and a discount switches it off. The constructive half is this list. 820.1.c.1 makes a [Repeat] cost \"an Additional Cost to be paid during the steps of playing the spell or ability\" — so it is SPENT, in full, on top of the base cost — while 206's second worked example (Defy against Rocket Barrage) says a \"costs N\" check ignores it entirely. So a 2-Energy spell with a 2-Energy Repeat spends 4 and arms the Neophyte, where a 6-Energy spell discounted to 3 does not. Read each spell's own Repeat cost before counting it: several in this list price the repeat in Power alone, which spends no Energy and clears nothing here. Corrected 2026-10-13 (#325, #327): this rule used to end by saying an opponent's [Deflect] works the same arithmetic from the other side and pushes you over your own line. It does not, for the reason just given. 809.1.c: \"It is functionally short for \"Spells and abilities an opponent controls that target [me/this] cost an amount of Power equal to [Deflect Value] more to play as an additional cost for each time they choose [me/this].\"\" 163.1: \"Energy is used to pay numeric Energy costs.\" 163.2: \"Power is used to pay Domain-associated Power Costs.\" The tax is Power, and the Neophyte counts Energy. Of the pool's \"spent\" lines (six card names, swept 2026-10-13), only SFD-143 Sivir, Mercenary's is printed in Power, and only there does a Deflect tax count.",
       "basis": {
         "rules": [
           "206",
@@ -6129,10 +6129,11 @@
           "356.4.b",
           "820.1.c.1",
           "820.1.b",
-          "809.1.c"
+          "163.1",
+          "163.2"
         ],
         "combos": [
-          "prepared-neophyte-disintegrate-spent-threshold"
+          "prepared-neophyte-disintegrate-energy-threshold"
         ]
       },
       "status": "rule-verified",
