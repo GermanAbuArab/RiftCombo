@@ -1051,7 +1051,22 @@ four-card line.
 
 ## 17. Batch 10 — five entries from the Fury / Chaos remainder
 
-### 17.1 `prepared-neophyte-disintegrate-spent-threshold` — UNL-004 + OGN-005 (both in zero entries)
+### 17.1 `prepared-neophyte-disintegrate-energy-threshold` (old id `prepared-neophyte-disintegrate-spent-threshold`, renamed 2026-10-13, #327) — UNL-004 + OGN-005 (both in zero entries)
+
+**Corrected 2026-10-13 (#325, #327): the next paragraph is wrong and is kept as written on 2026-09-07.**
+An opponent's [Deflect] does not pay for this card. The tax is an additional cost and is spent, but
+it is spent in Power, and the Neophyte's line counts Energy. 809.1.c: *"It is functionally short for
+"Spells and abilities an opponent controls that target [me/this] cost an amount of Power equal to
+[Deflect Value] more to play as an additional cost for each time they choose [me/this].""* 163.1:
+*"Energy is used to pay numeric Energy costs."* 163.2: *"Power is used to pay Domain-associated Power
+Costs."* `UNL-004 Prepared Neophyte` prints `:rb_energy_4:`, so a Deflect tax counts toward nothing
+here, and Disintegrate's printed 4 Energy meets the line on its own. **Predicate, swept 2026-10-13
+over `data/cards.json` for a "spent" clause followed by a resource icon: six card names, seven base
+codes.** Five read Energy, all `:rb_energy_4:` (`UNL-004 Prepared Neophyte`, `UNL-005 Revna the
+Lorekeeper`, `UNL-089 Jhin, Meticulous Killer`, `UNL-181` / `UNL-226 Virtuoso`, `UNL-211 Forgotten
+Library`) and a Deflect tax moves none of them; one reads Power, `SFD-143 Sivir, Mercenary`, where
+809.1.c.1 (*"The Power used to pay this cost may always be of any Domain."*) does let the tax count.
+The entry was renamed the same day to drop the Deflect framing.
 
 **The opponent's [Deflect] pays for this card.** 809.1.c prices Deflect as *"an amount of Power … more
 to play as an ADDITIONAL COST for each time they choose"*, and 166.2 / 203.1 / 356.4.b make *spent*
