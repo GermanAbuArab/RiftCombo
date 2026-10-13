@@ -8,8 +8,8 @@ Card text verbatim from `data/corpus_flat.txt`; rules pasted from
 **Subject: `karma-forgotten-library-spell-buff`**, the Order ENGINE in which `UNL-211 Forgotten
 Library` gives a [Predict] for every spell that spends four Energy, and recycling the card fires
 `OGN-235 Karma, Channeler` for a +1 buff. The entry is right about the arithmetic: one buff per
-qualifying spell, capped by the unbuffed bodies. It frames the spell as a Main Phase action. Walked as a
-game, the Library fires on any turn you play a spell, and Order's cheapest way to spend four is a
+qualifying spell, capped by the unbuffed bodies. It names no spell. Walked as a
+game, the Library fires on any turn you play a spell, and a Calm/Order deck's cheapest way to spend four is a
 [Reaction]: `SFD-151 Bonds of Strength` with its [Repeat]. Cast in answer to their removal, the buff
 resolves before the removal does, and on their T4 it is the one point of Might that keeps a body alive.
 The battlefield the entry calls free is in play in one Duel game in three.
@@ -53,17 +53,20 @@ The card text the play turns on:
 485.5: *"Setup: Each player randomly selects one (1) of their three (3) Battlefields. The other two are
 removed and will not be used for this game."* The Library costs no Main Deck slot, and it is still one
 of the three battlefields you bring, on the table in one Duel game in three. In a best-of-three match
-you choose it, and 486.5 removes it after a game somebody won: *"After this game, if a player won, the
+you choose it, and 486.5 removes it after a game somebody won (a drawn game keeps it, 486.5.a and
+Tournament Rules 406.1.b): *"After this game, if a player won, the
 Battlefields that were used are to be removed and not selected again for this Match."* Then it has to
-be taken, 190.6.d: *"If the battlefield has no Controller, “you” refers to no one, and all such
+be taken. The card reads *"While you control this battlefield"*, and while it has no controller its
+"you" is nobody, 190.6.d: *"If the battlefield has no Controller, “you” refers to no one, and all such
 instructions are ignored."* Here it is your battlefield A, yours from the T2 Conquer.
 
-## 3. The cheapest Order spend is a Reaction
+## 3. The cheapest spend is a Reaction
 
 **Four Energy, no Power.** The [Repeat] is spent to play the spell, 820.1.c.1: *"The Cost is an
 Additional Cost to be paid during the steps of playing the spell or ability."* So Bonds with its Repeat
-spends four Energy and recycles no rune. `OGN-229 Vengeance`, Order's other way to spend four, also
-costs two Order Power: two runes off the board, 161.2.b: *"When a Rune is Recycled it is returned to the
+spends four Energy and recycles no rune, which is the floor: nothing spends four Energy for less.
+Order's removal at that price, `OGN-229 Vengeance`, also costs two Order Power (a Fury/Order deck has
+`OGN-254 Noxian Guillotine`, E4 + 1 Power): two runes off the board, 161.2.b: *"When a Rune is Recycled it is returned to the
 Rune Deck, not the Main Deck."*
 
 **The Library does not care whose turn it is.** Its trigger is *"when you play a spell"*, and Bonds is
@@ -87,9 +90,11 @@ friendly units, and the same unit can be one of the two both times: +2 on it thi
 ## 4. Their order: B, bodies, and a removal spell a turn
 
 Fury/Chaos under `SFD-185 Glorious Executioner`, whose *"When you win a combat, draw 1"* is idle in a
-game with no combat. They take B on their T2 and build it. Neither side's bodies can reach the other
-battlefield: a Standard Move goes from base to a battlefield or back (144.4.a, 144.4.b), and only
-Ganking moves a unit between battlefields (144.4.c.1). So they answer A with spells. Theirs is
+game with no combat. They take B on their T2 and build it. A unit at B cannot cross to A in one move:
+a Standard Move goes from base to a battlefield or back (144.4.a, 144.4.b), and only Ganking moves a
+unit between battlefields (144.4.c.1). A unit in their base can walk to A, but every body they play
+goes to B to hold it, and from B it takes two turns, by way of their base. While their bodies are
+committed to B, they answer A with spells. Theirs is
 `OGN-024 Void Seeker` (Fury, E3 + 1 Power): *"[Action] (Play on your turn or in showdowns.) Deal 4 to a
 unit at a battlefield. Draw 1."*
 
@@ -141,8 +146,12 @@ damage, and their Void Seeker was one card for one card drawn.
 
 **What T3's buff bought is Karma.** Every body at A, buffed or not, is inside Void Seeker's four:
 Ramhound would be 4, the Poro 3, the Scout 2. A buff there only changes which one they pick. On Karma
-at base it takes her to 7, past the two cheapest Fury answers that reach a base: `OGN-033 Shakedown`'s *"Deal 6"* and `OGN-029 Falling Star`'s *"Deal 3 to a unit. Deal 3
-to a unit."* Void Seeker reads *"at a battlefield"* and cannot reach her at all.
+at base it takes her to 7, past every single Fury or Chaos spell that can damage a unit at base. Swept
+over the corpus (Fury, Chaos or Fury/Chaos spells whose text deals damage, kills, banishes or takes
+Might, less those that read *"at a battlefield"* or hit only gear), the ones that reach a unit at base
+deal at most 6 in one cast: `OGN-033 Shakedown` 6, `OGN-029 Falling Star` 3 and 3, `OGN-252 Super Mega
+Death Rocket!` 5, `VEN-015 Decree of Rage` 4 (Calm units only), `UNL-020 Dancing Grenade` 2 before any
+replay. Void Seeker reads *"at a battlefield"* and cannot reach her at all.
 
 **What it cost.** Karma took all six runes on T3, so nothing was held for their T3, and Ramhound died
 unanswered. On T4 the four held runes are four not spent on Unsung Hero and the Scout, which are still
@@ -166,12 +175,19 @@ Vision resolves and the buff lands, so the choice is yours and both halves cost 
 draw two. Their price is two runes held ready through their T2, since the Power is any Fury rune
 recycled, ready or tapped; here that is the Mystic Poro.
 
-**Countering Bonds breaks the save and not the buff.** `SFD-136 Hard Bargain` (Chaos, E2): *"Counter a
-spell unless its controller pays :rb_energy_2:."* With one spare rune you cannot pay, and Bonds is gone.
-The Library's trigger was put on the chain when Bonds was played and resolves anyway, 425.1.c:
-*"Countering does not refund any costs paid to play a card, activate an ability, or trigger an
-ability."* Broker gets the buff, stands at 3, and Void Seeker kills him. Six ready runes pay the tax
-as well, which on T4 means no Broker to protect.
+**Countering Bonds breaks the save, and on the catalogue's reading the buff too.** `SFD-136 Hard
+Bargain` (Chaos, E2): *"Counter a spell unless its controller pays :rb_energy_2:."* With one spare rune
+you cannot pay, and Bonds is gone with its four Energy, 425.1.c: *"Countering does not refund any costs
+paid to play a card, activate an ability, or trigger an ability."* The Library is a play trigger, and
+425.1.b: *"A card that is Countered is not considered to have been played for abilities that trigger on
+cards being played."* Verified entries (`not-so-fast-allay-deflect-tax-denial`,
+`mystic-reversal-defy-counter-tiers`) read that as killing a countered spell's play triggers. On that
+reading, Hard Bargain cast while the Library's trigger is still on the chain takes the Predict, the
+recycle and Karma's buff with it, and Void Seeker kills Broker at 2. The timing matters: the trigger sits
+above Bonds and resolves first (340.1), so a counter cast after the buff has landed takes only the +2,
+and Broker stands at 3 and dies to four. Either way he dies. Six ready runes pay the tax, which on T4
+means no Broker to protect. Whether 425.1.b reaches a trigger already on the chain is under Not
+verified.
 
 **The Library breaks to losing A,** which 190.4.c does whenever your last unit there is gone: *"If a
 player has no Units at a Battlefield and the turn is in an Open state, they lose Control of that
@@ -181,34 +197,37 @@ Battlefield in the following cleanup unless there is a Combat or Showdown ongoin
 
 **Right about the cap, and the engine is a Reaction engine.** One buff per spell that spends four,
 placed only on an unbuffed body, and only when you recycle. The play adds three things the entry does
-not state. The Library is in play in one Duel game in three (485.5) and in at most one game of a
-best-of-three (486.5): it costs no Main Deck slot, but it is not free. It fires on their turn as well
-as yours, and Order's cheapest way to spend four is `SFD-151 Bonds of Strength` with its [Repeat], four
-Energy and no rune lost, at Reaction speed. Cast into their removal, the buff resolves before the
+not state. The Library is in play in one Duel game in three (485.5), and a best-of-three removes it
+after a game somebody won (486.5): it costs no Main Deck slot, but it is not free. It fires on their
+turn as well as yours, and a Calm/Order deck's cheapest way to spend four is `SFD-151 Bonds of Strength`
+with its [Repeat], four Energy and no rune lost, at Reaction speed. Cast into their removal, the buff resolves before the
 removal does (340.1), and here it is the margin that keeps a Might-2 body alive against four damage.
 And Karma's own Vision buff is best spent on Karma: at A it only moves their Void Seeker to another
-body, and on her at base it puts her past every cheap Fury answer that reaches her.
+body, and on her at base it puts her past every single Fury or Chaos spell that reaches her.
 
 ## 8. Not verified
 
 I did not deal the channel order. Karma's Order Power needs one Order rune among your first six; that
 fails only when all six are Calm, 1 of the 924 deals, 0.1%. Bonds needs no Power. Their Void Seeker on
 their T3 needs one Fury among their first seven runes, which six Chaos cannot fill, and on their T4 they
-have channelled nine and recycled one Fury, so at least two Fury are on the board; neither fails. I did
-not walk `OGS-001 Annie, Fiery`'s bonus damage or `UNL-020 Dancing Grenade`'s replays, either of which
-can reach a Might-7 Karma at base; the top card on their T4 being one you would keep; a Shakedown held
+have channelled nine and recycled one Fury, so at least two Fury are on the board; neither fails. A
+counter on Bonds has two readings of 425.1.b. On the first, a trigger already on the chain is not
+touched and the Predict and the buff resolve. On the second, which the catalogue uses, the countered
+spell was never played and both go with it. I did not walk two-card damage on a Might-7 Karma at base
+(`OGS-001 Annie, Fiery`'s bonus damage, `UNL-013 Lotus Trap`'s doubling, `UNL-020 Dancing Grenade`'s
+replays); the top card on their T4 being one you would keep; a Shakedown held
 on their T2; the mulligan; or 2v2.
 
 ## Leads
 
 - The entry's first notable calls the Library *"THE ONLY ONE OF KARMA'S THIRTY-FIVE PARTNERS THAT
   REPEATS FOR FREE"* and its name says it *"costs no card and no deck slot"*. It costs no Main Deck slot;
-  it is one of three battlefields, in play in one Duel game in three (485.5) and in at most one game of a
-  best-of-three match (486.5).
-- The entry's step 3 reads *"Cast a spell and SPEND 4 or more doing it"* and names no spell. Order's
+  it is one of three battlefields, in play in one Duel game in three (485.5), and a best-of-three match
+  removes it after a game somebody won (486.5; a drawn game keeps it, 486.5.a).
+- The entry's step 3 reads *"Cast a spell and SPEND 4 or more doing it"* and names no spell. A Calm/Order deck's
   cheapest is `SFD-151 Bonds of Strength` with its [Repeat] (820.1.c.1): four Energy, no Power, and a
   [Reaction], so the Library fires on the opponent's turn and the buff resolves inside their removal's
   chain before the removal does (340.1).
 - The entry's step 2 counts Karma's Vision as *"a possible first trigger"* and leaves the target open.
-  Buffing Karma herself takes her to Might 7, past `OGN-033 Shakedown` and `OGN-029 Falling Star`, the
-  two cheapest Fury spells that reach a unit at base.
+  Buffing Karma herself takes her to Might 7, past every single Fury or Chaos spell that damages a unit
+  at base, of which `OGN-033 Shakedown` is the largest at 6.

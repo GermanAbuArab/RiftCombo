@@ -55,7 +55,11 @@ three (3) Battlefields. The other two are removed and will not be used for this 
 the Library is on the table in one game in three, and the other two thirds of the time the deck is a
 Jhin deck with a 4-Energy spell package. In a best-of-three match you choose instead of rolling, but
 486.5 spends the choice: *"After this game, if a player won, the Battlefields that were used are to be
-removed and not selected again for this Match."* The Library plays in at most one game of the match.
+removed and not selected again for this Match."* After a game somebody won, the Library is gone for the
+rest of the match; only a drawn game keeps it, 486.5.a: *"If no player won a game, the battlefields
+presented for that game may be reused in a subsequent game."* Tournament Rules 406.1.b makes that reuse
+mandatory: *"If a game ends in a draw, players must use the same battlefields for the following
+game."*
 
 **Then it has to be taken.** 190.6.d: *"“You” in a battlefield’s abilities refers to the battlefield’s
 Controller, as does the implied “you” in instructions that don’t specify a player like “draw 1.” If
@@ -66,7 +70,7 @@ Combat, they maintain Control of that Battlefield for as long as they have Units
 
 **Jhin needs none of that.** His condition is on the turn, not on the battlefield: *"If you've spent
 :rb_energy_4: or more to play a spell this turn"*. The same Deadly Flourish arms him at base, with the
-Library removed at setup, or with the opponent holding it. The entry's *"one spell pays both"* happens
+Library removed at setup, or with the opponent holding it. The entry's *"ONE SPELL PAYS BOTH"* happens
 in the third of the games where the Library was selected, after A is taken. In the other two thirds
 the same spell pays one.
 
@@ -99,10 +103,12 @@ card was one you did not want.
 
 Fury/Chaos under `OGN-251 Loose Cannon`, whose *"At start of your Beginning Phase, draw 1 if you have
 one or fewer cards in your hand"* stays idle while they hold three or more. They take B on their T2 and
-build it. Neither side's bodies can reach the other battlefield. A Standard Move goes from base to a
+build it. A unit at B cannot cross to A in one move. A Standard Move goes from base to a
 battlefield, 144.4.a: *"Units may move from their Base to a Battlefield."* Or back, 144.4.b: *"Units may
-move from a Battlefield to their Base."* Only Ganking moves a unit between battlefields (144.4.c.1). So
-a Jhin at A is answered by a spell. Theirs is `OGN-024 Void Seeker` (Fury, E3 + 1 Power): *"[Action]
+move from a Battlefield to their Base."* Only Ganking moves a unit between battlefields (144.4.c.1). A
+unit in their base can walk to A, but every body they play goes to B to hold it, and a body at B needs
+two turns to reach A, by way of their base. While their bodies are committed to B, a Jhin at A is
+answered by a spell. Theirs is `OGN-024 Void Seeker` (Fury, E3 + 1 Power): *"[Action]
 (Play on your turn or in showdowns.) Deal 4 to a unit at a battlefield. Draw 1."*
 
 ## 5. The turns, going first
@@ -153,7 +159,7 @@ The Turn Player channels 2 runes from their Rune Deck."*
 selection, and the entry says so: *"This smooths draws; it does not add cards."*
 
 **What their T3 bought.** Void Seeker traded one card for Jhin and drew one back. Card for card they
-are ahead; rune for rune you are, since Jhin cost one and the answer cost four.
+are ahead; resource for resource you are, since Jhin cost one and the answer cost four.
 
 **The order on T4 is the entry's discount warning, from inside Mind.** Eager Apprentice to A first,
 and Iterative Design costs three: the Apprentice's *"reduced by :rb_energy_1:"* is not optional, so you
@@ -183,11 +189,18 @@ controller has you draw 2."* It names no location, so Jhin at base is in reach t
 it can be cast on your own turn, in answer to his Vision. The choice is yours and both halves cost you:
 Jhin dies, or they draw two. Void Seeker is the next one up, four resources, and only at a battlefield.
 
-**Countering the spell breaks neither half.** The Library's trigger was put on the chain when the spell
-was played and resolves on its own, and Jhin reads what you spent, not what resolved. 425.1.c:
+**Countering the spell does not break Jhin, and may break the Library.** The spend stands, 425.1.c:
 *"Countering does not refund any costs paid to play a card, activate an ability, or trigger an
-ability."* The spend stands, so `SFD-136 Hard Bargain` or `OGN-045 Defy` on Deadly Flourish costs you
-the Flourish and nothing else of the line.
+ability."* Jhin's clause is a condition on his cost, not a trigger, and it reads what you spent this
+turn, so `SFD-136 Hard Bargain` or `OGN-045 Defy` on Deadly Flourish still leaves him at one Mind
+Power. The Library is a play trigger, and 425.1.b reaches play triggers: *"A card that is Countered is
+not considered to have been played for abilities that trigger on cards being played."* The catalogue
+reads that against the Library's kind of payoff: verified entries
+(`not-so-fast-allay-deflect-tax-denial`, `mystic-reversal-defy-counter-tiers`) say a countered spell's
+play triggers fail. Read that way, a counter cast while the Library's trigger is
+still on the chain takes the Predict as well. The counter has to come before the Predict resolves,
+because the trigger sits above the spell and resolves first (340.1); a counter cast after it is too late
+to take the look. Whether 425.1.b reaches a trigger already on the chain is under Not verified.
 
 **The Library breaks to losing A,** which 190.4.c does whenever your last unit there is gone: *"If a
 player has no Units at a Battlefield and the turn is in an Open state, they lose Control of that
@@ -201,7 +214,8 @@ halves at once, for as long as she stands there.
 
 **Right about *spent*, and the payoff is Jhin, not the Library.** One 4-Energy spell does pay both, and
 a discount does switch both off. The play adds three things the entry does not state. The Library is
-in play in one Duel game in three (485.5) and in at most one game of a best-of-three (486.5), while
+in play in one Duel game in three (485.5) and, in a best-of-three, is removed after a game somebody won
+(486.5), while
 Jhin's half works in every game, with or without it. The Library's Predict resolves before the spell,
 and Jhin's Vision looks at the same card unless the first one was recycled, so the two Predicts are two
 cards only when the first was a card you did not want. And the discount the entry warns against is
@@ -211,7 +225,10 @@ printed in Mind: `OGN-084 Eager Apprentice` at A, and Iterative Design's own [Fl
 
 I did not deal the channel order. Jhin's Mind Power needs one Mind rune among your first six; that fails
 only when all six are Order, 1 of the 924 deals, 0.1%. Their Void Seeker on their T3 needs one Fury
-among their first seven runes, which six Chaos cannot fill, so it never fails. I did not walk
+among their first seven runes, which six Chaos cannot fill, so it never fails. A counter on the spell
+has two readings of 425.1.b. On the first, a trigger already on the chain is not touched and the
+Library's Predict resolves. On the second, which the catalogue uses, the countered spell was never
+played and the Predict goes with it. Jhin's discount survives both. I did not walk
 `SFD-007 Gem Jammer` giving a unit at B [Ganking] to contest A, a Shakedown held on their T2 for your
 T3, the Gold token's Power on T4, the mulligan, or 2v2.
 
@@ -225,5 +242,6 @@ T3, the Gold token's Power on T4, the mulligan, or 2v2.
   one: `OGN-084 Eager Apprentice` at a battlefield, which is where the Library wants bodies. Iterative
   Design's [Flow] (829.1.c.1) and `SFD-076 Production Surge` with a Mech in play are two more spends of
   two.
-- The prerequisites do not state that the Library is in play in one Duel game in three (485.5) and in
-  at most one game of a best-of-three match (486.5). Jhin's half needs no battlefield at all.
+- The prerequisites do not state that the Library is in play in one Duel game in three (485.5), or
+  that a best-of-three removes it after a game somebody won (486.5; a drawn game keeps it, 486.5.a).
+  Jhin's half needs no battlefield at all.
