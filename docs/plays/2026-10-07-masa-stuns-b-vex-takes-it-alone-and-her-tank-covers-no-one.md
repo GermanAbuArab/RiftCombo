@@ -172,8 +172,9 @@ the second Skulker from base to B, with the Skulker already there: eight Might a
 the Skulkers; the other Skulker and the Mystic Poro deal 5 to Vex, who survives at 6. Vex has to kill
 all three, eight in all at full Might, and has 6: she kills both Skulkers, and the Mystic Poro lives.
 Both sides have units left, so the cleanup recalls her, 466.1.a.2: *"Insert “3d. Recall Attackers
-present at the Battlefield if Defenders are still present.”"* No Conquer, and Masa's stun bought one
-Skulker. Their price is two bodies at B instead of in base, where they were not attacking from anyway:
+present at the Battlefield if Defenders are still present.”"* No Conquer, and Masa's stun bought only
+Vex's survival: unstunned, the garrison's eight would kill her at 6, and the same two Skulkers would
+die either way. Their price is two bodies at B instead of in base, where they were not attacking from anyway:
 A defended at seven against five.
 
 The threshold is Vex's Might, 6 with the buff and 5 without, against the whole garrison. A single

@@ -232,7 +232,8 @@ a second Existential Dread, `OGN-259 Unforgiven` moving the Herald, the mulligan
 
 ## Leads
 
-- The entry's notable says *"WHY THE BOUNCE BEATS THE STUN OUTRIGHT"*. Against a second stun from the
+- The entry's notable says *"WHY THE BOUNCE BEATS THE STUN OUTRIGHT"*. Against a single stun it holds,
+  since the stun lasts one turn and the bounce makes them pay again. Against a second stun from the
   same Repeat it does not, whenever your side can kill the stunned unit: in the walk two stuns killed
   the Mega-Mech and lost one body, and the bounce returned the Mech and lost three. The bounce gains
   only on a unit that would survive the stun, or on a token (186.1).
