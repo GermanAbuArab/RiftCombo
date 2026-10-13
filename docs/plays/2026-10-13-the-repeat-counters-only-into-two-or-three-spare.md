@@ -66,8 +66,9 @@ an exhausted rune already pays Power on any turn, and Hard Bargain asks for none
 
 **Energy, and only Energy.** 163.1: *"Energy is used to pay numeric Energy costs."* The tax is printed
 `:rb_energy_2:`. So an exhausted rune cannot pay it, because all it can still add is Power (164.2.b),
-and neither can a Gold token, whose ability is *"[Reaction][>] Kill this, :rb_exhaust:: [Add]
-:rb_rune_rainbow:."* What pays it is their ready runes, any Energy still in their pool, and Energy
+and neither can a bare Gold token, 187.5: *"A Gold gear token is a domainless gear token with
+“[Reaction][>] Kill this, [E]: [Add] [A].”"* (Under `SFD-201 Chem-Baroness`, a Mind/Order legend, it
+can: see §9.) What pays it is their ready runes, any Energy still in their pool, and Energy
 added at Reaction speed, which 429.3 allows mid-resolution: *"Activated abilities that Add resources
 and have the Reaction tag can be activated at any time that spells or abilities require resources be
 paid."* Their spare is on the table: count their ready runes.
@@ -161,15 +162,17 @@ only against the other order: a 2-drop first, then Shock Blast with two ready.
 That is S = 2, the middle row of §4: they pay the first 2, cannot pay the second, and Shock Blast goes
 to the trash, 425.1.a.1: *"Cards that are cleared from the chain in this way are placed in the
 trash."* Nothing comes back to them, 425.1.c: *"Countering does not refund any costs paid to play a
-card, activate an ability, or trigger an ability."* Three resources, the card, two Energy of tax, and
+card, activate an ability, or trigger an ability."* Four resources, the card, two Energy of tax, and
 the Skulker lives. With four of your runes showing, the order is theirs to choose.
 
 **The same arithmetic on T2.** You held three, so the Repeat was not payable. Had they cast a spell
 last on their T2, tapped out, the base cost alone counters it. Cast first, out of five runes, Shock
 Blast leaves them two ready; they pay the tax with those and lose the 2-drop instead.
 
-**How often this happens.** Hard Bargain has to be in the first seven cards by their T3: with three
-copies, **44.8%** of games without a mulligan; with one, **17.5%**.
+**How often this happens.** Hard Bargain has to be in the first seven cards by their T3, out of a
+**39**-card draw pile: the 40 of Tournament Rules 601.1.b less the Chosen Champion, which 103.2.a.1
+places in the Champion Zone. With three copies that is **45.7%** of games without a mulligan; with
+one, **17.9%**.
 
 ## 7. Breaks to
 
@@ -183,7 +186,11 @@ Hard Bargain is in range with its Repeat paid, because 206 reads the printed cos
 to determine a card’s cost for any purpose always use its printed or copied cost, even if that cost is
 increased, decreased, or ignored as the card is played."* And 425.1.c.1 says of the refund: *"This
 includes additional costs."* Two resources for your card and four Energy. The Mind/Order deck of §6 has
-no counter: of the pool's eleven, none is Mind, Order or Mind/Order.
+no counter. A sweep of `data/cards.json` on 2026-10-13 for a counter in rules text finds eleven
+cards: `OGN-045 Defy`, `OGN-064 Wind Wall`, `SFD-045 Not So Fast`, `UNL-044 Flurry of Feathers`,
+`VEN-039 Crumbling Sands` (Calm), `UNL-190 Lilting Lullaby` (Calm/Mind), `VEN-152 Rebuttal`
+(Mind/Chaos), `SFD-206 Riposte` (Body/Order), `UNL-106 Repulse` (Body), and `SFD-136 Hard Bargain`
+and `UNL-131 Abandon` (Chaos). None is legal under a Mind/Order legend (103.1.b).
 
 **In Mind, `SFD-083 Hextech Anomaly`** (Mind gear, E3 + 1 Power): *":rb_exhaust:: [Reaction] — Pay
 any amount of :rb_rune_rainbow: to [Add] that much Energy."* Once a turn it turns exhausted runes
@@ -218,7 +225,10 @@ it fails in 0 deals. Their T1 and T2 bodies cost no Power.
 I did not walk a spell they cast on your turn, in a Showdown your own move opens, where the legend
 has readied nothing and Hard Bargain competes with your development; their [Reaction]s answering
 their own spell to put two on the chain; Energy-adding cards on their side (`OGN-098 Energy Conduit`
-adds one at Reaction speed, which moves S = 3 to 4); the mulligan; or 2v2.
+adds one at Reaction speed, which moves S = 3 to 4); `SFD-201 Chem-Baroness` as their legend, a
+Mind/Order one: *"While your score is within 3 points of the Victory Score, your Gold [Add] an
+additional :rb_energy_1:."* From 5 points in a Duel each of their Gold tokens pays one Energy of tax,
+so S is no longer read from their ready runes alone; the mulligan; or 2v2.
 
 ## Leads
 
@@ -233,5 +243,6 @@ adds one at Reaction speed, which moves S = 3 to 4); the mulligan; or 2v2.
 - The entry's two-spell reading (*"Against two spells on the chain, it is two soft counters from one
   card"*) needs two of their spells on the chain at once. On their turn, 312.2.c and 312.2.d give you
   priority only after they pass, so that is them answering their own spell first.
-- The tax is Energy only (163.1). Exhausted runes (164.2.b) and Gold tokens add Power and cannot pay
-  it; `SFD-083 Hextech Anomaly` converts Power to Energy and can.
+- The tax is Energy only (163.1). Exhausted runes (164.2.b) and a bare Gold token (187.5) add Power
+  and cannot pay it; `SFD-083 Hextech Anomaly` converts Power to Energy and can, and so does a Gold
+  token under `SFD-201 Chem-Baroness` once its controller is within 3 points of the Victory Score.
