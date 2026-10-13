@@ -563,7 +563,17 @@ Eye of Twilight / Scorn of the Moon (batch 4), and the three below.
 |---|---|---|---|
 | `might-of-demacia-four-body-conquer-draw` | ENGINE | OGS-023, OGS-015, SFD-171 | four bodies walked in as ONE action, 2 cards per Conquer |
 | `prodigal-explorer-two-choices-draw` | ENGINE | SFD-199, OGN-095, OGN-169 | two separate choices, never one doubled spell |
-| `butcher-of-the-sands-spent-rune-refund` | ENGINE | VEN-141, OGN-158 | the pool's only Power → Energy conversion |
+| `butcher-of-the-sands-spent-rune-refund` | ENGINE | VEN-141, OGN-158 | a Power → Energy conversion fed by spent runes (said "the pool's only" until 2026-10-13; see the correction below this table) |
+
+**Corrected 2026-10-13 (#330, #334): Butcher of the Sands is NOT the pool's only Power → Energy
+conversion.** `SFD-083 Hextech Anomaly` is a second: *":rb_exhaust:: [Reaction] — Pay any amount of
+:rb_rune_rainbow: to [Add] that much Energy."* The batch-5 sweep keyed on the Energy ICON after
+`[Add]`; Anomaly prints the WORD and pays its Power after the colon, so it missed it twice over.
+**Predicate, swept 2026-10-13 over `data/cards.json`: a Power symbol earlier in the same sentence as
+an `[Add]` of Energy, in icon or word form = 3 base codes, 2 names** (`SFD-083 Hextech Anomaly`;
+`VEN-141` / `VEN-190 Butcher of the Sands`). The entry's name, uses[] note and notes were corrected
+the same day; its id makes no uniqueness claim and was kept. Lesson 21 in §16 carries the same
+correction.
 
 `might-of-demacia-four-body-conquer-draw` produces `conquer-engine`, so it now feeds this walk's own
 `treasure-hoard-renata-conquer-gold` and `monastery-hirana-warmogs-conquer-draw`.
@@ -587,7 +597,9 @@ Damage sweep the same night — a counted set whose membership was determined by
 LOCATION could not match; here, a filter). **The standing response is to NAME the members of any
 counted set, so the next grep refutes it cheaply.** Every uniqueness and cardinality claim in
 batches 4 and 5 is written that way — the eleven `[Add] :rb_energy` rows are listed inside
-`butcher-of-the-sands-spent-rune-refund`'s own note for exactly this reason.
+`butcher-of-the-sands-spent-rune-refund`'s own note for exactly this reason. (It paid off on 2026-10-13:
+that list let #330 refute the Butcher's uniqueness cheaply, with `SFD-083 Hextech Anomaly`, which
+prints the word Energy rather than the icon.)
 
 The conclusion of §1 is unaffected: whatever the count, a `when you conquer here` clause fires once
 per game unless the battlefield is deliberately vacated.
@@ -647,6 +659,10 @@ contributes nothing to the counter however many enemies it hits.
     Power → Energy conversion** (eleven `[Add] :rb_energy` rows; its cost is the only one containing
     a rune) and it is the mirror of SFD-117 Ancient Henge. By the project's own ~9-Energy-per-Power
     figure the exchange is the wrong direction; what it sells is that the Power came from spent runes.
+    **Corrected 2026-10-13 (#330, #334): the uniqueness half of this lesson is wrong and is kept as
+    written on 2026-09-07.** `SFD-083 Hextech Anomaly` is a second Power → Energy conversion, and it,
+    not the Butcher, is Henge's word-for-word mirror. Predicate and members in the correction under
+    the batch-5 table above: 3 base codes, 2 names. The 164.2.b half stands.
 22. **144.3 + 144.4.a.1 mean a Duel puts no cap on how many of your own bodies enter one battlefield
     in one Main Phase**, as one game action with one shared destination — which is what makes
     OGS-023 Might of Demacia's "4+ units at that battlefield" threshold reachable at all. Note it

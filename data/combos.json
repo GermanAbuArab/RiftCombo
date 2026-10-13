@@ -34993,7 +34993,7 @@
     },
     {
       "id": "butcher-of-the-sands-spent-rune-refund",
-      "name": "Butcher of the Sands is the pool's only Power-to-Energy converter, and 164.2.b means the Power comes out of runes you already spent",
+      "name": "Butcher of the Sands converts Power to Energy, and 164.2.b means the Power comes out of runes you already spent",
       "class": "ENGINE",
       "status": "verified",
       "uses": [
@@ -35002,7 +35002,7 @@
           "quantity": 1,
           "role": "legend",
           "zone": "LEGEND",
-          "note": "Fury/Body legend. '[Reaction][>] :rb_rune_rainbow::rb_rune_rainbow:, :rb_exhaust:: [Add] :rb_energy_2:. Spend this Energy only to play units or activated abilities of units.' Swept over the eleven rows in the corpus that [Add] Energy (OGN-098, OGN-253, OGS-014, SFD-175, UNL-022, UNL-093, UNL-197, VEN-075, VEN-141, plus the rune ability itself and VEN-166's battlefield): this is the ONLY one whose cost includes Power. It is the mirror of SFD-117 Ancient Henge, which converts Energy into Power with no cap."
+          "note": "Fury/Body legend. '[Reaction][>] :rb_rune_rainbow::rb_rune_rainbow:, :rb_exhaust:: [Add] :rb_energy_2:. Spend this Energy only to play units or activated abilities of units.' Swept over the eleven rows in the corpus that [Add] the Energy ICON (OGN-098, OGN-253, OGS-014, SFD-175, UNL-022, UNL-093, UNL-197, VEN-075, VEN-141, plus the rune ability itself and VEN-166's battlefield): this is the only one of those eleven whose cost includes Power. CORRECTED 2026-10-13 (#330, #334): until then this note called it the ONLY Power-to-Energy conversion in the pool and the mirror of SFD-117 Ancient Henge. It is not. The sweep keyed on the icon after [Add], and SFD-083 Hextech Anomaly prints the WORD and pays its Power after the colon: ':rb_exhaust:: [Reaction] — Pay any amount of :rb_rune_rainbow: to [Add] that much Energy.' Predicate, swept 2026-10-13 over data/cards.json: a Power symbol earlier in the same sentence as an [Add] of Energy, in icon or word form = 3 base codes, 2 names (SFD-083 Hextech Anomaly; VEN-141 / VEN-190 Butcher of the Sands). Anomaly, uncapped and unrestricted, is Henge's word-for-word mirror; the Butcher is capped at 2 a turn and its Energy buys only units and activated abilities of units."
         },
         {
           "card": "OGN-158",
@@ -35053,7 +35053,7 @@
         }
       ],
       "rulesVersion": "2026-07-16",
-      "notes": "HAND-WALKED 2026-09-07, issue #171 — the ninth of the ten uncatalogued legend names, and the first entry to use VEN-141 or OGN-158. Card text verbatim from data/corpus_flat.txt. The uniqueness claim was swept by listing every corpus row containing '[Add] :rb_energy' and reading each one's cost, and the members are NAMED in the uses[] note so the next grep can refute the claim cheaply — the discipline the #175 cross-audit asked for after a counted set turned out to have members a wording could not see. Trap check: the exchange rate is stated AGAINST the project's own nine-Energy-per-Power figure rather than quietly ignoring it, so the entry is not read as a ramp; 167 is cited so the Energy is not banked; 145.2 is cited so the off-turn use is narrowed honestly instead of assumed; 107.4.b is cited so no multiplier is claimed; 161.2.b + 315.3.b are cited so the two runes are shown to return rather than asserted to."
+      "notes": "HAND-WALKED 2026-09-07, issue #171 — the ninth of the ten uncatalogued legend names, and the first entry to use VEN-141 or OGN-158. Card text verbatim from data/corpus_flat.txt. The uniqueness claim was swept by listing every corpus row containing '[Add] :rb_energy' and reading each one's cost, and the members are NAMED in the uses[] note so the next grep can refute the claim cheaply — the discipline the #175 cross-audit asked for after a counted set turned out to have members a wording could not see. Trap check: the exchange rate is stated AGAINST the project's own nine-Energy-per-Power figure rather than quietly ignoring it, so the entry is not read as a ramp; 167 is cited so the Energy is not banked; 145.2 is cited so the off-turn use is narrowed honestly instead of assumed; 107.4.b is cited so no multiplier is claimed; 161.2.b + 315.3.b are cited so the two runes are shown to return rather than asserted to. CORRECTED 2026-10-13 (#330, #334): the uniqueness claim was FALSE and is withdrawn from the name and the uses[] note; SFD-083 Hextech Anomaly is a second Power-to-Energy conversion (predicate and members in the uses[] note). Naming the members did its job: the next sweep, icon OR word after [Add], refuted the claim cheaply. The line itself never rested on uniqueness: it is the spent-rune refund through the Butcher's own capped, unit-only conversion, and every step and notable stands. The id makes no uniqueness claim and was kept."
     },
     {
       "id": "sacred-protector-disciple-of-shen-pair",

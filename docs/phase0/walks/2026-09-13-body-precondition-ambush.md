@@ -1274,7 +1274,15 @@ uniqueness claims, which is the class `CLAUDE.md` itself warns hardest about.
 | `VEN-159 Kinkou Temple` is the only card that PAYS for [Tank] | **HOLDS** — 1 name |
 | *"exactly THREE cost-INCREASE rows"* | my predicate returned **18** |
 | *"six [Temporary] granters"* | my predicate returned **16** |
-| `VEN-141 Butcher of the Sands`, the only Power-to-Energy conversion | my cost test returned **0** |
+| `VEN-141 Butcher of the Sands`, the only Power-to-Energy conversion | my cost test returned **0** (claim FALSE, corrected 2026-10-13, see note below the table) |
+
+**Corrected 2026-10-13 (#330, #334): the Butcher row's claim is false, so the file WAS wrong there,
+not only uncheckable.** `SFD-083 Hextech Anomaly` is a second Power-to-Energy conversion. Predicate,
+swept 2026-10-13 over `data/cards.json`: a Power symbol earlier in the same sentence as an `[Add]` of
+Energy, in icon or word form = 3 base codes, 2 names (`SFD-083 Hextech Anomaly`; `VEN-141` /
+`VEN-190 Butcher of the Sands`). The original sweep missed Anomaly because it keyed on the Energy
+icon after `[Add]`, and Anomaly prints the word. The paragraphs below are kept as written on
+2026-09-13.
 
 **In all three failures the file's named members are INSIDE my set, and my predicate is wider.** My
 cost-increase regex catches `Defy`, whose text is *"costs no more than N"* — a CEILING, the opposite
