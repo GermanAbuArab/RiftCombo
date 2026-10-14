@@ -13,8 +13,9 @@ on T4 with no window for them to answer, their hidden `SFD-070 Wages of Pain` st
 the combat, and when the attack took the battlefield the card was removed unplayed: **4 to 2**. The
 Warden's hidden-unit clause did nothing, because they hid a spell. What the Warden did was the other
 half of the same sentence: their T3 bodies could not be played straight to their battlefield, so it
-was a 7 instead of a 12 when the attack came. The cheapest break is `OGN-169 Gust` from hand, one rune,
-on the Saboteur in the showdown. With him gone, the hidden card is live again in the same showdown.
+was a 7 instead of a 12 when the attack came. Four one-rune spells in their colours break that
+combat. The one that matters for the lock is `OGN-169 Gust` from hand, on the Saboteur in the
+showdown: with him gone, the hidden card is live again in the same showdown.
 
 **Why this line.** `scripts/sequence-pick.mjs --unplayed`, re-run on 2026-10-14 at `0c981b5`, reads
 773 entries, 262 with forced-ordering language, **102 in the queue and 31 of them with no play**,
@@ -168,7 +169,9 @@ R33 = A it cannot be played. They hold no answer in hand (that is the walk's ass
 and pass. 465.2.c: *"Starting with the Attacker, each player assigns an amount of damage equal to
 their summed Might among the other's Units."* Your 9: Skulker 3, the Poros 2 and 2, all three dead.
 Their 7: the Saboteur 3, the Rearguard 2, and 2 on Rek'Sai, a 4 while attacking. 142.4.b: *"Lethal
-Damage for a Unit is a non-zero amount greater than or equal to that Unit’s Might."* She lives. You
+Damage for a Unit is a non-zero amount greater than or equal to that Unit’s Might."* She lives. The
+assignment is theirs: killing her and the Saboteur (3 + 4) leaves the Rearguard instead, with the same
+result. You
 establish control, 466.5.d: *"Establishing Control results in a Conquer if that player has not yet
 scored this Battlefield this turn."* And 466.5.c removes Wages of Pain from B without it ever being
 played.
@@ -187,37 +190,74 @@ counts only those two cards. The walk also needs a 2-drop on T1 and two Accelera
 
 ## 5. Breaks to
 
-**The cheapest break is `OGN-169 Gust`, one rune, on the Saboteur in the showdown.** Gust (Chaos, E1):
+**Four one-rune spells break the T4 result, and `OGN-169 Gust` is the one that also brings the hidden
+card back.** Each turns the 4 to 2 into **3 to 2**, played after you pass with one of their two ready
+runes. Gust (Chaos, E1):
 *"[Reaction] (Play any time, even before spells and abilities resolve.) Return a unit at a
 battlefield with 3 :rb_might: or less to its owner's hand."* The Saboteur is a 3 with no [Deflect].
 On your T4, after you pass, they Gust him back to your hand, one of their two ready runes. Their chain
 closes and Focus comes to you, 347.1.b: *"When that Chain closes, Focus passes to the next Player in
 Turn Order."* You pass, and nothing at B stops Wages of Pain any more (359.3.f.2, 811.6): 3 on the
 Rearguard. Rek'Sai's 4 alone face their 7. She dies; she kills the Skulker. Two Poros hold B, and it
-is **3 to 2** with your Saboteur back in hand. Gust cannot reach him earlier: on their turn he is in
-your base, and Gust takes only *"a unit at a battlefield"*.
+is **3 to 2** with your Saboteur back in hand and their Gold gear token on the board. Gust cannot reach
+him earlier: on their turn he is in your base, and Gust takes only *"a unit at a battlefield"*.
+
+The other three leave the Saboteur at B, so the clause holds, and break the combat instead:
+
+- `UNL-134 Existential Dread` (Chaos, E1 + 1 Power): *"[Stun] an attacking enemy unit."* On the
+  Saboteur your damage is 6, and on Rek'Sai it is 5. Either way the Skulker and one Poro die, a Poro is
+  left, and 466.1.a.2 recalls your survivors. B stays theirs and Wages of Pain stays face down at B,
+  neither played nor removed.
+- `VEN-052 Mesmerize` (Mind, E1 + 1 Power), its second mode: *"Give an enemy unit -2 :rb_might: this
+  turn."* On Rek'Sai (a 2) or the Saboteur (a 1), your Might is 7 and so is theirs: all six die. B
+  goes uncontrolled (466.5.b), and the facedown card goes with it, 107.3.d: *"If a player loses
+  Control of a Battlefield, any cards in the Facedown Zone associated with that Battlefield are removed
+  during the next Cleanup."*
+- `SFD-080 Bellows Breath` (Mind, E1 + 1 Power): *"Deal 1 to up to three units at the same
+  location."* One on each of yours leaves 2 + 1 + 3 to kill, and their 7 do it, while your 9 still kill
+  all three of theirs. B goes uncontrolled, and Wages of Pain is removed the same way.
 
 **The scope of that verdict.** A Mind/Chaos deck plays only Mind, Chaos and Mind/Chaos cards
 (103.1.b.1). In `data/corpus_flat.txt` the spells in those domains with [Action] or [Reaction], the
 only spells they can play from hand in a Showdown, are **42** once the two banned ones (Fight or
-Flight, Called Shot) are left out. Eleven cost one rune, counting a rune exhausted for Energy as
-recyclable for the Power (164.2.a, 164.2.b), and only Gust takes the Saboteur off B:
+Flight, Called Shot) are left out. The predicate is: played in the walk's T4 showdown, does it stop
+your Conquer of B? Eleven cost one rune, counting a rune exhausted for Energy as recyclable for the
+Power (164.2.a, 164.2.b). Gust, Existential Dread, Mesmerize and Bellows Breath do. The other seven
+do not:
 
-- `OGN-095 Stupefy` and `VEN-052 Mesmerize` shrink him, and `UNL-134 Existential Dread` stuns him;
-  he stays at B and the clause stays on. Dread returns a unit only if it is already stunned, which
-  needs its [Repeat] for E2 more, three runes.
-- `VEN-061 Decree of Insight` reaches only a Body unit; `OGN-104 Retreat` only a friendly one;
-  `SFD-080 Bellows Breath` deals 1 to up to three units; `VEN-152 Rebuttal` counters a spell;
-  `OGN-179 Acceptable Losses`, `OGN-183 Stacked Deck` and `SFD-135 Factory Recall` touch no unit.
+- `OGN-095 Stupefy`, -1 to a minimum of 1: on Rek'Sai your 8 still kill all three of theirs, and
+  their 7 cannot kill 3 + 2 + 3; on the Saboteur they cannot kill 2 + 2 + 4. One of yours lives.
+- `VEN-061 Decree of Insight` reaches only a Body unit, and none of yours is. `OGN-104 Retreat`
+  returns only a friendly unit, which hands you B. `VEN-152 Rebuttal` counters a spell, and you cast
+  none. `OGN-179 Acceptable Losses`, `OGN-183 Stacked Deck` and `SFD-135 Factory Recall` touch no
+  unit.
 - `VEN-059 Shock Blast` (E3 + 1 Power, *"This costs :rb_energy_2: less if you control something that's
   [Empowered]. Deal 4 to a unit at a battlefield."*) is one rune only with something Empowered.
   Nothing of theirs is, in this walk.
-- At two runes, `OGN-172 Rebuke` (E2 + 2 Power) returns him. Wages of Pain from hand (E3), `VEN-106
-  Wind and Ghosts` and `UNL-072 Crescent Strike` remove him for three.
 
-If they run three Gust, one is among the **7** cards they have seen by your T4 (four opening, three
-draws) in **45.73%**; with six answers from the list (three Gust, three Rebuke), **72.23%**. Each is
-7 of 39.
+**At two runes, five more do, on the same predicate.** Thirteen of the 42 cost two runes (E2, with up
+to 2 Power).
+
+- `OGN-172 Rebuke` (E2 + 2 Power) returns the Saboteur, and Wages of Pain plays as it does after Gust.
+- `OGN-093 Smoke Screen` (E2 + 1 Power) makes Rek'Sai a 1: your 6 against their 7, and a Poro holds B.
+- `SFD-066 Frigid Touch` (E2) makes Rek'Sai a 2: 7 against 7, and B goes uncontrolled.
+- `SFD-145 Switcheroo`, from hand (E2 + 2 Power), swaps the Saboteur's 3 with a Poro's 2: 8 against
+  8, and B goes uncontrolled.
+- `OGN-173 Ride the Wind` (E2 + 1 Power): *"Move a friendly unit and ready it."* The second Skulker
+  moves from their base into the combat. The Warden forbids playing units, not moving them. It becomes
+  a defender (464.2.c.3.a), and their 10 against your 9 leave a Poro holding B.
+- The other eight do not. `OGN-108 Convergent Mutation` makes a Poro a 3, and their 8 still cannot
+  kill 3 + 2 + 4. `OGS-011 Flash` moves their own units out. `SFD-136 Hard Bargain` and `UNL-131
+  Abandon` counter a spell. `UNL-083 Smoke and Mirrors` needs a [Temporary] unit. `UNL-142 Heedless
+  Resurrection` needs a unit in their trash, and there is none. `OGN-170 Morbid Return` and `UNL-061
+  Downstage Dramatics` touch no unit on the board.
+
+Wages of Pain from hand (E3), `VEN-106 Wind and Ghosts` and `UNL-072 Crescent Strike` take him off
+B for three runes.
+
+If they run three copies of one of the four one-rune breaks, one is among the **7** cards they have
+seen by your T4 (four opening, three draws) in **45.73%**; with two of the four (six cards),
+**72.23%**; with all four (twelve), **94.23%**. Each is 7 of 39.
 
 **The break with no card is not hiding at B.** The Saboteur is public from your T2, a turn before they
 hide anything. Kept in hand, Wages of Pain costs its printed E3 in your showdown: three runes held up
@@ -237,8 +277,9 @@ answer, and when the attack takes the battlefield, 466.5.c removes the card unpl
 card dead for one combat. It is a card deleted, if you win, and alive, if you do not. In this walk the
 Warden's hidden-unit clause did nothing, because they hid a spell. What it did was the other half of
 its first sentence: their T3 bodies could not go straight to B, so B was a 7 instead of a 12 when the
-Saboteur came. The cheapest answer is Gust from hand for one rune in the showdown. It sends the
-Saboteur home, and the hidden card plays in the same showdown.
+Saboteur came. Four one-rune spells from hand break that combat: Gust, Existential Dread, Mesmerize
+and Bellows Breath. Gust is the one that undoes the lock, because it sends the Saboteur home and the
+hidden card plays in the same showdown.
 
 ## 7. Not verified
 
@@ -246,8 +287,12 @@ I did not deal the channel order. The walk assumes six Fury and six Calm runes, 
 domains, in the twelve of Tournament Rules 402.1. The Warden on T3 needs one Calm among the six runes
 channelled by then: it fails in **1 of 924 deals, 0.11%**. The two Accelerate costs on T4 need two
 Fury among the eight runes channelled by then, less the recycled Calm: that holds in **all 924 deals**
-(0 fail). Their walk costs Energy only, and Gust costs E1. Rebuke needs two Chaos among their nine
-runes on your T4; I did not count it, since Gust is the verdict.
+(0 fail). Their walk costs Energy only, and they choose which two of their seven runes stay ready
+after their T3. Gust costs E1. Existential Dread needs a Chaos rune and Mesmerize and Bellows Breath
+a Mind rune; seven runes from six Mind and six Chaos always hold one of each, so each of the four
+holds in **all 924 deals**. Of the two-rune breaks, Rebuke and Switcheroo need two Chaos among the
+seven: that fails in **7 of 924 deals, 0.76%**. Smoke Screen and Ride the Wind need one rune of
+their domain, which holds in every deal, and Frigid Touch needs none.
 
 I did not walk their facedown card being a unit. The Warden then strands it while he stays at a
 battlefield, and it holds the zone's one card (107.3.b), so nothing else can be hidden at B. I did not
@@ -268,9 +313,11 @@ the walk's assumption; §5 prices it. The probabilities in §4 and §5 count onl
   their new bodies reach it a turn late (143.4). The leak is [Accelerate] (805.1.a).
 - The notable "What refutes it" says the Saboteur *"dies to anything"* but names nothing. Before he
   moves there is no window (312.2.a, 337.2), and on their turn he is in base, out of reach of the
-  *"a unit at a battlefield"* spells. The answer has to come in the showdown. In Mind/Chaos, `OGN-169
-  Gust` does it for one rune, the only one of the 42 [Action]/[Reaction] spells in those domains that
-  removes him for one; `OGN-172 Rebuke` for two. With him gone, the hidden card is played at once
-  (359.3.f.2, 811.6).
+  *"a unit at a battlefield"* spells. The answer has to come in the showdown. Of the 42 Mind/Chaos
+  [Action]/[Reaction] spells, four break the walk's T4 combat for one rune and five more for two.
+  `OGN-169 Gust` (one rune) and `OGN-172 Rebuke` (two) are the ones that take him off the
+  battlefield, and with him gone the hidden card is played at once (359.3.f.2, 811.6).
+  `UNL-134 Existential Dread`, `VEN-052 Mesmerize` and `SFD-080 Bellows Breath` leave him there and
+  break the combat instead.
 - The Saboteur is public a turn before they hide. A player who sees him keeps the trick in hand and
   pays its printed cost, which the Saboteur does not touch.

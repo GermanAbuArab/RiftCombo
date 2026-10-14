@@ -8,14 +8,18 @@ Card text verbatim from `data/corpus_flat.txt`; rules pasted from
 **Subject: `starhound-undying-loyalty-four-tag-recursion`**, the mono-Order ENGINE in which
 `UNL-168 Undying Loyalty` plays a Bird, Cat, Dog or Poro from your trash for 1 Order Power and
 `UNL-167 Starhound` returns one to your hand, so the four tags that `UNL-177 Ivern, Friend to All`
-reads come back after the bodies die. Walked as a game, the recursion did its job. On T3 and T4 two
-Undying Loyalty, one rune each, put a Bird and a Poro back. With Starhound as the Dog, Ivern's T4
-conquer scored his extra point, and without the two spells the same hand had no Poro on the board
-for it. Then on their T4 one Energy of `OGN-004 Cleave` on an attacker killed Ivern, and neither half
-of the recursion can bring him back: he costs E6, and in the trash he has no Bird, Cat, Dog or Poro
-tag. The entry is right about the cost and the ceiling. It is wrong that the recursion carries the
-condition through a sweeper, because Undying Loyalty is cast only in your Main Phase, after your
-Hold. The cheapest break is the payoff, not the tags: one rune and two bodies.
+reads come back after the bodies die. Walked as a game, the recursion paid, but not with Ivern's
+point. On T3 and T4 two Undying Loyalty, one rune each, put a Bird and a Poro back, and with Starhound
+as the Dog, Ivern's T4 conquer found all four tags: **+2**. The same hand scores that +2 without the
+spells, because Ivern then chooses Bird and the Feline brings the Cat from base. What the spells
+bought was where the Feline stands. With the Bird back from the trash Ivern could be the Cat, so the
+Feline went to G after the conquer and held it on their T4: **4 to 4**, where the hand without them
+ends at 4 to 5. On their T4 one Energy of `OGN-004 Cleave` on an attacker killed Ivern, and neither
+half of the recursion can bring him back: he costs E6, and in the trash he has no Bird, Cat, Dog or
+Poro tag. The entry is right about the cost and the ceiling. It is wrong that the recursion carries the
+condition through a sweeper, because Undying Loyalty is cast only in your Main Phase, after your Hold.
+The cheapest break is the payoff, not the tags, and it costs one rune: `OGN-009 Hextech Ray` or
+`UNL-134 Existential Dread` in Ivern's own T4 attack stops the Conquer and the trigger.
 
 **Why this line.** `scripts/sequence-pick.mjs --unplayed`, re-run on 2026-10-14 at `0c981b5`, reads
 773 entries, 262 with forced-ordering language, **102 in the queue and 31 of them with no play**,
@@ -187,13 +191,21 @@ is the Dog and returns the Ramhound to hand; the second Undying Loyalty puts the
 Both go first, because the tag check comes on resolution of Ivern's trigger (383.2.a.1). Ivern walks
 to G, kills the Skulker and conquers it, and his trigger finds all four tags: **+2**. The Feline goes
 to G only after the conquer, since 355.2.a needs a battlefield you control. It names Hextech Ray, so
-they cannot play the 1-rune spell that would put 3 on Ivern.
+they cannot play it on their T4. Ivern's own attack had no such cover: they held two runes ready, and
+Hextech Ray or Existential Dread in that showdown stops the Conquer (§5). Their hand holding neither
+is the walk's assumption.
 
-**Without the two Undying Loyalty, the same hand stops at 3 to 3.** On T3 Ivern still comes down, and
-the Scout stays in the trash, and with nothing recycled T4 has nine runes. They buy Starhound (five),
-the Scout he returns (two) and the Feline (two). That is Bird, Dog and Cat. The Poro is in the trash, the Feline is a second Cat, and Ivern's
-trigger scores nothing. The two spells cost two runes off the board and no Energy, and they bought
-exactly one point.
+**Without the two Undying Loyalty, the same hand still scores the +2, and loses G.** On T3 the Scout
+stays in the trash, so Ivern chooses **Bird**; the attack on G is the same. With nothing recycled, T4
+has nine runes. Starhound (E5 + 1 Order, the Dog) returns the Poro, which died on their T3, and the
+Poro (E2) goes to base. The Feline (E2 + 1 Order, the Cat) goes to base too, before the attack:
+355.2.a always allows the base, and Ivern's condition reads *"your units"* with no location. Nine
+Energy, two Order recycled, seven runes left on the board. Ivern conquers G and his trigger finds Bird,
+Cat, Dog and Poro: **4 to 3**, as in the walk. The difference comes on their T4. The Feline is in base,
+exhausted (359.2.c), so Ivern stands at G alone. Their 8 kill him and his 6 kill the Skulker, a 6 while
+it attacks. The Rearguard conquers G: **4 to 5**, where the walk ends at 4 to 4. So the two spells
+cost two runes off the board and no Energy, and bought one point: not Ivern's, but G kept on their
+turn, because the Bird from the trash let Ivern be the Cat and freed the Feline to stand at G.
 
 **Their T4, the payoff dies.** They Hold B: 4. Ivern was healed at the end of your turn (143.3.b.1),
 so he is a 6 again, beside the Feline's 3. The third Skulker and the second Rearguard walk in. Cleave
@@ -215,30 +227,56 @@ copies of each card (103.2.b): an Undying Loyalty among the first 7 is **45.73%*
 8 is **10.11%**, a Starhound among the first 8 is **50.82%**, and the walk's whole draw (two Undying
 Loyalty, a Starhound and a Fallen Feline among the first 8) is **1.66%**. That counts only those
 cards. The walk also needs three 2-drops by T2. On their side, Cleave among the 8 cards they have
-seen by their T4 (four opening, four draws) is **50.82%**.
+seen by their T4 (four opening, four draws) is **50.82%**. Hextech Ray or Existential Dread among
+the 7 they have seen by your T4 (four opening, three draws) is **45.73%** with three copies of one
+and **72.23%** with three of each, 7 of 39.
 
 ## 5. Breaks to
 
-**The cheapest break is the payoff: one rune and two bodies.** Ivern is a 6 at G. Five Might of
-attackers kill him once anything adds 1. Scope: the Fury, Chaos and Fury/Chaos spells in
-`data/cards.json` that cost one rune (at most E1 and at most 1 Power), eight by base code. Five break
-it in the walk's T4 position:
+**The cheapest break is the payoff, for one rune, and the first window is your own T4.** Scope: the
+Fury, Chaos and Fury/Chaos spells in `data/corpus_flat.txt` at E1 or less and 1 Power or less. They
+are 14 by base code, 13 once the banned `SFD-122 Called Shot` is left out: `OGN-004 Cleave`, `OGN-009
+Hextech Ray`, `OGN-169 Gust`, `OGN-179 Acceptable Losses`, `OGN-183 Stacked Deck`, `SFD-003 Blood
+Rush`, `SFD-005 Detonate`, `SFD-135 Factory Recall`, `UNL-010 Vault Breaker`, `UNL-014 Monster
+Harpoon`, `UNL-134 Existential Dread`, `VEN-015 Decree of Rage` and `VEN-107 Decree of Discord`.
+
+**Your T4, Ivern's attack.** Ivern, a 6, walks into the Skulker's 3 at G before the Feline is on the
+board. They ended their T3 with two runes ready, and in the Combat Showdown only [Action] and
+[Reaction] spells can be played (308.1.a), which rules out Detonate and Decree of Discord. Two of the
+13 break it:
+
+- Hextech Ray (E1 + 1 Power): *"[Action] (Play on your turn or in showdowns.) Deal 3 to a unit
+  at a battlefield."* 3 on Ivern, and the Skulker's 3 make 6, lethal. Both die, G goes uncontrolled
+  (466.5.b), and there is no Conquer and no trigger.
+- Existential Dread (E1 + 1 Power): *"[Stun] an attacking enemy unit."* Ivern deals no combat damage,
+  both stay, and 466.1.a.2 recalls him. No Conquer, no trigger.
+
+Either costs you the T4 +2 for one rune. `UNL-014 Monster Harpoon` puts 2 on Ivern, 5 with the
+Skulker's 3, short of 6; it deals 4 if they control a facedown card, and then it breaks too, but they
+hid nothing in this walk. Cleave, Blood Rush and Vault Breaker add Might only to an attacker, and the
+Skulker defends. Gust reaches only a unit of 3 Might or less: on their own Skulker it hands you G.
+Decree of Rage hits only a Calm unit. Acceptable Losses, Stacked Deck and Factory Recall touch no
+unit.
+
+**Their T4, from the walk's position.** Ivern is a 6 at G beside the Feline's 3. Five Might of
+attackers kill him once anything adds 1, and on their own turn all 13 can be played. Five break it:
 
 - `OGN-004 Cleave` (E1), *"Give a unit [Assault 3] this turn"*, the one walked above. `SFD-003 Blood
   Rush` (E1): *"[Action] (Play on your turn or in showdowns.) [Repeat] :rb_energy_1: (You may pay the
   additional cost to repeat this spell's effect.) Give a unit [Assault 2] this turn."* Their 7 put 6 on
   Ivern. `UNL-010 Vault Breaker` (E1 + 1 Power) gives [Assault 2] and [Ganking], so the Rearguard at B
   can join as well.
-- `OGN-009 Hextech Ray` (E1 + 1 Power): *"[Action] (Play on your turn or in showdowns.) Deal 3 to a unit
-  at a battlefield."* The Feline named it here. Without the Feline at G, it is the break.
+- Hextech Ray is named by the Feline here. Without the Feline at G, it is the break.
 - `UNL-014 Monster Harpoon` (E1 + 1 Power), 2 to a unit at a battlefield: their 5 then need only 4.
-- The other three do not. `OGN-169 Gust` returns a unit of 3 Might or less, and Ivern is a 6.
+- The other eight do not. `OGN-169 Gust` returns a unit of 3 Might or less, and Ivern is a 6.
   `VEN-015 Decree of Rage` hits only a Calm unit, and every unit in the walk is Order.
   `VEN-107 Decree of Discord` returns Order units of total Might 5 or less, which can never include
-  Ivern.
+  Ivern. Existential Dread stuns only an attacking unit, and yours defend. Acceptable Losses, Stacked
+  Deck, Detonate and Factory Recall touch no unit.
 
 If they run three copies of one of the five, it is among their 8 cards by their T4 in **50.82%**; with
-two of them (six cards), **77.43%**; with four (twelve), **96.39%**. Each is 8 of 39.
+two of them (six cards), **77.43%**; with four (twelve), **96.39%**. Each is 8 of 39. For your T4
+window the figures are in §4.
 
 **The cheapest answer to the recursion itself is `VEN-107 Decree of Discord` (Chaos, E1 + 1 Power,
 one rune).** *"Return any number of enemy Order (:rb_rune_order:) units with total Might 5 or less to
@@ -246,7 +284,7 @@ their owners' hands."* It has no *"at a battlefield"*, so it reaches your base. 
 bodies to your hand, which neither Undying Loyalty nor Starhound reads. From the T4 position, if
 Ivern survives, they cast it on their T4 on the Scout and the Poro (1 + 2). Your T5 Hold of G then
 finds Dog and Cat only, and Ivern's trigger scores nothing. The bodies come back for E2 each in your
-Main Phase, after that Hold. Among the eight one-rune spells of the scope above it is the only one
+Main Phase, after that Hold. Among the 13 one-rune spells of the scope above it is the only one
 that can remove an Order unit from your base. `VEN-015 Decree of Rage` reaches base too, but only a
 Calm unit.
 
@@ -266,8 +304,10 @@ E2) counters Undying Loyalty and returns it to your hand, two runes against one.
 **Right about the cost and the ceiling; wrong that the recursion protects the condition; silent that
 the payoff is outside it.** Undying Loyalty with a tagged target is E0 + 1 Power, and the Power can
 come from a rune already exhausted for Energy, so the two copies of the walk cost two runes off the
-board and no Energy. On T4 they bought Ivern's conquer point, one point the same hand could not reach
-without them. The rebuild is cast only in your Main Phase, after the Hold, so a tag body lost on their
+board and no Energy. They did not buy Ivern's conquer point: without them Ivern chooses Bird, the
+Feline brings the Cat from base, and the T4 +2 is the same. They bought the Feline's place at G, which
+kept G on their T4, 4 to 4 instead of 4 to 5. And Ivern's own attack is the cheapest window: one rune
+of Hextech Ray or Existential Dread in his T4 showdown stops the Conquer and the trigger. The rebuild is cast only in your Main Phase, after the Hold, so a tag body lost on their
 turn costs the next Hold point whatever the trash holds. Battlefield sweepers are the wrong threat:
 the tag bodies sit in base, where Firestorm cannot reach them. The threat is Ivern, an M6 who dies to
 one Energy of Cleave and two attackers, and whom neither half can return.
@@ -281,8 +321,11 @@ fails in **0 of 924 deals**. On T4 Starhound, the second Undying Loyalty and the
 an Order rune, three in all, after the one recycled on T3. That needs four Order runes among the first
 nine channelled, and it fails in **84 of 924 deals, 9.09%**. In those deals you skip the Feline:
 two recycles need three Order runes among nine, and that fails in 0 deals. The opponent's walk costs
-Energy only. Decree of Discord needs one Chaos rune among their nine on T4; at six and six that holds
-in every deal.
+Energy only, and they choose which two of their seven runes stay ready after their T3. Hextech Ray
+needs a Fury rune and Existential Dread a Chaos rune; seven runes from six Fury and six Chaos always
+hold one of each, so either holds in **all 924 deals**. Decree of Discord needs one Chaos rune among
+their nine on T4; at six and six that holds in every deal. The counterfactual without Undying Loyalty
+recycles two Order on T4 and none on T3: two Order among nine runes, 0 fail.
 
 I did not walk Daisy!, Green Father's Brush, or going second. Green Father reads *"When you conquer or
 hold, you may exhaust me to replace that battlefield with a Brush battlefield token"*, and
@@ -291,7 +334,8 @@ walk never exhausts it. Nor did I walk the mulligan or 2v2. 124 makes a dead Ive
 read that his chosen tag goes with the old one, and I did not find a paragraph naming a gained tag
 among the Temporary Modifications of 124.1. Fallen Feline's name is a guess at their removal: had it
 named Cleave, Hextech Ray would have done the same job with the same attackers. Their hand holding
-Cleave and nothing better is the walk's assumption; §5 prices the alternatives. The probabilities in
+neither Hextech Ray nor Existential Dread on your T4, and Cleave and nothing better on theirs, is the
+walk's assumption; §5 prices the alternatives. The probabilities in
 §4 and §5 count only the cards named.
 
 ## Leads
