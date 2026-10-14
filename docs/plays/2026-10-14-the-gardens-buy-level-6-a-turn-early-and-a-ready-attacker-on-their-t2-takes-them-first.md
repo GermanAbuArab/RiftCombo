@@ -13,8 +13,9 @@ the Gardens' 2 XP made Level 6 live, your four bodies became a 15 the opponent c
 without those 2 XP they were a 9 that their T3 board takes. Level 11 arrived on T4 and bought one
 more XP, not the attack. The entry overstates two things. The faucet does not start a turn late for
 every body: from the second one on, you play it straight to the Gardens. And the [Hunt] units a
-Calm/Body deck stands there pay as much XP as the Gardens do. The cheap break is not a card. It is a
-second ready attacker on their T2, while every body is still a 2.
+Calm/Body deck stands there pay as much XP as the Gardens do. The cheapest break needs no card beyond
+the walk's own. On their T2, while every body is still a 2, Pridestalker's two triggers make the
+ready Rearguard a 4, and it empties the Gardens.
 
 **Why this line.** `scripts/sequence-pick.mjs --unplayed`, re-run on 2026-10-14 at `e879748`, reads
 773 entries, 262 with forced-ordering language, **102 in the queue and 35 of them with no play**,
@@ -131,6 +132,14 @@ Their points: 0 after their T1, 1 after their T2, 2 after their T3. After your T
 Your XP is 13 before the combat at B, and 14 or 15 after it, depending on whether the attacker they
 kill is one of your two with Hunt.
 
+**Why they did not attack G on their T2.** They could have, with the same cards. Pridestalker reads
+*"When you play a unit, give a unit +1 :rb_might: this turn."* Chemtech Enforcer and Crackshot
+Corsair, played before the move, make the ready Rearguard a 4. It walks from base to G: 4 against
+Gemhand 2 and Apprentice 2. Their 4 kill both, your 4 kill it, and nobody is left. 466.5.b: *"If
+there are no Units remaining here controlled by any player, the Battlefield becomes Uncontrolled."*
+That costs them the Rearguard and B's Conquer: 1 to 0 after their T2 instead of 1 to 1. They took the
+point and kept the body. §5 walks the attack, because it is the cheapest break.
+
 **Your T3, where the faucet pays.** At the start of the turn you have 2 XP. The Hold and the two Hunts
 make 4, and exhausting Gemhand and Apprentice at G makes 6. Level 6 is live before you play anything,
 so every body is +1 and Gemhand Hunter's own Level 6 adds 1 more: Gemhand 4, Apprentice 3. Kinkou
@@ -170,8 +179,15 @@ the battlefield, the walk's first two turns are **2.37%** of games. One Hunt 2-d
 
 ## 5. Breaks to
 
-**The cheapest break is a second ready attacker on their T2, before Level 6.** On their T2 your G
-holds Gemhand and Apprentice, two 2s, and you have 2 XP. Walked: Rearguard was played on their T1
+**The cheapest break is the walk's own T2, pointed at G.** On their T2 your G holds Gemhand and
+Apprentice, two 2s, and you have 2 XP. The Rearguard played on their T1 is ready, and the Enforcer
+and the Corsair, played first, make it a 4 through Pridestalker. It walks to G and trades for both
+bodies, and 466.5.b leaves G uncontrolled. It costs no card and no rune beyond the walk's five. The
+price is the Rearguard and B's Conquer, 1 to 0 after their T2. You have no body on the board, and
+355.2.a sends every unit you play on T3 to your base. The faucet is off until a body walks back, and
+that walk is its exhaust (144.2), so the first XP from the Gardens comes on your T4.
+
+**A second ready attacker conquers G instead of emptying it.** Rearguard was played on their T1
 and is ready. They play a second `OGN-010 Legion Rearguard` with its Accelerate, 805.1.a: *"As you
 play me, you may pay [1][C] as an additional cost. If you do, I enter ready."* That is E2 + E1 + 1
 Fury Power, three runes, one of them exhausted for the Energy and recycled for the Power (164.2.a,
@@ -191,6 +207,7 @@ went to Blood Rose, the Apprentice and the Rose's XP, the Apprentice and the sec
 You are at 1 XP, with one Hunt body and one exhaust on T3, so Level 6 is not live on T3. `UNL-031 Combat
 Experience` (Calm, E1, [Reaction]), held instead of the Rose's XP, makes one defender a 3: their 5
 still kill both, your 5 kill both Rearguards, nobody is left, and 466.5.b leaves G uncontrolled.
+Against the single 4 of the first break, the same three 2s lose two and kill it, and G stays yours.
 
 **After Level 6 the same attack costs them a board.** On their T3 your G is the 15 of §4. A ready
 Sharkling (E4 + 1 Fury Power, 5 as an attacker) and one more E3 play beside the walk's Enforcer and
@@ -201,14 +218,19 @@ their hand by their T3 (7 of 39 cards seen) in **45.73%**.
 
 **The scope of the cheap-card verdict.** A Fury/Body deck plays only Fury, Body and Fury/Body cards
 (103.1.b.1). The cards in those domains in `data/corpus_flat.txt` whose text reaches *all units*,
-*all enemy units*, *all damaged enemy units* or *enemy units here* are ten. None removes two 2-Might
-bodies from the Gardens for less than the Rearguard's three runes:
+*all enemy units*, *all damaged enemy units* or *enemy units here* are ten. Read with Pridestalker's
++1, one of them removes both 2-Might bodies from the Gardens on their T2 for fewer runes than the
+Rearguard's three. None does it with no card, as the first break does:
 
 - `OGN-133 Flurry of Blades` (Body, E1) deals 1, and every body is a 2 or more.
 - `OGN-127 Cannon Barrage` (Body, E2 + 1 Power) deals 2 only to units in combat, so it needs the
   attack it would help.
-- `UNL-107 Stare Down` (Body, E2) moves enemy units with less Might than a chosen friendly unit. On
-  their T2 their biggest is a 2, which moves no 2.
+- `UNL-107 Stare Down` (Body, E2): *"Choose a friendly unit and a battlefield. Move all enemy units at
+  that battlefield with less Might than the chosen unit to their base."* Play the Enforcer first and
+  the Rearguard is a 3. Stare Down, choosing the Rearguard and G, sends Gemhand and Apprentice to
+  base. 323.6 strips G at the next cleanup, and the Rearguard walks in and conquers it. With the
+  Enforcer that is four of their five runes, and Stare Down's own share is two. You keep both bodies,
+  in base, and the faucet is off as in the first break.
 - `OGN-041 Volibear, Furious`, `OGN-148 Anivia, Primal`, `OGN-159 Warwick, Hunter`, `OGN-250
   Stormbringer`, `OGS-002 Firestorm`, `VEN-019 Renekton, Rage Fueled` and `VEN-091 Corrupted Dragon`
   all cost E6 or more.
@@ -220,14 +242,17 @@ silent about Hunt.** The Gardens paid 2 XP on T3 and that was the whole differen
 made four bodies a 15 their board could not attack, where without it they were a 9 that their board
 takes. Level 11 arrived on T4 and bought one XP. Hunt paid 6 of the 13 XP by T4, the Gardens 4, and
 Blood Rose 3. The faucet's weak turn is the opponent's T2, before Level 6, when two 2s stand on the
-Gardens: a second ready attacker takes it for three runes.
+Gardens. Pridestalker's triggers from the walk's own T2 plays make the Rearguard a 4 that empties it
+for no extra card, at the price of a body and a point. A second ready attacker conquers it outright
+for three runes.
 
 ## 7. Not verified
 
 No card in the walk costs Power, so it rests on no rune-dealing assumption for either side, at any
 split. The break's Accelerate needs one Fury among the five runes they have on their T2. With six
 Fury in the twelve the five hold none in **6 of 792 deals, 0.76%**. The Sharkling on their T3 needs
-one Fury among seven: with six in twelve that always holds.
+one Fury among seven: with six in twelve that always holds. The cheapest break, the Rearguard made a
+4 on their T2, and the Stare Down line cost Energy only, so they add no rune assumption.
 
 I did not walk the T3
 attack on B that Gemhand and Apprentice give up by exhausting for XP, Gardens of Becoming as their
@@ -247,6 +272,7 @@ named.
 - "With four bodies that is 11 XP in three turns": the walk's first turn with four bodies on the
   Gardens is T4, and two of them walked to B instead of paying. Level 6 on T3, not 11 XP, is what the
   Gardens bought.
-- No notable names the window before Level 6. On their T2 the bodies are 2s, and a second unit that
-  enters ready (`OGN-010 Legion Rearguard` or `UNL-006 Sharkling` with Accelerate) takes the Gardens
-  for three or four runes.
+- No notable names the window before Level 6. On their T2 the bodies are 2s. Against a Pridestalker
+  legend, the two units a deck plays on its T2 make a ready T1 unit a 4, which empties the Gardens with
+  no extra card (466.5.b). A second unit that enters ready (`OGN-010 Legion Rearguard` or `UNL-006
+  Sharkling` with Accelerate) conquers it for three or four runes.

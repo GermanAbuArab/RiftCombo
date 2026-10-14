@@ -151,8 +151,12 @@ own end state, on T4, with eight runes on the board instead of six.
 
 **What the Dredgers alone do, a turn sooner.** On your T3, with six runes, the second Dredger walks to
 BT for the Conquer, and then Ledros kills it and the first Bird: 6 Energy and 2 Order Power, six runes
-exhausted and two recycled. The Dredger's Bird goes to your base, and Ledros is in base with Ganking a
-turn before the walk's. You have four runes on the board at the end of T3 and six on T4, the same six
+exhausted and two recycled. The Dredger's Bird goes to your base. Ledros's location is chosen before
+the cost is paid: 355.2 picks it in step 2, while the Dredger still holds BT, and the kill is paid in
+step 4 (357.2). None of the checks in 358 re-tests the location, and 359.2.c: *"If it is a Unit, it
+enters the Board exhausted at the Location that was chosen."* So Ledros stands at BT, an 8, a turn
+before the walk's Ledros, and BT is still yours on their T3. Corsair and Diplomat, 3 + 2 with the
+Corsair's 1, do not take it. You have four runes on the board at the end of T3 and six on T4, the same six
 the walk has, and the Poro is still in your hand. The trade against the Poro's best case is one turn
 of Ledros against two runes, and the Poro's best case needs him to survive their T3.
 
@@ -223,7 +227,9 @@ split. The Dredgers-only Ledros on T3 needs two Order among the first six runes:
 only **262 of 924, 28.35%**. At twelve Order runes none of these fails.
 
 I did not walk the Dredgers-only line or the Poro's surviving line in the turn table; both are
-derived in §4 from the same opening and the same opponent through your T3. I did not walk their T4,
+derived in §4 from the same opening and the same opponent through your T3. Ledros standing at BT in
+the Dredgers-only line rests on reading 355.2, 357.2, 358 and 359.2.c in order, with no cleanup
+between paying the cost and the unit entering; 190.4.c takes control away only at a cleanup. I did not walk their T4,
 Ledros attacking with Ganking, Angler Beast cast on their T3, a different opening for them, the
 mulligan, or 2v2. Whether they have 5 Might of ready bodies in base on their T3 depends on their
 opening, which I fixed. The probabilities in §4 count only cards in hand at the turn named.
@@ -242,6 +248,7 @@ opening, which I fixed. The probabilities in §4 count only cards in hand at the
   Diplomat, E5 of bodies played on their T2, were exactly lethal on him on their T3.
 - Ledros's cost kills *any number of friendly units*. Two Dredgers and the Bird the first one leaves
   put Ledros down on T3 at E6 + 2 Order Power, a turn before the Poro's earliest zero-Power Ledros
-  (T4). Both lines have six runes on the board on T4 if the Poro dies; if he lives, his line has eight.
+  (T4). He can be played to the battlefield the killed Dredger held, because his location is chosen
+  in step 2 and the kill is paid in step 4 (355.2, 357.2, 359.2.c). Both lines have six runes on the board on T4 if the Poro dies; if he lives, his line has eight.
 - The first notable cites 415.3.a for one Poro activation per turn. 415.3.a is the Awakening ready.
   The cap comes from the exhaust in the ability's cost, which only that ready (315.1.b) pays back.
