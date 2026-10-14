@@ -94,6 +94,30 @@ describe("the turn clock", () => {
   });
 
   /**
+   * The FOURTH hand-walked reference point, and the one that pins in-chain casts (#339). The walk in
+   * `docs/phase0/walks/2026-10-13-b3-renata-time-warp-anomaly.md` §6 puts the chain on T6 on the play
+   * and T5 on the draw: three Time Warps are cast one per turn INSIDE the chain, each paying its four
+   * Power from the six rainbow two Blue Sentinels Add (R1 = A), and each Additional Turn is taken
+   * before the opponent's next turn, so the chain does not advance the clock. The clock said T11 for
+   * as long as it charged all three Warps to the rune curve before the chain and modelled no Add.
+   */
+  it("agrees with the hand walk on power-nexus-sentinel-renata-time-warp-chain (T5-T6)", () => {
+    const pays = rows.get("power-nexus-sentinel-renata-time-warp-chain")?.pays;
+    expect(pays).toBeGreaterThanOrEqual(5);
+    expect(pays).toBeLessThanOrEqual(6);
+  });
+
+  /**
+   * The same Adds and Additional Turns, on the bare line without Renata. Its walk
+   * (`docs/phase0/walks/2026-10-13-bare-nexus-three-time-warps.md` §5) puts it on T7 on the play,
+   * one turn later than the clock, because the clock prices no Nexus firing and the walk's extra
+   * turn buys the runes those firings recycle. A lower bound may sit under its walk, never over it.
+   */
+  it("stays at or under the hand walk on power-nexus-sentinel-three-time-warps (T7)", () => {
+    expect(rows.get("power-nexus-sentinel-three-time-warps")?.pays).toBeLessThanOrEqual(7);
+  });
+
+  /**
    * 143.4 exhausts UNITS only — 359.2.d enters a non-unit gear READY at base and 359.3 makes a spell
    * linger on the Chain — so the readiness turn must NOT be universal. If some row does not pay it,
    * the narrowing is live; if every row paid it, the `+1` would be unconditional again.
@@ -135,12 +159,16 @@ describe("the allocator's ordering constraint", () => {
    * truth. `--ignition-nogate` drops the gate while keeping the discount, which can only pull a row
    * earlier than the truth, so the two bound it.
    *
-   * They agree on 75 of 80. The five that differ are NOT a residual: `d.all` is identical under both
+   * They agree on 75 of 80 (80 of 85 on 2026-10-13). The five that differ are NOT a residual: `d.all` is identical under both
    * arms and only `d.unit` moves, so the entire gap is the readiness `+1` of 143.4, which the nogate
    * arm dodges by "paying" a free post cost early — something the real game never offers, because
    * before ignition that unit costs its printed Energy. Settled row by row in
    * `.scratch-gap/probe-readiness-residual.mjs`. This assertion is the tripwire: if a change widens
    * the disagreement past that handful, the header's account of it is stale.
+   *
+   * Since #339 a card that queues a turn stays gated in both arms, so the lower arm is not a pure
+   * relaxation for Time Warp. The header's sandwich note names the two rows that holds back and gives
+   * the necessary condition that makes their gated T4 the true one.
    */
   it("keeps the ignition sandwich tight on all but a handful of rows", () => {
     const loose = execFileSync("node", ["scripts/adversarial-check.mjs", "--turns", "--ignition-nogate"], {

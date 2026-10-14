@@ -228,6 +228,8 @@ counted here, which is the catalogue's convention for a CHAIN.
 Energy) to the rune curve before the chain and prices no Add. So the T11 is a property of the
 instrument, not of the line, and changing the clock is outside this issue.
 
+[2026-10-13, #339: with Adds and Additional Turns modelled, the clock prints this entry at **T6**, one under this walk's T7. It still prices no Nexus firing, and the T7 is what the sixteen firing recycles cost. `test/turn-clock.test.ts` holds it at or under T7.]
+
 ## 6. R1's table: the 14 runes
 
 R1's table (`2026-09-06-engine-payoff-walk.md` §1.1) gives "14" runes for T1's Main Phase when `r₁ = 0`,

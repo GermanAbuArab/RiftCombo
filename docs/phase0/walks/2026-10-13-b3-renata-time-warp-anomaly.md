@@ -224,6 +224,8 @@ own turn from a board that has refilled. The T11 is a property of the instrument
 have not changed the clock, because pricing Adds and in-chain casts is a change to the instrument and
 outside this issue.
 
+[2026-10-13, #339: the clock now runs an Additional Turn inside the clock turn that queued it and pays Power from the rainbow a holder Adds, and it prints this entry at **T6**, the hand number on the play. `test/turn-clock.test.ts` pins it to T5-T6.]
+
 ## 7. What it assumes, and what answers it
 
 - Power Nexus is the battlefield in play. 485.5: *"Setup: Each player randomly selects one (1) of their three (3) Battlefields. The other two are removed and will not be used for this game. The selected Battlefields are placed simultaneously in the Battlefield Zone."*

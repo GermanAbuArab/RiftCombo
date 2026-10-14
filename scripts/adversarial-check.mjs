@@ -52,7 +52,12 @@
 //      post-ignition card early at full price, which can only push a row LATER than the truth.
 //      `--ignition-nogate` keeps the discount and drops the gate, letting a card be bought early
 //      cheaper than it really would be, which can only pull a row EARLIER. So the truth is pinned
-//      between them, and they AGREE on 75 of 80 rows.
+//      between them, and they AGREE on 75 of 80 rows. [2026-10-13: 80 of 85.] A card that queues a turn (Time Warp, #339) stays gated in BOTH arms, so for that card
+//      the lower arm is not a relaxation. Measured 2026-10-13: lifting the gate on it as well moves
+//      exactly two rows, bottled-constellation-time-warp and time-warp-hold-burst, from T4 gated to
+//      T2. The gated T4 stands on a necessary condition: a Warp bought before ignition pays its
+//      printed E10, and 10 runes on the board is T5 at the earliest (2 a turn from T1), so on a row
+//      that completes by T4 every Warp is bought with the engine's output and gating it is exact.
 //
 //      THE FIVE THEY DO NOT AGREE ON ARE NOT A RESIDUAL, AND THE FIRST VERSION OF THIS NOTE SAID
 //      THEY WERE. `jayce-mesmerize-renata`, `lux-infinite-power`, `renata-bubble-bot-ready`,
@@ -96,7 +101,21 @@
 //      grand-plaza-loop-time-warp, jayce-mesmerize-renata, lady-luminosity-loop-comet,
 //      lux-infinite-energy, lux-infinite-power, renata-bubble-bot-ready, renata-mastermind-points,
 //      swain-double-conquer, time-warp-hold-burst. Read those ten as "no earlier than T6", and read
-//      the empty-deck requirement as a caveat with no number behind it.
+//      the empty-deck requirement as a caveat with no number behind it. [2026-10-13, #339: three of
+//      them print T4 now - bottled-constellation-time-warp, grand-plaza-loop-time-warp and
+//      time-warp-hold-burst - because the Time Warp they buy with the engine's output queues an
+//      Additional Turn, which supplies the Beginning Phase their payoff needs. The floor is unchanged.]
+//
+//      ADDS AND ADDITIONAL TURNS ARE MODELLED AS OF 2026-10-13 (#339). The table charged every Time
+//      Warp to the rune curve on its own clock turn and priced no Add, so
+//      power-nexus-sentinel-renata-time-warp-chain printed T11 against a hand walk of T6. Now a
+//      card that queues a turn runs that turn INSIDE the clock turn (its own channel and Awaken, no
+//      step on the clock), and a hold-Adder paid on an earlier turn pays Power out of the rainbow it
+//      Adds. Both are read from card text in curveOf. Twelve finisher rows and three ENGINEs moved,
+//      every one EARLIER, and the unopposed headline went 42 -> 36 of 85. The Add is optimistic in the
+//      clock's usual way: every holder holds, at one battlefield, from the turn after it lands. The
+//      table still prices no payoff activation, so the bare power-nexus-sentinel-three-time-warps
+//      reads T6 against its walk's T7: the walk's extra turn is the sixteen Nexus recycles.
 //
 //      It is NOT deducted here, and the reason is the reason this file keeps: the requirement lives
 //      in PROSE, and a prose predicate for it overstates. Swept, `(\d+) runes (in play|...)` matches
@@ -175,7 +194,9 @@ const ignition = !args.includes("--no-ignition");
 // --ignition-nogate keeps the discount and drops the gate, which lets a card be bought early at a
 // price lower than it would really pay, and so can only pull a row EARLIER than the truth. Where the
 // two agree, the truth is pinned between them and equals both. Where they disagree, the restriction
-// is costing something and the row needs a hand walk.
+// is costing something and the row needs a hand walk. The one exception to "drops the gate": a card
+// that queues a turn stays gated in both arms (#339), and the header's sandwich note gives the two
+// rows that exception holds back (T4 gated, T2 without it) and why their T4 is the true one.
 const ignNoGate = args.includes("--ignition-nogate");
 const FUEL_E = "infinite-energy";
 const FUEL_P = "infinite-power";
@@ -428,9 +449,13 @@ const greedyRows = [];
 function typesOf(costs) {
   const byType = new Map();
   for (const c of costs) {
-    const k = `${c.e}|${c.p}|${c.unit ? 1 : 0}|${c.gated ? 1 : 0}|${c.link || ""}`;
+    // `rain`, `holdx` and `turn` (#339) are part of the type for the same reason `link` is: a Blue
+    // Sentinel and an unrelated E4/1-Power unit pay the same price, but only one of them Adds rainbow.
+    const k = `${c.e}|${c.p}|${c.unit ? 1 : 0}|${c.gated ? 1 : 0}|${c.rain || 0}|${c.holdx || 0}|` +
+              `${c.turn ? 1 : 0}|${c.link || ""}`;
     if (!byType.has(k))
-      byType.set(k, { e: c.e, p: c.p, unit: !!c.unit, gated: !!c.gated,
+      byType.set(k, { e: c.e, p: c.p, unit: !!c.unit, gated: !!c.gated, rain: c.rain || 0,
+                      holdx: c.holdx || 0, turn: !!c.turn,
                       link: c.link || "", after: c.after || "", n: 0, kids: [] });
     byType.get(k).n++;
   }
@@ -444,7 +469,8 @@ function typesOf(costs) {
     const parent = t.after ? byLink.get(t.after) : null;
     if (parent) parent.kids.push(t); else roots.push(t);
   }
-  const desc = (t) => `${t.e}|${t.p}|${t.unit ? 1 : 0}|${t.gated ? 1 : 0}|${t.n}` +
+  const desc = (t) => `${t.e}|${t.p}|${t.unit ? 1 : 0}|${t.gated ? 1 : 0}|${t.rain}|${t.holdx}|` +
+                      `${t.turn ? 1 : 0}|${t.n}` +
                       (t.kids.length ? `(${t.kids.map(desc).sort().join(",")})` : "");
   const cmp = (a, b) => (desc(a) < desc(b) ? -1 : desc(a) > desc(b) ? 1 : 0);
   // Gated roots emit LAST, so that when the recursion reaches one, every ungated type's count for the
@@ -480,6 +506,18 @@ function deployTurnUncached(types, costs) {
   const stride = new Array(dim);
   let space = 1;
   for (let i = 0; i < dim; i++) { stride[i] = space; space *= types[i].n + 1; }
+  // ADDITIONAL TURNS (#339). A `turn` cost ("Take a turn after this one", OGN-122 Time Warp) queues
+  // a turn the opponent never answers, so it runs INSIDE the clock turn that cast it: its own
+  // Awaken and its own Channel Phase (315.1.b, 315.3.b), and no step on the clock, because 737:
+  // "When an Additional Turn is inserted into this queue, it does not change the Turn Order of the
+  // game. The owner of the Additional Turn just has the next queued turn. After that turn is
+  // completed, it will be removed and the queue will proceed with its previously queued turns."
+  // The number of turns still queued is the one thing the state needs beyond the counts, and it
+  // can never exceed the number of `turn` costs, so it rides as the most significant digit of the
+  // same integer.
+  let warps = 0;
+  for (const t of types) if (t.turn) warps += t.n;
+  const SZ = space * (warps + 1);
   // Pricing [Equip] (2026-09-13) added a second cost per Equipment and pushed the biggest closures
   // past what an exact search can do in a test that runs on every commit: at 2e6 the whole table took
   // 50 seconds against 4.6 before. Lowered to 2e5, which keeps it near 5 and sends only the very
@@ -488,23 +526,48 @@ function deployTurnUncached(types, costs) {
   // RC_GUARD raises the ceiling for a one-off measurement; RC_FB names the rows that hit it. At 2e6
   // every row is exact and the table takes 44 seconds, which is why the default is 2e5 and why the
   // header prints how many rows the fallback priced.
-  if (space > (Number(process.env.RC_GUARD) || 2e5)) {
+  if (SZ > (Number(process.env.RC_GUARD) || 2e5)) {
     greedyFallbacks++;
-    if (process.env.RC_FB) console.error(`FALLBACK space=${space} dim=${dim}`);
+    if (process.env.RC_FB) console.error(`FALLBACK space=${SZ} dim=${dim}`);
     const g = greedyTurn(costs);
-    return { all: g, unit: g, greedy: true };
+    return { all: g, unit: g, unitLast: true, extra: false, greedy: true };
   }
   const FULL = space - 1;                       // every count at its maximum
 
-  let curR = new Int8Array(space).fill(-1);     // runes on board, -1 = state unreachable
-  let curU = new Int8Array(space);              // the turn the last UNIT landed
-  let nxtR = new Int8Array(space);
-  let nxtU = new Int8Array(space);
+  // HOLD ADDS (#339). UNL-087 Blue Sentinel: "When I hold, [Add] [A] at the start of your next Main
+  // Phase", and "Your hold effects for holding here trigger an additional time". A Hold is Scored in
+  // the Beginning Phase (315.2.b.2), before that turn's Main Phase (316), so a holder paid on an
+  // EARLIER turn Adds `rain` rainbow per trigger and triggers `1 + Σ holdx` times: two Sentinels
+  // Add 2 x 3 = 6, which is the six the hand walks of the Power Nexus lines count (R1 = A, #11).
+  // Rainbow pays Power and only Power, and it is not a rune, so paying with it recycles nothing.
+  // Optimistic in the clock's own way: every holder is assumed to hold, at the same battlefield,
+  // from the turn after it lands.
+  const rainAt = new Int16Array(space);
+  const holders = [];
+  for (let i = 0; i < dim; i++) if (types[i].rain || types[i].holdx) holders.push(i);
+  if (holders.length) {
+    for (let k = 0; k < space; k++) {
+      let rain = 0, times = 1;
+      for (const i of holders) {
+        const h = ((k / stride[i]) | 0) % (types[i].n + 1);
+        rain += h * types[i].rain;
+        times += h * types[i].holdx;
+      }
+      rainAt[k] = rain * times;
+    }
+  }
+
+  let curR = new Int8Array(SZ).fill(-1);        // runes on board, -1 = state unreachable
+  let curU = new Int16Array(SZ);                // the SUB-turn the last UNIT landed
+  let nxtR = new Int8Array(SZ);
+  let nxtU = new Int16Array(SZ);
+  let endR = new Int8Array(SZ);                 // states that have taken every turn they queued
+  let endU = new Int16Array(SZ);
   curR[0] = 0;
   // Hoisted out of the per-state loop on purpose: building this closure inside it cost 14s over the
   // catalogue against 0.4s here, because a recursive closure re-created 300,000 times is not one V8
   // can keep optimized.
-  let idx = 0, runes = 0, u0 = 0, turn = 0;
+  let idx = 0, runes = 0, rain = 0, u0 = 0, sub = 0, queued = 0;
   // Where each type stands in the state being BUILT. Hoisted and mutated in place rather than passed,
   // for the same reason the closure itself is hoisted: this is the innermost loop in the file. A
   // dependant reads its root out of this array, which is why typesOf emits a root before its kids.
@@ -512,11 +575,11 @@ function deployTurnUncached(types, costs) {
   // index of the first gated type, or -1 when there are none (every row without an engine fold)
   let ungated = -1;
   for (let i = 0; i < dim; i++) if (types[i].gated) { ungated = i; break; }
-  const walk = (i, e, p, delta, tookUnit) => {
+  const walk = (i, e, p, delta, tookUnit, cast) => {
     if (i === dim) {
-      const k = idx + delta;
-      const nr = runes - p;                     // 161.2.b: a recycled rune leaves the board
-      const nu = tookUnit ? turn : u0;
+      const k = idx + delta + (queued + cast) * space;
+      const nr = runes - (p > rain ? p - rain : 0); // 161.2.b: a recycled rune leaves the board
+      const nu = tookUnit ? sub : u0;
       // For a fixed set of paid costs MORE RUNES always dominates; ties keep the EARLIEST
       // last-unit turn, because that is what the readiness +1 reads.
       if (nxtR[k] < nr || (nxtR[k] === nr && nxtU[k] > nu)) { nxtR[k] = nr; nxtU[k] = nu; }
@@ -548,7 +611,10 @@ function deployTurnUncached(types, costs) {
     // post-ignition card be bought EARLY at full price. That can only ever push a row later, never
     // earlier, so this number is not a floor in the way the rest of the table is. It is verified
     // against an independent search over the affected rows rather than assumed.
-    if (t.gated && ungated >= 0 && !ignNoGate) {
+    // --ignition-nogate still gates a card that queues a turn (#339), so for that card the arm is
+    // NOT a relaxation. Why its gated answer is exact on the only two rows it touches is a necessary
+    // condition stated in the header's sandwich note, not something this line assumes.
+    if (t.gated && ungated >= 0 && (!ignNoGate || t.turn)) {
       let done = true;
       for (let z = 0; z < ungated; z++) if (cnt[z] < types[z].n) { done = false; break; }
       if (!done) cap = have;
@@ -557,27 +623,67 @@ function deployTurnUncached(types, costs) {
       if (have + q > cap) break;
       cnt[i] = have + q;
       const ne = e + t.e * q, np = p + t.p * q;
-      if (ne > runes || np > runes) break;      // R runes afford R Energy AND R Power
-      walk(i + 1, ne, np, delta + q * stride[i], tookUnit || (q > 0 && t.unit));
+      // R runes afford R Energy AND R Power, and Added rainbow affords Power on top
+      if (ne > runes || np > runes + rain) break;
+      walk(i + 1, ne, np, delta + q * stride[i], tookUnit || (q > 0 && t.unit), cast + (t.turn ? q : 0));
     }
   };
-  for (turn = 1; turn <= 40; turn++) {
+  // One sub-turn from every reachable state of `curR`: channel, Add, pay. A state whose queue is
+  // empty starts an ordinary turn; one with a turn queued takes it and pops the queue.
+  const step = (extraTurn) => {
     nxtR.fill(-1); nxtU.fill(0);
-    for (idx = 0; idx < space; idx++) {
-      if (curR[idx] < 0) continue;
-      runes = Math.min(12, curR[idx] + 2);
-      u0 = curU[idx];
-      walk(0, 0, 0, 0, false);
+    for (let k = 0; k < SZ; k++) {
+      if (curR[k] < 0) continue;
+      idx = k % space;
+      queued = ((k / space) | 0) - (extraTurn ? 1 : 0);
+      runes = Math.min(12, curR[k] + 2);
+      rain = rainAt[idx];
+      u0 = curU[k];
+      walk(0, 0, 0, 0, false, 0);
     }
-    const tR = curR; curR = nxtR; nxtR = tR;
-    const tU = curU; curU = nxtU; nxtU = tU;
-    if (curR[FULL] >= 0) return { all: turn, unit: curU[FULL] };
+  };
+  for (let turn = 1; turn <= 40; turn++) {
+    endR.fill(-1); endU.fill(0);
+    // A completion on this clock turn owes no `+1` when a turn is still queued at that moment: the
+    // Additional Turn brings both the Awaken that readies the last unit and the Beginning Phase a
+    // hold payoff fires in. Failing that, it owes the readiness turn only if the last unit landed in
+    // the very sub-turn that completed the set.
+    let done = false, extra = false, unitLast = true, unitClock = 0;
+    let extraTurn = false;
+    for (;;) {
+      sub++;
+      step(extraTurn);
+      for (let qd = 0; qd <= warps; qd++) {
+        const k = FULL + qd * space;
+        if (nxtR[k] < 0) continue;
+        if (!done) unitClock = nxtU[k] ? turn : 0;
+        done = true;
+        if (qd > 0) extra = true;
+        else if (nxtU[k] !== sub) unitLast = false;
+      }
+      // Settle the states with nothing queued; the rest take their Additional Turn next.
+      let pending = false;
+      for (let k = 0; k < SZ; k++) {
+        if (nxtR[k] < 0) continue;
+        if (k >= space) { pending = true; continue; }
+        if (endR[k] < nxtR[k] || (endR[k] === nxtR[k] && endU[k] > nxtU[k])) { endR[k] = nxtR[k]; endU[k] = nxtU[k]; }
+        nxtR[k] = -1;
+      }
+      const tR = curR; curR = nxtR; nxtR = tR;
+      const tU = curU; curU = nxtU; nxtU = tU;
+      if (!pending) break;
+      extraTurn = true;
+    }
+    if (done) return { all: turn, unit: unitClock, unitLast: !extra && unitLast && unitClock !== 0, extra };
+    const tR = curR; curR = endR; endR = tR;
+    const tU = curU; curU = endU; endU = tU;
   }
-  return { all: Infinity, unit: Infinity };
+  return { all: Infinity, unit: Infinity, unitLast: false, extra: false };
 }
 
 // Kept only as the guard for an absurd state space, which NO row in the catalogue reaches today.
-// Do not use it for anything else: it is the defect #205 describes.
+// Do not use it for anything else: it is the defect #205 describes. It also ignores Adds and
+// Additional Turns (#339), which can only make a fallback row LATER, never earlier.
 function greedyTurn(costs) {
   const remaining = costs.map((c) => ({ ...c })).sort((a, b) => b.e + b.p - (a.e + a.p));
   // The same ordering gate the exact allocator enforces, so a fallback row is wrong only in the one
@@ -621,6 +727,9 @@ function greedyTurn(costs) {
 if (args.includes("--selftest")) {
   const play = (e, p, link) => ({ e, p, unit: false, link });
   const equip = (e, p, link, after) => ({ e, p, unit: false, link, after });
+  const unit = (e, p, more) => ({ e, p, unit: true, link: "", ...more });
+  const sentinel = () => unit(4, 1, { rain: 1, holdx: 1 });     // UNL-087's two hold lines
+  const warp = (e, p) => ({ e, p, unit: false, link: "", turn: true });
   const cases = [
     // [name, costs, expected `all`, why]
     ["one E2 card", [play(2, 0, "")], 1, "T1 has 2 runes"],
@@ -638,6 +747,17 @@ if (args.includes("--selftest")) {
      "the equip cannot precede the gear, and T6 is exactly 12 runes, so it waits for T7"],
     ["ORDERED, same turn is legal", [play(4, 0, "g#play"), equip(2, 0, "g#equip", "g#play")], 3,
      "T3 has 6 runes and 359.2.d puts the gear on the board the turn it is played"],
+    // #339. The pair below is the same costs with and without the hold Add, so the Add is SEEN.
+    ["two E4/1 units + E4/8P spell, no Add", [unit(4, 1), unit(4, 1), play(4, 8, "")], 5,
+     "T2 and T3 take a unit each with one recycle apiece, T4 has 6 runes for 8 Power, T5 has 8"],
+    ["two Sentinels + E4/8P spell", [sentinel(), sentinel(), play(4, 8, "")], 4,
+     "T3's 2 rainbow pay the second Sentinel's Power, and T4's 6 rainbow plus 2 recycles pay the 8"],
+    ["two E10 cards, no extra turn", [play(10, 0, ""), play(10, 0, "")], 6, "T5 has 10 runes, T6 the next 10"],
+    ["two E10 Time Warps", [warp(10, 0), warp(10, 0)], 5,
+     "the first Warp's Additional Turn channels to 12 and casts the second inside T5"],
+    ["power-nexus-sentinel-renata-time-warp-chain's costs",
+     [sentinel(), sentinel(), unit(5, 0), warp(10, 4), warp(10, 4), warp(10, 4)], 6,
+     "the hand walk's T6 on the play: 11 runes on T6, each Warp's 4 Power from the six rainbow"],
   ];
   let bad = 0;
   console.log(`# allocator self-test: ${cases.length} synthetic cost sets, answers hand-derived`);
@@ -1286,6 +1406,25 @@ function equipCost(c) {
   };
 }
 
+/**
+ * What a card does to the curve besides costing something (#339), parsed from its text so that a
+ * second printing of either shape is priced the day it ships. Measured 2026-10-13 over the pool:
+ * exactly one card Adds on a hold or multiplies hold triggers (UNL-087 Blue Sentinel) and exactly
+ * one takes an extra turn (OGN-122 Time Warp).
+ *   rain   rainbow Added per hold trigger ("When I hold, [Add] [A] ...")
+ *   holdx  extra triggers it gives every hold effect at its battlefield
+ *   turn   the card queues an Additional Turn ("Take a turn after this one")
+ */
+function curveOf(c) {
+  const t = `${c.text || ""} ${c.effect || ""}`;
+  const add = t.match(/When I hold, \[Add\]((?:\s*:rb_rune_rainbow:)+)/i);
+  return {
+    rain: add ? add[1].match(/:rb_rune_rainbow:/g).length : 0,
+    holdx: /Your hold effects for holding here trigger an additional time/i.test(t) ? 1 : 0,
+    turn: /Take a turn after this one/i.test(t),
+  };
+}
+
 /** THE ONLY cost builder. #205 shipped a defect because there were two and one was patched. */
 const costsOfSet = (set, ign) => {
   const out = [];
@@ -1316,8 +1455,9 @@ const costsOfSet = (set, ign) => {
     const post = !!(ign && !ign.bases.has(b));
     const ce = post && ign.freeE ? 0 : c.energy || 0;
     const cp = post && ign.freeP ? 0 : c.power || 0;
+    const { rain, holdx, turn } = curveOf(c);
     for (let i = 0; i < q; i++) {
-      out.push({ e: ce, p: cp, unit: c.type.includes("unit"), gated: post,
+      out.push({ e: ce, p: cp, unit: c.type.includes("unit"), gated: post, rain, holdx, turn,
                  link: linked ? `${b}#play` : "" });
       if (linked) equips.push({ e: post && ign.freeE ? 0 : eq.e, p: post && ign.freeP ? 0 : eq.p,
                                 unit: false, gated: post, link: `${b}#equip`, after: `${b}#play` });
@@ -1344,7 +1484,10 @@ const costsOfSet = (set, ign) => {
   for (const c of all) if (c.link) allFree.set(c.link, (allFree.get(c.link) ?? true) && !c.e && !c.p);
   for (const c of all) if (c.after && !c.e && !c.p && allFree.get(c.after)) { c.after = ""; c.link = ""; }
   const roots = new Set(all.filter((c) => c.after).map((c) => c.after));
-  const collapsible = (c) => !c.e && !c.p && !c.after && !roots.has(c.link || "");
+  // A free Sentinel or a free Time Warp still Adds or still queues a turn, and N of them do that N
+  // times, so neither is interchangeable with one of itself.
+  const collapsible = (c) => !c.e && !c.p && !c.after && !roots.has(c.link || "") &&
+                             !c.rain && !c.holdx && !c.turn;
   const free = all.filter(collapsible);
   if (free.length < 2) return all;
   const rest = all.filter((c) => !collapsible(c));
@@ -1459,12 +1602,14 @@ for (const { e, domains: ownDomains, cards: ownCards } of entries) {
   const d = deployTurn(finalCosts);
   if (d.greedy) greedyRows.push(e.id);
   const gated = beginningPhaseGated(e) || (consumer ? beginningPhaseGated(consumer) : false);
-  const pays = d.all === Infinity ? Infinity : d.all + ((d.unit === d.all && d.unit !== 0) || gated ? 1 : 0);
+  // An Additional Turn still queued when the set completes (#339) is itself the next Beginning
+  // Phase and the next Awaken, so it owes neither reason and the clock does not move.
+  const pays = d.all === Infinity ? Infinity : d.all + (!d.extra && (d.unitLast || gated) ? 1 : 0);
   // RC_DBG=<id>,<id> prints the parts a row's turn is made of. This is how the five-row gap between
   // --ignition and --ignition-nogate turned out to be the readiness `+1` and not a residual: `all`
   // was identical under both arms and only `unit` moved.
   if (process.env.RC_DBG && process.env.RC_DBG.split(",").includes(e.id))
-    console.error(`DBG ${e.id} all=${d.all} unit=${d.unit} gatedPayoff=${gated} pays=${pays} postUnits=${finalCosts.filter((c)=>c.gated&&c.unit).length} costs=${JSON.stringify(finalCosts.map((c)=>`${c.e}/${c.p}${c.unit?"U":""}${c.gated?"*":""}`))}`);
+    console.error(`DBG ${e.id} all=${d.all} unit=${d.unit} unitLast=${d.unitLast} extra=${d.extra} gatedPayoff=${gated} pays=${pays} postUnits=${finalCosts.filter((c)=>c.gated&&c.unit).length} costs=${JSON.stringify(finalCosts.map((c)=>`${c.e}/${c.p}${c.unit?"U":""}${c.gated?"*":""}`))}`);
   const note = [usesBanned(e) && "BANNED in constructed", fuel && `fuel: + ${fuel}`,
                 via && `payoff: + ${via}`].filter(Boolean).join("; ");
   // Baseline AND the printed identity both read the MERGED set: the deck you would actually build
