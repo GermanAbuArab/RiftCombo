@@ -160,8 +160,10 @@ are Fury, Chaos or Fury/Chaos, whose text carries [Action] or [Reaction], and th
 stun, return, banish, move, counter or Might, read by hand. Of those, the ones that remove a 4-Might
 unit outright, with no other condition, are Decree of Rage (E1 + 1 Power), `OGN-172 Rebuke` (E2 + 2
 Power), `VEN-008 Ruthless Strike` (E3, with a discard), `OGN-024 Void Seeker` (E3 + 1 Power),
-`VEN-106 Wind and Ghosts` and `UNL-128 Star-Crossed` (both E3 + 1 Power) and `OGN-203 Possession`
-(E8 + 3 Power). Four more kill her only with a condition: `UNL-014 Monster Harpoon` (E1 + 1 Power)
+`VEN-106 Wind and Ghosts` and `UNL-128 Star-Crossed` (both E3 + 1 Power), `OGN-014 Sky Splitter`
+(E8 + 1 Power, *"This spell's Energy cost is reduced by the highest Might among units you control.
+Deal 5 to a unit at a battlefield."*, so E5 + 1 Power on their T4, where the Dangerous Duo's 3 is
+their highest Might and they have eight runes) and `OGN-203 Possession` (E8 + 3 Power). Four more kill her only with a condition: `UNL-014 Monster Harpoon` (E1 + 1 Power)
 if they control a facedown card, `VEN-010 Consuming Curse` (E2) with two Curses already in their
 trash, `OGN-008 Get Excited!` (E2 + 1 Power) by discarding a card of Energy cost 4 or more, and
 `OGN-033 Shakedown` (E2 + 1 Power) only if you refuse to let them draw 2. `OGN-169 Gust` (E1)

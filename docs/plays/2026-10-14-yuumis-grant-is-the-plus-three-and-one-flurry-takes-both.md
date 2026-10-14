@@ -190,6 +190,16 @@ have seven ready runes; one Calm among them pays both halves (164.2.a, 164.2.b).
 (Body) does not: it counters only a spell that chooses your unit, and Flurry chooses nothing
 (355.10.d).
 
+**The draw alone has a one-rune answer that leaves the grant standing.** `VEN-015 Decree of Rage`
+(Fury, E1 + 1 Power, *"This can't be countered. Deal 4 to an enemy Calm (:rb_rune_calm:) unit."*)
+and `OGN-009 Hextech Ray` (Fury, E1 + 1 Power, *"Deal 3 to a unit at a battlefield."*) are both
+[Action], so neither can answer Yuumi's trigger on the Combat Chain. Cast in the Combat Showdown once
+they have Focus, either one kills the Affectionate Poro, Might 3, and there is no card. The Tank half
+still works: Yuumi and the Guardian attack at 1 + 6 = 7, their 5 all go on the Guardian, your 7 kill
+both, and you conquer B. That is 4 to 3, with the Poro gone and no card. Defy or Repulse counters the
+Ray, because it chooses the Poro alone. The Decree cannot be countered, so neither of them answers
+it.
+
 **The answer that costs no card** is Might. They need one point more than the Guardian's Might after
 the grant, 7 against your attack and 8 against your defence, to put anything on the Poro.
 
