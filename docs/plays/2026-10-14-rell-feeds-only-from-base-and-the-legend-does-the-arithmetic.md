@@ -173,20 +173,33 @@ Dirks: by T5 (**9** seen) that is **0.92%**, by T8 (**12** seen) **2.41%**.
 a Rell with three Dirks defends at Might 4, and [Tank] makes her the first body their damage must
 kill (815.1.b). Their T4 did that with three bodies already on the board.
 
-**On her attack, the cheapest break is a stun for 2 Energy.** The scope: the 24 spells in
+**On her attack, the cheapest break is one Energy, and it kills her.** The scope: the 38 spells in
 `data/corpus_flat.txt` whose domains are Calm, Order or Calm/Order, whose text carries [Action] or
-[Reaction], and that say kill, deal, stun, return, banish, move, counter or Might, read by hand. The
-cheapest that stop her damage are two Energy and no Power: `SFD-040 Thwonk!` (Calm, E2, [Action]: *"Stun
-an attacking unit. (It doesn't deal combat damage this turn.)"*) and `OGN-220 Facebreaker`
-(Order, E2, which stuns *"a friendly unit and an enemy unit at the same battlefield"*, so it needs a
-body of theirs there). Hidden a turn earlier, Facebreaker costs nothing to play (811.1.b). `OGN-050
-Rune Prison` is E2 + 1 Power, `UNL-042 Back Off` E3, `OGN-262 Zenith Blade` E3 + 2 Power.
+[Reaction], and that say kill, deal, stun, return, banish, move, counter or Might, read by hand.
+Five cost one Energy and no Power. The one that reaches her is `VEN-040 Decree of Focus` (Calm, E1):
+*"[Reaction] (Play any time, even before spells and abilities resolve.) Choose a friendly unit
+that's in combat with an enemy Fury (:rb_rune_fury:) unit or that's being chosen by an enemy Fury
+spell. Give it +4 :rb_might: this turn."* Rell is Fury. Of the other four, `OGN-046 En Garde` makes
+a lone Stalwart Poro 3 + 2 = 5, `UNL-031 Combat Experience` 3 + 1 = 4 (3 + 3 = 6 at [Level 6]), and
+`UNL-046 Friendship` 3 + 1 = 4, one Poro tag among their units. None reaches 7. `UNL-173 Sacrifice`
+kills a friendly unit of theirs and touches nothing of yours.
 
-Walked on T3: had they kept two runes up on their T2 (no Clockwork Keeper), Thwonk on Rell after
-her trigger leaves her at 7 Might dealing no damage. Radiant Dawn then buffs the Stalwart Poro. Its 4
-on Rell is not lethal, and 466.1.a.2 recalls her: *"Recall Attackers present at the Battlefield if
-Defenders are still present."* She goes home with the Dirk still on her, and B stays theirs. You
-lose the Conquer and they keep their Hold; the Dirk is not lost.
+Walked on T3: had they kept one rune up on their T2 (holding the Clockwork Keeper for later),
+Decree of Focus on the defending Stalwart Poro makes it 2 + 1 + 4 = 7 against Rell's 7. Each side's
+damage is lethal at the combat cleanup's kill step, which runs before her Assault ends (§2). Both
+die, and 466.5.b leaves B uncontrolled: *"If there are no Units remaining here controlled by any
+player, the Battlefield becomes Uncontrolled."* You lose the Conquer and Rell, and her Dirk goes to
+your base (§5). For one rune they trade a 2-drop for your 4-drop.
+
+**The stuns cost two Energy and only stop her.** `SFD-040 Thwonk!` (Calm, E2, [Action]: *"Stun an
+attacking unit. (It doesn't deal combat damage this turn.)"*) and `OGN-220 Facebreaker` (Order, E2,
+which stuns *"a friendly unit and an enemy unit at the same battlefield"*, so it needs a body of
+theirs there). Hidden a turn earlier, Facebreaker costs nothing to play (811.1.b). `OGN-050 Rune
+Prison` is E2 + 1 Power, `UNL-042 Back Off` E3, `OGN-262 Zenith Blade` E3 + 2 Power. Walked on T3
+with two runes kept up (no Clockwork Keeper): Thwonk on Rell after her trigger leaves her at 7
+Might dealing no damage. Radiant Dawn then buffs the Stalwart Poro. Its 4 on Rell is not lethal, and
+466.1.a.2 recalls her: *"Recall Attackers present at the Battlefield if Defenders are still
+present."* She goes home with the Dirk still on her, and B stays theirs.
 
 ## 7. Verdict
 
@@ -195,8 +208,8 @@ and 807.2 sums the Assault, and the stack survives its own fights because the As
 466.7.a. But Rell's trigger needs her to walk out of base into a battlefield they hold. After one
 conquest she is parked (144.4), and the hand is not the binding limit. In the walk she attacked once
 and fed herself one Dirk. She died on defence at Might 4, and the arithmetic went on without her,
-because the Purifier counts Equipment on any body. A 2-Energy stun answers her attack, and her
-defence needs no answer at all.
+because the Purifier counts Equipment on any body. On her attack, one Energy of Decree of Focus on
+a lone defender kills her; on defence she needs no answer at all.
 
 ## 8. Not verified
 
@@ -214,8 +227,8 @@ reads *"This has [Reaction]."* The Ava play of slice 31 makes the same assumptio
 [Equip]s. By T5 you have channelled ten of your twelve runes and recycled none, so with six Fury
 the ten hold at least four and it never fails; with four Fury, still at least two, **0 of 66
 deals**. Rell, the Dirk played by her trigger and every other card in the walk cost Energy only.
-Their side spends no Power: Thwonk and Facebreaker are Energy only, and a hidden Facebreaker's rainbow
-is any rune.
+Their side spends no Power: Decree of Focus, Thwonk and Facebreaker are Energy only, and a hidden
+Facebreaker's rainbow is any rune.
 
 The probabilities in §5 count only cards in hand at the turn named. I did not walk the mulligan,
 their T5, 2v2, a response to the trigger itself, or what *"Attach it to me"* does if Rell is gone

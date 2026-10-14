@@ -182,8 +182,10 @@ the free play gone with it.
 I did not deal the channel order. Their Drakehound needs one Fury among their first three runes,
 which it recycles: with six Fury in the twelve it fails in **20 of 220 deals, 9.09%**. Your side needs
 no domain in the walk: the Sentry, Poro, Guardian and the Monk's ability are Energy only, and the
-hide's rainbow is any rune. Defy in §5 needs one Calm among your ready runes on their T3; I did not
-price that, since you choose which rune to recycle on T2. Gust needs no Power.
+hide's rainbow is any rune. Defy in §5 needs one Calm among the six runes you have channelled by
+T3. With six Calm in the twelve the six hold none in **1 of 924 deals, 0.11%**; with four, **28 of
+924, 3.03%**. With at least one Calm you keep it by recycling another rune on T2 and leaving it
+ready on T3. Gust needs no Power.
 
 I did not walk which unit they kill when both are lethal options, the case where they keep the Cub
 alive and kill the Sentry (the Cub then holds B and can leave it), the mulligan, a second hide, or
