@@ -204,9 +204,16 @@ Diplomats conquer G, **4 to 3**. Without Thrill it is the same score. Darius's +
 nobody is fighting. The price is that Darius lives and Holds B on your T5. Thrill could bring Darius
 himself to G instead; whether he then triggers off his own play is the knot the entry declines (§7).
 
-**Five cards answer the trick, at two runes.** They get priority while Thrill is on the chain
-(312.2.d) and Focus back once your chain closes (347.1.b), and they have nine runes:
+**Nine cards answer the trick, one of them for one rune.** They get priority while Thrill is on the
+chain (312.2.d) and Focus back once your chain closes (347.1.b), and they have nine runes. Runes are
+counted as the play counts its own: a rune exhausted for Energy can be recycled for Power (164.2.a,
+164.2.b), so E1 + 1 Power is one rune and E2 + 2 Power is two.
 
+- `OGN-169 Gust` (Chaos, E1): *"[Reaction] (Play any time, even before spells and abilities
+  resolve.) Return a unit at a battlefield with 3 :rb_might: or less to its owner's hand."* The Poro
+  at B is a 2, and [Deflect] adds one rainbow Power: E1 + 1 Power, **one rune**, exhausted and
+  recycled. Darius alone, an 8 with 1 marked, dies to their 10, and your 8 leave a Diplomat to
+  conquer B.
 - `UNL-131 Abandon` (Chaos, E2): *"[Reaction] (Play any time, even before spells and abilities
   resolve.) Counter a spell. Return it to its owner's hand instead of putting it in their trash.
   [Predict]. (Look at the top card of your Main Deck. You may recycle it.)"* Played on Thrill, it
@@ -216,31 +223,46 @@ himself to G instead; whether he then triggers off his own play is the knot the 
 - `VEN-072 Guttural Roar` (Body, E2): *"[Action] (Play on your turn or in showdowns.) Give a unit +2
   :rb_might: this turn. If it's [Empowered], give it +4 :rb_might: this turn instead."* Their 12
   still kill Darius and the Poro (9). Your 10 leave 2 Might of theirs standing, and it conquers B.
-  `UNL-095 Grim Resolve` (Body, E2, +3) does it with 1 more to spare.
-- `OGN-169 Gust` (Chaos, E1): *"[Reaction] (Play any time, even before spells and abilities
-  resolve.) Return a unit at a battlefield with 3 :rb_might: or less to its owner's hand."* The Poro
-  at B is a 2, but [Deflect] makes it E1 + 1 rainbow Power, two runes. Darius alone, an 8 with 1
-  marked, dies to their 10, and your 8 leave a Diplomat to conquer B.
+  `UNL-095 Grim Resolve` (Body, E2, +3) does it with 1 more to spare, and `SFD-097 Punch First`
+  (Body, E1 + 2 Power, two runes): *"[Action] (Play on your turn or in showdowns.) Give a unit +5
+  :rb_might: this turn."* with 4 more: their 15 kill both of yours, and your 10 cannot kill 15.
+- `OGN-127 Cannon Barrage` (Body, E2 + 1 Power, two runes): *"[Reaction] (Play any time, even before
+  spells and abilities resolve.) Deal 2 to all enemy units in combat."* The Poro dies and Darius has
+  3 marked, so 5 is lethal. Their 10 kill him, and your 8 leave a Diplomat to conquer B.
+- `OGN-172 Rebuke` (Chaos, E2 + 2 Power, two runes): *"[Action] (Play on your turn or in showdowns.)
+  Return a unit at a battlefield to its owner's hand."* Darius has no [Deflect]. The Poro alone dies,
+  and your 2 kill one Diplomat.
+- `SFD-145 Switcheroo` (Chaos, E2 + 2 Power, two runes): *"[Hidden] (Hide now for :rb_rune_rainbow: to
+  react with later for :rb_energy_0:.) [Action] (Play on your turn or in showdowns.) Swap the Might of
+  two units at the same battlefield this turn."* Darius's 8 for a Diplomat's 2: their 16 kill both of yours, and your 4
+  kill one or two of theirs.
 
-If they run three of one of these cards, one is among the 9 cards they have seen by their T4 (four
-opening, four draws and Kinkou's) in **55.58%**; with six, **81.80%**; with twelve (three each of
-four), **97.79%**. Each is 9 of 39.
+If they run three copies of Gust, one is among the 9 cards they have seen by their T4 (four opening,
+four draws and Kinkou's) in **55.58%**; with six answers from the list, **81.80%**; with twelve
+(three each of four), **97.79%**. Each is 9 of 39.
 
 **The scope of the cheap-card verdict.** A Body/Chaos deck plays only Body, Chaos and Body/Chaos cards
 (103.1.b.1). In `data/corpus_flat.txt` the spells in those domains with [Action] or [Reaction], the
-only spells they can play in their own Showdown (308.1.a), are 38. None breaks the trick for one rune:
+only spells they can play in their own Showdown (308.1.a), are 38. One breaks the trick for one rune,
+and eight more for two:
 
-- One rune: `SFD-122 Called Shot` (E0 + 1 Power) and `OGN-168 Fight or Flight` are banned in
-  Constructed; `OGN-268 Bullet Time` is a Miss Fortune Signature card, which a Sivir legend cannot
-  run (103.2.d.2). `OGN-133 Flurry of Blades` deals 1 to all units at battlefields, theirs too: their
-  10 still kill only Darius and the Poro, and your 10 now need only 6 to kill all four. `OGN-179
-  Acceptable Losses`, `OGN-183 Stacked Deck` and `SFD-135 Factory Recall` touch no unit. Gust is two
-  runes against the Poro.
-- At two runes, the five above break it. The rest of the two-rune spells, among them `UNL-134
-  Existential Dread` (which stuns an *attacking* enemy unit, and yours defend), do not.
-- Units that can enter the fight: [Ambush] in those domains is `UNL-114 Nidalee, Cat Form` (E3 + 1),
-  `UNL-143 Kha'Zix, Mutating Horror` (E4 + 1), `UNL-149 Diana, No Longer Human` (E4 + 1) and
-  `UNL-120 Rengar, Trophy Hunter` (E5 + 1). Four runes at least.
+- One rune: Gust, against the [Deflect] Poro. `SFD-122 Called Shot` (E0 + 1 Power) and `OGN-168
+  Fight or Flight` are banned in Constructed; `OGN-268 Bullet Time` is a Miss Fortune Signature card,
+  which a Sivir legend cannot run (103.2.d.2). `OGN-133 Flurry of Blades` deals 1 to all units at
+  battlefields, theirs too: their 10 still kill only Darius and the Poro, and your 10 now need only 6
+  to kill all four. `OGN-179 Acceptable Losses`, `OGN-183 Stacked Deck` and `SFD-135 Factory Recall`
+  touch no unit.
+- At two runes, the eight above break it. The rest of the two-rune spells, among them `UNL-134
+  Existential Dread` (which stuns an *attacking* enemy unit, and yours defend), `SFD-111 Here to
+  Help`, `OGN-128 Challenge`, `UNL-142 Heedless Resurrection` and `OGN-173 Ride the Wind`, do not.
+- [Hidden] is a one-rune route on an earlier turn (Switcheroo and Here to Help carry it), and the walk
+  closes it: anything they hide at B on their T3 is gone when you conquer B on your T4, 466.5.c:
+  *"Remove all Hidden cards from this Battlefield that do not share a controller with the
+  Battlefield."*
+- Units that can enter the fight: [Ambush] in those domains is `UNL-114 Nidalee, Cat Form` (E3 + 1,
+  three runes, an M4 that makes their 14 against your 10), `UNL-143 Kha'Zix, Mutating Horror` (E4 + 1),
+  `UNL-149 Diana, No Longer Human` (E4 + 1) and `UNL-120 Rengar, Trophy Hunter` (E5 + 1). Three runes
+  at least.
 
 ## 6. Verdict
 
@@ -251,8 +273,8 @@ uncontrolled battlefield. Darius's +2 was exactly the margin, and he died anyway
 nothing on their turn, because a defender needs no readiness and nobody moves on another player's
 turn. It paid on yours, on T4, where two 2-drops readied Darius after he walked home, and he walked
 again as a 9 to take B. Thrill was not needed for that. The 8 counts only at Darius's battlefield.
-Attacking the other one costs no card, and a two-rune answer after the trick reverses the one they
-attack.
+Attacking the other one costs no card. At the one they attack, Gust on the [Deflect] Poro reverses
+the trick for one rune, and eight more cards do it for two.
 
 ## 7. Not verified
 
@@ -262,7 +284,9 @@ channelled by then: it fails in **1 of 924 deals, 0.11%**. Thrill's Power is one
 `data/cards.json` gives *fury* and *body* and a Power of 1, not which. With one Fury recycled for
 Darius, the eight runes channelled by T4 hold a Fury and a Body to spare in **all 495 deals** (0
 fail either way), and you choose which three to keep. Their walk costs Energy only. Gust's tax is a
-rainbow Power, any domain.
+rainbow Power, any domain. Of §5's answers, Punch First needs two Body, Rebuke and Switcheroo two
+Chaos, and Cannon Barrage and Nidalee one Body among the nine runes of their T4. Nine of twelve at six
+and six hold at least three of each, so that holds in **every deal**.
 
 I did not walk Thrill replaying a unit to *their* battlefield. 190.3.a.1: *"Units moving to or being
 played to a battlefield apply Contested status if that battlefield is not already Contested and that
@@ -287,10 +311,11 @@ assumption; §5 prices it. The probabilities in §4 and §5 count only the cards
 - The source's *"swing in for eight"* cannot happen on their turn (410.1.a). On your turn Darius's
   half needs no Thrill: any second card readies him and gives the +2. In the walk two 2-drops and
   Pridestalker's two triggers made a 9 that walked twice on T4.
-- No notable names the answer after the trick. Focus goes back to them when your chain closes
-  (347.1.b), and in their Body/Chaos colours five cards undo it for two runes: `UNL-131 Abandon`,
-  `SFD-136 Hard Bargain` when you hold fewer than two runes more, `VEN-072 Guttural Roar`, `UNL-095
-  Grim Resolve`, and `OGN-169 Gust` against a [Deflect] body.
+- No notable names the answer to the trick. They get priority on Thrill's chain (312.2.d) and Focus
+  back when it closes (347.1.b). In their Body/Chaos colours `OGN-169 Gust` undoes it for one rune
+  against a [Deflect] body, and eight cards for two: `UNL-131 Abandon`, `SFD-136 Hard Bargain` when
+  you hold fewer than two runes more, `VEN-072 Guttural Roar`, `UNL-095 Grim Resolve`, `SFD-097
+  Punch First`, `OGN-127 Cannon Barrage`, `OGN-172 Rebuke` and `SFD-145 Switcheroo`.
   Banish a unit from base, which *"a unit at a battlefield"* spells cannot reach.
 - The second notable's 8 assumes Pridestalker's +1 goes on Darius. The legend reads *"give a unit"*;
   it is a choice, and the replayed body is the other candidate.

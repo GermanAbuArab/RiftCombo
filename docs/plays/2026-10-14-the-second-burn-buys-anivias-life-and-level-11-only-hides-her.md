@@ -251,7 +251,8 @@ Closed State."*), and only a [Reaction] card can be played there, 813.1.c.1: *"T
 during Closed States on any player's turn."* Hidden Blade gains it from facedown. Of the four, it is
 the only one that kills her before either sweep resolves. Left out of the four: the cards whose kill
 is capped by Might, `VEN-154 Public Execution` (only an enemy with less Might than a friendly
-unit), the ones where the victim's controller picks it (`OGN-209 Cull the Weak`, `OGN-237
+unit), `UNL-159 Soul Harvest` and `VEN-127 Lacerate` (3 or less) and `SFD-162 Blood Money` (2 or
+less), `VEN-131 Decree of Unity` (only a Chaos unit or gear), the ones where the victim's controller picks it (`OGN-209 Cull the Weak`, `OGN-237
 King's Edict`, `VEN-090 Cataclysmic Duel`), `OGN-221 Imperial Decree` (only units that take damage) and
 `UNL-180 The Ruination` (E9 + 3, all units).
 
