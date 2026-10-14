@@ -22,7 +22,7 @@ facedown Hidden Blade from free into one Energy and one Power, and they had both
 unchanged from the issue. The pick is by global rank, skipping entries that already have a play: this
 entry is rank 58 (a hit on *in that same window*), second in the list. The other entry of this slice
 is rank 57, `UNL-218 Valley of Idols` under the two *"While I'm buffed"* statics, played in
-[the Valley's buff is the legend's, until two bodies land in a turn](2026-10-13-the-valleys-buff-is-the-legends-until-two-bodies-land.md). The same legend's two
+[the Valley's buff is the legend's, until two bodies need one in a turn](2026-10-13-the-valleys-buff-is-the-legends-until-two-bodies-need-one.md). The same legend's two
 readied runes pay a different off-turn spell in
 [the Repeat counters only into two or three spare Energy](2026-10-13-the-repeat-counters-only-into-two-or-three-spare.md).
 
@@ -197,10 +197,11 @@ inside her combat it is taxed as walked.
 The scope of *"cheapest"*: a sweep of the 1,042 base codes in `data/cards.json` for text that kills a
 unit, deals 5 or more, or deals damage equal to something returns 91 cards, read by hand. None at
 two resources or less kills an enemy Might-5 unit without a condition (`SFD-162 Blood Money` stops
-at Might 2, `VEN-154 Public Execution` needs a friendly unit with more Might). At three there are
-four: Decree of Unity and Hidden Blade in Order, `VEN-008 Ruthless Strike` in Fury (E3 and a
-discard, at a battlefield), and `OGN-033 Shakedown` in Fury, which deals 6 *"unless its controller
-has you draw 2"*, so you choose.
+at Might 2). At three there are four: Decree of Unity and Hidden Blade in Order, `VEN-008 Ruthless
+Strike` in Fury (E3 and a discard, at a battlefield), and `OGN-033 Shakedown` in Fury, which deals 6
+*"unless its controller has you draw 2"*, so you choose. Also at three, and conditional,
+`VEN-154 Public Execution` (Body/Order, E2 + 1 Power) needs a friendly unit with more Might than
+hers.
 
 **The cheapest break costs no card at all: don't fight where she is.** She discounts only in
 combat, and she has no [Ganking], so she can attack only the battlefield you do not hold. An

@@ -1,4 +1,4 @@
-# Play — the Valley's buff is the legend's, until two bodies land in a turn
+# Play — the Valley's buff is the legend's, until two bodies need one in a turn
 
 Issue #332 (a slice of #200), 2026-10-13. Constructed, Duel (485). Rules version 2026-07-16.
 Card text verbatim from `data/corpus_flat.txt`; rules pasted from
@@ -9,9 +9,10 @@ Card text verbatim from `data/corpus_flat.txt`; rules pasted from
 Elder` and `OGN-125 Bilgewater Bully` to `UNL-218 Valley of Idols` and pays one Energy to buff each
 as it lands, so the Elder is Might 6 and the Bully has [Ganking] the turn they are played. The entry
 is right about the arithmetic. Walked as a game under `OGN-257 Blind Monk`, one of the legends it
-lists, the Valley's buff is the one the legend places for the same Energy on any turn you play one
-unit, and it adds a buff only on a turn you play two or more units there: two buffs in four turns
-here. The buffs it placed changed which removal spell the opponent used, never whether one could be
+lists, the Valley's buff is the one the legend places for the same Energy on any turn only one of
+your units needs a buff. It adds a buff only on a turn two or more of your units need one, whether
+played that turn or already on the board unbuffed, and one unit played there is enough: two buffs in
+four turns here. The buffs it placed changed which removal spell the opponent used, never whether one could be
 used, and the Bully died to `OGN-213 Hidden Blade` before his [Ganking] could move him. And the
 Valley is on the table in one Duel in three.
 
@@ -68,9 +69,10 @@ legend would not place that turn.
 any battlefield, for the same one Energy. Its ability carries no [Reaction], so it is used on your
 own turn, 310.1.a: *"By default, cards can be played and abilities activated only when a player has
 priority on their turn in a Neutral Open state."* That is the same turn the Valley buffs on. A unit
-played to the Valley and left unbuffed is buffed by the legend in the same Main Phase. On a turn you
-play one unit, the Valley's buff and the legend's are the same buff at the same price. On a turn you
-play two units, the Valley places the second.
+played to the Valley and left unbuffed is buffed by the legend in the same Main Phase. On a turn only
+one of your units needs a buff, the Valley's buff and the legend's are the same buff at the same
+price. On a turn two need one, the Valley places the second: two units played there, or one played
+there beside an unbuffed body already on the board, as on T2 below.
 
 ## 3. Where the bodies stand
 
@@ -195,12 +197,16 @@ others cost as much and are conditional: `OGN-033 Shakedown` lets you take two c
 against it, and every body the Valley buffs is at a battlefield by construction. Three resources a
 body, and two cards to you each time.
 
-**In Mind without Order it breaks to `OGN-085 Falling Comet`** (E5) for the Elder, whose buffed Might
-is exactly the 6 it deals, and for an unbuffed Bully. A buffed Bully is out of reach of every Mind
-spell that deals damage to one or two units: the most any of them deals is 6, from Falling Comet and
-`OGN-105 Singularity`. `OGN-123 Unchecked Power` (E7 + 2) deals 12 to all units at battlefields,
-yours included, and `OGS-022 Final Spark`'s 8 is Mind/Order. Under Lee Sin, Centered a buffed Elder
-is 8.
+**In mono-Mind spells it breaks to `OGN-085 Falling Comet`** (E5) for the Elder, whose buffed Might
+is exactly the 6 it deals, and for an unbuffed Bully. A buffed Bully is out of reach of every
+mono-Mind spell that deals damage to one or two units: the most any of them deals is 6, from Falling
+Comet and `OGN-105 Singularity`. `OGN-123 Unchecked Power` (E7 + 2) deals 12 to all units at
+battlefields, yours included. Scope: the spells in `data/cards.json` whose only domain is Mind. The
+two-domain Mind spells are another matter: `OGS-022 Final Spark`'s 8 is Mind/Order, and in Calm/Mind
+the line breaks to `VEN-146 Siphoning Strike` (E4): *"Deal 4 to a unit at a battlefield. If you
+control 7 or more runes, deal 7 to it instead."* With seven runes it kills a buffed Bully, and it
+kills a buffed Elder for four resources, one fewer than Falling Comet. Under Lee Sin, Centered a
+buffed Elder is 8.
 
 **The Valley itself breaks to emptying it.** 323.6: *"Players lose control of any controlled
 Battlefields without their Units occupying them if the turn is in an Open State and there is no
@@ -219,8 +225,8 @@ It kills an unbuffed Elder there and not a buffed one.
 **Right about the statics, and the Valley's buff is a second buff a turn, not a first.** A buffed
 Elder is Might 6 and a buffed Bully has [Ganking] on the turn they land, exactly as the entry says.
 The play adds three things it does not state. Under Blind Monk, one of its own legends, the Valley's
-buff is the legend's on any turn you play one unit and adds a buff only on a turn you play two or
-more there: two of five in this walk. Every body it buffs stands at a battlefield through the
+buff is the legend's on any turn only one of your units needs a buff, and adds a buff only on a turn
+two or more need one, played that turn or already on the board unbuffed: two of five in this walk. Every body it buffs stands at a battlefield through the
 opponent's next turn, where `OGN-213 Hidden Blade` kills it for three resources whatever its Might,
 so the Bully's [Ganking] arrives a turn before it can be used and died first here. And the Valley is
 on the table in one Duel in three, so the line, with its two payoffs in hand by T3 and T4, is 7.2%
@@ -231,7 +237,8 @@ of games.
 No card in my line costs Power, so I did not deal my channel order; no rune split changes a play
 here. Theirs: Hidden Blade needs one Order rune among their first nine on their T4 and a second by
 their T5; with six Order in their twelve that never fails (the six non-Order runes cannot fill nine
-places), and with three Order in twelve it fails in 1 of 220 deals for the first, 0.45%. I did not
+places), and with three Order in twelve it fails in 1 of 220 deals for the first, 0.45%, and never
+for the second, since eleven runes channelled by their T5 always hold at least two of three Order. I did not
 check that `OGN-151 Lee Sin, Centered` is a champion unit: the card data does not carry that flag, so
 the Chosen Champion is read from its Lee Sin tag (103.2.a.2) and its name. I did not walk Blind Monk
 buffing at base and playing the payoffs there, which the §6 reading says avoids every removal the
@@ -250,8 +257,8 @@ the walk, for the third 2-drop's eleven cards.
 - The entry's fourth notable says a unit played to the Valley *"is already buffed rather than waiting
   for a buffer to find it next turn"*. Under `OGN-257 Blind Monk`, listed in its own `easy`
   prerequisite, the buffer finds it the same turn for the same Energy: the legend's ability is used in
-  the same Main Phase (310.1.a). The Valley's edge over it is the second and later units played there
-  in one turn.
+  the same Main Phase (310.1.a). The Valley's edge over it is a turn when two or more of your units
+  need a buff, played that turn or already on the board unbuffed; one unit played there is enough.
 - The entry's first notable says the other five *"buffed"* rows *"are cards that BUFF or that react to
   a buffed body dying"*. Two of the five do neither: `OGN-151 Lee Sin, Centered` (*"Other buffed
   friendly units at my battlefield have +2 :rb_might:"*) and `OGN-240 Sett, Kingpin` (*"I get +1
