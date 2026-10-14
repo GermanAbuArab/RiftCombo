@@ -52,7 +52,12 @@
 //      post-ignition card early at full price, which can only push a row LATER than the truth.
 //      `--ignition-nogate` keeps the discount and drops the gate, letting a card be bought early
 //      cheaper than it really would be, which can only pull a row EARLIER. So the truth is pinned
-//      between them, and they AGREE on 75 of 80 rows.
+//      between them, and they AGREE on 75 of 80 rows. [2026-10-13: 80 of 85.] A card that queues a turn (Time Warp, #339) stays gated in BOTH arms, so for that card
+//      the lower arm is not a relaxation. Measured 2026-10-13: lifting the gate on it as well moves
+//      exactly two rows, bottled-constellation-time-warp and time-warp-hold-burst, from T4 gated to
+//      T2. The gated T4 stands on a necessary condition: a Warp bought before ignition pays its
+//      printed E10, and 10 runes on the board is T5 at the earliest (2 a turn from T1), so on a row
+//      that completes by T4 every Warp is bought with the engine's output and gating it is exact.
 //
 //      THE FIVE THEY DO NOT AGREE ON ARE NOT A RESIDUAL, AND THE FIRST VERSION OF THIS NOTE SAID
 //      THEY WERE. `jayce-mesmerize-renata`, `lux-infinite-power`, `renata-bubble-bot-ready`,
@@ -189,7 +194,9 @@ const ignition = !args.includes("--no-ignition");
 // --ignition-nogate keeps the discount and drops the gate, which lets a card be bought early at a
 // price lower than it would really pay, and so can only pull a row EARLIER than the truth. Where the
 // two agree, the truth is pinned between them and equals both. Where they disagree, the restriction
-// is costing something and the row needs a hand walk.
+// is costing something and the row needs a hand walk. The one exception to "drops the gate": a card
+// that queues a turn stays gated in both arms (#339), and the header's sandwich note gives the two
+// rows that exception holds back (T4 gated, T2 without it) and why their T4 is the true one.
 const ignNoGate = args.includes("--ignition-nogate");
 const FUEL_E = "infinite-energy";
 const FUEL_P = "infinite-power";
@@ -501,9 +508,13 @@ function deployTurnUncached(types, costs) {
   for (let i = 0; i < dim; i++) { stride[i] = space; space *= types[i].n + 1; }
   // ADDITIONAL TURNS (#339). A `turn` cost ("Take a turn after this one", OGN-122 Time Warp) queues
   // a turn the opponent never answers, so it runs INSIDE the clock turn that cast it: its own
-  // Channel Phase and its own Awaken (315.1.b, 315.3.b), and no step on the clock. The number of
-  // turns still queued is the one thing the state needs beyond the counts, and it can never exceed
-  // the number of `turn` costs, so it rides as the most significant digit of the same integer.
+  // Awaken and its own Channel Phase (315.1.b, 315.3.b), and no step on the clock, because 737:
+  // "When an Additional Turn is inserted into this queue, it does not change the Turn Order of the
+  // game. The owner of the Additional Turn just has the next queued turn. After that turn is
+  // completed, it will be removed and the queue will proceed with its previously queued turns."
+  // The number of turns still queued is the one thing the state needs beyond the counts, and it
+  // can never exceed the number of `turn` costs, so it rides as the most significant digit of the
+  // same integer.
   let warps = 0;
   for (const t of types) if (t.turn) warps += t.n;
   const SZ = space * (warps + 1);
@@ -600,8 +611,9 @@ function deployTurnUncached(types, costs) {
     // post-ignition card be bought EARLY at full price. That can only ever push a row later, never
     // earlier, so this number is not a floor in the way the rest of the table is. It is verified
     // against an independent search over the affected rows rather than assumed.
-    // --ignition-nogate still gates a card that queues a turn (#339): bought free before ignition,
-    // a Time Warp would add a channel for nothing, and the arm exists to bound the PRICE, not that.
+    // --ignition-nogate still gates a card that queues a turn (#339), so for that card the arm is
+    // NOT a relaxation. Why its gated answer is exact on the only two rows it touches is a necessary
+    // condition stated in the header's sandwich note, not something this line assumes.
     if (t.gated && ungated >= 0 && (!ignNoGate || t.turn)) {
       let done = true;
       for (let z = 0; z < ungated; z++) if (cnt[z] < types[z].n) { done = false; break; }
