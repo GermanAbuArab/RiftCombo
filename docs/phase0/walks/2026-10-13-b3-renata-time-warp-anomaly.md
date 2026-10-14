@@ -187,6 +187,10 @@ no Renata: Nexus + Sentinels + Anomaly + 3 Time Warp
   smallest board reaching 8: 10
 ```
 
+**[2026-10-13, #338]** The script has since gained the plan for the bare three-Warp line and two more
+bare rows. The output above is the #335 run, and the current run is pasted in
+`2026-10-13-bare-nexus-three-time-warps.md` §4. Every line above is unchanged in it.
+
 The hand ledgers of §4.1 and §4.2 are the plans the search prints at its thresholds. The two
 instruments agree on both lines and on the refusal's model, and neither was derived from the other.
 How close is the null to flipping? With two Warps instead of three, the line needs a full twelve-rune
@@ -249,7 +253,9 @@ outside this issue.
      Renata (§5, last two rows). Refusal R1 and the second notable of
      `power-nexus-atlas-sentinel-time-warp` price only **one** Warp, where it does reach only 5. Seen
      from that line, Renata is worth two runes of threshold, and four with Anomaly. The bare line is
-     not catalogued.
+     not catalogued. **[2026-10-13, #338]** It is now: `power-nexus-sentinel-three-time-warps`
+     (candidate), walked in `2026-10-13-bare-nexus-three-time-warps.md`. The next item is corrected
+     in R1's table, with a dated 161.2.a note.
    - R1's table in `2026-09-06-engine-payoff-walk.md` §1.1 lists "14" runes left for T1's Main Phase.
      A board holds at most 12 (161.2.a). Its conclusion of 5 is right, and the search reproduces it.
 
