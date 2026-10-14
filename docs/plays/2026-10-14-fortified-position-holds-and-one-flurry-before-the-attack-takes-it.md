@@ -182,11 +182,17 @@ Down E2, so Defy counters either. On their T3 you have three ready runes from yo
 So Fast` counters only a spell that chooses a friendly unit, and the Flurry chooses nothing
 (355.10.d).
 
-**The entry's Order protection lands too late.** With Order as the second domain, the entry lists
-`OGN-243 Darius, Executioner` and `OGS-013 Garen, Commander`: *"Other friendly units have +1
-:rb_might: here."* A Mouser beside either is a 2 out of combat and lives through the Flurry. Each
-costs E6 + 1 Power. Seven runes is your T4 at the earliest. The Flurry is in their hand by their T2 in
-40.30%, a turn and a half before that.
+**The entry's Order protection covers their T3, not their T2.** With Order as the second domain, the
+entry lists `OGN-243 Darius, Executioner` and `OGS-013 Garen, Commander`: *"Other friendly units have
++1 :rb_might: here."* A Mouser beside either is a 2 out of combat and lives through the Flurry. Each
+costs E6 + 1 Power. That is six runes, one of them exhausted for the Energy and recycled for the Power
+(164.2.a, 164.2.b), and you have six on your T3. A unit need not be played to base. 355.2.a: *"By
+default, Valid locations include the controller’s Base or a Battlefield the controller controls."*
+Cast on your T3 straight to Fortified Position, either one stands beside the Mousers before their T3.
+Entering exhausted (178.1.a.1) does not switch off a static ability, and the Flurry walked above kills
+nothing. It costs your whole T3: the second Mouser still walks in, but Ribbon Dancer is not played and
+no Defy is held. It does not cover their T2, when the first Mouser stands alone at Fortified Position,
+and the Flurry is in their hand by then in 40.30%.
 
 ## 6. Verdict
 
@@ -202,8 +208,8 @@ up on their turn.
 
 No card in the walk costs Power, so it rests on no rune-dealing assumption for either side, at any
 split. Defy needs one Calm among the six runes you have on your T3. With six Calm in the twelve the
-six hold none in **1 of 924 deals, 0.11%**. Darius or Garen needs one Order among eight runes by T4,
-which six Order in twelve never miss.
+six hold none in **1 of 924 deals, 0.11%**. Darius or Garen, cast on your T3, needs one Order among
+the same six runes. With six Order in the twelve that fails in **1 of 924 deals, 0.11%**.
 
 I put Flurry of Blades in their deck at three copies and did not walk Defy in the turn table. I did
 not walk Fortified Position as their battlefield instead of yours, a third Mouser, the T4 attack on
@@ -217,8 +223,9 @@ B, the mulligan, or 2v2. The probabilities in §4 count only cards in hand at th
   kill it, though in the walk's combat it still turns the fight into a mutual wipe (§5). The Flurry kills Mousers out of combat: in the opponent's Main Phase before the attack,
   or on your own turn.
 - The same notable lists `OGN-243 Darius, Executioner` and `OGS-013 Garen, Commander` as the Order
-  protection. Both cost E6 + 1 Power and land on your T4 at the earliest. A Flurry from a three-copy
-  deck is in hand by their T2 in 40.30% of games (6 of 39 cards seen).
+  protection. Both cost E6 + 1 Power, six runes, so either can be played straight to Fortified
+  Position on your T3 (355.2.a) and covers their T3. Neither covers their T2. A Flurry from a
+  three-copy deck is in hand by then in 40.30% of games (6 of 39 cards seen).
 - No notable names a counter. In Calm, `OGN-045 Defy` (E1 + 1 Power) counters the Flurry and
   `UNL-107 Stare Down`, which empties Fortified Position by sending every Mouser to base.
 - An attacker's own attack trigger is placed on the chain before the grant (464.2.e.1), so you place

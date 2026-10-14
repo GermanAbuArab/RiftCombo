@@ -12,7 +12,7 @@ Walked as a game, both halves worked. On your T3 the Jammer's grant sent a unit 
 battlefield into theirs, and you conquered it while still holding yours. On their T3 Flash took both
 your units off the board before the Flurry resolved, and both survived. Two things the entry does
 not walk decide the line. The Ganking trip empties the battlefield it leaves, and only a second unit
-moving in during the same move keeps it. And Flash pulled one unit from each battlefield, so it gave
+already standing there when the trip leaves keeps it. And Flash pulled one unit from each battlefield, so it gave
 up **both** battlefields, not one. They walked into an empty one and conquered it.
 
 **Why this line.** `scripts/sequence-pick.mjs --unplayed`, re-run on 2026-10-14 at `3ff0f0b`, reads
@@ -61,10 +61,13 @@ Jammer saves exactly one leg. A unit at your battlefield reaches theirs this tur
 **The trip empties the battlefield it leaves.** 323.6: *"Players lose control of any controlled
 Battlefields without their Units occupying them if the turn is in an Open State and there is no
 Showdown or Combat ongoing there."* If the unit that makes the trip was your only unit there, the
-battlefield is gone at the next cleanup. 144.3 is the fix: *"Players may perform multiple Units'
-standard move simultaneously. This is treated as one game action performed on multiple Units."* One
-unit leaves for their battlefield and another walks in from base in the same action, so the cleanup
-after the move finds a unit of yours still there.
+battlefield is gone at the next cleanup, and the cleanup comes straight after the move (319.8). A
+simultaneous move does not help. 144.3 lets several units move as one action, but 144.3.a: *"When a
+Move like this is declared by a player, the units' Destination must be the same."* A unit leaving A
+for B and a unit walking from base to A have different destinations, so they are two moves. The
+second unit has to walk in **first**, with its own Standard Move. Then the trip leaves, and the
+cleanup after it finds a unit of yours still at A. In the other order, the cleanup after the trip
+runs 323.6 at A before the second unit arrives.
 
 **The retreat is a [Reaction], on any turn.** 813.1.c.1: *"This can be played during Closed States
 on any player's turn."* Flurry of Blades is also a [Reaction] and chooses nothing, *"Deal 1 to all
@@ -103,10 +106,11 @@ T2      4       Chemtech Enforcer walks to A, Conquer: +1. Treasure       1
 their T2        Diplomat walks to B, Conquer. Kinkou Initiate (E3) to
                 base; their other units total 2, no draw. Five runes,
                 two left.
-T3      6       Hold A: +1. Gem Jammer (E2) to base: Ganking on the       3
-                Enforcer at A. One move: the Enforcer A to B, Treasure
-                Hunter base to A (Gold token). At B, 4 against the
-                Diplomat's 2. Conquer B: +1. Four runes left.
+T3      6       Hold A: +1. Treasure Hunter walks base to A (Gold         3
+                token). Gem Jammer (E2) to base: Ganking on the
+                Enforcer at A. Then the Enforcer walks A to B. At B, 4
+                against the Diplomat's 2. Conquer B: +1. Four runes
+                left.
 their T3        Flurry of Blades (E1). In response, Flash (E2): the
                 Enforcer and Treasure Hunter to base (Gold token). The
                 Flurry hits no one. Cleanup: A and B both uncontrolled.
@@ -127,8 +131,9 @@ empty and worth a Conquer. A Flurry on their T2 kills nothing: the Enforcer and 
 
 **Your T3, the trip.** The Enforcer has been at A since T2 and readied in your Awaken (315.1.b), so
 the Jammer's grant goes on it. Without the grant its only move is back to base (144.4.b), and B is a
-turn away. Treasure Hunter, in base since T2, walks to A in the same action (144.3), so A is still
-yours when the move's cleanup runs, and its trigger makes a Gold token. At B the Enforcer is an
+turn away. Treasure Hunter, in base since T2, walks to A first, with its own Standard Move, and its
+trigger makes a Gold token. Only then does the Enforcer leave, so the cleanup after the trip finds
+Treasure Hunter at A and A is still yours (§2). At B the Enforcer is an
 attacker: 807.1.c, *"While I am an attacker, I have +X [M]."* 465.2.c: *"Starting with the
 Attacker, each player assigns an amount of damage equal to their summed Might among the other's
 Units."* Its 4 kill the 2-Might Diplomat. The Diplomat's 2 on a 4 are not lethal (142.4.b), and the
@@ -187,7 +192,14 @@ supersede cards that allow or permit that same action or effect."* With the Reck
 Flash's move is ignored (359.3.e.6) and the Flurry kills Treasure Hunter. But a unit goes to the
 chain when it is played (354), and Flash can be cast in response to the Reckoner itself, before it
 resolves. So the Reckoner breaks the line only if it is already on the board, for E5, before Flash
-is needed. That leaves the second Flurry as the cheapest break in those domains.
+is needed. The last way to break it is to kill Treasure Hunter at [Reaction] speed in response to
+Flash. In those domains that is `OGN-033 Shakedown` (Fury, E2 + 1 Power, [Reaction]): *"Choose an
+enemy unit. Deal 6 to it unless its controller has you draw 2."* It costs more than a Flurry, and you
+can let them draw 2 instead. The [Hidden] `SFD-017 Sudden Storm` and `UNL-003 Mischievous Marai` and
+the [Ambush] `UNL-021 Grim Apothecary` and `VEN-017 Morgana, Vindictive` are not available at that
+moment. They hold no battlefield and have no unit at one when the Flurry is cast. Anything they had
+hidden at B was trashed by 323.7 when you conquered it on T3. That leaves the second Flurry as the
+cheapest break in those domains.
 
 **Cast on your turn, the same Flurry costs you the same.** On your T3 they have two ready runes. Cast
 in the combat at B, the Flurry kills Treasure Hunter at A, or Flash takes it to base. Either way A is
@@ -204,7 +216,7 @@ answer to Flash.
 
 **Right about both halves, short about the cost of the retreat, and silent about what the trip
 leaves behind.** The Jammer's grant turned a two-turn trip into one and was worth a Conquer, but
-only because a second unit walked into the battlefield the first one left in the same move. Flash
+only because a second unit walked into the battlefield the first one left before the trip, not with it. Flash
 answered Flurry of Blades exactly as the entry says and kept two bodies. Pulling one unit from each
 of two battlefields cost both battlefields, and the opponent conquered one of them for free. The
 score was the same with or without Flash. The bodies were the whole gain.
@@ -224,8 +236,9 @@ count only cards in hand at the turn named.
 ## Leads
 
 - Step 2 walks the Ganking trip but not the battlefield it leaves. If the unit making the trip is
-  your last unit there, 323.6 takes that battlefield at the next cleanup. Keeping it needs another
-  unit moving in during the same move (144.3).
+  your last unit there, 323.6 takes that battlefield at the cleanup after the move. Keeping it needs
+  another unit already there when the trip leaves. A simultaneous move cannot do it, because 144.3.a
+  requires one destination.
 - The fourth notable says Flash "trades a battlefield for two bodies". With one unit at each of two
   battlefields, one Flash empties both, and the opponent conquers one of them unopposed on the same
   turn.
