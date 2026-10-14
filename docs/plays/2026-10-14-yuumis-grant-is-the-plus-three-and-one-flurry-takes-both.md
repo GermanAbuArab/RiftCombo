@@ -220,7 +220,11 @@ Energy only. Your Yuumi needs one Calm among the six runes you have channelled b
 the twelve the six hold none in **1 of 924 deals, 0.11%**; with four, **28 of 924, 3.03%**. Defy in
 §5 needs a second Calm among the eight runes channelled by T4; with six Calm it never fails, since
 eight runes hold at most six Body. With four Calm, Yuumi's Calm by T3 and Defy's by T4 together fail
-in **39 of 495 deals, 7.88%**.
+in **39 of 495 deals, 7.88%**. Decree of Rage or Hextech Ray in §5 needs one Fury Power on your T4,
+from a rune other than the one the Drakehound recycled: a second Fury among the seven runes they have
+channelled by their T3. Together with the Drakehound's own need, that fails in **87 of 924 deals,
+9.42%**. Repulse needs one Body Power; with six Body in the twelve, the eight runes you have
+channelled by T4 hold at most six Calm, so it never fails.
 
 The reading that the grant mistargets rests on 359.3.f.2 and 359.3.e.12; the rulebook's own example
 under 359.3.f.2 is a move to base, not a death. If the grant resolved anyway, the Guardian is a 6
