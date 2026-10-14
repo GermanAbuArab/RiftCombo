@@ -91,10 +91,20 @@ Worked, for the record, with `r₁` runes recycled in turn 1's Beginning Phase:
 
 | `r₁` | T1 Nexus firings | Runes left for T1 Main | Time Warp castable? | T2 firings | Total points |
 |---:|---:|---:|---|---:|---:|
-| 0 | 0 | 14 | yes | 3 (12 of 14) | 1 + 0 + 1 + 3 = **5** |
+| 0 | 0 | 12 (was 14, see note) | yes | 3 (all 12) | 1 + 0 + 1 + 3 = **5** |
 | 4 | 1 | 10 | yes (exactly) | 2 | 1 + 1 + 1 + 2 = **5** |
 | 8 | 2 | 6 | **no** (6 < 10 Energy) | — | — |
 | 12 | 3 | 2 | **no** | — | — |
+
+**[2026-10-13, #338: the `r₁ = 0` row is corrected.]** It read "14" runes for T1's Main Phase and
+"3 (12 of 14)" for T2. 161.2.a: *"Exactly 12 Rune cards chosen during Deck Construction."* A board
+of twelve leaves the Rune Deck empty, so T1's channel adds nothing (315.3.b.1: *"If there are fewer than 2 runes in the Rune Deck, they channel as many as possible."*).
+T1's Main Phase has 12 runes and T2 pays three firings with all 12. The total is still **5**. The
+"12 + 2 = 14" budget above is right as an upper bound, because the two channelled runes are reachable
+only after four are recycled, but no board holds 14. `node scripts/b3-ledger-search.mjs` reproduces 5
+from ten to twelve runes. **This refusal prices ONE Time Warp. With three, the same bare cards reach 8
+from ten runes:** `power-nexus-sentinel-three-time-warps`, walked in
+`2026-10-13-bare-nexus-three-time-warps.md`.
 
 ### 1.2 The Gold version reaches eight — entry `power-nexus-atlas-sentinel-time-warp` (CHAIN)
 
@@ -438,7 +448,7 @@ and §4 serve, and `token-body-engine` (11) is the group entries §2 and §6 ser
 
 | # | Candidate | Killed by |
 |---|---|---|
-| R1 | **Power Nexus + 2 Blue Sentinel + Time Warp, bare (no Gold)** as a CHAIN | Arithmetic: 161.2.a (12 runes), 161.2.b (a recycle leaves the board), 315.3.b (2 back per turn) cap the two-turn Power budget at 14 → `floor(14/4)=3` firings + 2 base Holds = **5 points**. Every split gives 5. §1.1 |
+| R1 | **Power Nexus + 2 Blue Sentinel + Time Warp, bare (no Gold)** as a CHAIN | Arithmetic: 161.2.a (12 runes), 161.2.b (a recycle leaves the board), 315.3.b (2 back per turn) cap the two-turn Power budget at 14 → `floor(14/4)=3` firings + 2 base Holds = **5 points**. Every split gives 5. §1.1. **[2026-10-13, #338]** True for ONE Warp; three Warps reach 8 from ten runes (`power-nexus-sentinel-three-time-warps`). |
 | R2 | **Renata Glasc, Industrialist (R25 = A) collapsing the Gold offset** so this turn's Hold-Gold pays this turn's Nexus | 383.3.b + 383.3.b.1 make the Nexus payment the trigger's **base cost, paid to finalize**, and 383.3.d places every simultaneous Hold trigger on the Chain before any resolves. No Atlas has resolved when the Nexus trigger finalizes. §1.3(b) |
 | R3 | **A [Temporary] token engine feeding Bottled Constellation** (`sprite-fountain-malzahar-jayce`, `sprite-fountain-aspiring-engineer` — both Mind, both domain-legal) | 816.1.b kills them "at the start of its controller's Beginning Phase, before scoring", and 315.2 precedes 316 — every Temporary body is dead before the Constellation's Main-Phase-start trigger. §6 |
 | R4 | **A second Blue Sentinel on the Shen line** | 383.2.a.1: "exactly one other unit you control here" is part of the Trigger Condition. K = 2 → the condition fails → Shen never triggers. 3 points becomes 1. §5 |

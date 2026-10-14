@@ -20,6 +20,10 @@
  *   - At most three Time Warps (103.2.b); the window ends when no Additional Turn is queued.
  * Rainbow pays Mind (135.2.e.5.b) and Mind pays rainbow (135.2.e.5.a), so Power is one pool here.
  *
+ * Since #338 it also prints the plan for the bare Nexus + Sentinels + three Time Warps line, a bare
+ * two-Warp row and the bare line under R1 = B; that line is walked in
+ * docs/phase0/walks/2026-10-13-bare-nexus-three-time-warps.md.
+ *
  * Usage: node scripts/b3-ledger-search.mjs
  */
 
@@ -80,6 +84,9 @@ const rows = [
   ["B3 + Anomaly if the Sentinels did NOT stack (R1 = B)", { nexus: true, noStacking: true, renata: true, anomaly: true, timeWarps: 3 }],
   ["no Renata: Nexus + Sentinels + 3 Time Warp", { nexus: true, renata: false, anomaly: false, timeWarps: 3 }],
   ["no Renata: Nexus + Sentinels + Anomaly + 3 Time Warp", { nexus: true, renata: false, anomaly: true, timeWarps: 3 }],
+  // #338: the bare line with two Warps, the case between R1 (one Warp, 5) and the three-Warp line.
+  ["no Renata: Nexus + Sentinels + 2 Time Warp", { nexus: true, renata: false, anomaly: false, timeWarps: 2 }],
+  ["no Renata, 3 Time Warp, if the Sentinels did NOT stack (R1 = B)", { nexus: true, noStacking: true, renata: false, anomaly: false, timeWarps: 3 }],
 ];
 
 const control = byBoard(rows[0][1]);
@@ -92,7 +99,9 @@ for (const [label, cfg] of rows) {
   console.log(`${label}`);
   console.log(`  points by starting board 0..12: ${results.map((r) => r.points).join(" ")}`);
   console.log(`  smallest board reaching 8: ${min8 < 0 ? "none" : min8}`);
-  if (min8 >= 0 && cfg.renata && cfg.timeWarps === 3 && !cfg.noStacking) {
+  // Plans for the B3 lines (#335) and for the bare three-Warp line (#338).
+  const bare = !cfg.renata && !cfg.anomaly;
+  if (min8 >= 0 && (cfg.renata || bare) && cfg.timeWarps === 3 && !cfg.noStacking) {
     for (const [i, s] of results[min8].plan.entries()) console.log(`    T${i + 1}`, JSON.stringify(s));
   }
 }
