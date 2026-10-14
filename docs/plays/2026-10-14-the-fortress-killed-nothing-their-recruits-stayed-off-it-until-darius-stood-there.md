@@ -301,7 +301,8 @@ player assigns an amount of damage equal to their summed Might among the other's
 them has [Tank]. That covers `VEN-117 Disciple of Shen`, `UNL-028 Pyke, Dockside Butcher` (its +2 needs
 a Fury rune recycled, which they have, and still loses the Gloryseeker), and the 2-Might Sand Soldier
 from `SFD-154 Guards!`. Each of them keeps F, but the Gloryseeker dies. `VEN-135 Kennen, Keeper of
-Balance` needs E2 to stun, and they have Hand of Noxus's E1 at most. `SFD-004 Bushwhack` readies units
+Balance` needs E2 to stun, and they have no Energy at all: Hand of Noxus was exhausted for the T2
+Manufactor and Captain. `SFD-004 Bushwhack` readies units
 nobody plays. `UNL-013 Lotus Trap` doubles damage to one unit. On the Recruit, the Gloryseeker's 3 kill
 it anyway, and the 2 still reach the Gloryseeker.
 
@@ -327,8 +328,10 @@ Assault, which counts only while attacking. `UNL-173 Sacrifice` needs a Mighty u
 have none. `VEN-015 Decree of Rage` reaches only a Calm unit, and a Recruit has no domain. `OGN-040 Seal
 of Rage` and `OGN-245 Seal of Unity` are gear whose [Reaction] works only from the board. `OGN-033
 Shakedown` deals 6 *"unless its controller has you draw 2"*: you choose, and you let them draw 2.
-`UNL-175 Tactical Retreat` recalls the Gloryseeker instead of letting it die, which leaves F to your
-Recruit: a Conquer for you. `OGN-224 Salvage`, `SFD-011 Angle Shot` and `SFD-166 Rally the Troops` touch
+`UNL-175 Tactical Retreat` recalls the Gloryseeker, so it is alive in their base, not at F. Your Recruit
+still takes its 3 in the same step, 465.2.c.1.a: *"When all Damage is assigned, it will be Dealt
+simultaneously. These actions are not synonymous."* So the Recruit dies, F is left empty (466.5.b) and nobody Conquers. That is the
+walk's own end state, with the Gloryseeker in their base instead of the trash. `OGN-224 Salvage`, `SFD-011 Angle Shot` and `SFD-166 Rally the Troops` touch
 no unit in the fight. `UNL-002 Inferna` comes in as a defender, which does not save the Gloryseeker.
 Lotus Trap does nothing useful here, as above. From hand, `SFD-004 Bushwhack`, Mischievous Marai,
 Disciple of Shen and `UNL-161 Divining Shells` have no [Action] or [Reaction], so they cannot be played

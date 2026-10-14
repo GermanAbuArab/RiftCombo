@@ -13,8 +13,9 @@ game the draws were the half that did not decide anything. The +1 Mights did. On
 **4 to 2**. With the [Repeat] not paid, he is a 6 against 6: all three die, B is left empty, and it is
 3 to 2 with one card drawn and no Jae. The cheapest answer comes a turn earlier. Going first, Jae lands
 on T3 with one rune left, and on their T3 `OGN-029 Falling Star` deals 3 and 3 to him in your base for
-two runes, before he draws once. In Fury/Mind it is the only single card that kills a 5 in a base for
-six runes or less.
+two runes, before he draws once. Over Fury/Mind it is the cheapest single card that kills a 5 in a
+base. The only other one at six runes or less is `OGN-105 Singularity`, at all six of theirs, and it
+takes a second unit with him.
 
 **Why this line.** `scripts/sequence-pick.mjs --unplayed`, re-run on 2026-10-14 at `eacc689`, reads
 773 entries, 262 with forced-ordering language, **100 in the queue and 25 of them with no play**. The
@@ -129,7 +130,7 @@ T4      6       Hold G: +1. Jae walks to B: 5 against the Rearguard's 2   4
                 Conquer B. Second Daring Poro (E2) to B. None left.
 their T4        Kai'Sa walks to G: 6 against the Poro's 2 and the
                 Skulker's 3. Both die. Conquer G. A second Covert
-                Informant (E3 + 1 Mind Power) to G. Seven runes, three
+                Informant (E3 + 1 Mind Power) to G. Seven runes, four
                 left, one recycled.
 ```
 
@@ -253,9 +254,15 @@ alive. Sacrifice turns him into two cards before Falling Star lands. At two rune
 a card. On their own turn any card is playable, so this window is swept over every Fury/Mind
 card, not only the 68. The predicate is: one card, six runes or less, that kills a 5-Might unit in its
 controller's base. A location clause (*"at a battlefield"*, *"here"*) rules a card out, and so does a
-Might reduction alone, since 143.2.a kills on damage. **One card does it**: `OGN-029 Falling Star`
-(Fury, E2 + 2 Power): *"Deal 3 to a unit. Deal 3 to a unit."* That is two runes exhausted, the legend's
-rainbow and one Fury recycled. The rest fall short:
+Might reduction alone, since 143.2.a kills on damage. **Two cards do it**:
+
+- `OGN-029 Falling Star` (Fury, E2 + 2 Power): *"Deal 3 to a unit. Deal 3 to a unit."* That is two
+  runes exhausted, the legend's rainbow and one Fury recycled. It is the cheapest.
+- `OGN-105 Singularity` (Mind, E6 + 2 Power): *"Deal 6 to each of up to two units."* That is all six of
+  their runes exhausted, the legend's rainbow and one Mind recycled. It kills Jae and one of your units
+  at G, the Skulker or the Poro, so it does more than Falling Star. It is not cheaper.
+
+The rest fall short:
 
 - `OGN-248 Icathian Rain` (their Kai'Sa Signature card, 12 damage) costs seven runes, and they have six.
 - `OGN-033 Shakedown` deals 6 *"unless its controller has you draw 2"*. You choose, and you let them
@@ -272,8 +279,18 @@ rainbow and one Fury recycled. The rest fall short:
   Ruined Rex` all need something else first: a card from face down, a battlefield and a ready Xerath,
   damage already marked, or a death.
 
-Two cards do it from four runes up:
+Two cards do it from three runes up:
 
+- Three runes: `OGN-093 Smoke Screen` (*"Give a unit -4 :rb_might: this turn, to a minimum of 1
+  :rb_might:."*) makes Jae a 1, and `SFD-080 Bellows Breath` (*"Deal 1 to up to three units at the
+  same location."*) kills him. A base is a location, and the card has no battlefield clause. That is
+  E3, three runes exhausted, and two Power: the legend's rainbow for one spell and a recycled Mind for
+  the other. It is the only pair at three runes, and no pair does it at two. The Fury/Mind cards at two
+  runes or less that deal damage outside a battlefield are Bellows Breath (1, or 2 with its [Repeat] at
+  two runes), Dancing Grenade (2) and Falling Star; Shakedown's 6 is yours to refuse. The ones that cut
+  Might are Stupefy and `OGN-090 Orb of Regret` (-1), Mesmerize, Frigid Touch and Blastcone Fae (-2) and
+  Smoke Screen (-4); `VEN-061 Decree of Insight`'s -5 reaches only a Body unit, and Jae is Chaos. Only
+  Smoke Screen brings Jae within reach of a one-rune damage card.
 - Four runes: `OGN-093 Smoke Screen` (-4) and Dancing Grenade's 2.
 - Five runes: `UNL-063 Eclipse` (-4) and the Grenade. Or Rocket Barrage with `OGN-095 Stupefy` (-1) or
   `VEN-052 Mesmerize` (-2). Or Deadly Flourish or Curtain Call with Mesmerize.
@@ -358,7 +375,8 @@ Marai` and `UNL-081 Keeper of Masks` have no [Action] or [Reaction] from hand. 3
 abilities with the Action or Reaction keywords can be played or activated in a Showdown State."*
 
 **The cheapest answer.** To the engine, Falling Star on their T3, two runes: Jae dies before he draws,
-and it is the only single Fury/Mind card that does that for six runes or less. To the T4 result, a
+and it is the cheapest Fury/Mind card that does that. `OGN-105 Singularity` does it too, for all six of
+their runes, and kills a second unit. To the T4 result, a
 hidden card at B: one rune recycled on their T3 and nothing on your T4. It sits beside Kai'Sa, and nine
 of the thirteen hideable cards stop the Conquer. If they spend no rune elsewhere, six one-rune cards
 held up do the same. `OGN-095 Stupefy` is the plainest of them, the card the sibling entry
@@ -390,7 +408,10 @@ Their walk assumes six Fury and six Mind. The Informant on their T2 needs a Mind
 fails in **6 of 792 deals, 0.76%**. Kai'Sa on their T3 needs a second Mind among seven: **6 of 792,
 0.76%**. One or the other fails in **12 of 924 orderings, 1.30%**. The second Informant on their T4
 needs a third Mind among nine, which every deal has. Falling Star on their T3 needs one Fury on their
-board beside the legend's rainbow, and every deal has one, since six Mind cannot fill seven runes. Long
+board beside the legend's rainbow, and every deal has one, since six Mind cannot fill seven runes.
+Singularity on their T3, and the Smoke Screen and Bellows Breath pair, each need a Mind recycled beside
+the rainbow, so a second Mind among seven after the T2 recycle: each fails in **6 of 792 deals,
+0.76%**, as Kai'Sa does. Long
 Sword is gear, so the legend's rainbow does not pay it, and its Fury comes off a recycled Fury rune:
 every deal of seven has one. Hiding costs [A], any rune.
 
@@ -415,7 +436,9 @@ the cards named.
   for exactly this. Inside Order/Chaos, Bonds is the only one. The corpus has five Order, Chaos or
   Order/Chaos [Repeat] spells, and the other four cannot choose Jae: `SFD-122 Called Shot` (banned, no
   choice), `SFD-129 Temptation` and `UNL-134 Existential Dread` (an enemy unit), and `SFD-136 Hard
-  Bargain` (a spell).
+  Bargain` (a spell). From outside that list, `UNL-146 Syndra, Transcendent` (Chaos unit) grants one:
+  *"While I'm in a showdown, your spells have [Repeat] :rb_energy_2::rb_rune_chaos:. (You may pay the additional cost to repeat the
+  spell's effect.)"*
 - The Stupefy comparison crosses identities. `OGN-095 Stupefy` is Mind, and an Order/Chaos deck cannot
   run it. The two-draws-per-copy card inside the identity is `VEN-116 Dragon Form` ([Flow] :rb_energy_3:),
   as `jae-medarda-dragon-form-flow-double-draw` has it. That is E3 and E3 over two casts, against Bonds'
@@ -430,8 +453,8 @@ the cards named.
   them has no paragraph"*. A trigger on being chosen is such a payoff. 820.2 and 809.1.c support two
   draws, which the walk uses (§7).
 - The notable *"(a) Jae has to be on the board and alive: he is M5 with no protection"* names no
-  card. The answer is `OGN-029 Falling Star` (Fury, E2 + 2 Power) in your base on the turn after he
-  lands. Going first you cannot leave
+  card. The cheapest answer is `OGN-029 Falling Star` (Fury, E2 + 2 Power) in your base on the turn
+  after he lands; `OGN-105 Singularity` does the same for six runes. Going first you cannot leave
   four runes up beside a freshly played Jae before T5 (§2). With four up, Bonds with its [Repeat] makes
   him a 7, and Falling Star's 6 do not kill him.
 - Step 1's *"nothing in this line asks him to move"* and step 5's *"a moment you chose"* leave out
