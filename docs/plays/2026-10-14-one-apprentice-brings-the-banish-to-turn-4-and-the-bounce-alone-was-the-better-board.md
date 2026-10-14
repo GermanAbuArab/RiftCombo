@@ -15,8 +15,11 @@ battlefield takes one Energy off each spell, and that brings it to T4. On T4 the
 retook the battlefield: 4 to 3. Bouncing it with Wind and Ghosts alone also ended **4 to 2**, cost six
 Energy less, and put six more Might of yours on the board. What the Affliction bought over the bounce
 is cards, not points: their Forerunner gone for good, and one card drawn by the legend. The cheapest
-break is one rune: `UNL-173 Sacrifice`, in response to the Affliction, kills the Forerunner while it is
-still Mighty and turns the banish into the Deathknell it was meant to deny.
+break is one rune, and twelve cards do it. `UNL-173 Sacrifice`, in response to the Affliction, kills
+the Forerunner while it is still Mighty and turns the banish into the Deathknell it was meant to deny.
+Any of nine cards hidden at B the turn before plays for nothing into your attack and keeps B: 3 to 2.
+So do `OGN-009 Hextech Ray` and `UNL-014 Monster Harpoon`, from hand in the combat. The pair spends all
+eight runes, so you can answer none of them.
 
 **Why this line.** `scripts/sequence-pick.mjs --unplayed`, re-run on 2026-10-14 at `7717c97`, reads
 773 entries, 262 with forced-ordering language, **101 in the queue and 29 of them with no play**. That
@@ -77,16 +80,17 @@ runes, and T2's four pay for one), and on T3 it and the pair are E3 + E6, nine E
 So two Apprentices do not reach T3 either, and T4 is the walk's turn, with one.
 
 **The scope of "one".** Of the 259 Mind, Chaos and Mind/Chaos cards in `data/corpus_flat.txt` (four
-legends and two runes included), 13 print a cost that is *"less"* or *"reduced by"*. Three can lower
+legends and two runes included), 15 print a cost that is *"less"* or *"reduced by"*. Three can lower
 these two spells: Eager Apprentice;
 `VEN-055 Applied Researchers` once [Empowered] (*"Your spells cost :rb_energy_1::rb_rune_rainbow: less,
 to a minimum of :rb_energy_1:."*: E6 and E2 with no Power, for E4 + E3 to set up); and `SFD-146 Vex,
-Cheerless`, only while she is in combat. The other ten do not: `OGN-112 Kai'Sa, Evolutionary`
+Cheerless`, only while she is in combat. The other twelve do not: `OGN-112 Kai'Sa, Evolutionary`
 plays a spell from the trash, `SFD-141 Irelia, Graceful` discounts spells that choose her,
 `SFD-149 Ezreal, Prodigy` discounts optional additional costs, `VEN-098 Stargazer` discounts [Flow]
 from the trash, `SFD-076 Production Surge` and `VEN-059 Shock Blast` discount themselves, and
 `OGN-195 Rhasa the Sunderer`, `VEN-050 Grumpy Rockbear`, `VEN-064 Plaza Guardian` and
-`VEN-096 Shadowblade Lurker` discount themselves or their own ability.
+`VEN-096 Shadowblade Lurker` discount themselves or their own ability. `SFD-085 Ornn, Forge God` and
+`SFD-127 Master Bingwen` ([Weaponmaster]) equip *"for :rb_rune_rainbow: less"*.
 
 **The order is the entry's, and it matters for the break.** Moonlight Affliction is cast first and
 resolves. While it is on the chain they may answer only with [Reaction], 309.1.a: *"Only cards and
@@ -156,10 +160,10 @@ cannot walk to G; from a battlefield they go only home, 144.4.b: *"Units may mov
 their Base."*
 
 **Your T4, the banish.** The Affliction resolves first: the Forerunner's Might is 6 - 10, read as 0.
-Wind and Ghosts finds 3 or less and banishes it. They hold one ready rune and pass both times (that is
-the walk's assumption; §5 prices it). Then the three walk as one move, 144.3: *"Players may perform
-multiple Units' standard move simultaneously."* Your 8 kill Surfer 3, Rearguard 2 and Rearguard 2.
-465.2.c: *"Starting with the Attacker, each player assigns an amount of damage equal to their summed
+Wind and Ghosts finds 3 or less and banishes it. They hold one ready rune, have nothing hidden at B,
+and pass every time, here and in the combat (that is the walk's assumption; §5 prices it). Then the
+three walk as one move, 144.3: *"Players may perform multiple Units' standard move simultaneously."*
+Your 8 kill Surfer 3, Rearguard 2 and Rearguard 2. 465.2.c: *"Starting with the Attacker, each player assigns an amount of damage equal to their summed
 Might among the other's Units."* Their 7 can kill two of yours but not three: the Apprentice and the
 Skulker (3 + 3, with 1 left on the Poro), or the Poro and a Skulker (2 + 3, with 2 on the Apprentice).
 Which one lives is their choice. You establish control, 466.5.d: *"Establishing Control results in a
@@ -200,14 +204,24 @@ T4) is **8.33%**. At the printed price on T5 you have seen **9** cards, and both
 
 ## 5. Breaks to
 
-**The cheapest break is one rune: `UNL-173 Sacrifice`, in response to the Affliction.** Sacrifice
-(Order, E1): *"[Reaction] (Play any time, even before spells and abilities resolve.) As an additional
-cost to play this, kill a friendly [Mighty] unit. (A unit is Mighty while it has 5+ :rb_might:.) Draw 2
-and channel 1 rune exhausted."* While the Affliction is on the chain the Forerunner is still a 6, 708:
-*"A Unit "is Mighty" as long as its Might is 5 or greater."* They kill it as the cost, with the one rune
-they kept. Their Deathknell fires (808.1.d), and the Affliction resolves on nothing, 359.3.e.2: *"A
-target is illegal as the spell resolves if it no longer meets the targeting requirements of the spell,
-or if it has changed Zones to or from a Non-Board Zone."* Your T4 then goes like this:
+**The predicate is the walk's T4 result: the banish, and the Conquer of B that follows it.** Undo the
+banish and their Deathknell retakes B on their T4. Undo the Conquer and B stays theirs: **3 to 2**
+after your T4 instead of 4 to 2. **Twelve cards do one or the other for one rune.**
+
+- `UNL-173 Sacrifice` is played from hand in response to the Affliction.
+- Nine are hidden at B for one rune on their own turn (the walk left them a spare on T2 and on T3) and
+  played for nothing into your attack.
+- `OGN-009 Hextech Ray` and `UNL-014 Monster Harpoon` are [Action] spells, played from hand in your
+  combat with the one rune the walk left them.
+
+**Against the banish, one rune: Sacrifice.** Sacrifice (Order, E1): *"[Reaction] (Play any time, even
+before spells and abilities resolve.) As an additional cost to play this, kill a friendly [Mighty]
+unit. (A unit is Mighty while it has 5+ :rb_might:.) Draw 2 and channel 1 rune exhausted."* While the
+Affliction is on the chain the Forerunner is still a 6, 708: *"A Unit "is Mighty" as long as its Might
+is 5 or greater."* They kill it as the cost, with the one rune they kept. Their Deathknell fires
+(808.1.d), and the Affliction resolves on nothing, 359.3.e.2: *"A target is illegal as the spell
+resolves if it no longer meets the targeting requirements of the spell, or if it has changed Zones to
+or from a Non-Board Zone."* Your T4 then goes like this:
 
 - You still hold Wind and Ghosts and two Energy. It banishes the Surfer (a 3).
 - Your 8 attack the two Rearguards (4). Both die. Their best use of 4 kills one of your 3s, so a 5
@@ -219,74 +233,182 @@ or if it has changed Zones to or from a Non-Board Zone."* Your T4 then goes like
 **4 to 3**, with a Mech on B and two extra cards in their hand. Sacrifice has to come before the
 Affliction resolves: at -4 the Forerunner is not Mighty, and nothing else of theirs at B is. That is
 also why the Affliction goes first, alone. If it is answered, you lose six Energy and keep Wind and
-Ghosts.
+Ghosts. `SFD-163 Deathgrip` (Order, E2, *"Kill a friendly unit."*) does the same at any time, for two
+runes. In the combat it does not help them: killing a Rearguard to give the Surfer +2 leaves their 7
+against your 8.
+
+**Against the Conquer, one rune spent the turn before: a card hidden at B.** They control B from their
+T2, so they may hide there (107.3.c), one card at most, 107.3.b: *"Each Facedown Zone has a maximum
+occupancy of one card."* On your T4 it plays for nothing, 811.1.b: *"Beginning on the next turn, this
+gains [Reaction] and you may play this, ignoring its base cost."* You have Focus first in your combat
+and nothing to spend: all eight runes went on the pair. They play it when you pass. A hidden unit lands
+in the combat, 811.1.d.1: *"A hidden permanent must be played to that battlefield."* A hidden spell's
+target must be at B (811.1.d.2), and the attackers are. A unit that arrives joins the fight, 464.2.c.3.a:
+*"If a Unit controlled by the Attacker or Defender becomes present at this Battlefield after this
+moment, it will gain the Attacker or Defender designation during the Cleanup phase following the action
+that caused it to become present, as appropriate for its controller."* Your 3 + 3 + 2 meet their
+3 + 2 + 2, and each of these nine stops the Conquer:
+
+- `OGN-213 Hidden Blade` (Order): *"Kill a unit at a battlefield. Its controller draws 2."* It kills a
+  3 of yours (you draw 2). Your 5 kill two of theirs, their 7 kill both of yours, and B stays theirs. It
+  breaks the banish too, played on the Forerunner in response to the Affliction.
+- `SFD-017 Sudden Storm` (Fury): *"Deal 2 to a unit at a battlefield. If it's attacking, deal 4 to it
+  instead."* 4 kills an attacking 3, and the same 5 against 7 follows. After the Affliction it also
+  kills the Forerunner (143.2.a), in response to Wind and Ghosts.
+- `UNL-003 Mischievous Marai` (Fury, M2): *"When you play me to a battlefield, deal 2 to an enemy unit
+  here."* The 2 kills your Poro: your 6 against their 9.
+- `UNL-028 Pyke, Dockside Butcher` (Fury, M2), `VEN-135 Kennen, Keeper of Balance` (Order, M2) and
+  `SFD-154 Guards!` (Order) each add a 2. Guards! makes *"a 2 :rb_might: Sand Soldier unit token"*,
+  and from facedown it lands at B, 811.1.d.3: *"If a hidden spell or a play effect of a hidden
+  permanent causes you to play a unit, you must choose to play that unit at that battlefield."* Their 9
+  kill all three of yours, and your 8 leave one of theirs. Kennen's stun needs two Energy, which they
+  do not have; the body is enough.
+- `VEN-117 Disciple of Shen` (Order, M1). Its [Shield 3] needs *"exactly one other unit you control"*
+  at B, and there are three. 8 against 8: everything dies, and B goes uncontrolled, 466.5.b: *"If there
+  are no Units remaining here controlled by any player, the Battlefield becomes Uncontrolled."*
+- `OGN-220 Facebreaker` (Order): *"Stun a friendly unit and an enemy unit at the same battlefield."*
+  423.1.b: *"A Stunned Unit does not contribute its might to damage in the combat damage step."* They
+  stun a Rearguard and one of your 3s, so it is 5 against 5. Your 5 kill two of theirs and their 5 kill
+  two of yours. Both keep a unit, so yours are recalled, 466.1.a.2: *"Insert “3d. Recall Attackers
+  present at the Battlefield if Defenders are still present.”"*
+- `UNL-013 Lotus Trap` (Fury): *"Choose a unit. Double all damage that would be dealt to it this
+  turn."* On a Skulker, 2 assigned is lethal, 465.2.c.4.a: *"If the damage assigned to a Unit is
+  modified to or replaced by an amount of damage larger than the initial value, the assigning player
+  must choose the minimum applied value such that the unit would take lethal damage."* Their 7 go
+  2 + 3 + 2, and all three of yours die. Your 8 kill all three of theirs, and B goes uncontrolled.
+
+Two of the nine (Disciple, Lotus Trap) leave B uncontrolled and nothing for them to hold on their T4,
+so it stays 3 to 2. The other seven leave them B, and they Hold it: 3 to 3.
+
+**From hand, two combat breaks cost one rune.** A combat is a showdown, and [Action] is legal there,
+308.1.a: *"Only cards and abilities with the Action or Reaction keywords can be played or activated in
+a Showdown State."* `OGN-009 Hextech Ray` (Fury, E1 + 1 Power): *"[Action] (Play on your turn or in
+showdowns.) Deal 3 to a unit at a battlefield."* It kills a 3 of yours: 5 against 7, and B stays
+theirs. `UNL-014 Monster Harpoon` (Fury, E1 + 1 Power) deals 2, which kills your Poro: 6 against 7,
+and their 7 kill both your 3s. Each is one rune, exhausted for the Energy and recycled for the Fury.
+
+**The rest from hand cost two runes or more.** The walk left them one. Among the [Reaction] cards, at
+two:
+`SFD-001 Against the Odds` (+2 for each of your three units there, a 13 against 8),
+`SFD-022 Long Sword` (+2, a 9), `SFD-151 Bonds of Strength` (+1 on two, a 9), `UNL-002 Inferna`
+([Ambush], M1: 8 against 8, all die) and `VEN-126 Ki Barrier`. Ki Barrier prevents 7 on the Surfer,
+so your 8 cannot kill it as well as both Rearguards; two of yours live, and they are recalled. Lotus
+Trap from hand is also two. At three: `OGN-206 Back to Back` (11), `OGN-207 Call to Glory` (10), and
+four bodies that land in the combat. `OGN-241 Shen, Kinkou` is a 5 with [Shield 2] (12);
+`SFD-025 Rengar, Pouncing`, `VEN-123 Soulspinner` and `UNL-021 Grim Apothecary` are 3s (10).
+Apothecary can return the Forerunner to hand before the banish instead. At five or six:
+`UNL-012 Lord Broadmane`, `UNL-176 Vi, Peacekeeper`, `VEN-017 Morgana, Vindictive` and
+`UNL-178 Poppy, Defender of the Meek` (each a 5: 12). Poppy costs three less with 3 XP, and they have
+none.
+
+Among the [Action] spells, fifteen more break the combat from hand:
+
+- At two runes, five kill your Poro or a 3: `OGS-003 Incinerate`, `VEN-010 Consuming Curse`,
+  `SFD-162 Blood Money`, `UNL-007 Smite` and `OGN-008 Get Excited!` (with a card of cost 2 or more to
+  discard).
+- At three, three more: `OGN-024 Void Seeker` and `VEN-008 Ruthless Strike` kill a 3, and
+  `UNL-155 Heroic Charge` stuns one (5 against 8).
+- At four, one: `OGN-005 Disintegrate` kills a 3.
+- At five, three: `SFD-164 Drag Under` and `OGN-014 Sky Splitter` kill a unit. Sky Splitter's E8 is
+  less the Surfer's 3. `OGN-221 Imperial Decree` kills every unit that takes damage, so their 7 reach
+  all three of yours.
+- At six, three: `OGS-012 Blast of Power` kills a unit, `OGN-233 Grand Strategem` gives +5 to each of
+  theirs, and `OGS-015 Recruit the Vanguard` puts four 1s at B.
+
+**No pump saves the Forerunner from the banish.** At -4 it needs +8 to be a 4. The cheapest +8 from the
+pumps above is two Call to Glory and a Long Sword: eight runes. The same pumps break the combat for two
+or three.
 
 **The scope of that verdict.** A Fury/Order deck plays only Fury, Order and Fury/Order cards
-(103.1.b.1): **262** in `data/corpus_flat.txt`, counting three legends and two runes. One of them is
-banned (`SFD-020 Draven, Vanquisher`, not a [Reaction] card). On your turn, with your spell on the chain, they can play only cards with
-[Reaction] (309.1.a), or a card hidden at B, which gains it, 811.6: *"A card that is Hidden gains
-Reaction while facedown or played from facedown, and may be played any time a card with Reaction may be
-played as a result."* That is **36** cards. 27 print [Reaction] somewhere in their text: on the card,
-on an ability, or, for Yeti Brawler, on its token. Nine more have [Hidden]. The predicate is: played in
-response to either spell on your T4, does it stop the banish? **Five do.**
+(103.1.b.1): **262** in `data/corpus_flat.txt`, counting three legends and two runes. On your turn,
+with your spell on the chain, they can play only [Reaction] (309.1.a). In your combat, [Action] is
+legal too (308.1.a). A card hidden at B gains Reaction, 811.6: *"A card that is Hidden gains Reaction
+while facedown or played from facedown, and may be played any time a card with Reaction may be played
+as a result."*
 
-- `UNL-173 Sacrifice` (E1), as above, and only in response to the Affliction.
-- `SFD-163 Deathgrip` (Order, E2): *"Kill a friendly unit."* It works at any time, before or after the
-  Affliction. That is two runes, and the walk left them one.
-- `UNL-021 Grim Apothecary` (Fury, E3, [Ambush] to B) returns *"a friendly unit at a battlefield"* to
-  hand, and Wind and Ghosts has no target. That is three runes, and it is a bounce they chose.
-- `OGN-213 Hidden Blade` (Order), hidden at B: *"Kill a unit at a battlefield. Its controller draws
-  2."* Played from facedown it costs nothing, 811.1.b: *"Beginning on the next turn, this gains
-  [Reaction] and you may play this, ignoring its base cost."* Its target must be at B (811.1.d.2), and
-  the Forerunner is. The cost was the one rune to hide it, on their T2 or T3, and the walk left them
-  one spare on each.
-- `SFD-017 Sudden Storm` (Fury), hidden at B: *"Deal 2 to a unit at a battlefield."* After the
-  Affliction resolves, 2 kills a unit at -4 (143.2.a), so it is played in response to Wind and Ghosts.
-  It costs the same one rune on an earlier turn.
+The scope is every one of those cards that meets five conditions:
 
-The other 31 do not:
+- It is not banned.
+- It is not a legend.
+- It is legal in this deck's Signature slots, 103.2.d.2: *"All of the Signature cards must have the
+  Champion tag that corresponds to the Champion Legend of the deck."* Their legend is a Vi.
+- It prints [Reaction] somewhere in its text: on the card, on an ability, or, for Yeti Brawler, on its
+  token.
+- Or, instead of [Reaction], it has [Hidden], or prints [Action].
 
-- **Pumps cannot climb back over 3.** At -4 the Forerunner needs +7. The pumps are
-  `OGN-207 Call to Glory` (+3), `OGN-206 Back to Back` (+2), `SFD-151 Bonds of Strength` (+1, or +2
-  with [Repeat]) and `SFD-022 Long Sword` (+2). The cheapest +7 is Call to Glory and two Long Swords:
-  seven runes, against the one the walk left them. `SFD-001 Against the Odds` counts your units at B,
-  and during your main phase there are none.
-- **Kill-replacement does not see a banish.** `UNL-175 Tactical Retreat` replaces a death, and a banish
-  is not one.
-- **They can only target your units, or nothing useful.** `OGN-033 Shakedown` and the hidden
-  `UNL-003 Mischievous Marai` choose an enemy unit. `VEN-017 Morgana, Vindictive` deals the damage
-  already marked, which is none. `UNL-013 Lotus Trap` doubles damage, and none is dealt.
-  `SFD-011 Angle Shot` needs an Equipment, and there is none. `OGN-220 Facebreaker` and
-  `VEN-135 Kennen, Keeper of Balance` stun.
-- **Bodies that change nothing.** These units arrive and the Forerunner is still banished:
-  `OGN-241 Shen, Kinkou`, `SFD-025 Rengar, Pouncing`, `UNL-002 Inferna`, `UNL-012 Lord Broadmane`,
-  `UNL-166 Stalking Wolf` (it needs a Bird, Cat, Dog or Poro, and they have none), `UNL-176 Vi,
-  Peacekeeper`, `UNL-178 Poppy, Defender of the Meek`, `VEN-123 Soulspinner`, and the hidden
-  `UNL-028 Pyke, Dockside Butcher` and `VEN-117 Disciple of Shen`. `UNL-018 Yeti Brawler` is in the
-  count only because its Gold token prints [Reaction].
-- **Nothing that touches the target.** `OGN-040 Seal of Rage`, `OGN-245 Seal of Unity`,
-  `OGN-253 Hand of Noxus` and `OGS-014 Lux, Crownguard` add Energy or Power. The hidden
-  `SFD-004 Bushwhack` and `SFD-154 Guards!` ready or make bodies. `VEN-126 Ki Barrier` prevents
-  damage.
+Counted by name, that is **61**:
 
-If they run three Sacrifice, one is among the **7** cards they have seen by your T4 (four opening,
-three draws) in **45.73%**. With Sacrifice, Hidden Blade and Sudden Storm (nine cards, each one rune)
-it is **86.76%**; with all five (fifteen), **97.75%**. Each is 7 of 39.
+- 27 print [Reaction] (26 once Hand of Noxus is out).
+- 9 more have [Hidden].
+- 27 print [Action] and neither of the other two (26 once Noxian Guillotine is out).
 
-**The bounce has the same hole.** Sacrifice in response to Wind and Ghosts alone finds the Forerunner
-at 6, Mighty. It is the same one rune, and it gives the same two Mechs.
+Two are out:
+
+- `OGN-253 Hand of Noxus` is a legend, and this deck's legend is Piltover Enforcer.
+- `OGN-254 Noxian Guillotine` is a Signature card tagged Darius (`data/cards.json`), so 103.2.d.2
+  bars it from a Vi deck.
+
+Draven, Vanquisher, the one banned card of the 262, has none of the three keywords.
+
+A count by base code in `data/cards.json` finds 65, with legends already left out and Noxian Guillotine
+still in. That is 62 here before the Guillotine. The difference is three reprints and two cards:
+
+- **Three reprints, one name each.** `SFD-222 Seal of Rage`, `SFD-238 Seal of Unity` and
+  `VEN-SP6 Lux, Crownguard` are reprints of names already counted, and the corpus folds them.
+- **`OGN-018 Noxus Saboteur`, out.** It prints [Hidden] only in a rule about your cards and has no
+  Hidden itself.
+- **`UNL-161 Divining Shells`, in.** It is a gear, and its [Action] is an ability, which this count
+  keeps.
+
+The predicate is: played on your T4, does it stop the banish or your Conquer of B? **43 do:**
+
+- Sacrifice and Deathgrip, against the banish only.
+- The nine hidden cards.
+- Hextech Ray and Monster Harpoon at one rune.
+- Of the [Reaction] cards from hand: five at two runes, six at three, and four at five or six.
+- The fifteen [Action] spells above.
+
+One is not walked: `OGN-025 Blind Fury` (E4 + 2 Power, four runes) plays the top card of your deck for
+them, so it depends on that card. The other seventeen do not break it:
+
+- `OGN-033 Shakedown` deals 6 *"unless its controller has you draw 2"*. You choose the draw, and the
+  combat is unchanged.
+- `UNL-175 Tactical Retreat` turns one of their deaths into a recall. The rest die, and B is yours.
+- `SFD-011 Angle Shot` needs an Equipment, and there is none.
+- `UNL-166 Stalking Wolf` needs a Bird, Cat, Dog or Poro of theirs to kill, and they have none.
+- `UNL-018 Yeti Brawler` prints [Reaction] only on its Gold token.
+- `OGS-014 Lux, Crownguard`, `OGN-040 Seal of Rage` and `OGN-245 Seal of Unity` carry [Reaction] on an
+  ability, not on the card. None is on the board.
+- The hidden `SFD-004 Bushwhack` readies units that enter and makes an exhausted Gold token. Nothing
+  enters your combat.
+- `OGN-004 Cleave`, `SFD-003 Blood Rush` and `UNL-010 Vault Breaker` give [Assault], which counts only
+  *"while it's an attacker"*, and theirs defend.
+- `VEN-015 Decree of Rage` hits only a Calm unit, and yours are Mind and Chaos.
+- `OGN-224 Salvage`, `SFD-166 Rally the Troops`, `OGN-022 Thermo Beam` and the gear
+  `UNL-161 Divining Shells` touch no unit in the combat. The Shells' ability needs the gear on the
+  board, and it is not.
+
+Wind and Ghosts alone could not have dodged this. The Conquer breaks hit any attack into B, and
+Sacrifice answers the bounce the same way, since the Forerunner is still a Mighty 6.
+
+**How often.** If they run three of one of the twelve one-rune breaks, one is among the **7** cards they
+have seen by your T4 (four opening, three draws; the same 7 by their T3, when they would hide it) in
+**45.73%**. With two of the twelve (six cards) it is **72.23%**, and with three (nine cards) **86.76%**.
+Each is 7 of 39.
 
 ## 6. Verdict
 
-**Right about the reading; it leaves out the discount that decides when it can be cast, and the answer
-that undoes it.** The -10 opens Wind and Ghosts' banish on the Forerunner as the entry says (143.2.b),
-and the banish keeps its [Deathknell] from firing (808.1.d). At the printed ten Energy that is a T5 play
-going first, and only if nothing paid Power before it. One Eager Apprentice at a battlefield makes it
-eight, which is T4. On T4 the banish beat the kill by a point, because a killed Forerunner left six
-Might that retook B. It did not beat the bounce. Wind and Ghosts alone ended on the same 4 to 2, for
-six Energy less, and with six more Might of yours on the board. What the Affliction buys over the bounce
-is cards, not points. And one rune of Sacrifice, played while the Forerunner is still Mighty, turns the
-banish back into the Deathknell.
+**Right about the reading; it leaves out the discount that decides when it can be cast, and the one rune
+that undoes the turn.** The -10 opens Wind and Ghosts' banish on the Forerunner as the entry says
+(143.2.b), and the banish keeps its [Deathknell] from firing (808.1.d). At the printed ten Energy that
+is a T5 play going first, and only if nothing paid Power before it. One Eager Apprentice at a
+battlefield makes it eight, which is T4. On T4 the banish beat the kill by a point, because a killed
+Forerunner left six Might that retook B. It did not beat the bounce. Wind and Ghosts alone ended on the
+same 4 to 2, for six Energy less, and with six more Might of yours on the board. What the Affliction
+buys over the bounce is cards, not points. And the whole turn costs eight runes and goes away for one.
+Sacrifice, played while the Forerunner is still Mighty, turns the banish back into the Deathknell. Any
+of nine cards hidden at B the turn before keeps B through your attack, and so do Hextech Ray and
+Monster Harpoon from hand. Since the pair spends every rune you have, you can answer none of them.
 
 ## 7. Not verified
 
@@ -295,22 +417,34 @@ two domains, in the twelve of Tournament Rules 402.1. Every card you play before
 Wind and Ghosts' Chaos Power needs one Chaos rune among the eight channelled by T4. With six Mind, that
 holds in **all 924 deals** (0 fail). Their Forerunner needs one Fury rune among their seven by their T3,
 and Vi one among the eight left on their T4. Their deck has six Order, so both hold in **all 924 deals**.
-Sacrifice and Deathgrip cost Energy only. Hidden Blade and Sudden Storm are hidden for any one rune
-(811.1.b). So every break in §5 holds in every deal that leaves them the runes named.
 
-I did not walk a line that reaches the pair before T4. The obvious ingredients are untested:
-`OGN-104 Retreat` (*"Its owner channels 1 rune exhausted."*), `OGN-098 Energy Conduit`, and Scorn of
-the Moon's showdown Energy. I did not walk the Explorer's draw in the Sacrifice branch, a Might bonus on
-the target (the entry's own +4 case), going second, the mulligan, or 2v2. Their hand holding no answer
-is the walk's assumption, and §5 prices it. The probabilities in §4 and §5 count only the cards named.
+Ten of the twelve one-rune breaks need no domain. Sacrifice costs Energy only, and hiding costs one
+rune of any domain (811.1.b). So each holds in **all 924 deals**, given the spare rune the walk leaves
+them on T2 and T3. Hextech Ray and Monster Harpoon need their one ready rune to be Fury. After the
+Forerunner's Fury is recycled, their six runes on the board hold none when their first seven had
+exactly one: that is **7 of 924 deals, 0.76%**. Pyke's optional Fury, Kennen's two Energy, and the
+breaks from hand at two runes or more all need runes the walk does not leave them, so I give no rates
+for them.
+
+I did not walk these:
+
+- A line that reaches the pair before T4. The obvious ingredients are untested: `OGN-104 Retreat`
+  (*"Its owner channels 1 rune exhausted."*), `OGN-098 Energy Conduit`, and Scorn of the Moon's
+  showdown Energy.
+- The Explorer's draw in the Sacrifice branch.
+- Holding the attack when a facedown card sits at B. B stays theirs then too: 3 to 2.
+- A Might bonus on the target (the entry's own +4 case), going second, the mulligan, or 2v2.
+
+Their hand holding no answer, and nothing hidden at B, is the walk's assumption; §5 prices it. The
+probabilities in §4 and §5 count only the cards named.
 
 ## Leads
 
 - The entry prices one use at *"10 Energy and 1 Chaos Power"* and never names a discount. One
   `OGN-084 Eager Apprentice` at a battlefield makes it E8 + 1 Power, which is T4 going first instead of
-  T5. Two make it E6 + 1 Power (356.4.b, 356.4.e). Of the 13 Mind/Chaos cards that print a cost
-  reduction, three reach these spells: the Apprentice, `VEN-055 Applied Researchers` (Empowered) and
-  `SFD-146 Vex, Cheerless` (in combat only).
+  T5. Two make it E6 + 1 Power (356.4.b, 356.4.e). Of the 15 Mind/Chaos cards that print a cost that is
+  "less" or "reduced by", three reach these spells: the Apprentice, `VEN-055 Applied Researchers`
+  (Empowered) and `SFD-146 Vex, Cheerless` (in combat only).
 - The printed price assumes no Power paid on the turns before. A recycled rune leaves the board
   (161.2.b), so each Power paid on T1 to T4 pushes the printed pair from T5 to T6.
 - The notable *"BANISH IS THE ONLY PERMANENT ANSWER"* names no scope. In Mind/Chaos,
@@ -322,5 +456,10 @@ is the walk's assumption, and §5 prices it. The probabilities in §4 and §5 co
 - No step or notable names an answer. Played while the target is still Mighty, `UNL-173 Sacrifice` (one
   rune, Order) kills it in response to the Affliction (708) and fires the Deathknell anyway. After the
   Affliction resolves, any damage kills the target (143.2.a), so a hidden `SFD-017 Sudden Storm` does
-  the same in response to Wind and Ghosts. Of the 36 Fury/Order cards they can play on your turn, five
-  break it. The Affliction resolving first means an answer costs you only the Affliction.
+  the same in response to Wind and Ghosts. The pair spends every rune of the turn it is cast, so
+  whatever follows it is unprotected: in the walk, a card hidden at B the turn before kept B through
+  the attack.
+  - Of the 61 Fury/Order cards a Piltover Enforcer deck can play on your T4, 43 break it.
+  - Twelve of them do it for one rune: Sacrifice, nine hidden cards, `OGN-009 Hextech Ray` and
+    `UNL-014 Monster Harpoon`.
+  - The Affliction resolving first means an answer to it costs you only the Affliction.

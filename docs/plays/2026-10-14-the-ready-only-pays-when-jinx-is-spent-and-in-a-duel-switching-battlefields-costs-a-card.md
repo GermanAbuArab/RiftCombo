@@ -124,9 +124,9 @@ their T1        Trusty Ramhound (E2) and Determined Sentry (E1) to base.
 T2      4       The Poro walks to G, Conquer: +1. Unlicensed Armory (E2)  1
                 and a second Punching Poro (E2) to base. None left.
 their T2        Ramhound and Sentry walk to G: 3 + 1 against 2. Your
-                Poro and the Sentry die. Conquer G. Kinkou Initiate
-                (E3) and Daring Poro (E2) to G: 3 + 3 + 2, an 8. Five
-                runes, none left.
+                Poro and the Sentry die. Conquer G. Daring Poro (E2)
+                and Kinkou Initiate (E3) to G: 3 + 2 + 3, an 8. The
+                Initiate draws 1. Five runes, none left.
 T3      6       Jinx, Rebel from the Champion Zone (E5 + 1 Chaos Power)    2
                 to base: five runes exhausted, one of them recycled.
                 Armory: discard Magma Wurm, choose Jinx. Jinx readies,
@@ -160,8 +160,10 @@ and it costs a card. The Armory enters ready (359.2.d: *"If it is a Non-Unit Gea
 Board Ready at the player's Base."*), so it can be used on T3.
 
 **Their T2.** They take G rather than walk into the empty B. Ramhound is a 3 there, with the Sentry
-beside it. Your Poro's 2 kills the Sentry, and their 4 kills the Poro. Initiate's draw needs 5 Might
-among their other units, and Ramhound has 3. Both new units go straight to G, which they control,
+beside it. Your Poro's 2 kills the Sentry, and their 4 kills the Poro. The Daring Poro goes first, so
+the Initiate draws: its draw needs 5 Might among their other units, and Ramhound (3 beside the Poro)
+and the Poro (2) make 5. The extra card is not an answer in this walk; §5 prices one. Both new units
+go straight to G, which they control,
 355.2.a: *"By default, Valid locations include the controller’s Base or a Battlefield the controller
 controls."*
 
@@ -256,13 +258,20 @@ Riposte` (Fiora). That leaves **37**, none at E0. `OGS-024 Decisive Strike` is t
 and stays, at five runes. The other two Body/Order Signatures, `OGN-270 Showstopper` (Sett) and
 `VEN-154 Public Execution` (Ambessa), have neither keyword. **4** of the 37 cost one rune and **19**
 cost two (at most 2 Energy and 2 Power, the Power recycled off the same runes). One rune is the
-floor: with none ready, nothing in the list can be cast, and hiding costs one. No unit in those
-domains joins a combat for two runes: the ones playable as a [Reaction] start at three (`VEN-123
-Soulspinner`, E3; `OGN-241 Shen, Kinkou`, E3 + 1). The 23 are checked in four windows.
+floor: with none ready, nothing in the list can be cast, and hiding costs one. From hand, no unit in
+those domains joins a combat for two runes: the ones playable as a [Reaction] start at three
+(`VEN-123 Soulspinner`, E3; `OGN-241 Shen, Kinkou`, E3 + 1). From facedown, the [Hidden] ones do, for
+the one rune that hid them; they are swept with the other hidden cards under your T3. The 23 are
+checked in four windows. Each window prices single cards; the two-card cases found while walking
+them are named where they occur.
 
-**Your T3 at G.** In the walk they have no rune ready, so nothing can be cast. If they keep two up on
-their T2 instead of the Daring Poro, G is a 6 and your attack a 10. The predicate is: cast in that
-combat or in answer to your Main Phase abilities, does it stop your Conquer of G? **Five do, all at two
+**Your T3 at G.** In the walk they have no rune ready and nothing hidden, so nothing can be played.
+Holding something back costs them a body on their T2, and there are three ways to do it: two runes
+up instead of the Daring Poro, or a card hidden for one rune in place of either body. The predicate
+for all three is: played in that combat or in answer to your Main Phase abilities, does it stop your
+Conquer of G?
+
+*Two runes up, G a 6 (Ramhound 3, Initiate 3) against your 10.* **Five of the 23 do, all at two
 runes:**
 
 - `OGN-127 Cannon Barrage` (E2 + 1 Body): *"Deal 2 to all enemy units in combat."* Their 6 then kill
@@ -294,6 +303,43 @@ The other eighteen do not:
   `OGN-146 Wallop`, `SFD-106 Show of Strength`, `SFD-166 Rally the Troops` and `UNL-103 Disposal
   Order` touch no unit in that combat.
 
+Two cards: two Flurries, both runes, put 2 on all four. Their 6 then kill the Poro (1 more) and Jinx
+(5 more), the Armory recalls her, your 10 kill both of theirs, and G is left empty.
+
+*A hidden card.* The predicate for the scope is: a Body/Order card with [Hidden], not banned, legal
+under 103.2.d.2. There are **seven**, none a Signature card: the units `OGN-135 Pakaa Cub` (Body, M3),
+`VEN-117 Disciple of Shen` (Order, M1) and `VEN-135 Kennen, Keeper of Balance` (Order, M2), and the
+spells `OGN-213 Hidden Blade`, `OGN-220 Facebreaker`, `SFD-111 Here to Help` and `SFD-154 Guards!`.
+Played from facedown they cost nothing (811.1.b), they have [Reaction] (811.6), and what they put on
+the board comes in at G, 811.1.d.1: *"A hidden permanent must be played to that battlefield."* and
+811.1.d.3: *"If a hidden spell or a play effect of a hidden permanent causes you to play a unit, you
+must choose to play that unit at that battlefield."* A unit that arrives joins the fight,
+464.2.c.3.a: *"If a Unit controlled by the Attacker or Defender becomes present at this Battlefield
+after this moment, it will gain the Attacker or Defender designation during the Cleanup phase
+following the action that caused it to become present, as appropriate for its controller."* Hiding
+costs one rune, so they keep either the Initiate (G a 6, one rune left up) or the Daring Poro (G a 5,
+two up). **Three break it alone:**
+
+- Hidden Blade and Facebreaker, as above, with either body kept.
+- Kennen, with the Daring Poro kept and two runes up: *"When you play me or I attack, you may pay
+  :rb_energy_2: to [Stun] a unit. (It doesn't deal combat damage this turn.) While there's a stunned
+  enemy unit here, I have +2 :rb_might:."* He stuns Jinx and is a 4. G is Ramhound 3, Poro 2 and
+  Kennen 4 against your Poro's 3; your Poro dies and G stays theirs. With the Initiate kept they have
+  one rune, and he is a 2 that does nothing.
+
+The other four do not, alone. The Cub makes G a 9 or an 8, Guards!' 2-Might Sand Soldier an 8 or a 7,
+and the Disciple a 7 or a 6: its Shield needs *"exactly one other unit you control"*, and G has two.
+Against your 10, they still kill only your Poro, and Jinx holds G. Here to Help needs a unit in hand,
+which is a second card.
+
+Two cards, walked against the same 23. With the Initiate kept and one rune up, `OGN-133 Flurry of
+Blades` breaks it beside the Cub (9), Kennen (8) or the Sand Soldier (8). After Flurry their total
+only has to reach 8 (2 for your Poro, 6 for Jinx), and your 10 still kill all of theirs, so G is left
+empty. With the Daring Poro kept and two up, the Cub makes G an 8, and four spells break it: Flurry,
+the same way; `UNL-095 Grim Resolve` (11), which your 10 cannot kill; and `VEN-072 Guttural Roar` or
+`SFD-151 Bonds of Strength` (10), where everything dies. The Sand Soldier (7) breaks it only with
+Grim Resolve (10). The Disciple (6) breaks it with none of them.
+
 **Their T3, Jinx alone at G.** They have seven runes and an empty board. Hidden Blade (two runes) kills
 her: the Armory's protection was for your turn only. G is then empty and is lost in the next cleanup
 (190.4.c), so you have no Hold on T4. The other 22 do not remove a 5 from a battlefield with one
@@ -310,29 +356,38 @@ of B, or take G from you? Three do:
 
 The other 20 do not. Cannon Barrage needs a combat, and B has no defender. Facebreaker needs a unit
 of theirs at B, and Here to Help needs a battlefield they control. Flurry puts 1 on a 7 and on a 2.
-The pumps and the rest have no unit of theirs at a battlefield to act on.
+The pumps and the rest have no unit of theirs at a battlefield to act on. Two cards: two Flurries put
+2 on the Enforcer, and G is lost as with Blood Money.
+
+No hidden card reaches this window or the two after it. They control no battlefield on their T3, so
+they cannot hide anything then. A card hidden at G on their T2 and not used is removed when you take
+G, 466.5.c: *"Remove all Hidden cards from this Battlefield that do not share a controller with the
+Battlefield."* A card hidden on their T4 can be played only from their next turn on (811.1.b).
 
 **Their T4, Jinx alone at B and the Enforcer alone at G.** Without a card they take one battlefield:
 taking both needs 6 Might at B (5 to kill her, one body left after her 5) and 3 at G, and they have 7.
-**Seven cards at two runes or less give them both, 4 to 3:** Hidden Blade and Blood Money clear a
-battlefield before the attack. Punch First, Grim Resolve, Guttural Roar and Bonds of
-Strength make the B attackers big enough to survive her. Cannon Barrage kills the Enforcer in the G
-combat. Confront and Wallop do it too, with a unit in hand to play ready. The other fourteen do not:
+**Nine cards at two runes or less give them both, 4 to 3, seven of them on their own:** Hidden Blade
+and Blood Money clear a battlefield before the attack. Punch First, Grim Resolve, Guttural Roar and
+Bonds of Strength make the B attackers big enough to survive her. Cannon Barrage kills the Enforcer
+in the G combat. Confront and Wallop do it too, but only with a unit in hand to play ready. The other
+fourteen do not:
 Challenge, Facebreaker, Flurry, Ki Barrier, Tactical Retreat, Deathgrip and Here to Help each leave
 one battlefield short, and the other seven touch no unit in either fight.
 
-**How likely an answer is.** By your T3 they have seen **6** cards (four opening and a draw on each of
-their turns), by your T4 **7**, and by their T4 **8**, out of their own **39**. One answer run three
-times is among them in **40.30%**, **45.73%** and **50.82%**. With two of the T3 answers in three
-copies each (six cards), **66.05%** by your T3.
+**How likely an answer is.** Out of their own **39**, by your T3 they have seen **6** cards: four
+opening and a draw on each of their turns. In every line that holds something back, the Initiate draws
+nothing, because Ramhound alone is a 2 or the Initiate is not played. In the walk the Initiate draws,
+so they have seen **8** by their T3 and your T4 and **9** by their T4. One answer run three times is
+among them in **40.30%** (6 cards), **50.82%** (8) and **55.58%** (9). With two of the T3 answers in
+three copies each (six cards), **66.05%** by your T3.
 
 ## 6. Verdict
 
 **Right about the count; silent about when the ready is worth anything.** Each discard readies Jinx
 and makes her a point bigger, and three small discards are three events. But a ready only buys a move
 when she is exhausted. That is on the turn she lands, or after she has already moved. In a Duel, the
-move it buys from a battlefield is a walk home: changing battlefields is two moves, and the battlefield she
-leaves needs another unit or it goes in the next cleanup. The +1 only counts if it comes before a
+move it buys from a battlefield is a walk home: changing battlefields is two moves, and the
+battlefield she leaves needs another unit or it goes in the next cleanup. The +1 only counts if it comes before a
 combat that turn. Walked, it paid twice. On T3 a free discard walked her, the turn she landed, into
 the battlefield they held, and their three units died. On T4 a discard was the second half of G to
 base to B, and it bought a Conquer at the price of leaving her alone. The other two discards
