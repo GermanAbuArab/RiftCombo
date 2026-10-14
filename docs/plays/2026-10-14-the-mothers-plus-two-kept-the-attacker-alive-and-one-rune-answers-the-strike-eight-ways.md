@@ -24,7 +24,7 @@ spell.
 That is one fewer in the queue than the issue's 101. The two picks are unchanged: this entry is
 rank 75, the second in the list (the issue had 76). The other entry of this slice is rank 74,
 `mel-defiant-soul-sanction-banish-cycle`, played in
-[Mel's first banish takes their battlefield, and the Sanctions only thin a board that cannot reach yours](2026-10-14-mels-first-banish-takes-their-battlefield-and-the-sanctions-only-thin-a-board-that-cannot-reach-yours.md).
+[Mel's three banishes thin a battlefield nothing of yours can reach](2026-10-14-mels-three-banishes-thin-a-battlefield-nothing-of-yours-can-reach.md).
 
 ---
 
@@ -235,7 +235,16 @@ Signature cards a Lee Sin deck cannot run: `OGS-020 Highlander` and `UNL-192 Alp
 and `SFD-194 Counter Strike` (Jax). The Lee Sin Signature, `OGN-258 Dragon's Rage`, has none of the
 keywords. That leaves **57**. By the runes they cost (the larger of the Energy and the Power, the
 Power recycled off the same runes), **11** cost one rune, **24** cost two, and **22** cost three or
-more. One rune is the floor: none costs nothing, and hiding a card costs [A], one rune.
+more, at printed cost. One of them costs nothing in this walk: `OGN-146 Wallop` (Body, E2, [Action])
+reads *"As you play this, you may spend a buff as an additional cost. If you do, ignore this spell's
+cost. Ready a unit."* Both of their defenders carry Blind Monk's buff on your T3, so it is free there.
+It readies a unit and adds no Might, so it does not stop the Conquer in any window below. The other
+cost changes among the 57 do not reach zero runes here. `OGN-047 Find Your Center` costs
+:rb_energy_2: less only if an opponent's score is within 3 points of the Victory Score, and you have
+1. `OGN-144 Spoils of War` costs :rb_energy_2: less after an enemy unit has died this turn, so E2 + 1,
+two runes. `SFD-111 Here to Help` reduces the unit it plays, not itself. A hidden card ignores its
+base cost when played from facedown, but hiding costs [A], one rune. So one rune is the floor **for
+an answer**: no card that stops the Conquer costs less.
 
 Three ways to keep something back on their T2 are swept: one rune up (the walk), a card hidden at G
 for that rune, and two runes up by skipping the buff. Each window prices single cards; the two-card
@@ -276,7 +285,10 @@ State."* **Eight of the eleven break it:**
 The other three do not. `VEN-039 Crumbling Sands` counters a spell only *"if an opponent has played
 another spell this turn"*, and the Strike is your first. The Mother's trigger is an ability, not a
 spell. `OGN-081 Seal of Focus` and `OGN-163 Seal of Strength` are gear whose only [Reaction] is an
-ability they would already need on the board, and theirs is empty of gear.
+ability they would already need on the board, and theirs is empty of gear. Wallop also reaches this
+window, for nothing, by spending a buff. It is an [Action], so it comes after the Strike has
+resolved, and the buff it spends is the survivor's: a Poro without its buff is a 3, and the Skulker
+wins by more. Readying a unit changes nothing in the combat. It does not break it.
 
 *A card hidden at G instead.* They control G after their T2 conquer, which is what hiding needs,
 811.1.b: *"you may pay [A] to hide this facedown at a battlefield you control that doesn't already have
@@ -310,7 +322,7 @@ any of the spell's targets are no longer legal, those game objects, players, or 
 by the spell as it resolves."* No defender remains, so you win and Conquer anyway. Resonating Strike
 needs a unit of theirs at another location, and they have none. Here to Help needs a unit in hand,
 which is a second card. With one (a second Initiate, say, played to G for nothing), G is too big for a
-5.
+5. With no rune up, Wallop is still free by spending a buff, and it still does nothing, as above.
 
 *Two runes up, skipping the buff.* G is the Poro's 4 and an unbuffed Initiate's 3. You aim the
 Strike at the Poro, and the Skulker's 5 meet the Initiate's 3. Without the Mother this line trades
@@ -353,7 +365,8 @@ Two cards in that line: any two of Combat Experience, Flurry of Blades and Frien
 Poro lives) put the Initiate at 5 or the Skulker at 5 damage, and it trades. Here to Help with a unit
 in hand is the other.
 
-**Your T4 has no window.** They spent all seven runes on Lee on their T3, and nothing is hidden: a card
+**Your T4 has no window.** They spent all seven runes on Lee on their T3. Lee carries no buff, and
+their two buffed units died on your T3, so Wallop costs its two runes. Nothing is hidden: a card
 hidden at G on their T2 and not used is removed when you take G, 466.5.c: *"Remove all Hidden cards from
 this Battlefield that do not share a controller with the Battlefield."* A card hidden at G on their T3
 would need a rune they did not have.
