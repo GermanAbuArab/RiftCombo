@@ -185,7 +185,9 @@ and the Corsair, played first, make it a 4 through Pridestalker. It walks to G a
 bodies, and 466.5.b leaves G uncontrolled. It costs no card and no rune beyond the walk's five. The
 price is the Rearguard and B's Conquer, 1 to 0 after their T2. You have no body on the board, and
 355.2.a sends every unit you play on T3 to your base. The faucet is off until a body walks back, and
-that walk is its exhaust (144.2), so the first XP from the Gardens comes on your T4.
+that walk is its exhaust (144.2). A unit you play on T3 enters exhausted in base (143.4), readies and
+walks to G on T4, and exhausts for XP on T5. T4 pays only the Hunt on that walker's Conquer
+(823.1.c.1), so the first XP from the Gardens comes on your T5.
 
 **A second ready attacker conquers G instead of emptying it.** Rearguard was played on their T1
 and is ready. They play a second `OGN-010 Legion Rearguard` with its Accelerate, 805.1.a: *"As you
@@ -230,7 +232,11 @@ Rearguard's three. None does it with no card, as the first break does:
   the Rearguard is a 3. Stare Down, choosing the Rearguard and G, sends Gemhand and Apprentice to
   base. 323.6 strips G at the next cleanup, and the Rearguard walks in and conquers it. With the
   Enforcer that is four of their five runes, and Stare Down's own share is two. You keep both bodies,
-  in base, and the faucet is off as in the first break.
+  in base. That costs the faucet less than the first break. Both are ready on your T3 (315.1.b), and
+  the Rearguard at G is a 2 again, because Pridestalker's +1 lasted only their turn. Both walk in, 4
+  against 2: the Rearguard dies, one of yours dies, and you conquer G on T3 with a Hunt. The Gardens'
+  first exhaust is on your T4, a turn sooner than after the first break, and after their T2 it is 1
+  to 1 rather than 1 to 0.
 - `OGN-041 Volibear, Furious`, `OGN-148 Anivia, Primal`, `OGN-159 Warwick, Hunter`, `OGN-250
   Stormbringer`, `OGS-002 Firestorm`, `VEN-019 Renekton, Rage Fueled` and `VEN-091 Corrupted Dragon`
   all cost E6 or more.

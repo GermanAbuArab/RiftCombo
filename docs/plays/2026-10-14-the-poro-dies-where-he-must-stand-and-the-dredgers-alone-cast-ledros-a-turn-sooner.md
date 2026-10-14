@@ -228,8 +228,9 @@ only **262 of 924, 28.35%**. At twelve Order runes none of these fails.
 
 I did not walk the Dredgers-only line or the Poro's surviving line in the turn table; both are
 derived in §4 from the same opening and the same opponent through your T3. Ledros standing at BT in
-the Dredgers-only line rests on reading 355.2, 357.2, 358 and 359.2.c in order, with no cleanup
-between paying the cost and the unit entering; 190.4.c takes control away only at a cleanup. I did not walk their T4,
+the Dredgers-only line rests on reading 355.2, 357.2, 358 and 359.2.c in order. Control is not lost
+mid-play: 190.4.c takes it away only in an Open state, at the following cleanup, and 354.1, moving
+Ledros to the chain, *"This Closes the State."* I did not walk their T4,
 Ledros attacking with Ganking, Angler Beast cast on their T3, a different opening for them, the
 mulligan, or 2v2. Whether they have 5 Might of ready bodies in base on their T3 depends on their
 opening, which I fixed. The probabilities in §4 count only cards in hand at the turn named.
