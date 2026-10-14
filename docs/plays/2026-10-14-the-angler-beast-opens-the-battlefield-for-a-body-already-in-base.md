@@ -145,11 +145,11 @@ Showdown. They have two ready runes and the Order to recycle, enough for a Hidde
 Sergeant, the returned Manufactor and Poro, and their draws, none of them an [Action] or a
 [Reaction]. 316.8.b.1.a: *"During the
 proceedings of a Non-Combat Showdown, units controlled by a different player may become present at
-the Battlefield where the Showdown is ongoing."* Nothing of theirs can become present: their base
-was emptied by the same trigger.
+the Battlefield where the Showdown is ongoing."* Nothing of theirs can become present: every body
+they had stood at B, so the one trigger took all of them, and their base was already empty.
 
-**Why their T3 scored nothing.** The Beast reached their base as well as B: Manufactor and Poro were
-the only bodies they had. Everything they played on T3 entered exhausted (143.4), and a Recruit
+**Why their T3 scored nothing.** Every body they had stood at B, so the one trigger took all of
+them: Manufactor and Poro to hand, both Recruits gone. Everything they played on T3 entered exhausted (143.4), and a Recruit
 token is no exception (185.2.d: *"A token unit is a unit. It enters exhausted"*). The Beast cost them
 their T3 Hold, every move on their T3, two tokens and a facedown card. It also cost you your own
 Rearguard from A.
@@ -173,8 +173,8 @@ and I did not price it.
 The Drake is E8 + 2 Chaos. Going first, after the Beast's T3 recycle you have seven runes on T4 and
 nine on T5. So the entry's line lands the Drake on T5 at the earliest. A ready body of theirs in
 base walks into the open battlefield with 144.4.a on their very next turn, exactly as your Skulker
-did. In the walk the Beast had emptied their base as well, so that turn was their T4, a turn before
-the Drake could land. The Drake is the plan for a turn where you have no ready body of 3 Might or
+did. In the walk every body they had stood at B and went with the trigger, so nothing of theirs was
+ready before their T4, a turn before the Drake could land. The Drake is the plan for a turn where you have no ready body of 3 Might or
 more in base. In the walk that turn never came.
 
 The entry's sixth notable already names `OGN-174 Sai Scout` (Chaos, E6, M5, *"You may play me to an
