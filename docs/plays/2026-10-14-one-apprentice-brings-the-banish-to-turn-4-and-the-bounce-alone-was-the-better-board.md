@@ -292,8 +292,8 @@ two:
 `SFD-001 Against the Odds` (+2 for each of your three units there, a 13 against 8),
 `SFD-022 Long Sword` (+2, a 9), `SFD-151 Bonds of Strength` (+1 on two, a 9), `UNL-002 Inferna`
 ([Ambush], M1: 8 against 8, all die) and `VEN-126 Ki Barrier`. Ki Barrier prevents 7 on the Surfer,
-so your 8 cannot kill it as well as both Rearguards; two of yours live, and they are recalled. Lotus
-Trap from hand is also two. At three: `OGN-206 Back to Back` (11), `OGN-207 Call to Glory` (10), and
+so your 8 cannot kill it as well as both Rearguards; their 7 kill two of yours, and the one left
+is recalled. Lotus Trap from hand is also two. At three: `OGN-206 Back to Back` (11), `OGN-207 Call to Glory` (10), and
 four bodies that land in the combat. `OGN-241 Shen, Kinkou` is a 5 with [Shield 2] (12);
 `SFD-025 Rengar, Pouncing`, `VEN-123 Soulspinner` and `UNL-021 Grim Apothecary` are 3s (10).
 Apothecary can return the Forerunner to hand before the banish instead. At five or six:

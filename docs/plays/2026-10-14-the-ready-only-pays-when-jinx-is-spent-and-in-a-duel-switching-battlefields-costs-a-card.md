@@ -332,13 +332,34 @@ and the Disciple a 7 or a 6: its Shield needs *"exactly one other unit you contr
 Against your 10, they still kill only your Poro, and Jinx holds G. Here to Help needs a unit in hand,
 which is a second card.
 
+With the Daring Poro kept, they also hold two runes for a card from hand, whatever is hidden. G is
+then a 5 (Ramhound 3, Poro 2) before the hidden card, against your 10. The 23 swept again against that
+5: **four break it alone.** Hidden Blade and Facebreaker work as above. `SFD-097 Punch First` on
+Ramhound makes them a 10: they kill both of yours, the Armory recalls Jinx, and your 10 kill both of
+theirs, so G is left empty. `VEN-126 Ki Barrier` on either of theirs leaves one alive whatever you
+assign: Ramhound would need 3 + 7 and the Poro 2 + 7. Cannon Barrage, a break against 6, is not one
+here: after it your units need 1 + 5 = 6, and they have 5, so they kill your Poro and Jinx holds G.
+The other nineteen do not either. Flurry needs them at 8; Grim Resolve, Guttural Roar and Bonds of
+Strength make them 8, 7 and 7. Challenge trades one unit for one and leaves Jinx the bigger side.
+Deathgrip moves Might without adding any. Here to Help adds at most a 3, so 8. Blood Money finds no
+unit of yours at 2 Might or less. The rest touch no unit in that combat.
+
 Two cards, walked against the same 23. With the Initiate kept and one rune up, `OGN-133 Flurry of
 Blades` breaks it beside the Cub (9), Kennen (8) or the Sand Soldier (8). After Flurry their total
 only has to reach 8 (2 for your Poro, 6 for Jinx), and your 10 still kill all of theirs, so G is left
-empty. With the Daring Poro kept and two up, the Cub makes G an 8, and four spells break it: Flurry,
-the same way; `UNL-095 Grim Resolve` (11), which your 10 cannot kill; and `VEN-072 Guttural Roar` or
-`SFD-151 Bonds of Strength` (10), where everything dies. The Sand Soldier (7) breaks it only with
-Grim Resolve (10). The Disciple (6) breaks it with none of them.
+empty. With the Daring Poro kept and two up, three of the hidden bodies turn more of the 23 into
+breaks:
+- The Cub makes G an 8, and **five** spells break it. `OGN-127 Cannon Barrage` makes your units need
+  only 6. Flurry makes them need 8. In both, your 10 still kill all of theirs, and G is left empty.
+  `UNL-095 Grim Resolve` makes them an 11, which your 10 cannot kill. `VEN-072 Guttural Roar` and
+  `SFD-151 Bonds of Strength` make them a 10, and everything dies.
+- The Sand Soldier makes G a 7, and **two** break it: Cannon Barrage (7 is more than 6, and your 10
+  kill 3 + 2 + 2) and Grim Resolve (10).
+- The Disciple makes G a 6, and **one** breaks it: Cannon Barrage (6 is enough, and your 10 kill
+  3 + 2 + 1).
+- Kennen, paying for his stun, is a break by himself.
+
+Here to Help from hand makes a third card, a unit in hand.
 
 **Their T3, Jinx alone at G.** They have seven runes and an empty board. Hidden Blade (two runes) kills
 her: the Armory's protection was for your turn only. G is then empty and is lost in the next cleanup
@@ -387,9 +408,9 @@ three copies each (six cards), **66.05%** by your T3.
 and makes her a point bigger, and three small discards are three events. But a ready only buys a move
 when she is exhausted. That is on the turn she lands, or after she has already moved. In a Duel, the
 move it buys from a battlefield is a walk home: changing battlefields is two moves, and the
-battlefield she leaves needs another unit or it goes in the next cleanup. The +1 only counts if it comes before a
-combat that turn. Walked, it paid twice. On T3 a free discard walked her, the turn she landed, into
-the battlefield they held, and their three units died. On T4 a discard was the second half of G to
+battlefield she leaves needs another unit or it goes in the next cleanup. The +1 only counts if it
+comes before a combat that turn. Walked, it paid twice. On T3 a free discard walked her, the turn she
+landed, into the battlefield they held, and their three units died. On T4 a discard was the second half of G to
 base to B, and it bought a Conquer at the price of leaving her alone. The other two discards
 readied a Jinx who was already ready. The engine's limit is cards, not mana: the hand ran out with
 five runes idle.
