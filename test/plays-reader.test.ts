@@ -33,7 +33,7 @@ describe("the run plays are written for a reader", () => {
   });
 
   it("no published play carries fleet language", () => {
-    expect(plays.length).toBeGreaterThanOrEqual(74);
+    expect(plays.length).toBeGreaterThanOrEqual(76);
     const hits = plays.flatMap((p) =>
       p.markdown
         .split("\n")
