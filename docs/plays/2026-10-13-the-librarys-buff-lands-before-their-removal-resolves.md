@@ -150,8 +150,10 @@ at base it takes her to 7, past every single Fury or Chaos spell that can damage
 over the corpus (Fury, Chaos or Fury/Chaos spells whose text deals damage, kills, banishes or takes
 Might, less those that read *"at a battlefield"* or hit only gear), the ones that reach a unit at base
 deal at most 6 in one cast: `OGN-033 Shakedown` 6, `OGN-029 Falling Star` 3 and 3, `OGN-252 Super Mega
-Death Rocket!` 5, `VEN-015 Decree of Rage` 4 (Calm units only), `UNL-020 Dancing Grenade` 2 before any
-replay. Void Seeker reads *"at a battlefield"* and cannot reach her at all.
+Death Rocket!` 5, `VEN-015 Decree of Rage` 4 (Calm units only), `UNL-020 Dancing Grenade` 2, its
+replay yours to decline, since "Its controller" is the controller of the unit hit (359.3.e.14). Void
+Seeker reads *"at a battlefield"* and cannot reach her at all. (Corrected 2026-10-16, #377: the Grenade
+read "2 before any replay", as if the replay were the caster's.)
 
 **What it cost.** Karma took all six runes on T3, so nothing was held for their T3, and Ramhound died
 unanswered. On T4 the four held runes are four not spent on Unsung Hero and the Scout, which are still
@@ -215,7 +217,8 @@ counter on Bonds has two readings of 425.1.b. On the first, a trigger already on
 touched and the Predict and the buff resolve. On the second, which the catalogue uses, the countered
 spell was never played and both go with it. I did not walk two-card damage on a Might-7 Karma at base
 (`OGS-001 Annie, Fiery`'s bonus damage, `UNL-013 Lotus Trap`'s doubling, `UNL-020 Dancing Grenade`'s
-replays); the top card on their T4 being one you would keep; a Shakedown held
+replays aimed first at their own units, since on Karma its replay is yours, corrected 2026-10-16, #377);
+the top card on their T4 being one you would keep; a Shakedown held
 on their T2; the mulligan; or 2v2.
 
 ## Leads

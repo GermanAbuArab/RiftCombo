@@ -309,14 +309,22 @@ three (nine cards) **86.76%**. Each is 7 of 39.
   friendly unit and an enemy unit. They deal damage equal to their Mights to each other."*) does it with
   the buffed Favorite: its 4 kill Mel's 4. `UNL-020 Dancing Grenade` (Fury, E2 + 1 Power): *"Deal 2 to a
   unit. Its controller may play this spell again for :rb_rune_rainbow:. If they do, this deals 1
-  additional Bonus Damage for each time this spell has dealt damage this turn."* Two runes pay E2 by
-  exhausting both, then the Power by recycling one and the rainbow by recycling the other (164.2.b), so
-  the replay needs no third rune. That is 2 + 3 = 5 on Mel. The scope is every Fury, Body and Fury/Body
-  card in `data/corpus_flat.txt` that deals damage, kills or banishes without the words *"at a
-  battlefield"*. At two runes or less, those three kill a 4 at base. `OGN-033 Shakedown` leaves you the
-  draw. Decree of Rage needs a Calm unit. `VEN-083 Rampage`, `SFD-107 Strike Down`,
-  `UNL-110 Clash of Giants`, `OGS-008 Gentlemen's Duel` and `VEN-090 Cataclysmic Duel` cost three runes
-  or more. Any of the three costs them one of their T3 three-drops.
+  additional Bonus Damage for each time this spell has dealt damage this turn."* On Mel it deals 2,
+  and 2 does not kill a 4: the replay is yours, and you decline it. "Its controller" is the controller
+  of the unit hit, 359.3.e.14: *"The “its” in the second instruction references the unit in the first,
+  so the two instructions of the spell are linked."* That paragraph's example is Hidden Blade, *"Kill a
+  unit at a battlefield. Its controller draws 2,"* the Grenade's own construction, and 355.10.d reads
+  it the same way: *"e.g., “Kill a unit. Its controller draws 2” targets the unit, but not its
+  controller."* Aimed first at units of their own, the replays stay theirs: 2, then 3, then 4 on Mel.
+  That is three runes (E2 by exhausting two, then the Power and two rainbows by recycling three,
+  164.2.b) and 5 damage on their own bodies. **Corrected 2026-10-16 (#377):** this bullet first counted
+  the replay as the caster's, 2 + 3 = 5 on Mel for two runes, and named the Grenade as a third two-rune
+  kill. The scope is every Fury, Body and Fury/Body card in `data/corpus_flat.txt` that deals damage,
+  kills or banishes without the words *"at a battlefield"*. At two runes or less, two kill a 4 at base,
+  Falling Star and Challenge. `OGN-033 Shakedown` leaves you the draw. Decree of Rage needs a Calm unit.
+  Dancing Grenade deals 2. `VEN-083 Rampage`, `SFD-107 Strike Down`, `UNL-110 Clash of Giants`,
+  `OGS-008 Gentlemen's Duel` and `VEN-090 Cataclysmic Duel` cost three runes or more. Either of the two
+  costs them one of their T3 three-drops.
 - **Your T4, one rune ready, from hand.** Each banish is a chain item they can answer with [Reaction],
   309.1.a: *"Only cards and abilities with the Reaction keyword can be played or activated in a Closed
   State."* Repulse counters either one. It is the only one of the eleven one-rune cards that saves a
@@ -371,7 +379,9 @@ Their breaks name a Power domain, which the walk does not deal:
   Harpoon a Fury one. Seven of twelve always hold at least one of each, since there are six of each:
   **all 792 deals**. Hiding costs one rune of any domain (811.1.b).
 - **Their T3 kill at base.** Falling Star needs two Fury among their seven, and fails only with one:
-  **6 of 792 deals, 0.76%**. Challenge needs one Body and Dancing Grenade one Fury: **all 792 deals**.
+  **6 of 792 deals, 0.76%**. Challenge needs one Body: **all 792 deals**. (Corrected 2026-10-16, #377:
+  this line also gave Dancing Grenade's one Fury all 792 deals; §5 no longer counts the Grenade as a
+  two-rune kill.)
 - **Rengar, Trophy Hunter** needs one Body among their seven: **all 792 deals**.
 
 I did not walk these:
@@ -401,8 +411,9 @@ named.
     never makes it instant-speed removal"*).
 - Step 1 plays Mel *"at a battlefield"*. Her banish reaches a battlefield from your base, and at base no
   unit can reach her (144.4.a, 144.4.b). The notable *"MEL HAS TO SURVIVE AT 4 MIGHT"* names no place.
-  At base it is a question of spells: in Fury/Body, at two runes or less, Falling Star, Challenge (with
-  a unit of 4 or more) and Dancing Grenade (played twice) kill her there.
+  At base it is a question of spells: in Fury/Body, at two runes or less, Falling Star and Challenge
+  (with a unit of 4 or more) kill her there. (Corrected 2026-10-16, #377: this named Dancing Grenade,
+  played twice, as a third. Aimed at Mel its replay is yours, so it deals 2; §5.)
 - No step or notable says which turn to cast Sanction on. On your own turn the end-of-turn banish finds
   nothing if their units are at base. On their turn, Sanction resolves into their Main Phase, 312.2.a:
   *"When the turn is in a Neutral Open State during their Main Phase."* They then get the whole Main
