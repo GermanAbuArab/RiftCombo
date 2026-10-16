@@ -63,30 +63,30 @@ describe("the plays index", () => {
 });
 
 describe("a play rendered", () => {
-  it("renders every construct the corpus uses, on every play", async () => {
-    for (const p of PLAYS) {
-      const host = await open(`#/plays/${p.slug}`);
-      // No h1 (the page's one h1 is the brand in the header, #270) and one title, the index's title
-      // rather than the file's "Play — " prefix; the sections sit one level under it.
-      expect(host.querySelectorAll("h1"), p.slug).toHaveLength(0);
-      const titles = host.querySelectorAll("h2");
-      expect(titles, p.slug).toHaveLength(1);
-      expect(titles[0]!.textContent, p.slug).toBe(p.title);
-      expect(host.querySelectorAll("h3").length, `${p.slug} h3`).toBeGreaterThan(0);
-      // No skipped levels: under the header's h1, every heading is at most one below the last.
-      let last = 1;
-      for (const h of host.querySelectorAll("h1, h2, h3, h4, h5, h6")) {
-        const level = Number(h.tagName[1]);
-        expect(level, `${p.slug} ${h.tagName} "${h.textContent}" after h${last}`).toBeLessThanOrEqual(last + 1);
-        last = level;
-      }
-      expect(host.querySelectorAll("p").length, `${p.slug} p`).toBeGreaterThan(3);
-      expect(host.querySelectorAll(".play-table").length, `${p.slug} tables`).toBeGreaterThan(0);
-      expect(host.querySelectorAll("code").length, `${p.slug} code`).toBeGreaterThan(5);
-      expect(host.querySelectorAll("strong").length, `${p.slug} strong`).toBeGreaterThan(5);
-      expect(host.querySelector(".play-back"), `${p.slug} back link`).not.toBeNull();
-      expect(document.title, p.slug).toBe(`${p.title} — RiftCombo`);
+  // One test per play (#378): a single test looping over the corpus grew ~1.2 s per play in CI and
+  // timed out at 60 s; this way each play has its own budget and a failure names it.
+  it.each(PLAYS)("renders every construct the corpus uses, on $slug", async (p) => {
+    const host = await open(`#/plays/${p.slug}`);
+    // No h1 (the page's one h1 is the brand in the header, #270) and one title, the index's title
+    // rather than the file's "Play — " prefix; the sections sit one level under it.
+    expect(host.querySelectorAll("h1"), p.slug).toHaveLength(0);
+    const titles = host.querySelectorAll("h2");
+    expect(titles, p.slug).toHaveLength(1);
+    expect(titles[0]!.textContent, p.slug).toBe(p.title);
+    expect(host.querySelectorAll("h3").length, `${p.slug} h3`).toBeGreaterThan(0);
+    // No skipped levels: under the header's h1, every heading is at most one below the last.
+    let last = 1;
+    for (const h of host.querySelectorAll("h1, h2, h3, h4, h5, h6")) {
+      const level = Number(h.tagName[1]);
+      expect(level, `${p.slug} ${h.tagName} "${h.textContent}" after h${last}`).toBeLessThanOrEqual(last + 1);
+      last = level;
     }
+    expect(host.querySelectorAll("p").length, `${p.slug} p`).toBeGreaterThan(3);
+    expect(host.querySelectorAll(".play-table").length, `${p.slug} tables`).toBeGreaterThan(0);
+    expect(host.querySelectorAll("code").length, `${p.slug} code`).toBeGreaterThan(5);
+    expect(host.querySelectorAll("strong").length, `${p.slug} strong`).toBeGreaterThan(5);
+    expect(host.querySelector(".play-back"), `${p.slug} back link`).not.toBeNull();
+    expect(document.title, p.slug).toBe(`${p.title} — RiftCombo`);
   });
 
   /**
@@ -111,17 +111,15 @@ describe("a play rendered", () => {
    * ``**`code`**`` is `<strong><code>` and carries no asterisk at all, while a leaked one leaves its
    * `**` outside the span where this still sees it.
    */
-  it("leaves no raw markdown marker in the rendered text", async () => {
-    for (const p of PLAYS) {
-      const host = await open(`#/plays/${p.slug}`);
-      // Fenced blocks are verbatim by design and a turn table may legitimately hold any character.
-      // Code spans go with them: 45 printings are alt-arts whose base code ENDS in `*`, so a play
-      // quoting one would trip the single-asterisk check below, correctly and uselessly.
-      for (const el of host.querySelectorAll("pre, code")) el.remove();
-      const text = host.textContent ?? "";
-      expect(text.length, p.slug).toBeGreaterThan(2000);
-      expect(text, `${p.slug} carries a marker`).not.toMatch(/\*|`|\]\(/);
-    }
+  it.each(PLAYS)("leaves no raw markdown marker in the rendered text of $slug", async (p) => {
+    const host = await open(`#/plays/${p.slug}`);
+    // Fenced blocks are verbatim by design and a turn table may legitimately hold any character.
+    // Code spans go with them: 45 printings are alt-arts whose base code ENDS in `*`, so a play
+    // quoting one would trip the single-asterisk check below, correctly and uselessly.
+    for (const el of host.querySelectorAll("pre, code")) el.remove();
+    const text = host.textContent ?? "";
+    expect(text.length, p.slug).toBeGreaterThan(2000);
+    expect(text, `${p.slug} carries a marker`).not.toMatch(/\*|`|\]\(/);
   });
 
   it("keeps a fenced turn table's alignment exactly as it was written", async () => {
