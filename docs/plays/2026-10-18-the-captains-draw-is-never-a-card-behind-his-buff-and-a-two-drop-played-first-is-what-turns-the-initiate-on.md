@@ -290,10 +290,14 @@ swept sentence by sentence, reminder text (anything in parentheses) stripped, fo
 `/\b(kill|banish|deal \d+|return\b.*\bto (?:its owner's |their owner's |)hand|move an enemy unit|take control of an enemy unit)\b.*\b(units?|it|them)\b|\bunits?\b.*\b(kill|banish|deal \d+|return)\b/i`
 (47 cards; the *it* and *them* catch a sentence like *"Then kill it"*, and the second half a kill that
 comes after the unit). It does not see a bounce written *"Return a unit at a battlefield with 3
-:rb_might: or less to its owner's hand."*, but no Mind/Order card has one: every card that can return
-a unit other than a friendly one is Chaos (`OGN-169 Gust`, `OGN-172 Rebuke`, `OGN-187 Whirlwind`,
-`OGN-188 Zaunite Bouncer`, `SFD-138 Windsinger`, `UNL-134 Existential Dread`, `VEN-106 Wind and Ghosts`,
-`VEN-115 Ocean Drake`). Twenty of the 47 cost three Energy or less; the rest are out of reach of three
+:rb_might: or less to its owner's hand."*, but no Mind/Order card has one: the cards in
+`data/corpus_flat.txt` that return a unit on the board other than a friendly one to its owner's hand are
+**13**, and all 13 are Chaos: `OGN-169 Gust`, `OGN-172 Rebuke`, `OGN-187 Whirlwind`, `OGN-188 Zaunite
+Bouncer`, `SFD-132 Beast Below`, `SFD-138 Windsinger`, `SFD-147 Downwell`, `UNL-128 Star-Crossed`,
+`UNL-132 Angler Beast`, `UNL-134 Existential Dread`, `VEN-106 Wind and Ghosts`, `VEN-107 Decree of
+Discord` and `VEN-115 Ocean Drake`. Left out: `OGN-181 Pack of Wonders` and `SFD-207 Emperor's Dais`,
+which return only your own, and `VEN-103 Shadows of the Past`, which returns units from trashes, not
+from the board. Twenty of the 47 cost three Energy or less; the rest are out of reach of three
 runes. Of the twenty, these kill the Captain:
 
 - `UNL-159 Soul Harvest` (Order, E2 + 1 Order Power): *"Kill a unit at a battlefield with 3 :rb_might: or

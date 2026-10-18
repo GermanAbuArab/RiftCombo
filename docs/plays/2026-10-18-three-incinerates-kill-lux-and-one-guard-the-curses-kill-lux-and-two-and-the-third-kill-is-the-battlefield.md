@@ -291,7 +291,7 @@ exactly 40 cards (including a chosen champion), 1 Legend, 12 runes, and exactly 
 with a unique name."* Going first, you have seen **8** cards by T4. All three Curses are among them in
 **0.61%** of games; exactly two, **9.50%**; at least two, **10.11%**. Even by 12 cards seen, T8, all
 three is **2.41%**. With two copies on T4 the walk ends where the Incinerate line does, one kill short of it. The 3 and the 4 on Lux are 7
-on her 5, and she dies, or they kill the Pigeons and the Ramhound and she lives. Either way two kills
+on her 5, and she dies, or they kill the Pigeons and the Ramhound and she lives. Either way the two Deals
 leave B at 5 or more against Annie's 4, and it ends **3 to 3**. The third kill is about a one-in-163
 hand on T4. One Void Seeker in three copies is among the 8 in **50.82%**.
 
