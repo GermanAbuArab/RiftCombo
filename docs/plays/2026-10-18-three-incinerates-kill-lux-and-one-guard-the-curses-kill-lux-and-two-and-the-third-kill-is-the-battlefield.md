@@ -18,8 +18,8 @@ kill Lux and the third kills one of her 3s. The 3 and the 2 left beside it are 5
 **3 to 3**, with Lux dead. Spent on the three small bodies instead, they leave Lux alone at 5 against the
 same 4. Three Deals of 3 kill Lux and one guard, or three guards. Three of 3, 4 and 5 kill Lux and two,
 and that third kill is the Conquer. It is all the scaling bought, and it needs all three copies in hand,
-which happens in **0.61%** of games by T4. Two copies are 3 + 4, which kill Lux and nothing else, the
-Incinerate line again. One `OGN-024 Void Seeker` in the third slot does the third copy's job for one
+which happens in **0.61%** of games by T4. Two copies are 3 + 4, which kill Lux and nothing else: one
+kill fewer than the Incinerate line, and the same 3 to 3. One `OGN-024 Void Seeker` in the third slot does the third copy's job for one
 rune more. Their better T3 does not play Lux at all: it puts three more small bodies on the
 battlefield, and then the 4 and the 5 have nothing to kill that a 3 could not. That line ends **3 to
 3**. Three answers to the walked line tie at one ready rune: `SFD-064 Cloth Armor`, `OGN-104 Retreat`
@@ -290,9 +290,9 @@ Chosen Champion. Tournament Rules 402.1: *"In a constructed event, players must 
 exactly 40 cards (including a chosen champion), 1 Legend, 12 runes, and exactly 3 battlefields each
 with a unique name."* Going first, you have seen **8** cards by T4. All three Curses are among them in
 **0.61%** of games; exactly two, **9.50%**; at least two, **10.11%**. Even by 12 cards seen, T8, all
-three is **2.41%**. With two copies on T4 the walk is the Incinerate line. The 3 and the 4 on Lux are 7
+three is **2.41%**. With two copies on T4 the walk ends where the Incinerate line does, one kill short of it. The 3 and the 4 on Lux are 7
 on her 5, and she dies, or they kill the Pigeons and the Ramhound and she lives. Either way two kills
-leave B at 5 or more against Annie's 4, and it ends **3 to 3**. The third kill is about a one-in-164
+leave B at 5 or more against Annie's 4, and it ends **3 to 3**. The third kill is about a one-in-163
 hand on T4. One Void Seeker in three copies is among the 8 in **50.82%**.
 
 ## 5. Breaks to
@@ -413,8 +413,8 @@ Annie's 1 to every copy. Walked against a Lux deck that put its 5-Might Chosen C
 battlefield, three copies on T4 were 3, 4 and 5. They killed two 3s and Lux, and Annie took B: **4 to
 2** after their T4. Three Incinerates kill Lux too, with two of them, and one 3 with the third, and the
 two bodies left hold B against Annie: **3 to 3**. So the scaling was worth one point, and what it bought
-was a third kill: Lux needed one Deal instead of two. That needs all three copies, about a one-in-164
-hand on T4 (0.61%); two copies are the Incinerate line. One Void Seeker does the third copy's job for
+was a third kill: Lux needed one Deal instead of two. That needs all three copies, about a one-in-163
+hand on T4 (0.61%); two copies kill one body fewer than the Incinerate line and end 3 to 3 with it. One Void Seeker does the third copy's job for
 one rune more and draws a card. Against their better T3, three more small bodies and Lux held back, the
 4 and the 5 have nothing to kill that a 3 could not: **3 to 3**. The Curse's edge over Void Seeker is
 that one rune. A copy is two runes, the Seeker three with a Fury recycled, and the walk has three ready

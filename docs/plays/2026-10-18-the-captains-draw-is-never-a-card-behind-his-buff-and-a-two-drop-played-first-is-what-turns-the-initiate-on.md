@@ -289,7 +289,11 @@ gone. Blood Money took the Poro. The Captain, a 3 at A, dies to any of these, ea
 swept sentence by sentence, reminder text (anything in parentheses) stripped, for the regex
 `/\b(kill|banish|deal \d+|return\b.*\bto (?:its owner's |their owner's |)hand|move an enemy unit|take control of an enemy unit)\b.*\b(units?|it|them)\b|\bunits?\b.*\b(kill|banish|deal \d+|return)\b/i`
 (47 cards; the *it* and *them* catch a sentence like *"Then kill it"*, and the second half a kill that
-comes after the unit). Twenty of the 47 cost three Energy or less; the rest are out of reach of three
+comes after the unit). It does not see a bounce written *"Return a unit at a battlefield with 3
+:rb_might: or less to its owner's hand."*, but no Mind/Order card has one: every card that can return
+a unit other than a friendly one is Chaos (`OGN-169 Gust`, `OGN-172 Rebuke`, `OGN-187 Whirlwind`,
+`OGN-188 Zaunite Bouncer`, `SFD-138 Windsinger`, `UNL-134 Existential Dread`, `VEN-106 Wind and Ghosts`,
+`VEN-115 Ocean Drake`). Twenty of the 47 cost three Energy or less; the rest are out of reach of three
 runes. Of the twenty, these kill the Captain:
 
 - `UNL-159 Soul Harvest` (Order, E2 + 1 Order Power): *"Kill a unit at a battlefield with 3 :rb_might: or
@@ -394,10 +398,11 @@ five on your T3: **7 of 924, 0.76%**.
 
 **How likely an answer is.** Out of their own **39**, by your T3 they have seen **6** cards: four
 opening and a draw on each of their two turns. Decree of Insight, run three times, is among them in
-**40.30%**. Soul Harvest has to be seen by their T2, which is the same six cards: **40.30%**. Either of
-the two (six cards), **66.05%**. Any of the three two-rune kills of Window 1 (nine cards) by their T2,
-**81.80%**. Like §4's, these are unconditional: they count only the cards named, not how many of them a
-deck runs, and not the rest of the walked hands.
+**40.30%**. Soul Harvest, also run three times, has to be seen by their T2, which is the same six cards:
+**40.30%**. Either of
+the two (six cards), **66.05%**. Any of the three two-rune kills of Window 1, three copies each (nine cards), by their T2,
+**81.80%**. Like §4's, these are unconditional: they assume three copies of each card named, the most
+103.2.b allows, and they do not condition on the rest of the walked hands.
 
 **The draw-or-buff choice is read as a 402.2 decision.** If instead it is made on resolution, an answer
 to the Captain's own trigger could change it: under the buff mode, a kill in response would leave you
