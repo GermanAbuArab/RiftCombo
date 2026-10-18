@@ -20,9 +20,10 @@ Energy and 3 Body Power, and it walked into their battlefield beside Jayce and t
 after their T4. Without it, the same turn spent on Garen holds and attacks nothing: **3 to 3**. At full
 price it cannot be played on T4 at all. The bill comes in runes: three Body runes recycled on T4, so
 the line ends T4 with three runes on the board against the control's five, and **30.30%** of rune
-orders cannot pay it on T4. The cheapest card that breaks the turn is not an answer to the discount.
-It is `OGN-169 Gust`, one rune and no Power, played in the combat on the Ramhound, which leaves the
-attack two short.
+orders cannot pay it on T4. The cheapest cards that break the turn are not answers to the discount.
+They take the attack's third body, the Ramhound, which leaves the attack two short: `VEN-107 Decree of
+Discord` returns it from your base on their T3 for one rune, recycled, and `OGN-169 Gust` returns it
+in the combat for one rune and no Power.
 
 **Why this line.** `scripts/sequence-pick.mjs --unplayed`, re-run on 2026-10-18 at `1c031c2`, reads
 773 entries, 262 with forced-ordering language, **100 in the queue and 19 of them with no play**, as
@@ -122,7 +123,7 @@ the unit."*
 | 1 | E5 + 2 Body | E6 + 3 Body |
 | 2 | E3 + 2 Body | E4 + 3 Body |
 | 3 | E1 + 2 Body | E2 + 3 Body |
-| 4 | E0 + 2 Body (2 Energy of discount wasted) | E0 + 3 Body |
+| 4 | E0 + 2 Body (1 Energy of discount wasted) | E0 + 3 Body |
 
 **Every Power is a rune off the board.** A rune adds Energy by exhausting, 164.2.a: *"[E]: [Reaction]
 — Add [1]."*, and Power only by leaving, 164.2.b: *"Recycle this: [Reaction] — Add [C]."* A rune
@@ -258,8 +259,8 @@ E8 + 3 Body Power ready. On T4 you have six. It cannot be played on T4 at all.
 
 **Without [Accelerate].** With two Mighty bodies the Jaull-Fish is E3 + 2 Body Power, three runes, and
 it enters exhausted. Jayce 7 and the Ramhound 3 attack alone, 10 against 14, and that is no attack.
-[Accelerate] costs one more Energy, which the discount mostly absorbs, and one more Body rune, which
-it cannot.
+[Accelerate] costs one more Energy, which the discount absorbs only at the floor, with four Mighty
+bodies, and one more Body rune, which it never does.
 
 **The other ordering: Daring Poro first.** Played before the Jaull-Fish, the Poro opens a chain, and
 on it any Reaction they can afford is live (309.1.a, 813.1.c.1). With one ready rune that is nothing
@@ -315,8 +316,17 @@ turn"* played on their turn expires before yours. What is left splits by where i
   Poro, and play the Duo with their last three runes: B is 10, and their 10 kill both attackers while
   your 9 leave one of theirs standing. Whirlwind does not break it: you return
   first, and you return Jinx. B is then 5, the Duo makes it 8, and your 9 kill all three, 3 + 2 + 3,
-  while their 8 kill the Jaull-Fish and leave the Ramhound. **The cheapest that breaks the attack is
-  Star-Crossed, three runes and one Chaos Power, and it costs them most of their T3.**
+  while their 8 kill the Jaull-Fish and leave the Ramhound. Star-Crossed breaks it for three runes and
+  one Chaos Power, and it costs them most of their T3.
+- **Into your base, where the Ramhound is: the cheapest break.** `VEN-107 Decree of Discord` (Chaos, E1
+  + 1 Chaos Power; *"Return any number of enemy Order (:rb_rune_order:) units with total Might 5 or less
+  to their owners' hands."*) names no location, so it reaches your base. The Ramhound is Order and a 3
+  there beside Jayce; Galio, Order too, is a 6 and out of its reach. One rune, exhausted and recycled,
+  and they still have five for the Duo and the Rearguard: B is 14. On your T4 the Mighty count is
+  untouched, the Jaull-Fish is still E4 + 3 Body Power, and the Ramhound replayed with the last two
+  runes enters exhausted (143.4). The attack is Jayce 7 and the Jaull-Fish 6, 13 against 14: your 13
+  cannot kill all five, their 14 kill both. **One rune and one Chaos Power, and it costs them nothing
+  else on their T3.**
 - **Only at a battlefield, where Galio is.** `OGN-172 Rebuke` (Chaos, E2 + 2 Chaos Power), `VEN-106
   Wind and Ghosts` (Chaos, E3 + 1 Chaos Power), `OGN-188 Zaunite Bouncer` (Chaos, E4 + 2 Chaos Power),
   `OGN-180 Fading Memories` (Chaos, E4 + 1 Chaos Power, killed at the start of your Beginning Phase)
@@ -340,7 +350,7 @@ the Jaull-Fish is E6 + 3 Body Power and the attack is 9 against B. Keeping three
 T3 leaves them three to spend, so B gets the Duo and not the Rearguard, 12, and Star-Crossed takes one
 of their own back to hand as well, 10 at most. Nine still do not take it.
 
-**Window 3: the combat on your T4. The cheapest card that touches the line is here.** After you pass
+**Window 3: the combat on your T4. One rune is enough here too.** After you pass
 Focus they play [Action] and [Reaction] cards with the runes they kept, 806.1.b: *"Action grants the
 corresponding card or effect permission to be played or activated during Showdowns, even when it is
 not the Controlling player's turn."* **51** of the 247 carry [Action] or [Reaction]. The attack wins by 2. Anything that takes the Ramhound out of the combat takes 3 off your side: 13 against 14, your 13
@@ -352,10 +362,23 @@ spent three Body runes for nothing.
   **One rune, no Power, and it is the one rune they kept in the walk.**
 - `OGN-009 Hextech Ray` (Fury, E1 + 1 Fury Power; *"Deal 3 to a unit at a battlefield."*) kills it: the
   same one rune, recycled.
-- Every deal-3-or-more card at a battlefield above that costs more.
+- `UNL-014 Monster Harpoon` (Fury, E1 + 1 Fury Power; *"[Action] (Play on your turn or in showdowns.)
+  Deal 2 to a unit at a battlefield. If you control a facedown card, deal 4 to it instead."*) does not
+  kill it and does not need to. Lethal counts what is already marked, 142.4.b: *"Lethal Damage for a
+  Unit is a non-zero amount greater than or equal to that Unit’s Might."* With 2 on the Ramhound, their
+  14 are Jayce 7, the Jaull-Fish 6 and 1 more on the Ramhound, and all three die. Your 16 kill all five
+  of theirs, nobody remains, and 466.5.b leaves B to no one: *"If there are no Units remaining here
+  controlled by any player, the Battlefield becomes Uncontrolled."* You score nothing.
+- `UNL-134 Existential Dread` (Chaos, E1 + 1 Chaos Power; *"[Stun] an attacking enemy unit. If it's
+  already stunned, return it to its owner's hand instead. (A stunned unit doesn't deal combat damage
+  this turn.)"*) stuns Jayce: your side is the Jaull-Fish 6 and the Ramhound 3, 9 against 14.
+- Every other card that deals 2 or more at a battlefield costs more.
 
-The Rocket in your base on their T3 is the clean answer, and the Gust is the cheap one. Neither answers the
-discount. The Jaull-Fish is played in every line here; what they deny is the turn it was bought for.
+Gust, Hextech Ray, Monster Harpoon and Existential Dread tie at one rune: Gust needs no Power, and the
+other three are the same rune exhausted and then recycled.
+
+The Rocket in your base on their T3 is the clean answer, and Decree of Discord on their T3 or a one-rune
+card in the combat is the cheap one. None of them answers the discount. The Jaull-Fish is played in every line here; what they deny is the turn it was bought for.
 
 ## 6. Verdict
 
@@ -370,8 +393,9 @@ the Jaull-Fish came down ready on T4 for four runes, and with Jayce and the Ramh
 2** after their T4. Spending the same turn on Garen is **3 to 3**; at full price the Jaull-Fish is not
 a T4 card at all. The price the discount cannot touch is three recycled Body runes: the line ends T4
 with three runes on the board against the control's five, and 30.30% of rune orders cannot pay it on
-T4. The attack wins by two, so the cheapest card that breaks the turn is Gust on the Ramhound, one
-rune, in the combat.
+T4. The attack wins by two, so the cheapest cards that break the turn cost one rune: Decree of Discord
+on the Ramhound in your base on their T3, or in the combat Gust or Hextech Ray on the Ramhound, Monster
+Harpoon's 2 on it, or Existential Dread on Jayce.
 
 ## 7. Not verified
 
@@ -385,17 +409,18 @@ a Body among six for Jayce and a second among eight for Garen: with Galio's Orde
 3.14%**.
 
 Their walk assumes six Fury and six Chaos. Jinx on T2 needs a Fury among their first five: it fails in
-**7 of 924, 0.76%**. Star-Crossed on their T3 needs a Chaos among seven: **0 of 924**.
-Rebuke on Galio needs two, with its [Deflect] Power of any domain: **7 of 924, 0.76%**. Hextech Ray on your T4 needs a second Fury among seven, the
-first having gone to Jinx: **7 of 924, 0.76%**. The Rocket's Power is Fury or Chaos, and Gust takes any
+**7 of 924, 0.76%**. Star-Crossed or Decree of Discord on their T3 needs a Chaos among seven, and so
+does Existential Dread on your T4: **0 of 924**.
+Rebuke on Galio needs two, with its [Deflect] Power of any domain: **7 of 924, 0.76%**. Hextech Ray or Monster Harpoon on your T4 needs a second Fury
+among seven, the first having gone to Jinx: **7 of 924, 0.76%**. The Rocket's Power is Fury or Chaos, and Gust takes any
 rune.
 
 **How likely an answer is.** Out of their own **39**, by your T4 they have seen **7** cards: four
 opening and a draw on each of their three turns; the legend does not draw before their T4. A Gust, run
-three times, is among them in **45.73%**; a Rocket or a Star-Crossed, the two base-reaching answers
-that break the attack (six cards), **72.23%**. Those are before the deal. The walk fixes their opening
-four as non-answers, which leaves three draws from the other **35**: three Gusts among them is
-**24.22%**, the six **44.17%**. These count only the cards named, not how many of them a deck runs.
+three times, is among them in **45.73%**; a Rocket, a Star-Crossed or a Decree of Discord, the three
+base-reaching answers that break the attack (nine cards), **86.76%**. Those are before the deal. The
+walk fixes their opening four as non-answers, which leaves three draws from the other **35**: three
+Gusts among them is **24.22%**, the nine **60.28%**. These count only the cards named, not how many of them a deck runs.
 
 Whether the Jaull-Fish counts itself is not ruled here. On the chain it is in a non-board zone, 328:
 *"The Chain is a Non-Board Zone that temporarily exists whenever a card is played or an ability is
@@ -444,5 +469,7 @@ its costs), `OGN-150 Kraken Hunter` in place of Jayce, and the board after their
   fails in 30.30% of rune orders.
 - No answer is named. A removal on one Mighty body raises the Jaull-Fish by 2 Energy and does not stop
   it. `OGN-252 Super Mega Death Rocket!` kills a printed 5 anywhere and `UNL-128 Star-Crossed` returns
-  one, and either breaks the walked T4 attack; the 6s survive the Rocket. `OGN-169 Gust`, one rune, takes
-  the attack's third body in the combat.
+  one, and either breaks the walked T4 attack; the 6s survive the Rocket. Cheapest are one-rune cards
+  against the attack's third body: `VEN-107 Decree of Discord` returns the Ramhound from your base on
+  their turn, and `OGN-169 Gust`, `OGN-009 Hextech Ray`, `UNL-014 Monster Harpoon` and `UNL-134
+  Existential Dread` break the combat.

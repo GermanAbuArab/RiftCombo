@@ -16,10 +16,14 @@ against Galio's 6 kills both, and choosing him costs a third Power for his [Defl
 going first, against a Calm/Order Shen deck that put Galio at its battlefield on T2, the Snapvine went
 the other way. On T3 it killed `OGN-054 Sunlit Guardian` beside him. On T4 a paid Rampage killed `VEN-118
 Horns of the Dragon`, the Tank they had added, and the Snapvine walked into Galio alone, who dealt it
-nothing and died: **4 to 2** after their T4. The same runes spent without the Snapvine on T3 leave
-Galio two partners, and it is **3 to 3**. Choosing Galio on T3 trades seven runes of Snapvine for four
-of Galio. What breaks the line is two ready runes on your T4: `OGN-058 Discipline` (Calm, E2, no Power)
-on the Rampage's target makes the exchange 8 against 8, and both bodies die.
+nothing and died: **4 to 2** after their T4. That score is not the Snapvine's on T3: the same hand
+holding the Snapvine and Rampage for T4 reaches **4 to 2** too, with Rampage on Lucian, Merciless and
+the Snapvine trading with Horns. What the T3 Snapvine buys is a 6-Might body that survives and a card
+kept. Choosing Galio on T3 trades the Snapvine, five runes with three recycled, for Galio, three runes
+with one recycled. The cheapest break costs them one rune on their T2 and none on your T4: a card
+hidden at B, such as `OGN-057 Block`, which makes Galio a 9 as a defender, so the Snapvine's 8 does
+not kill him. Without a hidden card, it takes two ready runes on your T4: `OGN-058 Discipline` (Calm,
+E2, no Power) on the Rampage's target makes the exchange 8 against 8, and both bodies die.
 
 **Why this line.** `scripts/sequence-pick.mjs --unplayed`, re-run on 2026-10-18 at `1c031c2`, reads 773
 entries, 262 with forced-ordering language, **100 in the queue and 19 of them with no play**, as the
@@ -207,21 +211,30 @@ Shen comes from the Champion Zone to base, with Soulspinner and the Mouser: ever
 
 **Without the Snapvine on T3: the control.** Same draws. On T3 the six runes play Lucian and Laurent
 Bladekeeper to base. On their T3 Horns goes to B as in the walk: B is Galio, the Guardian and Horns. On
-your T4 you have eight runes: the Snapvine (five, two recycled) kills the Guardian, and Lucian and the
-Bladekeeper, 6 between them, walk into B against Galio and Horns, both Tanks. Their 6 kill one of the
-two; Horns' 6 kill both of yours. B stays theirs. They Hold it on their T4: **3 to 3**.
+your T4 you have eight runes. Rampage, paid, chooses Lucian and the Guardian: Lucian is a 5 for the
+turn, and outside a combat the Guardian's [Shield] adds nothing, so it is 5 against 3. The Guardian
+dies and Lucian keeps 3 damage. The Snapvine, five runes with two Body recycled, chooses Horns: 6
+against 6, and both die (143.2.a). B is Galio alone. Lucian, a 5 with 3 marked, and the Bladekeeper,
+a 3, walk into B: their 8 kill Galio, who deals nothing, and it is a Conquer. They have nothing to
+Hold on their T4: **4 to 2**, the walk's score, for the same eight runes and the same three Body
+recycled. So the Snapvine on T3 does not buy a point. The walk ends your T4 with the Snapvine and
+Lucian on the board and the Bladekeeper still in hand. The control ends it with Lucian and the
+Bladekeeper on the board and the Snapvine in the trash. That is a 6-Might body in place of a 3, and
+one card more.
 
 **Choosing Galio on T3.** The Snapvine pays a third Power for [Deflect] (809.1.c): five runes
 exhausted, three recycled. Galio and the Snapvine deal 6 to each other, and both die (143.2.a). B is
 the Guardian alone, and they Hold it on their T3 with Horns beside him. Rampage on T4 has no 6-Might
-body to pump. Seven runes of Snapvine, three of them gone for good, for four runes of Galio.
+body to pump. The Snapvine, five runes with three recycled, for Galio, three runes with one
+recycled.
 
 **Rampage before the Snapvine.** Rampage needs a friendly body big enough to survive the exchange. On
 T3 your largest is a 2; Rampage paid makes it a 4, which kills the Guardian (4 against 3) and takes 3,
 and lives. That is three runes for the Guardian instead of five, with Laurent Bladekeeper beside it. On T4
 the Snapvine then faces Galio and Horns: it can kill Horns only by trading with it, 6 against 6, and
 the Bladekeeper's 3 cannot kill Galio alone. The Snapvine comes first because Rampage's +2 reads the
-body it is given.
+body it is given; on T4, Rampage on Lucian works, as the control shows, because the Snapvine is
+there to take Horns.
 
 **How often this happens.** The draw pile is **39** cards, the 40 of Tournament Rules 402.1 less the
 Chosen Champion, which 103.2.a.1 places in the Champion Zone. Tournament Rules 402.1: *"In a
@@ -278,8 +291,39 @@ Snapvine already carrying 6 is 9, and it dies. Soulspinner remains, and B stays 
 does the same from the Champion Zone (E3 + 1 Order Power), a 5 while defending. A +2 on Galio does
 not: Back to Back makes him an 8, and the Snapvine's 8 still kill him.
 
-**So the line needs them at one ready rune or none on your T4.** In the walk they spent all six on
-Horns. Two kept back and Discipline in hand cost you the Snapvine and the conquer.
+**The hidden card at B.** Four of the 45 carry [Hidden] and break the combat from facedown. After
+their T2 they control B, so they can hide there, 811.1.b: *"While this card is in your hand or in your
+Champion Zone on your turn during an Open State, you may pay [A] to hide this facedown at a battlefield
+you control that doesn't already have a facedown card hidden there for as long as you control that
+battlefield. Beginning on the next turn, this gains [Reaction] and you may play this, ignoring its base
+cost."* The [A] is a recycled rune, and it can be one already exhausted, so the hide needs no ready
+rune and costs one rune for good. Played from facedown it has Reaction, 811.6: *"A card that is Hidden
+gains Reaction while facedown or played from facedown, and may be played any time a card with Reaction
+may be played as a result."* It costs nothing on your T4. In the combat at B:
+
+- **`OGN-057 Block`** (Calm): *"Give a unit [Shield 3] and [Tank] this turn."* Galio is a 9 as a
+  defender, and the Snapvine's 8 does not kill him.
+- **`UNL-042 Back Off`** (Calm): *"[Stun] a unit. (It doesn't deal combat damage this turn.)"* The
+  Snapvine deals nothing.
+- **`OGN-220 Facebreaker`** (Order): *"Stun a friendly unit and an enemy unit at the same
+  battlefield."* Galio and the Snapvine, the same result.
+- **`OGN-213 Hidden Blade`** (Order): *"Kill a unit at a battlefield. Its controller draws 2."* The
+  Snapvine dies at B, and you draw 2.
+
+The rune they recycle to hide comes off their T3. They have five runes there, not six, so Horns is
+out of reach and Shen, Kinkou goes to B from the Champion Zone (E3 + 1 Order Power). On your T4 the
+paid Rampage kills Shen (8 against 3), the Snapvine walks into Galio alone, and the hidden card stops
+it. B stays theirs: **3 to 2** after your T4 and **3 to 3** after their T4. The other hidden cards in
+the 45 do not break it. `SFD-043 Emperor's Divide` and `OGN-077 Zhonya's Hourglass` take Galio out of
+B and leave it to you. `OGN-053 Stand United` makes him an 8, which the Snapvine's 8 still kills. The
+units, `VEN-117 Disciple of Shen` and `VEN-135 Kennen, Keeper of Balance`, I did not walk.
+
+**So the line needs them at one ready rune or none on your T4, and nothing hidden at B.** In the walk
+they kept their spare rune on their T2 for En Garde, which changes nothing, and spent all six on
+Horns. A hidden Block, Back Off,
+Facebreaker or Hidden Blade is **the cheapest answer: one rune on their T2, which can be an exhausted
+one, and none on your T4**. Without one, two runes kept back and Discipline in hand cost you the
+Snapvine and the conquer.
 
 ## 6. Verdict
 
@@ -289,10 +333,14 @@ means Galio deals his 6 in it: the Snapvine choosing him is a mutual kill, and p
 on top (383.3, 809.1.c). What answers Galio is the other half of his text. He deals no combat damage, so
 alone he is a 6 that costs nothing to kill. Walked going first against a Calm/Order deck that put him
 at B on T2, the Snapvine killed the Guardian beside him on T3, a paid Rampage killed Horns on T4, and
-the Snapvine took B from Galio alone: **4 to 2** after their T4. Without the Snapvine on T3 it is **3
-to 3**; choosing Galio trades seven runes for four. The cheapest card that touches the line is En
-Garde for one rune, and it does not break it. What breaks it is two ready runes on your T4: Discipline
-on Horns, no Power, and both 8s die.
+the Snapvine took B from Galio alone: **4 to 2** after their T4. Holding the Snapvine and Rampage
+for T4 reaches the same **4 to 2**, so the T3 Snapvine buys a surviving 6-Might body and a card, not a
+point. Choosing Galio trades five runes, three of them recycled, for three, one of them recycled. The
+cheapest cards that touch the line are En Garde and Combat Experience, one rune each, and neither
+breaks it. What breaks it most cheaply is a card hidden at B on their T2, for one rune that can
+already be exhausted: Block, Back Off, Facebreaker or Hidden Blade stops the Snapvine in the combat
+with no rune spent on your T4. Without one, it takes two ready runes on your T4: Discipline on Horns,
+no Power, and both 8s die.
 
 ## 7. Not verified
 
@@ -341,10 +389,13 @@ turn, and the board after their T4.
   to me"*. The two prevention cards that name a unit instead of a source, `VEN-126 Ki Barrier` (Order,
   E2 + 1 Order Power) and `SFD-194 Counter Strike` (Calm/Body, E2 + 1 Power), stop the exchange's
   damage to that unit.
-- No answer is named. `SFD-045 Not So Fast` (Calm, E2 + 1 Calm Power) counters the play effect and
-  Rampage alike; `OGN-058 Discipline` and `SFD-034 Feral Strength` (Calm, E2) on the Rampage's target
-  make a paid Rampage against a 6 a mutual kill; an [Ambush] or [Reaction] body played beside Galio in
-  the combat keeps the battlefield.
+- No Calm/Order answer is named; the only answer the entry names is `VEN-084 Ambessa, The Wolf`, in
+  Body. `SFD-045 Not So Fast` (Calm, E2 + 1 Calm Power) counters the play effect and Rampage alike.
+  `OGN-058 Discipline` and `SFD-034 Feral Strength` (Calm, E2) on the Rampage's target make a paid
+  Rampage against a 6 a mutual kill. An [Ambush] or [Reaction] body played beside Galio in the combat
+  keeps the battlefield. Cheapest of all, a card hidden at the battlefield, `OGN-057 Block`, `UNL-042
+  Back Off`, `OGN-220 Facebreaker` or `OGN-213 Hidden Blade`, stops the attack for one rune paid on the
+  turn before.
 - The precondition *"An enemy unit AT A BATTLEFIELD for the Snapvine"*: the Snapvine played to base
   still reaches a battlefield, and has to be played there whenever the target is at the opponent's
   battlefield, because a unit at your own battlefield can only go back to base (144.4.b).
