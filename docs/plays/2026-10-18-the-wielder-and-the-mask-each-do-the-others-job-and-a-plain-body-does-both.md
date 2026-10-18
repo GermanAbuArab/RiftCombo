@@ -1,4 +1,4 @@
-# Play — The Mask turns a trade into a battlefield, and the Wielder is a Sunlit Guardian until it attacks
+# Play — The Wielder and the Mask each do the other's job, and a plain body does both
 
 Issue #411 (a slice of #200), 2026-10-18. Constructed, Duel (485). Rules version 2026-07-16.
 Card text verbatim from `data/corpus_flat.txt`; rules pasted from
@@ -13,13 +13,16 @@ neither bonus is a buff. Walked as a game, going first, under `OGS-019 Wuju Blad
 own +2 goes to a friendly unit defending alone) against a Mind/Order Lux deck that kept two bodies at
 home to attack your battlefield, the Wielder walked alone into their battlefield on your T3 as a 5 and
 took it from a 3. The Mask then made both of your lone garrisons too big for their two bodies, and they
-did not attack until Lux could join them: **5 to 2** after their T4. The same hand with no Mask ends
-**4 to 3**: without its +1 your 5-Might garrison loses to their 6, and they take it. The same hand with a
-`OGN-054 Sunlit Guardian` in place of the Wielder ends **5 to 2** as well. A lone Sunlit Guardian is 3 +
-1 defending, which is the Wielder's 2 + 2, under any legend, and with the Mask it is 4 on the attack,
-which also kills a 3. The Wielder is one point better only while it attacks alone, and worse whenever
-it has company. Played in the entry's order, Mask first on T1, the same cards end **2 to 3**, because
-the Mask takes the turn your first body needed. Their better T2 never attacks at all: they stack their
+did not attack until Lux could join them: **5 to 2** after their T4. The same hand with no Mask also
+ends **5 to 2**. The Wielder alone is still a 4 against the Pigeons' 3, and the Sunlit Guardian played
+onto your battlefield beside Stalwart Poro makes it a 7 with no alone bonus at all. That is the number
+the Mask and the legend gave the lone Wielder. The same hand with a `OGN-054 Sunlit Guardian` in place
+of the Wielder ends **5 to 2** too. A lone Sunlit Guardian is 3 + 1 defending, which is the Wielder's
+2 + 2, under any legend, and with the Mask it is 4 on the attack, which also kills a 3. So the T3
+Conquer needs one of the two cards, not both, and on this board neither bought a point that a plain
+body did not. The Wielder is one point better only while it attacks alone, and worse whenever it has
+company. Played in the entry's order, Mask first on T1, the same cards end **2 to 3** in every line
+walked, because the Mask takes the turn your first body needed. Their better T2 never attacks at all: they stack their
 own battlefield, nothing of yours ever fights alone, and it ends **3 to 3** with or without the
 engine. The cheapest answer to the walked line is `SFD-064 Cloth Armor`, one ready rune and no Power:
 on their 3-Might defender it makes the Wielder's attack a 5 against a 5, and both die.
@@ -198,7 +201,8 @@ two garrisons are each alone, and each now carries the Mask's +1 when it defends
 Trading into A costs them both bodies to deny you one Hold. Walked out, it ends **5 to 1**: on your T4
 you Hold B, and the Guardian, ready in base, walks into empty A for a Conquer. They wait instead. Lux
 goes to base, seven runes with a Mind one recycled, and next turn she, the Ramhound and the Poro are 5 +
-3 + 3 = 11. The Mask's +1 did not fire on their T3, and it is the reason nothing happened.
+3 + 3 = 11. The Mask's +1 did not fire on their T3, and in this hand it is the reason nothing happened.
+The no-Mask control below shows that a second body at A does the same.
 
 **Your T4.** You Hold both: **5 to 1**. Their 11 will break either garrison, and nothing you have
 makes one of them 11. Note what a second body does here. Stalwart Poro alone at A is 6; with the Guardian
@@ -223,22 +227,44 @@ it has company: 2 against the Guardian's 3, or 4 defending. In this walk the Mas
 Guardian's attack a 4, and a 4 kills the same 3 a 5 does.
 
 **The control: no Mask.** The same hand with Wuju Apprentice played in the Mask's two runes. On your T3
-the Wielder alone is 2 + 2 = 4 against the Pigeons' 3: it still takes B, **3 to 1**. On their T3 your
-garrisons are 5 at A (2 + 1 + 2) and 6 at B (2 + 2 + 2). Their 6 into A now win: you assign 5, 3 of it
-lethal on the Ramhound and 2 on the Poro, a 3 while it attacks, and the Poro takes A. They put Lux
-beside it, so A is the Poro's 2 and Lux's 5. On your T4 you Hold B, **4 to 2**, and your Guardian and
-Apprentice together are 5 against A's 7, so you do not attack. They Hold A on their T4: **4 to 3**. The
-Mask's one point on Stalwart Poro was the difference between a 6 their 6 would only trade with and a 5
-they could take. It was worth a point to you and a point to them.
+the Wielder alone is 2 + 2 = 4 against the Pigeons' 3: it still takes B, **3 to 1**. Played the way the
+main line plays it, with the Guardian in base, A is Stalwart Poro alone at 2 + 1 + 2 = 5. Their 6 take
+it, and the game ends 4 to 3. That is not this hand's best T3. The Guardian goes onto A instead, which
+you control (355.2.a). A then defends as 2 + 1 (Shield) + 3 + 1 (Shield) = **7**, with neither alone
+bonus, and the Guardian is [Tank], 815.1.c.2: *"If more than one unit with Tank is present with the same
+controller in Combat, damage may be assigned to any of them. Units without Tank are invalid assignments
+until all units with Tank have lethal damage assigned to them."* Against the Ramhound and the Poro's 6,
+4 of it is lethal on the Guardian and the other 2 are short of Stalwart Poro's 3. Your 7 kill both of
+theirs, so they would lose two bodies for one and A would stay yours. B is the Wielder alone at 2 + 2 +
+2 = 6. Their 6 into it kill everything, and B ends nobody's (466.5.b). Walked out, that trade ends **5
+to 2**: on your T4 you Hold A and the Apprentice, ready in base, walks into empty B for a Conquer. On
+their T4 Lux, alone, beats the Apprentice's 2 + 2 = 4 and takes B. Waiting ends the same: Lux goes to
+base, you Hold A and B on your T4, and on their T4 their 11 take one battlefield: **5 to 2**. **On this
+board the Mask was worth nothing.** Its +1 on a lone garrison bought what a second body beside it buys
+with no alone bonus, and the second body was already in your hand. The Guardian is the reason. With Wuju
+Apprentice beside the Poro instead, A is 2 + 1 + 2 = 5 and their 6 take it. A garrison of two is only
+as big as the cards you have to put in it, and the Mask is +1 to whichever body you could not afford to
+add.
 
 **The trap, walked: the Mask first.** The entry's steps play the Mask first. Cast on T1, it leaves your
-T2 with no body ready to walk into A. Put the Wielder in base on T2, and on your T3 it takes B from the
-Pigeons as before, as a 5: **1 to 1**. But A is empty, and on their T3 the Ramhound and the Poro walk
-into it unopposed, a Conquer, and Lux goes beside them, three bodies that defend as 10. You Hold B on
-your T4; they Hold A on theirs: **2 to 3**. With Stalwart Poro and Lonely Poro on T2 instead, the Poro
-takes A on T3 and Lonely Poro, alone into B, is 2 + 1 = 3 against the Pigeons' 3: both die, and B is
-empty for the Ramhound and the Poro. That also ends **2 to 3**. A unit has to be played a turn before it
-can move, and the Mask does not. Played second, on the turn of the first lone combat, it costs nothing;
+T2 with no body ready to walk into A. Their T2 is the main line's: the Pigeons take B, and the Ramhound
+and the Poro go to base. Three lines from there, and all three end **2 to 3**:
+
+- **The Wielder on T2.** On your T3 it takes B from the Pigeons as before, as a 5: **1 to 1**. But A is
+  empty, and on their T3 the Ramhound and the Poro walk into it unopposed, a Conquer, and Lux goes
+  beside them, three bodies that defend as 10. You Hold B on your T4; they Hold A on theirs.
+- **Stalwart Poro and Lonely Poro on T2, and Lonely Poro into B on T3.** Stalwart Poro takes A on T3,
+  and Lonely Poro, alone into B, is 2 + 1 = 3 against the Pigeons' 3. Both die, and B is empty for the
+  Ramhound and the Poro.
+- **Stalwart Poro and Lonely Poro on T2, and Lonely Poro kept home.** This is the best of the three.
+  Stalwart Poro takes A on T3, **1 to 1**. Your six runes put the Wielder in base and the Guardian onto
+  A, which then defends as 7, so their 6 cannot take it. But B is still theirs: on their T3 they Hold
+  it, **1 to 2**, and Lux goes there, so B defends as 3 + 5 = 8. On your T4 you Hold A, **2 to 2**, and
+  the Wielder alone is 5 against 8, so you do not attack. They Hold B on their T4. Had Lux gone to base
+  instead, the Wielder would have taken B from the lone Pigeons on your T4, and their 11 would have
+  taken one battlefield back: 3 to 3, a point better for you, so they put her on B.
+
+A unit has to be played a turn before it can move, and the Mask does not. Played second, on the turn of the first lone combat, it costs nothing;
 played first, it costs the body that took A.
 
 **Their better T2: stack B and never attack.** If the Ramhound and the Poro go to B beside the Pigeons,
@@ -350,16 +376,19 @@ back exactly the legend's +2 from whichever lone defender stands on it, theirs a
 
 ## 6. Verdict
 
-**Right about the definition; the Mask is the engine, and the Wielder is a Sunlit Guardian with one
-more point on the attack.** 740.2.a counts only your own side, the Mask checks at the designation and
+**Right about the definition; on this board each card did the other's job, and a plain body did
+both.** 740.2.a counts only your own side, the Mask checks at the designation and
 never again, and none of the three bonuses is a buff, so a lone Wielder is a Mighty 5 attacking and,
 under Wuju Bladesman, a 7 defending. Walked against a Lux deck that kept two bodies at home to attack
 your battlefield, the Wielder took theirs on T3 as a 5 against a 3, the Mask made both of your lone
 garrisons too big for their 6, and they did not attack until Lux joined them: **5 to 2** after their
-T4. Without the Mask, the same hand ends **4 to 3**. With a Sunlit Guardian in the Wielder's place, it
-ends **5 to 2**: a lone Sunlit Guardian defends at the Wielder's number under any legend, and with the
-Mask it kills the same 3. The Mask played first, as the entry orders it, costs the body that took your
-battlefield and ends **2 to 3**. Against an opponent who stacks their own battlefield and never attacks,
+T4. Without the Mask, the same hand also ends **5 to 2**: the Wielder alone is still a 4 against a 3,
+and the Sunlit Guardian beside Stalwart Poro makes your battlefield the same 7 with no alone bonus.
+With a Sunlit Guardian in the Wielder's place, it ends **5 to 2**: a lone Sunlit Guardian defends at the
+Wielder's number under any legend, and with the Mask it kills the same 3. The T3 Conquer needs one of
+the two cards, not both, and neither bought a point here that a plain 3-Might body did not. The Mask
+played first, as the entry orders it, costs the body that took your battlefield and ends **2 to 3** in
+all three lines walked. Against an opponent who stacks their own battlefield and never attacks,
 nothing of yours fights alone and the engine does nothing: **3 to 3**, with or without it. The
 cheapest answer to the walked line is Cloth Armor, one ready rune and no Power, and ten of the thirteen
 hidden cards stop it for one recycled rune, seven of them by adding a body.
@@ -393,7 +422,8 @@ being Forbidding Waste. The probabilities count only the cards named.
   the sum of their whole side (465.2.c).
 - The steps' order, Mask first: walked and refuted on this board. Units enter exhausted (143.4) and the
   Mask needs no ready turn, so the order is the lone body first and the Mask on the turn of its first
-  combat. The Mask first on T1 took the turn the first body needed and ended 2 to 3, against 5 to 2.
+  combat. The Mask first on T1 took the turn the first body needed, and all three lines walked from it
+  ended 2 to 3, against 5 to 2.
 - The notable *"AND THE MASK PAYS FOR ANY LONE BODY, NOT ONLY THIS ONE"*: right, and it means the
   Wielder is optional. A lone `OGN-054 Sunlit Guardian` (E3, M3, [Shield]) defends at 3 + 1, the
   Wielder's 2 + 2, under any legend; the Wielder is one point better only while attacking alone, and
@@ -403,8 +433,10 @@ being Forbidding Waste. The probabilities count only the cards named.
 - The notable on the Duel, *"it fires twice a combat round - once for the attacker and once for the
   defender"*: it fires once per combat in which a unit of yours is alone, and the opponent decides how
   many of those there are. In the walk it fired once on your T3 and once on their T4, and on their T3 it
-  fired zero times because its +1 made both garrisons unprofitable to attack. That deterrence was worth
-  a point to each side against the no-Mask hand, and no count of triggers can see it.
+  fired zero times because its +1 made both garrisons unprofitable to attack. That deterrence is real,
+  but it is not the Mask's alone: with no Mask, a Sunlit Guardian played beside the lone garrison made it
+  the same 7, and the no-Mask hand ended the same 5 to 2. The Mask is +1 to a body you could not afford
+  to give company.
 - `terminatesIn` (*"nothing here scores"*): true of the cards, but the walked line's points come from
   what they let a lone body take and keep. Against an opponent who stacks their own battlefield and
   never attacks, nothing fights alone and the engine is blank: 3 to 3 with or without it.

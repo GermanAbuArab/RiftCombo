@@ -17,15 +17,18 @@ on your T3, it died before their scoring, and their `OGN-054 Sunlit Guardian` wa
 the empty battlefield and took the same point by Conquer: **2 to 2** after their T3. The honest control
 is the same slot spent on `UNL-186 Death from Below`, the Pyke Signature at the Memories' exact cost.
 It kills now, the battlefield opens on your own turn, and Pyke, who has [Ganking], walks in: **3 to 2**.
-`OGS-003 Incinerate` does the same for two runes, because the Wielder's +2s are combat-only and it is a
-2 on your turn. That line ends **5 to 3** after their T4, against **4 to 3** for the Memories and the
-Marauder. So landing before their scoring is not an advantage over a kill in your own Main Phase. It is
-the same denial a turn later, after their base has readied, and the trigger hands them the first priority
-of their turn with every rune ready. The card's real property is elsewhere: it is the only card in
-Chaos that kills an enemy unit of any Might, and 14 of the 16 Chaos legends have nothing else that
-does. Nothing in Calm/Body saves the Wielder once the Memories resolve: a recall keeps [Temporary] on
-it. The cheapest answer to the point is no card at all, a ready body in base. The cheapest card that
-saves the unit is `OGN-045 Defy`, one ready rune and one Calm recycled, held on your turn.
+On your T4 it comes back from the trash for one rune, and the Marauder sends your own Legion Rearguard
+home so it can walk into the battlefield that emptied: **5 to 3** after their T4. `OGS-003 Incinerate`
+does the same for two runes, because the Wielder's +2s are combat-only and it is a 2 on your turn, and
+also ends **5 to 3**, against **4 to 3** for the Memories and the Marauder. So landing before their
+scoring is not an advantage over a kill in your own Main Phase. It is the same denial a turn later,
+after their base has readied, and the trigger hands them the first priority of their turn with every
+rune ready. The card's real property is elsewhere. It is the only mono-Chaos card that kills or banishes
+an enemy unit you choose with no Might condition (damage does not count), and 14 of the 16 Chaos legends
+have no other card that does. Nothing in Calm/Body saves the Wielder once the Memories resolve: a recall
+keeps [Temporary] on it. The cheapest answer to the point is no card at all, a ready body in base. The
+cheapest cards that save the unit tie, `OGN-045 Defy` and `UNL-106 Repulse`: each is one ready rune and
+one rune recycled (Calm for Defy, Body for Repulse), held on your turn.
 
 **Why this line.** `scripts/sequence-pick.mjs --unplayed`, re-run on 2026-10-18 at `dfcb3f3`, reads
 773 entries, 262 with forced-ordering language, **100 in the queue and 13 of them with no play**, as
@@ -52,7 +55,7 @@ The entry admits any of sixteen Chaos legends. The Ripper is the one for this wa
 Its Chosen Champion has [Ganking], and a body that can cross from your battlefield to theirs is what
 takes an emptied battlefield on your own turn. Its deck holds the strongest control there is for this
 card: Death from Below is a kill with no Might condition at the Memories' own cost, and only one other
-Chaos legend, the Order/Chaos one, has a kill like it (§5 counts them). And its ability, *":rb_energy_1:,
+Chaos legend, the Order/Chaos one, has a kill like it (the Leads count them). And its ability, *":rb_energy_1:,
 :rb_exhaust:: Return a friendly unit at a battlefield to its owner's hand. Play a Gold gear token
 exhausted."*, puts the Marauder back in hand for another trigger. That last one is not walked.
 
@@ -216,8 +219,16 @@ and Pyke, 2 + 2. It would kill both and die. They take empty B and leave it ther
 and put the Guardian and the Apprentice in base. That is how this deck plays, and it is the board the
 entry names: a garrison of exactly one.
 
+**Pyke's extra cost, set aside.** Paid on your T2, the Fury rune puts Pyke in ready with +2 this turn,
+and three runes pay him, a Fury one of them recycled. The rune left idle in the walk is still idle. He
+could cross to empty B and take it too, **2 to 0**. But the +2 ends with your turn, and on their T2 the
+Wielder, ready in their base, attacks him alone as a 4. Pyke dies, and B is theirs: **2 to 1**. You have
+lost the [Ganking] body that every later line in this play uses, and a rune for good. The Memories on T3
+then leave you one rune, the Hatchling never reaches A, and their Guardian and Apprentice, 3 + 2, can take
+A from the lone Rearguard. The walk leaves the cost unpaid and keeps Pyke at A.
+
 **Your T3: the Memories, because nothing can attack.** Pyke can cross to B, but alone he is a 2 against
-the Wielder's 6. Six runes pay the Memories: four exhausted, a Chaos one of them recycled. That leaves
+the Wielder's 6. Four of the six runes pay the Memories, a Chaos one of them recycled. That leaves
 five runes, two of them ready, and the Hatchling goes to A. A is now the Rearguard, Pyke and the
 Hatchling, 6, so the Guardian and the Apprentice, 3 + 2, cannot take it on their turn. They spent all
 five runes on their T2, so none is ready to answer the Memories now.
@@ -227,8 +238,8 @@ on the chain and they have priority with all five, but their hand is the Stalwar
 and Crowd Favorite, and none has [Reaction]. The Wielder dies. B loses its controller in the Cleanup, and
 the Scoring Step finds nothing to Hold. Then their Main Phase: the Guardian, played on their T2 and ready
 now, walks into empty B and takes it, 348.2.a.1. **2 to 2.** The entry's denial cost them the Hold and
-not the point. Seven runes pay Yi, six exhausted, a Calm one of them recycled, and the Stalwart Poro. The
-Guardian is alone at B, a 6 on defence (3, +1 [Shield], +2).
+not the point. Five of their seven runes pay Yi, a Calm one of them recycled, which leaves six, and the
+last two pay the Stalwart Poro. The Guardian is alone at B, a 6 on defence (3, +1 [Shield], +2).
 
 **Your T4: the Marauder's clock.** Your runes are 5 + 2 channelled = 7. You Hold A. The Guardian is a 6
 on defence, and your bodies that can reach B are Pyke, a 2. So the Marauder goes to A and his trigger
@@ -243,15 +254,19 @@ or the walk. Two runes are left for the Poro.
 **The control: Death from Below.** The same hand with Death from Below in the Memories' place, cast in the
 same slot on your T3, is the same four runes with one recycled. It kills the Wielder now. B has no unit of
 theirs, and your own Cleanup strips their control. Pyke crosses from A and takes it: **3 to 1** after
-your T3, and the last two runes put the Hatchling on A. On their T3 there is nothing to Hold.
-The Guardian walks into B and kills Pyke, 3 against 2, and
-takes the 2 damage, which is not lethal: **3 to 2**. They play Yi and the Stalwart Poro as before. On your
-T4 you Hold A, **4 to 2**, and Death from Below comes back. The Wielder had 2 Might, so the card may be
-played from your trash for one rune recycled, and it kills the Guardian, a 3 on your turn. B is empty
-again, but nothing of yours is in base to walk in. Six runes put the Shipyard Skulker and the Noxus
-Saboteur in base. On their T4, Yi walks into empty B: **4 to 3**. It is the same score as the Memories'
-line, a point earlier, with their Guardian dead, your Marauder still in hand, and Death from Below in the
-trash for one rune. Its Guardian kill had 3 Might, so the card stays playable from there.
+your T3, and the last two runes put the Hatchling on A. On their T3 there is nothing to Hold. The
+Guardian walks into B and kills Pyke, 3 against 2, and takes the 2 damage, which is not lethal: **3 to
+2**. They play Yi and the Stalwart Poro as before. On your T4 you Hold A, **4 to 2**, and Death from
+Below comes back. The Wielder had 2 Might, so the card may be played from your trash for one rune
+recycled, and it kills the Guardian, a 3 on your turn. B is empty again, and six runes are left, all
+ready. The Marauder's trigger is not limited to enemy units: *"move a unit from a battlefield to its
+base."* Played to A, he sends your own Legion Rearguard home. The Rearguard has not moved since your T2,
+so it is ready, and the move is an effect, which exhausts nothing (420.3.a is the cost of a unit's own
+walk). It walks from base into empty B (144.4.a) and takes it: **5 to 2**. One rune is left, and nothing
+in hand costs one. On their T4, Yi walks into B and kills the Rearguard: **5 to 3**. A is the Hatchling
+and the Marauder, 6, and their two ready bodies are 2 + 2, so they leave it. That is a point ahead of
+the Memories' line, with their Guardian dead, and Death from Below still in the trash for one rune. Its
+Guardian kill had 3 Might, so the card stays playable from there.
 
 **The cheaper control: Incinerate.** The Wielder's two +2s are both for combat: the Wielder's own needs
 it to be attacking or defending, and the legend's needs it to defend. On your turn it is a 2, and
@@ -266,7 +281,10 @@ their T4: **5 to 3.** The plain two-rune card ends a point ahead of the Memories
 Pyke takes B: **3 to 1**. The Wielder is ready in their base, and on their T3 it walks back in alone and
 attacks, a 4 against Pyke's 2: **3 to 2**. That is the Death from Below score, and the Marauder stays on A
 as a 4 with [Tank]. On this board the Marauder is the better of the entry's two cards, because his clock
-runs on your turn, and a body of yours can use the battlefield he empties. The entry calls him *"THE SAME DENIAL
+runs on your turn, and a body of yours can use the battlefield he empties. Here B is occupied when he
+arrives, as it is on your T4 in the Memories' line and the Incinerate line, so his move has to go on the
+enemy. Only where B is already empty, as in the Death from Below line, is moving your own unit the better
+use. The entry calls him *"THE SAME DENIAL
 ON A DIFFERENT CLOCK"*. On your clock the empty battlefield is a Conquer for you; on the Memories'
 clock, theirs, it is a Conquer for them.
 
@@ -280,7 +298,9 @@ denial land is playing nothing.
 **The board only the Memories answer, outside this deck.** On their T4 Yi stands at B with eight runes
 behind him: an 8, and a 10 on defence. Death from Below kills him on your T5 from your trash, for one rune
 in the control line, because its last kill had 3 Might. In a Fury/Chaos deck without the Ripper, the
-largest Fury damage is `OGN-024 Void Seeker`'s 4, and the Memories are the only card that kills him. He
+Memories are the only card that kills him. The largest printed damage in Fury and Chaos is 6, from
+`OGN-033 Shakedown`, and they may refuse that by letting you draw 2. Damage that scales with something
+else is not counted here. He
 still dies a turn late, at the start of their T5, and the bodies in their base walk B back.
 
 **How often this happens.** The draw pile is **39** cards, the 40 of Tournament Rules 402.1 less the
@@ -371,15 +391,18 @@ The entry's fourth step says what decides the point, and against a Wuju deck, wh
 and the rest at home, a ready body in base is always there. The Guardian walked into empty B and took the
 same point by Conquer: **2 to 2** after their T3. Death from Below in the same slot, at the same four
 runes and one Power, kills on your turn. The battlefield opens while you can use it, and Pyke takes it:
-**3 to 2**, then **4 to 3**, level with the Memories' line, with their Guardian dead and the card still
-playable from your trash. Incinerate does it for two runes, because the Wielder is a 2 outside combat,
+**3 to 2**. On your T4 the card comes back from the trash for one rune, kills the Guardian, and the
+Marauder sends your own Rearguard home to walk into the emptied B. That is **5 to 3** after their T4, a
+point ahead of the Memories' **4 to 3**. Incinerate does it for two runes, because the Wielder is a 2 outside combat,
 and ends **5 to 3**. Landing inside their Beginning Phase is the same denial a turn late. By then their
 base has readied, and the trigger window opens with all their runes ready. The Marauder, on your own
-clock, did as well as Death from Below. What the Memories have that nothing else in Chaos has is no Might
-condition: they kill Yi at 8 Might, and 14 of the 16 Chaos legends have no other card that does. Once they
+clock, did as well as Death from Below by their T3. What the Memories have that no other mono-Chaos card
+has is a kill or banish of a chosen enemy unit with no Might condition. They kill Yi at 8 Might, and 14 of
+the 16 Chaos legends have no other card that does. Once they
 resolve, nothing in Calm/Body saves the Wielder for more than a turn. Eight cards keep the Hold, the
-cheapest Resonating Strike at two runes, and none of them changes the score. The cheapest card that saves
-the unit is Defy, on your turn, for a ready rune held back and a Calm recycled.
+cheapest Resonating Strike at two runes, and none of them changes the score. The cheapest cards that save
+the unit tie: Defy and Repulse, on your turn, each for a ready rune held back and a rune recycled (Calm
+for Defy, Body for Repulse).
 
 ## 7. Not verified
 
@@ -414,8 +437,8 @@ second trigger, and the Memories on Yi at 8 runes beyond the prose of §4.
   earlier. It also opens the battlefield on your turn, for a body of yours. Landing in their Beginning
   Phase is a cost, not a property. Their base has readied by then, and the trigger gives them priority
   first (312.2.c) with every rune ready (315.1.b). In the walk, `UNL-186 Death from Below`, at the
-  Memories' exact cost, ended a point ahead after their T3, and `OGS-003 Incinerate` on a 2-Might
-  `OGN-055 Wielder of Water` ended a point ahead after their T4.
+  Memories' exact cost, and `OGS-003 Incinerate` on a 2-Might `OGN-055 Wielder of Water` both ended a
+  point ahead after their T3 and after their T4, **5 to 3** against **4 to 3**.
 - `terminatesIn` (*"one Hold and one battlefield denied per Fading Memories"*) and `netPerIteration`
   (*"one enemy Hold cancelled and one battlefield opened"*): the Hold yes, the point only when their base
   holds nothing ready. The entry's own fourth step says so. Walked against a Master Yi deck, a ready
@@ -426,14 +449,24 @@ second trigger, and the Memories on Yi at 8 runes beyond the prose of §4.
 - The notable *"THE MARAUDER IS THE SAME DENIAL ON A DIFFERENT CLOCK"*: on your clock it is a Conquer
   for you, if a body of yours can reach the battlefield he empties (Pyke's [Ganking] in the walk). Played
   on T3 instead of the Memories, he ended their T3 **3 to 2**, against the Memories' 2 to 2. His victim
-  stays ready in base, as 420.3.a has it.
-- Not stated, and worth stating: the Memories are the only card in Chaos whose own effect kills an enemy
-  unit of any Might. Swept on 2026-10-18 over `data/cards.json`, predicate *kills or banishes an enemy
-  unit as the card's own effect, with no Might condition and no friendly-only target*: seven names,
-  `OGN-180 Fading Memories` (Chaos), `UNL-186 Death from Below` (Fury/Chaos, Pyke Signature), and five
-  Order cards, `OGN-213 Hidden Blade`, `OGN-229 Vengeance`, `OGS-012 Blast of Power`, `SFD-164 Drag
-  Under` and `OGN-234 Harnessed Dragon`. So 14 of the 16 Chaos legends have no other. The exceptions are
-  Bloodharbor Ripper and Heart of the Tempest.
+  stays ready in base, as 420.3.a has it. The trigger reads *"move a unit from a battlefield to its base"*,
+  so it also moves your own unit: with the battlefield already empty, it sends a ready body of yours home
+  to walk in.
+- Not stated, and worth stating: the Memories are the only mono-Chaos card whose own effect kills or
+  banishes a chosen enemy unit with no Might condition. Damage does not count, so `OGN-268 Bullet Time` is
+  out. Swept on 2026-10-18 over every card name in `data/cards.json` for *kill* or *banish*, then read by
+  hand. The predicate is *kills or banishes an enemy unit the caster chooses, as the card's own effect,
+  with no Might condition and no friendly-only target*. It finds seven names: `OGN-180 Fading Memories`
+  (Chaos), `UNL-186 Death from Below` (Fury/Chaos, Pyke Signature), and five Order cards, `OGN-213 Hidden
+  Blade`, `OGN-229 Vengeance`, `OGS-012 Blast of Power`, `SFD-164 Drag Under` and `OGN-234 Harnessed
+  Dragon`. Three more kill without the caster choosing: `UNL-180 The Ruination` (Order, *"Kill all
+  units."*), `OGN-237 King's Edict` (Order, the opponent chooses which of their units dies) and `VEN-090
+  Cataclysmic Duel` (Body, each player keeps one unit of their choice). With those ten, it is still the
+  only mono-Chaos member. `OGN-254 Noxian Guillotine` kills now only under [Legion], a condition, so it is
+  left out. It is Fury/Order, so no Chaos legend can play it either way. Counted over the 16 Chaos legend
+  names: on the seven, 14 have no other member, and the exceptions are Bloodharbor Ripper (Death from
+  Below) and Heart of the Tempest (the Order cards). On the ten, 11 have none, because Cataclysmic Duel
+  adds the three Body/Chaos legends, Bounty Hunter, Battle Mistress and Voidreaver.
 - Not stated: a recall or a move to base does not save the target, because a keyword granted with no
   duration lasts while the unit is on the board (801.3.a.3), and a base is on it (107.1.c). Calm/Body has
   no [Reaction] return to hand, so `OGS-020 Highlander` and `OGN-077 Zhonya's Hourglass` buy one turn.
