@@ -18,9 +18,10 @@ Kha'Zix, and your battlefield is never at stake by their T4 whatever you do. So 
 body, not a point. The swap's 2 XP is paid back by T5, by the Hunt of the champion it kept alive. The
 timing is the finding: going first, **your T2 is the last turn their answers are all in their hand.**
 From their T2 they control a battlefield, and a card with [Hidden] can go where no hand attack
-reaches; Mindsplitter, on T4, comes two such turns too late. The cheapest answer costs them two runes
-on their T1, one Order recycled: `VEN-131 Decree of Unity` kills your `UNL-127 Mister Root` in base
-before it can move, and without its 2 XP the Investigator only looks. The same card kills Mindsplitter.
+reaches; Mindsplitter, on T4, comes two such turns too late. The cheapest answers are three cards that
+each cost them two runes on their T1, one Order recycled, and kill your `UNL-127 Mister Root` in base
+before it can move; without its 2 XP the Investigator only looks. The one named here is `VEN-131 Decree
+of Unity`, because the same card kills Mindsplitter.
 
 **Why this line.** `scripts/sequence-pick.mjs --unplayed`, re-run on 2026-10-18 at `89c173a`, reads
 773 entries, 262 with forced-ordering language, **100 in the queue and 21 of them with no play**, as
@@ -263,7 +264,8 @@ reach only a unit *"at a battlefield"*, *"here"* or *"in combat"*, or a friendly
 **Three reach Root:**
 
 - **`VEN-131 Decree of Unity`** (Order, E2 + 1 Order Power): *"Kill an enemy Chaos (:rb_rune_chaos:)
-  unit or gear."* Root is Chaos. **Two runes, one Order recycled: the cheapest answer.**
+  unit or gear."* Root is Chaos. **Two runes, one Order recycled: the cheapest answer, tied with the two below, and the one named
+  because it also kills Mindsplitter.**
 - `VEN-127 Lacerate` (Order, E2 + 1 Order Power): *"Choose a unit. If it's [Empowered], disempower it.
   Then kill it if it has 3 :rb_might: or less."* Root is a 1.
 - `OGN-209 Cull the Weak` (Order, E2 + 1 Order Power): *"Each player kills one of their units."* On
@@ -312,11 +314,12 @@ him: **3 to 3** after their T4, with your champion alive at A and holding for 1 
 swap it is also **3 to 3**, with Kha'Zix dead. No line of this walk put your battlefield at stake by
 their T4. The 2 XP is repaid by T5 through the Hunt of the champion it kept alive. The entry's
 824.1.d notable costs nothing this early, because no Body or Chaos Level ability is on below 6 XP. The
-two halves are not equal. The Investigator, on T2 and for three runes, is the only hand attack that
-comes before they can hide an answer. Mindsplitter, on T4 and for seven, comes after two such turns,
-and the card that would beat it, Decree of Unity, costs them two runes. The cheapest answer to the line
-is Decree of Unity on their T1, two runes with one Order recycled: Root dies in base, and the swap
-cannot be paid.
+two halves are not equal. Of the entry's two cards, the Investigator, on T2 and for three runes, is
+the only one that comes before they can hide an answer. Mindsplitter, on T4 and for seven, comes after
+two such turns, and the card that would beat it, Decree of Unity, costs them two runes. The cheapest
+answers to the line are three cards at two runes on their T1, one Order recycled: Decree of Unity,
+Lacerate or Cull the Weak. Root dies in base, and the swap cannot be paid. Decree of Unity is the one
+named, because it also kills Mindsplitter.
 
 ## 7. Not verified
 
@@ -337,7 +340,9 @@ card in three copies among them is **34.52%**; two (Decree of Unity and Lacerate
 **58.78%**; all three, **75.25%**. After the swap, the draw it gives them comes from the **34** left. If
 they run three Vengeance and three Hidden Blade, two Vengeance and three Hidden Blade are among the 34,
 and the one draw finds one of them in **14.71%**. Across that draw and their T2 and T3 draws, three
-cards, it is **38.94%**; a Vengeance alone, **17.11%**. These count only the cards named, not how many of
+cards, it is **38.94%**; a Vengeance alone, **17.11%**. The first three figures are before the deal:
+the walk fixes all five cards they have seen by their T1, and none of them is an answer to Root. These
+count only the cards named, not how many of
 them a deck runs.
 
 Their hand holding none of these is the walk's assumption; §5 prices it. Not walked: going second, the
@@ -361,5 +366,12 @@ and after, and a second Investigator.
 - The notable on 824.1.d: no Body or Chaos card carries [Level 3]. The lowest threshold in those
   domains is [Level 6], so the 2 XP switches nothing off until a Chaos deck under a Body legend has
   passed 6 XP. Calm, Fury, Mind and Order each have a [Level 3] card.
+- The entry's two cards are not the only hand attack open to it. `OGN-156 Sabotage` (Body, E1 + 1 Body
+  Power, one rune exhausted and then recycled), legal under Voidreaver and not a Signature card,
+  prints *"Choose an opponent. They reveal their hand. Choose a non-unit card from it, and recycle that
+  card."* On your T1 it would take the walk's Vengeance from their opening four, with no XP and no
+  replacement draw, though going first it costs the T1 Mister Root (two runes, and Sabotage takes one
+  of them). So against a spell the Investigator's 2 XP buys nothing Sabotage cannot; what only the
+  Investigator reaches, of the three, before their T2 is a unit card.
 - No answer is named. `VEN-131 Decree of Unity` (Order, E2 + 1 Order Power) kills Mindsplitter and
   Insightful Investigator, both Chaos, anywhere.

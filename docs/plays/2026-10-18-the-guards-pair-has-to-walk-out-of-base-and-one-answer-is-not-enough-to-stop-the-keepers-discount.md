@@ -14,11 +14,14 @@ on it (190.4.c), so the Guard played there makes three, never two. The pair is m
 walk. Walked as a game, going first, against a Fury/Chaos Draven deck, the pair walked into the
 battlefield they had left empty on T3, the Keeper came down for three runes, and the three runes it
 saved put `OGN-054 Sunlit Guardian` beside the pair. Their two bodies could not take that battlefield
-back: **2 to 2** after their T3, **3 to 3** after their T4. At full price the Keeper is five runes and
-a recycled one, the pair stands alone, they take the battlefield on their T3, and it is **3 to 4**
-after their T4. The cheapest card that touches the line is `OGN-169 Gust`, one ready rune: it returns
-the Sand Soldier in the showdown, and the Guardian played to the same battlefield first puts the count
-back at two for the same six runes. What stops the discount is a card that removes both bodies.
+back: **2 to 2** after their T3, **3 to 3** after their T4. The same six runes spent without the
+Keeper, on the Guardian and `SFD-159 Trusty Ramhound`, hold that battlefield too and score the same.
+So the discount does not buy the battlefield; it buys the Keeper's 5-Might body on T3 on top of
+holding it. The line that insists on the Keeper at full price, five runes with one of them recycled,
+leaves the pair alone: they take the battlefield on their T3, and it is **3 to 4** after their T4. The
+cheapest card that touches the line by Energy, and the only one-rune card among them that needs no
+Power, is `OGN-169 Gust`: it returns the Sand Soldier in the showdown, and the Guardian played to the
+same battlefield first puts the count back at two for the same six runes. What stops the discount is a card that removes both bodies.
 `OGN-029 Falling Star` does it on their T2, in your base, for two runes and two Fury Power. The pair
 is not the only way to two, either: two 2-drops at your battlefield get the same T3 without the Guard.
 
@@ -118,7 +121,7 @@ three; played before, it switches the discount off. The walk plays the Keeper fi
 
 **The runes, going first.** You have 2, 4, 6 and 8 runes on T1 to T4. Power is paid by recycling a
 rune, 164.2.b: *"Recycle this: [Reaction] — Add [C]."* A rune exhausted for Energy can be recycled for
-the Power, and it leaves the board for good. At full price the Keeper is five runes with one of them
+the Power, and it leaves the board for good. At full price the Keeper is five runes, one of them
 recycled. Discounted he is three, and none leaves.
 
 ## 3. Their deck: Fury/Chaos Draven
@@ -205,21 +208,29 @@ Rearguard and the Duo in base, 5 Might against B's 8, so they do not attack. The
 and their 5 would go into him first. Draven comes from the Champion Zone to A, a 5 at their two points.
 The Pouty Poro goes to A, and the Rearguard and the Duo walk to A to guard it: A is 15.
 
-**Your T4.** You Hold B. A is 15 and nothing of yours attacks it. The Keeper, ready in base since T3,
-walks to B, which you control (no showdown, 190.3.a.1). Leona comes down at B for four runes and a
+**Your T4.** You Hold B. A is 15 and nothing of yours attacks it. The Keeper, in base since T3, where
+he entered exhausted (143.4), is ready now (315.1.b) and walks to B, which you control (no showdown, 190.3.a.1). Leona comes down at B for four runes and a
 recycled Order, then the Clockwork Keeper (its Calm Power not paid, so no draw) and the Ramhound go
 to B. Their units at A can reach B only by going to their base first (144.4.b), so B is safe on their
 T4. They Hold A: **3 to 3**.
 
-**Without the discount.** Same draws. On T3 the Keeper is five runes, one Order recycled, and one rune
-is left, which nothing in your hand costs. B is the Guard and the Soldier, 4 Might. On their T3 the
+**Without the Keeper on T3: the control.** Same draws, same six runes. The pair takes B as in the
+walk, and Sunlit Guardian (E3) and Trusty Ramhound (E2, drawn on T2) go to B, one rune left. B is the
+Guard 2, the Soldier 2, the Guardian 4 while defending and the Ramhound 3 with company: 11 against the
+5 of their Rearguard and Duo, so they do not attack, and it is **2 to 2** after their T3. On your T4
+you Hold B and the Keeper comes down at full price; on their T4 they Hold A: **3 to 3**, the walk's
+score. B is held either way. What the discount added on T3 is the Keeper himself, a 5-Might body a
+turn early, at the cost of the Ramhound waiting a turn.
+
+**Insisting on the Keeper at full price.** Same draws. On T3 the Keeper is five runes, one Order
+recycled, and one rune is left, which nothing in your hand costs. B is the Guard and the Soldier, 4 Might. On their T3 the
 Rearguard and the Duo walk into it, 5 against 4. Their 5 kill both bodies (465.2.c.3: *"Units must
 have lethal damage assigned to them in full before damage is assigned to a different Unit."*); your 4
 kill the Duo and put 1 on the Rearguard, which remains. They take B and Hold A: **2 to 3**, with
 another draw. On your T4 you have five runes on the board and two channelled, seven: the Keeper walks
 into B against the Rearguard, a Conquer, and the Guardian and Leona go there for all seven runes,
-one recycled. **3 to 3**. On their T4 they Hold A: **3 to 4**. The three runes the discount saved
-were the Guardian on T3, and the Guardian on T3 was B.
+one recycled. **3 to 3**. On their T4 they Hold A: **3 to 4**. That is the cost of insisting on the
+Keeper on T3 without the discount; the control above, which does not, holds B.
 
 **Their other T2: the Saboteur takes B.** Then A keeps your Poro, alone, and B is theirs. On your T3
 you Hold A, and one body of the pair walks to A, which you control, so it opens no showdown: A has
@@ -274,12 +285,16 @@ you add, while it is still on the chain: a second answer, with a second rune.
 your base. Swept over the 247 for *kill*, *deal*, *return*, *banish*, *move* or *recall* together with
 *unit*, with no [Action], [Reaction], [Hidden] or [Ambush] in the text: **50** cards, each read. Those
 that say *"at a battlefield"*, *"here"* or *"from a battlefield"*, that act on their own units, or that
-cost more than five runes, cannot reach your base on T2. Eight remain. **Two remove both bodies:**
+cost more than five runes, cannot reach your base on T2. Eight remain. The [Action] and [Reaction]
+cards are legal in their own Main Phase too, and are counted in Window 2 below. Each was read for
+this window as well: none removes two units in a base. `UNL-128 Star-Crossed` returns two units, but
+one of them must be its caster's own, and `OGN-033 Shakedown` deals to one. **Two remove both
+bodies:**
 
 - **`OGN-029 Falling Star`** (Fury, E2 + 2 Fury Power): *"Deal 3 to a unit. Deal 3 to a unit."* The
   Guard and the Soldier both die in your base. Two runes exhausted, both recycled for the Power: three
   stay on their board, ready for the Duo. On your T3 nothing of yours can reach a battlefield (the
-  Guardian and the Keeper enter exhausted), and the Keeper is five runes and a recycled one. **The
+  Guardian and the Keeper enter exhausted), and the Keeper is five runes, one of them recycled. **The
   cheapest answer: two runes and two Fury Power, and they play their T3 and every turn after it with
   two runes fewer.**
 - **`UNL-132 Angler Beast`** (Chaos, E5 + 1 Chaos Power, M5): *"When you play me, return all units
@@ -313,11 +328,15 @@ Showdown, units controlled by a different player may become present at the Battl
 Showdown is ongoing."* Its 3 kill one of the pair, your 4 kill it, and A is left with no unit of
 theirs. Each of these takes one body, and the Guardian puts the count back.
 
-**Gust is the cheapest card that touches the line, and it does not break it.** One ready rune, which
-they buy by playing the Duo and not the Rearguard on their T2. In the showdown it returns the Sand
+**Gust is the cheapest card that touches the line by Energy, and it does not break it.** It is one
+rune, as are `OGN-009 Hextech Ray` and `UNL-014 Monster Harpoon` (E1 + 1 Fury Power, the same rune
+exhausted and then recycled), but it is the only one of the three that needs no Power. The ready rune
+they buy by playing the Duo and not the Rearguard on their T2. In the showdown Gust returns the Sand
 Soldier, which ceases to exist (186.1). You still take B with the Guard. Then the Guardian goes to B
-(two), and the Keeper costs three. B is 6 while defending instead of 8, and their one ready body on
-their T3 is a 3. To stop the Keeper as well they need a second answer in response to the Guardian, on
+(two), and the Keeper costs three. B is 6 while defending instead of 8. On their T3 their ready body
+is the Duo, a 3, and the Rearguard, still in hand, can join it: Legion Rearguard, *"[Accelerate] (You
+may pay :rb_energy_1::rb_rune_fury: as an additional cost to have me enter ready.)"* That is 3 + 2 = 5
+against 6, so B still holds. To stop the Keeper as well they need a second answer in response to the Guardian, on
 the chain, while B still holds one: a second ready rune at least, and a second card.
 
 *A card hidden at A.* After their T2 they control A, so they can hide there (811.1.b: *"While this
@@ -345,8 +364,10 @@ there makes three. The pair is made in base and walks: into an empty battlefield
 or one body at a time into a battlefield where you already have one, with no window at all. Walked
 going first against a Draven deck that took your battlefield on T2, the pair walked into theirs on T3
 and the Keeper cost three. The saved three runes were Sunlit Guardian at B, and B held: **3 to 3**
-after their T4, against **3 to 4** at full price. The cheapest card that touches the line, Gust for
-one ready rune, takes the Sand Soldier and not the discount, because a body played to the same
+after their T4. Without the Keeper on T3, the Guardian and the Ramhound hold B for the same six runes
+and the score is the same, so what the discount bought is the Keeper's 5-Might body a turn early, not
+B. Insisting on him at full price is **3 to 4**. The cheapest card that touches the line by Energy,
+Gust for one ready rune and no Power, takes the Sand Soldier and not the discount, because a body played to the same
 battlefield puts the count back at two. What stops it is a card that removes both bodies: Falling
 Star on their T2, two runes and two Fury Power, both runes gone for the game. And the Guard is not
 needed for the count: two 2-drops at your battlefield reach the same T3.
@@ -369,7 +390,9 @@ Incinerate and hiding take any rune.
 **How likely an answer is.** Out of their own **39**, by your T3 they have seen **7** cards: four
 opening, a draw on each of their two turns, and the legend's draw for the Saboteur's combat. Falling
 Star, run three times, is among them in **45.73%**; Falling Star or Angler Beast (six cards),
-**72.23%**. These count only the cards named, not how many of them a deck runs.
+**72.23%**. Those are before the deal. The walk fixes their opening four as non-answers, which leaves
+three draws from the other **35**: three Falling Stars among them is **24.22%**, six cards **44.17%**.
+These count only the cards named, not how many of them a deck runs.
 
 Their hand holding no answer is the walk's assumption; §5 prices it. Not walked: going second, the
 mulligan, 2v2, Dancing Grenade's second clause (its *"Its controller"* reads as the damaged unit's
@@ -407,4 +430,4 @@ Guardian's three runes, so it is not better than the repair), and the board afte
   the Keeper cannot be played in either, so on the walked boards the difference never shows.
 - No answer is named. `OGN-029 Falling Star` (Fury, E2 + 2 Fury Power) and `UNL-132 Angler Beast`
   (Chaos, E5 + 1 Chaos Power) remove both bodies in your base on their turn. `OGN-169 Gust` (Chaos, E1)
-  and every other one-body answer cost the Sand Soldier, not the discount.
+  and every other one-body answer cost one body, not the discount.
