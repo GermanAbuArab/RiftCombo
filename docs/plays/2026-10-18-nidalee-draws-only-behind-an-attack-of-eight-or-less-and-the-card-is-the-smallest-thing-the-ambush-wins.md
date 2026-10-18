@@ -18,8 +18,10 @@ tricks, the defence's 9 always clears the attackers, so Nidalee survives exactly
 as a game, going first, against a Fury/Chaos Draven deck whose own legend draws when it wins a combat,
 they attacked the Combatant with 7 on their T3. The ambush killed both attackers and drew a card: **4
 to 3** after their T4. Played face-up on your own T3, the same Nidalee deters the same attack and
-draws nothing: **3 to 3**. Without her they take the battlefield and draw: **3 to 4**. The card is
-the smallest part of what the ambush wins, and it is the most fragile. The attacker gets Focus back
+draws nothing: **3 to 3**. Without her, the best use of the same three runes is `OGN-217 Trifarian
+Gloryseeker`, buffed, beside the Combatant. That makes A an 8 on defence, which deters the same attack:
+**3 to 3** again. So what the ambush buys over an honest defence is one point, two of their units and
+a card. The card is the smallest of the three, and it is the most fragile. The attacker gets Focus back
 after Nidalee resolves (347.1.b), and the cheapest cards that break the line cost one rune and no
 Power. `OGN-169 Gust` returns the Combatant before the attack, while it is still a printed 3. `OGN-004
 Cleave` in the combat makes the attack 10.
@@ -97,8 +99,8 @@ see Nidalee on the board before they decide whether to spend anything.
 **[Shield] is a 5 only while it defends.** 814.1.c: *"It is functionally short for "While I am a
 defender, I have +X [M].""* 814.1.d.1: *"Shield remains in effect as long as the Unit maintains the
 Defender designation."* In their Main Phase, before they move, the Combatant is a printed 3. The entry
-is right about the combat and silent about the turn before it, which is where §5 finds the cheapest
-answer.
+says both halves, a 5 in the combat and a 3 outside it. What it does not say is that the turn before
+the combat, where the Combatant is a 3, is where §5 finds the cheapest answer.
 
 **[Tank] takes lethal, not everything.** 815.1.b: *"It is functionally short for "I must be assigned
 lethal damage before any other unit with the same controller as me that does not have [Tank] during
@@ -269,11 +271,21 @@ A, where Nidalee stands alone: 7 against 4. Their 7 kill her; her 4 kill the Pou
 Draven. Draven remains, they Conquer A, and Glorious Executioner draws. Then the Rearguard, the Merchant
 and the Duo to base. **4 to 3.**
 
-**Without Nidalee.** Same draws, same runes, Nidalee not in hand. Their 7 kill the Combatant, and its 5
-kill the Enforcer with 1 over onto the Saboteur. The Saboteur remains: they Conquer A, 3, and their
-legend draws. On your T4 you have no Hold. The Poro and the Pigeons take one of their two battlefields,
-8 against a lone 3: 3. On their T4 they Hold the other: **3 to 4** after their T4. They have one more
-card than in the walk, you one fewer, and both of their T2 bodies still live.
+**Without Nidalee: the best use of the same three runes.** Same draws, same runes, Nidalee not in hand.
+On your T3 the Pigeons go to base first, and then `OGN-217 Trifarian Gloryseeker` (Order, E2, M2;
+*"[Legion] — When you play me, buff me. (If I don't have a buff, I get a +1 :rb_might: buff. Get the
+effect if you've played another card this turn.)"*) goes to A as a 3. One rune is left, and no card in
+hand costs one. A is now the Combatant 5 and the Gloryseeker 3 on defence: 8. Their 7 would put 5 on
+the Combatant and 2 on the Gloryseeker, and your 8 would kill both attackers, so they do not attack.
+From there it is the face-up line below with the Gloryseeker in Nidalee's place: they Hold B and stack
+it to 8; your T4 Holds A, 3, and the Poro and the Pigeons trade with B's 8; on their T4 Draven walks
+into the empty B. **3 to 3** after their T4, nobody draws, and your T4 has eight runes rather than
+seven, since no Body rune was recycled.
+
+Leaving the Combatant alone with nothing behind it is the only way to lose A. Their 7 kill it, and its
+5 kill the Enforcer with 1 over onto the Saboteur. The Saboteur Conquers A and their legend draws. Your
+T4 takes one of their two battlefields back, 8 against a lone 3, and they Hold the other: **3 to 4**.
+That line is what the ambush baits them into, not the baseline it is measured against.
 
 **Nidalee face-up on your T3.** Played to A in your own Main Phase, she is the same 4 beside the same
 5. Their 7 cannot take a 9 and lose everything into it, so they do not attack. They Hold B and add the
@@ -313,15 +325,19 @@ five Signature cards in those domains, four carry another tag and are out (`OGN-
 Rocket!`, `OGS-018 Tibbers`, `UNL-186 Death from Below`, `VEN-144 Death Mark`); Draven's own `SFD-186
 Spinning Axe` is in. Five of the 252 are banned in constructed (`OGN-168 Fight or Flight`, `OGN-177
 Stealthy Pursuer`, `OGN-182 Scrapheap`, `SFD-020 Draven, Vanquisher`, `SFD-122 Called Shot`), which
-leaves **247**. Swept for *deal*, *damage*, *return*, *kill*, *banish*, *recall*, *[Stun]*, a Might
-change, *ignore [Tank]* or moving an enemy: **135** cards, each read.
+leaves **247**. Swept over each card's whole text, reminder text included, case-insensitive, with
+`/(deal \d|deal damage|\breturn\b|\bkill\b|banish|\+\d :rb_might:|-\d :rb_might:|\[stun\]|ignore \[tank\]|recall|move an? (enemy|attacking))/i`:
+**135** cards, each read.
 
 **Window 1: their Main Phase, before the move. One rune, no Power.** Here the Combatant is a printed 3
 (814.1.c), and anything that takes it off A takes the line with it. You lose A in the next cleanup,
 190.4.c: *"If a player has no Units at a Battlefield and the turn is in an Open state, they lose Control
 of that Battlefield in the following cleanup unless there is a Combat or Showdown ongoing there."* Their
 move into A then meets no unit of yours, so it is a non-combat showdown (316.8.b.1), and Nidalee has
-nowhere to go (822.1.b, 813.3.a). They Conquer A, 3, without a combat.
+nowhere to go (822.1.b, 813.3.a). They Conquer A, 3, without a combat. Nidalee can still be played in
+response while the removal is on the chain, since the Combatant is at A until it resolves and [Ambush]
+gives her [Reaction] (822.1.b, 309.1.a). But she then stands at A as a lone 4 in front of their 7. She
+kills one attacker and dies, they Conquer A, and nobody draws for her.
 
 - **`OGN-169 Gust`** (Chaos, E1; *"[Reaction] (Play any time, even before spells and abilities
   resolve.) Return a unit at a battlefield with 3 :rb_might: or less to its owner's hand."*) returns the
@@ -335,8 +351,9 @@ nowhere to go (822.1.b, 813.3.a). They Conquer A, 3, without a combat.
 - `UNL-007 Smite`, `OGN-029 Falling Star`, `VEN-008 Ruthless Strike`, `VEN-106 Wind and Ghosts`,
   `OGN-024 Void Seeker`, `OGN-005 Disintegrate` and `OGN-172 Rebuke` reach it too, and cost more.
 
-For them this is better than the attack even when you hold no Nidalee: A for one rune, and both their
-units alive.
+For them this is better than the attack even when you hold no Nidalee. If you do not answer, they
+take A for one rune with both of their units alive; if you answer with Nidalee, they still take A and
+lose one unit to her.
 
 **Window 2: on the chain, in response to Nidalee.** Only Reactions (309.1.a), and the Combatant is a 5
 now. Gust has no target: Nidalee is a 4 and on the chain. `UNL-131 Abandon` (*"Counter a spell."*)
@@ -356,6 +373,8 @@ and **52** of the 247 carry [Action] or [Reaction] in their text.
   win the combat, Conquer A, and their legend draws, for one rune and no Power.**
 - `SFD-003 Blood Rush` (Fury, E1; [Action], *"Give a unit [Assault 2] this turn."*) makes it 9: everybody
   dies, A is left to no one, nobody draws. With its [Repeat] paid, E2, it is 11 and they win.
+  `UNL-010 Vault Breaker` (Fury, E1 + 1 Fury Power; [Action], *"Give a unit [Assault 2] and [Ganking]
+  this turn."*) does the same as Blood Rush for one rune, recycled.
 - `UNL-014 Monster Harpoon` and `OGN-009 Hextech Ray` (each E1 + 1 Fury Power) put 2 or 3 on Nidalee, and
   the 2 the attack leaves her complete her lethal (142.4.b). Your 9 still kill both attackers, nobody
   remains, and A is uncontrolled: one rune, recycled. `OGS-003 Incinerate` (E2) and `VEN-010 Consuming
@@ -371,7 +390,8 @@ combat damage here."*) is not an answer but an attacker: in the attack in place 
 same 7 put 4 on Nidalee first and 3 on the Combatant, and she dies while the Combatant wins.
 
 Gust before the attack and Cleave in it are the cheapest, one rune and no Power each, and Cleave is the
-better card for them: it wins A and their draw. The lesson for the player is the order of the windows.
+better card for them: it wins A and their draw. A Dune Surfer already in the attack costs nothing extra
+at all: it meets the predicate without a card played in answer. The lesson for the player is the order of the windows.
 The Combatant is safe from one-rune removal only once it is defending. Nidalee is safe only if the
 attacker has no rune left after she lands.
 
@@ -383,11 +403,14 @@ A win is being the only side left (466.3.a, 466.3.d), and the Combatant is a 5 e
 survives only an attack of 8 or less. Then, with no tricks, the defence's 9 always clears the attackers,
 so Nidalee survives exactly when she draws. Walked going first against a Draven deck that attacked the
 lone Combatant with 7, the ambush killed both attackers, kept A and drew a card: **4 to 3** after their
-T4, against **3 to 3** with Nidalee played face-up and **3 to 4** without her. The card is the smallest
-of the three things the ambush wins. The other two are their two units and their Conquer. It is
+T4. Against the honest control, a buffed Trifarian Gloryseeker beside the Combatant for the same
+three runes, the score is **3 to 3**, the same as Nidalee played face-up: an 8 on defence deters the
+attack as well as a 9 does. Left alone, the Combatant loses A: **3 to 4**. Over the honest control the
+ambush buys one point, their two units and the card. The card is the smallest of the three. It is
 also the most fragile, because the attacker gets Focus back (347.1.b). The cheapest breaks are one
 rune with no Power: Gust on the Combatant while it is still a printed 3, before the attack, or Cleave
-in the combat, which wins them the battlefield and their own draw.
+in the combat, which wins them the battlefield and their own draw. A Dune Surfer in the attack does it
+for nothing, because it lets them ignore [Tank].
 
 ## 7. Not verified
 
@@ -436,12 +459,16 @@ choice at Shakedown, and the board after their T4.
     `OGN-009 Hextech Ray` on Nidalee kill her for one rune, recycled.
   - Before the attack: the Combatant is a printed 3 in their Main Phase (814.1.c), so `OGN-169 Gust`
     (E1, no Power) returns it, and 822.1.b then has no unit of yours at A to ambush beside.
-- [Shield] cuts both ways inside this one entry: the same keyword that makes the Combatant a 5 in the
-  combat leaves it a 3 the turn before, where the cheapest answers live. The entry's mirror note on
-  `jaull-fish-garen-rugged-mighty-discount` states only the combat half.
-- *"WHAT IT IS NOT. Nothing here scores"* is true and undersells it. The walked swing is their Conquer
-  of A: **4 to 3** with the ambush, **3 to 4** without Nidalee. Played face-up on your own turn, the
-  same Nidalee deters the attack and draws nothing (**3 to 3**).
+- [Shield] cuts both ways inside this one entry. The entry's mirror note on
+  `jaull-fish-garen-rugged-mighty-discount` states both halves: a 5 in the combat, and nothing in a
+  Main-Phase count. What it does not say is that the Main-Phase 3 is where the cheap removal lives:
+  `OGN-169 Gust`, `OGN-009 Hextech Ray`, `UNL-124 Isolate` and `SFD-138 Windsinger` all reach the
+  Combatant on the turn before the combat.
+- *"WHAT IT IS NOT. Nothing here scores"* is true and undersells it. In the walk the ambush ends **4
+  to 3**. The honest control is a buffed `OGN-217 Trifarian Gloryseeker` beside the Combatant for the
+  same three runes, which deters the same attack: **3 to 3**. Nidalee played face-up on your own turn
+  scores the same and draws nothing. So over a real defence the ambush buys one point, two of their
+  units and the card. Only a Combatant left alone loses A (**3 to 4**).
 - In a legend with Order in its pair, `VEN-123 Soulspinner` (Order, E3, M3, [Ambush], no Power) gives
   the same wipe against an attack of 7 or less and no card. What Nidalee adds over it is one point of
   margin and the draw, for a Body Power.

@@ -49,7 +49,9 @@ Zone at the start of the game."* The legend's text (*"When you hold, gain 1 XP. 
 :rb_exhaust:: Draw 1."*) gives three XP by the end of T5, which the walk does not spend.
 
 Every card here is mono-Body, so it is in the legend's domains, 103.1.b.1: *"Cards included in your
-deck must abide by your Domain Identity."* None is a Signature card, and none is in
+deck must abide by your Domain Identity."* A mono-Body card is permitted by 103.1.b.3: *"If a card has
+a single Domain, then that card is permitted in the Domain Identity that corresponds to the same
+Domain."* None is a Signature card, and none is in
 `data/legality.src.json` or marked [BANNED] in `data/corpus_flat.txt`.
 
 The card text the play turns on:
@@ -121,7 +123,8 @@ unit, 423.1.b: *"A Stunned Unit does not contribute its might to damage in the c
 exhausting, 164.2.a: *"[E]: [Reaction] — Add [1]."*, and Power only by leaving, 164.2.b: *"Recycle
 this: [Reaction] — Add [C]."* An exhausted rune can still be recycled, so the pair is ten runes, one
 Body among them recycled. Going first you have 2, 4, 6, 8 and 10 runes by T1 to T5, so the pair is a T5
-turn and the whole of it. Going second it is a T5 turn too: 3, 5, 7, 9 by T4.
+turn and the whole of it. Going second it is a T5 turn too: 3, 5, 7 and 9 by T4, and 11 on T5, one
+to spare.
 
 ## 3. Their deck: Calm/Order Eye of Twilight
 
@@ -300,8 +303,10 @@ predicate is: a card in those domains in `data/cards.json` (not a legend, battle
 not a Signature card with another champion's tag. Folded by name, that is **257** cards; three are
 Signature cards with another tag and are out (`OGN-262 Zenith Blade`, `SFD-198 Arise!`, `UNL-196
 Daisy!`), and Shen's own `VEN-148 Shadow Dash` is in. None is banned in constructed, which leaves
-**254**. On your turn they can play only what carries [Reaction], [Action], [Ambush] or [Hidden], and
-nothing was hidden on their T4: **61** of the 254.
+**254**. On your turn they can play only what carries [Reaction], [Action], [Ambush] or [Hidden]. The
+predicate is a card whose text contains one of those four keywords, reminder text included: **61** of
+the 254. It is a ceiling, not a castable count: 11 of the 61 are [Hidden] cards, and nothing was hidden
+on their T4, and some carry the keyword only on an ability.
 
 **Beside Vilemaw they have one rune.** Vilemaw is the card the engine was played to beat, and it does.
 Shen, Kinkou instead of Vilemaw is three runes and makes B 16. Poppy at 11 and three 3s are 20, which
@@ -323,7 +328,7 @@ played on your turn.
   counters the Duel in the combat, after Vilemaw, because Onslaught was the other spell. The line
   becomes Onslaught alone with the Duel's six runes spent: B holds, and you lose Poppy and two bodies.
   **One rune, recycled.** It is the engine's own shape that turns it on: the Duel played alone is one
-  spell, and Crumbling Sands has no target.
+  spell, and Crumbling Sands' condition is false.
 - `UNL-046 Friendship` (Calm, E1; *"[Reaction] (Play any time, even before spells and abilities
   resolve.) Choose a unit. Give it +1 :rb_might: this turn for each of the following tags among your
   units — Bird, Cat, Dog, and Poro."*) is +3 here: Stalwart Poro is a Poro, Frisky Hunter a Cat, the
@@ -357,7 +362,8 @@ combat brings. Walked going first against a Calm/Order deck that held nine runes
 into the T5 attack, Onslaught made Poppy an 11 that Vilemaw could not silence, the Duel made her a 14
 that killed it and lived, and the attack conquered: **5 to 3** after their T5. The Duel alone trades
 Poppy for Vilemaw and loses the combat, Onslaught alone leaves Vilemaw standing, and not attacking is
-the same score: **4 to 4**. The pair is the whole of T5, ten runes, in either seat. But it is two
+the same score: **4 to 4**. The pair is ten runes: the whole of T5 going first, and all but one going
+second. But it is two
 spells in one turn, and the cheapest answer is a one-rune counter that fits beside Vilemaw: Defy on
 Onslaught in the Main Phase, or Crumbling Sands on the Duel in the combat, which is legal only because
 Onslaught came first. `OGN-154 Primal Strength` does Onslaught's job at [Action] speed for one more
@@ -390,16 +396,20 @@ still cannot kill 6 + 3 + 3 = 12 of lethal, and B falls the same way.
 
 Their hand holding no answer is the walk's assumption; §5 prices it. Not walked: going second, the
 mulligan, 2v2, a rune split other than six and six, `OGN-213 Hidden Blade` or `OGN-220 Facebreaker`
-hidden at B on their T4 (each costs a rune there, which leaves eight on your T5: Vilemaw or the hidden
-card, not both), pairs of §5's two-rune answers with Shen inside nine runes, their T5 and the board after it, and the Flow plays of Onslaught later in the game.
+hidden at B on their T4. A hidden card is played *"ignoring its base cost"* (811.1.b), so the hide, one
+recycled rune, and Vilemaw are exactly nine. What does not fit is the [Deflect] Power a hidden card that
+chooses Poppy must add. The hidden cards that choose no unit of yours (`OGN-057 Block`, `OGN-053 Stand
+United`, `OGN-077 Zhonya's Hourglass`, `SFD-154 Guards!`, `VEN-117 Disciple of Shen`, `SFD-043 Emperor's
+Divide`) fit beside Vilemaw, and none of them stops Poppy's 14 from taking B. Also not walked: pairs of §5's two-rune answers with Shen inside nine runes, their T5 and the board after it, and the Flow plays of Onslaught later in the game.
 
 ## Leads
 
 - The note on `VEN-081 Onslaught`, *"The biggest pump in the domain, and the only one that is playable
-  twice"*: `OGN-154 Primal Strength` is +7 for E4 + 1 Body Power, with [Action]. Of the ten spells with
-  Body in their domains that give Might, Onslaught is second-biggest, and it is the only one with [Flow]
-  or [Repeat]; seven of the ten are [Action], and Onslaught, `VEN-083 Rampage` and `OGN-270
-  Showstopper` are not.
+  twice"*: `OGN-154 Primal Strength` is +7 for E4 + 1 Body Power, with [Action]. Of the eight spells
+  with Body in their domains whose text gives *"+N :rb_might: this turn"* (buffs, such as `OGN-153
+  Overt Operation` and `OGN-270 Showstopper`, are not counted), Onslaught is second-biggest, and it is
+  the only one with [Flow] or [Repeat]. Six of the eight are [Action]; Onslaught and `VEN-083 Rampage`
+  are not.
 - The note on `OGS-008 Gentlemen's Duel`, *"The only member of the family that pumps and then fights
   with the SAME card"*: `VEN-083 Rampage` does too, +2 if its optional Body Power is paid: *"As you play this,
   you may pay :rb_rune_body: as an additional cost. Choose a friendly unit and an enemy unit. If you
@@ -412,16 +422,19 @@ card, not both), pairs of §5's two-rune answers with Shen inside nine runes, th
   and `UNL-147 Baron Nashor` (one of the pool's printed 12s) cannot be chosen by enemy spells and
   abilities; `VEN-038 Akali, Silent` only in combat; `UNL-059 Master Yi, Unstoppable` not once he reaches
   [Level 16];
-  and `UNL-057 Alpha Wildclaw` shields smaller units at its battlefield. A [Deflect 2] target (`VEN-046
-  Nasus, Ascended`, `OGN-041 Volibear, Furious`, `SFD-120 Sivir, Ambitious`, `SFD-085 Ornn, Forge God`)
+  `UNL-057 Alpha Wildclaw` shields smaller units at its battlefield; and the spell `VEN-031 Twilight
+  Shroud` makes a friendly unit unchoosable this turn. Those are examples, not a census. A [Deflect 2] target (for example `VEN-046
+  Nasus, Ascended`, `OGN-041 Volibear, Furious`, `SFD-120 Sivir, Ambitious`, `SFD-085 Ornn, Forge God`,
+  `VEN-122 Solari Sunhawk` Empowered, or `VEN-088 Jayce, Hammer in Hand` in that mode)
   makes it ten Energy and three Power, and `VEN-134 Kayle, Justified` Empowered three times has
-  [Deflect 3], which makes it four. Ten runes is T5 at the earliest from either seat, and it is the
-  whole turn.
+  [Deflect 3], which makes it four. Ten runes is T5 at the earliest from either seat: the whole turn
+  going first, and all but one rune going second.
 - *"Onslaught carries no keyword at all"*: it carries [Flow]. It has no timing keyword, which is what
   155 reads.
 - *"The second play costs the same 4 Energy as the first, which is unusually flat for the keyword"*:
-  four of the fifteen cards that print their own [Flow] cost repeat their base cost exactly (`VEN-049
-  Dredge Up`, `VEN-081 Onslaught`, `VEN-100 Up from the Deep`, `VEN-116 Dragon Form`).
+  five of the fifteen cards that print their own [Flow] cost repeat their base cost exactly (`VEN-012
+  Perfect Execution`, `VEN-049 Dredge Up`, `VEN-081 Onslaught`, `VEN-100 Up from the Deep`, `VEN-116
+  Dragon Form`).
 - No answer is named. The pair is two spells in one turn, so playing Onslaught first makes the Duel a
   legal target for `VEN-039 Crumbling Sands` (E1 + 1 Calm Power), and Onslaught is itself a legal
   target for `OGN-045 Defy` (E1 + 1 Calm Power). In the walk either one fits beside an ambushed
