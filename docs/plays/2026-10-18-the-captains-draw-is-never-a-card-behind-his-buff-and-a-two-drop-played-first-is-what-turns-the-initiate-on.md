@@ -26,7 +26,7 @@ the Initiate's trigger, takes the 7 to 3.
 773 entries, 262 with forced-ordering language, **100 in the queue and 15 of them with no play**, as
 the issue measured. The two picks are unchanged: this entry is rank 86, the first in the list. The
 other entry of this slice is rank 87, `consuming-curse-annie-self-scaling-bonus`, played in
-[The third Curse kills Lux, and it is the only copy an Incinerate could not replace](2026-10-18-the-third-curse-kills-lux-and-it-is-the-only-copy-an-incinerate-could-not-replace.md).
+[Three Incinerates kill Lux and one guard, the Curses kill Lux and two, and the third kill is the battlefield](2026-10-18-three-incinerates-kill-lux-and-one-guard-the-curses-kill-lux-and-two-and-the-third-kill-is-the-battlefield.md).
 
 ---
 
@@ -265,7 +265,8 @@ constructed event, players must register a Main Deck of exactly 40 cards (includ
 champion), 1 Legend, 12 runes, and exactly 3 battlefields each with a unique name."* Going first, you
 have seen **6** cards by T2 and **7** by T3 (four opening, one draw a turn from T1). With three copies
 (103.2.b: *"Your Main Deck can include up to 3 copies of the same named card."*), a Buhru Captain by T2
-is **40.30%**, a Kinkou Initiate by T3 **45.73%**, and both **16.89%**.
+is **40.30%**, a Kinkou Initiate by T3 **45.73%**, and both **16.89%**. These are unconditional: they
+price drawing the two cards at all, not the walked hand around them.
 
 ## 5. Breaks to
 
@@ -285,24 +286,39 @@ Three Signature cards are out (`OGS-022 Final Spark`, Lux; `SFD-202 Hostile Take
 **Window 1: their T2, before your T3. Three runes, after Blood Money.** Your best T3 adds Pit Rookie and
 its buff, 3 Might, so the break needs your surviving units at 1 or less: the Captain and the Poro both
 gone. Blood Money took the Poro. The Captain, a 3 at A, dies to any of these, each read, from the 253
-swept for *kill*, *banish*, *deal N*, *return … to hand*, *move an enemy unit* or *take control of an
-enemy unit* followed by *unit* in the same sentence, with reminder text stripped (39 cards):
+swept sentence by sentence, reminder text (anything in parentheses) stripped, for the regex
+`/\b(kill|banish|deal \d+|return\b.*\bto (?:its owner's |their owner's |)hand|move an enemy unit|take control of an enemy unit)\b.*\b(units?|it|them)\b|\bunits?\b.*\b(kill|banish|deal \d+|return)\b/i`
+(47 cards; the *it* and *them* catch a sentence like *"Then kill it"*, and the second half a kill that
+comes after the unit). Twenty of the 47 cost three Energy or less; the rest are out of reach of three
+runes. Of the twenty, these kill the Captain:
 
 - `UNL-159 Soul Harvest` (Order, E2 + 1 Order Power): *"Kill a unit at a battlefield with 3 :rb_might: or
-  less."* Two runes, one recycled. **The cheapest spell in this window**; with Blood Money it is four
-  runes and two cards. They still take B with the other units.
+  less."* Two runes, one recycled. With Blood Money it is four runes and two cards. They still take B
+  with the other units.
+- `VEN-127 Lacerate` (Order, E2 + 1 Order Power): *"Choose a unit. If it's [Empowered], disempower it.
+  Then kill it if it has 3 :rb_might: or less."* The same two runes, and it names no location, so it
+  reaches a unit in base too.
 - `OGN-213 Hidden Blade` (Order, E2 + 1 Order Power, from hand as an [Action]): *"Kill a unit at a
-  battlefield. Its controller draws 2."* It breaks the Initiate's card and gives you two.
+  battlefield. Its controller draws 2."* The same two runes. It breaks the Initiate's card and gives you
+  two.
 - `SFD-070 Wages of Pain` (Mind, E3) deals 3, `VEN-059 Shock Blast` (Mind, E3 + 1 Mind Power) deals 4, and
   `UNL-072 Crescent Strike` (Mind, E3 + 1 Mind Power) deals 4 to the Captain and 1 to the Sentry. Three
   runes each.
 - The trade above: Blood Money and two units, and A for nobody.
 
-None of them denies the card. Each leaves A's survivors at the Sentry or nothing, so your T3 is Laurent
+**Soul Harvest, Lacerate and Hidden Blade tie at two runes, one recycled: the cheapest spells in this
+window.** None of them denies the card. Each leaves A's survivors at the Sentry or nothing, so your T3 is Laurent
 and Pit Rookie instead, and on T4 the Initiate reads Laurent 4, the Rookie 2 and a Diplomat played first:
 8, or 9 with the Sentry. **Window 1 moves the Initiate's card to T4.** Under the buff mode Soul Harvest cannot choose the Captain
-at 4, and the trade loses. Hidden Blade, Shock Blast and Crescent Strike still kill him; Wages of
-Pain's 3 does not.
+at 4, Lacerate chooses him and does not kill him, and the trade loses. Hidden Blade, Shock Blast and
+Crescent Strike still kill him; Wages of Pain's 3 does not. The other fourteen of the twenty kill only
+their own unit or gear (`SFD-163 Deathgrip`, `UNL-173 Sacrifice`, `OGN-242 Baited Hook`, `SFD-178 Blade
+of the Ruined King`, `VEN-124 Escaped Grayback`, `UNL-161 Divining Shells`), reach only a Chaos unit (`VEN-131
+Decree of Unity`), deal too little or not on their turn (`SFD-080 Bellows Breath`, 1 to each of up to three
+units, 2 with its [Repeat]; `OGN-121 Teemo, Strategist`, whose damage comes only when he defends), return the unit to the board (`VEN-066
+Temporal Breach`, `OGN-102 Portal Rescue`, which chooses a friendly unit), or kill nothing of yours
+(`SFD-090 The Zero Drive`, `VEN-133 Glowstone`); and Blood Money, already spent, reaches only Might 2
+or less.
 
 **Window 2: on the chain, in answer to the Initiate's trigger. One ready rune and any Power.** Only
 Reactions (309.1.a). Among the 253, **48** have [Reaction], [Hidden] or [Ambush] in their text,
@@ -336,10 +352,18 @@ With **three** ready runes, by keeping the Ramhound in hand on their T2, two mor
 runes, 5, and its [Repeat] needs four. `OGN-266 Siphon Power` gives -1 to each enemy unit at A, to a
 minimum of 1: 1 + 3 + 1 = 5.
 
-**Playing around it.** Decree of Insight reaches only a Body unit and only one. The Initiate on T4
-instead, after Pit Rookie and the Diplomat (seven runes), reads 1 + 4 + 2 + 2 = 9, and Decree on the
-Captain leaves 5. Against a held Decree the Initiate is a T4 play, and the Chaos Skulker is a body Decree
-cannot touch.
+**Playing around it.** Decree of Insight reaches only a Body unit and only one, and it takes at most the
+Might of that unit off the sum. So the answer is a bigger sum, which means the Initiate on T4. Pit Rookie,
+the Diplomat and the Initiate all on T4 are 2 + 2 + 3 = seven runes, the whole of the walk's T4, and the
+Initiate reads 1 + 4 + 2 + 2 = 9; Decree on the Captain leaves 5. But that leaves T3 five runes and only
+3-drops in hand (Laurent, the Skulker): one of them, and two runes idle. The order that costs nothing is
+the Diplomat and Laurent on T3 (five runes), then Pit Rookie on the Captain and the Initiate on T4 (five of
+seven): the Initiate reads 1 + 4 + 2 + 3 + 2 = 12, and Decree on the Captain leaves 8, on Laurent 9. Sea
+Monkey, drawn, takes the last two runes. That is the walk's board and the walk's two cards in hand at the
+end of T4, with the Initiate's card a turn later. An unbuffed Captain on their T3 is in reach of Soul
+Harvest and Lacerate again, and the sum on T4 without him is still 1 + 2 + 3 + 2 + 1 (the Rookie's buff
+on another unit) = 9. Against a held Decree the Initiate is a T4 play, and the Chaos Skulker is a body
+Decree cannot touch.
 
 ## 6. Verdict
 
@@ -351,7 +375,7 @@ Captain's partner, the draw on T2 and Pit Rookie first on T3 made two cards by T
 their T4, with two cards in hand. The buff on T2 ends **3 to 3** with one. Two vanilla 3-drops in the
 pair's slots end **3 to 3** with none and a rune idle. So the pair is worth two cards by T4 and no point,
 and it pays from T5. The buff has a real use the entry does not name: the +1 Might that keeps the
-Captain out of Soul Harvest's range and turns their best trade into a loss. The cheapest answer is
+Captain out of Soul Harvest's and Lacerate's range and turns their best trade into a loss. The cheapest answer is
 Decree of Insight, one ready rune and no Power, on the Captain in answer to the Initiate's trigger: the
 7 becomes 3.
 
@@ -359,18 +383,21 @@ Decree of Insight, one ready rune and no Power, on the Captain in answer to the 
 
 I did not deal the channel order. The walk assumes six Body and six Chaos runes for you, Bounty Hunter's
 two domains, in the twelve of Tournament Rules 402.1. The Captain on T2 needs a Body among the four
-channelled: it fails in **28 of 924 deals, 3.03%**. Nothing else in any of your lines needs Power, and
-the control needs none at all: **0 of 924**.
+channelled: it fails in **28 of 924 deals, 3.03%**. The other ordering of §4 puts the Captain on T3
+instead, which needs a Body among the six channelled: it fails in **1 of 924, 0.11%**. Nothing else in
+any of your lines needs Power, and the control needs none at all: **0 of 924**.
 
 Their walk assumes six Mind and six Order. Herald, Blood Money, Stupefy and Decree of Insight need no
-Power, and Viktor's Mind Power among nine runes cannot fail: **0 of 924**. Soul Harvest or Hidden Blade
-on their T2 needs an Order among five: it fails in **7 of 924, 0.76%**. Smoke Screen needs a Mind among
+Power, and Viktor's Mind Power among nine runes cannot fail: **0 of 924**. Soul Harvest, Lacerate or Hidden
+Blade on their T2 needs an Order among five: it fails in **7 of 924, 0.76%**. Smoke Screen needs a Mind among
 five on your T3: **7 of 924, 0.76%**.
 
 **How likely an answer is.** Out of their own **39**, by your T3 they have seen **6** cards: four
 opening and a draw on each of their two turns. Decree of Insight, run three times, is among them in
 **40.30%**. Soul Harvest has to be seen by their T2, which is the same six cards: **40.30%**. Either of
-the two (six cards), **66.05%**. These count only the cards named, not how many of them a deck runs.
+the two (six cards), **66.05%**. Any of the three two-rune kills of Window 1 (nine cards) by their T2,
+**81.80%**. Like §4's, these are unconditional: they count only the cards named, not how many of them a
+deck runs, and not the rest of the walked hands.
 
 **The draw-or-buff choice is read as a 402.2 decision.** If instead it is made on resolution, an answer
 to the Captain's own trigger could change it: under the buff mode, a kill in response would leave you
@@ -385,10 +412,11 @@ probabilities count only the cards named.
 
 - Step 1, *"Choose 'buff me' when the trigger resolves if you intend to play the Initiate soon; choose
   'draw 1' otherwise"*: the choice is not made on resolution. Whether to perform is decided at
-  finalization (402.1), and draw or buff with it, by this play's reading of 402.2. And the advice is the
-  wrong way round. The buff draws the Initiate's card only when your other units besides the two are
-  exactly 1 Might; at 2 or more it costs a card, and at 0 it draws nothing. A 2-drop played before the
-  Initiate does what the buff does. `OGN-136 Pit Rookie` does it while adding its own 2.
+  finalization (402.1), and draw or buff with it, by this play's reading of 402.2; §7 says what changes
+  if the choice is instead made on resolution, and nothing in the walk does. And the advice is the wrong
+  way round. The buff never adds a card; it ties at S = 1 (your other units besides the two at exactly
+  1 Might), costs a card at 2 or more, and at 0 draws nothing. A 2-drop played before the Initiate does
+  what the buff does. `OGN-136 Pit Rookie` does it while adding its own 2.
 - The notable *"On the turn you are one Might short of the Initiate's threshold, the buff mode IS the
   draw"*: it is the Initiate's card in place of the Captain's own, never in addition to it, and the card
   it buys is still on the chain. One ready rune of `VEN-061 Decree of Insight` takes it back.
@@ -405,11 +433,13 @@ probabilities count only the cards named.
   removed when its unit leaves play, 705: *"If a Unit leaves play, remove all Buffs from it."* And the
   opponent cannot spend it, 702.2.b.2: *"A player can only spend buffs on units they control."*
 - The notable *"neither reads a battlefield"*: the sum counts units in base too, out of reach of every
-  *"at a battlefield"* removal in §5's Window 1. Building the 5 in base is the placement that protects the
-  Initiate's card, at the cost of the bodies holding nothing.
+  *"at a battlefield"* removal in §5's Window 1, though not of `VEN-127 Lacerate`, which names no
+  location. Building the 5 in base is the placement that protects the Initiate's card against the rest,
+  at the cost of the bodies holding nothing.
 - The notable *"What they produce is cards, which is the resource a Body curve is normally short of"*:
   measured on this walk, the control's hand is empty after T4 going first, and the engine's holds two.
   The claim holds from T5; through T4 the score is the same.
 - No answer is named. `VEN-061 Decree of Insight` (Mind, E1) in answer to the Initiate's trigger is the
-  cheapest. `UNL-159 Soul Harvest` on an unbuffed Captain the turn before moves the card a turn later, and
-  the buff mode is what keeps him out of its range.
+  cheapest. `UNL-159 Soul Harvest`, `VEN-127 Lacerate` or `OGN-213 Hidden Blade` on an unbuffed Captain
+  the turn before, two runes each, moves the card a turn later; the buff mode keeps him out of the first
+  two's range.

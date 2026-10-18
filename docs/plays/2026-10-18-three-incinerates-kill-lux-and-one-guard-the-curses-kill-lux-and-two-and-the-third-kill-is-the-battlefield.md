@@ -1,4 +1,4 @@
-# Play — The third Curse kills Lux, and it is the only copy an Incinerate could not replace
+# Play — Three Incinerates kill Lux and one guard, the Curses kill Lux and two, and the third kill is the battlefield
 
 Issue #406 (a slice of #200), 2026-10-18. Constructed, Duel (485). Rules version 2026-07-16.
 Card text verbatim from `data/corpus_flat.txt`; rules pasted from
@@ -13,14 +13,18 @@ in order under Annie are 3, 4 and 5. Walked as a game, going first, against a Mi
 built its battlefield wide and put `OGS-006 Lux, Illuminated` (M5) on it, all three copies landed on
 your T4. They killed a 3, a 3 and Lux, and Annie took the battlefield: **4 to 2** after their T4. The
 honest control is the same hand with three `OGS-003 Incinerate`, the Curse's own first sentence and
-nothing else. It kills the same two 3s and leaves Lux standing: **3 to 3**. So the whole of the
-scaling is the third copy's 5. The first two copies kill exactly what Incinerate kills. That 5 needs all
-three copies in hand, which happens in **0.61%** of games by T4. One `OGN-024 Void Seeker` in the third
-slot does the same job for one more Energy and a Fury Power. Their better T3 does not play Lux at all:
-it puts three more small bodies on the battlefield, and then the 4 and the 5 have nothing to kill that a
-3 could not. That line ends **3 to 3**. The cheapest answer to the walked line costs one ready rune and
-no Power: `SFD-064 Cloth Armor` on their last defender in Annie's combat, so the battlefield ends
-nobody's.
+nothing else. Under Annie each is a 3, and damage stays marked until the end of the turn, so two of them
+kill Lux and the third kills one of her 3s. The 3 and the 2 left beside it are 5 against Annie's 4:
+**3 to 3**, with Lux dead. Spent on the three small bodies instead, they leave Lux alone at 5 against the
+same 4. Three Deals of 3 kill Lux and one guard, or three guards. Three of 3, 4 and 5 kill Lux and two,
+and that third kill is the Conquer. It is all the scaling bought, and it needs all three copies in hand,
+which happens in **0.61%** of games by T4. Two copies are 3 + 4, which kill Lux and nothing else, the
+Incinerate line again. One `OGN-024 Void Seeker` in the third slot does the third copy's job for one
+rune more. Their better T3 does not play Lux at all: it puts three more small bodies on the
+battlefield, and then the 4 and the 5 have nothing to kill that a 3 could not. That line ends **3 to
+3**. Three answers to the walked line tie at one ready rune: `SFD-064 Cloth Armor`, `OGN-104 Retreat`
+and `VEN-052 Mesmerize`. Only Cloth Armor and Mesmerize stop the Conquer, and only Cloth Armor does it
+with no Power: on their last defender in Annie's combat, the battlefield ends nobody's.
 
 **Why this line.** `scripts/sequence-pick.mjs --unplayed`, re-run on 2026-10-18 at `4b613b4`, reads
 773 entries, 262 with forced-ordering language, **100 in the queue and 15 of them with no play**, as
@@ -217,11 +221,20 @@ hand costs one.
 143.4: *"Units enter the Board exhausted."* They play three bodies to base, and none can score this turn.
 
 **The control: three Incinerates.** The same hand with `OGS-003 Incinerate` in place of every Curse is
-the same runes, the same windows and the same first sentence. Under Annie each is a 3. The first two kill
-the Pigeons and the Ramhound, as the Curses did. The third is a 3 on Lux's 5, and she lives. B is then
-the Poro 2 and Lux 5, and Annie's 4 cannot take it. After your T4 it is **3 to 2**, and after their T4,
-when they Hold B, **3 to 3**, with Lux on the board. The scaling bought one point and their Chosen
-Champion. Copies one and two killed only what Incinerate kills, so all of it came from the third copy.
+the same runes, the same windows and the same first sentence. Under Annie each is a 3, and a kill can be
+built from two of them, because damage stays marked until the turn ends (317.2.b) and the cleanup reads
+the total, 143.2.a: *"If a Unit ever has nonzero damage marked on it equalling or exceeding its Might,
+it is Killed."* Every way to spend three Deals of 3 on B:
+
+- Two on Lux (6 on her 5) and one on a guard. Lux dies, and so does the guard. The two left are 5 or 6
+  against Annie's 4: a 3 and the Poro 2, or the Pigeons and the Ramhound, which keeps its company.
+- One each on the Pigeons, the Ramhound and the Poro. Lux is alone at B, 5 against 4.
+- Any other split kills fewer than three, and Lux lives.
+
+So Annie stays home either way. After your T4 it is **3 to 2**, and after their T4, when they Hold B,
+**3 to 3**. Take the first split, and Lux is dead and B is two small bodies. The Curses' 3, 4 and 5 kill
+Lux with one Deal, not two, and that frees a Deal for the third kill, which leaves the Poro alone and
+gives Annie the Conquer. **The scaling bought one point and a third body.** Lux dies in both lines.
 
 **The control with the best plain card: Void Seeker.** `OGN-024 Void Seeker` (Fury, E3 + 1 Fury
 Power): *"[Action] (Play on your turn or in showdowns.) Deal 4 to a unit at a battlefield. Draw 1."*
@@ -261,9 +274,7 @@ theirs. Annie first is a point better here.
 
 **Their other T1: the Poro first, into Dark Child's runes.** If they open with Daring Poro (E2) instead
 and walk it into B on their T2, the showdown there has a target. Two of your three readied runes cast
-the first copy, a 2, and the Poro dies. No one is left at B, so no one takes it, 348.2.a: *"If only one
-player’s Units remain at the Battlefield, and if that player does not already Control the Battlefield,
-that player establishes Control over the Battlefield."* The Ramhound and the Pigeons go to their base,
+the first copy, a 2, and the Poro dies. No one is left at B, so no one takes it (466.5.b). The Ramhound and the Pigeons go to their base,
 because B is not theirs. On their T3 the two walk into B together, 144.3: *"Players may perform multiple
 Units' standard move simultaneously. This is treated as one game action performed on multiple
 Units."* Another showdown opens, and your three readied runes cast the second copy: 2, +1, +1 from Annie
@@ -278,10 +289,11 @@ copy on their T2 was worth more than the +1. This is why the walked T1 is the Pi
 Chosen Champion. Tournament Rules 402.1: *"In a constructed event, players must register a Main Deck of
 exactly 40 cards (including a chosen champion), 1 Legend, 12 runes, and exactly 3 battlefields each
 with a unique name."* Going first, you have seen **8** cards by T4. All three Curses are among them in
-**0.61%** of games; two of the three, **10.11%**. Even by 12 cards seen, T8, all three is **2.41%**.
-With two copies on T4 the walk is the Incinerate line: a 3 and a 4 kill the Pigeons and the Ramhound,
-Lux lives, and it ends **3 to 3**. The 5 that made the difference is about a one-in-164 hand on T4. One Void
-Seeker in three copies is among the 8 in **50.82%**.
+**0.61%** of games; exactly two, **9.50%**; at least two, **10.11%**. Even by 12 cards seen, T8, all
+three is **2.41%**. With two copies on T4 the walk is the Incinerate line. The 3 and the 4 on Lux are 7
+on her 5, and she dies, or they kill the Pigeons and the Ramhound and she lives. Either way two kills
+leave B at 5 or more against Annie's 4, and it ends **3 to 3**. The third kill is about a one-in-164
+hand on T4. One Void Seeker in three copies is among the 8 in **50.82%**.
 
 ## 5. Breaks to
 
@@ -314,8 +326,8 @@ and none of them breaks both halves:**
 - **`SFD-064 Cloth Armor`** (Mind gear, E1): *"[Quick-Draw] (This has [Reaction]. When you play it,
   attach it to a unit you control.)"*, with *"[Effect] [Shield 2] (+2 :rb_might: while I'm a
   defender.)"* Played on the Poro in Annie's combat, it makes the Poro a 4 against her 4. Both die, and
-  B ends nobody's (466.5.b). No Conquer, and Annie is dead. **One ready rune and no Power: the cheapest
-  answer.** Lux still dies.
+  B ends nobody's (466.5.b). No Conquer, and Annie is dead. **One ready rune and no Power.** Lux still
+  dies.
 - **`OGN-104 Retreat`** (Mind, E1): *"[Reaction] (Play any time, even before spells and abilities
   resolve.) Return a friendly unit to its owner's hand. Its owner channels 1 rune exhausted."* Cast in
   answer to the third copy, it puts Lux back in their hand. The copy resolves with no legal target and
@@ -326,7 +338,12 @@ and none of them breaks both halves:**
 - **`VEN-052 Mesmerize`** (Mind, E1 + 1 Mind Power): *"Choose one — • Return a friendly unit to its
   owner's hand. • Give an enemy unit -2 :rb_might: this turn."* The first mode is Retreat. The second,
   in Annie's combat, makes her a 2 against the Poro's 2: both die, and B ends nobody's. It is one or the
-  other.
+  other. The ready rune pays the Energy and a Mind rune among the six is recycled for the Power; it can
+  be the same rune, if that one is Mind, so it is one rune too.
+
+**The three tie at one ready rune.** Retreat and Mesmerize's first mode save Lux and leave the Conquer.
+Cloth Armor and Mesmerize's second mode stop the Conquer and leave Lux dead. Only Cloth Armor stops the
+Conquer with no Power, and Mesmerize recycles a rune for good.
 
 The other six do not:
 
@@ -394,17 +411,19 @@ when their runes are open too.
 after the one before it has resolved, a saved target still puts the copy in the trash, and 714 adds
 Annie's 1 to every copy. Walked against a Lux deck that put its 5-Might Chosen Champion on its
 battlefield, three copies on T4 were 3, 4 and 5. They killed two 3s and Lux, and Annie took B: **4 to
-2** after their T4. Three Incinerates kill the same two 3s and miss Lux: **3 to 3**. So the scaling
-was worth one point and their champion, and all of it was the third copy. Copies one and two were
-Incinerates. The third copy is about a one-in-164 hand on T4 (0.61%), and one Void Seeker does its job for
-one Energy and one Fury Power more and draws a card. Against their better T3, three more small bodies
-and Lux held back, the 4 and the 5 have nothing to kill that a 3 could not: **3 to 3**. The one thing
-the Curse does that Void Seeker cannot is cost no Power. That is why Dark Child's two Energy-only
-readies can pay a copy on their turn, and in the line where they walked a 2 into that window it ended
-**4 to 1**.
-The cheapest answer is Cloth Armor, one ready rune, which the walk leaves them: in Annie's combat it
-makes the Poro a 4, and B ends nobody's. Temporal Breach, hidden on their T3 for one recycled rune,
-saves Lux as well. Fallen Feline, named on their T3, stops all three copies.
+2** after their T4. Three Incinerates kill Lux too, with two of them, and one 3 with the third, and the
+two bodies left hold B against Annie: **3 to 3**. So the scaling was worth one point, and what it bought
+was a third kill: Lux needed one Deal instead of two. That needs all three copies, about a one-in-164
+hand on T4 (0.61%); two copies are the Incinerate line. One Void Seeker does the third copy's job for
+one rune more and draws a card. Against their better T3, three more small bodies and Lux held back, the
+4 and the 5 have nothing to kill that a 3 could not: **3 to 3**. The Curse's edge over Void Seeker is
+that one rune. A copy is two runes, the Seeker three with a Fury recycled, and the walk has three ready
+on their turn under Dark Child, so either fits that window. In the line where they walked a 2 into it,
+the walk ended **4 to 1**.
+Three answers tie at one ready rune, which the walk leaves them: Cloth Armor, Retreat and Mesmerize.
+Cloth Armor in Annie's combat makes the Poro a 4, and B ends nobody's, with no Power. Mesmerize does the
+same for a recycled Mind rune. Retreat saves Lux and leaves the Conquer. Temporal Breach, hidden on their
+T3 for one recycled rune, does both. Fallen Feline, named on their T3, stops all three copies.
 
 ## 7. Not verified
 
@@ -435,15 +454,17 @@ probabilities count only the cards named.
 - The notable *"THE ARITHMETIC OVER A GAME"* (*"NINE damage for 6 Energy. Under Annie: 3, 4, 5 —
   TWELVE"*) and `terminatesIn`: the sums are right, but they are three Deal actions to three units,
   since each copy has one target (715.1) and damage heals at the end of the turn (317.2.b). All three
-  copies in hand by T4 going first is 0.61% (two of three, 10.11%). In the walk, copies one and two
-  killed exactly what two `OGS-003 Incinerate` kill. Only the third copy's 5 out-hit it, on a 5-Might
-  body. Worth stating, with the comparison: three `OGN-009 Hextech Ray` are also 9 (12 under Annie),
+  copies in hand by T4 going first is 0.61% (at least two, 10.11%; exactly two, 9.50%). In the walk,
+  three `OGS-003 Incinerate` under Annie kill Lux with two Deals and one guard with the third, or three
+  guards, and neither leaves the battlefield to Annie. The Curses' 3, 4 and 5 kill Lux with one Deal and
+  two guards with the others. The third kill is what the scaling buys. Worth stating, with the comparison: three `OGN-009 Hextech Ray` are also 9 (12 under Annie),
   for 3 Energy and 3 Power, and one `OGN-024 Void Seeker` is the third copy's 5 under Annie on its own.
 - The notable *"IT NEEDS NO RULES READING"*: true, and two paragraphs settle the edge cases it does not
   mention. A copy whose target was saved still resolves (359.3.e.1) and goes to the trash (157), and a
   countered copy goes there too (425.1.a.1). So answering one copy does not stop the next one growing.
 - The steps' *"each of which can be held for a Showdown"*: under `OGS-017 Dark Child - Starter`, its
-  two readied runes pay one copy on the opponent's turn, because a copy costs Energy only. But a
+  two readied runes pay one copy on the opponent's turn, because a copy is two runes and needs no
+  Power; a `OGN-024 Void Seeker` needs three, one of them a Fury recycled. But a
   showdown on their turn needs them to move into a battlefield they do not control, and they move with
   their runes open. In the walk their best T1, a 3-drop first, left that window with no target; the line
   where they walked a 2 into it ended 4 to 1 instead of 4 to 2.
