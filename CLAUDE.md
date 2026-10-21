@@ -40,7 +40,7 @@
 
 ## Web gotchas — three from the 2026-09-07 deck-card work (#177, #178)
 - **The shared text-field style is scoped to `input[type=url], textarea, select`, so a bare text input renders WHITE.** Extend it with a CLASS (`.field-input`), never with `input[type=text]`: an attribute selector out-specifies `.detail-name` and would silently change the deckbuilder's own name field.
-- **`.empty` is taken.** `web/styles.css:178` makes it a page-wide `position: absolute; inset: 0` empty state, so a LOCAL "nothing here" modifier needs its own name (`noart`, after the existing `.pool-noart`). Using `.empty` threw the deck-card thumbnail to the top of the viewport and read as a layout bug rather than a class collision.
+- **`.empty` is taken.** `web/styles.css` makes it a page-wide `position: absolute; inset: 0` empty state, so a LOCAL "nothing here" modifier needs its own name (`noart`, after the existing `.pool-noart`). Using `.empty` threw the deck-card thumbnail to the top of the viewport and read as a layout bug rather than a class collision.
 - **Riot's card images are FULL-CARD scans (744x1039, illustration down to ~64%, name plate below that), and the CDN honours Sanity's `rect=x,y,w,h` in SOURCE pixels**, with the source size in the filename. That is how to crop to the illustration without coupling the crop to any layout dimension. `object-fit: cover` alone cannot do it: it trims only the axis the box has proportionally less of, so any box narrower than 1.38:1 crops the SIDES and shows the whole card - which is why a 58px full-height strip displayed the card's own printed title, and why the fix is a CDN rect and not a guessed `object-position`.
 - **Never put backticks or `[ ]` inside a `maestro send` argument.** The receiving side is an interactive zsh: it evaluates the backticks and globs the brackets, and pieces of the message vanish silently. Write the text to a file and send `"$(cat file)"`.
 
@@ -66,11 +66,9 @@
 
 ## Web gotchas
 - CSP forbids inline `style=`: colour SVG through attributes, and HTML through CSSOM (`el.style.x = …`).
-- `wrangler.toml` needs `run_worker_first = true` or the security headers never apply to static files.
 - `[hidden]` needs `display:none !important` because `.empty` sets `display:grid`.
 - Playwright MCP can only write screenshots into `.playwright-mcp/` (gitignored).
 - **Every card field that `src/` reads at match time or in `checkBuild` MUST be listed in `scripts/web-card-fields.mjs`**, or it reaches the browser as `undefined` while every test passes (the tests read `data/cards.json`, the bundle reads the trimmed payload). It happened twice: the Mech tags (#27) and `signature` (#103, caught by rc-builder on the live site: 103.2.d said "No Signature cards" with four in the deck). `test/web-payload.test.ts` pins the list now; add the field there too.
-- **Every card field that `src/` reads at match time or in `checkBuild` MUST be listed in `scripts/web-card-fields.mjs`**, or it reaches the browser as `undefined` while every test passes (tests read `data/cards.json`, the bundle reads the trimmed payload). It happened twice: the Mech tags (#27) and `signature` (#103, caught by rc-builder on the live site, where 103.2.d said "No Signature cards" with four in the deck). `test/web-payload.test.ts` pins the list now; add any new field there too.
 
 ## Accounts (#31)
 - **The site lives at `https://riftcombo.app`** (bought through Vercel on 2026-09-05, #42; renewal US$15/yr,
@@ -118,7 +116,7 @@
   Vercel from the COMMITTED tree and goes live; check it with `npx vercel ls riftcombo`. Before that,
   `npx vercel deploy --prod --yes </dev/null` uploaded the working tree, which twice shipped another
   session's uncommitted files. Keep that command only as a fallback when the Git build is broken.
-- `npm run dev` serves the app on http://127.0.0.1:8787. Kill the wrangler process when the session ends.
+- `npm run dev` rebuilds the web bundle and runs `vercel dev`. Stop that process when the session ends.
 - **Do not loop-poll the live bundle.** On 2026-09-06 repeated `curl https://riftcombo.app/app.js` (1.7 MB, from this IP, by several sessions at once) tripped Vercel's automatic mitigation: every request from this machine — curl, browser UA, headless Chromium — got `403` + `x-vercel-mitigated: challenge` ("Vercel Security Checkpoint") while `r.jina.ai/https://riftcombo.app/` from another network answered 200, and the project has no firewall config at all. So a 403 challenge from here is NOT an outage: confirm from another vantage before touching anything, check a deploy ONCE with `npx vercel ls riftcombo`, and read the live bundle at most once per deploy.
 
 ## Team
