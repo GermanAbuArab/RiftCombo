@@ -121,6 +121,6 @@
 
 ## Team
 - Repo: GermanAbuArab/RiftCombo
-- Implementers: 1
+- Implementers: 2
 - Verify: npm run typecheck && npm test && npm run build:web
 - Needs the owner: nothing (owner rule 2026-09-25: the orchestrator does it or delegates it; only a password, 2FA or captcha screen is handed over, in the same window)
