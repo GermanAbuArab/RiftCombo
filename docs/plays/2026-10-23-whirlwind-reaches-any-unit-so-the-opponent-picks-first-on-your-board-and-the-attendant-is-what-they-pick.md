@@ -68,21 +68,26 @@ The card text the play turns on:
 
 **The opponent chooses first.** Whirlwind has neither [Action] nor [Reaction], so it is played on your
 own turn, 155: *"A spell can be played during an Open State outside of Showdowns on its controller's
-turn."* You are the Turn Player when it resolves, and the rules' own phrase for the player after you
-is the next one in Turn Order, which 115.1.c makes a loop: *"The Turn Order generates a looping queue
-of turns, starting with the First Player and repeating until the game ends."* In a Duel the next player
-after you is the opponent, so they choose first and you choose second, knowing what they did. *"May"*
-lets either of you decline.
+turn."* You are the Turn Player when it resolves. No paragraph defines "the next player" for the order
+of an effect's choices; 115.1.c defines the order of turns: *"The Turn Order generates a looping queue
+of turns, starting with the First Player and repeating until the game ends."* Reading "the next
+player" as the next one in that order is the natural reading, not a derivation. On it, in a Duel the
+next player after you is the opponent, so they choose first and you choose second, knowing what they
+did. *"May"* lets either of you decline.
 
-**"A unit" is any unit, yours or theirs.** The card does not say *"a unit they control"*. 355.9.a.1:
-*"“Unit,” “gear,” and “rune” refer to objects on the Board unless specified otherwise."* So each player
-may return any unit on the board to its owner's hand, and *"its owner's"* is there because the unit
-need not be the chooser's. Compare the rules' own example of a symmetric choice, which does restrict
-it, 355.10.e: *"e.g., “Each player kills a unit they control” does not target. Each player, including
-the one who played the spell, chooses a unit to kill as the spell or ability resolves."* Whirlwind has
-no *"they control"*. So the opponent's first choice is usually a unit of **yours**, and yours is
-usually one of **theirs**. The pool's own one-sided bounces spell out whose unit, as `SFD-132 Beast
-Below` does: *"return another friendly unit and an enemy unit to their owners' hands."*
+**"A unit" is any unit, yours or theirs.** The card does not say *"a unit they control"* or *"a friendly
+unit"*, and *"to its owner's hand"* only has work to do if the unit can be someone else's. The rules
+attach no controller to a unit a spell specifies, 141.1.a.3, listed under 141.1.a, *"While on the
+Board:"*: *"Units can be chosen, affected, or manipulated by spells, affects, or game actions that
+specify Units."* Where that unit is comes from 355.9.a.1: *"“Unit,” “gear,” and “rune” refer to
+objects on the Board unless specified otherwise."* That paragraph sits in the targeting block (355.9),
+and Whirlwind does not target (below), so it fixes the zone and nothing more. Compare the rules' own
+example of a symmetric choice, which does restrict it, 355.10.e: *"e.g., “Each player kills a unit they
+control” does not target. Each player, including the one who played the spell, chooses a unit to kill
+as the spell or ability resolves."* Whirlwind has no *"they control"*. So each player may return any
+unit on the board to its owner's hand: the opponent's first choice is usually a unit of **yours**, and
+yours is usually one of **theirs**. The pool's own one-sided bounces spell out whose unit, as `SFD-132
+Beast Below` does: *"return another friendly unit and an enemy unit to their owners' hands."*
 
 **Nothing is targeted, so nobody pays [Deflect].** 355.10.e: *"It is part of a set of objects chosen
 in whole or in part by other players."* The returned units are such a set. [Deflect] taxes only a
@@ -120,12 +125,14 @@ their Base."*
 ## 3. Their deck: Calm/Order Leona
 
 The deck of the Guard play linked above. `OGN-261 Radiant Dawn` (Calm/Order): *"When you stun one or
-more enemy units, buff a friendly unit."*; nothing in the walk stuns. Its Chosen Champion is `OGN-238
+more enemy units, buff a friendly unit. (If it doesn't have a buff, it gets a +1 :rb_might: buff.)"*;
+nothing in the walk stuns. Its Chosen Champion is `OGN-238
 Leona, Determined` (Order, E4 + 1 Order Power, M4), never played. The engine is Royal Guard (Order, E4,
 M2): *"When you play me, play a 2 :rb_might: Sand Soldier unit token here."* Then Keeper of Law (Order,
 E5 + 1 Order Power, M5): *"I cost :rb_energy_2::rb_rune_order: less if you control a battlefield with
-exactly two units there."* The Keeper's cost is read while he is on the chain, 356.4.b: *"Discounts may
-say that cards "cost [amount] less" or that one or more of their costs are "reduced by [amount].""*
+exactly two units there."* The Keeper's cost is read while he is on the chain: 354, *"1. Move the card from its current zone to
+the Chain."*, comes before 356, *"3. Determine Total Cost."*, and 328 says *"The Chain is a Non-Board
+Zone that temporarily exists whenever a card is played or an ability is activated."*
 Their other bodies are `OGN-210 Daring Poro` (Order, E2, M2, [Assault]), `OGN-054 Sunlit Guardian`
 (Calm, E3, M3, [Shield], [Tank]), `SFD-159 Trusty Ramhound` (Order, E2, M2), `OGN-218 Vanguard Captain`
 (Order, E3 + 1 Order Power, M3, [Legion] two 1-Might Recruits) and `OGN-044 Clockwork Keeper` (Calm,
@@ -235,8 +242,13 @@ and Whirlwind still in hand instead of the Attendant.
 
 **The control: Dangerous Duo in the Attendant's place.** On T3 the Duo (E3) and then the Hopeful (E2
 with [Legion]) are the same 3 and 4 in base for five runes, none recycled, and the Rearguard stays in
-the trash. Every number after it is unchanged, except that you have **8** runes on T4, not 7. **3 to
-3.** The Attendant bought back one card for one rune.
+the trash. On T4 you have **8** runes, not 7. You Hold A, and Whirlwind takes four of them, one
+recycled. The opponent's first pick is now the Duo in base or the Saboteur at A, each E3 to replay;
+the Hopeful replays for two under its own [Legion], since Whirlwind is a card played this turn. Say
+they take the Duo. You return the Sand Soldier as before, and the four runes left put Pouty Poro and
+Mystic Poro (E2 each) on A instead of the Rearguard and Pouty Poro. Nothing of theirs can reach A
+(144.4.b), they Hold B and play the same three bodies there: **3 to 3**, with seven runes on the board
+against the main line's six. The Attendant bought back one card for one rune.
 
 **Their other T3: the Keeper to base.** If the Keeper goes to base, B is 2 + 2 + 3 + 1 = **8**, and on
 your T4 your base holds the Attendant's 3 and the Hopeful's 4.
@@ -337,7 +349,7 @@ emptying your trash. Their attack is what filled it.
 ## 6. Verdict
 
 **Right that you choose last; wrong about what the opponent chooses.** Whirlwind returns *"a unit"*,
-and 355.9.a.1 makes that any unit on the board, so the opponent picks first and picks on your board.
+with no *"they control"*, and 141.1.a.3 attaches no controller to a unit a spell specifies, so the opponent picks first and picks on your board.
 Nothing is targeted (355.10.e), so [Deflect] never charges, and a token returned to hand ceases to
 exist (186.1), which is the one thing their first pick cannot protect. Walked against the Leona deck,
 the Attendant brought back on T3 the Rearguard their attack had killed. On T4 the opponent's best first
@@ -375,9 +387,12 @@ the cards named.
 ## Leads
 
 - The notable *"by the same token you cannot pick THEIR body, which is the price"*, and the step *"The
-  opponent chooses first — they may return one of their units to hand, or decline."*: refuted by the
-  card text. Whirlwind says *"a unit"*, which 355.9.a.1 makes any unit on the board, with no *"they
-  control"*, unlike 355.10.e's own example. Each player may return any unit to its owner's hand, so the
+  opponent chooses first — they may return one of their units to hand, or decline."*: the card
+  does not say this. Whirlwind says *"a unit"*, with no *"they control"* or *"friendly"*, unlike
+  355.10.e's own example, and *"to its owner's hand"* only has work to do if the unit can be someone
+  else's. 141.1.a.3 (*"Units can be chosen, affected, or manipulated by spells, affects, or game
+  actions that specify Units."*) attaches no controller; 355.9.a.1 puts the unit on the board, but it
+  sits in the targeting block (355.9) and Whirlwind does not target, so it fixes the zone only. Each player may return any unit to its owner's hand, so the
   opponent, choosing first, may return yours, and you may return theirs. The source walk's refusal
   *"Using `OGN-187 Whirlwind` to remove an enemy body"* rests on the same reading. Two published plays
   already read the card as reaching enemy units:

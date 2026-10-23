@@ -384,9 +384,11 @@ after their T4, where the engine's tokens and the Surges' cards would be counted
   T2, which the steps cannot reach before T3. Walked, the Surge-first line ended 4 to 3, and Iterative
   Design first ended 3 to 3.
 - The notable *"Spend the cheap spell on the base and the flexible one on the battlefield, not the other
-  way round"*: walked and refuted on this board. The T3 Conquer of their battlefield needed two bodies
-  ready in base, and Production Surge's base token, played on T2, was one of them. Iterative Design's
-  token on your own battlefield was a defender nothing attacked. Note also that the no-destination
+  way round"*: walked with Iterative Design's token on A, and that line lost. The T3 Conquer of their
+  battlefield needed two bodies ready in base, and Production Surge's base token, played on T2, was one
+  of them. Iterative Design's token on your own battlefield was a defender nothing attacked. That walk
+  also differs from the main line in order and spend, so the token's destination is not isolated:
+  Iterative Design on T2 with its token to base was not walked (§7). Note also that the no-destination
   reading the notable credits to 355.2.a is the default for every played unit. The outlier is Production
   Surge's *"to your base"*, which 184.2 authorises.
 - The notable *"none of them moves on the turn it is made unless SFD-171 Renata Glasc, Industrialist is
