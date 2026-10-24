@@ -383,8 +383,9 @@ Poro kept back instead, you Hold both battlefields on T3. The probabilities coun
   Unruled; reported for filing as a reading. If he must be Empowered, he Empowers only *"When you
   [2026-10-24: ruled by #436 (PR #441): a "Disempower me" cost cannot be paid while the card is not
   Empowered (203.3 with 442.1.a), and 442.1.a.1 is the effect-side no-op only. The finding is in
-  `docs/rules-notes/rules-findings.md` ("A 'DISEMPOWER ME' COST CANNOT BE PAID BY A CARD THAT IS NOT
-  EMPOWERED"). The sentence above is kept as history.]
+  [`docs/rules-notes/rules-findings.md`](https://github.com/GermanAbuArab/RiftCombo/blob/master/docs/rules-notes/rules-findings.md)
+  ("A 'DISEMPOWER ME' COST CANNOT BE PAID BY A CARD THAT IS NOT EMPOWERED"). The sentence above is kept as
+  history.]
   banish a card you own"*.
 - Not named: the discard that pays. `OGN-006 Flame Chompers` (*"When you discard me, you may pay
   :rb_rune_fury: to play me."*) turns the Poro's discard into a 3-Might body for one Fury Power. Walked
