@@ -256,9 +256,18 @@ gone.
 
 **The entry's own order inside one turn.** Another card, then the Captain, then Darius, gets Darius
 his Legion as well. It is safe in the same way the main line is: the opponent has no Priority
-between the Captain's trigger resolving and Darius landing (312.2.a). But it costs a third card and
-one more Energy than the main line. With the cheapest card at E1, that is 1 + 3 + 6 = 10 Energy, and
-your T4 has eight runes and the legend's one. The first turn it fits is T5. What the ready buys there
+between the Captain's trigger resolving and Darius landing (312.2.a). What it costs depends on the
+third card. This list's cheapest is E2, so the line is 2 + 3 + 6 = 11 Energy against T4's eight runes
+and the legend's one, and the first turn it fits is T5. Hand of Noxus's pool also holds two E0 cards,
+`OGN-245 Seal of Unity` and `OGN-040 Seal of Rage`. Seal of Unity (Order gear, E0 + 1 Order Power):
+*":rb_exhaust:: [Reaction] — [Add] :rb_rune_order:. (Abilities that add resources can't be reacted
+to.)"* With it the entry's order fits on T4. All eight runes are exhausted for Energy, and the Energy
+stays in the pool through the Main Phase, 167: *"Every player's Rune Pool empties at the start of each
+player's Main Phase and the end of each player's turn."* One Order is recycled to pay for the Seal, and
+the Seal enters ready, 359.2.d: *"If it is a Non-Unit Gear, it enters the Board Ready at the player's
+Base."* The legend adds one Energy, for 9. The Seal adds the Captain's Order Power, and a second
+recycled Order pays for Darius. It takes 0 + 3 + 6 = 9 Energy and two recycled runes, the same as the
+main line, plus one card. Darius gets his ready, and the Seal stays on the board. What the ready buys
 is a move, and Darius at A can move only to base (144.4.b). To attack with it he would be played to
 base and walk into B, and the aura goes with him, away from the Recruits.
 
@@ -307,17 +316,23 @@ kills more than one Recruit at A out of combat: `OGN-128 Challenge` (Body, E2 + 
 play trigger that deals damage or moves an enemy.
 
 **Dearer answers on the same board, all with Flurry:**
-- `UNL-038 Skyward Strike` (Calm, E2 + 1 Calm Power): *"Move an enemy unit."* Darius goes where
-  Charm sent him. **Three runes.**
+- `UNL-038 Skyward Strike` (Calm, E2 + 1 Calm Power): *"Move an enemy unit. [Level 6][>] [Stun] an
+  enemy unit. (While you have 6+ XP, get the effect. A stunned unit doesn't deal combat damage this
+  turn.)"* Darius goes where Charm sent him. Their Level 6 is live, so it can also stun him on the way
+  into B, and then he kills nothing there. **Three runes.**
 - `UNL-054 Tricksy Tentacles` (Calm, E4 + 1 Calm Power), which moves enemy units with a total Might
   of 8 or less: Darius alone is 6. **Five runes.**
 - `OGN-067 Blitzcrank, Impassive` (Calm, E5 + 1 Calm Power, M5), played to B, pulls Darius there:
-  *"When you play me to a battlefield, you may move an enemy unit to here."* **Six runes.**
+  *"[Tank] (I must be assigned combat damage first.) When you play me to a battlefield, you may move
+  an enemy unit to here. When I hold, return me to my owner's hand."* Darius's 6 go into Blitzcrank
+  first, a 6 at Level 6. **Six runes.**
 - `OGN-149 Carnivorous Snapvine` (Body, E5 + 2 Body Power, M6): *"When you play me, choose an enemy
   unit at a battlefield. We deal damage equal to our Mights to each other."* At Level 6 the Snapvine
-  is a 7, so Darius dies and it does not. **Six runes, two recycled.**
+  is a 7, so Darius dies and it does not. Played to their base it stays out of the Flurry's reach;
+  played to B, the Flurry's 1 on top of Darius's 6 kills it too. **Six runes, two recycled.**
 - `OGS-008 Gentlemen's Duel` (Body, E6 + 1 Body Power): +3 on a Crowd Favorite makes it a 7, and the
-  two deal their Mights to each other. **Seven runes.**
+  two deal their Mights to each other. The Crowd Favorite is at B, so the Flurry's 1 on top of
+  Darius's 6 kills it as well. **Seven runes.**
 
 One card does it alone: `VEN-090 Cataclysmic Duel` (Body, E8 + 3 Body Power), *"Each player chooses a
 unit they control. Kill the rest."* You keep one unit, and they keep one of their five at B, with no Energy left for their three T4 bodies. **Eight
@@ -330,7 +345,7 @@ runes, three recycled.**
 - `UNL-112 Irresistible Faefolk` (Body, E2, M1): *"When I move to a battlefield, you may move an enemy
   unit to that battlefield."* It walks into B and drags Darius with it, but only if it was on their
   board, ready, from an earlier turn. Played on their T4 it enters exhausted.
-- `SFD-114 Marching Orders` (Body, E3) with its [Repeat] paid: two 3s into Darius are 6. A second
+- `SFD-114 Marching Orders` (Body, E3) with its [Repeat] paid: the Apprentice, their only 3, twice into Darius is 6. A second
   execution with a second friendly unit is the open [Repeat] reading (the #187 bullet in
   `docs/rules-notes/rules-findings.md`, one play and two sets of choices), so it is not counted.
 - `UNL-107 Stare Down` (Body, E2) sends every unit of yours at A with less Might than their chosen
@@ -348,8 +363,9 @@ the Recruits for two runes.** Walked going first with the Hand of Noxus Recruit 
 as the first card of T4. His Legion was off and his aura was on, as 812.1.b says. He was also the
 card that turned on the Captain's Legion, so the Captain followed him for the same eight runes and the
 legend's Energy. Every Recruit at A was born a 2. Five stood there after your T4, and their Flurry
-killed none: **3 to 3** after their T4. The entry's own order, another card first, lands a turn later,
-and its Legion ready only lets Darius walk away from the Recruits. Played a turn before Darius, the
+killed none: **3 to 3** after their T4. The entry's own order, another card first, costs one more card, an
+E0 Seal on T4 or this list's E2 on T5, and its Legion ready only lets Darius walk away from the
+Recruits. Played a turn before Darius, the
 Captain's two Recruits sat as 1s through their turn, and Flurry killed both for one rune: **3 to 3**,
 with two Recruits at A instead of five. Inside one turn the opponent never gets Priority while a
 Recruit at A is a 1, so the exposure is only ever a turn boundary. The aura is safe from Flurry alone,
@@ -386,7 +402,9 @@ three-card answers, Marching Orders under either [Repeat] reading, and the turns
 - Step 1, *"Play any other card first"*: Darius can be that card. 812.1.c asks only that a card
   different from the Captain was Finalized this turn, and Darius played first is one. In the walk the
   order Darius, legend, Captain completed the board on T4 going first, for eight runes and the
-  legend's one Energy. The entry's order needs a third card, one more Energy, and T5.
+  legend's one Energy. The entry's order needs a third card in front of both. With `OGN-245 Seal of
+  Unity` (E0 + 1 Order Power, and it adds an Order Power back) it also fits on T4, for the same eight
+  runes and two recycled, plus the Seal itself. With this list's cheapest card, an E2, it is T5.
 - Step 3, *"His Legion half readies him - effectively [Accelerate] for the turn"*: played to the
   battlefield he guards, the ready buys only a move to base, because a unit at a battlefield can go
   nowhere else (144.4.b). It buys an attack only if he is played to base and walks into theirs, and

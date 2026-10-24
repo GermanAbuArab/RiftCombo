@@ -68,7 +68,8 @@ The card text the play turns on:
   it. Then reveal those cards."* Nothing in the walk reveals.
 - Void Drone: *"I cost :rb_energy_2: less to play from anywhere other than your hand."* Every Drone is
   played from hand.
-- Wily Newtfish: *"If you've gained XP this turn, I have +1 :rb_might: and [Ganking]."* Nothing in the
+- Wily Newtfish: *"If you've gained XP this turn, I have +1 :rb_might: and [Ganking]. (I can move from
+  battlefield to battlefield.)"* Nothing in the
   walk gains XP.
 
 ## 2. What the count needs, and what the runes cost
@@ -107,7 +108,7 @@ Unit."* So a garrison of summed Might 4 kills one Brambleback, and one of 8 kill
 Triggered Abilities and Activated Abilities that instruct them to gain one or more points."* That is
 R2 = A, so 470 (*"A player may only Score, from either method, once per Battlefield per turn."*) does
 not cap them, and the Final Point rule does not bind them, 471.1.a.1: *"Notably, points Gained from
-sources that are not Conquer are not beholden to these restrictions."* The walk never reaches 7.
+sources that are not Conquer are not beholden to these restrictions."* The main line never reaches 7.
 
 **The count, then.** One attack by T Tryndameres and K Bramblebacks into a garrison of summed Might D
 scores 1 for the Conquer plus, for each Tryndamere still alive, 1 plus one per Brambleback still alive,
@@ -168,9 +169,10 @@ The deck of the En Garde play linked above, in the same seat and with the same o
 units remain after combat.)"* Its Chosen Champion is `OGN-028 Draven, Showboat`, never played. Their
 bodies are `OGN-018 Noxus Saboteur` (Fury, E3, M3), `OGN-010 Legion Rearguard` (Fury, E2, M2),
 `OGN-013 Pouty Poro` (Fury, E2, M2), `OGN-016 Dangerous Duo` (Fury, E3, M3; *"[Legion] — When you play
-me, give a unit +2 :rb_might: this turn."*), `OGN-171 Mystic Poro` (Chaos, E2, M2), `OGN-165 Cemetery
+me, give a unit +2 :rb_might: this turn. (Get the effect if you've played another card this turn.)"*), `OGN-171 Mystic Poro` (Chaos, E2, M2), `OGN-165 Cemetery
 Attendant` (Chaos, E3 + 1 Chaos Power, M3; *"When you play me, return a unit from your trash to your
-hand."*), `OGN-012 Noxus Hopeful` (Fury, E4, M4; *"[Legion] — I cost :rb_energy_2: less."*) and
+hand."*), `OGN-012 Noxus Hopeful` (Fury, E4, M4; *"[Legion] — I cost :rb_energy_2: less. (Get the effect if
+you've played another card this turn.)"*) and
 `OGN-006 Flame Chompers` (Fury, E3, M3). Their one spell in the walk is Hextech Ray (Fury, E1 + 1 Fury
 Power). Going second, they channel an extra rune on T1, 485.7: *"First Turn Process: The player going
 second channels an extra Rune from their Rune Deck during their first Channel Phase of the game."*
@@ -327,45 +329,61 @@ instead of B: the same card, the same rune. A is 2 + 2 + 2 + 2 = **8** and B is 
 and Tryndamere has to attack one of them. At A their 8 go on Tryndamere, lethal in full (465.2.c.3), and
 your 16 kill all four. A is yours, **+1**, and Tryndamere is not there to trigger (383.4.c.2.a). The
 Bramblebacks trigger only their buffs. **4 to 4**, and **4 to 5** after their T5 Hold of B, against
-the main line's 6 to 5. At B it is the same: 8 on Tryndamere, 2 on a Brambleback. Not attacking at all
-is 3 to 5. Any garrison of 8 Might answers Tryndamere, and the Draven deck puts 8 Might on a
+the main line's 6 to 5. At B it is the same: 8 on Tryndamere, 2 on a Brambleback. Not attacking at all,
+you control no battlefield and they Hold both on their T5: 3 to 6. Any garrison of 8 Might answers Tryndamere, and the Draven deck puts 8 Might on a
 battlefield by its T4 without trying.
 
 **With the two open runes, one card.** On your T5 they have two ready runes, and Power comes from any
 rune, ready or not (164.2.b). The predicate for the candidates: of the 62 spells, a card with [Action]
 or [Reaction] (the regex `\[(Action|Reaction)\]`, case-insensitive, reminder text left in) that costs
-no more than E2. That is **27** cards, and **12** of them break the line:
+no more than E2. That is **27** cards, and **13** of them break the line:
 
 - **Two or more damage on Tryndamere**, after which their 6 are lethal on him: `OGN-009 Hextech Ray`
   (E1 + 1 Fury Power, 3), `UNL-014 Monster Harpoon` (E1 + 1 Fury Power, 2, or 4 with a facedown card),
   `OGS-003 Incinerate` (E2, 2), `VEN-010 Consuming Curse` (E2, 2), `UNL-007 Smite` (E2 + 1 Fury Power,
   3) and `OGN-008 Get Excited!` (E2 + 1 Fury Power, the discarded card's Energy cost; their Flame
   Chompers is 3). **1 to the Conquer, and 4 to 4.**
-- **`UNL-134 Existential Dread`** (Chaos, E1 + 1 Chaos Power): *"[Stun] an attacking enemy unit."* A
-  stunned Tryndamere stays, but 423.1.b: *"A Stunned Unit does not contribute its might to damage in
+- **`UNL-134 Existential Dread`** (Chaos, E1 + 1 Chaos Power): *"[Action] (Play on your turn or in
+  showdowns.) [Repeat] :rb_energy_2: (You may pay the additional cost to repeat this spell's effect.)
+  [Stun] an attacking enemy unit. If it's already stunned, return it to its owner's hand instead. (A
+  stunned unit doesn't deal combat damage this turn.)"* One cast is enough, and its [Repeat] is not paid,
+  so the open [Repeat] reading (#187) does not bear. A stunned Tryndamere stays, but 423.1.b: *"A Stunned Unit does not contribute its might to damage in
   the combat damage step."* Your 8 against their 6 is an excess of 2, and his clause asks for 5.
   **One rune.**
 - **`UNL-013 Lotus Trap`** (Fury, E2, [Hidden]) on Tryndamere: 4 assigned is 8 dealt, and 465.2.c.4.a
   lets them assign *"the minimum applied value such that the unit would take lethal damage"*.
-- **`SFD-001 Against the Odds`** (Fury, E2): *"Give a friendly unit at a battlefield +2 :rb_might: this
-  turn for each enemy unit there."* Three of yours are there: +6, a garrison of 12, and an excess of 4.
+- **`SFD-001 Against the Odds`** (Fury, E2): *"[Reaction] (Play any time, even before spells and
+  abilities resolve.) Give a friendly unit at a battlefield +2 :rb_might: this turn for each enemy unit
+  there."* Three of yours are there: +6, a garrison of 12, and an excess of 4.
 - **`SFD-145 Switcheroo`** (Chaos, E2 + 2 Chaos Power, [Hidden]): Tryndamere's 8 and a Poro's 2 swap,
   and their 12 kill him.
 - **`OGN-172 Rebuke`** (Chaos, E2 + 2 Chaos Power): Tryndamere goes back to your hand.
-- **`OGN-173 Ride the Wind`** (Chaos, E2 + 1 Chaos Power): *"Move a friendly unit and ready it."* The
+- **`OGN-173 Ride the Wind`** (Chaos, E2 + 1 Chaos Power): *"[Action] (Play on your turn or in
+  showdowns.) Move a friendly unit and ready it."* The
   Saboteur comes from B to A. A spell move has the limits its source states, 449.1: *"The source of the
   Move will provide details on any restrictions on legality for Destination."*, and this one states
   none. It becomes a defender, 464.2.c.3.a: *"If a Unit controlled by the Attacker or Defender becomes
   present at this Battlefield after this moment, it will gain the Attacker or Defender designation
   during the Cleanup phase following the action that caused it to become present, as appropriate for
   its controller."* The garrison is 9, and Tryndamere dies.
+- **`UNL-142 Heedless Resurrection`** (Chaos, E2 + 1 Chaos Power): *"[Reaction] (Play any time, even
+  before spells and abilities resolve.) As an additional cost to play this, kill a friendly unit. Play
+  a unit from your trash that costs no more Energy and no more Power than the killed unit, ignoring its
+  cost."* Their Dangerous Duo (E3) died on their T4, and the Attendant returned only the Hopeful. They
+  kill the Saboteur at B (E3) and play the Duo from their trash to A, which they still control,
+  355.2.a. Its [Legion] is on, because Heedless Resurrection was played first, 812.1.c: *"As long as a
+  card different than the one with the Legion ability has been Finalized by you on the same turn then
+  the Dependent Ability is Active on the card with Legion."* The Duo becomes a defender (464.2.c.3.a),
+  and its +2 goes on a defender: the garrison is 2 + 2 + 2 + 3 + 2 = 11. Their 11 put 8 on Tryndamere,
+  lethal in full (465.2.c.3). Played to their base instead, the Duo's +2 alone makes the garrison 8,
+  and that is lethal on him too.
 
-The other fifteen do not. `OGN-004 Cleave`, `SFD-003 Blood Rush` and `UNL-010 Vault Breaker` pump an
+The other fourteen do not. `OGN-004 Cleave`, `SFD-003 Blood Rush` and `UNL-010 Vault Breaker` pump an
 attacker, and theirs defend. `OGN-169 Gust` returns a unit of 3 Might or less, and yours are 4 and 8.
 `OGS-011 Flash` moves two of their defenders to base, which only raises your excess. `OGN-033
 Shakedown` deals 6 *"unless its controller has you draw 2"*, and you choose the draw. `VEN-015 Decree
 of Rage` hits Calm units only. `SFD-136 Hard Bargain` and `UNL-131 Abandon` counter spells, and you cast
-none. `UNL-142 Heedless Resurrection` has nothing in their trash to bring back at E2 or less.
+none.
 `OGN-170 Morbid Return`, `OGN-179 Acceptable Losses`, `OGN-183 Stacked Deck`, `SFD-011 Angle Shot` and
 `SFD-135 Factory Recall` do not touch the combat.
 
@@ -388,7 +406,7 @@ plain 4-Might body in the Brambleback slots ends **5 to 5**: the Bramblebacks we
 here. The entry's nine first attacks on T7, with or without Relentless Storm's rune, and it scores nine
 only into a garrison of 1 to 3 total Might. Their free answer is to put 8 Might where Tryndamere has to
 attack: he dies in the combat, and the game is **4 to 5** after their T5. Holding two runes, they have
-12 cards that do it, three of them for one rune and one Power: Hextech Ray, Monster Harpoon and
+13 cards that do it, three of them for one rune and one Power: Hextech Ray, Monster Harpoon and
 Existential Dread.
 
 ## 7. Not verified
@@ -420,7 +438,8 @@ Tryndamere.
   picks the deaths (465.2.c, 465.2.c.3). The nine needs a garrison of 1 to 3 summed Might: 4 to 7 is
   seven points, 8 to 11 is five, 12 to 15 is three, and 16 or more is the Conquer alone.
 - Step 2, *"any garrison under 23 total Might leaves the 5 or more excess"*: that is the excess
-  condition, and it is right. The survival condition is much tighter, and the notes carry it only as
+  condition, and it is off by one. The excess is 28 less the garrison's summed Might, so a garrison of
+  exactly 23 still leaves 5: the condition is 23 or less. The survival condition is much tighter, and the notes carry it only as
   *"Fragility: all five bodies must survive the combat to conquer"*. They do not have to survive to
   conquer; each one that dies costs points.
 - The class: the five bodies first attack together on T7 going first: 26 Energy and 7 Power before any
@@ -431,7 +450,7 @@ Tryndamere.
   uncontested walk-in fires nothing. The answers that matter here are in the combat. The cheapest is
   free: 8 Might at the battlefield Tryndamere has to attack.
 - No answer is named. With two runes open: Hextech Ray, Monster Harpoon or Existential Dread for one
-  rune and one Power, and nine more at two.
+  rune and one Power, and ten more at two.
 - The same arithmetic appears in
   [one body carries four points](2026-09-14-one-body-carries-four-points.md), where Tryndamere and two
   Bramblebacks take any garrison of eleven or less for four. Against 4 to 7 Might a Brambleback dies
