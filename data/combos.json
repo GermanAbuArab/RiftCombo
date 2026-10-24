@@ -34268,7 +34268,7 @@
           "role": "payoff",
           "zone": "BOARD",
           "state": "all three attached to one unit",
-          "note": "Body gear, E2, M+2. '[Equip] :rb_rune_body: (:rb_rune_body:: Attach this to a unit you control.)' — the cheapest vanilla Might bonus in the pool per rune, and vanilla is what this line wants: 434.1.c appends every attached card's Effect Text to the carrier, and Doran's Blade has none, so three of them carry no drawback to read. 434.1.b.1 contemplates more than one card attached to a Top-Most Card and 434.1.d modulates its Might by the Might Bonus of all of them."
+          "note": "Body gear tagged Equipment (data/cards.json tags; 150: 'Gear can have the Equipment tag.' 150.1: 'These Gear are referred to as Equipment.'), E2, M+2. '[Equip] :rb_rune_body: (:rb_rune_body:: Attach this to a unit you control.)' — the cheapest vanilla Might bonus in the pool per rune, and vanilla is what this line wants: 434.1.c appends every attached card's Effect Text to the carrier, and Doran's Blade has none, so three of them carry no drawback to read. 434.1.b.1 contemplates more than one card attached to a Top-Most Card and 434.1.d modulates its Might by the Might Bonus of all of them."
         },
         {
           "card": "SFD-099",
