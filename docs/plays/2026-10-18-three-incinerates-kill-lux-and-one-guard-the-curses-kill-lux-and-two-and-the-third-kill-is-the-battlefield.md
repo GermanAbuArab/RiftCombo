@@ -344,6 +344,11 @@ and none of them breaks both halves:**
 **The three tie at one ready rune.** Retreat and Mesmerize's first mode save Lux and leave the Conquer.
 Cloth Armor and Mesmerize's second mode stop the Conquer and leave Lux dead. Only Cloth Armor stops the
 Conquer with no Power, and Mesmerize recycles a rune for good.
+[2026-10-24, #452: not for good. A recycled rune goes to the bottom of the Rune Deck (416.1, 416.1.b) and is
+channelled again when the deck reaches it (430.1). Going second, with 485.7's extra rune and then only the
+Channel Phase's two a turn (315.3.b), each rune they recycle is a rune short on every turn through their T5,
+until their Rune Deck runs dry (161.2.a); a card that channels more (430.2) brings it back sooner. The walk
+ends after their T4, so the count stands for every turn it covers. The wording above is kept as history.]
 
 The other six do not:
 
@@ -363,6 +368,11 @@ hide this facedown at a battlefield you control that doesn't already have a face
 for as long as you control that battlefield. Beginning on the next turn, this gains [Reaction] and you
 may play this, ignoring its base cost."* The [A] is one more rune recycled (164.2.b). Lux and the hide
 together are seven runes with two recycled, so it costs them a rune for good and nothing on your T4.
+[2026-10-24, #452: not for good. A recycled rune goes to the bottom of the Rune Deck (416.1, 416.1.b) and is
+channelled again when the deck reaches it (430.1). Going second, with 485.7's extra rune and then only the
+Channel Phase's two a turn (315.3.b), each rune they recycle is a rune short on every turn through their T5,
+until their Rune Deck runs dry (161.2.a); a card that channels more (430.2) brings it back sooner. The walk
+ends after their T4, so the count stands for every turn it covers. The wording above is kept as history.]
 Played from facedown, the card has Reaction, 811.6: *"A card that is Hidden gains Reaction while
 facedown or played from facedown, and may be played any time a card with Reaction may be played as a
 result."* A unit it plays goes to B, 811.1.d.3: *"If a hidden spell or a play effect of a hidden

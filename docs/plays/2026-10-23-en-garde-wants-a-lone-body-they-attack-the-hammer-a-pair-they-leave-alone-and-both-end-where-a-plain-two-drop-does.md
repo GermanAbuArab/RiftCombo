@@ -17,7 +17,13 @@ alone at A on T2 with two runes up. Their Saboteur attacks it, but they play `OG
 first, and its [Legion] +2 makes the Saboteur a 5, which En Garde's 4 cannot beat. The Poro dies
 unanswered. On T3 En Garde wins A back with a lone Ramhound: **2 to 2** after their T3, **3 to 3**
 after their T4. **The Hand Hammer list** puts a pair at A on T2, and the Hammer makes it 8, so the
-Saboteur takes the empty battlefield instead: **2 to 2**, one rune recycled for good. **The control**,
+Saboteur takes the empty battlefield instead: **2 to 2**, one rune recycled for good.
+[2026-10-24, #452: not for good. A recycled rune goes to the bottom of the Rune Deck (416.1, 416.1.b) and is
+channelled again when the deck reaches it (430.1). Going first, with only the Channel Phase's two a turn
+(315.3.b), each rune recycled is a rune short on every turn through T6, until the Rune Deck runs dry
+(161.2.a); a card that channels more (430.2) brings it back sooner. The walk ends after their T4, so the
+count stands for every turn it covers. The wording above is kept as history.]
+**The control**,
 `OGN-044 Clockwork Keeper` in the slot, puts the same pair at A without the Hammer, 5. The Saboteur
 takes the empty battlefield there too: **2 to 2**. Only an opponent who attacks before playing the Duo
 lets En Garde move a point, **3 to 1** after their T3. The cheapest answer to En Garde is that Duo,
@@ -112,6 +118,11 @@ assigned to them in full before damage is assigned to a different Unit."*
 a rune, 164.2.b: *"Recycle this: [Reaction] — Add [C]."*, and 164.2.b.1: *"The Power added this way
 corresponds to the Domain of the Rune that is being Recycled."* A rune already exhausted for Energy
 can be recycled, so the Hammer is two runes on the turn and one of them leaves the board for good.
+[2026-10-24, #452: not for good. A recycled rune goes to the bottom of the Rune Deck (416.1, 416.1.b) and is
+channelled again when the deck reaches it (430.1). Going first, with only the Channel Phase's two a turn
+(315.3.b), each rune recycled is a rune short on every turn through T6, until the Rune Deck runs dry
+(161.2.a); a card that channels more (430.2) brings it back sooner. The walk ends after their T4, so the
+count stands for every turn it covers. The wording above is kept as history.]
 If its carrier leaves the board, the Hammer stays, 719.5: *"When a Top-Most Card changes zones from a
 board zone to a non-board zone, all Attached cards Detach from it, remaining in their current zones."*
 At a battlefield it goes home, 435.4.a: *"If the Detached card was a Gear and this causes it to become
@@ -336,7 +347,13 @@ Draven deck, the three lists finished level. The En Garde list left its Poro alo
 attacked. Their Dangerous Duo, played before the attack, made the Saboteur a 5 for no rune beyond the
 turn they had planned, and En Garde could not beat it. En Garde then won A back on T3 with a lone
 Ramhound: **2 to 2** after their T3, **3 to 3** after their T4. The Hand Hammer list made A 8 on T2,
-and the Saboteur took the empty battlefield instead: **2 to 2**, one rune recycled for good. A plain
+and the Saboteur took the empty battlefield instead: **2 to 2**, one rune recycled for good.
+[2026-10-24, #452: not for good. A recycled rune goes to the bottom of the Rune Deck (416.1, 416.1.b) and is
+channelled again when the deck reaches it (430.1). Going first, with only the Channel Phase's two a turn
+(315.3.b), each rune recycled is a rune short on every turn through T6, until the Rune Deck runs dry
+(161.2.a); a card that channels more (430.2) brings it back sooner. The walk ends after their T4, so the
+count stands for every turn it covers. The wording above is kept as history.]
+A plain
 two-drop in the same slot made A 5 and got the same **2 to 2**. En Garde moves a point only when they
 attack before pumping: **3 to 1** after their T3. Its cheapest answers are that Duo, played first, for
 nothing; then Cleave, Blood Rush or Gust for one rune. The Hammer's is to go where it is not.
@@ -378,7 +395,13 @@ Acceptable Losses, and the turns after their T4.
   played before the attack, like `OGN-016 Dangerous Duo`'s [Legion] +2, beats it for nothing. In the
   walk that is what the opponent did.
 - Step 3, *"[Equip] for one Calm Power"*: the Hammer is E2 and then one Calm Power, which is a rune
-  recycled for good (164.2.b, 164.2.b.1). If its carrier leaves the board, the Hammer detaches and
+  recycled for good (164.2.b, 164.2.b.1).
+  [2026-10-24, #452: not for good. A recycled rune goes to the bottom of the Rune Deck (416.1, 416.1.b) and
+  is channelled again when the deck reaches it (430.1). Going first, with only the Channel Phase's two a
+  turn (315.3.b), each rune recycled is a rune short on every turn through T6, until the Rune Deck runs dry
+  (161.2.a); a card that channels more (430.2) brings it back sooner. The walk ends after their T4, so the
+  count stands for every turn it covers. The wording above is kept as history.]
+  If its carrier leaves the board, the Hammer detaches and
   stays (719.5); at a battlefield it is recalled to base (435.4.a), and attaching it again costs
   another Calm Power. The entry does not say so.
 - The notable and step 4, *"it can switch on mid-combat as bodies die"*: it switches off just as

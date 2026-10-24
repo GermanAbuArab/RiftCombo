@@ -400,7 +400,13 @@ after their T4, where the engine's tokens and the Surges' cards would be counted
   M3) does it inside the entry's own identity. *"When you play me, ready another friendly Mech"* readies
   a token played the same turn (415.1), and the walk's T3 Conquer is that ready.
 - The ledger, *"Every Production Surge afterwards is 2 Energy + 1 Power"*: the Power is a recycled rune
-  (164.2.b), so each Surge and each [Flow] play costs a rune from every later turn. At one Power a turn
+  (164.2.b), so each Surge and each [Flow] play costs a rune from every later turn.
+  [2026-10-24, #452: not every later turn. A recycled rune goes to the bottom of the Rune Deck (416.1,
+  416.1.b) and is channelled again when the deck reaches it (430.1). Going first, with only the Channel
+  Phase's two a turn (315.3.b), each rune recycled is a rune short on every turn through T6, until the
+  Rune Deck runs dry (161.2.a); a card that channels more (430.2) brings it back sooner. The walk ends
+  after their T4, so the count stands for every turn it covers. The wording above is kept as history.]
+  At one Power a turn
   from T2 the walk had 6 runes on T4 where a curve with no Power has 8, and the two cards the Surges drew
   were ones those 6 could not cast.
 - `terminatesIn` (*"nothing here scores"*): true of the cards. The points in the walk come from what the

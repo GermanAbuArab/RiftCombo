@@ -274,6 +274,11 @@ reach only a unit *"at a battlefield"*, *"here"* or *"in combat"*, or a friendly
 Any of the three leaves you no XP on T2. The Investigator still reveals their hand, but cannot take the
 Vengeance, and Kha'Zix dies on their T3 as in the line without the swap. It is not free for them. It
 costs one of their three runes for good, and their T1 Initiate, so B is not theirs on their T2 either.
+[2026-10-24, #452: not for good. A recycled rune goes to the bottom of the Rune Deck (416.1, 416.1.b) and is
+channelled again when the deck reaches it (430.1). Going second, with 485.7's extra rune and then only the
+Channel Phase's two a turn (315.3.b), each rune they recycle is a rune short on every turn through their T5,
+until their Rune Deck runs dry (161.2.a); a card that channels more (430.2) brings it back sooner. The walk
+ends after their T4, so the count stands for every turn it covers. The wording above is kept as history.]
 And A is not yours on your T2: nothing of yours can move there.
 
 **On your T2, in answer to the trigger.** While it is on the chain the turn is closed, 309.1: *"If a
