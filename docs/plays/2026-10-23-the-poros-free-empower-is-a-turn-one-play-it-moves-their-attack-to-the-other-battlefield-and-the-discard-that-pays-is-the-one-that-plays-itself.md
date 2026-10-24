@@ -253,9 +253,10 @@ T1. The Guard and the Soldier, 4, never have a battlefield to walk into on their
 and they never control a battlefield with exactly two units there, so the Keeper costs full price. The
 price is a rune: one T1 rune is recycled for good, so you are a rune short every turn after.
 [2026-10-24, #452: not for good. A recycled rune goes to the bottom of the Rune Deck (416.1, 416.1.b) and is
-channelled again when the deck reaches it (430.1). Going first, each rune recycled is a rune short on every
-turn through T6 at the least, until the Rune Deck runs dry (161.2.a, 315.3.b). The walk ends after their T4,
-so the count stands for every turn it covers. The wording above is kept as history.]
+channelled again when the deck reaches it (430.1). Going first, with only the Channel Phase's two a turn
+(315.3.b), each rune recycled is a rune short on every turn through T6, until the Rune Deck runs dry
+(161.2.a); a card that channels more (430.2) brings it back sooner. The walk ends after their T4, so the
+count stands for every turn it covers. The wording above is kept as history.]
 It needs a
 Fury rune among your first two, and the Chompers in hand on T1 (§7). And on T4 the Return has a job:
 it brings back the Chompers that died at B, ready to be discarded to the next Poro.
@@ -315,10 +316,10 @@ one reaches it: **`OGN-045 Defy`** (Calm, E1 + 1 Calm Power): *"Counter a spell 
 pays the Energy and a Calm rune is recycled for the Power: **one ready rune and one Calm Power, and it
 costs them a rune for good.**
 [2026-10-24, #452: not for good. A recycled rune goes to the bottom of the Rune Deck (416.1, 416.1.b) and is
-channelled again when the deck reaches it (430.1). Going second, with 485.7's extra rune, each rune they
-recycle is a rune short on every turn through their T5 at the least, until their Rune Deck runs dry
-(161.2.a, 315.3.b). The walk ends after their T4, so the count stands for every turn it covers. The wording
-above is kept as history.]
+channelled again when the deck reaches it (430.1). Going second, with 485.7's extra rune and then only the
+Channel Phase's two a turn (315.3.b), each rune they recycle is a rune short on every turn through their T5,
+until their Rune Deck runs dry (161.2.a); a card that channels more (430.2) brings it back sooner. The walk
+ends after their T4, so the count stands for every turn it covers. The wording above is kept as history.]
 The Hopeful stays in the trash; Pouty Poro and the Rearguard go to A for
 the four runes left, and A is 2 Might smaller. Nothing of theirs attacks A, so the score does not move:
 **3 to 3**. `VEN-039 Crumbling Sands` needs another spell of yours that turn, and `SFD-045 Not So Fast`

@@ -111,9 +111,10 @@ So a Snapvine at 8 with 6 damage marked is healed before it is a 6 again, and li
 paid by recycling a rune, 164.2.b: *"Recycle this: [Reaction] — Add [C]."* A rune exhausted for Energy
 can be recycled for the Power, and it leaves the board for good.
 [2026-10-24, #452: not for good. A recycled rune goes to the bottom of the Rune Deck (416.1, 416.1.b) and is
-channelled again when the deck reaches it (430.1). Going first, each rune recycled is a rune short on every
-turn through T6 at the least, until the Rune Deck runs dry (161.2.a, 315.3.b). The walk ends after their T4,
-so the count stands for every turn it covers. The wording above is kept as history.]
+channelled again when the deck reaches it (430.1). Going first, with only the Channel Phase's two a turn
+(315.3.b), each rune recycled is a rune short on every turn through T6, until the Rune Deck runs dry
+(161.2.a); a card that channels more (430.2) brings it back sooner. The walk ends after their T4, so the
+count stands for every turn it covers. The wording above is kept as history.]
 The Snapvine is five runes, two of
 them recycled Body runes. A paid Rampage is three, one of them a recycled Body rune.
 
@@ -182,10 +183,10 @@ locations include the controller’s Base or a Battlefield the controller contro
 
 **Their T2: Galio takes B.** Their runes are 2 + 2 channelled = 4; one went for Galio's Power for good.
 [2026-10-24, #452: not for good. A recycled rune goes to the bottom of the Rune Deck (416.1, 416.1.b) and is
-channelled again when the deck reaches it (430.1). Going second, with 485.7's extra rune, each rune they
-recycle is a rune short on every turn through their T5 at the least, until their Rune Deck runs dry
-(161.2.a, 315.3.b). The walk ends after their T4, so the count stands for every turn it covers. The wording
-above is kept as history.]
+channelled again when the deck reaches it (430.1). Going second, with 485.7's extra rune and then only the
+Channel Phase's two a turn (315.3.b), each rune they recycle is a rune short on every turn through their T5,
+until their Rune Deck runs dry (161.2.a); a card that channels more (430.2) brings it back sooner. The walk
+ends after their T4, so the count stands for every turn it covers. The wording above is kept as history.]
 Galio attacking A would deal nothing and die to its 6, so he walks into B, empty, and they take it: a point.
 The Guardian goes to B with three of the four runes. B is Galio 6 and the Guardian, 4 while defending,
 and they have one rune ready.
@@ -309,10 +310,10 @@ battlefield. Beginning on the next turn, this gains [Reaction] and you may play 
 cost."* The [A] is a recycled rune, and it can be one already exhausted, so the hide needs no ready
 rune and costs one rune for good.
 [2026-10-24, #452: not for good. A recycled rune goes to the bottom of the Rune Deck (416.1, 416.1.b) and is
-channelled again when the deck reaches it (430.1). Going second, with 485.7's extra rune, each rune they
-recycle is a rune short on every turn through their T5 at the least, until their Rune Deck runs dry
-(161.2.a, 315.3.b). The walk ends after their T4, so the count stands for every turn it covers. The wording
-above is kept as history.]
+channelled again when the deck reaches it (430.1). Going second, with 485.7's extra rune and then only the
+Channel Phase's two a turn (315.3.b), each rune they recycle is a rune short on every turn through their T5,
+until their Rune Deck runs dry (161.2.a); a card that channels more (430.2) brings it back sooner. The walk
+ends after their T4, so the count stands for every turn it covers. The wording above is kept as history.]
 Played from facedown it has Reaction, 811.6: *"A card that is Hidden
 gains Reaction while facedown or played from facedown, and may be played any time a card with Reaction
 may be played as a result."* It costs nothing on your T4. In the combat at B:

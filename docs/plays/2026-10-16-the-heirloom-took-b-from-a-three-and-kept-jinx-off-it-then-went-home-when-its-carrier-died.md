@@ -312,10 +312,10 @@ hidden there for as long as you control that battlefield. Beginning on the next 
 (164.2.b). That costs them a rune for good, but their T2 Drakehound still fits in the three that are
 left.
 [2026-10-24, #452: not for good. A recycled rune goes to the bottom of the Rune Deck (416.1, 416.1.b) and is
-channelled again when the deck reaches it (430.1). Going second, with 485.7's extra rune, each rune they
-recycle is a rune short on every turn through their T5 at the least, until their Rune Deck runs dry
-(161.2.a, 315.3.b). The walk ends after their T4, so the count stands for every turn it covers. The wording
-above is kept as history.]
+channelled again when the deck reaches it (430.1). Going second, with 485.7's extra rune and then only the
+Channel Phase's two a turn (315.3.b), each rune they recycle is a rune short on every turn through their T5,
+until their Rune Deck runs dry (161.2.a); a card that channels more (430.2) brings it back sooner. The walk
+ends after their T4, so the count stands for every turn it covers. The wording above is kept as history.]
 Played from facedown it has Reaction, 811.6: *"A card that is Hidden gains Reaction while
 facedown or played from facedown, and may be played any time a card with Reaction may be played as a
 result."* A unit must go to B, 811.1.d.1: *"A hidden permanent must be played to that battlefield."*

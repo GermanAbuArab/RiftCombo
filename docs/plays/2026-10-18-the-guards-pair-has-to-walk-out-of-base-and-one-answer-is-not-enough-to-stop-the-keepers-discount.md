@@ -123,9 +123,10 @@ three; played before, it switches the discount off. The walk plays the Keeper fi
 rune, 164.2.b: *"Recycle this: [Reaction] — Add [C]."* A rune exhausted for Energy can be recycled for
 the Power, and it leaves the board for good.
 [2026-10-24, #452: not for good. A recycled rune goes to the bottom of the Rune Deck (416.1, 416.1.b) and is
-channelled again when the deck reaches it (430.1). Going first, each rune recycled is a rune short on every
-turn through T6 at the least, until the Rune Deck runs dry (161.2.a, 315.3.b). The walk ends after their T4,
-so the count stands for every turn it covers. The wording above is kept as history.]
+channelled again when the deck reaches it (430.1). Going first, with only the Channel Phase's two a turn
+(315.3.b), each rune recycled is a rune short on every turn through T6, until the Rune Deck runs dry
+(161.2.a); a card that channels more (430.2) brings it back sooner. The walk ends after their T4, so the
+count stands for every turn it covers. The wording above is kept as history.]
 At full price the Keeper is five runes, one of them
 recycled. Discounted he is three, and none leaves.
 
@@ -303,11 +304,12 @@ bodies:**
   cheapest answer: two runes and two Fury Power, and they play their T3 and every turn after it with
   two runes fewer.**
   [2026-10-24, #452: not every turn after. A recycled rune goes to the bottom of the Rune Deck (416.1,
-  416.1.b) and is channelled again when the deck reaches it (430.1). Going second, with 485.7's extra rune,
-  each rune they recycle is a rune short on every turn through their T5 at the least, until their Rune Deck
-  runs dry (161.2.a, 315.3.b). With only these two recycled they are two runes fewer through their T5, one
-  fewer on their T6 and none from their T7. The walk ends after their T4, so the count stands for every turn
-  it covers. The wording above is kept as history.]
+  416.1.b) and is channelled again when the deck reaches it (430.1). Going second, with 485.7's extra rune
+  and then only the Channel Phase's two a turn (315.3.b), each rune they recycle is a rune short on every
+  turn through their T5, until their Rune Deck runs dry (161.2.a); a card that channels more (430.2) brings
+  it back sooner. With only these two recycled and no extra channel, they are two runes fewer through their
+  T5, one fewer on their T6 and none from their T7. The walk ends after their T4, so the count stands for
+  every turn it covers. The wording above is kept as history.]
 - **`UNL-132 Angler Beast`** (Chaos, E5 + 1 Chaos Power, M5): *"When you play me, return all units
   with 2 :rb_might: or less to their owners' hands."* The Guard goes back to your hand, and the Soldier
   ceases to exist, 186.1: *"If a token is put into any Non-Board Zone besides the chain, it ceases to
@@ -357,10 +359,10 @@ for as long as you control that battlefield. Beginning on the next turn, this ga
 may play this, ignoring its base cost."*). The [A] is a recycled rune, which can be one already
 exhausted, so the hide costs them no tempo on T2 and one rune for good.
 [2026-10-24, #452: not for good. A recycled rune goes to the bottom of the Rune Deck (416.1, 416.1.b) and is
-channelled again when the deck reaches it (430.1). Going second, with 485.7's extra rune, each rune they
-recycle is a rune short on every turn through their T5 at the least, until their Rune Deck runs dry
-(161.2.a, 315.3.b). The walk ends after their T4, so the count stands for every turn it covers. The wording
-above is kept as history.]
+channelled again when the deck reaches it (430.1). Going second, with 485.7's extra rune and then only the
+Channel Phase's two a turn (315.3.b), each rune they recycle is a rune short on every turn through their T5,
+until their Rune Deck runs dry (161.2.a); a card that channels more (430.2) brings it back sooner. The walk
+ends after their T4, so the count stands for every turn it covers. The wording above is kept as history.]
 Played from facedown it has
 Reaction, 811.6: *"A card that is Hidden gains Reaction while facedown or played from facedown, and may
 be played any time a card with Reaction may be played as a result."* `SFD-017 Sudden Storm` (*"Deal 2
@@ -388,10 +390,11 @@ Gust for one ready rune and no Power, takes the Sand Soldier and not the discoun
 battlefield puts the count back at two. What stops it is a card that removes both bodies: Falling
 Star on their T2, two runes and two Fury Power, both runes gone for the game.
 [2026-10-24, #452: not for the game. A recycled rune goes to the bottom of the Rune Deck (416.1, 416.1.b)
-and is channelled again when the deck reaches it (430.1). Going second, with 485.7's extra rune, each rune
-they recycle is a rune short on every turn through their T5 at the least, until their Rune Deck runs dry
-(161.2.a, 315.3.b). The walk ends after their T4, so the count stands for every turn it covers. The wording
-above is kept as history.]
+and is channelled again when the deck reaches it (430.1). Going second, with 485.7's extra rune and then
+only the Channel Phase's two a turn (315.3.b), each rune they recycle is a rune short on every turn through
+their T5, until their Rune Deck runs dry (161.2.a); a card that channels more (430.2) brings it back
+sooner. The walk ends after their T4, so the count stands for every turn it covers. The wording above is
+kept as history.]
 And the Guard is not
 needed for the count: two 2-drops at your battlefield reach the same T3.
 

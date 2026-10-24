@@ -225,9 +225,10 @@ could cross to empty B and take it too, **2 to 0**. But the +2 ends with your tu
 Wielder, ready in their base, attacks him alone as a 4. Pyke dies, and B is theirs: **2 to 1**. You have
 lost the [Ganking] body that every later line in this play uses, and a rune for good.
 [2026-10-24, #452: not for good. A recycled rune goes to the bottom of the Rune Deck (416.1, 416.1.b) and is
-channelled again when the deck reaches it (430.1). Going first, each rune recycled is a rune short on every
-turn through T6 at the least, until the Rune Deck runs dry (161.2.a, 315.3.b). The walk ends after their T4,
-so the count stands for every turn it covers. The wording above is kept as history.]
+channelled again when the deck reaches it (430.1). Going first, with only the Channel Phase's two a turn
+(315.3.b), each rune recycled is a rune short on every turn through T6, until the Rune Deck runs dry
+(161.2.a); a card that channels more (430.2) brings it back sooner. The walk ends after their T4, so the
+count stands for every turn it covers. The wording above is kept as history.]
 The Memories on T3
 then leave you one rune, the Hatchling never reaches A, and their Guardian and Apprentice, 3 + 2, can take
 A from the lone Rearguard. The walk leaves the cost unpaid and keeps Pyke at A.

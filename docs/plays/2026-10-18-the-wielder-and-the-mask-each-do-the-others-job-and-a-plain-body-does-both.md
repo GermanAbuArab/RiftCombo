@@ -320,10 +320,11 @@ the five can be recycled for Power. Of the 65, nine cost one Energy or less. **T
   against the Pigeons' 3: both die, and B ends nobody's. The ready rune pays the Energy and a Mind rune
   among the five is recycled for the Power, so it costs them a rune for good.
   [2026-10-24, #452: not for good. A recycled rune goes to the bottom of the Rune Deck (416.1, 416.1.b) and
-  is channelled again when the deck reaches it (430.1). Going second, with 485.7's extra rune, each rune
-  they recycle is a rune short on every turn through their T5 at the least, until their Rune Deck runs dry
-  (161.2.a, 315.3.b). The walk ends after their T4, so the count stands for every turn it covers. The
-  wording above is kept as history.]
+  is channelled again when the deck reaches it (430.1). Going second, with 485.7's extra rune and then only
+  the Channel Phase's two a turn (315.3.b), each rune they recycle is a rune short on every turn through
+  their T5, until their Rune Deck runs dry (161.2.a); a card that channels more (430.2) brings it back
+  sooner. The walk ends after their T4, so the count stands for every turn it covers. The wording above is
+  kept as history.]
 
 **Cloth Armor is the cheaper of the two**: the same outcome, with no Power and no rune lost.
 
@@ -368,10 +369,10 @@ do it the way this engine invites, by putting a second body beside the defender:
 Wielder it comes back at B still attacking alone, a 4 at least. None of the three stops it. Every hidden
 card costs them one recycled rune on their T2, for good.
 [2026-10-24, #452: not for good. A recycled rune goes to the bottom of the Rune Deck (416.1, 416.1.b) and is
-channelled again when the deck reaches it (430.1). Going second, with 485.7's extra rune, each rune they
-recycle is a rune short on every turn through their T5 at the least, until their Rune Deck runs dry
-(161.2.a, 315.3.b). The walk ends after their T4, so the count stands for every turn it covers. The wording
-above is kept as history.]
+channelled again when the deck reaches it (430.1). Going second, with 485.7's extra rune and then only the
+Channel Phase's two a turn (315.3.b), each rune they recycle is a rune short on every turn through their T5,
+until their Rune Deck runs dry (161.2.a); a card that channels more (430.2) brings it back sooner. The walk
+ends after their T4, so the count stands for every turn it covers. The wording above is kept as history.]
 
 **What the census says about the engine.** 740.2.a makes "alone" a fact about your side, and 465.2.c
 makes the fight a sum over theirs. Every one of the seven hidden bodies answers the lone attacker by
