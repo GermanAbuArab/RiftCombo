@@ -309,6 +309,10 @@ battlefield."* **13** of the 253 carry the [Hidden] keyword. **Seven stop the Co
 - `VEN-117 Disciple of Shen` is a 1 with [Shield 3] beside exactly one other unit, the Pigeons: the
   defense is 3 + 4 = 7 against your 6. Your 6 kill the Pigeons and leave 3 on the Disciple, short of its
   4. Their 7 kill both tokens. **B stays theirs, and the Disciple stays on it.**
+  [2026-10-23: the Disciple staying on B is not forced. `UNL-154 Crimson Pigeons` has no [Tank], so under
+  465.2.c.3 you order the damage: 4 lethal on the Disciple (Might 1 + [Shield 3] = 4) and 2 on the Pigeons,
+  which has Might 3 and is not killed. The verdict holds either way: both tokens die and B stays theirs.
+  The sentence above is left as written. #433]
 - `OGN-097 Blastcone Fae` is a 2 whose play effect gives a token -2. Your 1 + 3 kill one of their two,
   their 3 + 2 kill both of yours, and B stays theirs.
 - `OGN-094 Sprite Call` (a ready 3) and `UNL-081 Keeper of Masks` (three 1s) make the defense 6 against
