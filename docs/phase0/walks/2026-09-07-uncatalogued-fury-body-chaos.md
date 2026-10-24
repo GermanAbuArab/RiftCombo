@@ -1248,6 +1248,11 @@ blur them: an evacuated battlefield is unoccupied at once and uncontrolled only 
 - **Using `OGN-187 Whirlwind` to remove an enemy body.** Refused by 355.10.e: each player chooses their
   own, so it is never removal. Its value is the ordering and the re-buy, and the entry claims nothing
   else.
+  [2026-10-23: the reason is wrong and the refusal does not stand. 355.10.e's example says "they control";
+  Whirlwind says "a unit", and 141.1.a.3 attaches no controller, so each player may return ANY unit on
+  the board. It does remove an enemy body, and the opponent chooses first. The text above is left as
+  written. See the #428 notes on `whirlwind-cemetery-attendant-choose-last` in `data/combos.json`; whether it reaches
+  `SFD-105 Ruin Runner` is #431. #433]
 - **Paying `SFD-131 Ancient Warmonger`'s [Accelerate] with a spare Fury Power in a Fury-heavy list.**
   Refused by 805.1.a.1: the Power must match one of the unit's own domains, and the Warmonger is Chaos.
 - **A second [Empower] on `VEN-007 Punching Poro`.** Refused by 441.1.b and 441.1.c: an Empowered
