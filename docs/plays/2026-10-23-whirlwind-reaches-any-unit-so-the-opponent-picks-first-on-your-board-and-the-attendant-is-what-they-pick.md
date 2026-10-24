@@ -18,7 +18,12 @@ trash empty, the opponent's best first pick is the Attendant itself, since repla
 recycled rune for an empty fetch. You chose last and returned their Sand Soldier, which as a token
 ceases to exist. Score after their T4: **3 to 3**. The same hand with Whirlwind kept in hand, and with
 `OGN-016 Dangerous Duo` in the Attendant's place, also ends **3 to 3**. Each engine card cost one rune
-for good and moved no point. If their Keeper goes to base instead of the battlefield, it ends **4 to
+for good and moved no point.
+[2026-10-24, #452: not for good. A recycled rune goes to the bottom of the Rune Deck (416.1, 416.1.b) and is
+channelled again when the deck reaches it (430.1). Going first, each rune recycled is a rune short on every
+turn through T6 at the least, until the Rune Deck runs dry (161.2.a, 315.3.b). The walk ends after their T4,
+so the count stands for every turn it covers. The wording above is kept as history.]
+If their Keeper goes to base instead of the battlefield, it ends **4 to
 3** with or without Whirlwind. Cast on T3, as soon as it can be, Whirlwind costs the T3 Conquer and
 leaves the Keeper's discount intact: **1 to 2** after their T3. The cheapest answer is `OGN-045 Defy`,
 one ready rune and one Calm Power: it counters Whirlwind. Nothing in their 254 cards counters the
@@ -114,6 +119,10 @@ only Score, from either method, once per Battlefield per turn."*
 Energy and two Power. Power is paid by recycling a rune, 164.2.b: *"Recycle this: [Reaction] — Add
 [C]."* A rune exhausted for Energy can be recycled for the Power, so each card costs three runes and one
 of them leaves the board. A cycle is two runes gone for good, and it returns one card from the trash.
+[2026-10-24, #452: not for good. A recycled rune goes to the bottom of the Rune Deck (416.1, 416.1.b) and is
+channelled again when the deck reaches it (430.1). Going first, each rune recycled is a rune short on every
+turn through T6 at the least, until the Rune Deck runs dry (161.2.a, 315.3.b). The walk ends after their T4,
+so the count stands for every turn it covers. The wording above is kept as history.]
 Counting your cards in hand and on the board: Whirlwind spent, the Attendant from the board to your
 hand, and the fetched unit into your hand. That is one card down before the fetch and even after it.
 
@@ -311,7 +320,13 @@ cost one Energy or less.
   abilities resolve.) Counter a spell that costs no more than :rb_energy_4: and no more than
   :rb_rune_rainbow:."* Whirlwind costs three and one. The ready rune pays the Energy and a Calm rune is
   recycled for the Power. The Soldier stays, the Attendant stays on your board, and your four runes are
-  spent. **One ready rune and one Calm Power, and it costs them a rune for good.** The score is still 3
+  spent. **One ready rune and one Calm Power, and it costs them a rune for good.**
+  [2026-10-24, #452: not for good. A recycled rune goes to the bottom of the Rune Deck (416.1, 416.1.b) and
+  is channelled again when the deck reaches it (430.1). Going second, with 485.7's extra rune, each rune
+  they recycle is a rune short on every turn through their T5 at the least, until their Rune Deck runs dry
+  (161.2.a, 315.3.b). The walk ends after their T4, so the count stands for every turn it covers. The
+  wording above is kept as history.]
+  The score is still 3
   to 3.
 
 The other eight do not. `VEN-039 Crumbling Sands` counters a spell only *"if an opponent has played
@@ -358,7 +373,12 @@ nothing. You returned the Sand Soldier for good: **3 to 3** after their T4. With
 **3 to 3**, and with a plain 3-drop in the Attendant's place it is **3 to 3** too, a rune richer. With
 their Keeper in base it is **4 to 3** with or without Whirlwind. Cast first, on T3, Whirlwind costs the
 T3 Conquer and cannot stop the Keeper's discount: **1 to 2**. Each card cost one rune for good;
-together they are one card back per two runes recycled for good, and they moved no point here. The
+together they are one card back per two runes recycled for good, and they moved no point here.
+[2026-10-24, #452: not for good. A recycled rune goes to the bottom of the Rune Deck (416.1, 416.1.b) and is
+channelled again when the deck reaches it (430.1). Going first, each rune recycled is a rune short on every
+turn through T6 at the least, until the Rune Deck runs dry (161.2.a, 315.3.b). The walk ends after their T4,
+so the count stands for every turn it covers. The wording above is kept as history.]
+The
 cheapest answer is Defy, one ready rune and one Calm Power, against Whirlwind. Against the fetch,
 nothing in their 254 counters it, and only Forge of the Future, played before it, stops it.
 

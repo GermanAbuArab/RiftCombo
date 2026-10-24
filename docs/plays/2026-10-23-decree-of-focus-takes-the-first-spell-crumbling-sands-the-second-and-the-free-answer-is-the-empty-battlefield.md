@@ -409,6 +409,14 @@ their T4.
   correct. In practice that is one ready rune, plus a Calm rune in any state, which may be the same
   rune. The recycle is a rune off your board for the rest of the game (416.1), which the entry does not
   say.
+  [2026-10-24, #452: "for the rest of the game" is wrong. 416.1: *"Recycling cards is the action in which a
+  player takes one or more cards from a specific zone and then puts it on the bottom of the corresponding
+  deck."* 416.1.b: *"Runes are Recycled to the Rune Deck."* 430.1: *"Channeling is the action of taking one
+  or more Runes from the top of a player's Rune Deck and putting them on the board."* So the rune sits at
+  the bottom of the Rune Deck and comes back when the deck has been channelled down to it. Going first, at
+  two a turn (315.3.b), one recycled rune is a rune short on every turn through T6 and the board reaches
+  twelve (161.2.a) on T7 instead of T6. The walk ends after their T4, so for every turn it covers the
+  recycle is still a rune down. The sentence above is kept as history.]
 - The notable *"against a deck that casts one big spell a turn it is blank"*: it is blank against any
   turn with one spell in it, and also against a turn with no fight. In the walk the opponent's free
   answer was to walk into the empty battlefield, where neither card can be cast.

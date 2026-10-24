@@ -251,7 +251,12 @@ their T4  8       Guard, Soldier, Keeper and Clockwork Keeper, 11, attack
 **6 to 1** after their T4, against 3 to 3. Two battlefields on T2 because two 3s were on the board on
 T1. The Guard and the Soldier, 4, never have a battlefield to walk into on their T3 (A is 6 and B is 5),
 and they never control a battlefield with exactly two units there, so the Keeper costs full price. The
-price is a rune: one T1 rune is recycled for good, so you are a rune short every turn after. It needs a
+price is a rune: one T1 rune is recycled for good, so you are a rune short every turn after.
+[2026-10-24, #452: not for good. A recycled rune goes to the bottom of the Rune Deck (416.1, 416.1.b) and is
+channelled again when the deck reaches it (430.1). Going first, each rune recycled is a rune short on every
+turn through T6 at the least, until the Rune Deck runs dry (161.2.a, 315.3.b). The walk ends after their T4,
+so the count stands for every turn it covers. The wording above is kept as history.]
+It needs a
 Fury rune among your first two, and the Chompers in hand on T1 (§7). And on T4 the Return has a job:
 it brings back the Chompers that died at B, ready to be discarded to the next Poro.
 
@@ -308,7 +313,13 @@ board; `UNL-173 Sacrifice` needs a friendly Mighty unit.
 one reaches it: **`OGN-045 Defy`** (Calm, E1 + 1 Calm Power): *"Counter a spell that costs no more than
 :rb_energy_4: and no more than :rb_rune_rainbow:."* The Return costs two and no Power. The ready rune
 pays the Energy and a Calm rune is recycled for the Power: **one ready rune and one Calm Power, and it
-costs them a rune for good.** The Hopeful stays in the trash; Pouty Poro and the Rearguard go to A for
+costs them a rune for good.**
+[2026-10-24, #452: not for good. A recycled rune goes to the bottom of the Rune Deck (416.1, 416.1.b) and is
+channelled again when the deck reaches it (430.1). Going second, with 485.7's extra rune, each rune they
+recycle is a rune short on every turn through their T5 at the least, until their Rune Deck runs dry
+(161.2.a, 315.3.b). The walk ends after their T4, so the count stands for every turn it covers. The wording
+above is kept as history.]
+The Hopeful stays in the trash; Pouty Poro and the Rearguard go to A for
 the four runes left, and A is 2 Might smaller. Nothing of theirs attacks A, so the score does not move:
 **3 to 3**. `VEN-039 Crumbling Sands` needs another spell of yours that turn, and `SFD-045 Not So Fast`
 counters a spell that chooses *"a friendly unit or gear"* of theirs, and the Hopeful in your trash is

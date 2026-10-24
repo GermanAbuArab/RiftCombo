@@ -109,7 +109,12 @@ So a Snapvine at 8 with 6 damage marked is healed before it is a 6 again, and li
 
 **The runes, going first.** You have 2, 4, 6 and 8 runes on T1 to T4, less any you recycle. Power is
 paid by recycling a rune, 164.2.b: *"Recycle this: [Reaction] — Add [C]."* A rune exhausted for Energy
-can be recycled for the Power, and it leaves the board for good. The Snapvine is five runes, two of
+can be recycled for the Power, and it leaves the board for good.
+[2026-10-24, #452: not for good. A recycled rune goes to the bottom of the Rune Deck (416.1, 416.1.b) and is
+channelled again when the deck reaches it (430.1). Going first, each rune recycled is a rune short on every
+turn through T6 at the least, until the Rune Deck runs dry (161.2.a, 315.3.b). The walk ends after their T4,
+so the count stands for every turn it covers. The wording above is kept as history.]
+The Snapvine is five runes, two of
 them recycled Body runes. A paid Rampage is three, one of them a recycled Body rune.
 
 ## 3. Their deck: Calm/Order Shen
@@ -176,6 +181,11 @@ is a Conquer. The Monkey and the Diplomat go to A, which you now control, 355.2.
 locations include the controller’s Base or a Battlefield the controller controls."* A is 6.
 
 **Their T2: Galio takes B.** Their runes are 2 + 2 channelled = 4; one went for Galio's Power for good.
+[2026-10-24, #452: not for good. A recycled rune goes to the bottom of the Rune Deck (416.1, 416.1.b) and is
+channelled again when the deck reaches it (430.1). Going second, with 485.7's extra rune, each rune they
+recycle is a rune short on every turn through their T5 at the least, until their Rune Deck runs dry
+(161.2.a, 315.3.b). The walk ends after their T4, so the count stands for every turn it covers. The wording
+above is kept as history.]
 Galio attacking A would deal nothing and die to its 6, so he walks into B, empty, and they take it: a point.
 The Guardian goes to B with three of the four runes. B is Galio 6 and the Guardian, 4 while defending,
 and they have one rune ready.
@@ -297,7 +307,13 @@ Champion Zone on your turn during an Open State, you may pay [A] to hide this fa
 you control that doesn't already have a facedown card hidden there for as long as you control that
 battlefield. Beginning on the next turn, this gains [Reaction] and you may play this, ignoring its base
 cost."* The [A] is a recycled rune, and it can be one already exhausted, so the hide needs no ready
-rune and costs one rune for good. Played from facedown it has Reaction, 811.6: *"A card that is Hidden
+rune and costs one rune for good.
+[2026-10-24, #452: not for good. A recycled rune goes to the bottom of the Rune Deck (416.1, 416.1.b) and is
+channelled again when the deck reaches it (430.1). Going second, with 485.7's extra rune, each rune they
+recycle is a rune short on every turn through their T5 at the least, until their Rune Deck runs dry
+(161.2.a, 315.3.b). The walk ends after their T4, so the count stands for every turn it covers. The wording
+above is kept as history.]
+Played from facedown it has Reaction, 811.6: *"A card that is Hidden
 gains Reaction while facedown or played from facedown, and may be played any time a card with Reaction
 may be played as a result."* It costs nothing on your T4. In the combat at B:
 
