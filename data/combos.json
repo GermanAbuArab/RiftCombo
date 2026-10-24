@@ -18636,7 +18636,7 @@
           "title": "Riot gallery card text (data/corpus_flat.txt, 2026-09-04, errata applied)",
           "kind": "riot",
           "date": "2026-09-04",
-          "quote": "OGN-240 | Sett, Kingpin | Unit | Order | E4 P1 M5 | [Tank] (I must be assigned combat damage first.) I get +1 :rb_might: for each buffed friendly unit at my battlefield. [Tags: Sett, Ionia]"
+          "quote": "OGN-240 | Sett, Kingpin | Unit | Order | E4 P1 M5 | [Tank] (I must be assigned combat damage first.) I get +1 :rb_might: for each buffed friendly unit at my battlefield."
         },
         {
           "title": "Order buff-economy lens — issue #111 (GitHub)",
@@ -18710,7 +18710,7 @@
           "title": "Riot gallery card text (data/corpus_flat.txt, 2026-09-04, errata applied)",
           "kind": "riot",
           "date": "2026-09-04",
-          "quote": "OGN-025 | Blind Fury | Spell | Fury | E4 P2 | [Action] (Play on your turn or in showdowns.) Each opponent reveals the top card of their Main Deck. Choose one and banish it, then play it, ignoring its cost. Then recycle the rest. / VEN-113 | Kennen, Storm of Shuriken | Unit | Chaos | E3 P1 M4 | When you play me, [Burn 2]. (Put the top 2 cards of your Main Deck into your trash.) When I conquer, give a spell in your trash [Flow] equal to its cost this turn. (You may play it from your trash for its Flow cost. Then banish it.) [Tags: Yordle, Kennen]"
+          "quote": "OGN-025 | Blind Fury | Spell | Fury | E4 P2 | [Action] (Play on your turn or in showdowns.) Each opponent reveals the top card of their Main Deck. Choose one and banish it, then play it, ignoring its cost. Then recycle the rest. / VEN-113 | Kennen, Storm of Shuriken | Unit | Chaos | E3 P1 M4 | When you play me, [Burn 2]. (Put the top 2 cards of your Main Deck into your trash.) When I conquer, give a spell in your trash [Flow] equal to its cost this turn. (You may play it from your trash for its Flow cost. Then banish it.)"
         },
         {
           "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
@@ -19047,7 +19047,7 @@
           "title": "Riot gallery card text (data/corpus_flat.txt, 2026-09-04, errata applied)",
           "kind": "riot",
           "date": "2026-09-04",
-          "quote": "SFD-065 | Forecaster | Unit | Mind | E2 M2 | Your Mechs have [Vision]. (When you play us, look at the top card of your Main Deck. You may recycle it.) [Tags: Mech, Yordle, Bandle City] / SFD-089 | Rumble, Scrapper | Unit | Mind | E5 P1 M4 | Your Mechs have +1 :rb_might: (including me). When I hold, play a 3 :rb_might: Mech unit token to your base. [Tags: Mech, Yordle, Rumble, Bandle City] / OGN-100 | Gemcraft Seer | Unit | Mind | E3 P1 M3 | [Vision] (When you play me, look at the top card of your Main Deck. You may recycle it.) Other friendly units have [Vision]. [Tags: Mount Targon] / SFD-021 | Ferrous Forerunner | Unit | Fury | E6 P1 M6 | [Deathknell] — Play two 3 :rb_might: Mech unit tokens to your base. (When I die, get the effect.) [Tags: Mech, Yordle, Bandle City] / SFD-181 | Mechanized Menace | Legend | Fury/Mind | - | Your Mechs have [Shield]. (+1 :rb_might: while they're defenders.) [Tags: Rumble]"
+          "quote": "SFD-065 | Forecaster | Unit | Mind | E2 M2 | Your Mechs have [Vision]. (When you play us, look at the top card of your Main Deck. You may recycle it.) [Tags: Mech, Yordle, Bandle City] / SFD-089 | Rumble, Scrapper | Unit | Mind | E5 P1 M4 | Your Mechs have +1 :rb_might: (including me). When I hold, play a 3 :rb_might: Mech unit token to your base. [Tags: Mech, Yordle, Rumble, Bandle City] / OGN-100 | Gemcraft Seer | Unit | Mind | E3 P1 M3 | [Vision] (When you play me, look at the top card of your Main Deck. You may recycle it.) Other friendly units have [Vision]. [Tags: Mount Targon] / SFD-021 | Ferrous Forerunner | Unit | Fury | E6 P1 M6 | [Deathknell] — Play two 3 :rb_might: Mech unit tokens to your base. (When I die, get the effect.) [Tags: Mech, Yordle, Bandle City] / SFD-181 | Mechanized Menace | Legend | Fury/Mind | - | Your Mechs have [Shield]. (+1 :rb_might: while they're defenders.)"
         },
         {
           "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
@@ -19130,7 +19130,7 @@
           "title": "Riot gallery card text (data/corpus_flat.txt, 2026-09-04, errata applied)",
           "kind": "riot",
           "date": "2026-09-04",
-          "quote": "UNL-079 | Diana, Lunari | Unit | Mind | E3 M3 | When a showdown begins here, you may pay :rb_energy_1: to [Predict], then reveal the top card of your Main Deck. If it's a spell, draw it. (To Predict, look at the top card of your Main Deck. You may recycle it.) [Tags: Diana, Mount Targon] / SFD-175 | Undertitan | Unit | Order | E6 P1 M5 | When you play me, give your other units +2 :rb_might: this turn. As I'm revealed from your deck, [Add] :rb_energy_2:. [Tags: The Void]"
+          "quote": "UNL-079 | Diana, Lunari | Unit | Mind | E3 M3 | When a showdown begins here, you may pay :rb_energy_1: to [Predict], then reveal the top card of your Main Deck. If it's a spell, draw it. (To Predict, look at the top card of your Main Deck. You may recycle it.) [Tags: Diana, Mount Targon] / SFD-175 | Undertitan | Unit | Order | E6 P1 M5 | When you play me, give your other units +2 :rb_might: this turn. As I'm revealed from your deck, [Add] :rb_energy_2:."
         },
         {
           "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
@@ -19407,7 +19407,7 @@
           "title": "Riot gallery card text (data/corpus_flat.txt, errata applied)",
           "kind": "riot",
           "date": "2026-09-04",
-          "quote": "OGN-121 | Teemo, Strategist | Unit | Mind | E2 P1 M2 | [Hidden] (Hide now for :rb_rune_rainbow: to react with later for :rb_energy_0:.) When I defend, choose an enemy unit here and reveal the top 5 cards of your Main Deck. Deal 1 to that unit for each card with [Hidden] revealed this way, then recycle the revealed cards. [Tags: Yordle, Teemo, Bandle City] / SFD-191 | Rabadon's Deathcrown | Gear | Calm/Mind | E4 P2 M+3 | [Unique] (Your deck can have only 1 card with this name.) [Equip] :rb_rune_rainbow: (:rb_rune_rainbow:: Attach this to a unit you control.) [Effect] Your spells and abilities deal 3 Bonus Damage (while this is attached). [Tags: Ornn, Equipment] / SFD-189 | Fire Below the Mountain | Legend | Calm/Mind | - | :rb_exhaust:: [Reaction] — [Add] :rb_rune_rainbow:. Use only to play gear or use gear abilities. (Abilities that add resources can't be reacted to.) [Tags: Ornn] / SFD-058 | Ornn, Blacksmith | Unit | Calm | E5 P1 M5 | When you play me or when I hold, look at the top 4 cards of your Main Deck. You may reveal a gear from among them and draw it. Then recycle the rest. [Tags: Ornn, Freljord] / OGN-043 | Charm | Spell | Calm | E1 P1 | Move an enemy unit. / SFD-190 | Forgefire Cape | Gear | Calm/Mind | E4 P2 M+3 | [Unique] … [Effect] When I attack or defend, deal 2 to all enemy units here. [Tags: Ornn, Equipment]"
+          "quote": "OGN-121 | Teemo, Strategist | Unit | Mind | E2 P1 M2 | [Hidden] (Hide now for :rb_rune_rainbow: to react with later for :rb_energy_0:.) When I defend, choose an enemy unit here and reveal the top 5 cards of your Main Deck. Deal 1 to that unit for each card with [Hidden] revealed this way, then recycle the revealed cards. [Tags: Yordle, Teemo, Bandle City] / SFD-191 | Rabadon's Deathcrown | Gear | Calm/Mind | E4 P2 M+3 | [Unique] (Your deck can have only 1 card with this name.) [Equip] :rb_rune_rainbow: (:rb_rune_rainbow:: Attach this to a unit you control.) [Effect] Your spells and abilities deal 3 Bonus Damage (while this is attached). [Tags: Ornn, Equipment] / SFD-189 | Fire Below the Mountain | Legend | Calm/Mind | - | :rb_exhaust:: [Reaction] — [Add] :rb_rune_rainbow:. Use only to play gear or use gear abilities. (Abilities that add resources can't be reacted to.) [Tags: Ornn] / SFD-058 | Ornn, Blacksmith | Unit | Calm | E5 P1 M5 | When you play me or when I hold, look at the top 4 cards of your Main Deck. You may reveal a gear from among them and draw it. Then recycle the rest. [Tags: Ornn, Freljord] / OGN-043 | Charm | Spell | Calm | E1 P1 | Move an enemy unit. / SFD-190 | Forgefire Cape | Gear | Calm/Mind | E4 P2 M+3 | [Unique] … [Effect] When I attack or defend, deal 2 to all enemy units here."
         },
         {
           "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
@@ -34268,7 +34268,7 @@
           "role": "payoff",
           "zone": "BOARD",
           "state": "all three attached to one unit",
-          "note": "Body gear, E2, M+2. '[Equip] :rb_rune_body: (:rb_rune_body:: Attach this to a unit you control.) [Tags: Equipment]' — the cheapest vanilla Might bonus in the pool per rune, and vanilla is what this line wants: 434.1.c appends every attached card's Effect Text to the carrier, and Doran's Blade has none, so three of them carry no drawback to read. 434.1.b.1 contemplates more than one card attached to a Top-Most Card and 434.1.d modulates its Might by the Might Bonus of all of them."
+          "note": "Body gear, E2, M+2. '[Equip] :rb_rune_body: (:rb_rune_body:: Attach this to a unit you control.)' — the cheapest vanilla Might bonus in the pool per rune, and vanilla is what this line wants: 434.1.c appends every attached card's Effect Text to the carrier, and Doran's Blade has none, so three of them carry no drawback to read. 434.1.b.1 contemplates more than one card attached to a Top-Most Card and 434.1.d modulates its Might by the Might Bonus of all of them."
         },
         {
           "card": "SFD-099",
@@ -50540,7 +50540,7 @@
           "NEITHER IS A BUFF. Both are '+N Might this turn' modifiers rather than 702 counters, so 702.3's one-per-unit cap is silent and they stack with each other and with a real buff.",
           "WHAT IT IS NOT. Nothing here scores; 469 defines Scoring as Conquer or Hold.",
           "WHEN THE SECOND +2 IS OPEN, GOING FIRST - ADDED 2026-10-24 (#448, from the run play docs/plays/2026-10-23-feral-strengths-plus-two-saves-the-turn-two-pair-the-repeat-never-changes-a-count-and-combat-experience-stays-a-plus-one.md). Behind a pair of 2-cost bodies the Repeat's four Energy are open no earlier than their T3. Only the identity's two E1 units, UNL-111 Determined Sentry (Body, M1) and VEN-043 Steel Paws (Calm, M0), the only Calm or Body units at E1, open it on their T2, with both walked to a battlefield and four runes up. And it changes how many die only in narrow windows, because 465.2.c.3 reads 'Units must have lethal damage assigned to them in full before damage is assigned to a different Unit.': against two 2s, +2 on one makes a 4 and a 2 and +2 on each two 4s, so the count differs only at a summed attack of 2 to 3 or 6 to 7; against two 1-Might Sentries the windows are 1 to 2 and 4 to 5, which is where the walk's 5 falls.",
-          "NO ANSWER WAS NAMED - ADDED 2026-10-24 (#448, from the run play docs/plays/2026-10-23-feral-strengths-plus-two-saves-the-turn-two-pair-the-repeat-never-changes-a-count-and-combat-experience-stays-a-plus-one.md). These are from the walked Fury/Chaos Draven census, not every deck's answers. Feral Strength's cheapest answers are one rune each: OGN-004 Cleave ('[Action] (Play on your turn or in showdowns.) Give a unit [Assault 3] this turn. (+3 :rb_might: while it's an attacker.)'), SFD-003 Blood Rush ('[Action] (Play on your turn or in showdowns.) [Repeat] :rb_energy_1: (You may pay the additional cost to repeat this spell's effect.) Give a unit [Assault 2] this turn. (+2 :rb_might: while it's an attacker.)') and UNL-010 Vault Breaker ('[Action] (Play on your turn or in showdowns.) Give a unit [Assault 2] and [Ganking] this turn. (+2 :rb_might: while it's an attacker. It can move from battlefield to battlefield.)'), played before the attack as the card that turns on OGN-016 Dangerous Duo's '[Legion] — When you play me, give a unit +2 :rb_might: this turn. (Get the effect if you've played another card this turn.) [Tags: Mech, Bandle City]', so the attacker is seen too big before you cast anything; and VEN-015 Decree of Rage ('[Action] (Play on your turn or in showdowns.) This can't be countered. Deal 4 to an enemy Calm (:rb_rune_calm:) unit.') on a Calm 2, which +2 makes a 4 and 4 still kills (142.4.b). OGN-009 Hextech Ray and UNL-014 Monster Harpoon, cast before the attack, leave the battlefield empty instead: answered by Feral Strength the damage stays marked until the combat's cleanup (143.3.b.2: 'During a Combat Cleanup.'), and the Duo's 5 kill both bodies."
+          "NO ANSWER WAS NAMED - ADDED 2026-10-24 (#448, from the run play docs/plays/2026-10-23-feral-strengths-plus-two-saves-the-turn-two-pair-the-repeat-never-changes-a-count-and-combat-experience-stays-a-plus-one.md). These are from the walked Fury/Chaos Draven census, not every deck's answers. Feral Strength's cheapest answers are one rune each: OGN-004 Cleave ('[Action] (Play on your turn or in showdowns.) Give a unit [Assault 3] this turn. (+3 :rb_might: while it's an attacker.)'), SFD-003 Blood Rush ('[Action] (Play on your turn or in showdowns.) [Repeat] :rb_energy_1: (You may pay the additional cost to repeat this spell's effect.) Give a unit [Assault 2] this turn. (+2 :rb_might: while it's an attacker.)') and UNL-010 Vault Breaker ('[Action] (Play on your turn or in showdowns.) Give a unit [Assault 2] and [Ganking] this turn. (+2 :rb_might: while it's an attacker. It can move from battlefield to battlefield.)'), played before the attack as the card that turns on OGN-016 Dangerous Duo's '[Legion] — When you play me, give a unit +2 :rb_might: this turn. (Get the effect if you've played another card this turn.)', so the attacker is seen too big before you cast anything; and VEN-015 Decree of Rage ('[Action] (Play on your turn or in showdowns.) This can't be countered. Deal 4 to an enemy Calm (:rb_rune_calm:) unit.') on a Calm 2, which +2 makes a 4 and 4 still kills (142.4.b). OGN-009 Hextech Ray and UNL-014 Monster Harpoon, cast before the attack, leave the battlefield empty instead: answered by Feral Strength the damage stays marked until the combat's cleanup (143.3.b.2: 'During a Combat Cleanup.'), and the Duo's 5 kill both bodies."
         ]
       },
       "steps": [
@@ -55069,7 +55069,7 @@
           "title": "Card text, data/corpus_flat.txt (Riot gallery API, errata applied)",
           "kind": "riot",
           "date": "2026-09-04",
-          "quote": "SFD-115 | Trinity Force | Gear | Body | E4 M+2 | [Equip] :rb_rune_body: (:rb_rune_body:: Attach this to a unit you control.) [Effect] When I hold, score 1 point. [Tags: Equipment]"
+          "quote": "SFD-115 | Trinity Force | Gear | Body | E4 M+2 | [Equip] :rb_rune_body: (:rb_rune_body:: Attach this to a unit you control.) [Effect] When I hold, score 1 point."
         },
         {
           "title": "Synthesis walk 2026-09-12 (docs/phase0/walks/2026-09-12-synthesised-lines.md), issue #200",
@@ -55171,7 +55171,7 @@
           "title": "Card text, data/corpus_flat.txt (Riot gallery API, errata applied)",
           "kind": "riot",
           "date": "2026-09-04",
-          "quote": "UNL-177 | Ivern, Friend to All | Unit | Order | E6 M6 | As you play me, choose Bird, Cat, Dog, or Poro. I gain that tag. When I conquer or hold, score 1 point if your units have all of the following tags among them - Bird, Cat, Dog, and Poro. [Tags: Ivern, Ionia]"
+          "quote": "UNL-177 | Ivern, Friend to All | Unit | Order | E6 M6 | As you play me, choose Bird, Cat, Dog, or Poro. I gain that tag. When I conquer or hold, score 1 point if your units have all of the following tags among them - Bird, Cat, Dog, and Poro."
         },
         {
           "title": "Verified entry ivern-arena-sentinel-hold, whose walk established the Arena x Ivern doubling (data/combos.json)",
