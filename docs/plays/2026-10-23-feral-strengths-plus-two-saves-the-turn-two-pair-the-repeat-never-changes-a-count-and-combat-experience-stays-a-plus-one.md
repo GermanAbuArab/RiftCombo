@@ -18,9 +18,9 @@ attacks. The +2 keeps one body alive and kills the Saboteur: **2 to 1** after th
 after their T4. **The Combat Experience list** has the same deal, but at 1 XP the card is a +1. Both
 bodies die with the Saboteur, A is left empty, and on T3 every unit goes to base: **1 to 2** after
 their T3. **The control**, a third `UNL-094 Gemhand Hunter` in the slot, plays it on T2. Their
-Saboteur takes the empty battlefield instead: **2 to 2** after their T3. The Repeat is never paid. It
-cannot be paid with two of your units at one battlefield before their T3. And against the walk's
-fights, a second +2 kills no more and saves no more than the first. Combat Experience's rung is dark
+Saboteur takes the empty battlefield instead: **2 to 2** after their T3. The Repeat is never paid. In
+these lists, whose bodies all cost 2, it cannot be paid with two of your units at one battlefield
+before their T3. And against the walk's fights, a second +2 kills no more and saves no more than the first. Combat Experience's rung is dark
 in both pump lists through their T4, at 4 XP at most; only the control, which lost no body on their T2,
 reaches 6, on its T4 Hold. The cheapest answer to
 Feral Strength is one rune: `OGN-004 Cleave`, `SFD-003 Blood Rush` or `UNL-010 Vault Breaker`, played
@@ -93,7 +93,7 @@ Feral Strength is +2 for two Energy, or +2 and +2 for four, both fixed as you ca
 `docs/rules-notes/rules-findings.md` carries the gap between 820.3.a, *"Regardless of the number of
 times a spell or ability's instructions are executed with this keyword, it is only Played once."*,
 and 820.2's two sets of choices. The gap matters only to a card that counts plays, choices or
-targets. No card in either deck does, and the main line never pays the Repeat. Where §4 prices a paid
+targets. No card in either deck does, and the main line never pays the Repeat. Where §2 prices a paid
 Repeat, its two +2s go on two different units, which 820.2.a allows in words.
 
 **The rung is a balance, read continuously.** 824.1.b.1: *"It is functionally short for “While you
@@ -136,10 +136,22 @@ your own sum, which the walk never needs: 6 already kills the 5.
 **When four Energy can be open.** Going first you have 2, 4, 6 and 8 runes on T1 to T4. Units move
 from base to a battlefield and back, never between battlefields, 144.4.a: *"Units may move from
 their Base to a Battlefield."* 144.4.c.1 is the one exception: *"Units with Ganking may use their
-Standard Move to Move from Battlefield to Battlefield."* No unit in this walk has [Ganking]. Two of
-your units at A on their T2 means one walked on T2 and one was played there for two of your four
-runes, so two are left, never four. The first turn of theirs on which the Repeat can be paid behind a
-pair is their T3: one two-drop and four runes up out of six, instead of your T3's development.
+Standard Move to Move from Battlefield to Battlefield."* No unit in this walk has [Ganking]. In these
+lists every body costs 2. Two of them at A on their T2 means one walked on T2 and one was played
+there for two of your four runes, so two are left, not four. So the first turn of theirs on which the
+Repeat can be paid behind a pair of these is their T3: one two-drop and four runes up out of six,
+instead of your T3's development.
+
+**The identity has two E1 bodies that open it a turn earlier.** `UNL-111 Determined Sentry` (Body,
+E1, M1): *"I can't move to base."* `VEN-043 Steel Paws` (Calm, E1, M0): *"[Deflect] (Opponents must
+pay :rb_rune_rainbow: to choose me with a spell or ability.) [Empower] :rb_energy_7: (:rb_energy_7::
+Empower me. Use only if not Empowered.) [Empowered][>] I have +7 :rb_might:."* They are the only
+Calm, Body or Calm/Body units costing E1 or less. Two of them played to base on T1 for your two runes
+can both walk to A on T2, and all four runes stay up. Against the walk's 5, two Sentries are where
+the Repeat pays: a single +2 leaves lethal values of 1 and 3, so a sum of 4 or more kills both, and
+your 4 do not kill the 5; the repeated cast leaves 3 and 3, so one dies and your 6 kill the Saboteur. That is the
+table's 6-to-7 window moved down two, because the pair is two 1s instead of two 2s. It is not walked:
+the Sentry and Steel Paws are not in this deck, and a T1 of two 1-Might bodies is its own line.
 
 **Where a unit can be played.** 355.2.a: *"By default, Valid locations include the controller’s Base
 or a Battlefield the controller controls."* A unit played to a battlefield you already control opens
@@ -305,7 +317,8 @@ that turns on the Duo's [Legion]. That leaves one rune, and the Rearguard stays 
 - **`SFD-003 Blood Rush`** (Fury, E1): *"[Action] (Play on your turn or in showdowns.) [Repeat]
   :rb_energy_1: (You may pay the additional cost to repeat this spell's effect.) Give a unit [Assault
   2] this turn. (+2 :rb_might: while it's an attacker.)"* The Saboteur attacks at 7, and the result is
-  the same. **One rune**, its own [Repeat] not paid.
+  the same. **One rune.** Its own [Repeat] is payable with the rune left over and makes it a 9, which
+  changes nothing: 6 do not kill a 7 either.
 - **`UNL-010 Vault Breaker`** (Fury, E1 + 1 Fury Power): Blood Rush with [Ganking], a 7. **One rune**,
   exhausted for the Energy and recycled for the Power.
 - **`VEN-015 Decree of Rage`** (Fury, E1 + 1 Fury Power): *"[Action] (Play on your turn or in
@@ -316,8 +329,8 @@ that turns on the Duo's [Legion]. That leaves one rune, and the Rearguard stays 
   rune.** Gemhand, Crowd Favorite and
   Kinkou Initiate are Body, so the Decree has one target in this deck's opening.
 
-**Two more empty A instead of taking it.** `OGN-009 Hextech Ray` (*"Deal 3 to a unit at a
-battlefield."*) and `UNL-014 Monster Harpoon` (deal 2; they control no facedown card) each cost E1 + 1
+**Two more empty A instead of taking it.** `OGN-009 Hextech Ray` (*"[Action] (Play on your turn or
+in showdowns.) Deal 3 to a unit at a battlefield."*) and `UNL-014 Monster Harpoon` (deal 2; they control no facedown card) each cost E1 + 1
 Fury Power. Cast before the attack, either kills a 2 unless you answer it. Feral Strength in response
 keeps the target alive, at 4, but the damage stays marked until the combat's cleanup, 143.3.b.2:
 *"During a Combat Cleanup."* So the target needs only 1 or 2 more damage, and the Duo's 5 kill both
@@ -328,8 +341,10 @@ list's result. Without the response, the target dies and the 5 take A from a lon
 Feral Strength, its target is a 4 when it resolves, 359.3.e.5: *"If any of the spell's targets are no
 longer legal, those game objects, players, or zones are unaffected by the spell as it resolves. Any
 instructions related to an illegal target can’t be followed."* `UNL-134 Existential Dread` stuns an
-attacking unit, and yours defend. `OGN-179 Acceptable Losses`, `SFD-135 Factory Recall` and the two
-Seals act on gear, and you have none. `OGN-183 Stacked Deck` draws. Played as the Legion card, each of
+attacking unit, and yours defend. `OGN-179 Acceptable Losses` and `SFD-135 Factory Recall` act on gear,
+and you have none. The two Seals are gear themselves, E0 and one Power, whose ability adds a rune:
+`OGN-040 Seal of Rage`, *":rb_exhaust:: [Reaction] — [Add] :rb_rune_fury:. (Abilities that add
+resources can't be reacted to.)"*, and `OGN-204 Seal of Discord`, the same with :rb_rune_chaos:. `OGN-183 Stacked Deck` draws. Played as the Legion card, each of
 those is the main line.
 
 **The free answer is the empty battlefield.** Walked to B on their T2, the Saboteur scores **1 to 1**
@@ -350,7 +365,9 @@ Experience in the same slot was a +1 at 1 XP. It traded both bodies for the Sabo
 empty, **1 to 2** after their T3. Its rung was dark in both pump lists through their T4. [Hunt] pays
 XP only for bodies that conquer or hold, and the lists that held a pump lost bodies; the control,
 which lost none, is the one that reaches 6 XP on T4. The Repeat was
-never paid. Going first it cannot be paid behind a pair before their T3. Against two 2s, its second
+never paid. Going first with these 2-cost bodies it cannot be paid behind a pair before their T3;
+two E1 bodies, `UNL-111 Determined Sentry` or `VEN-043 Steel Paws`, would open it on their T2.
+Against two 2s, its second
 +2 changes the count only against a sum of 2 to 3 or 6 to 7, and the walk's sum was 5. The cheapest
 answer to Feral Strength is one rune: Cleave, Blood Rush or Vault Breaker as the Duo's [Legion] card,
 or Decree of Rage on the Calm body.
@@ -389,9 +406,12 @@ Combat Experience list and the control past their T3, the Feral Strength list's 
 - The prerequisite *"6 XP banked and never spent"* names no source of XP. In a [Hunt] deck going first
   the two pump lists had 4 XP or less after T4. The control, which lost no bodies on their T2, reaches
   8 on its T4 Hold. The main line, which lost one, reaches 6 only on its T5 Hold.
-- The Repeat's second +2 is open behind a pair no earlier than their T3, going first, and against two
-  2s it changes the number that die only against a sum of 2 to 3 or 6 to 7 (§2). The entry does not say
-  either.
+- The Repeat's second +2, going first, is open behind a pair of 2-cost bodies no earlier than their
+  T3. Only the identity's two E1 units, `UNL-111 Determined Sentry` and `VEN-043 Steel Paws`, open it
+  on their T2, with both walked to a battlefield and four runes up. Against two 2s it changes the
+  number that die only against a sum of 2 to 3 or 6 to 7 (§2). Against two 1-Might Sentries the
+  windows are 1 to 2 and 4 to 5, so it saves a body against the walk's 5. The entry does not say any
+  of this.
 - No answer is named. Feral Strength's cheapest answers are `OGN-004 Cleave`, `SFD-003 Blood Rush` and
   `UNL-010 Vault Breaker` played before the attack as the card that turns on `OGN-016 Dangerous Duo`'s
   [Legion], and `VEN-015 Decree of Rage` on a Calm target, each one rune. `OGN-009 Hextech Ray` and
