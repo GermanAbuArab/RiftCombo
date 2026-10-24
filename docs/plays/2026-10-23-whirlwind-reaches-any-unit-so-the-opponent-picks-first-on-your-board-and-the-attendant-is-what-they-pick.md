@@ -81,7 +81,7 @@ attach no controller to a unit a spell specifies, 141.1.a.3, listed under 141.1.
 Board:"*: *"Units can be chosen, affected, or manipulated by spells, affects, or game actions that
 specify Units."* Where that unit is comes from 355.9.a.1: *"“Unit,” “gear,” and “rune” refer to
 objects on the Board unless specified otherwise."* That paragraph sits in the targeting block (355.9),
-and Whirlwind does not target (below), so it fixes the zone and nothing more. Compare the rules' own
+and Whirlwind does not target (below) [2026-10-24: 355.12 was weighed and R34 was ruled A by the owner (issue #11, https://github.com/GermanAbuArab/RiftCombo/issues/11#issuecomment-6377957070): Whirlwind does not target and 355.10.e governs. 355.12: *"If a spell specifies that a player may perform a Game Action on some number of Game Objects, then all choices are considered targeted and chosen independently of the decision to perform the Game Action."*], so it fixes the zone and nothing more. Compare the rules' own
 example of a symmetric choice, which does restrict it, 355.10.e: *"e.g., “Each player kills a unit they
 control” does not target. Each player, including the one who played the spell, chooses a unit to kill
 as the spell or ability resolves."* Whirlwind has no *"they control"*. So each player may return any
@@ -89,7 +89,7 @@ unit on the board to its owner's hand: the opponent's first choice is usually a 
 yours is usually one of **theirs**. The pool's own one-sided bounces spell out whose unit, as `SFD-132
 Beast Below` does: *"return another friendly unit and an enemy unit to their owners' hands."*
 
-**Nothing is targeted, so nobody pays [Deflect].** 355.10.e: *"It is part of a set of objects chosen
+**Nothing is targeted, so nobody pays [Deflect].** [2026-10-24: 355.12 was weighed and R34 was ruled A by the owner (issue #11, https://github.com/GermanAbuArab/RiftCombo/issues/11#issuecomment-6377957070): Whirlwind does not target and 355.10.e governs. 355.12: *"If a spell specifies that a player may perform a Game Action on some number of Game Objects, then all choices are considered targeted and chosen independently of the decision to perform the Game Action."*] 355.10.e: *"It is part of a set of objects chosen
 in whole or in part by other players."* The returned units are such a set. [Deflect] taxes only a
 target, 809.1.c: *"It is functionally short for "Spells and abilities an opponent controls that target
 [me/this] cost an amount of Power equal to [Deflect Value] more to play as an additional cost for each
