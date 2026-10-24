@@ -247,6 +247,9 @@ describe("which entry a play is about", () => {
     "bottled-constellation-time-warp",
     "shen-sentinel-time-warp-chain",
     "keeper-of-masks-flurry-plaza-window",
+    // The subject of the #449 Darius play, which names `tryndamere-brambleback-conquer` as the other
+    // entry of its slice: without its own subject here, that mention would be promoted.
+    "darius-executioner-vanguard-captain-legion-clause-boundary",
   ];
 
   it("points each play at the one line it is about, and half of them at none", async () => {
@@ -254,7 +257,13 @@ describe("which entry a play is about", () => {
     const at = (id: string) => playsAbout([id]).map((p) => p.slug);
     expect(at("yasuo-windrider-ride-the-wind-chain")).toEqual(["2026-09-12-chaos-fury-yasuo-shuttle"]);
     expect(at("ivern-ride-the-wind-double-conquer")).toEqual(["2026-09-12-chaos-order-the-one-answer"]);
-    expect(at("tryndamere-brambleback-conquer")).toEqual(["2026-09-12-the-unopposed-clock"]);
+    expect(at("tryndamere-brambleback-conquer")).toEqual([
+      "2026-10-24-tryndamere-scores-two-on-turn-five-the-nine-needs-a-garrison-under-four-might-and-eight-might-at-the-battlefield-is-the-free-answer",
+      "2026-09-12-the-unopposed-clock",
+    ]);
+    expect(at("darius-executioner-vanguard-captain-legion-clause-boundary")).toEqual([
+      "2026-10-24-darius-goes-down-first-the-captains-recruits-are-born-twos-and-charm-with-flurry-still-takes-them-for-two-runes",
+    ]);
     expect(at("bottled-constellation-time-warp")).toEqual(["2026-09-13-the-setup-nobody-prices"]);
     expect(at("shen-sentinel-time-warp-chain")).toEqual(["2026-09-13-the-elegance-is-the-slowness"]);
     expect(at("keeper-of-masks-flurry-plaza-window")).toEqual(["2026-09-13-the-defenders-chair"]);
