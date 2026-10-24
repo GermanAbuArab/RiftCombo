@@ -98,7 +98,8 @@ there. A unit of yours that dies in combat is as good a target as the one the Po
 
 **Moving and taking a battlefield.** Units move from base to a battlefield and back, never between
 battlefields, 144.4.a: *"Units may move from their Base to a Battlefield."* 144.4.b: *"Units may move
-from a Battlefield to their Base."* A unit is played to base or to a battlefield its controller
+from a Battlefield to their Base."* 144.4.c.1 is the one exception: *"Units with Ganking may use their Standard Move to Move from Battlefield to
+Battlefield."*, and no unit in this walk has [Ganking]. A unit is played to base or to a battlefield its controller
 controls, 355.2.a: *"By default, Valid locations include the controller’s Base or a Battlefield the
 controller controls."* Taking a battlefield scores, 469.1: *"Conquer: A player gains Control of a
 Battlefield they did not yet Score this turn."* Keeping it scores at the start of the turn, 469.2:
@@ -370,11 +371,17 @@ Poro kept back instead, you Hold both battlefields on T3. The probabilities coun
 - *"the card it cost returned for 2 Energy"* (`netPerIteration`): the Return does not need the discard.
   Any unit of yours in the trash is a target; in the control the Return fetched the Punching Poro that
   died in combat.
-- *"VEN-143 Master of Shadows is himself a discard outlet"*: his discard costs *"Disempower me"*, and he
-  has to be Empowered to pay it, 203.3 (*"If the game action associated with a Cost is impossible for
-  any reason such that a player cannot perform it, then they cannot pay the Cost and they will not
-  execute the linked Effect."*) and 442.1.a (*"Disempowering affects only cards that are currently
-  Empowered."*). He Empowers only *"When you banish a card you own"*.
+- *"VEN-143 Master of Shadows is himself a discard outlet"*: his discard costs *"Disempower me"*. The
+  natural reading is that he has to be Empowered to pay it, 203.3 (*"If the game action associated
+  with a Cost is impossible for any reason such that a player cannot perform it, then they cannot pay
+  the Cost and they will not execute the linked Effect."*) and 442.1.a (*"Disempowering affects only
+  cards that are currently Empowered."*). It is a reading, not a ruling. The paragraph under 442.1.a,
+  442.1.a.1, calls the action a no-op rather than impossible: *"Game effects that instruct a player to
+  Disempower a card that is not currently Empowered will do nothing."* No paragraph says a Disempower
+  COST on a card that is not Empowered cannot be paid, though Discard has one, 422.3: *"When Discarding
+  is listed as a Cost, then the Action must be able to be completed for the cost to be paid."*
+  Unruled; reported for filing as a reading. If he must be Empowered, he Empowers only *"When you
+  banish a card you own"*.
 - Not named: the discard that pays. `OGN-006 Flame Chompers` (*"When you discard me, you may pay
   :rb_rune_fury: to play me."*) turns the Poro's discard into a 3-Might body for one Fury Power. Walked
   in §4, it is **6 to 1** after their T4 against the pair's 3 to 3. And Morbid Return is what puts a

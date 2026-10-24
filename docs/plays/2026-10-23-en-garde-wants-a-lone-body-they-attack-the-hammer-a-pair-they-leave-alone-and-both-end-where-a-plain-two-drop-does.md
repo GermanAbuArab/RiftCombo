@@ -44,7 +44,8 @@ other entry of this slice is rank 89, `punching-poro-morbid-return-free-empower`
 | **The bodies** | `OGN-210 Daring Poro` (Order, E2, M2), `SFD-159 Trusty Ramhound` (Order, E2, M2), `OGN-054 Sunlit Guardian` (Calm, E3, M3), `OGN-216 Soaring Scout` (Order, E2, M1), `SFD-157 Royal Guard` (Order, E4, M2), `OGN-218 Vanguard Captain` (Order, E3 + 1 Order Power, M3) |
 
 The entry admits any legend with Calm in its pair. Radiant Dawn is the one for this walk because its
-text plays no part in it (*"When you stun one or more enemy units, buff a friendly unit."*), and
+text plays no part in it (*"When you stun one or more enemy units, buff a friendly unit. (If it
+doesn't have a buff, it gets a +1 :rb_might: buff.)"*), and
 nothing here stuns. Its tag is Leona, so Leona, Determined can be the Chosen Champion, 103.2.a.2:
 *"Must be a champion unit with a champion tag that matches the tag on your Champion Legend."*
 
@@ -110,7 +111,7 @@ assigned to them in full before damage is assigned to a different Unit."*
 **What the Hammer costs.** Two Energy to play, and one Calm Power to attach. Power is paid by recycling
 a rune, 164.2.b: *"Recycle this: [Reaction] — Add [C]."*, and 164.2.b.1: *"The Power added this way
 corresponds to the Domain of the Rune that is being Recycled."* A rune already exhausted for Energy
-can be recycled, so the Hammer is three runes on the turn and one of them leaves the board for good.
+can be recycled, so the Hammer is two runes on the turn and one of them leaves the board for good.
 If its carrier leaves the board, the Hammer stays, 719.5: *"When a Top-Most Card changes zones from a
 board zone to a non-board zone, all Attached cards Detach from it, remaining in their current zones."*
 At a battlefield it goes home, 435.4.a: *"If the Detached card was a Gear and this causes it to become
@@ -125,8 +126,9 @@ battlefield."* That is how the Hammer list and the control get two units to A on
 unit played there enters exhausted, 143.4: *"Units enter the Board exhausted."* It still defends.
 
 **The runes, going first.** You have 2, 4, 6 and 8 runes on T1 to T4. Units move from base to a
-battlefield and back, never between battlefields, 144.4.b: *"Units may move from a Battlefield to
-their Base."*
+battlefield and back, never between battlefields, 144.4.a: *"Units may move from their Base to a
+Battlefield."* 144.4.b: *"Units may move from a Battlefield to their Base."* 144.4.c.1 is the one exception: *"Units with Ganking may use their Standard Move to Move from Battlefield to
+Battlefield."*, and no unit in this walk has [Ganking].
 
 ## 3. Their deck: Fury/Chaos Draven
 
@@ -137,7 +139,8 @@ bodies are `OGN-018 Noxus Saboteur` (Fury, E3, M3), `OGN-010 Legion Rearguard` (
 Dangerous Duo (Fury, E3, M3), `OGN-013 Pouty Poro` (Fury, E2, M2), `OGN-171 Mystic Poro` (Chaos, E2,
 M2), `OGN-165 Cemetery Attendant` (Chaos, E3 + 1 Chaos Power, M3; *"When you play me, return a unit
 from your trash to your hand."*), `OGN-006 Flame Chompers` (Fury, E3, M3) and `OGN-012 Noxus Hopeful`
-(Fury, E4, M4; *"[Legion] — I cost :rb_energy_2: less."*). Going second, they channel an extra rune on
+(Fury, E4, M4; *"[Legion] — I cost :rb_energy_2: less. (Get the effect if you've played another
+card this turn.)"*). Going second, they channel an extra rune on
 T1, 485.7: *"First Turn Process: The player going second channels an extra Rune from their Rune Deck
 during their first Channel Phase of the game."*
 
@@ -214,7 +217,7 @@ Garde makes it 2 + 1 + 1 = **4**, alone at A, and their five runes were all spen
 nothing answers it. Its 4 kill the Saboteur; the Saboteur's 3 do not kill it. A is yours again. The
 Guardian then goes to A, which you control (355.2.a), with no showdown (190.3.a.1): A is the
 Ramhound's 3, now with company, and the Guardian's 4 while defending (*"[Shield] (+1 :rb_might: while
-I'm a defender.)"*), **7**.
+I'm a defender.) [Tank] (I must be assigned combat damage first.)"*), **7**.
 
 **Their T3: the empty battlefield.** Their ready bodies are the Rearguard and the Duo, 5 against A's
 7, so they take B, empty, through a non-combat showdown in which you have no rune up. The Attendant
