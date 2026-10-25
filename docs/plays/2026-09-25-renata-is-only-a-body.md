@@ -57,6 +57,11 @@ The card text the play turns on:
 pays); a recycled rune goes to the Rune Deck (161.2.b) and two come back each Channel Phase
 (315.3.b). A Gold is a gear on the board, not Power in the Rune Pool, so 167 never empties it: a
 Gold made on T5 is still there on T9. `G` = ready Golds at the end of the turn.
+[2026-10-24, #456: not the recycled rune. The Channel Phase's two come from the top of the Rune Deck
+(315.3.b, 430.1) and a recycled rune goes to the bottom (416.1, 416.1.b), so it is channelled again only
+when the deck reaches it: T7 at the earliest going first, T6 going second (161.2.a, 485.7), and at the
+next Channel Phase only once the Rune Deck is empty. The R column below already counts two a turn less
+every rune recycled, so no number in this play changes. The wording above is kept as history.]
 
 ```
        R   your Main Phase                                        idle   G   score

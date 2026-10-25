@@ -140,6 +140,11 @@ free-win line of the format at a rate the rune curve pays for.
 **As a finisher it does not exist; as an answer it is the best rate in the catalogue for the cost.**
 One card, one rune a kill, and the rune comes back at two a turn — against the exact body sizes the
 format's fastest opening is obliged to use.
+[2026-10-24, #456: later than that. A recycled rune goes to the bottom of the Rune Deck (416.1, 416.1.b)
+and 430.1 channels from the top, so the Channel Phase's two a turn (315.3.b) are the runes above it: the
+rune is channelled again on T7 at the earliest going first and T6 going second (161.2.a, 485.7), and
+each kill is a rune short on every turn until then. One rune a kill still stands; what the line above
+overstated is how soon it is back. The wording above is kept as history.]
 
 The general form is worth more than the line, and it is the same trade every play in this series has
 written has landed on, arriving this time from the removal side rather than the finisher side:
