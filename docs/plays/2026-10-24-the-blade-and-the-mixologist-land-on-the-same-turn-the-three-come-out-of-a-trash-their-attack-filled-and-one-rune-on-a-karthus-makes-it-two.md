@@ -358,8 +358,11 @@ it is an [Action] and reaches the same combat if one of the two open runes is a 
 this spell's effect.) [Stun] an attacking enemy unit. If it's already stunned, return it to its
 owner's hand instead. (A stunned unit doesn't deal combat damage this turn.)"* With its [Repeat]
 unpaid, the stunned Captain deals nothing, their 6 do not kill him, and he is recalled, 466.1.a.2:
-*"Recall Attackers present at the Battlefield if Defenders are still present."* The [Repeat] paid is
-the open reading of the #187 bullet in `docs/rules-notes/rules-findings.md` and is not counted. After
+*"Insert “3d. Recall Attackers present at the Battlefield if Defenders are still present.”"* With its
+[Repeat] paid (E3 + 1 Chaos Power, three runes, one recycled) the second execution could choose the
+stunned Captain, 820.2.a: *"Choices made for the additional execution do not have to be the same as the
+choices made for the initial execution."* It would return him to your hand, but it does not fit in the
+two runes they left open. After
 any of the three, A stays theirs and it is **3 to 4** after your T5, not 4 to 4. The three bodies
 are in your base all the same. The walk's 4 to 4 holds only because their walked hand holds none of
 these cards.
