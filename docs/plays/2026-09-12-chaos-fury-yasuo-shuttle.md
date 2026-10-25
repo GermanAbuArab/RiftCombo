@@ -82,6 +82,13 @@ Gains by ability, not 469 Scores, so 470's once-per-battlefield cap never sees t
 `R` = runes on the board. A rune pays 1 Energy (164.2.a, costs its exhaust) and can ALSO be recycled
 for 1 Power of its Domain (164.2.b, whose cost is the recycle) — but the recycled rune leaves the
 board for the Rune Deck (161.2.b) and returns at 2 a turn (315.3.b). Going first.
+[2026-10-24, #456: not the recycled rune. The Channel Phase's two come from the top of the Rune Deck
+(315.3.b, 430.1) and a recycled rune goes to the bottom (416.1, 416.1.b), so it is channelled again only
+when the deck reaches it: T7 at the earliest going first and T6 at the earliest going second with only
+the Channel Phase's two a turn (161.2.a, 485.7); each two more recycled push it a turn later, a card
+that channels more (430.2) brings it back sooner, and the next Channel Phase gives it back only once the
+Rune Deck is empty. The R column below already counts two a turn less every rune recycled, so no number
+in this play changes. The wording above is kept as history.]
 
 ```
                                                    UNOPPOSED        CONTESTED (they take B on T4)

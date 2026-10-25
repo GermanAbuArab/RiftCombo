@@ -72,6 +72,13 @@ its exhaust) and can also be recycled for 1 Power of its domain (164.2.b, the co
 an exhausted rune still pays); the recycled rune goes to the Rune Deck (161.2.b) and comes back at two
 a turn (315.3.b), capped at twelve (161.2.a). **Dead Energy is written down, not hidden.** The board is
 the contested one: you hold battlefield A, the opponent garrisons battlefield B.
+[2026-10-24, #456: not the recycled rune. The Channel Phase's two come from the top of the Rune Deck
+(315.3.b, 430.1) and a recycled rune goes to the bottom (416.1, 416.1.b), so it is channelled again only
+when the deck reaches it: T7 at the earliest going first and T6 at the earliest going second with only
+the Channel Phase's two a turn (161.2.a, 485.7); each two more recycled push it a turn later, a card
+that channels more (430.2) brings it back sooner, and the next Channel Phase gives it back only once the
+Rune Deck is empty. The R column below already counts two a turn less every rune recycled, so no number
+in this play changes. The wording above is kept as history.]
 
 ```
        R   spend                                              idle   score

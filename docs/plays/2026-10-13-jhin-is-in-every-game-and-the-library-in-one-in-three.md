@@ -154,6 +154,12 @@ Flourish and the Sentry with Jhin left in hand, or Jhin and the Sentry with thei
 The price is the rune: 161.2.b, *"When a Rune is Recycled it is returned to the Rune Deck, not the Main
 Deck."*, so T4 has seven runes where eight would have stood, and 315.3.b gives back two a turn, *"1.
 The Turn Player channels 2 runes from their Rune Deck."*
+[2026-10-24, #456: the two a turn are not the recycled rune given back. They come from the top of the
+Rune Deck (430.1) and the recycled rune went to the bottom (416.1, 416.1.b), so it is channelled again
+on T7 at the earliest going first and T6 at the earliest going second with only the Channel Phase's two
+a turn (161.2.a, 485.7); each two more recycled push it a turn later, and a card that channels more
+(430.2) brings it back sooner. The count above, seven where eight would have stood, is already right,
+and the play ends before the rune is back. The wording above is kept as history.]
 
 **What the Library bought** is two looks, on T3 and T4, and on T3 the look Jhin's Vision repeated. It is
 selection, and the entry says so: *"This smooths draws; it does not add cards."*
