@@ -142,9 +142,11 @@ One card, one rune a kill, and the rune comes back at two a turn — against the
 format's fastest opening is obliged to use.
 [2026-10-24, #456: later than that. A recycled rune goes to the bottom of the Rune Deck (416.1, 416.1.b)
 and 430.1 channels from the top, so the Channel Phase's two a turn (315.3.b) are the runes above it: the
-rune is channelled again on T7 at the earliest going first and T6 going second (161.2.a, 485.7), and
-each kill is a rune short on every turn until then. One rune a kill still stands; what the line above
-overstated is how soon it is back. The wording above is kept as history.]
+rune is channelled again on T7 at the earliest going first and T6 at the earliest going second with only
+those two a turn (161.2.a, 485.7); each two more kills push it a turn later, and a card that channels
+more (430.2) brings it back sooner. Each kill is a rune short on every turn until its rune is back. One
+rune a kill still stands; what the line above overstated is how soon it is back. The wording above is
+kept as history.]
 
 The general form is worth more than the line, and it is the same trade every play in this series has
 written has landed on, arriving this time from the removal side rather than the finisher side:
