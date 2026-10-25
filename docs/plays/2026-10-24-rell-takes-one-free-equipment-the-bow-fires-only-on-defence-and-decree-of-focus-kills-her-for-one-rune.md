@@ -335,10 +335,10 @@ one of their units.
   Poro's 3 does not kill her, and 466.1.a.2 sends her home: *"Recall Attackers present at the
   Battlefield if Defenders are still present."* B stays theirs. She is back in base with the Long Sword
   on her, so this answer is what gives her a second attack, and the Bow, on T4. **Two runes.**
-- `OGN-050 Rune Prison` (Calm, E2 + 1 Calm Power) stuns her the same way. **Three runes, one
+- `OGN-050 Rune Prison` (Calm, E2 + 1 Calm Power) stuns her the same way. **Two runes, one
   recycled.**
 - `VEN-126 Ki Barrier` (Order, E2 + 1 Order Power) prevents the next 7 damage to the Poro, and her 6
-  are all she has. The Poro lives and she is recalled. **Three runes, one recycled.**
+  are all she has. The Poro lives and she is recalled. **Two runes, one recycled.**
 - `OGN-224 Salvage` (Order, E2 + 1 Order Power) kills the Long Sword. She is a 4 against the Poro's 3
   and still takes B. It is not an answer.
 
@@ -406,7 +406,7 @@ mulligan, 2v2, a rune split other than six and six, Thwonk with its [Repeat] pai
   Decree of Focus, each one rune.
 - Step 4, *"Rell's [Tank] means she is assigned combat damage first, which is what keeps the growing
   pile of Equipment on the board she wants it on"*: [Tank] makes her the first lethal assignment
-  (815.1.b), which is how she died in the walk. It keeps nothing anywhere. When she dies, every
+  (815.1.b). It keeps nothing anywhere. When she dies, every
   Equipment on her goes to your base (719.5, 435.4.b, 323.7).
 - Step 2 cites 434.1.c for her Might of 4 + 2 = 6. The Long Sword has no Effect text. Its +2 is its
   Might Bonus, 434.1.d.

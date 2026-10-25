@@ -100,7 +100,8 @@ paying costs or making choices for this ability causes triggered abilities to tr
 placed on the chain above this ability in a Pending state."* So the bodies come back before the Blade
 attaches. The [Equip] has no exhaust and no limit per turn, 818.1.c.2: *"Equip is functionally short for
 “[Cost]: Attach this gear to a unit you control.”"*, and 377: *"Activated Abilities are repeatable
-effects with a cost."* Each use costs one Order Power and one friendly unit. The gear enters ready
+effects with a cost. They follow a process of going onto the chain and resolving, similar to Playing a
+Card."* Each use costs one Order Power and one friendly unit. The gear enters ready
 and needs no ready state to use, 359.2.d: *"If it is a Non-Unit Gear, it enters the Board Ready at the
 player's Base."* The attach goes on a unit you choose, 818.1.b.1: *"Equip’s choice is a Target."*, so
 it goes on the Captain, never on the Mixologist you are killing.
@@ -292,8 +293,10 @@ at all: his Deathknell fires on whoever's turn he dies.
 Chosen Champion. Tournament Rules 402.1: *"In a constructed event, players must register a Main Deck of
 exactly 40 cards (including a chosen champion), 1 Legend, 12 runes, and exactly 3 battlefields each
 with a unique name."* Going first, you have seen 9 cards by T5 (four opening, one draw a turn from T1).
-With three copies of each, holding two Karthus, a Mixologist and a Blade among them is **2.76%**. At
-least one Karthus, a Mixologist and a Blade, two bodies or more, is **14.57%**.
+With three copies of each, holding two Karthus, a Mixologist and a Blade among them is **2.76%**. That
+is an upper bound for the walked line, which plays the Karthus on T2 and T3: a first Karthus among the
+first 6 cards and a second among the first 7, with the Mixologist and the Blade by the 9th, is
+**1.66%**. At least one Karthus, a Mixologist and a Blade, two bodies or more, is **14.57%**.
 
 ## 5. Breaks to
 
@@ -337,9 +340,29 @@ Bloom` is their own gear.
 **Nothing at all on your T5 with the two open runes.** Of the 247, **24** carry [Reaction] or
 [Ambush], and **14** of them cost E2 or less. Read in full, none of them breaks the line. `SFD-136 Hard Bargain` and `UNL-131 Abandon` counter spells, and the
 Blade is a gear and the Mixologist a unit. `OGN-033 Shakedown` (Fury, E2 + 1 Fury Power) on a Karthus
-lets you choose: *"Choose an enemy unit. Deal 6 to it unless its controller has you draw 2."* You give
-them the two cards and keep the Karthus. Killing the Mixologist in response is impossible: he dies as
-the cost.
+lets you choose: *"[Reaction] (Play any time, even before spells and abilities resolve.) Choose an
+enemy unit. Deal 6 to it unless its controller has you draw 2."* You give them the two cards and keep
+the Karthus. Killing the Mixologist in response is impossible: he dies as the cost.
+
+**The bodies survive the T5 combat, the score does not.** Two of those fourteen fit in their two open
+runes and change the Captain's attack on A. `SFD-001 Against the Odds` (Fury, E2): *"[Reaction] (Play
+any time, even before spells and abilities resolve.) Give a friendly unit at a battlefield +2
+:rb_might: this turn for each enemy unit there."* The Captain is the one enemy unit at A, so one of
+their 2s is a 4. Their 8 kill his 7, and his 7 kill two of the three and leave the third.
+`SFD-011 Angle Shot` (Fury, E2): *"[Reaction] (Play any time, even before spells and abilities
+resolve.) Choose a unit and an Equipment with the same controller. Attach that Equipment to that unit
+or detach that Equipment from that unit. Draw 1."* Detached from the Blade, the Captain is a 3, and
+their 6 kill him. `UNL-134 Existential Dread` (Chaos, E1 + 1 Chaos Power) is not in the fourteen, but
+it is an [Action] and reaches the same combat if one of the two open runes is a Chaos: *"[Action]
+(Play on your turn or in showdowns.) [Repeat] :rb_energy_2: (You may pay the additional cost to repeat
+this spell's effect.) [Stun] an attacking enemy unit. If it's already stunned, return it to its
+owner's hand instead. (A stunned unit doesn't deal combat damage this turn.)"* With its [Repeat]
+unpaid, the stunned Captain deals nothing, their 6 do not kill him, and he is recalled, 466.1.a.2:
+*"Recall Attackers present at the Battlefield if Defenders are still present."* The [Repeat] paid is
+the open reading of the #187 bullet in `docs/rules-notes/rules-findings.md` and is not counted. After
+any of the three, A stays theirs and it is **3 to 4** after your T5, not 4 to 4. The three bodies
+are in your base all the same. The walk's 4 to 4 holds only because their walked hand holds none of
+these cards.
 
 **Dearer answers on the same board, all in their T4 Main Phase:**
 - `OGN-029 Falling Star` (Fury, E2 + 2 Fury Power): *"Deal 3 to a unit. Deal 3 to a unit."* Both
@@ -353,8 +376,8 @@ the cost.
 - `OGN-187 Whirlwind` (Chaos, E3 + 1 Chaos Power): *"Starting with the next player, each player may
   return a unit to its owner's hand."* You return first, then they return a Karthus. **Three runes: two
   bodies.**
-- `UNL-128 Star-Crossed` (Chaos, E3 + 1 Chaos Power, [Reaction]): *"Return a friendly unit and an enemy
-  unit to their owners' hands."* A Karthus and one of their own. **Three runes: two bodies.** It is the
+- `UNL-128 Star-Crossed` (Chaos, E3 + 1 Chaos Power): *"[Reaction] (Play any time, even before spells
+  and abilities resolve.) Return a friendly unit and an enemy unit to their owners' hands."* A Karthus and one of their own. **Three runes: two bodies.** It is the
   one answer that also works on your T5, while the Blade or the Mixologist is on the chain, if they
   leave three runes open instead of two.
 
@@ -384,7 +407,7 @@ and the Captain's two Recruits. The greedier order, the Blade a turn early, ends
 with one more body, and gives them a one-rune answer that leaves nothing to come back. In the main
 line their cheapest card is `VEN-107 Decree of Discord`, one rune, which returns a Karthus from your
 base and turns three bodies into two. The engine's fuel was their own attack. The full board by T5 is
-**2.76%** of deals.
+**2.76%** of deals, and the walked order of it **1.66%**.
 
 ## 7. Not verified
 
@@ -405,7 +428,8 @@ paid, **0 of 220**. Gust Monk costs no Power.
 8 cards of 39, three copies, is **50.82%**. That counts only the one card named, not how many of them a
 Fury/Chaos list runs.
 
-**The deal and the opponent.** The walk's deal holds the four pieces by T5, which is 2.76% (§4). Their
+**The deal and the opponent.** The walk's deal holds the four pieces by T5, which is 2.76%, and both Karthus by T3, which brings it
+to 1.66% (§4). Their
 attack on A on their T4 and their late bodies at B are the walk's choices of opponent, the same choices
 as the Tryndamere play. With the Hopeful and the Rearguard at A instead, A is 12 and the Captain's 7
 does not attack: the three bodies still come back, and it is 3 to 4 after your T5. Not walked: going
@@ -423,7 +447,7 @@ Captain, the second and third Mixologist, and the turns after their T5.
 - Step 1, *"Trash holds units costing at most 3 Energy and 1 Power"*: the entry does not say how the
   trash fills. In the walk only the opponent's attack filled it. The Blade can fill it too, at one
   Order Power and one friendly unit per card. A dead Karthus is eligible (E3, 1 Power).
-- The second notable, *"at 5 Energy + 1 Power each"*: each firing also pays the [Equip]'s Order Power,
+- The first notable, *"at 5 Energy + 1 Power each"*: each firing also pays the [Equip]'s Order Power,
   so it is 5 Energy and 2 Power per Mixologist, beside the Blade's own E3 and Order Power once.
 - Step 2: the Blade is the timing, not the trigger. Any death of the Mixologist fires his Deathknell
   (808.1.d.2), and the opponent killing him gives the same three bodies. What the Blade adds is that
