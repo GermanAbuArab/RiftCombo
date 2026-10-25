@@ -250,6 +250,10 @@ describe("which entry a play is about", () => {
     // The subject of the #449 Darius play, which names `tryndamere-brambleback-conquer` as the other
     // entry of its slice: without its own subject here, that mention would be promoted.
     "darius-executioner-vanguard-captain-legion-clause-boundary",
+    // The two subjects of the #458 slice. Each play names the other in its "Why this line"
+    // paragraph, so each needs its own subject here or the other's mention would be promoted.
+    "karthus-glasc-mixologist-double-reanimate",
+    "rell-magnetic-recurve-bow-per-attack",
   ];
 
   it("points each play at the one line it is about, and half of them at none", async () => {
@@ -263,6 +267,12 @@ describe("which entry a play is about", () => {
     ]);
     expect(at("darius-executioner-vanguard-captain-legion-clause-boundary")).toEqual([
       "2026-10-24-darius-goes-down-first-the-captains-recruits-are-born-twos-and-charm-with-flurry-still-takes-them-for-two-runes",
+    ]);
+    expect(at("karthus-glasc-mixologist-double-reanimate")).toEqual([
+      "2026-10-24-the-blade-and-the-mixologist-land-on-the-same-turn-the-three-come-out-of-a-trash-their-attack-filled-and-one-rune-on-a-karthus-makes-it-two",
+    ]);
+    expect(at("rell-magnetic-recurve-bow-per-attack")).toEqual([
+      "2026-10-24-rell-takes-one-free-equipment-the-bow-fires-only-on-defence-and-decree-of-focus-kills-her-for-one-rune",
     ]);
     expect(at("bottled-constellation-time-warp")).toEqual(["2026-09-13-the-setup-nobody-prices"]);
     expect(at("shen-sentinel-time-warp-chain")).toEqual(["2026-09-13-the-elegance-is-the-slowness"]);
