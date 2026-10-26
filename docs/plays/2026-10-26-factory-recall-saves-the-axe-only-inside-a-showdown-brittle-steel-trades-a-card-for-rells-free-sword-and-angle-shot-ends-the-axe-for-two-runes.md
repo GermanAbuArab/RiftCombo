@@ -365,6 +365,13 @@ Closed State, 331.1.b: *"Card abilities, by default, cannot be played during a C
 819.1.c instead gives the [Equip] [Reaction] timing, an unattached Axe could re-attach itself in the
 [Temporary] trigger's Closed State for one Power. Then the Recall on their T3 would save one Power
 instead of a card, and Angle Shot would not end the Axe. No ruling covers it.
+[2026-10-26, #487: settled by rules text, no R-number; the finding is in
+`docs/rules-notes/rules-findings.md`. The reading above holds. 819.1.d expands the keyword to a
+card-format [Reaction], 813.1.d: *"Reaction is formatted as “[Reaction]” on cards, or “[Reaction][>]” on
+abilities."* The gate asks it of the ability, 309.1.a: *"Only cards and abilities with the Reaction
+keyword can be played or activated in a Closed State."* The Axe's [Equip] carries none, so the Recall
+saves a card and Angle Shot ends the Axe. Still open: whether a re-attach by another card's [Reaction]
+while the [Temporary] trigger is on the chain saves the Axe. This play does not claim it.]
 
 **How likely the answer is.** The walk's Rell deck runs no Detonate and no Angle Shot. Either is a
 Fury card that deck could run. The odds that they hold one depend on how many copies their list runs,
