@@ -254,6 +254,10 @@ describe("which entry a play is about", () => {
     // paragraph, so each needs its own subject here or the other's mention would be promoted.
     "karthus-glasc-mixologist-double-reanimate",
     "rell-magnetic-recurve-bow-per-attack",
+    // The two subjects of the #466 slice. Each play names the other in its "Why this line"
+    // paragraph, so each needs its own subject here or the other's mention would be promoted.
+    "helm-empowered-spell-tax",
+    "protective-sands-few-runes-fury",
   ];
 
   it("points each play at the one line it is about, and half of them at none", async () => {
@@ -273,6 +277,12 @@ describe("which entry a play is about", () => {
     ]);
     expect(at("rell-magnetic-recurve-bow-per-attack")).toEqual([
       "2026-10-24-rell-takes-one-free-equipment-the-bow-fires-only-on-defence-and-decree-of-focus-kills-her-for-one-rune",
+    ]);
+    expect(at("helm-empowered-spell-tax")).toEqual([
+      "2026-10-26-the-helm-costs-your-turn-four-their-three-spells-cost-three-runes-more-and-acceptable-losses-kills-it-for-two",
+    ]);
+    expect(at("protective-sands-few-runes-fury")).toEqual([
+      "2026-10-26-protective-sands-draws-once-on-turn-two-the-sandspinners-three-energy-cost-four-runes-and-the-dragon-cannot-be-cast",
     ]);
     expect(at("bottled-constellation-time-warp")).toEqual(["2026-09-13-the-setup-nobody-prices"]);
     expect(at("shen-sentinel-time-warp-chain")).toEqual(["2026-09-13-the-elegance-is-the-slowness"]);
