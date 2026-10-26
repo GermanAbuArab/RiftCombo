@@ -355,7 +355,11 @@ Mechanized Menace's two domains, in the twelve of Tournament Rules 402.1. You pa
 the four the main line adds on T4 go unspent, and any four runes can be the ones recycled. So the split
 does not change the walk: **0 of 495** deals of your first eight fail it.
 
-Their main line pays no Power. Of the answers in §5, Thwonk!'s [Deflect] Power is any domain. Ki
+Their main line pays no Power. Of the answers in §5, Thwonk!'s [Deflect] Power is any domain.
+*(2026-10-26 correction, #484: Thwonk! has no [Deflect]; the Empowered Sandspinner does, and the Power
+is due because Thwonk! chooses it, 809.1.c.1: "The Power used to pay this cost may always be of any
+Domain." The price is unchanged: Thwonk! is E2 and no Power of its own, plus 1 Power of Deflect
+against the Sandspinner, so two runes, one recycled.)* Ki
 Barrier needs an Order rune among their first seven runes. With six of each, it fails only when all
 seven are Calm, which six cannot be: **0 of 792**.
 
