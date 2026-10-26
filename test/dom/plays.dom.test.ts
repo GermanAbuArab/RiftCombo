@@ -279,7 +279,7 @@ describe("which entry a play is about", () => {
       "2026-10-24-rell-takes-one-free-equipment-the-bow-fires-only-on-defence-and-decree-of-focus-kills-her-for-one-rune",
     ]);
     expect(at("helm-empowered-spell-tax")).toEqual([
-      "2026-10-26-the-helm-costs-your-turn-four-their-three-spells-cost-three-runes-more-and-acceptable-losses-kills-it-for-two",
+      "2026-10-26-the-helm-costs-your-turn-four-their-two-spells-cost-two-runes-more-and-acceptable-losses-kills-it-for-two",
     ]);
     expect(at("protective-sands-few-runes-fury")).toEqual([
       "2026-10-26-protective-sands-draws-once-on-turn-two-the-sandspinners-three-energy-cost-four-runes-and-the-dragon-cannot-be-cast",

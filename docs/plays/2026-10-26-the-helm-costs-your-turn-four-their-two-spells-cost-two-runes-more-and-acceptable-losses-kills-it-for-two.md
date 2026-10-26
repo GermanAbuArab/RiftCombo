@@ -1,4 +1,4 @@
-# Play — The Helm costs your turn four, their three spells cost three runes more, and Acceptable Losses kills it for two
+# Play — The Helm costs your turn four, their two spells cost two runes more, and Acceptable Losses kills it for two
 
 Issue #466 (a slice of #200), 2026-10-26. Constructed, Duel (485). Rules version 2026-07-16.
 Card text verbatim from `data/corpus_flat.txt`; rules pasted from
@@ -12,14 +12,14 @@ bill at 8 Energy and 2 Power and says the Power half is the claim. It is right a
 about the tax. Walked as a game, going first, under `OGN-261 Radiant Dawn` against the Fury/Chaos
 Draven deck of [the Decree of Focus play](2026-10-23-decree-of-focus-takes-the-first-spell-crumbling-sands-the-second-and-the-free-answer-is-the-empty-battlefield.md),
 in the same seats and on the same battlefields. **The main line:** the Helm takes your whole T4: all
-eight runes, two of them recycled. On their T4 they take your battlefield A with three spells and an
-attack, and each spell costs them a rune more: their board drops from 9 runes to **4** where the same
-three spells would have left 7. A falls, your five units at A die, and it is **3 to 4** after their
+eight runes, two of them recycled. On their T4 they take your battlefield A with two spells and an
+attack, and each spell costs them a rune more: their board drops from 9 runes to **5** where the same
+two spells would have left 7. A falls, your five units at A die, and it is **3 to 4** after their
 T4. **The control** spends the same T4 on two bodies at A instead of the Helm. A defends at 22, nobody
 attacks, and it is **3 to 3**. **The cheapest answer is two runes, one recycled:** `OGN-179 Acceptable
 Losses` (Chaos, E1) kills the Helm, since it is your only gear, for E2 and one Power under the tax. Cast
-first, it also lifts the tax off the three spells behind it, and their board ends at 6 runes instead
-of 4.
+first, it also lifts the tax off the two spells behind it, and their board ends at 6 runes instead
+of 5.
 
 **Why this line.** `scripts/sequence-pick.mjs --unplayed`, re-run on 2026-10-25 at `a67d27f`, reads
 773 entries, 266 with forced-ordering language, **94 in the queue and 3 of them with no play**, as the
@@ -79,8 +79,10 @@ Board Ready at the player's Base."* The [Empower] is an activated ability, 827.1
 functionally short for “[Cost]: Empower this. Play only if not Empowered.”"* Its cost has no exhaust, so
 the turn the Helm lands is legal, and a gear's ability waits for your own Main Phase, 151.2: *"The
 Activated Ability of Gear may be executed at any time during the controlling player's Main Phase during
-an Open State, and not during a Showdown."* Once paid the state stays, 441.1.a: *"Empowered is a binary
-state. A Game Object is Empowered or it isn’t."*
+an Open State, and not during a Showdown."* Once paid the state stays: it is a state of a Game Object
+on the board, 441.2: *"“Empowered” is a state for Game Objects on the board that other game effects and
+abilities can reference."*, and only Disempowering removes it, 442.1: *"Disempowering is the act of
+removing the Empowered status from one or more Game Objects."* Nothing in this walk Disempowers.
 
 **Where the 8 Energy and the 2 Power come from.** A rune adds Energy by exhausting, 164.2.a: *"[E]:
 [Reaction] — Add [1]."*, and Power by leaving, 164.2.b: *"Recycle this: [Reaction] — Add [C]."*, and
@@ -174,24 +176,24 @@ T4        8       Hold A: +1. Helm of Suppression (E4 + 1 Calm Power) and  3
                   exhausted, two Calm recycled. None left.
 their T4  9       Hold B. Hextech Ray (E2 + 1 Fury + 1 any) kills the      4
                   Ramhound; Monster Harpoon (E2 + 1 Fury + 1 any) kills
-                  the Daring Poro; Cleave (E2 + 1 any) on the Duo. The
-                  Rearguard, the Duo, Pouty Poro and Mystic Poro (2 + 6
-                  + 2 + 2 = 12) attack A. All three of yours there die;
-                  three of theirs die. Conquer A. Three left.
+                  the Daring Poro. The Rearguard, the Duo, Pouty Poro
+                  and Mystic Poro (2 + 3 + 2 + 2 = 9) attack A. All
+                  three of yours there die; three of theirs die.
+                  Conquer A. Five left.
 ```
 
 After your T2 it is **1 to 0**; after their T2, **1 to 1**; after your T3, **2 to 1**; after their T3,
 **2 to 2**; after your T4, **3 to 2**; after their T4, **3 to 4**.
 
 Runes on your board at the end of each turn: 2, 4, 6, 6 after your T4, 7 after their T4 (the Scout's
-Deathknell). On theirs: 3, 5, 7, 4 after their T4.
+Deathknell). On theirs: 3, 5, 7, 5 after their T4.
 
 Your hand, card by card: 5 after the T1 draw, 4 after the Poro (Ramhound, Scout, Helm, Guardian); 5
 after the T2 draw, 3 after the Ramhound and the Stalwart Poro (Scout, Helm, Guardian); 4 after the T3
 draw, 2 after the Guardian and the Scout (Helm, Royal Guard); 3 after the T4 draw, 2 after the Helm
 (Royal Guard, Vanguard Captain). Theirs: 5 after the T1 draw, 4 after the Saboteur; 5 after the T2
 draw, 3 after the Rearguard and the Duo (Ray, Cleave, Pouty Poro); 4 after the T3 draw, 2 after the two
-Poros (Ray, Cleave); 3 after the T4 draw, 0 after the three spells, 1 after their legend's draw.
+Poros (Ray, Cleave); 3 after the T4 draw, 1 after the two spells (Cleave), 2 after their legend's draw.
 
 **Your T2 and T3: a wall at A.** The Poro takes A, which is empty: a non-combat showdown, 316.8.b.1:
 *"Showdowns that occur as a result of a player moving to an empty Battlefield are a stand-alone Phase
@@ -204,25 +206,29 @@ maintains Control of a Battlefield they did not yet Score this turn during their
 **Your T4: the Helm, and nothing else.** Eight runes, eight Energy, two Calm recycled for the two Calm
 Power. Royal Guard and Vanguard Captain stay in hand. A is still 13.
 
-**Their T4: three spells and an attack.** Their ready bodies in base are the Rearguard, the Duo and the
-two Poros, 9 Might against 13. Three spells close the gap, in their Main Phase, before the attack. The
+**Their T4: two spells and an attack.** Their ready bodies in base are the Rearguard, the Duo and the
+two Poros, 9 Might against 13. Two spells close the gap, in their Main Phase, before the attack. The
 Ray deals 3 to the Ramhound, which is a 3 with company, and kills it. The Harpoon deals 2 to the Daring
-Poro and kills it. Cleave gives the Duo [Assault 3]. A now defends at 3 + 4 + 1 = 8 against 2 + 6 + 2 +
-2 = 12. You have no rune up to answer anything. Their 12 must kill the Guardian first (815.1.b): 4, then
-the Stalwart Poro 3 and the Scout 1. Your 8 kill the Rearguard, Pouty Poro and Mystic Poro, and the last
-2 go on the Duo, a 6. Only their units remain: they win the combat, their legend draws 1, and A is
+Poro and kills it. A now defends at 3 + 4 + 1 = 8 against 2 + 3 + 2 + 2 = 9. You have no rune up to
+answer anything. Their 9 must kill the Guardian first (815.1.b): 4, then the Stalwart Poro 3 and the
+Scout 1. Your 8 cannot kill all four, which takes 9: they kill the Duo, the Rearguard and Pouty Poro,
+and the last 1 goes on Mystic Poro, a 2. Only their units remain: they win the combat, their legend draws 1, and A is
 theirs, 466.5.d: *"Establishing Control results in a Conquer if that player has not yet scored this
-Battlefield this turn."* The Scout's Deathknell channels you a rune, exhausted. **3 to 4.**
+Battlefield this turn."* The Scout's Deathknell channels you a rune, exhausted. **3 to 4.** Cleave
+stays in their hand: a third spell, taxed, would add 3 Might they do not need.
 
-**What the tax took.** Untaxed, the three spells are E3 and two Fury Power: three runes exhausted, two
-of them recycled, and their board ends at 7. Taxed they are E6 and five Power, two of it Fury: six
-exhausted, five recycled, and their board ends at **4**. The tax cost them three runes off the board
-for the rest of the walk, and three Energy they had spare that turn. It did not stop the attack.
+**What the tax took.** Untaxed, the two spells are E2 and two Fury Power: two runes exhausted, both
+recycled, and their board ends at 7. Taxed they are E4 and four Power, two of it Fury: four exhausted,
+four recycled, and their board ends at **5**. The tax cost them two runes off the board for the rest
+of the walk, and two Energy they had spare that turn. It did not stop the attack. Had they cast Cleave
+as well, a spell the attack did not need, the tax would have cost three: their board at 4 against 7
+untaxed.
 
 **The control: Royal Guard and Vanguard Captain on T4.** The same deal. On T4 the Guard goes to A with
 its Sand Soldier, and the Captain follows with [Legion] on and two Recruits. That is E7 and one Order
 Power: seven runes exhausted, one recycled, one left. A defends at 13 + 2 + 2 + 3 + 1 + 1 = **22**. On
-their T4 the same three spells take 5 of it, and their 12 do not reach the 17 left, so nobody attacks.
+their T4 the same two spells take 5 of it, and their 9 do not reach the 17 left, 12 with Cleave, so
+nobody attacks.
 They Hold B: **3 to 3**, with A yours, eight units on it, 7 runes on your board and the Helm in hand.
 
 **The tax with no spells.** If they cast nothing on their T4, the Helm does nothing, as the entry
@@ -234,7 +240,7 @@ Chosen Champion. Tournament Rules 402.1: *"In a constructed event, players must 
 exactly 40 cards (including a chosen champion), 1 Legend, 12 runes, and exactly 3 battlefields each
 with a unique name."* Going first, you have seen 8 cards by T4. A Helm among them is **50.82%** with
 three copies and **20.51%** at the entry's one. Going second they have seen 8 by their T4: a Ray and a
-Harpoon both is **24.20%** at three copies each, and Ray, Harpoon and Cleave all three is **10.63%**.
+Harpoon both is **24.20%** at three copies each.
 
 ## 5. Breaks to
 
@@ -272,9 +278,9 @@ Power: two runes exhausted, one of them recycled. Factory Recall costs the same 
 the Helm goes back to your hand, and you can pay the 8 Energy and 2 Power again.
 
 **Cast first, it pays for itself.** On their T4 they have 9 runes. Acceptable Losses first, taxed: E2
-and one Power. The Helm is gone, so the Ray, the Harpoon and Cleave cost their printed E3 and two Fury
-Power. In all that is E5 and three Power: five runes exhausted, three recycled. Their board ends at
-**6** runes, not the main line's 4, and the attack goes as in §4. A is theirs, **3 to 4**, and your T4
+and one Power. The Helm is gone, so the Ray and the Harpoon cost their printed E2 and two Fury Power.
+In all that is E4 and three Power: four runes exhausted, three recycled. Their board ends at **6**
+runes, not the main line's 5, and the attack goes as in §4. A is theirs, **3 to 4**, and your T4
 bought nothing. Holding Acceptable Losses by their T4 is **50.82%** at three copies.
 
 **Detonate is the trap.** At printed cost it looks as cheap as Acceptable Losses. Under the Helm it is
@@ -295,8 +301,8 @@ above, it is **3 to 3** and they are on 9 runes to your 6. The control reaches t
 
 **Right about the bill and about the tax, and the tax did not decide the game.** The Helm cost your
 whole T4 going first: eight Energy, two Calm runes off the board. From their T4 on, each spell cost
-them one rune more. They cast three on their T4 and paid three runes more than untaxed, ending on 4
-runes instead of 7. Those three spells and an attack took A, because the turn the Helm ate was the
+them one rune more. They cast two on their T4 and paid two runes more than untaxed, ending on 5 runes
+instead of 7. Those two spells and an attack took A, because the turn the Helm ate was the
 turn that would have put 9 more Might there. **3 to 4** after their T4, against the control's **3 to
 3** with A at 22. The cheapest answer is Acceptable Losses, two runes and one of them recycled. Cast
 first, it lifts the tax off everything after it. The free answer is to cast no spell, and then the Helm
@@ -310,7 +316,7 @@ T4 out of the first eight runes: it fails only when seven or more of those eight
 Order cannot be, **0 of 495**. The control recycles one Order on T4: also **0 of 495**. Nothing else
 of yours costs Power.
 
-Their walk assumes six Fury and six Chaos. Their T4 recycles five runes, two of them for Fury Power,
+Their walk assumes six Fury and six Chaos. Their T4 recycles four runes, two of them for Fury Power,
 out of the first nine. It fails only when one or no Fury is among the nine, which six Chaos cannot
 be: **0 of 220**. The Acceptable Losses line needs two Fury among the nine as well: **0 of 220**.
 
@@ -337,11 +343,13 @@ your list, which the tax would not help (206); and the turns after their T4.
   recycled. Ravenbloom Prefect is a unit and is not taxed.
 - The notable *"An Empowered Helm therefore caps at TWO the number of spells they can cast off that
   floor"* still rests on the free floor of 2 Power a turn that the 2026-10-24 correction to step 4
-  withdrew. In the walk they cast three taxed spells in one turn off 9 runes and recycled five.
+  withdrew. In the walk they cast two taxed spells in one turn off 9 runes and recycled four, with
+  five runes left: enough for Cleave as a third, taxed at E2 and one Power.
 - `terminatesIn`, *"it slows their turns, it scores nothing"*: in the walk it slowed nothing that
   scored. The cost to you was the turn: A was 9 Might short of the control's 22, and it fell. Against
   the control the Helm was a point behind after their T4 (3 to 4 against 3 to 3).
-- The entry names no free answer. It is to cast no spell, and then the Helm has cost you your T4 for
-  nothing.
+- The free answer is to cast no spell, and then the Helm has cost you your T4 for nothing. The
+  entry's notable comes close (*"And against a deck that wins with units, the Helm taxes nothing at
+  all."*) but does not state it as an answer.
 - The Power of the play cost is Calm, the card's own domain (135.2.e.6). The prerequisite says only
   that the [Empower] asks for Calm Power; both halves do.

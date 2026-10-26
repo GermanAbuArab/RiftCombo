@@ -19,8 +19,10 @@ eight runes and recycle four, the Sandspinner's [Empower] costs E2, it takes the
 Might 8, and the 3 Energy saved buy one more two-drop. On their T4 eleven Might kill it. **4 to 3**
 after their T4, on **4** runes. **The control** pays the [Empower] at E5 and recycles nothing: also
 **4 to 3**, on **8** runes. On T5 the control can cast the Dragon and the main line cannot. **The
-cheapest answer is two runes, one recycled:** `SFD-040 Thwonk!` or `VEN-126 Ki Barrier` on their T3's
-spare runes keeps the Sandspinner off their battlefield. Nothing at one rune does it.
+cheapest answer is one rune, recycled:** `VEN-034 Resonating Strike`, hidden at their battlefield with
+the one rune their T3 leaves spare, moves their Sunlit Guardian in from base, and the Sandspinner dies
+attacking a 9. From hand it takes two runes: `VEN-040 Decree of Focus` and `OGN-046 En Garde` with none
+recycled, or `SFD-040 Thwonk!` or `VEN-126 Ki Barrier` with one.
 
 **Why this line.** `scripts/sequence-pick.mjs --unplayed`, re-run on 2026-10-25 at `a67d27f`, reads
 773 entries, 266 with forced-ordering language, **94 in the queue and 3 of them with no play**, as the
@@ -113,8 +115,8 @@ closes, Attackers and Defenders resolve Combat Damage at the Battlefield that wa
 current Might."* [Tank] goes first, 815.1.b: *"I must be assigned lethal damage before any other unit
 with the same controller as me that does not have [Tank] during the Combat Damage step."* A unit dies
 at its Might, 142.4.b: *"Lethal Damage for a Unit is a non-zero amount greater than or equal to that
-Unit’s Might."* An attacker still facing a defender goes home, 466.1.a.2: *"Recall Attackers present
-at the Battlefield if Defenders are still present."*
+Unit’s Might."* An attacker still facing a defender goes home, 466.1.a.2: *"Insert “3d. Recall
+Attackers present at the Battlefield if Defenders are still present.”"*
 
 ## 3. Their deck: Calm/Order Shield bodies
 
@@ -252,14 +254,45 @@ Sacrifice` needs a [Mighty] unit of theirs. `OGN-046 En Garde`, `UNL-031 Combat 
 `UNL-046 Friendship` pump a unit of theirs, and none is at A. `VEN-040 Decree of Focus` needs a unit of
 theirs in combat, and there is no combat.
 
-**Nothing at one rune stops the Sandspinner.** On your T4 they have the one rune left from their T3.
-It attacks at 8. Decree of Focus is the largest one-rune pump: *"Choose a friendly unit that's in
-combat with an enemy Fury (:rb_rune_fury:) unit or that's being chosen by an enemy Fury spell. Give it
-+4 :rb_might: this turn."* The Poro is 2 + 1 + 4 = 7. The Sandspinner's 8 kill it, its 7 do not kill the Sandspinner, and B is
-yours anyway. En Garde makes it 5, and Combat Experience and Friendship (the Poro tag only) 4.
+**No one card from hand at one rune stops the Sandspinner.** On your T4 they have the one rune left
+from their T3. It attacks at 8. Decree of Focus is the largest one-rune pump: *"[Reaction] (Play any
+time, even before spells and abilities resolve.) Choose a friendly unit that's in combat with an enemy
+Fury (:rb_rune_fury:) unit or that's being chosen by an enemy Fury spell. Give it +4 :rb_might: this
+turn."* The Poro is 2 + 1 + 4 = 7. The Sandspinner's 8 kill it, its 7 do not kill the Sandspinner, and
+B is yours anyway. En Garde makes it 5, and Combat Experience and Friendship (the Poro tag only) 4.
 
-**The cheapest answer: two runes, one recycled.** They keep two runes up on their T3 by holding the
-second Stalwart Poro back. Two cards then work:
+**The cheapest answer: one rune, recycled, hidden on their T3.** `VEN-034 Resonating Strike` (Calm,
+E2 + 1 Calm Power): *"[Hidden] (Hide now for :rb_rune_rainbow: to react with later for
+:rb_energy_0:.) [Reaction] (Play any time, even before spells and abilities resolve.) Choose a
+battlefield you control and a unit you control at a different location. Move that unit to that
+battlefield and give it +2 :rb_might: this turn."* The walk's own T3 leaves them one rune, and B has been
+theirs since their T2, so they hide it at B for that rune, recycled for its Power (811.1.b, quoted
+below). On your T4 it is played from facedown, ignoring its base cost, the printed E2 and one Power,
+204.1.a: *"On cards, the Base Cost is found in the upper left corner of the card."* It chooses no unit
+of yours, so [Deflect] adds nothing. A hidden spell's choices stay at its battlefield unless the text
+makes that impossible, 811.1.d.2: *"If a hidden spell or a play effect of a hidden permanent chooses any
+targets, those targets must be chosen from among options at that battlefield, unless the ability
+explicitly restricts targeting in a way that makes this impossible."* *"a unit you control at a
+different location"* is that case, as the rule's own Tideturner and Smoke and Mirrors examples show,
+so it moves the Sunlit Guardian in from their base at 3 + 2. A unit that arrives mid-combat is a
+defender from the next Cleanup on, 464.2.c.3.a: *"If a Unit controlled by the Attacker or Defender
+becomes present at this Battlefield after this moment, it will gain the Attacker or Defender
+designation during the Cleanup phase following the action that caused it to become present, as
+appropriate for its controller."* So its [Shield] counts: 6, and with the Poro's 3, B defends at **9**.
+Their 9 kill the Sandspinner, a 6 + 2 = 8 while it attacks. Its 8 must go first to the Guardian, which
+has [Tank] (815.1.b): 6 to it, and the 2 left do not kill the Poro. B stays theirs. Without the
+[Shield] it is 5 + 3 = 8, still lethal on an 8.
+
+**From hand: two runes.** They keep runes up on their T3 by holding the second Stalwart Poro back.
+Then:
+
+- Decree of Focus and En Garde (Calm, E1): *"[Reaction] (Play any time, even before spells and
+  abilities resolve.) Give a friendly unit +1 :rb_might: this turn, then an additional +1 :rb_might:
+  this turn if it is the only unit you control there."* Both on the lone Poro at B: 2 + 1 + 4 + 2 =
+  **9**. The Sandspinner dies, and its 8 do not kill the Poro. Two runes, **none** recycled, but two
+  cards.
+- Resonating Strike cast from hand: E2 and one Calm Power, two runes, one recycled, with the same
+  result as from facedown.
 
 - `SFD-040 Thwonk!` (Calm, E2): *"[Action] (Play on your turn or in showdowns.) [Repeat] :rb_energy_2:
   (You may pay the additional cost to repeat this spell's effect.) Stun an attacking unit. (It doesn't
@@ -276,24 +309,25 @@ second Stalwart Poro back. Two cards then work:
   it 1 damage, not lethal, and the Sandspinner is recalled. It does not choose the Sandspinner, so no
   [Deflect]. Two runes, one recycled.
 
-Neither cares whether the [Empower] cost E2 or E5, so each answers the control the same way. Against
+None of them cares whether the [Empower] cost E2 or E5, so each answers the control the same way. Against
 the main line they also leave the four runes you recycled with nothing to show. `OGN-050 Rune Prison`
 (Calm, E2 + 1 Calm Power) stuns it too, for two runes, both recycled once [Deflect] is paid.
 
-**A hidden card costs the same two runes, both recycled, and no Energy.** From their T2 they control
-B, so they can hide a card there for one rune, 811.1.b: *"While this card is in your hand or in your
+**A hidden card that chooses the Sandspinner costs two runes, both recycled, and no Energy.** From
+their T2 they control B, so they can hide a card there for one rune, 811.1.b: *"While this card is in your hand or in your
 Champion Zone on your turn during an Open State, you may pay [A] to hide this facedown at a battlefield
 you control that doesn't already have a facedown card hidden there for as long as you control that
 battlefield. Beginning on the next turn, this gains [Reaction] and you may play this, ignoring its base
 cost."* `OGN-220 Facebreaker` stuns the Sandspinner and their Poro, `UNL-042 Back Off` stuns the
 Sandspinner, and `OGN-213 Hidden Blade` kills it and you draw 2. Each chooses the Sandspinner, so
-[Deflect] adds the second rune. The hidden cards that do not choose it fail. `OGN-057 Block` makes the
-Poro a 2 + 1 + 3 = 6, short of 8. `OGN-077 Zhonya's Hourglass` and `SFD-043 Emperor's Divide` take the
-Poro home and hand you B. A unit that arrives mid-combat, `VEN-117 Disciple of Shen` or the token of
-`SFD-154 Guards!`, gets no Defender designation, which is handed out once, 464.2.c.3: *"The attacker and
-defender gain the Attacker or Defender designation now, as appropriate. Units at the Contested
-Battlefield controlled by the Attacker or Defender gain the Attacker or Defender designation now, as
-appropriate."* `VEN-034 Resonating Strike`, which moves a unit of theirs in, fails for the same reason.
+[Deflect] adds the second rune. Of the hidden cards that do not choose it, Resonating Strike is the
+one that works (above); the rest fail. `OGN-057 Block` makes the Poro a 2 + 1 + 3 = 6, short of 8. `OGN-077 Zhonya's Hourglass` and `SFD-043 Emperor's Divide` take the
+Poro home and hand you B. A unit that arrives mid-combat is a defender (464.2.c.3.a), but these fall
+short: `VEN-117 Disciple of Shen` is 1 + [Shield 3] = 4 beside exactly one other unit, and with the
+Poro's 3 that is 7; the 2 Might Sand Soldier of `SFD-154 Guards!` and the Poro make 5. `OGN-053 Stand
+United` buffs the Poro to 2 + 1 + 1 + 1 = 5. `VEN-135 Kennen, Keeper of Balance` does choose the
+Sandspinner, but its stun costs E2 on top of the hide and the [Deflect] Power: three runes in all,
+dearer than every answer above.
 
 **The free answer: garrison B to 9.** On their T2 the Guardian and the Keeper go to B instead of
 their base, for the same five Energy. B defends at 3 + 4 + 2 = 9. The Sandspinner's 8 kill the Guardian and
@@ -309,9 +343,10 @@ for one Energy, and that was its only draw: A stayed yours and was never conquer
 recycle to four runes cut the Sandspinner's [Empower] from E5 to E2. The three Energy bought one more
 two-drop, and the price was four runes for the rest of the walk. It took their battlefield and died
 there on their T4. **4 to 3**, on 4 runes against the control's 8 and the same score. On T5 the
-control can cast the Dragon and the main line cannot. The cheapest answer is two runes, one recycled:
-Thwonk! or Ki Barrier sends it home. The free answer is a garrison of
-9 at B, and leaving A alone.
+control can cast the Dragon and the main line cannot. The cheapest answer is one rune, recycled:
+Resonating Strike, hidden at B on their T3, brings their Guardian in and B defends at 9. From hand it
+takes two runes: Decree of Focus and En Garde with none recycled, or Thwonk! or Ki Barrier with one.
+The free answer is a garrison of 9 at B, and leaving A alone.
 
 ## 7. Not verified
 
@@ -325,8 +360,9 @@ Barrier needs an Order rune among their first seven runes. With six of each, it 
 seven are Calm, which six cannot be: **0 of 792**.
 
 **How likely an answer is.** The walk fixes their opening four and their three draws to their T3. A
-Thwonk! or a Ki Barrier among their first 7 cards of 39, at three copies each, is **72.23%**. That
-counts only those two cards, not how many of them a Calm/Order list runs.
+Resonating Strike, a Thwonk! or a Ki Barrier among their first 7 cards of 39, at three copies each, is
+**86.76%**; without Resonating Strike, **72.23%**. That counts only those three single-card answers,
+not the Decree of Focus and En Garde pair, and not how many of them a Calm/Order list runs.
 
 `data/cards.json` carries no champion supertype. I read Rumble, Hotheaded as a champion unit by his
 title name and his Rumble tag. Their choice not to attack A on their T3, and to attack B and not A on
@@ -346,14 +382,19 @@ casts before T5; Thwonk! with its [Repeat] paid; and the turns after their T4.
 - Step 5, *"Standard-Move Eclipse Dragon in the same Main Phase for a second card"*: the Dragon costs
   E8 and cannot be cast while you control four runes. Each of its draws needs at least four runes
   recycled, five on the turn it lands with [Accelerate]. In the walk the T4 recycle for the Sandspinner
-  left 6 runes on T5, so the Dragon could not be cast that turn. The three payoffs do not share one
-  recycle.
+  left 6 runes on T5, so the Dragon could not be cast that turn. A Dragon cast on an earlier turn can
+  share one recycle with the conquer and the [Empower]: on a 12-rune turn, all twelve exhausted and
+  eight recycled pay for the Protective Sands draw, the Dragon's move draw and the E2 [Empower]. What
+  the walk shows is narrower: the Dragon cannot be cast on a turn you hold four runes, and the T4
+  recycle kept it out of T5.
 - Step 3, *"banking a Power for each"*: the pool empties at the end of the turn (167), and nothing in
   the package costs Power except [Accelerate]. In the walk the four Power were lost.
 - `terminatesIn`, *"thereafter costing two Channel Phases per rune dumped"*: the 2026-10-24 correction
   to the second notable withdrew that figure. `terminatesIn` still carries it.
 - `netPerIteration`, *"a one-off 3 Energy off each Sandspinner's Empower"*: in the walk those 3 Energy
   cost four runes off the board.
-- The entry names no answer. The cheapest is two runes, one recycled: Thwonk! or Ki Barrier sends the
-  Empowered Sandspinner home from their battlefield. The free answers are a garrison of 9 where it
-  would attack, and not emptying Protective Sands.
+- The entry names no answer. The cheapest is one rune, recycled: Resonating Strike, hidden at their
+  battlefield the turn before, moves a [Shield] [Tank] body in and the Empowered Sandspinner dies
+  attacking. From hand it is two runes: Decree of Focus and En Garde with none recycled, or Thwonk! or
+  Ki Barrier with one. The free answers are a garrison of 9 where it would attack, and not emptying
+  Protective Sands.
