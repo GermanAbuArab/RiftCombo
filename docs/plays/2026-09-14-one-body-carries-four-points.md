@@ -188,3 +188,39 @@ I did not walk the opponent's best line against the third board — whether a de
 off both battlefields can also hold a garrison of summed Might twelve or more, which is the number
 that switches Tryndamere's clause off. Read §6's bottom row as the recovery being AVAILABLE, not as
 it being guaranteed.
+
+## 10. Corrected 2026-10-26 (#464): the attack half is four only into a garrison of 1 to 3
+
+This section is appended; nothing above it was edited. §6 gives the attack half as **+4**, and the
+paragraph under its table says *any garrison of summed Might eleven or less*. Eleven or less is where
+the excess clears five, and it is not where the half scores four, because the count needs the
+attackers alive at the Conquer and the defender chooses who dies.
+
+383.4.c.2.a: *"The Conquer Abilities of Units are put on the Chain as Pending Items after the Unit(s) these effects correspond to are present at a Battlefield when a player gains control of it and gains 1 Victory Point from Conquering."*
+
+365.1: *"Passive Abilities of Permanents are typically only active while on the Board."*
+
+465.2.c: *"Starting with the Attacker, each player assigns an amount of damage equal to their summed Might among the other's Units."*
+
+465.2.c.3: *"Units must have lethal damage assigned to them in full before damage is assigned to a different Unit. Example: If a player has 5 damage to distribute among four 3 Might units, they may not choose to assign 2 damage to one of the units and 1 damage to each of the remaining 3. They must assign at least 3 damage to one, and the remaining 2 to another."*
+
+465.2.c.4: *"Units cannot have more damage assigned to them than the minimum required to constitute lethal damage unless no further units remain to have damage assigned to them. Example: If a player has 5 damage to distribute among four 3 Might units and those units each have 1 damage already marked on them, that player may not assign more than 2 damage to any of those units."*
+
+466.5: *"If no Showdown or Combat is staged at this location, the player with Units remaining here Establishes Control if they didn’t already control this Battlefield."*
+
+Tryndamere is Might 8 and each Brambleback 4, 16 in all. Against a garrison of summed Might G, with no
+damage marked and nothing else changing Might in the combat, the defender choosing the deaths that
+cost most:
+
+| G | dies | attack half | turn with the Hold's four |
+|---|---|---|---|
+| 1 to 3 | nobody | 4 | 8 |
+| 4 to 7 | a Brambleback | 3 | 7 |
+| 8 to 11 | Tryndamere (the excess still clears 5) | 1 | 5 |
+| 12 to 15 | Tryndamere or Bramblebacks (the excess is under 5) | 1 | 5 |
+| 16 or more | all three, or the garrison survives | 0 | 4 |
+
+So §6's **+4** holds only into a garrison of 1 to 3. On the third board, where this half is the
+recovery, it is **+3** against 4 to 7 and **+1** from 8, and §9's open question has its answer: the
+clause is not switched off at twelve but the payoff is, at eight, because a garrison of 8 kills
+Tryndamere. The entry carries the same correction, dated, in `data/combos.json`.
