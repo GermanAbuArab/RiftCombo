@@ -246,9 +246,11 @@ Saboteur heals in the combat cleanup (466.1.a.1). You end the turn with two rune
 **Their T3: the Recall in the showdown.** Pit Rookie buffs Rell to 5 in base. Rell walks to B and
 attacks the Saboteur. Her trigger plays the Long Sword for free and attaches it: Rell 7, [Tank]. When
 the combat chain has resolved, the showdown is open and they have Focus (345). They pass. You have Focus
-and one ready rune, and you cast Factory Recall on your own Axe: it goes to your hand and the Saboteur is
-a 3. When that chain closes Focus passes to them, 347.1.b: *"When that Chain closes, Focus passes to the
-next Player in Turn Order."* They pass, you pass, and the showdown closes. Their 7 kills the Saboteur;
+and two ready runes, and you cast Factory Recall on your own Axe with one of them: it goes to your hand
+and the Saboteur is a 3. The second rune does nothing: the rest of your hand is Brittle Steel, Dangerous
+Duo and Legion Rearguard, none of them [Action] or [Reaction]. When that chain closes Focus passes to
+them, 347.1.b: *"When that Chain closes, Focus passes to the next Player in Turn Order."* They pass, you
+pass, and the showdown closes. Their 7 kills the Saboteur;
 your 3 does not kill Rell, who heals. Only their unit remains, so they win the combat and conquer B.
 
 **What the Recall bought.** The Saboteur died either way. With the Axe on it, the Saboteur is a 6, and
@@ -397,4 +399,4 @@ turns after their T4.
   TEMPO"* is right, and the walk adds that it is undone on their next Focus while they have the runes.
 - `terminatesIn`, *"six gear kills a game"*: against a deck that plays Equipment for nothing (Rell),
   each kill is a card and a rune of yours for a card of theirs that cost no rune. The [Flow] replay is
-  E4 and one Fury, twice the first cast.
+  E4 and one Fury, twice the first cast's Energy.
