@@ -1568,7 +1568,8 @@ function curveOf(c) {
     ready: !!pow && c.type.includes("gear") && !c.type.includes("unit") && !/This enters exhausted/i.test(t),
     rdy: readiesOf(c, t),
     selfReady: c.type.includes("unit") && /(?:^|[.)]\s*)I enter ready\./.test(t),
-    acc: c.type.includes("unit") && ACCELERATE.test(t),
+    // Each field on its own: `t` joins them with a space, which the line anchor would not see.
+    acc: c.type.includes("unit") && (ACCELERATE.test(c.text || "") || ACCELERATE.test(c.effect || "")),
   };
 }
 

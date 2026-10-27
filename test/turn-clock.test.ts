@@ -419,7 +419,17 @@ describe("[Accelerate] (#510)", () => {
     const m = out.match(/# accelerate \((.*)\): (\d+) units carry it; (\d+) of (\d+) rows hold one/);
     expect(m, "the accelerate non-vacuity line is missing from --turns").toBeTruthy();
     expect(m![1]).toContain(String.raw`\[Accelerate\]`);
-    expect(Number(m![2])).toBe(28);
+    // A second instrument, not the predicate itself: every base whose text or effect says
+    // "accelerate" at all, read straight from data/cards.json. The predicate may not miss one, and
+    // each of them is a unit (Rek'Sai's grant sits on a unit that carries the keyword herself).
+    const all = JSON.parse(readFileSync("data/cards.json", "utf8")).cards as {
+      base: string; type: string[]; text?: string; effect?: string;
+    }[];
+    const said = new Map<string, string[]>();
+    for (const c of all) if (/accelerate/i.test(`${c.text || ""} ${c.effect || ""}`)) said.set(c.base, c.type);
+    expect([...said.values()].every((t) => t.includes("unit"))).toBe(true);
+    expect(Number(m![2])).toBe(said.size);
+    expect(said.size).toBe(28);
     expect(Number(m![3])).toBeGreaterThan(0);
   });
 });
