@@ -469,13 +469,15 @@ function typesOf(costs) {
     // `rdy` (#506) too: Upstage Comedy and an unrelated E2 spell are not. And `acc` (#510): a Red
     // Brambleback and an unrelated E4/1-Power unit are not, and nor are two Accelerate prices.
     // `rune` and `share` (#513): an Acceleration Gate and an unrelated E3/1-Power spell are not.
+    // `big`, `att`, `aph`, `kin` and `kinR` (#523): a card that fires or enables a conditional readier.
     const k = `${c.e}|${c.p}|${c.unit ? 1 : 0}|${c.gated ? 1 : 0}|${c.rain || 0}|${c.holdx || 0}|` +
               `${c.turn ? 1 : 0}|${c.pow || 0}|${c.ready ? 1 : 0}|${c.rdy || 0}|${c.rune || 0}|${c.share ? 1 : 0}|` +
-              `${accKey(c.acc)}|${c.link || ""}`;
+              `${accKey(c.acc)}|${c.big || 0}|${c.att || 0}|${c.aph || 0}|${c.kin || 0}|${c.kinR || 0}|${c.link || ""}`;
     if (!byType.has(k))
       byType.set(k, { e: c.e, p: c.p, unit: !!c.unit, gated: !!c.gated, rain: c.rain || 0,
                       holdx: c.holdx || 0, turn: !!c.turn, pow: c.pow || 0, ready: !!c.ready,
-                      rdy: c.rdy || 0, rune: c.rune || 0, share: !!c.share, acc: c.acc || null, link: c.link || "",
+                      rdy: c.rdy || 0, rune: c.rune || 0, share: !!c.share, acc: c.acc || null,
+                      big: c.big || 0, att: c.att || 0, aph: c.aph || 0, kin: c.kin || 0, kinR: c.kinR || 0, link: c.link || "",
                       after: c.after || "", n: 0, kids: [] });
     byType.get(k).n++;
   }
@@ -490,7 +492,8 @@ function typesOf(costs) {
     if (parent) parent.kids.push(t); else roots.push(t);
   }
   const desc = (t) => `${t.e}|${t.p}|${t.unit ? 1 : 0}|${t.gated ? 1 : 0}|${t.rain}|${t.holdx}|` +
-                      `${t.turn ? 1 : 0}|${t.pow}|${t.ready ? 1 : 0}|${t.rdy}|${t.rune}|${t.share ? 1 : 0}|${accKey(t.acc)}|${t.n}` +
+                      `${t.turn ? 1 : 0}|${t.pow}|${t.ready ? 1 : 0}|${t.rdy}|${t.rune}|${t.share ? 1 : 0}|${accKey(t.acc)}|` +
+                      `${t.big}|${t.att}|${t.aph}|${t.kin}|${t.kinR}|${t.n}` +
                       (t.kids.length ? `(${t.kids.map(desc).sort().join(",")})` : "");
   const cmp = (a, b) => (desc(a) < desc(b) ? -1 : desc(a) > desc(b) ? 1 : 0);
   // Gated roots emit LAST, so that when the recursion reaches one, every ungated type's count for the
@@ -603,25 +606,75 @@ function deployTurnUncached(types, costs) {
   // the Energy needs, and gives the rest to the units that landed with it.
   const runers = [];
   for (let i = 0; i < dim; i++) if (types[i].rune) runers.push(i);
-  // `order` places `k` more readier copies, `rq` holding how many of each runer type the sub-turn
-  // bought and are still unplaced, and keeps in `rBest` the most Energy the own (non-`share`) readiers
-  // can give up to `rNeed`, among the orders whose readies cover `rNeed` at all; -1 means none does.
-  // Hoisted for the same reason `walk` is.
-  const rq = new Int8Array(runers.length);
-  let rNeed = 0, rBest = -1;
-  const order = (k, left, adds, own, shr) => {
+  // THE CONDITIONAL READIERS (#523, `triggersOf`). Curator (`big`) and Aphelios (`att`) fire at most
+  // once a turn, after a SOURCE cost the sub-turn bought: each becomes one more readier kind for
+  // `order`, `vBig` or `vAtt`, priced at its source (and at Aphelios himself when he lands the same
+  // turn), since the source is paid before the trigger resolves. Which source is searched, like the
+  // order. The Gemdragon half (`kinR`) fires once per Gemdragon on the board each time a Dragon is
+  // played, so a Gemdragon readies its own `rune` plus `kinR` per Gemdragon already there (`g0` from
+  // earlier turns, `gp` placed before it in this one), and every other Dragon the sub-turn bought is
+  // a readier too, `kinR` per Gemdragon on the board when it lands. Those go into `order` as ONE kind,
+  // `CHAIN`, cheapest Energy first: they ready the same amount whichever of them is played, so the
+  // cheapest first is the order that keeps every prefix payable.
+  const bigs = [], atts = [], aphs = [], kins = [], gems = [];
+  for (let i = 0; i < dim; i++) {
+    const t = types[i];
+    if (t.big) bigs.push(i);
+    if (t.att) atts.push(i);
+    if (t.aph) aphs.push(i);
+    if (t.kin) kins.push(i);
+    if (t.kinR) gems.push(i);
+  }
+  let aphN = 0, gemN = 0;
+  for (const i of aphs) aphN += types[i].n;
+  for (const i of gems) gemN += types[i].n;
+  const KR = gemN ? types[gems[0]].kinR : 0;
+  const kinsByE = [...kins].sort((a, b) => types[a].e - types[b].e);
+  const chainTypes = gemN ? kins.filter((i) => !types[i].rune).sort((a, b) => types[a].e - types[b].e || types[a].p - types[b].p) : [];
+  const chain = new Int16Array(chainTypes.reduce((a, i) => a + types[i].n, 0) + 1);
+  const trig = bigs.length > 0 || (atts.length > 0 && aphN > 0) || gemN > 0;
+  let runeMax = 0;
+  for (const i of runers) if (types[i].rune > runeMax) runeMax = types[i].rune;
+  for (const i of bigs) if (types[i].big > runeMax) runeMax = types[i].big;
+  for (const i of atts) if (types[i].att > runeMax) runeMax = types[i].att;
+  const haveOf = (i) => ((idx / stride[i]) | 0) % (types[i].n + 1);
+  // `order` places `k` more readier copies of the `nk` kinds in `rk`, `rq` holding how many of each
+  // the sub-turn bought and are still unplaced, and keeps in `rBest` the most Energy the own
+  // (non-`share`) readiers can give up to `rNeed`, among the orders whose readies cover `rNeed` at
+  // all; -1 means none does. Hoisted for the same reason `walk` is.
+  // EVERY readier is paid before it resolves, out of the runes and what the readiers placed before it
+  // returned (`spent` is their Energy so far); the costs that ready nothing wait until the last one
+  // has resolved. Until #523 only the FIRST readier was checked, which was enough for one Gate and
+  // not for a trigger that follows its source: measured 2026-10-27, without the check
+  // curator-printed-cost-rebate, curator-needlessly-large-yordle-printed-ten and
+  // herald-of-scales-gemdragon-drakehound-net-positive each read a turn early, and so does the
+  // two-Gemdragons-and-a-Mountain-Drake pin in test/turn-clock.test.ts.
+  const CHAIN = { chain: true };
+  const rk = [...runers.map((i) => types[i]), null, null, null];
+  const rq = new Int8Array(runers.length + 3);
+  const vBig = { e: 0, p: 0, rune: 0, share: false }, vAtt = { e: 0, p: 0, rune: 0, share: false };
+  // `rMax` bounds what one copy can return in this sub-turn, for the prune at the top of `order`.
+  let rNeed = 0, rBest = -1, nk = runers.length, g0 = 0, rMax = 0;
+  const trigMemo = new Map();
+  const order = (k, left, adds, own, shr, spent, gp, cp) => {
+    if (rBest === rNeed) return;  // nothing scores more than the Energy the turn is short of
+    if (own + shr + k * rMax < rNeed) return;  // nor can the copies left cover what is still short
     if (!k) {
       if (own + shr >= rNeed) { const sc = own < rNeed ? own : rNeed; if (sc > rBest) rBest = sc; }
       return;
     }
-    for (let x = 0; x < runers.length; x++) {
+    for (let x = 0; x < nk; x++) {
       if (!rq[x]) continue;
-      const t = types[runers[x]];
+      const kind = rk[x];
+      const t = kind.chain ? types[chain[cp]] : kind;
+      if (spent + t.e > runes + own + shr) continue;
       rq[x]--;
       const fa = adds < t.p ? adds : t.p;
       const l = left - (t.p - fa);
-      const r = l <= 0 ? 0 : t.rune < l ? t.rune : l;
-      order(k - 1, l, adds - fa, t.share ? own : own + r, t.share ? shr + r : shr);
+      let r = kind.chain || l <= 0 ? 0 : t.rune < l ? t.rune : l;
+      if (kind.chain || t.kinR) r += l <= 0 ? 0 : (g0 + gp) * (KR < l ? KR : l);
+      order(k - 1, l, adds - fa, t.share ? own : own + r, t.share ? shr + r : shr, spent + t.e,
+            t.kinR && !kind.chain ? gp + 1 : gp, kind.chain ? cp + 1 : cp);
       rq[x]++;
     }
   };
@@ -662,25 +715,77 @@ function deployTurnUncached(types, costs) {
       const nr = runes - rec;                       // 161.2.b: a recycled rune leaves the board
       // READYING RUNES (#513): the Energy past `runes` must come from the readiers bought this turn.
       let rdn = rd;
-      if (runers.length) {
-        let slots = 0, first = Infinity, k = 0;
-        for (let x = 0; x < runers.length; x++) {
-          const t = types[runers[x]];
-          const q = cnt[runers[x]] - ((idx / stride[runers[x]]) | 0) % (t.n + 1);
+      if (runers.length || trig) {
+        let slots = 0, k = 0;
+        nk = runers.length;
+        for (let x = 0; x < nk; x++) {
+          const t = rk[x];
+          const q = cnt[runers[x]] - haveOf(runers[x]);
           rq[x] = q;
           if (!q) continue;
           k += q;
-          if (t.e < first) first = t.e;
           if (t.share) slots += q * t.rune;
         }
         // A readier is paid BEFORE it resolves, so the runes it readies never pay its own Energy: the
-        // first one is bought out of the runes alone. Each later one may use what earlier ones returned.
-        // With nothing to return, every shared ready goes to a unit and no order needs searching.
+        // first one is bought out of the runes alone, and each later one may use what earlier ones
+        // returned (`order`). With nothing to return, every shared ready goes to a unit.
         const need = e - runes;
         if (need > 0) {
-          if (first > runes) return;
-          rNeed = need; rBest = -1;
-          order(k, runes, rain + nf, 0, 0);
+          rNeed = need; rBest = -1; rMax = runeMax;
+          if (!trig) order(k, runes, rain + nf, 0, 0, 0, 0, 0);
+          else {
+            // #523. The other Dragons this sub-turn bought, cheapest first, when a Gemdragon is there
+            // to see them: on the board already, or bought in this sub-turn and placed before them.
+            g0 = 0;
+            let g = 0, cn = 0, nb = runers.length, kb = k;
+            for (const i of gems) { const h = haveOf(i); g0 += h; g += cnt[i] - h; }
+            // Aphelios on the board, and whether he lands this sub-turn (then he is paid first).
+            let aOn = 0, aNew = null;
+            for (const i of aphs) { if (cnt[i]) aOn += cnt[i]; if (cnt[i] && !haveOf(i)) aNew = types[i]; }
+            for (const i of aphs) if (haveOf(i)) aNew = null;
+            // Nothing bought this sub-turn that can ready a rune: the Energy past `runes` has no source.
+            let fire = k > 0;
+            if (!fire) for (const i of bigs) if (cnt[i] !== haveOf(i)) { fire = true; break; }
+            if (!fire && aOn) for (const i of atts) if (cnt[i] !== haveOf(i)) { fire = true; break; }
+            if (!fire && g0) for (const i of chainTypes) if (cnt[i] !== haveOf(i)) { fire = true; break; }
+            if (!fire) return;
+            // The search reads nothing else, so its answer is memoized on exactly these.
+            const mk = delta + space * (runes + 13 * (rain + nf + 64 * (need + 256 * (g0 + 8 * (aOn + 8 * (aNew ? 1 : 0))))));
+            const hit = trigMemo.get(mk);
+            if (hit !== undefined) rBest = hit;
+            else {
+            if (g0 + g) for (const i of chainTypes) for (let q = cnt[i] - haveOf(i); q > 0; q--) chain[cn++] = i;
+            if (cn) { rk[nb] = CHAIN; rq[nb++] = cn; kb += cn; }
+            rMax = runeMax + (g0 + g) * KR;
+            // Both are optional ("you may exhaust me", and Aphelios may choose another mode), so -1, no
+            // trigger at all, is always one of the choices.
+            for (let b = -1; b < bigs.length; b++) {
+              const bi = b < 0 ? -1 : bigs[b];
+              if (bi >= 0 && cnt[bi] === haveOf(bi)) continue;
+              for (let a = -1; a < (aOn ? atts.length : 0); a++) {
+                const ai = a < 0 ? -1 : atts[a];
+                if (ai >= 0 && cnt[ai] === haveOf(ai)) continue;
+                let kk = kb;
+                nk = nb;
+                if (bi >= 0) {
+                  const t = types[bi];
+                  vBig.e = t.e; vBig.p = t.p; vBig.rune = t.big;
+                  rk[nk] = vBig; rq[nk++] = 1; kk++;
+                }
+                if (ai >= 0) {
+                  const t = types[ai];
+                  const n = cnt[ai] - haveOf(ai);
+                  vAtt.e = t.e + (aNew ? aNew.e : 0); vAtt.p = t.p + (aNew ? aNew.p : 0); vAtt.rune = t.att;
+                  rk[nk] = vAtt; rq[nk] = n < aOn ? n : aOn; kk += rq[nk++];
+                }
+                order(kk, runes, rain + nf, 0, 0, 0, 0, 0);
+              }
+            }
+            // The extra kinds are spent: `order` restored every count it took.
+            nk = runers.length;
+            trigMemo.set(mk, rBest);
+            }
+          }
           if (rBest < 0) return;
           rdn = rd + slots - (need - rBest);
         } else rdn = rd + slots;
@@ -778,6 +883,28 @@ function deployTurnUncached(types, costs) {
       rain = rainAt[idx];
       rrMax = 0;
       for (const i of runers) rrMax += (types[i].n - ((idx / stride[i]) | 0) % (types[i].n + 1)) * Math.min(types[i].rune, runes);
+      // #523: an upper bound on the conditional readiers, which the leaf makes exact.
+      if (trig) {
+        for (const i of bigs) if (haveOf(i) < types[i].n) { rrMax += Math.min(types[i].big, runes); break; }
+        if (aphN) {
+          let left = 0, r = 0;
+          for (const i of atts) { left += types[i].n - haveOf(i); if (types[i].att > r) r = types[i].att; }
+          rrMax += Math.min(left, aphN) * Math.min(r, runes);
+        }
+        // No Dragon returns more than U, and each is paid out of what the runes and the readiers
+        // before it gave. So the most Dragons any order can play is what the CHEAPEST ones reach
+        // when each returns U: the i cheapest cost no more than any i a real order plays.
+        if (gemN) {
+          const U = gemN * Math.min(KR, runes);
+          let pool = runes + rrMax, m = 0;
+          for (const i of kinsByE) {
+            let left = types[i].n - haveOf(i);
+            while (left > 0 && pool >= types[i].e) { pool += U - types[i].e; m++; left--; }
+            if (left) break;
+          }
+          rrMax += m * U;
+        }
+      }
       u0 = curU[k];
       walk(0, 0, 0, 0, 0, 0, 0, 0, 0, true);
     }
@@ -1667,6 +1794,7 @@ function curveOf(c) {
     ready: !!pow && c.type.includes("gear") && !c.type.includes("unit") && !/This enters exhausted/i.test(t),
     rdy: readiesOf(c, t),
     ...runesOf(c, t),
+    ...triggersOf(c, t),
     selfReady: c.type.includes("unit") && /(?:^|[.)]\s*)I enter ready\./.test(t),
     // Each field on its own: `t` joins them with a space, which the line anchor would not see.
     acc: c.type.includes("unit") && (ACCELERATE.test(c.text || "") || ACCELERATE.test(c.effect || "")),
@@ -1731,12 +1859,13 @@ function readiesOf(c, t) {
  * READYING RUNES (#513): how many runes a card readies on the turn it is paid, which the clock prices
  * as that much Energy back and no Power (164.2.a/b; how, in deployTurnUncached). The POPULATION is
  * RUNE_READY: a sentence that says "ready" and "rune" with the icons stripped, so `:rb_rune_mind:` in a
- * cost never counts. Swept 2026-10-27 over data/cards.json it is twelve bases, two of them modelled:
+ * cost never counts. Swept 2026-10-27 over data/cards.json it is twelve bases, two of them modelled here:
  *   VEN-150 Acceleration Gate   "Ready up to 4 units, gear, and/or runes."    -> 4, shared with `rdy`
  *   UNL-104 Gentle Gemdragon    "When you play me or another Dragon, ready up to 2 runes." -> 2 on
- *                               its own play; the other-Dragon half is in RUNE_REFUSED
- * Every other member is refused BY NAME in RUNE_REFUSED with its reason, and --turns prints any
- * member that is in neither list as unclassified, so a new printing cannot slip past both.
+ *                               its own play; the other-Dragon half is `triggersOf`'s (#523)
+ * and four more by `triggersOf` (#523): Aphelios's two printings and Curator's two. Every other member
+ * is refused BY NAME in RUNE_REFUSED with its reason, and --turns prints any member that is in neither
+ * list as unclassified, so a new printing cannot slip past both.
  *
  * THE LOOSENESS THIS ADMITS, the same as `readiesOf`'s: the clock prices card sets, not steps, so a
  * line that spends a Gate's four readies on its own step (a gear, a unit) also gets them here as
@@ -1744,6 +1873,9 @@ function readiesOf(c, t) {
  * moves three finisher rows, all of them through Gemdragon (dragonstorm-brambleback-trinity-conquer,
  * dragonstorm-confront-grand-plaza, gemdragon-henge-vi-blind-fury, T12 -> T11), and 30 ENGINE rows,
  * every one of them on an unchanged closure that holds VEN-150 or UNL-104.
+ * #523's other-Dragon half moves those same three finishers again, T11 -> T7, and no ENGINE row: the
+ * closure holds three Gemdragons and eleven other Dragons, and with three Gemdragons on the board an
+ * E5 Dragon returns 6 (walked in test/turn-clock.test.ts). Aphelios and Curator move no row.
  */
 const RUNE_READY = /\bready\b[^.\n]*\brunes?\b|\brunes?\b[^.\n]*\bready\b/i;
 const stripIcons = (t) => t.replace(/:rb_[a-z_0-9]+:/g, "");
@@ -1756,20 +1888,58 @@ function runesOf(c, t) {
   if (play) return { rune: Number(play[1]), share: false };
   return { rune: 0, share: false };
 }
+/**
+ * THREE CONDITIONAL RUNE READIERS (#523), each priced only where the row's own declared cards make
+ * the trigger certain, because a refused one could only make a row LATER than the line:
+ *   SFD-049 / SFD-224 Aphelios, Exalted  "When you attach an Equipment to me, choose one that hasn't
+ *                     been chosen this turn — • Ready 2 runes." -> `attR` 2. The ATTACH is the readier:
+ *                     an [Equip] cost the set prices, or the play of an Equipment whose attach is not
+ *                     priced (819.1.d Quick-Draw attaches on play, and the cost [Weaponmaster] waives,
+ *                     821.1.c). It fires only with an Aphelios on the board, and the Ready mode at most
+ *                     once a turn per Aphelios, because the mode "hasn't been chosen this turn".
+ *   VEN-145 / VEN-192 Curator of the Sands (legend)  "When you play a unit, gear, or activated ability
+ *                     with Energy cost [7] or more, you may exhaust me to ready up to 2 runes." -> `bigR`
+ *                     2 at `bigAt` 7. The SOURCE is a unit or gear PRINTED at E7+ (206 reads the printed
+ *                     cost, which is what the clock charges anyway) or an [Equip] cost of E7+, never a
+ *                     spell; once a turn, because the legend exhausts and readies only at the Awaken
+ *                     (415.3.a). A legend is never a cost, so the set's legend switches it on.
+ *   UNL-104 Gentle Gemdragon, its other-Dragon half  "When you play me or another Dragon" -> `kinR` 2
+ *                     for every Gemdragon on the board each time another unit tagged Dragon is played.
+ *                     The clock sequences the Gemdragons first in their turn, which is the order that
+ *                     fires the most: g Gemdragons onto G0 already there, then d other Dragons, is
+ *                     g*G0 + g(g-1)/2 + d(G0 + g) triggers.
+ * How the allocator spends them is in deployTurnUncached (`vBig`, `vAtt`, `own0`).
+ */
+const ATTACH_READY = /When you attach an Equipment to me, choose one that hasn't been chosen this turn —\s*• Ready (\d+) runes\./;
+const BIG_READY = /When you play a unit, gear, or activated ability with Energy cost :rb_energy_(\d+): or more, you may exhaust me to ready up to (\d+) runes\./;
+const KIN_READY = /(?:^|[.)\]]\s*)When you play me or another ([A-Z][a-z]+), ready up to (\d+) runes\./;
+function triggersOf(c, t) {
+  const att = c.type.includes("unit") && t.match(ATTACH_READY);
+  const big = c.type.includes("legend") && t.match(BIG_READY);
+  const kin = c.type.includes("unit") && stripIcons(t).match(KIN_READY);
+  return { attR: att ? Number(att[1]) : 0, bigAt: big ? Number(big[1]) : 0, bigR: big ? Number(big[2]) : 0,
+           kinTag: kin ? kin[1] : "", kinR: kin ? Number(kin[2]) : 0 };
+}
+// What a member of RUNE_READY readies, as --turns prints it: 0 for a refused one.
+const runeReadies = (c) => {
+  const v = curveOf(c);
+  return v.rune || v.attR || v.bigR || v.kinR;
+};
 // Members of RUNE_READY the clock does not price, each with the reason. Every one of these can only
 // make a row LATER than the line, so each is a place this table errs the wrong way and is named here.
+// A modelled member that is here as well prints its entry as the half the clock still refuses.
 const RUNE_REFUSED = {
   "OGN-073": "Sona: at the END of your turn, after the Main Phase, and 167 empties the pool then; they ready at the next Awaken anyway (415.3.a)",
   "VEN-SP2": "Sona's reprint: the same end-of-turn timing",
   "OGS-017": "Dark Child: a legend, never a cost here, and at the end of your turn",
   "OGN-289": "Targon's Peak: a battlefield, and its runes ready at the end of the turn you conquer",
   "OGN-110": "Ekko: [Deathknell], when he dies, and the clock schedules no death",
-  "SFD-049": "Aphelios: when an Equipment attaches to HIM, and the clock does not say which unit an [Equip] picks",
-  "SFD-224": "Aphelios's reprint: the same attach trigger",
+  "SFD-049": "Aphelios: a row that declares no Equipment, so nothing says an attach to him happens, and his Channel mode, a second attach the same turn",
+  "SFD-224": "Aphelios's reprint: the same",
   "UNL-080": "Hwei: when he moves and the card he discards is a gear, a move and a discard the clock does not schedule",
-  "VEN-145": "Curator of the Sands: a legend, never a cost here, and only on a play of Energy 7 or more",
+  "VEN-145": "Curator of the Sands: a row with no unit, gear or [Equip] cost printed at Energy 7 or more, such as an [Empower] the clock does not price, and a second play of 7+ the same turn, since she exhausts",
   "VEN-192": "Curator of the Sands's reprint: the same",
-  "UNL-104": "its OTHER-Dragon half, which needs a Gemdragon already on the board when the second Dragon is played",
+  "UNL-104": "a Dragon the row does not declare, and an [anyBodies] body, which the clock never reads as a Dragon",
 };
 
 /**
@@ -1900,6 +2070,18 @@ const costsOfSet = (set, ign, bodies, pick) => {
     const c = byBase.get(b);
     return c && /\[Weaponmaster\]/i.test(`${c.text || ""} ${c.effect || ""}`);
   });
+  // THE CONDITIONAL RUNE READIERS (#523, `triggersOf`), switched on by the set's own cards: Curator by
+  // the legend, Aphelios's attach by an Aphelios, the Gemdragon half by a Gemdragon. Each flags the
+  // costs that can fire it, and deployTurnUncached decides on which turn they do.
+  let bigAt = 0, bigR = 0, attR = 0, kinTag = "";
+  for (const b of Object.keys(set)) {
+    const c = byBase.get(b);
+    if (!c) continue;
+    const v = curveOf(c);
+    if (v.bigR) { bigAt = v.bigAt; bigR = v.bigR; }
+    if (v.attR) attR = v.attR;
+    if (v.kinR) kinTag = v.kinTag;
+  }
   for (const [b, q] of Object.entries(set)) {
     const c = byBase.get(b);
     if (!c || c.type.includes("legend") || c.type.includes("battlefield")) continue;
@@ -1929,11 +2111,19 @@ const costsOfSet = (set, ign, bodies, pick) => {
     let acc = hasAcc ? { e: post && ign.freeE ? 0 : 1, p: post && ign.freeP ? 0 : 1 } : null;
     const ready0 = selfReady || !!(acc && !acc.e && !acc.p);
     if (ready0) acc = null;
+    const { attR: isAph, kinR } = curveOf(c);
+    // #523: the PRINTED Energy is what Curator reads (206), whatever the engine pays for it.
+    const big = bigR && (c.type.includes("unit") || c.type.includes("gear")) && (c.energy || 0) >= bigAt ? bigR : 0;
+    const kin = kinTag && c.type.includes("unit") && (c.tags || []).includes(kinTag) ? 1 : 0;
+    // An Equipment attaches on its [Equip] cost when one is priced, and on its own play otherwise.
+    const equipment = attR && c.type.includes("gear") && (c.tags || []).includes("Equipment");
     for (let i = 0; i < q; i++) {
       out.push({ e: ce, p: cp, unit: c.type.includes("unit") && !ready0, gated: post, rain, holdx, turn, pow, ready, rdy,
-                 rune, share, acc, link: linked ? `${b}#play` : "" });
+                 rune, share, acc, link: linked ? `${b}#play` : "",
+                 big, att: equipment && !linked ? attR : 0, aph: isAph ? 1 : 0, kin, kinR });
       if (linked) equips.push({ e: post && ign.freeE ? 0 : eq.e, p: post && ign.freeP ? 0 : eq.p,
-                                unit: false, gated: post, link: `${b}#equip`, after: `${b}#play` });
+                                unit: false, gated: post, link: `${b}#equip`, after: `${b}#play`,
+                                big: bigR && eq.e >= bigAt ? bigR : 0, att: equipment ? attR : 0 });
     }
   }
   // `anyBodies` (#494): generic unit CARDS on the same path as a named unit, so each one owes the
@@ -1953,7 +2143,9 @@ const costsOfSet = (set, ign, bodies, pick) => {
   }
   if (weaponmaster && equips.length) {
     equips.sort((a, b2) => a.e + a.p - (b2.e + b2.p));
-    equips.shift();
+    // The waived attach still ATTACHES (#523), so an Aphelios trigger keeps it as a free cost.
+    const w = equips.shift();
+    if (w.att) equips.push({ ...w, e: 0, p: 0 });
   }
   // COLLAPSE FREE COSTS. N items that cost nothing are payable exactly when one of them is, so N of
   // them and one of them are the same constraint - but they are N+1 states against 2, and with
@@ -1975,9 +2167,11 @@ const costsOfSet = (set, ign, bodies, pick) => {
   // A free Sentinel, a free Seal, a free Time Warp or a free Comedy still Adds, queues a turn or
   // readies a unit, and N of them do that N times, so none is interchangeable with one of itself.
   // Nor is a free unit with [Accelerate] (#510): each copy chooses for itself whether to pay it, and
-  // nor is a free rune readier (#513), which returns Energy per copy.
+  // nor is a free rune readier (#513), which returns Energy per copy, nor a card that fires or
+  // enables a conditional one (#523).
   const collapsible = (c) => !c.e && !c.p && !c.after && !roots.has(c.link || "") &&
-                             !c.rain && !c.holdx && !c.turn && !c.pow && !c.rdy && !c.rune && !c.acc;
+                             !c.rain && !c.holdx && !c.turn && !c.pow && !c.rdy && !c.rune && !c.acc &&
+                             !c.big && !c.att && !c.aph && !c.kin;
   const free = all.filter(collapsible);
   if (free.length < 2) return all;
   const rest = all.filter((c) => !collapsible(c));
@@ -2224,7 +2418,7 @@ for (const { e, domains: ownDomains, cards: ownCards } of entries) {
   clock.push({ id: e.id, cls: e.class, pays, base: baselineTurn(merged), via: note || null,
                ordered: finalCosts.some((c) => c.after), income: finalCosts.some((c) => c.pow),
                readier: finalCosts.some((c) => c.rdy), accel: finalCosts.some((c) => c.acc),
-               runer: finalCosts.some((c) => c.rune), bodies: pick.length ? bodyKey(domainsOfSet(cards)) : null,
+               runer: finalCosts.some((c) => c.rune || c.big || c.att || c.kinR), bodies: pick.length ? bodyKey(domainsOfSet(cards)) : null,
                domains: (merged.length ? merged : [...ownDomains]).sort().join("/") || "colourless" });
 }
 
@@ -2252,11 +2446,15 @@ const ACCEL_UNITS = [...byBase.values()].filter((c) => curveOf(c).acc).length;
 function runeLine(rows) {
   const seen = new Map();
   for (const c of byBase.values()) if (RUNE_READY.test(stripIcons(`${c.text || ""} ${c.effect || ""}`))) seen.set(c.base, c);
-  const modelled = [...seen.values()].filter((c) => curveOf(c).rune);
+  const modelled = [...seen.values()].filter((c) => runeReadies(c));
   const refused = [...seen.keys()].filter((b) => RUNE_REFUSED[b] && !modelled.some((c) => c.base === b));
   const loose = [...seen.keys()].filter((b) => !RUNE_REFUSED[b] && !modelled.some((c) => c.base === b));
+  const how = (v) => [v.rune && `${v.rune} on its own play${v.share ? ", shared with units" : ""}`,
+                      v.kinR && `${v.kinR} on each other ${v.kinTag} played while it is on the board`,
+                      v.attR && `${v.attR} on an attach to it, once a turn`,
+                      v.bigR && `${v.bigR} on a play of Energy ${v.bigAt}+, once a turn`].filter(Boolean).join(", ");
   return `# readying runes (${RUNE_READY}): ${seen.size} cards say it; ` +
-         `modelled ${modelled.length}: ${modelled.map((c) => `${c.base} ${c.name} (${curveOf(c).rune}${curveOf(c).share ? ", shared with units" : ""}` +
+         `modelled ${modelled.length}: ${modelled.map((c) => `${c.base} ${c.name} (${how(curveOf(c))}` +
                                                            `${RUNE_REFUSED[c.base] ? `, NOT ${RUNE_REFUSED[c.base]}` : ""})`).join(", ")}; ` +
          `refused ${refused.length}: ${refused.map((b) => `${b} (${RUNE_REFUSED[b]})`).join(", ")}; ` +
          `unclassified ${loose.length}${loose.length ? `: ${loose.join(", ")}` : ""}; ` +

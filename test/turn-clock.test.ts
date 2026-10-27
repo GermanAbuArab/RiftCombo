@@ -540,7 +540,97 @@ describe("readying runes (#513)", () => {
     for (const b of said) expect(`${m![4]} ${m![6]}`, b).toContain(b);
     expect(m![4]).toContain("VEN-150");
     expect(m![6]).toContain("OGN-110");
+    // #523: the three conditional readiers left the refused list for the modelled one.
+    for (const b of ["SFD-049", "SFD-224", "VEN-145", "VEN-192", "UNL-104"]) {
+      expect(m![4], b).toContain(b);
+      expect(m![6], b).not.toContain(b);
+    }
     expect(Number(m![8])).toBeGreaterThan(0);
+  });
+});
+
+/**
+ * THREE CONDITIONAL RUNE READIERS (#523), pinned against REAL card text through `--price`, each with a
+ * control that a looser model fails. Same rules as #513's block above: a readied rune is one more
+ * Energy and no more Power (164.2.a/b), and a trigger resolves only after the cost that fired it is
+ * paid. Going first, 2 runes a turn (315.3.b).
+ *
+ * Cards: SFD-049 Aphelios, Exalted (Unit, E4 + 1, "When you attach an Equipment to me, choose one that
+ * hasn't been chosen this turn — • Ready 2 runes. • Channel 1 rune exhausted. • Buff a friendly
+ * unit."), UNL-039 Soul Sword (Equipment, E1, "[Equip] [C]"), UNL-066 Moonlight Affliction (Spell, E7),
+ * OGN-129 Confront (Spell, E2), VEN-145 Curator of the Sands (Legend, "When you play a unit, gear, or
+ * activated ability with Energy cost [7] or more, you may exhaust me to ready up to 2 runes."),
+ * OGN-088 Mega-Mech (Unit, E7, no text), VEN-056 Clairvoyance (Spell, E7), UNL-104 Gentle Gemdragon
+ * (Unit, Dragon, E8, "When you play me or another Dragon, ready up to 2 runes."), OGN-131 Dune Drake
+ * (Unit, Dragon, E5), OGN-142 Mountain Drake (Unit, Dragon, E9, no text).
+ *
+ * APHELIOS + SOUL SWORD + AFFLICTION, T3. T1: the Sword (2 runes). T2: Aphelios, 4 runes, one recycled
+ * for his Power (3 left). T3: 5 runes, exhaust all five (pool 5), recycle one for the [Equip] (4 left),
+ * attach to him and choose Ready 2 runes, exhaust them (pool 7), cast Affliction. Not T2: Affliction
+ * wants a pool of 7 and T2's is 4 runes + 2. Without the trigger it is T4: Affliction needs 7 runes, and
+ * the Sword and Aphelios on T1/T2 leave 3, 5, 7 of them, so T4 with the attach's recycle after it.
+ *
+ * THE SAME + A SECOND SWORD + CONFRONT, T4 (the control: Ready is ONE mode, once a turn). E15 + 3. T3
+ * would need a pool of 7 for Affliction out of one Ready, so a board of 5 runes, so at most ONE
+ * recycle before T3, which is Aphelios's own: no attach before T3, nothing readied on T1 or T2, and
+ * those turns' 2 + 4 runes cannot pay the other E8 (Aphelios, two Swords, Confront). T4: Confront T1,
+ * Aphelios T2 (3 runes left), both Swords and one attach on T3 (4 left), the other attach on T4's 6
+ * runes (5 left, pool 6 + 2) and Affliction. A clock that let both attaches choose Ready on T3 says T3
+ * (pool 5 - 2 + 2 + 2 = 7); this one passes without #523 too: it guards the model, not the bug.
+ *
+ * CURATOR + THREE MEGA-MECHS + AFFLICTION, T6. Four E7 cards. T4: 8 runes, a Mech (pool 1), exhaust
+ * Curator to ready 2 (pool 3). T5: 10 runes, a Mech, ready 2. T6: 12 runes, the third Mech (pool 5),
+ * Curator readied at the Awaken (415.3.a) readies 2 (pool 7), Affliction. Not T5: a turn holds two E7s
+ * only with 12 runes + her 2 = 14, she fires only after a 7+ play, and before T4 no turn has 7 runes, so
+ * T4 and T5 take one each. Without her it is T7: no turn ever holds two (161.2.a caps the board at 12),
+ * so the four need T4, T5, T6 and T7.
+ *
+ * CURATOR + FOUR E7 SPELLS, T7 (the control: she reads a unit, gear or activated ability, never a
+ * spell). The same four E7 costs as above, two Afflictions and two Clairvoyances, so she never fires and
+ * the four need four turns of 7 runes. A clock that let a spell fire her prints T6.
+ *
+ * TWO GEMDRAGONS + TWO DUNE DRAKES, T5. T4: 8 runes, a Gemdragon (pool 0), its own trigger readies 2.
+ * T5: 10 runes (pool 10). The second Gemdragon (pool 2): its own trigger and the first one's "another
+ * Dragon" ready 2 each (pool 6). A Drake (pool 1): both Gemdragons ready 2 each (pool 5). The other
+ * Drake (pool 0). Not T4: a Gemdragon is E8, so T4 is the first turn that can land one, and it leaves
+ * 0 + 2 of T4's 8, short of the second. Without the other-Dragon half it is T6: T5's second Gemdragon leaves 2 + 2 = 4,
+ * short of a Drake, so a Drake on T3, the Gemdragons on T4 and T5 and the other Drake on T6.
+ *
+ * TWO GEMDRAGONS + A MOUNTAIN DRAKE, T6 (the control: a trigger comes AFTER the Dragon is paid). T4 the
+ * first Gemdragon. T5's 10 runes: the second (pool 2 + 4 = 6), and the Drake's E9 is not payable out of
+ * 6, whatever its two triggers would return. T6: 12 runes, the Drake (pool 3 + 4). A clock that counted
+ * the Drake's own triggers toward its own cost would say T5 (10 + 4 + 4 = 18 of 17).
+ */
+describe("conditional rune readiers (#523)", () => {
+  const price = (set: string) => {
+    const s = execFileSync("node", ["scripts/adversarial-check.mjs", "--price", set], { encoding: "utf8" });
+    const m = s.match(/all T(\d+|Infinity)/);
+    expect(m, s).toBeTruthy();
+    return Number(m![1]);
+  };
+
+  it("pays Aphelios + Soul Sword + Moonlight Affliction on T3, as walked: the attach to him readies 2 runes", () => {
+    expect(price("SFD-049:1,UNL-039:1,UNL-066:1")).toBe(3);
+  });
+
+  it("pays Aphelios + two Soul Swords + Affliction + Confront on T4, not T3: one Ready a turn (the control)", () => {
+    expect(price("SFD-049:1,UNL-039:2,UNL-066:1,OGN-129:1")).toBe(4);
+  });
+
+  it("pays Curator + three Mega-Mechs + Moonlight Affliction on T6, as walked: an E7 unit fires her", () => {
+    expect(price("VEN-145:1,OGN-088:3,UNL-066:1")).toBe(6);
+  });
+
+  it("pays Curator + four E7 spells on T7: a spell never fires her (the control)", () => {
+    expect(price("VEN-145:1,UNL-066:2,VEN-056:2")).toBe(7);
+  });
+
+  it("pays two Gemdragons + two Dune Drakes on T5, as walked: every Gemdragon on the board readies 2 per Dragon", () => {
+    expect(price("UNL-104:2,OGN-131:2")).toBe(5);
+  });
+
+  it("pays two Gemdragons + a Mountain Drake on T6, not T5: the triggers follow the Dragon's cost (the control)", () => {
+    expect(price("UNL-104:2,OGN-142:1")).toBe(6);
   });
 });
 
