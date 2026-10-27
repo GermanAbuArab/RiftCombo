@@ -208,6 +208,16 @@ option for them and it would hold the Plaza to two units on your T3 Hold. They t
 the point, because the bodies they play this turn are ready on their T3 and do the same job one turn
 later at no loss of tempo.
 
+> **CORRECTED 2026-10-27 (#516):** the Poro attack holds the Plaza to **one** unit on your T3 Hold, not
+> two. Re-walked: A holds Determined Sentry (1), Steel Paws (0), Frisky Hunter (3) and its Bird (1). The
+> Poro attacks with 2 + 1 from [Assault] = 3 (*"[Assault] (+1 :rb_might: while I'm an attacker.)"*) and
+> assigns 1 each to Steel Paws, Determined Sentry and the Bird; those three die and the Hunter, which
+> took nothing, is the unit left. The 5 Might of your four defenders kills the Poro, you win the combat,
+> and one unit, the Hunter, stands at A for the T3 Hold. That Hold scores 1 and does not win. The T3
+> rune count is 6: a second Hunter and its Bird (E4) and either the Mouser (E2) or the Sentry and the
+> Paws (E1 each) make at most 1 + 2 + 2 = 5 units at A, so the seven of the main line are not reached
+> on T3. They give up the Poro and the Conquer on B (one point) for that.
+
 **Their T2: the bodies stay home.** The Ramhound and the Guardian go to base, not to B. Played to B they
 could not reach A on their T3 (144.4.a, 144.4.b). In base, they are ready on their T3 and A is one move
 away. This is the same choice as in the Up from the Deep walk, and it is the answer again.
@@ -345,7 +355,7 @@ here: no paragraph found says whether "here" then falls back to the Hunter's las
 
 Not walked: going second (three runes on T1, so the T3 seven has a spare Energy-1 body); the mulligan;
 2v2 and Match (486.5 lets you choose the battlefield); their T2 Daring Poro attack (it holds the Plaza
-to two on your T3 Hold and costs them the Poro and a point); and the turns after their T4.
+to one on your T3 Hold [CORRECTED 2026-10-27 (#516): was "two"; see §4] and costs them the Poro and a point); and the turns after their T4.
 
 ## Leads
 
