@@ -1472,7 +1472,7 @@ function equipCost(c) {
  * says so itself, so theirs starts the turn after. Honeyfruit's [Level 6] line also Adds Energy and
  * is not priced, which can only make a row later.
  */
-const POWER_ADD = /(?:^|[.)\]]\s*)(?:\[Reaction\](?:\[>\])?\s*)?:rb_exhaust::\s*(?:\[Reaction\]\s*—\s*)?\[Add\]((?:\s*:rb_rune_[a-z]+:)+)(?!\s*:rb_energy|:rb_energy)(?![^.]*\.\s*(?:Use|Spend)\b[^.]*\bonly)/i;
+const POWER_ADD = /(?:^|[.)\]]\s*)(?:\[Reaction\](?:\[>\])?\s*)?:rb_exhaust::\s*(?:\[Reaction\]\s*—\s*)?\[Add\]((?:\s*:rb_rune_[a-z]+:)+)(?!\s*:rb_(?:rune|energy))(?![^.]*\.\s*(?:Use|Spend)\b[^.]*\bonly)/i;
 function curveOf(c) {
   const t = `${c.text || ""} ${c.effect || ""}`;
   const add = t.match(/When I hold, \[Add\]((?:\s*:rb_rune_rainbow:)+)/i);
@@ -1678,7 +1678,7 @@ if (args.includes("--price")) {
   for (const part of spec.split(",").filter(Boolean)) {
     const [b, q] = part.split(":");
     const c = [...byBase.values()].find((x) => x.base.toLowerCase() === (b || "").toLowerCase());
-    if (!c || !(Number(q) > 0)) { console.error(`# --price: bad item "${part}", want BASE:QTY`); process.exit(2); }
+    if (!c || !Number.isInteger(Number(q)) || !(Number(q) > 0)) { console.error(`# --price: bad item "${part}", want BASE:QTY`); process.exit(2); }
     set[c.base] = (set[c.base] ?? 0) + Number(q);
   }
   const costs = costsOfSet(set, null, { n: 0, engine: 0 });
