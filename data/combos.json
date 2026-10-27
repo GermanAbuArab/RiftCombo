@@ -58339,6 +58339,76 @@
       ],
       "rulesVersion": "2026-07-16",
       "notes": "SYNTHESIZED 2026-10-27 for #491, the first slice of shape 2 (identity-first) of #200: Chaos/Fury had two finishers and none paying by T4. CANDIDATE, not verified: walked once as a game, going first, and in that walk it did not win on T4, because the opponent had ready bodies in base. Card text verbatim from data/corpus_flat.txt. It and trifarian-war-camp-illaoi-tentacles cannot share a board (485.4.a, 103.4.c), and the War Camp's +1 Might is the one Colorless fix for 1-Might Tentacles. REVISED 2026-10-27 (#495): the play's Leads checked. Added the notable on the Might lifts this line cannot have (the War Camp shares no board with the Plaza, 485.4.a, and the Rage Amplifier does not fit the T3 Energy). The free answer and the board it wins on were already notables; the T4 pay turn is already stated against the clock's T3, which #494 fixes. Stays candidate."
+    },
+    {
+      "id": "frisky-hunter-grand-plaza",
+      "name": "Two Frisky Hunters and their Birds fill The Grand Plaza on turns two and three — seven units, no spell, for a turn-four Hold",
+      "class": "ALT_WIN",
+      "status": "candidate",
+      "uses": [
+        {
+          "card": "OGN-293",
+          "quantity": 1,
+          "role": "battlefield",
+          "zone": "BATTLEFIELD",
+          "state": "controlled, to receive the units",
+          "note": "Colorless battlefield. 'When you hold here, if you have 7+ units here, you win the game.'"
+        },
+        {
+          "card": "UNL-033",
+          "quantity": 2,
+          "role": "engine",
+          "zone": "HAND",
+          "note": "Calm unit, E4, M3. 'When you play me, play a 1 :rb_might: Bird unit token with [Deflect] here. (Opponents must pay :rb_rune_rainbow: to choose it with a spell or ability.)' Played to the Plaza, 'here' is the Plaza (359.3.f.1), so one card is two units there for four Energy and no Power. The Bird is defined by 187.7."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "win-the-game"
+      ],
+      "anyBodies": {
+        "count": 3,
+        "note": "Get three of your units onto The Grand Plaza, two of them by the end of T2 and the third on T3"
+      },
+      "prerequisites": {
+        "easy": [
+          "Legend's Domain Identity includes Calm (103.1.b.3); The Grand Plaza is Colorless. Synthesized for Body/Calm (#496), the least-covered legend pair not yet worked, and walked with OGN-257 Blind Monk, with UNL-111 Determined Sentry (Body, E1) and VEN-043 Steel Paws (Calm, E1) as the two T1 bodies: Body/Calm is the only pair that can run both, six Energy-1 bodies.",
+          "Seven units at the Plaza when your T4 Beginning Phase starts: three bodies, two Frisky Hunters and their two Birds."
+        ],
+        "notable": [
+          "NO SPELL, SO NO SPELL TAX: every card in the line is a unit, so VEN-045 Helm of Suppression ('Opponents' spells cost :rb_energy_1: more.'), which takes up-from-the-deep-flow-grand-plaza from T4 to T5, does nothing to it. Nor does a counterspell: there is no spell to counter, and the Bird comes from a trigger.",
+          "THE CHEAPEST ANSWER IS STILL FREE: any ready enemy body in their base on their T3. Walked in docs/plays/2026-10-27-two-frisky-hunters-put-seven-on-the-plaza-by-turn-three-a-tank-raises-the-free-answer-to-three-might-and-their-six-still-kill-four.md against the Calm/Order Radiant Dawn deck: with UNL-036 Mutated Mouser ([Shield 2] [Tank], so 3 Might as a defender and lethal damage first, 814.1.c, 815.1.b) as the seventh unit, killing one of the seven costs 3 Might instead of 1, and the Ramhound and the Sunlit Guardian their T2 left in base still had 6: the Mouser and three 1-or-0-Might units died (465.2.c, 465.2.c.3, 142.4.b), and it was 3 to 3 after their T4. The two T1 bodies are 1 and 0 Might, and a 0-Might unit dies to 1 damage (142.4.b: lethal is a non-zero amount).",
+          "THE ONE BOARD IT WINS ON: nothing of theirs ready in their base on their T3 (units at their own battlefield cannot reach the Plaza, 144.4.a, 144.4.b; units played on their T3 enter exhausted, 143.4), and no E1 removal spell. 383.2.a.1 counts the seven when the Hold happens.",
+          "The cheapest spells, pool-wide, priced against the target: OGN-133 Flurry of Blades (Body, E1) deals 1 to every unit at battlefields and kills five of the seven, every unit but the two Hunters (the Mouser's [Shield] works only in combat, 814.1.d.1); OGN-169 Gust (Chaos, E1) returns a Hunter, the Mouser or a Determined Sentry, none of which has [Deflect]; a Bird or a Steel Paws costs one Power more (809.1.c, 809.1.b.3).",
+          "TURN CLOCK: npm run adversarial -- --turns prints T4 against the Calm Hold baseline of T5. Two Hunters (E8) and three bodies priced at E1 each (VEN-043 Steel Paws, the cheapest Calm body) are eleven Energy against the six T1 and T2 afford, so the set completes on T3 and the Hold waits for T4. By hand: Get three of your units onto The Grand Plaza, two of them by the end of T2 and the third on T3. Two Energy-1 bodies on T1 (2 runes), they take the empty Plaza on T2 (316.8.b.1, 348.2.a.1) and a Hunter is played onto it (4), the second Hunter and a third body on T3 (6). Nothing in it costs Power. The clock does not model readying effects (#506); this line uses none.",
+          "HOW OFTEN: castable by T3 going first in the share of games computed exactly in the play doc (six Energy-1 bodies, three Mutated Mouser, three Frisky Hunter in the 39-card draw pile, Tournament Rules 402.1), and 485.5 puts the Plaza in play one game in three.",
+          "WEAKER IN CARDS THAN flurry-of-feathers-grand-plaza-win: five cards for the seven against that entry's four, and the Birds land on your own turn where a Flurry of Feathers lands after their last window. What it has that the Flurry does not is no Power and no spell."
+        ]
+      },
+      "steps": [
+        "Bring The Grand Plaza as one of your three battlefields; 485.5 picks the one in play at random.",
+        "T1: play two Energy-1 bodies to base. T2: they walk onto the empty Plaza and Conquer (144.4.a, 316.8.b.1, 348.2.a.1), and a Frisky Hunter is played straight onto it (355.2.a); its Bird is played 'here', the Plaza (359.3.f.1). Four units.",
+        "T3: the second Frisky Hunter and its Bird, and a third body, all onto the Plaza: E4 + E2. Seven units.",
+        "Their T3: all seven must survive it. A ready enemy body in their base kills a 1-Might unit per point of Might it attacks with (465.2.c, 465.2.c.3); a [Tank] unit must be killed first (815.1.b).",
+        "T4 Beginning Phase: the Hold (315.2.b.2, 469.2) fires the Plaza, 383.2.a.1 counts the seven at that instant, and 195 gives you the game."
+      ],
+      "terminatesIn": "you win the game at the T4 Hold, if all seven units are still at The Grand Plaza when your Beginning Phase starts",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "accessed": "2026-10-27",
+          "quote": "355.2.a: 'By default, Valid locations include the controller’s Base or a Battlefield the controller controls.' 359.3.f.1: 'Some information used by abilities is referenced from the source of those abilities, or from one or more targets of a spell or ability. This can usually be recognized by the presence of words like “here,” “my,” or “its.”' 383.2.a.1: 'Any additional conditional statement immediately after the Condition must be true in order for the Condition to be fulfilled. Such a conditional statement is part of the Trigger Condition and not the Effect.'"
+        },
+        {
+          "title": "Play 2026-10-27 (docs/plays/2026-10-27-two-frisky-hunters-put-seven-on-the-plaza-by-turn-three-a-tank-raises-the-free-answer-to-three-might-and-their-six-still-kill-four.md), issue #496",
+          "kind": "manual-walk",
+          "date": "2026-10-27"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "SYNTHESIZED 2026-10-27 for #496, the second slice of shape 2 (identity-first) of #200: Body/Calm had four finishers and none clocked by T4. CANDIDATE, not verified: walked once as a game, going first, and in that walk it did not win on T4, because the opponent had ready bodies in base. Card text verbatim from data/corpus_flat.txt."
     }
   ]
 }
