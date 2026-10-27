@@ -322,7 +322,19 @@ describe("power income (#501)", () => {
  *       beside it, pays E7 + 4b on 4 + (2 + b) runes, which no b affords.
  * Neither exists, so T7: which is why the Seal, and not Comedy alone, is worth the turn.
  *
- * SEAL WITHOUT COMEDY, T7: the same `all` T6 with the second Tryndamere landing on it exhausted.
+ * SEAL WITHOUT COMEDY was T7 here, the second Tryndamere landing on T6 exhausted. It is T6 since #510,
+ * because Red Brambleback carries [Accelerate] and the last unit can be a Brambleback instead:
+ *   T2  4 runes: the Seal (one recycle) and a Brambleback, its Power the Seal's Add. 3 left.
+ *   T3  5 runes: a Brambleback off the Seal. 5 left.
+ *   T4  7 runes: Tryndamere, 2 Power = Seal + one recycle. 6 left.
+ *   T5  8 runes: the second Tryndamere the same way. 7 left.
+ *   T6  9 runes: the third Brambleback Accelerated, E5 and 2 Power = Seal + one recycle, so it enters
+ *       ready (805.1.a) and both Tryndameres readied at the Awakening (415.3.a).
+ * So on these cards Comedy is no longer the only route to T6, and the readier needs a witness whose
+ * units have no Accelerate: SEAL + THREE TRYNDAMERES (OGN-034 has none). The Seal on T2, a Tryndamere
+ * on T4 (7 runes) and T5 (8), each paid Seal + one recycle, leave 9 runes on T6: the third Tryndamere
+ * and Comedy are E9 with 2 Power, and Comedy readies him, so T6. Without Comedy he lands exhausted, T7.
+ * Not earlier either way: only T4 and T5 hold the 7 runes a Tryndamere needs by T5, so `all` is T6.
  */
 describe("readying (#506)", () => {
   const pays = (set: string) => {
@@ -340,13 +352,74 @@ describe("readying (#506)", () => {
     expect(pays("UNL-029:3,OGN-034:2,UNL-009:1")).toBe(7);
   });
 
-  it("pays the Seal line without Comedy on T7, so the readier is what moved it", () => {
-    expect(pays("OGN-040:1,UNL-029:3,OGN-034:2")).toBe(7);
+  it("pays the Seal line without Comedy on T6 too, through the third Brambleback's [Accelerate] (#510)", () => {
+    expect(pays("OGN-040:1,UNL-029:3,OGN-034:2")).toBe(6);
+  });
+
+  it("pays Seal + three Tryndameres + Comedy on T6, as walked: no unit has Accelerate", () => {
+    expect(pays("OGN-040:1,OGN-034:3,UNL-009:1")).toBe(6);
+  });
+
+  it("pays the same three Tryndameres without Comedy on T7, so the readier is what moved it", () => {
+    expect(pays("OGN-040:1,OGN-034:3")).toBe(7);
   });
 
   it("still finds rows that hold a readier, so 'it moved no finisher' cannot go vacuous", () => {
     const m = out.match(/readying \([^)]*\): (\d+) of (\d+) rows hold a readier/);
     expect(m, "the readier non-vacuity line is missing from --turns").toBeTruthy();
     expect(Number(m![1])).toBeGreaterThan(5);
+  });
+});
+
+/**
+ * [ACCELERATE] (#510), pinned against REAL card text through `--price`. 805.1.a: "Accelerate is
+ * functionally short for "As you play me, you may pay [1][C] as an additional cost. If you do, I enter
+ * ready."" 805.2: "Accelerate is an Optional Additional Cost to be paid as a player plays the unit with
+ * the ability." So a unit carrying it can skip 143.4's readiness turn for one more Energy and one more
+ * Power of its domain, and only on the turn it is played. These read `pays`, because Accelerate never
+ * moves `all`: it is an extra cost, and the clock pays it only when it lands the last unit ready.
+ *
+ * Cards: UNL-029 Red Brambleback (Fury, E4 + 1 Fury Power, "[Accelerate] (You may pay
+ * :rb_energy_1::rb_rune_fury: as an additional cost to have me enter ready.)") and OGN-034 Tryndamere
+ * (E7 + 2, no Accelerate). Going first, 2 runes a turn (315.3.b), a recycled rune leaves (161.2.b),
+ * and one rune can pay its exhaust for Energy and its recycle for Power on the same turn (164.2.a,
+ * 164.2.b). An Accelerated Brambleback is E5 + 2 Power.
+ *
+ * TWO BRAMBLEBACKS + TRYNDAMERE, T5: the "T=1, K=2" row of
+ * docs/plays/2026-10-24-tryndamere-scores-two-on-turn-five-*.md ("Brambleback T3, Tryndamere T4, one
+ * Accelerated T5"). T3 6 runes: a Brambleback, one recycle, 5 left. T4 7 runes: Tryndamere, E7 and
+ * two recycles, 5 left. T5 7 runes: the second Brambleback Accelerated, E5 and two recycles, and it
+ * enters ready, so every unit can act on T5. Not earlier: `all` is T5, because a Tryndamere needs 7
+ * runes (T4 at the earliest, 8 at most), which leaves 1 Energy beside him on T4, so both Bramblebacks
+ * would have to land by T3 (T2 then T3 leaves 4 runes on T3 and 6 on T4, short of 7). Without
+ * Accelerate the unit that lands on T5 is exhausted until T6, which is what the clock printed before.
+ *
+ * ONE BRAMBLEBACK, T3 (the control, "the extra rune is not there"). T2 holds 4 runes: the plain E4 +
+ * 1 fits and the Accelerated E5 + 2 does not, so the Brambleback lands exhausted and acts on T3. Paying
+ * Accelerate on T3 instead also acts on T3. Paying it never helps here, and a model that waived the
+ * readiness turn without charging the extra rune would print T2.
+ */
+describe("[Accelerate] (#510)", () => {
+  const pays = (set: string) => {
+    const s = execFileSync("node", ["scripts/adversarial-check.mjs", "--price", set], { encoding: "utf8" });
+    const m = s.match(/pays T(\d+|Infinity)/);
+    expect(m, s).toBeTruthy();
+    return Number(m![1]);
+  };
+
+  it("pays two Red Bramblebacks + Tryndamere on T5, the last Brambleback Accelerated, as walked", () => {
+    expect(pays("UNL-029:2,OGN-034:1")).toBe(5);
+  });
+
+  it("pays one Red Brambleback on T3, because T2 has no rune for Accelerate (the control)", () => {
+    expect(pays("UNL-029:1")).toBe(3);
+  });
+
+  it("prints its predicate and finds units and rows that carry it, so 'it moved nothing' cannot go vacuous", () => {
+    const m = out.match(/# accelerate \((.*)\): (\d+) units carry it; (\d+) of (\d+) rows hold one/);
+    expect(m, "the accelerate non-vacuity line is missing from --turns").toBeTruthy();
+    expect(m![1]).toContain(String.raw`\[Accelerate\]`);
+    expect(Number(m![2])).toBe(28);
+    expect(Number(m![3])).toBeGreaterThan(0);
   });
 });
