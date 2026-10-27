@@ -556,6 +556,13 @@ function deployTurnUncached(types, costs) {
     return { all: g, unit: g, unitLast: true, extra: false, greedy: true };
   }
   const FULL = space - 1;                       // every count at its maximum
+  // THE WORK GUARD (#523's security scan). SZ bounds the states, not what one state may buy: once a
+  // Gemdragon engine returns more Energy than its Dragons cost, a turn can afford almost any mix, and
+  // a legal set of 3 Gemdragons and 21 other Dragons walked 195 million leaves (past 120s) where the
+  // catalogue's largest closure walks 6 million. Past LEAF_CAP leaves the set goes to the same greedy
+  // fallback, counted and named like the state guard's. RC_LEAVES raises it for a measurement.
+  const LEAF_CAP = Number(process.env.RC_LEAVES) || 3e7;
+  let leaves = 0, over = false;
 
   // HOLD ADDS (#339). UNL-087 Blue Sentinel: "When I hold, [Add] [A] at the start of your next Main
   // Phase", and "Your hold effects for holding here trigger an additional time". A Hold is Scored in
@@ -656,9 +663,30 @@ function deployTurnUncached(types, costs) {
   // `rMax` bounds what one copy can return in this sub-turn, for the prune at the top of `order`.
   let rNeed = 0, rBest = -1, nk = runers.length, g0 = 0, rMax = 0;
   const trigMemo = new Map();
-  const order = (k, left, adds, own, shr, spent, gp, cp) => {
+  // DOMINANCE (#523's security scan: 3 Gemdragons, 21 other Dragons and an Aphelios ran past 120s).
+  // Which copies are placed fixes everything but the readies: `spent` is their Energy, the Adds they
+  // used are min(adds, their Power) and so `left` is fixed too, and every LATER step returns what it
+  // returns whatever came first. So a partial order with no more `own` and `shr` than one already seen
+  // at the same counts can do no better, and `order` walks the placement counts instead of every
+  // interleaving. `key` packs the counts still unplaced; past SEEN of them it searches unpruned.
+  const kStride = new Int32Array(runers.length + 3);
+  const SEEN = 1 << 16;
+  const seenGen = new Int32Array(SEEN), seenOwn = new Int16Array(SEEN), seenShr = new Int16Array(SEEN);
+  let gen = 0, dom = false;
+  const search = (k, adds) => {
+    let span = 1, key = 0;
+    for (let x = 0; x < nk; x++) { kStride[x] = span; key += rq[x] * span; span *= rq[x] + 1; }
+    dom = span <= SEEN;
+    gen++;
+    order(k, runes, adds, 0, 0, 0, 0, 0, key);
+  };
+  const order = (k, left, adds, own, shr, spent, gp, cp, key) => {
     if (rBest === rNeed) return;  // nothing scores more than the Energy the turn is short of
     if (own + shr + k * rMax < rNeed) return;  // nor can the copies left cover what is still short
+    if (dom) {
+      if (seenGen[key] === gen && seenOwn[key] >= own && seenShr[key] >= shr) return;
+      seenGen[key] = gen; seenOwn[key] = own; seenShr[key] = shr;
+    }
     if (!k) {
       if (own + shr >= rNeed) { const sc = own < rNeed ? own : rNeed; if (sc > rBest) rBest = sc; }
       return;
@@ -674,7 +702,7 @@ function deployTurnUncached(types, costs) {
       let r = kind.chain || l <= 0 ? 0 : t.rune < l ? t.rune : l;
       if (kind.chain || t.kinR) r += l <= 0 ? 0 : (g0 + gp) * (KR < l ? KR : l);
       order(k - 1, l, adds - fa, t.share ? own : own + r, t.share ? shr + r : shr, spent + t.e,
-            t.kinR && !kind.chain ? gp + 1 : gp, kind.chain ? cp + 1 : cp);
+            t.kinR && !kind.chain ? gp + 1 : gp, kind.chain ? cp + 1 : cp, key - kStride[x]);
       rq[x]++;
     }
   };
@@ -707,7 +735,9 @@ function deployTurnUncached(types, costs) {
   // with them can ready (#506), or that paid [Accelerate] (#510). `fin` says every type before `i`
   // is at its maximum in the state being built, i.e. this sub-turn may still complete the set.
   const walk = (i, e, p, delta, un, rd, cast, nf, fp, fin) => {
+    if (over) return;
     if (i === dim) {
+      if (++leaves > LEAF_CAP) { over = true; return; }
       const k = idx + delta + (queued + cast) * space;
       const ext = nf && fp > p - nf ? fp : p - nf;  // Power the fresh Adds cannot pay
       const rec = ext > rain ? ext - rain : 0;
@@ -732,7 +762,7 @@ function deployTurnUncached(types, costs) {
         const need = e - runes;
         if (need > 0) {
           rNeed = need; rBest = -1; rMax = runeMax;
-          if (!trig) order(k, runes, rain + nf, 0, 0, 0, 0, 0);
+          if (!trig) search(k, rain + nf);
           else {
             // #523. The other Dragons this sub-turn bought, cheapest first, when a Gemdragon is there
             // to see them: on the board already, or bought in this sub-turn and placed before them.
@@ -780,7 +810,7 @@ function deployTurnUncached(types, costs) {
                   vAtt.e = t.e + (aNew ? aNew.e : 0); vAtt.p = t.p + (aNew ? aNew.p : 0); vAtt.rune = t.att;
                   rk[nk] = vAtt; rq[nk] = n < aOn ? n : aOn; kk += rq[nk++];
                 }
-                order(kk, runes, rain + nf, 0, 0, 0, 0, 0);
+                search(kk, rain + nf);
               }
             }
             // The extra kinds are spent: `order` restored every count it took.
@@ -922,6 +952,12 @@ function deployTurnUncached(types, costs) {
     for (;;) {
       sub++;
       step(extraTurn);
+      if (over) {
+        greedyFallbacks++;
+        if (process.env.RC_FB) console.error(`FALLBACK leaves>${LEAF_CAP} dim=${dim}`);
+        const g = greedyTurn(costs);
+        return { all: g, unit: g, unitLast: true, extra: false, greedy: true };
+      }
       for (let qd = 0; qd <= warps; qd++) {
         const k = FULL + qd * space;
         if (nxtR[k] < 0) continue;
@@ -2321,7 +2357,9 @@ if (args.includes("--price")) {
   // owed when a unit nothing readied landed with the last cost.
   console.log(`price ${Object.entries(set).map(([b, q]) => `${b}x${q}`).join(" ")}: all T${d.all}, last unit T${d.unit}` +
               `, unitLast ${!!d.unitLast}, pays T${d.all + (d.unitLast ? 1 : 0)}, income ${costs.reduce((a, c) => a + (c.pow || 0), 0)}` +
-              (pick.length ? `, bodies ${pick.map((b) => b.base).join("+")} of [${bodyCandidates(set).map(bodyLabel).join(", ")}]` : ""));
+              (pick.length ? `, bodies ${pick.map((b) => b.base).join("+")} of [${bodyCandidates(set).map(bodyLabel).join(", ")}]` : "") +
+              // A guard's greedy answer is not the exact search's, so it says so (#523).
+              (d.greedy ? ", GREEDY FALLBACK (a guard tripped: not exact)" : ""));
   process.exit(0);
 }
 

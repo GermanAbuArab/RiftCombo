@@ -632,6 +632,15 @@ describe("conditional rune readiers (#523)", () => {
   it("pays two Gemdragons + a Mountain Drake on T6, not T5: the triggers follow the Dragon's cost (the control)", () => {
     expect(price("UNL-104:2,OGN-142:1")).toBe(6);
   });
+
+  // The set #523's security scan found: legal, 3 copies of each, and it walked 195 million leaves
+  // (past 120s) before the work guard. It must finish and SAY its answer is the greedy one.
+  it("sends 3 Gemdragons + 21 other Dragons + 2 Aphelios to the greedy fallback instead of hanging, and says so", () => {
+    const s = execFileSync("node", ["scripts/adversarial-check.mjs", "--price",
+      "UNL-104:3,OGN-001:3,OGN-131:3,OGN-038:3,VEN-016:3,OGN-142:3,SFD-006:3,UNL-118:3,SFD-224:2"],
+      { encoding: "utf8", timeout: 60_000 });
+    expect(s).toContain("GREEDY FALLBACK");
+  }, 60_000); // ~6s alone: it walks the whole leaf budget before it falls back
 });
 
 /**
