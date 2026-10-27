@@ -209,22 +209,31 @@ describe("the allocator's ordering constraint", () => {
    * callers price with it - the closure search, the consumer search and the final row - and a caller
    * that drops the bodies argument picks its fold as if bodies were free while the row pays for them.
    * That is how `candlelit-sanctum-known-next-draw` folded `amateur-recital-free-evacuation` at T0.
+   * Since #517 every caller prices through `priceSet`, which chooses the bodies and is the one caller
+   * of `costsOfSet`, so both are read: a `priceSet` call needs the bodies and `costsOfSet` the pick.
    */
-  it("passes a bodies argument at every costsOfSet call, so no fold is chosen bodies-free", () => {
+  it("passes a bodies argument at every costsOfSet and priceSet call, so no fold is chosen bodies-free", () => {
     const src = readFileSync("scripts/adversarial-check.mjs", "utf8");
-    const calls: string[] = [];
-    for (let at = src.indexOf("costsOfSet("); at >= 0; at = src.indexOf("costsOfSet(", at + 1)) {
-      let depth = 0, i = at + "costsOfSet".length, commas = 0;
-      for (; i < src.length; i++) {
-        const ch = src[i];
-        if ("([{".includes(ch!)) depth++;
-        else if (")]}".includes(ch!) && --depth === 0) break;
-        else if (ch === "," && depth === 1) commas++;
+    const callsOf = (name: string) => {
+      const calls: string[] = [];
+      for (let at = src.indexOf(`${name}(`); at >= 0; at = src.indexOf(`${name}(`, at + 1)) {
+        let depth = 0, i = at + name.length, commas = 0;
+        for (; i < src.length; i++) {
+          const ch = src[i];
+          if ("([{".includes(ch!)) depth++;
+          else if (")]}".includes(ch!) && --depth === 0) break;
+          else if (ch === "," && depth === 1) commas++;
+        }
+        calls.push(`${commas}:${src.slice(at, i + 1)}`);
       }
-      calls.push(`${commas}:${src.slice(at, i + 1)}`);
-    }
-    expect(calls.length, "fewer costsOfSet calls than the four in the script, so this check may be reading the wrong thing").toBeGreaterThanOrEqual(4);
-    for (const c of calls) expect(Number(c.split(":")[0]), c).toBeGreaterThanOrEqual(2);
+      return calls;
+    };
+    const price = callsOf("priceSet");
+    const costs = callsOf("costsOfSet");
+    expect(price.length, "fewer priceSet calls than the five in the script, so this check may be reading the wrong thing").toBeGreaterThanOrEqual(5);
+    expect(costs.length, "costsOfSet has no caller, so this check may be reading the wrong thing").toBeGreaterThanOrEqual(1);
+    for (const c of price) expect(Number(c.split(":")[0]), c).toBeGreaterThanOrEqual(2);
+    for (const c of costs) expect(Number(c.split(":")[0]), c).toBeGreaterThanOrEqual(3);
   });
 
   it("prices a body in the identities the baseline calls cheap (--selftest-bodies)", () => {
@@ -532,6 +541,74 @@ describe("readying runes (#513)", () => {
     expect(m![4]).toContain("VEN-150");
     expect(m![6]).toContain("OGN-110");
     expect(Number(m![8])).toBeGreaterThan(0);
+  });
+});
+
+/**
+ * WHICH UNIT A BODY IS (#517). An `anyBodies` body was priced only as the cheapest unit in the
+ * identity, which lands exhausted (143.4), never as a dearer one that lands ready, so a row whose last
+ * unit was a body read late. `--price ... --bodies N` prices N bodies chosen as a row's are, and
+ * prints the pick. Hand walks, Body/Fury and Body, runes 2/4 on T1/T2 (161.2.a), and 164.2.a/b: R
+ * runes pay R Energy and R Power in one turn, a recycled rune leaving the board.
+ *
+ * CHEMTECH ENFORCER + PUNCH FIRST + ONE BODY, T2 (the Accelerate body is a turn earlier). OGN-003 is
+ * an E2 unit, SFD-097 an E1 + 2 Power spell. T1: the Enforcer, both runes. T2: 4 runes pay Punch
+ * First and OGN-010 Legion Rearguard Accelerated, E2 + E1 and 1 Fury Power (805.1.a): E4 + 3 Power,
+ * so it enters ready, and the Enforcer readied at T2's Awaken. With UNL-111 Determined Sentry (E1)
+ * every order lands a unit on T2 exhausted: T1 holds the Enforcer, the Sentry, or the Sentry and
+ * Punch First (E2 + 2), and T2 takes the rest, which always holds a unit. So T3, which is what the
+ * clock printed before this.
+ *
+ * TWO DETERMINED SENTRIES + ONE BODY, T2 (the same, inside one domain). T1: two Sentries. T2: UNL-115
+ * Nilah, Joyful Ascetic Accelerated, E3 + 1 and E1 + 1: E4 + 2 Power on 4 runes, ready. Three
+ * Sentries cannot all land on T1's 2 runes, so one lands on T2 exhausted: T3.
+ *
+ * CLEAVE + ONSLAUGHT + ONE BODY, T2 (the control, the cheap body wins). OGN-004 is an E1 spell,
+ * VEN-081 an E4 one. T1: the Sentry and Cleave; T2: Onslaught, and the Sentry is ready. An E2 body
+ * leaves no room for Cleave on T1, and T2's 4 runes cannot pay Onslaught and either of them: T3.
+ */
+describe("anyBodies: which unit a body is (#517)", () => {
+  const price = (set: string, bodies: number) => {
+    const s = execFileSync("node", ["scripts/adversarial-check.mjs", "--price", set, "--bodies", String(bodies)], { encoding: "utf8" });
+    const m = s.match(/pays T(\d+|Infinity), .*, bodies (\S+) of \[/);
+    expect(m, s).toBeTruthy();
+    return { pays: Number(m![1]), bodies: m![2] };
+  };
+
+  it("pays Chemtech Enforcer + Punch First + one body on T2, the body a Legion Rearguard Accelerated, as walked", () => {
+    expect(price("OGN-003:1,SFD-097:1", 1)).toEqual({ pays: 2, bodies: "OGN-010" });
+  });
+
+  it("pays two Determined Sentries + one body on T2, the body a Nilah Accelerated, as walked", () => {
+    expect(price("UNL-111:2", 1)).toEqual({ pays: 2, bodies: "UNL-115" });
+  });
+
+  it("pays Cleave + Onslaught + one body on T2 with the cheap Determined Sentry (the control)", () => {
+    expect(price("OGN-004:1,VEN-081:1", 1)).toEqual({ pays: 2, bodies: "UNL-111" });
+  });
+
+  it.each(["1e0", "01", "9", "-1", ""])("refuses --bodies %j", (n) => {
+    const r = spawnSync("node", ["scripts/adversarial-check.mjs", "--price", "OGN-004:1", "--bodies", n], { encoding: "utf8" });
+    expect(r.status).toBe(2);
+    expect(r.stderr).toContain("# --price: bad --bodies");
+  });
+
+  it("prints the candidates of every identity a row with bodies is priced in", () => {
+    const m = out.match(/# body candidates \(anyBodies, #517[^)]*\): (\d+) of (\d+) rows carry bodies, in (\d+) identities\n((?:#   .*\n)*)/);
+    expect(m, "the body candidates line is missing from --turns").toBeTruthy();
+    expect(Number(m![1])).toBeGreaterThan(0);
+    const lines = m![4]!.trim().split("\n");
+    expect(lines.length).toBe(Number(m![3]));
+    // A second instrument: the identities read off the rows themselves, for the rows that carry bodies.
+    const combos = JSON.parse(readFileSync("data/combos.json", "utf8")).combos as { id: string; anyBodies?: { count: number } }[];
+    const withBodies = new Set(combos.filter((c) => c.anyBodies?.count).map((c) => c.id));
+    const doms = new Set<string>();
+    for (const line of out.split("\n")) {
+      const r = line.match(/T\s*(?:\d+|Infinity)\s+vs\s+T\d+\s+baseline\s+(?:SLOWER)?\s*\S+\s+(\S+)\s+(\S+)/);
+      if (r && withBodies.has(r[2]!)) doms.add(r[1]!);
+    }
+    expect(doms.size).toBeGreaterThan(0);
+    for (const d of doms) expect(lines.some((l) => l.startsWith(`#   ${d} `)), d).toBe(true);
   });
 });
 
