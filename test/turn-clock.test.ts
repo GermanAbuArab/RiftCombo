@@ -1,4 +1,5 @@
 import { execFileSync } from "node:child_process";
+import { readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
 
 /**
@@ -118,6 +119,21 @@ describe("the turn clock", () => {
   });
 
   /**
+   * The FIFTH and SIXTH reference points, and the ones that pin `anyBodies` (#494). Neither line names
+   * a unit in `uses`, so until the clock charged the field it priced the spell alone and printed T3.
+   * Up from the Deep (chaos): three E2 bodies on T1-T2 and the spell on T3, Hold on T4
+   * (docs/plays/2026-10-27-up-from-the-deep-*.md §6). Flurry of Feathers (calm): three E1 bodies on
+   * T1-T2, the T2 body leaves 3 of 4 runes so the E4 Reaction waits for their T3, Hold on your T4.
+   */
+  it("charges anyBodies on up-from-the-deep-flow-grand-plaza (T4)", () => {
+    expect(rows.get("up-from-the-deep-flow-grand-plaza")?.pays).toBe(4);
+  });
+
+  it("charges anyBodies on flurry-of-feathers-grand-plaza-win (T4)", () => {
+    expect(rows.get("flurry-of-feathers-grand-plaza-win")?.pays).toBe(4);
+  });
+
+  /**
    * 143.4 exhausts UNITS only — 359.2.d enters a non-unit gear READY at base and 359.3 makes a spell
    * linger on the Chain — so the readiness turn must NOT be universal. If some row does not pay it,
    * the narrowing is live; if every row paid it, the `+1` would be unconditional again.
@@ -187,6 +203,35 @@ describe("the allocator's ordering constraint", () => {
     // and every disagreement is at most one turn, which is what makes "T4 or T5" a statement
     for (const [id, r] of differ) expect(r.pays - (other.get(id) as number), id).toBeLessThanOrEqual(1);
   }, 60_000); // spawns scripts/adversarial-check.mjs: 3.4s in a full run on the Windows tower (#244)
+
+  /**
+   * #205 shipped because one of two cost builders was patched. There is one builder now, but three
+   * callers price with it - the closure search, the consumer search and the final row - and a caller
+   * that drops the bodies argument picks its fold as if bodies were free while the row pays for them.
+   * That is how `candlelit-sanctum-known-next-draw` folded `amateur-recital-free-evacuation` at T0.
+   */
+  it("passes a bodies argument at every costsOfSet call, so no fold is chosen bodies-free", () => {
+    const src = readFileSync("scripts/adversarial-check.mjs", "utf8");
+    const calls: string[] = [];
+    for (let at = src.indexOf("costsOfSet("); at >= 0; at = src.indexOf("costsOfSet(", at + 1)) {
+      let depth = 0, i = at + "costsOfSet".length, commas = 0;
+      for (; i < src.length; i++) {
+        const ch = src[i];
+        if ("([{".includes(ch!)) depth++;
+        else if (")]}".includes(ch!) && --depth === 0) break;
+        else if (ch === "," && depth === 1) commas++;
+      }
+      calls.push(`${commas}:${src.slice(at, i + 1)}`);
+    }
+    expect(calls.length, "fewer costsOfSet calls than the four in the script, so this check may be reading the wrong thing").toBeGreaterThanOrEqual(4);
+    for (const c of calls) expect(Number(c.split(":")[0]), c).toBeGreaterThanOrEqual(2);
+  });
+
+  it("prices a body in the identities the baseline calls cheap (--selftest-bodies)", () => {
+    const st = execFileSync("node", ["scripts/adversarial-check.mjs", "--selftest-bodies"], { encoding: "utf8" });
+    expect(st).toContain("# all pass");
+    expect(st).not.toContain("FAIL");
+  });
 
   it("still has a non-empty linked population, so 'it moves nothing' cannot go vacuous", () => {
     const m = out.match(/ordering \(\[Equip\] after its own gear[^)]*\): (\d+) of (\d+) rows carry a linked cost/);

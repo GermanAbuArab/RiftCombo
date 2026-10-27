@@ -8,6 +8,7 @@
 //   node scripts/adversarial-check.mjs --selftest-holes    the hole sweep + notable emitter, on synthetic entries
 //   node scripts/adversarial-check.mjs --selftest-garrison the garrison Might floor, on real entries with hand-derived answers
 //   node scripts/adversarial-check.mjs --selftest-answer   which answer the Hold modes name, incl. a counterfactual pool
+//   node scripts/adversarial-check.mjs --selftest-bodies   the anyBodies price against the baseline's cheap-body identities
 //   node scripts/adversarial-check.mjs --recheck-garrison  garrison notables that no longer match their board
 //
 // It asks two questions of every INFINITE / BURST / CHAIN / ALT_WIN entry:
@@ -158,6 +159,12 @@
 //      `anyBodies: {count: 1}`. So the carrier is inert on all 79 rows where it is expressible and
 //      unmodellable on the 80th without inventing a decklist, which is why it is a probe and not
 //      shipped.
+//
+//      `anyBodies` IS PRICED AS OF 2026-10-27 (#494), and until then the field was charged nothing:
+//      `up-from-the-deep-flow-grand-plaza` read T3 on Up from the Deep alone against a hand price of
+//      T4. Each body is the cheapest unit the row's own identity plays (BODY_PRICE), on the same cost
+//      path as a named unit, in costsOfSet - and the closure and consumer searches pass it too, which
+//      is the half #205 forgot. Two finishers moved, both T3 -> T4, and sixteen ENGINEs, all later.
 import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { dirname, resolve, sep } from "node:path";
 
@@ -1425,8 +1432,57 @@ function curveOf(c) {
   };
 }
 
+/**
+ * WHAT ONE `anyBodies` BODY COSTS, swept, not typed (#494). `anyBodies.count` is a number of unit
+ * CARDS the line needs beyond `uses` (src/types.ts, BodyRequirement), and until #494 this table
+ * charged none of them: `up-from-the-deep-flow-grand-plaza` read T3 because it priced Up from the
+ * Deep alone, while its three bodies make it T4 by hand (docs/plays/2026-10-27-up-from-the-deep-*).
+ *
+ * The field carries a count and a quoted note and nothing else - no Might, no tag - so a body is the
+ * cheapest deckable, constructed-legal, non-Signature unit the identity can play: Energy first, then
+ * Power. Swept 2026-10-27 that is E1 in body (UNL-111 Determined Sentry) and calm (VEN-043 Steel
+ * Paws) and E2 in the other four, which is CHEAP_BODY_DOMAINS reproduced from the pool rather than
+ * read from it; `--selftest-bodies` fails if the two ever disagree.
+ *
+ * THE IDENTITY IS THE ONE THE ROW'S BASELINE IS MEASURED IN, `domainsOfSet` of the merged set, and
+ * that includes a ONE-domain row. Its free second domain could reach an E1 body, but it could reach
+ * the T5 Hold curve too, so pricing the bodies there and the baseline here would compare two
+ * different decks. An identity with NO domain is priced at what every identity reaches (E2), which
+ * is what `baselineTurn` assumes for it as well.
+ */
+const BODY_PRICE = (() => {
+  const best = new Map();
+  for (const [base, c] of byBase) {
+    if (!c.type.includes("unit") || !c.domains.length || c.signature || BANNED.has(base)) continue;
+    const cost = { e: c.energy || 0, p: c.power || 0, base };
+    for (const d of c.domains) {
+      const b = best.get(d);
+      if (!b || cost.e < b.e || (cost.e === b.e && cost.p < b.p)) best.set(d, cost);
+    }
+  }
+  return best;
+})();
+const EVERY_IDENTITY_BODY = [...BODY_PRICE.values()].reduce((a, b) => (b.e > a.e || (b.e === a.e && b.p > a.p) ? b : a));
+function bodyPrice(set) {
+  let best = null;
+  for (const d of domainsOfSet(set)) {
+    const b = BODY_PRICE.get(d);
+    if (b && (!best || b.e < best.e || (b.e === best.e && b.p < best.p))) best = b;
+  }
+  return best || EVERY_IDENTITY_BODY;
+}
+/**
+ * The bodies a set of folded entries needs: the MAX of their counts, as `bothBodies` merges them in
+ * src/combos.ts, because one body standing on a battlefield counts for every line that wants one.
+ * `engine` is the part an ignition engine itself declares, which is bought before its own output.
+ */
+function bodiesOf(ids, engineIds = []) {
+  const max = (xs) => xs.reduce((a, id) => Math.max(a, byId.get(id)?.anyBodies?.count ?? 0), 0);
+  return { n: max(ids), engine: max(engineIds) };
+}
+
 /** THE ONLY cost builder. #205 shipped a defect because there were two and one was patched. */
-const costsOfSet = (set, ign) => {
+const costsOfSet = (set, ign, bodies) => {
   const out = [];
   const equips = [];
   // 821.1.c: [Weaponmaster] attaches one of your Equipment "for one rainbow less", so the cheapest
@@ -1461,6 +1517,16 @@ const costsOfSet = (set, ign) => {
                  link: linked ? `${b}#play` : "" });
       if (linked) equips.push({ e: post && ign.freeE ? 0 : eq.e, p: post && ign.freeP ? 0 : eq.p,
                                 unit: false, gated: post, link: `${b}#equip`, after: `${b}#play` });
+    }
+  }
+  // `anyBodies` (#494): generic unit CARDS on the same path as a named unit, so each one owes the
+  // readiness turn of 143.4 if it lands last and is post-ignition unless an engine declared it.
+  if (bodies && bodies.n) {
+    const body = bodyPrice(set);
+    for (let i = 0; i < bodies.n; i++) {
+      const post = !!(ign && i >= bodies.engine);
+      out.push({ e: post && ign.freeE ? 0 : body.e, p: post && ign.freeP ? 0 : body.p, unit: true,
+                 gated: post, rain: 0, holdx: 0, turn: false, link: "" });
     }
   }
   if (weaponmaster && equips.length) {
@@ -1527,6 +1593,26 @@ function closuresOf(e, seen, depth) {
   return partials;
 }
 
+// --selftest-bodies (#494): the body price and the baseline must describe the SAME deck, so the
+// identities the sweep finds an E1 body in must be the ones `baselineTurn` types by hand; and the
+// charge must be visible on the hand-walked row, T2 without its three bodies and T3 with them.
+if (args.includes("--selftest-bodies")) {
+  const e1 = [...BODY_PRICE].filter(([, b]) => b.e <= 1).map(([d]) => d).sort().join(",");
+  const typed = [...CHEAP_BODY_DOMAINS].sort().join(",");
+  const plaza = byId.get("up-from-the-deep-flow-grand-plaza");
+  const bare = deployTurn(costsOfSet(cardSetOf(plaza), null, { n: 0, engine: 0 })).all;
+  const charged = deployTurn(costsOfSet(cardSetOf(plaza), null, bodiesOf([plaza.id]))).all;
+  const cases = [
+    [`E1 body domains swept [${e1}] = CHEAP_BODY_DOMAINS [${typed}]`, e1 === typed],
+    [`up-from-the-deep-flow-grand-plaza completes T${bare} without its bodies, want T2`, bare === 2],
+    [`up-from-the-deep-flow-grand-plaza completes T${charged} with 3 bodies at E${bodyPrice(cardSetOf(plaza)).e}, want T3`, charged === 3],
+  ];
+  for (const [name, ok] of cases) console.log(`  ${ok ? "ok  " : "FAIL"}  ${name}`);
+  const bad = cases.filter(([, ok]) => !ok).length;
+  console.log(bad ? `# ${bad} FAILED` : "# all pass");
+  process.exit(bad ? 1 : 0);
+}
+
 for (const { e, domains: ownDomains, cards: ownCards } of entries) {
   // UPWARD first: the cheapest legal closure that satisfies this entry's own needs.
   let cards = ownCards;
@@ -1536,7 +1622,7 @@ for (const { e, domains: ownDomains, cards: ownCards } of entries) {
   if ((e.needs || []).length) {
     let best = null;
     for (const c of closuresOf(e, new Set(), 0)) {
-      const t = deployTurn(costsOfSet(c.cards)).all;
+      const t = deployTurn(costsOfSet(c.cards, null, bodiesOf(c.ids))).all;
       if (!best || t < best.t) best = { t, c };
     }
     // An unsatisfiable `needs` is NOT silently ignored: price the entry alone and say the fuel is
@@ -1558,7 +1644,7 @@ for (const { e, domains: ownDomains, cards: ownCards } of entries) {
       if (!c.needs.every((n) => produces.has(n))) continue;
       const merged = mergeSets(cards, cardSetOf(c));
       if (domainsOfSet(merged).size > 2) continue;
-      const t = deployTurn(costsOfSet(merged)).all;
+      const t = deployTurn(costsOfSet(merged, null, bodiesOf([...closureIds, c.id]))).all;
       if (!best || t < best.t) best = { t, id: c.id, merged, consumer: c };
     }
     if (best) { cards = best.merged; via = best.id; consumer = best.consumer; }
@@ -1579,11 +1665,14 @@ for (const { e, domains: ownDomains, cards: ownCards } of entries) {
   // it; the closure and consumer searches above compare candidates at rune prices, which is a
   // heuristic for WHICH fuel to fold and not part of the answer.
   let ign = null;
+  const rowIds = consumer ? [...closureIds, consumer.id] : closureIds;
+  let bodies = bodiesOf(rowIds);
   if (ignition) {
     const engineIds = closureIds.filter((id) => {
       const c = byId.get(id);
       return c && (c.produces || []).some((x) => x === FUEL_E || x === FUEL_P);
     });
+    bodies = bodiesOf(rowIds, engineIds);
     if (engineIds.length) {
       let bases = {};
       let freeE = false, freeP = false;
@@ -1595,10 +1684,12 @@ for (const { e, domains: ownDomains, cards: ownCards } of entries) {
       }
       const baseSet = new Set(Object.keys(bases));
       // No post-ignition cards means nothing to discount, and the row is priced exactly as before.
-      if (Object.keys(cards).some((b) => !baseSet.has(b))) ign = { bases: baseSet, freeE, freeP };
+      // A body the engine did not declare is bought after it, like a card outside its set (#494).
+      if (Object.keys(cards).some((b) => !baseSet.has(b)) || bodies.n > bodies.engine)
+        ign = { bases: baseSet, freeE, freeP };
     }
   }
-  const finalCosts = costsOfSet(cards, ign);
+  const finalCosts = costsOfSet(cards, ign, bodies);
   const d = deployTurn(finalCosts);
   if (d.greedy) greedyRows.push(e.id);
   const gated = beginningPhaseGated(e) || (consumer ? beginningPhaseGated(consumer) : false);
