@@ -2085,6 +2085,9 @@ if (args.includes("--selftest-bodies")) {
     [`domains whose candidates lose their cheapest price [${cheapKept}], want none`, cheapKept === ""],
     [`body/fury candidates [${bodyFury}], want [UNL-111,OGN-010,UNL-001]`, bodyFury === "UNL-111,OGN-010,UNL-001"],
     [`units no candidate covers, over ${idents.length} identities: [${uncovered}], want none`, idents.length === 21 && !uncovered.length],
+    // The fallback no identity reaches today: a domain with no unit is priced as no domain is.
+    [`an identity with no unit gets [${candidatesOf(["no-such-domain"]).map((b) => b.base)}], want [${EVERY_IDENTITY_BODY.base}] as colourless`,
+     candidatesOf(["no-such-domain"])[0] === EVERY_IDENTITY_BODY && candidatesOf([])[0] === EVERY_IDENTITY_BODY],
     [`dark-child-inferna-off-turn-ambush pays T${darkAcc} with its Fury body Accelerated, want T3`, darkAcc === 3],
     [`dark-child-inferna-off-turn-ambush pays T${darkPlain} with the body's Accelerate removed, want T4`, darkPlain === 4],
   ];
