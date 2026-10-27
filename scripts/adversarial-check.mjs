@@ -11,6 +11,7 @@
 //   node scripts/adversarial-check.mjs --selftest-bodies   the anyBodies price against the baseline's cheap-body identities
 //   node scripts/adversarial-check.mjs --recheck-garrison  garrison notables that no longer match their board
 //   node scripts/adversarial-check.mjs --price B:Q,B:Q      the turn clock on a card set that is not an entry
+//                                       [--bodies N]       ... plus N anyBodies bodies in the set's identity (#517)
 //
 // It asks two questions of every INFINITE / BURST / CHAIN / ALT_WIN entry:
 //
@@ -166,6 +167,8 @@
 //      T4. Each body is the cheapest unit the row's own identity plays (BODY_PRICE), on the same cost
 //      path as a named unit, in costsOfSet - and the closure and consumer searches pass it too, which
 //      is the half #205 forgot. Two finishers moved, both T3 -> T4, and sixteen ENGINEs, all later.
+//      Since #517 a body is chosen among the identity's candidates (BODY_CANDIDATES: the cheapest, and
+//      the dearer units that can land ready) by `priceSet`, every mix of them, and it moved no row.
 import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { dirname, resolve, sep } from "node:path";
 
@@ -1779,7 +1782,8 @@ const RUNE_REFUSED = {
  * cheapest deckable, constructed-legal, non-Signature unit the identity can play: Energy first, then
  * Power. Swept 2026-10-27 that is E1 in body (UNL-111 Determined Sentry) and calm (VEN-043 Steel
  * Paws) and E2 in the other four, which is CHEAP_BODY_DOMAINS reproduced from the pool rather than
- * read from it; `--selftest-bodies` fails if the two ever disagree.
+ * read from it; `--selftest-bodies` fails if the two ever disagree. Since #517 that cheapest unit is
+ * one CANDIDATE of several, below, and every identity's candidates keep its price.
  *
  * THE IDENTITY IS THE ONE THE ROW'S BASELINE IS MEASURED IN, `domainsOfSet` of the merged set, and
  * that includes a ONE-domain row. Its free second domain could reach an E1 body, but it could reach
@@ -1797,28 +1801,75 @@ const BODY_PRICE = (() => {
       if (!b || cost.e < b.e || (cost.e === b.e && cost.p < b.p)) best.set(d, cost);
     }
   }
-  // [Accelerate] (#510): a body is any unit at that price, so it may be one that carries the keyword.
-  // Swept 2026-10-27 that is Fury (OGN-010 Legion Rearguard) and Chaos (UNL-127 Mister Root), both at
-  // E2 beside units without it; the E1 bodies of Body and Calm and the E2 of Mind and Order have none.
-  for (const [base, c] of byBase) {
-    if (!c.type.includes("unit") || !c.domains.length || c.signature || BANNED.has(base) || !curveOf(c).acc) continue;
-    for (const d of c.domains) {
-      const b = best.get(d);
-      if ((c.energy || 0) === b.e && (c.power || 0) === b.p) best.set(d, { ...b, acc: true });
-    }
-  }
   return best;
 })();
-const EVERY_IDENTITY_BODY = [...BODY_PRICE.values()].reduce((a, b) => (b.e > a.e || (b.e === a.e && b.p > a.p) ? b : a));
-function bodyPrice(set) {
-  let best = null;
-  for (const d of domainsOfSet(set)) {
-    const b = BODY_PRICE.get(d);
-    if (b && (!best || b.e < best.e || (b.e === best.e && b.p < best.p))) best = b;
-    else if (b && b.e === best.e && b.p === best.p && b.acc) best = { ...best, acc: true };
+/**
+ * WHICH UNIT A BODY IS, chosen per row and not fixed at the cheapest (#517). A body's price is not one
+ * number: the cheapest unit lands exhausted (143.4) and owes the readiness turn if it lands last,
+ * while a pricier one may land ready, by paying [Accelerate] (805.1.a, OGN-010 Legion Rearguard: E2
+ * exhausted or E3 + 1 Power ready) or by saying "I enter ready." (`selfReady`). Pricing every body at
+ * the cheapest made a row read LATE whenever its last unit was a body, which a lower bound may not.
+ *
+ * So each unit is the set of OPTIONS it offers, (Energy, Power, ready), and a unit is a CANDIDATE
+ * unless every option it offers is matched or beaten - no more Energy, no more Power, ready if it is
+ * ready - by an option of another candidate, compared over the identity's pool and not one domain's,
+ * since a Body/Fury deck plays both. Dropping such a unit is exact: whichever option a body would
+ * have taken from it, another candidate offers one at least as good. The order of the sweep keeps
+ * the cheaper of two units that offer the same options, the lower base code on a full tie.
+ * Swept 2026-10-27, a domain keeps one to three: Fury OGN-010 Legion Rearguard, UNL-001 Arena Kingpin
+ * (E5, enters ready: dearer than the Rearguard Accelerated, but with no Power); Calm VEN-043 Steel
+ * Paws, OGN-075 Tasty Faefolk; Mind OGN-096 Watchful Sentry, UNL-082 Lillia, Fae Fawn; Body UNL-111
+ * Determined Sentry, UNL-115 Nilah, Joyful Ascetic, OGN-159 Warwick, Hunter; Chaos UNL-127 Mister
+ * Root; Order OGN-210 Daring Poro, SFD-177 Azir, Sovereign. --turns and --engines print the set of
+ * every identity a row with bodies is priced in.
+ *
+ * Every row prices EVERY mix of candidates over its bodies (`priceSet`) and keeps the earliest, so a
+ * row can land two cheap bodies early and an Accelerated one last. That is exact for the same reason
+ * the allocator is: a plan picks one unit per body, and the mixes enumerate every pick.
+ */
+const bodyOptions = (b) => (b.self ? [[b.e, b.p, 1]] : b.acc ? [[b.e, b.p, 0], [b.e + 1, b.p + 1, 1]] : [[b.e, b.p, 0]]);
+const covers = (o, x) => o[0] <= x[0] && o[1] <= x[1] && o[2] >= x[2];
+function bodyFront(units) {
+  const sorted = [...units].sort((a, b) => a.e - b.e || a.p - b.p || (a.base < b.base ? -1 : 1));
+  const coveredBy = (u, others) => bodyOptions(u).every((x) => others.some((k) => bodyOptions(k).some((o) => covers(o, x))));
+  const kept = [];
+  for (const u of sorted) {
+    // A unit is compared to the ones kept before it, every one as cheap or cheaper; once it is kept,
+    // a kept one that it and the rest now cover is dropped (Lee Sin, Centered once Warwick, Hunter
+    // arrives). Covering is transitive, so a dropped unit always leaves its cover behind.
+    if (coveredBy(u, kept)) continue;
+    kept.push(u);
+    for (let i = kept.length - 2; i >= 0; i--)
+      if (coveredBy(kept[i], kept.filter((_, j) => j !== i))) kept.splice(i, 1);
   }
-  return best || EVERY_IDENTITY_BODY;
+  return kept;
 }
+const BODY_UNITS = (() => {
+  const by = new Map();
+  for (const [base, c] of byBase) {
+    if (!c.type.includes("unit") || !c.domains.length || c.signature || BANNED.has(base)) continue;
+    const { acc, selfReady } = curveOf(c);
+    const u = { e: c.energy || 0, p: c.power || 0, base, name: c.name, acc: acc && !selfReady, self: selfReady };
+    for (const d of c.domains) by.set(d, [...(by.get(d) || []), u]);
+  }
+  return by;
+})();
+const BODY_CANDIDATES = new Map([...BODY_UNITS].map(([d, us]) => [d, bodyFront(us)]));
+// An identity with no domain gets what every identity reaches, the dearest of the cheapest, exhausted.
+const EVERY_IDENTITY_BODY = (() => {
+  const b = [...BODY_PRICE.values()].reduce((a, x) => (x.e > a.e || (x.e === a.e && x.p > a.p) ? x : a));
+  return { e: b.e, p: b.p, base: b.base, name: byBase.get(b.base).name, acc: false, self: false };
+})();
+const bodyKey = (d) => [...d].sort().join("/") || "colourless";
+const candidateMemo = new Map();
+function candidatesOf(domains) {
+  const k = bodyKey(domains);
+  if (!candidateMemo.has(k))
+    candidateMemo.set(k, k === "colourless" ? [EVERY_IDENTITY_BODY] : bodyFront([...domains].flatMap((d) => BODY_UNITS.get(d) || [])));
+  return candidateMemo.get(k);
+}
+const bodyCandidates = (set) => candidatesOf(domainsOfSet(set));
+const bodyLabel = (b) => `${b.base} ${b.name} E${b.e}${b.p ? `/${b.p}` : ""}${b.acc ? " [Accelerate]" : b.self ? " enters ready" : ""}`;
 /**
  * The bodies a set of folded entries needs: the MAX of their counts, as `bothBodies` merges them in
  * src/combos.ts, because one body standing on a battlefield counts for every line that wants one.
@@ -1829,8 +1880,12 @@ function bodiesOf(ids, engineIds = []) {
   return { n: max(ids), engine: max(engineIds) };
 }
 
-/** THE ONLY cost builder. #205 shipped a defect because there were two and one was patched. */
-const costsOfSet = (set, ign, bodies) => {
+/**
+ * THE ONLY cost builder. #205 shipped a defect because there were two and one was patched. `pick` is
+ * the unit each body is (#517), one per body; only `priceSet` calls this, because only it knows the
+ * mix to try.
+ */
+const costsOfSet = (set, ign, bodies, pick) => {
   const out = [];
   const equips = [];
   // 821.1.c: [Weaponmaster] attaches one of your Equipment "for one rainbow less", so the cheapest
@@ -1878,12 +1933,13 @@ const costsOfSet = (set, ign, bodies) => {
   // `anyBodies` (#494): generic unit CARDS on the same path as a named unit, so each one owes the
   // readiness turn of 143.4 if it lands last and is post-ignition unless an engine declared it.
   if (bodies && bodies.n) {
-    const body = bodyPrice(set);
     for (let i = 0; i < bodies.n; i++) {
+      const body = pick[i];
       const post = !!(ign && i >= bodies.engine);
-      // Its [Accelerate] is priced like a named unit's, free when the engine pays both halves.
+      // Its [Accelerate] is priced like a named unit's, free when the engine pays both halves, and a
+      // body that enters ready by itself owes no turn at all (#517).
       const acc = body.acc ? { e: post && ign.freeE ? 0 : 1, p: post && ign.freeP ? 0 : 1 } : null;
-      const ready0 = !!(acc && !acc.e && !acc.p);
+      const ready0 = body.self || !!(acc && !acc.e && !acc.p);
       out.push({ e: post && ign.freeE ? 0 : body.e, p: post && ign.freeP ? 0 : body.p, unit: !ready0,
                  gated: post, rain: 0, holdx: 0, turn: false, pow: 0, ready: false, rdy: 0, rune: 0, share: false,
                  acc: ready0 ? null : acc, link: "" });
@@ -1929,6 +1985,37 @@ const costsOfSet = (set, ign, bodies) => {
 };
 
 /**
+ * Every mix of candidate units over a row's bodies (#517): a multiset, since two bodies of one unit
+ * are interchangeable, drawn separately for the bodies an ignition engine declares and the ones bought
+ * after it, because those two pay different prices.
+ */
+function bodyMixes(set, bodies) {
+  if (!bodies || !bodies.n) return [[]];
+  const cands = bodyCandidates(set);
+  const multisets = (k, from = 0) => (k === 0 ? [[]] : cands.slice(from).flatMap((c, j) =>
+    multisets(k - 1, from + j).map((m) => [c, ...m])));
+  const pre = multisets(Math.min(bodies.engine, bodies.n));
+  const post = multisets(bodies.n - Math.min(bodies.engine, bodies.n));
+  return pre.flatMap((a) => post.map((b) => [...a, ...b]));
+}
+/**
+ * A set's price over every body mix, keeping the earliest: the row's own `pays` (with `gated`, the
+ * Beginning-Phase payoff the row will charge), then `all`. The mix with the least `pays` also has
+ * the least `all` once ties go to `all`, so the fold searches, which compare `all`, read the same
+ * mix the row does.
+ */
+function priceSet(set, ign, bodies, gated = false) {
+  let best = null;
+  for (const pick of bodyMixes(set, bodies)) {
+    const costs = costsOfSet(set, ign, bodies, pick);
+    const d = deployTurn(costs);
+    const pays = d.all === Infinity ? Infinity : d.all + (!d.extra && (d.unitLast || gated) ? 1 : 0);
+    if (!best || pays < best.pays || (pays === best.pays && d.all < best.d.all)) best = { d, costs, pays, pick };
+  }
+  return best;
+}
+
+/**
  * Every legal closure of `e` and the entries that satisfy its needs, as {cards, produces, ids}.
  * Empty means unsatisfiable inside two domains and three hops, which is a real answer: the caller
  * then prices `e` alone and says so rather than inventing a board.
@@ -1955,29 +2042,43 @@ function closuresOf(e, seen, depth) {
   return partials;
 }
 
-// --selftest-bodies (#494): the body price and the baseline must describe the SAME deck, so the
+// --selftest-bodies (#494, #517): the body price and the baseline must describe the SAME deck, so the
 // identities the sweep finds an E1 body in must be the ones `baselineTurn` types by hand; and the
 // charge must be visible on the hand-walked row, T2 without its three bodies and T3 with them.
 if (args.includes("--selftest-bodies")) {
   const e1 = [...BODY_PRICE].filter(([, b]) => b.e <= 1).map(([d]) => d).sort().join(",");
   const typed = [...CHEAP_BODY_DOMAINS].sort().join(",");
   const plaza = byId.get("up-from-the-deep-flow-grand-plaza");
-  const bare = deployTurn(costsOfSet(cardSetOf(plaza), null, { n: 0, engine: 0 })).all;
-  const charged = deployTurn(costsOfSet(cardSetOf(plaza), null, bodiesOf([plaza.id]))).all;
+  const bare = priceSet(cardSetOf(plaza), null, { n: 0, engine: 0 }).d.all;
+  const plazaPriced = priceSet(cardSetOf(plaza), null, bodiesOf([plaza.id]));
+  const charged = plazaPriced.d.all;
   // #510: a body at a price an [Accelerate] unit shares may pay it. dark-child-inferna-off-turn-ambush
   // is three E2 Infernas and one Fury body at E2: T1 takes one card, T2 two, T3 the last, and T3's 6
   // runes also pay Accelerate's E1 + 1, so the body enters ready on T3. Without it, T4.
-  const accDomains = [...BODY_PRICE].filter(([, b]) => b.acc).map(([d]) => d).sort().join(",");
   const dark = byId.get("dark-child-inferna-off-turn-ambush");
   const pays = (costs) => { const d = deployTurn(costs); return d.all + (d.unitLast ? 1 : 0); };
-  const darkCosts = costsOfSet(cardSetOf(dark), null, bodiesOf([dark.id]));
+  const darkCosts = priceSet(cardSetOf(dark), null, bodiesOf([dark.id])).costs;
   const darkAcc = pays(darkCosts);
   const darkPlain = pays(darkCosts.map((c) => ({ ...c, acc: null })));
+  // #517: the candidates keep every domain's cheapest price, so offering more units can only make a
+  // row earlier; and the issue's own example, Body/Fury, is the E1 Sentry and the E2 Rearguard.
+  const cheapKept = [...BODY_PRICE].filter(([d, b]) => !BODY_CANDIDATES.get(d).some((c) => c.e === b.e && c.p === b.p))
+    .map(([d]) => d).join(",");
+  const bodyFury = bodyCandidates({ "UNL-111": 1, "OGN-010": 1 }).map((b) => b.base).join(",");
+  // And no unit is lost by the pruning: in each of the 21 identities, every option of every unit the
+  // identity plays is matched or beaten by an option of one of its candidates.
+  const doms = [...BODY_UNITS.keys()].sort();
+  const idents = doms.flatMap((a, i) => [[a], ...doms.slice(i + 1).map((b) => [a, b])]);
+  const uncovered = idents.flatMap((ds) => ds.flatMap((d) => BODY_UNITS.get(d))
+    .filter((u) => !bodyOptions(u).every((x) => candidatesOf(ds).some((k) => bodyOptions(k).some((o) => covers(o, x)))))
+    .map((u) => `${bodyKey(ds)}:${u.base}`));
   const cases = [
     [`E1 body domains swept [${e1}] = CHEAP_BODY_DOMAINS [${typed}]`, e1 === typed],
     [`up-from-the-deep-flow-grand-plaza completes T${bare} without its bodies, want T2`, bare === 2],
-    [`up-from-the-deep-flow-grand-plaza completes T${charged} with 3 bodies at E${bodyPrice(cardSetOf(plaza)).e}, want T3`, charged === 3],
-    [`[Accelerate] body domains swept [${accDomains}], want [chaos,fury]`, accDomains === "chaos,fury"],
+    [`up-from-the-deep-flow-grand-plaza completes T${charged} with 3 bodies [${plazaPriced.pick.map((b) => b.base)}], want T3`, charged === 3],
+    [`domains whose candidates lose their cheapest price [${cheapKept}], want none`, cheapKept === ""],
+    [`body/fury candidates [${bodyFury}], want [UNL-111,OGN-010,UNL-001]`, bodyFury === "UNL-111,OGN-010,UNL-001"],
+    [`units no candidate covers, over ${idents.length} identities: [${uncovered}], want none`, idents.length === 21 && !uncovered.length],
     [`dark-child-inferna-off-turn-ambush pays T${darkAcc} with its Fury body Accelerated, want T3`, darkAcc === 3],
     [`dark-child-inferna-off-turn-ambush pays T${darkPlain} with the body's Accelerate removed, want T4`, darkPlain === 4],
   ];
@@ -2005,12 +2106,15 @@ if (args.includes("--price")) {
     if (set[c.base] > 3) { console.error(`# --price: ${c.base} x${set[c.base]}, a deck holds at most 3 (103.2.b)`); process.exit(2); }
   }
   if (!Object.keys(set).length) { console.error(`# --price: empty spec ${JSON.stringify(spec)}, want BASE:QTY,BASE:QTY`); process.exit(2); }
-  const costs = costsOfSet(set, null, { n: 0, engine: 0 });
-  const d = deployTurn(costs);
+  // --bodies N adds N `anyBodies` bodies (#517), chosen among the set's candidates as a row's are.
+  const nb = args.includes("--bodies") ? args[args.indexOf("--bodies") + 1] || "" : "0";
+  if (!/^(?:0|[1-9][0-9]*)$/.test(nb)) { console.error(`# --price: bad --bodies ${JSON.stringify(nb)}, want a decimal integer`); process.exit(2); }
+  const { d, costs, pick } = priceSet(set, null, { n: Number(nb), engine: 0 });
   // `pays` is the row's own formula with no Beginning-Phase payoff: the readiness turn of 143.4 is
   // owed when a unit nothing readied landed with the last cost.
   console.log(`price ${Object.entries(set).map(([b, q]) => `${b}x${q}`).join(" ")}: all T${d.all}, last unit T${d.unit}` +
-              `, unitLast ${!!d.unitLast}, pays T${d.all + (d.unitLast ? 1 : 0)}, income ${costs.reduce((a, c) => a + (c.pow || 0), 0)}`);
+              `, unitLast ${!!d.unitLast}, pays T${d.all + (d.unitLast ? 1 : 0)}, income ${costs.reduce((a, c) => a + (c.pow || 0), 0)}` +
+              (pick.length ? `, bodies ${pick.map((b) => b.base).join("+")} of [${bodyCandidates(set).map(bodyLabel).join(", ")}]` : ""));
   process.exit(0);
 }
 
@@ -2023,7 +2127,7 @@ for (const { e, domains: ownDomains, cards: ownCards } of entries) {
   if ((e.needs || []).length) {
     let best = null;
     for (const c of closuresOf(e, new Set(), 0)) {
-      const t = deployTurn(costsOfSet(c.cards, null, bodiesOf(c.ids))).all;
+      const t = priceSet(c.cards, null, bodiesOf(c.ids)).d.all;
       if (!best || t < best.t) best = { t, c };
     }
     // An unsatisfiable `needs` is NOT silently ignored: price the entry alone and say the fuel is
@@ -2045,7 +2149,7 @@ for (const { e, domains: ownDomains, cards: ownCards } of entries) {
       if (!c.needs.every((n) => produces.has(n))) continue;
       const merged = mergeSets(cards, cardSetOf(c));
       if (domainsOfSet(merged).size > 2) continue;
-      const t = deployTurn(costsOfSet(merged, null, bodiesOf([...closureIds, c.id]))).all;
+      const t = priceSet(merged, null, bodiesOf([...closureIds, c.id])).d.all;
       if (!best || t < best.t) best = { t, id: c.id, merged, consumer: c };
     }
     if (best) { cards = best.merged; via = best.id; consumer = best.consumer; }
@@ -2090,13 +2194,12 @@ for (const { e, domains: ownDomains, cards: ownCards } of entries) {
         ign = { bases: baseSet, freeE, freeP };
     }
   }
-  const finalCosts = costsOfSet(cards, ign, bodies);
-  const d = deployTurn(finalCosts);
-  if (d.greedy) greedyRows.push(e.id);
   const gated = beginningPhaseGated(e) || (consumer ? beginningPhaseGated(consumer) : false);
   // An Additional Turn still queued when the set completes (#339) is itself the next Beginning
-  // Phase and the next Awaken, so it owes neither reason and the clock does not move.
-  const pays = d.all === Infinity ? Infinity : d.all + (!d.extra && (d.unitLast || gated) ? 1 : 0);
+  // Phase and the next Awaken, so it owes neither reason and the clock does not move. `priceSet`
+  // reads `pays` that way, over every mix of candidate bodies (#517).
+  const { d, costs: finalCosts, pays, pick } = priceSet(cards, ign, bodies, gated);
+  if (d.greedy) greedyRows.push(e.id);
   // RC_DBG=<id>,<id> prints the parts a row's turn is made of. This is how the five-row gap between
   // --ignition and --ignition-nogate turned out to be the readiness `+1` and not a residual: `all`
   // was identical under both arms and only `unit` moved.
@@ -2111,7 +2214,7 @@ for (const { e, domains: ownDomains, cards: ownCards } of entries) {
   clock.push({ id: e.id, cls: e.class, pays, base: baselineTurn(merged), via: note || null,
                ordered: finalCosts.some((c) => c.after), income: finalCosts.some((c) => c.pow),
                readier: finalCosts.some((c) => c.rdy), accel: finalCosts.some((c) => c.acc),
-               runer: finalCosts.some((c) => c.rune),
+               runer: finalCosts.some((c) => c.rune), bodies: pick.length ? bodyKey(domainsOfSet(cards)) : null,
                domains: (merged.length ? merged : [...ownDomains]).sort().join("/") || "colourless" });
 }
 
@@ -2149,6 +2252,12 @@ function runeLine(rows) {
          `unclassified ${loose.length}${loose.length ? `: ${loose.join(", ")}` : ""}; ` +
          `${rows.filter((c) => c.runer).length} of ${rows.length} rows hold a modelled one`;
 }
+// #517: the units a body is chosen among, for every identity a row with bodies is priced in.
+function bodyLines(rows) {
+  const ids = [...new Set(rows.map((c) => c.bodies).filter(Boolean))].sort();
+  return [`# body candidates (anyBodies, #517: the earliest mix of these per row): ${rows.filter((c) => c.bodies).length} of ${rows.length} rows carry bodies, in ${ids.length} identities`,
+          ...ids.map((k) => `#   ${k.padEnd(12)} ${candidatesOf(k === "colourless" ? [] : k.split("/")).map(bodyLabel).join(", ")}`)];
+}
 function accelLine(rows) {
   return `# accelerate (${ACCELERATE} on a unit, 805.1.a: an optional [1][C] that waives 143.4): ${ACCEL_UNITS} units carry it; ` +
          `${rows.filter((c) => c.accel).length} of ${rows.length} rows hold one`;
@@ -2171,6 +2280,7 @@ if (engines) {
   console.log(incomeLine(eng));
   console.log(readierLine(eng));
   console.log(accelLine(eng));
+  for (const l of bodyLines(eng)) console.log(l);
   console.log(runeLine(eng));
   const hist = new Map();
   for (const c of eng) hist.set(c.pays, (hist.get(c.pays) ?? 0) + 1);
@@ -2209,6 +2319,8 @@ console.log(incomeLine(clock));
 console.log(readierLine(clock));
 // And for [Accelerate] (#510).
 console.log(accelLine(clock));
+// And the candidates a body is chosen among (#517).
+for (const l of bodyLines(clock)) console.log(l);
 // And for readying runes (#513).
 console.log(runeLine(clock));
 // Non-vacuity for the ordering model: the constraint can only ever bind on a row that HAS an [Equip]
