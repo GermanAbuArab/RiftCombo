@@ -178,6 +178,53 @@ After slice 3's entry (towering-combatant-up-from-the-deep-grand-plaza, a Body/C
 the same command gives Body/Chaos (0, 6) with 4 ALT_WINs, 2 of them paying by T4, and no other row
 changes: the entry needs both domains, so it fits no other pair. 88 finishers.
 
+### Re-measured 2026-10-27 at 2fbe030 (#524, slice 4)
+
+The same command (§7) at `2fbe030`, master after slice 3 (#521) and #525 (a Poro branch of the slice-2
+play corrected), with nothing of slice 4 in it. 88 finishers. Against the `c200d59` table the only
+difference is slice 3's own entry, towering-combatant-up-from-the-deep-grand-plaza, which gives
+Body/Chaos (0, 6), 4 ALT_WINs and 2 paying by T4, exactly as predicted above. No clocked count moved.
+
+| pair | Hold baseline | INFINITE | BURST | CHAIN | clocked, pay by T4 | ALT_WIN | ALT_WIN, pay by T4 | all four |
+|---|---|---|---|---|---|---|---|---|
+| body/calm | T5 | 0 | 2 | 0 | 0 | 3 | 2 | 5 |
+| body/chaos | T5 | 0 | 0 | 2 | 0 | 4 | 2 | 6 |
+| body/fury | T5 | 1 | 3 | 2 | 0 | 1 | 0 | 7 |
+| body/mind | T5 | 2 | 2 | 6 | 0 | 5 | 2 | 15 |
+| body/order | T5 | 0 | 1 | 0 | 0 | 6 | 1 | 7 |
+| calm/chaos | T5 | 0 | 2 | 2 | 1 (yasuo-windrider-ride-the-wind-chain T4) | 4 | 3 | 8 |
+| calm/fury | T5 | 2 | 6 | 0 | 2 (threshold-reveler-infinite-energy T4, reveler-loop-nasus-brambleback-conquer T4) | 3 | 2 | 11 |
+| calm/mind | T5 | 2 | 5 | 6 | 0 | 9 | 6 | 22 |
+| calm/order | T5 | 0 | 3 | 0 | 0 | 9 | 4 | 12 |
+| chaos/fury | T6 | 0 | 1 | 0 | 0 | 2 | 1 | 3 |
+| chaos/mind | T6 | 2 | 0 | 5 | 0 | 8 | 4 | 15 |
+| chaos/order | T6 | 1 | 0 | 2 | 0 | 7 | 3 | 10 (pursuer-herald-recruits banned) |
+| fury/mind | T6 | 3 | 2 | 6 | 0 | 4 | 2 | 15 |
+| fury/order | T6 | 2 | 2 | 0 | 1 (jhin-fiora-facebreaker-recall T4) | 5 | 1 | 9 |
+| mind/order | T6 | 7 | 2 | 10 | 2 (time-warp-hold-burst T4, bottled-constellation-time-warp T4) | 12 | 6 | 31 |
+
+The order: chaos/fury (0, 3), body/calm (0, 5), body/chaos (0, 6), body/fury (0, 7), body/order (0,
+7), chaos/order (0, 10), calm/order (0, 12), body/mind (0, 15), chaos/mind (0, 15), fury/mind (0, 15),
+calm/mind (0, 22), calm/chaos (1, 8), fury/order (1, 9), calm/fury (2, 11), mind/order (2, 31). The six
+entries of §4 are still the six whose priced set is wider than their own cards, now of 88.
+
+**Slice 4's pair: Body/Fury.** Chaos/Fury, Body/Calm and Body/Chaos come first in the order, and all
+three are worked (slices 1 to 3). Body/Fury is the next, at (0, 7), and it is still the first pair not
+yet worked once the slice-1 to slice-3 candidates are counted: those three are ALT_WINs, none of them
+fits Body/Fury (one is mono-Chaos, one mono-Calm, one Body/Chaos), and the clocked column, which the
+target rule ranks first, is 0 for all four pairs. It ties Body/Order at (0, 7) and comes first
+alphabetically. Its seven finishers are an INFINITE (gemdragon-henge-vi-blind-fury T12), three BURSTs
+(brambleback-trinity-skyfall-conquer T6, tryndamere-brambleback-conquer T7,
+dragonstorm-brambleback-trinity-conquer T12), two CHAINs (trinity-skyfall-arena-second-battlefield-chain
+T5, trinity-tryndamere-both-phases-chain T7) and one ALT_WIN (dragonstorm-confront-grand-plaza, priced
+with its Fury fuel at T12). The runner-up for slice 5 is Body/Order (0, 7).
+
+After slice 4's entry (towering-combatant-hidden-marai-grand-plaza, a Body/Fury ALT_WIN at T4) the
+same command gives Body/Fury (0, 8) with 2 ALT_WINs, 1 of them paying by T4, and no other row changes:
+the entry needs both domains, so it fits no other pair. 89 finishers. The order then runs chaos/fury
+(0, 3), body/calm (0, 5), body/chaos (0, 6), body/order (0, 7), body/fury (0, 8), and Body/Order is the
+first pair not yet worked.
+
 ## 3. The two Chaos/Fury lines
 
 | line | class | pays | Chaos/Fury Hold baseline | beats it | catalogue |
@@ -229,10 +276,12 @@ beats its baseline.
 | #491 | Chaos/Fury | yes: up-from-the-deep-flow-grand-plaza, T4 against T6 on the clock | 0 |
 | #496 | Body/Calm | yes: frisky-hunter-grand-plaza, T4 against T5 on the clock | 0 |
 | #512 | Body/Chaos | yes: towering-combatant-up-from-the-deep-grand-plaza, T4 against T5 on the clock | 0 |
+| #524 | Body/Fury | yes: towering-combatant-hidden-marai-grand-plaza, T4 against T5 on the clock | 0 |
 
 The next pair in the order is **Body/Calm** (baseline T5). [2026-10-27, #496: Body/Calm was slice 2;
 the next pair not yet worked is **Body/Chaos** (baseline T5), §2.] [2026-10-27, #512: Body/Chaos was slice 3; the next
-pair not yet worked is **Body/Fury** (baseline T5), §2.]
+pair not yet worked is **Body/Fury** (baseline T5), §2.] [2026-10-27, #524: Body/Fury was slice 4; the next pair
+not yet worked is **Body/Order** (baseline T5), §2.]
 
 **Slice 2, Body/Calm (#496).** One line was walked:
 [two Frisky Hunters on the Plaza](2026-10-27-two-frisky-hunters-put-seven-on-the-plaza-by-turn-three-a-tank-raises-the-free-answer-to-three-might-and-their-six-still-kill-four.md).
@@ -262,6 +311,24 @@ the pair's other cheap multi-unit card is Up from the Deep itself, already the s
 two catalogued CHAINs pay at T7 and T9 on the clock. No new BURST or CHAIN was searched, so its clocked
 count stays at **0**.
 
+**Slice 4, Body/Fury (#524).** One line was walked:
+[a hidden Marai on the Plaza](2026-10-27-a-hidden-marai-is-the-seventh-unit-for-no-energy-so-a-tank-fits-by-turn-three-and-their-six-still-take-it-to-six.md).
+Body/Fury has no card at Energy 4 or less that makes two units for one card, so going first the seven
+cards seen by T3 have to be the seven units, and under a legend that adds no Energy seven with Towering
+Combatant among them cost 13 Energy against 12.
+Mischievous Marai (Fury) is hidden at the Plaza on T2 for one Power from a rune already exhausted for
+Energy, and played from there for no Energy: two Sentries on T1, the Combatant and the hide on T2, a
+third Sentry, Pit Rookie and Pouty Poro on T3. Seven units, 11 Energy and 1 Power, kill price 6. That is
+T4 on the clock against the Body/Fury Hold baseline of T5, so it enters as a candidate. In the walk,
+against the same deck and draws as the three earlier Plaza plays, their two 3-Might attackers kill only
+the Combatant; Marai, played inside that showdown, deals 2 and kills neither, and the T4 Hold sees six.
+The hand is empty after T3, so there is no rebuild, and **it does not win by T5**. It is castable with
+its Tank on the board by the end of T3 in 0.0011% of games (0.0077% counting a T3 hide that needs the
+opponent's window). No other line was walked: the pair's catalogued CHAINs and BURSTs pay at T5 or later
+on the clock. The same shell under the other Fury/Body legend, Butcher of the Sands, pays the
+thirteenth Energy with no Marai and is about fifteen times as castable (0.0160%); it is a Lead of the
+play, not walked. No new BURST or CHAIN was searched, so its clocked count stays at **0**.
+
 ## 6. Not verified
 
 The table counts entries, not decks. An entry fits a pair if its cards do; whether a real list in that
@@ -276,7 +343,8 @@ Run from the repository root of a checkout of `e3101e5`, with `coverage.mjs` sav
 later checkout the table moves: this slice's own entry, up-from-the-deep-flow-grand-plaza, is a
 mono-Chaos ALT_WIN and adds one to the ALT_WIN and "all four" columns of every Chaos pair. [2026-10-27, #496: the re-measured table in §2 is this command at `d8f796b`, and slice 2's
 entry, frisky-hunter-grand-plaza, does the same to every Calm pair.] [2026-10-27, #512: the slice-3 table in §2 is this
-command at `c200d59`; slice 3's entry fits Body/Chaos only.]
+command at `c200d59`; slice 3's entry fits Body/Chaos only.] [2026-10-27, #524: the slice-4 table in §2 is this command at
+`2fbe030`; slice 4's entry fits Body/Fury only.]
 
 ```
 npm run -s adversarial -- --turns | node coverage.mjs
