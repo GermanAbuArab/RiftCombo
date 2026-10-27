@@ -635,11 +635,15 @@ describe("conditional rune readiers (#523)", () => {
 
   // The set #523's security scan found: legal, 3 copies of each, and it walked 195 million leaves
   // (past 120s) before the work guard. It must finish and SAY its answer is the greedy one.
+  // RC_FB names the guard that tripped, so this fails if the STATE guard took the set instead.
   it("sends 3 Gemdragons + 21 other Dragons + 2 Aphelios to the greedy fallback instead of hanging, and says so", () => {
-    const s = execFileSync("node", ["scripts/adversarial-check.mjs", "--price",
+    const r = spawnSync("node", ["scripts/adversarial-check.mjs", "--price",
       "UNL-104:3,OGN-001:3,OGN-131:3,OGN-038:3,VEN-016:3,OGN-142:3,SFD-006:3,UNL-118:3,SFD-224:2"],
-      { encoding: "utf8", timeout: 60_000 });
-    expect(s).toContain("GREEDY FALLBACK");
+      { encoding: "utf8", timeout: 60_000, env: { ...process.env, RC_FB: "1" } });
+    expect(r.status, r.stderr).toBe(0);
+    expect(r.stdout).toContain("GREEDY FALLBACK");
+    expect(r.stderr).toMatch(/FALLBACK leaves>/);
+    expect(r.stderr).not.toMatch(/FALLBACK space=/);
   }, 60_000); // ~6s alone: it walks the whole leaf budget before it falls back
 });
 

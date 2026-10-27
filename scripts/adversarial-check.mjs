@@ -560,8 +560,9 @@ function deployTurnUncached(types, costs) {
   // Gemdragon engine returns more Energy than its Dragons cost, a turn can afford almost any mix, and
   // a legal set of 3 Gemdragons and 21 other Dragons walked 195 million leaves (past 120s) where the
   // catalogue's largest closure walks 6 million. Past LEAF_CAP leaves the set goes to the same greedy
-  // fallback, counted and named like the state guard's. RC_LEAVES raises it for a measurement.
-  const LEAF_CAP = Number(process.env.RC_LEAVES) || 3e7;
+  // fallback, counted and named like the state guard's. RC_LEAVES sets it for a measurement (0 forces
+  // the fallback). A node of the readier search inside a leaf counts against the same budget.
+  const LEAF_CAP = process.env.RC_LEAVES ? Number(process.env.RC_LEAVES) : 3e7;
   let leaves = 0, over = false;
 
   // HOLD ADDS (#339). UNL-087 Blue Sentinel: "When I hold, [Add] [A] at the start of your next Main
@@ -681,11 +682,15 @@ function deployTurnUncached(types, costs) {
     order(k, runes, adds, 0, 0, 0, 0, 0, key);
   };
   const order = (k, left, adds, own, shr, spent, gp, cp, key) => {
+    if (over || ++leaves > LEAF_CAP) { over = true; return; }
     if (rBest === rNeed) return;  // nothing scores more than the Energy the turn is short of
     if (own + shr + k * rMax < rNeed) return;  // nor can the copies left cover what is still short
     if (dom) {
-      if (seenGen[key] === gen && seenOwn[key] >= own && seenShr[key] >= shr) return;
-      seenGen[key] = gen; seenOwn[key] = own; seenShr[key] = shr;
+      if (seenGen[key] === gen) {
+        if (seenOwn[key] >= own && seenShr[key] >= shr) return;
+        // Not dominated: it replaces the record only with more `own`, the readies that score.
+        if (own > seenOwn[key] || (own === seenOwn[key] && shr > seenShr[key])) { seenOwn[key] = own; seenShr[key] = shr; }
+      } else { seenGen[key] = gen; seenOwn[key] = own; seenShr[key] = shr; }
     }
     if (!k) {
       if (own + shr >= rNeed) { const sc = own < rNeed ? own : rNeed; if (sc > rBest) rBest = sc; }
