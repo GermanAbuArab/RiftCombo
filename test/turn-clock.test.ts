@@ -1,4 +1,4 @@
-import { execFileSync } from "node:child_process";
+import { execFileSync, spawnSync } from "node:child_process";
 import { readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
 
@@ -433,5 +433,30 @@ describe("[Accelerate] (#510)", () => {
     expect(Number(m![2])).toBe(said.size);
     expect(said.size).toBe(28);
     expect(Number(m![3])).toBeGreaterThan(0);
+  });
+});
+
+/** --price input validation (#511): Number() read 0x1 and 1e0 as 1 and the destructure dropped a third field. */
+describe("--price refuses malformed specs (#511)", () => {
+  const run = (spec: string) => spawnSync("node", ["scripts/adversarial-check.mjs", "--price", spec], { encoding: "utf8" });
+  it.each([
+    ["", ""],
+    [",", ""],
+    ["OGN-040:0x1", "OGN-040:0x1"],
+    ["OGN-040:1e0", "OGN-040:1e0"],
+    ["OGN-040:1:9", "OGN-040:1:9"],
+    ["OGN-040:0", "OGN-040:0"],
+    ["OGN-040:01", "OGN-040:01"],
+    ["OGN-040", "OGN-040"],
+  ])("refuses %j", (spec, token) => {
+    const r = run(spec);
+    expect(r.status).not.toBe(0);
+    expect(r.stderr).toContain("# --price:");
+    expect(r.stderr).toContain(token);
+  });
+  it("still prices a valid spec", () => {
+    const r = run("OGN-040:1");
+    expect(r.status, r.stderr).toBe(0);
+    expect(r.stdout).toMatch(/^price OGN-040x1: all T/);
   });
 });
