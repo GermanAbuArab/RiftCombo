@@ -431,8 +431,15 @@ and the turns after their T6.
   `tryndamere-brambleback-conquer` reads T7. That is right for the cards declared; the entry could
   declare the Seal and Upstage Comedy as optional enablers and say T6.
 - For the coverage question of #200: in Chaos/Fury the only point multiplier is Red Brambleback and the
-  only scoring conquer effect is Tryndamere, so no BURST in the pair, built from the cards the pool
-  prints today, can pay before T6 going first. A CHAIN was not searched: the pair's other point sources
+  only scoring conquer effect is Tryndamere, so the nine of this play, one Conquer from zero points with
+  two Tryndameres and three Bramblebacks, cannot be bought before T6 going first (§2). That bound is
+  for that board only. It does not reach a finish that banks Hold points first and needs fewer
+  copies, which is not a BURST and is not walked here: a body takes A on T2 and A is Held on T3, T4
+  and T5 for 4 points; Red Brambleback on T3, Tryndamere on T4 (Seal of Rage, and one rune recycled for
+  the second Power, 164.2.b), and a second Brambleback on T5 with [Accelerate]; on T5 Tryndamere and
+  both Bramblebacks conquer B, 1 for the Conquer and Tryndamere's trigger 1 + 2 times, 8 on T5. Its
+  board: an enemy garrison at B of 1 to 3 Might in all, so the 5 excess is met and no Brambleback
+  dies, and nothing of theirs contests A from T2 to T5. A CHAIN was not searched: the pair's other point sources
   are `OGN-205 Yasuo, Windrider` (*"The third time I move in a turn, you score 1 point."*), `SFD-148
   Draven, Audacious` (*"The first time I win a combat each turn, you score 1 point."*) and two Scores a
   turn at most (470), and whether they reach 8 in one turn before T6 is open.

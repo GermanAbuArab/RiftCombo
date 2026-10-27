@@ -34,7 +34,10 @@ removes one, which is enough.
 | **The swarm** | `VEN-100 Up from the Deep` (Chaos spell, E3, [Flow] E3) |
 | **The bodies** | `OGN-013 Pouty Poro` (Fury, E2, M2), `OGN-010 Legion Rearguard` (Fury, E2, M2), `OGN-171 Mystic Poro` (Chaos, E2, M2), `SFD-018 Void Hatchling` (Fury, E2, M2) |
 
-Every card in the line costs Energy only, so the line runs on any rune split.
+Every card in the line costs Energy only, so the line runs on any rune split. From the opponent it
+needs **no spell-cost tax in play by your T3**: `VEN-045 Helm of Suppression` (*"Opponents' spells cost
+:rb_energy_1: more."*) raises Up from the Deep and its [Flow] to E4 each, and six runes no longer buy
+both (§5). It also needs nothing of theirs ready in their base on their T3 (§4).
 
 Glorious Executioner is Fury/Chaos and its tag is Draven, so Draven, Showboat can be the Chosen
 Champion, 103.2.a.2: *"Must be a champion unit with a champion tag that matches the tag on your
@@ -201,7 +204,10 @@ body on their T2 is Daring Poro, 3 as an attacker, so it takes B instead.
 
 **Their T2: the bodies stay home.** The Ramhound and the Guardian go to base, not to B, and that choice
 is the answer. Played to B they could not reach A on their T3 (144.4.a, 144.4.b). In base, they are
-ready on their T3 and A is one move away.
+ready on their T3 and A is one move away. Their other play with five runes is the Helm of
+Suppression in their hand, E4 and one Calm Power. They play the bodies because the bodies stop the T4
+win outright and the Helm only delays it: §5 walks the Helm, and the line comes up one turn later
+against the same free answer, with the Helm's rune spent.
 
 **Your T3: seven.** Up from the Deep from hand, two Tentacles to A; it goes to the trash (351.2); [Flow]
 from the trash for E3, two more, and the card is banished. Six Energy, six runes, four bodies. A is
@@ -258,6 +264,25 @@ this cost may always be of any Domain."* Nobody targets the Poro when a Tentacle
 | `SFD-162 Blood Money` (Order spell) | E2 | *"[Action] (Play on your turn or in showdowns.) Kill a unit at a battlefield with 2 :rb_might: or less. If it was an enemy unit, play a Gold gear token exhausted. If it was a friendly unit, play two Gold gear tokens exhausted."* Six left. |
 
 The walked opponent ran none of these and did not need one.
+
+**The pre-emptive answer: Helm of Suppression on their T2.** E4 and one Calm Power, which going second
+is their whole T2: five runes, four exhausted and one recycled. Its text: *"[Empower] :rb_energy_4::rb_rune_calm:
+(:rb_energy_4::rb_rune_calm:: Empower this. Use only if not Empowered.) Opponents' spells cost
+:rb_energy_1: more. If this is [Empowered], they cost :rb_energy_1::rb_rune_rainbow: more instead."*
+A cost increase applies to whatever cost the spell is played for, 356.3: *"Apply cost increases."*, and
+[Flow] is that cost for the second casting, 829.1.c.1: *"The cost is an alternate cost that replaces
+the base cost of the spell to be paid during finalization."* So both castings are E4, and the T3 seven
+needs 2 + 4 + 4 = 10 Energy on six runes.
+
+- **On the clock's terms** (no attacks): T3 is Up from the Deep (E4) and a body (E2), six units; T4 is
+  the [Flow] (E4) and two bodies (E2 each), ten units. The win moves to the **T5** Hold. That still
+  beats the T6 baseline, by one turn.
+- **In the walk:** with the Helm on their T2 they play no body that turn, so nothing of theirs is ready
+  in base on their T3 and the six at A survive it. They play the Ramhound and the Guardian on their T3
+  instead. Your T4 Hold sees six, no win; the [Flow], Void Hatchling and Mystic Poro make ten. On their
+  T4 the Ramhound and the Guardian attack with 6 and leave five. No win on T5 either.
+
+The Helm costs them a turn of bodies and a rune and costs you a turn. The bodies cost them nothing.
 
 **The battlefield cannot be answered.** 170.3: *"Battlefields cannot be Killed during the course of
 regular play."* What can be answered is the count.

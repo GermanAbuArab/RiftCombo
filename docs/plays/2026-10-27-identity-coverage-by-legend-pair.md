@@ -24,7 +24,9 @@ pairs.
 **The entries.** Every `data/combos.json` entry of class INFINITE, BURST, CHAIN or ALT_WIN, 85 at
 `e3101e5`. An entry fits a pair when every card in its `uses` does: each card's `domains` from
 `data/cards.json`, matched on base codes, and a colourless card fits every pair. A mono-domain entry
-fits the five pairs that contain its domain, so the columns do not sum to 85.
+fits the five pairs that contain its domain, so the columns do not sum to 85. Both statuses are
+counted: 83 of the 85 are `verified` and 2 are `candidate`, power-nexus-sentinel-renata-time-warp-chain
+and power-nexus-sentinel-three-time-warps, both Mind CHAINs at T6.
 
 **The clock.** `npm run adversarial -- --turns` prints a turn for every finisher: the turn its card
 set is first paid for on a perfect curve, plus one if it pays at a Hold, with nothing cast against it.
@@ -147,7 +149,9 @@ ALT_WIN turns are reported, not ranked.
 
 ## 7. The command
 
-Run from the repository root at the sha above, with `coverage.mjs` saved anywhere:
+Run from the repository root of a checkout of `e3101e5`, with `coverage.mjs` saved anywhere. On a
+later checkout the table moves: this slice's own entry, up-from-the-deep-flow-grand-plaza, is a
+mono-Chaos ALT_WIN and adds one to the ALT_WIN and "all four" columns of every Chaos pair.
 
 ```
 npm run -s adversarial -- --turns | node coverage.mjs
