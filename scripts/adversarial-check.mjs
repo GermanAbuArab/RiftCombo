@@ -585,15 +585,19 @@ function deployTurnUncached(types, costs) {
   // and a recycled one has left the board (161.2.b) and cannot be readied. 167 empties the pool only at
   // the start of the Main Phase and the end of the turn, so every rune can be exhausted up front and the
   // Energy held while the readier resolves, which is why its own Energy never shrinks what it readies.
-  // Its own POWER does: a rune recycled to pay it is gone before it resolves, so a readier readies at
-  // most min(`rune`, runes - the readiers' Power the turn's Adds cannot pay). Every other recycle can
-  // wait until after it resolves. With two readiers on one turn that bound is the same for both, which
-  // is loose by the first one's recycle - the direction this table is allowed to err in.
+  // Its own POWER does: a rune recycled to pay it is gone before it resolves. So the readiers resolve
+  // one after another, and each readies at most min(`rune`, runes - the recycles that paid it and every
+  // readier before it); every other recycle can wait until after the last one resolves. Charging every
+  // readier's recycle to all of them, as this did first, erred LATE: three Gates on T3's 6 runes ready
+  // 4 + 4 + 3, not 3 + 3 + 3 (VEN-150:3,UNL-066:1 is T3 by hand, pinned). The Adds go to the first
+  // readiers and the larger `rune` resolves first, which is exact for identical copies and optimistic
+  // otherwise - the direction this table is allowed to err in.
   // `share`: Acceleration Gate's "up to 4 units, gear, and/or runes" is ONE count, so a rune it readies
   // is a unit it does not; the leaf of `walk` spends the shared readies on runes first, only as many as
   // the Energy needs, and gives the rest to the units that landed with it.
   const runers = [];
   for (let i = 0; i < dim; i++) if (types[i].rune) runers.push(i);
+  runers.sort((a, b) => types[b].rune - types[a].rune || types[a].p - types[b].p);
 
   let curR = new Int8Array(SZ).fill(-1);        // runes on board, -1 = state unreachable
   let curU = new Int16Array(SZ);                // the SUB-turn the last UNIT landed
@@ -632,15 +636,21 @@ function deployTurnUncached(types, costs) {
       // READYING RUNES (#513): the Energy past `runes` must come from the readiers bought this turn.
       let rdn = rd;
       if (runers.length) {
-        let gp = 0, own = 0, shr = 0, slots = 0, first = Infinity;
-        for (const j of runers) gp += (cnt[j] - ((idx / stride[j]) | 0) % (types[j].n + 1)) * types[j].p;
-        const left = runes - (gp > rain + nf ? gp - rain - nf : 0);
+        // `adds` is the Power the turn's Adds still have for a readier, `left` the runes still on the
+        // board when the next one resolves.
+        let own = 0, shr = 0, slots = 0, first = Infinity, adds = rain + nf, left = runes;
         for (const j of runers) {
-          const q = cnt[j] - ((idx / stride[j]) | 0) % (types[j].n + 1);
+          const t = types[j];
+          const q = cnt[j] - ((idx / stride[j]) | 0) % (t.n + 1);
           if (!q) continue;
-          if (types[j].e < first) first = types[j].e;
-          const r = q * Math.min(types[j].rune, left);
-          if (types[j].share) { shr += r; slots += q * types[j].rune; } else own += r;
+          if (t.e < first) first = t.e;
+          for (let c = 0; c < q; c++) {
+            const fromAdds = adds < t.p ? adds : t.p;
+            adds -= fromAdds;
+            left -= t.p - fromAdds;
+            const r = left <= 0 ? 0 : t.rune < left ? t.rune : left;
+            if (t.share) { shr += r; slots += t.rune; } else own += r;
+          }
         }
         // A readier is paid BEFORE it resolves, so the runes it readies never pay its own Energy: the
         // first one is bought out of the runes alone. Each later one may use what earlier ones returned.

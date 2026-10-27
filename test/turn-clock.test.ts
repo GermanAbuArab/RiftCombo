@@ -467,6 +467,13 @@ describe("[Accelerate] (#510)", () => {
  * lands with it: he is exhausted (143.4) until T5. A clock that readied 4 runes AND 4 units would say
  * T4; the clock before #513 said T6 (`all` T5, the Drake landing that turn with the Gate on T2).
  *
+ * THREE GATES + AFFLICTION, T3 (PR #522's review). E16 + 3. T3's 6 runes: exhaust all six (pool 6),
+ * recycle one for the first Gate (5 left), cast it (pool 3), ready 4 and exhaust them (pool 7); recycle
+ * the fifth, still exhausted, for the second Gate (4 left), cast it (pool 4), ready all 4 (pool 8);
+ * recycle one for the third (3 left), cast it (pool 5), ready 3 (pool 8); Affliction is 7. That is
+ * 4 + 4 + 3 = 11 readied, 6 + 11 = 17 of 16. Not T2: 4 runes give 3 + 2 + 1 = 6 back, 10 of 16. A clock
+ * that charged every Gate's recycle to all three readies 3 + 3 + 3 = 9 and says T4.
+ *
  * GATE ALONE, T2. It is paid before it resolves, so T1's 2 runes cannot pay its E3 whatever it readies.
  *
  * GATE + TWO PREMONITIONS, T4 (the Power control, "no Power comes back"). E7 + 7. Seven recycles need
@@ -492,6 +499,10 @@ describe("readying runes (#513)", () => {
 
   it("pays Acceleration Gate + Mountain Drake all T4 and pays T5: the 4 readies are shared by units and runes", () => {
     expect(price("VEN-150:1,OGN-142:1")).toEqual({ all: 4, pays: 5 });
+  });
+
+  it("pays three Acceleration Gates + Moonlight Affliction on T3, as walked: each recycle shrinks only the Gates after it", () => {
+    expect(price("VEN-150:3,UNL-066:1").all).toBe(3);
   });
 
   it("pays Acceleration Gate alone on T2, not T1: the runes it readies cannot pay its own cost", () => {
