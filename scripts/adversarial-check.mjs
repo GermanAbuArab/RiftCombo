@@ -415,6 +415,8 @@ const namesAnswer = (blob, set) =>
 // exhausted" against 359.2.d, which enters a non-unit gear READY at base, and 359.3, which makes a
 // spell linger on the Chain and never become a permanent at all.
 let greedyFallbacks = 0;
+// A readier that readies every unit (#506, `readiesOf`): more units than any one turn can buy.
+const READY_ALL = 99;
 // WHICH rows, not just how many. CLAUDE.md's standing instruction is that a row priced by the greedy
 // pass is "a row to re-derive by hand rather than quote" - and a reader cannot act on that without the
 // id. `greedyFallbacks` counts every CALL, including the intermediate prices the needs/produces fold
@@ -460,12 +462,13 @@ function typesOf(costs) {
     // `rain`, `holdx` and `turn` (#339) are part of the type for the same reason `link` is: a Blue
     // Sentinel and an unrelated E4/1-Power unit pay the same price, but only one of them Adds rainbow.
     // `pow` and `ready` (#501) likewise: a Seal and an unrelated E0/1-Power card are not the same type.
+    // `rdy` (#506) too: Upstage Comedy and an unrelated E2 spell are not.
     const k = `${c.e}|${c.p}|${c.unit ? 1 : 0}|${c.gated ? 1 : 0}|${c.rain || 0}|${c.holdx || 0}|` +
-              `${c.turn ? 1 : 0}|${c.pow || 0}|${c.ready ? 1 : 0}|${c.link || ""}`;
+              `${c.turn ? 1 : 0}|${c.pow || 0}|${c.ready ? 1 : 0}|${c.rdy || 0}|${c.link || ""}`;
     if (!byType.has(k))
       byType.set(k, { e: c.e, p: c.p, unit: !!c.unit, gated: !!c.gated, rain: c.rain || 0,
                       holdx: c.holdx || 0, turn: !!c.turn, pow: c.pow || 0, ready: !!c.ready,
-                      link: c.link || "", after: c.after || "", n: 0, kids: [] });
+                      rdy: c.rdy || 0, link: c.link || "", after: c.after || "", n: 0, kids: [] });
     byType.get(k).n++;
   }
   const all = [...byType.values()];
@@ -479,7 +482,7 @@ function typesOf(costs) {
     if (parent) parent.kids.push(t); else roots.push(t);
   }
   const desc = (t) => `${t.e}|${t.p}|${t.unit ? 1 : 0}|${t.gated ? 1 : 0}|${t.rain}|${t.holdx}|` +
-                      `${t.turn ? 1 : 0}|${t.pow}|${t.ready ? 1 : 0}|${t.n}` +
+                      `${t.turn ? 1 : 0}|${t.pow}|${t.ready ? 1 : 0}|${t.rdy}|${t.n}` +
                       (t.kids.length ? `(${t.kids.map(desc).sort().join(",")})` : "");
   const cmp = (a, b) => (desc(a) < desc(b) ? -1 : desc(a) > desc(b) ? 1 : 0);
   // Gated roots emit LAST, so that when the recursion reaches one, every ungated type's count for the
@@ -594,17 +597,29 @@ function deployTurnUncached(types, costs) {
   // Power cost among them. Their Adds pay any Power but the first one's own, which must come from
   // the turn's other sources: one recycle pays a Seal, the Seal pays the next card's Power - a
   // second Seal's included, which is why N Seals in one turn still need only that one recycle.
-  const walk = (i, e, p, delta, tookUnit, cast, nf, fp) => {
+  // `un` is the number of units bought this sub-turn and `rd` how many of them the readiers bought
+  // with them can ready (#506).
+  const walk = (i, e, p, delta, un, rd, cast, nf, fp) => {
     if (i === dim) {
       const k = idx + delta + (queued + cast) * space;
       const ext = nf && fp > p - nf ? fp : p - nf;  // Power the fresh Adds cannot pay
       const rec = ext > rain ? ext - rain : 0;
       if (rec > runes) return;
       const nr = runes - rec;                       // 161.2.b: a recycled rune leaves the board
-      const nu = tookUnit ? sub : u0;
+      // READYING (#506). A readier works only on the turn it is paid, on the units that land with
+      // it, so this sub-turn owes 143.4's readiness turn only if more units landed in it than its
+      // readiers ready. A sub-turn whose units were all readied records -sub: a unit landed, so
+      // `unit` still reports one, and it is not `sub`, so `unitLast` does not read it as owed.
+      const nu = un > rd ? sub : un ? -sub : u0;
       // For a fixed set of paid costs MORE RUNES always dominates; ties keep the EARLIEST
-      // last-unit turn, because that is what the readiness +1 reads.
-      if (nxtR[k] < nr || (nxtR[k] === nr && nxtU[k] > nu)) { nxtR[k] = nr; nxtU[k] = nu; }
+      // last-unit turn, because that is what the readiness +1 reads. Except at FULL: nothing is left
+      // to buy, so the runes decide nothing and the only thing the state still carries is whether the
+      // completing sub-turn owes the readiness turn; preferring runes there could keep a path that
+      // owes it over one that does not. Measured 2026-10-27, this branch moves no row and no `--price`
+      // pin today: it makes the waiver exact by construction rather than by luck.
+      let better = nxtR[k] < nr || (nxtR[k] === nr && nxtU[k] > nu);
+      if (idx + delta === FULL && nxtR[k] >= 0 && (nxtU[k] === sub) !== (nu === sub)) better = nu !== sub;
+      if (better) { nxtR[k] = nr; nxtU[k] = nu; }
       return;
     }
     const t = types[i];
@@ -653,7 +668,7 @@ function deployTurnUncached(types, costs) {
       // skips the q it cannot afford yet.
       if (ne > runes) break;
       if (np - nnf > runes + rain) { if (fresh && t.pow > t.p) continue; break; }
-      walk(i + 1, ne, np, delta + q * stride[i], tookUnit || (q > 0 && t.unit), cast + (t.turn ? q : 0),
+      walk(i + 1, ne, np, delta + q * stride[i], t.unit ? un + q : un, rd + t.rdy * q, cast + (t.turn ? q : 0),
            nnf, fresh && (!nf || t.p < fp) ? t.p : fp);
     }
   };
@@ -668,7 +683,7 @@ function deployTurnUncached(types, costs) {
       runes = Math.min(12, curR[k] + 2);
       rain = rainAt[idx];
       u0 = curU[k];
-      walk(0, 0, 0, 0, false, 0, 0, 0);
+      walk(0, 0, 0, 0, 0, 0, 0, 0, 0);
     }
   };
   for (let turn = 1; turn <= 40; turn++) {
@@ -760,6 +775,7 @@ if (args.includes("--selftest")) {
   const sentinel = () => unit(4, 1, { rain: 1, holdx: 1 });     // UNL-087's two hold lines
   const warp = (e, p) => ({ e, p, unit: false, link: "", turn: true });
   const seal = (ready) => ({ e: 0, p: 1, unit: false, link: "", pow: 1, ready });  // OGN-040's shape
+  const readier = (e, rdy) => ({ e, p: 0, unit: false, link: "", rdy });           // UNL-009's shape
   const cases = [
     // [name, costs, expected `all`, why]
     ["one E2 card", [play(2, 0, "")], 1, "T1 has 2 runes"],
@@ -797,13 +813,32 @@ if (args.includes("--selftest")) {
     ["three ready Seals", [seal(true), seal(true), seal(true)], 1,
      "one recycle pays the first Seal and each Seal's Add pays the next (two Power from two runes is not three)"],
   ];
+  // #506. These read `pays`, the turn the last unit can act, because a readier moves only the
+  // readiness turn of 143.4 and never `all`. The first two are the same units with and without the
+  // readier, so the waiver is SEEN; the third is why it must share the unit's turn, which is the
+  // defect the issue names (a readier paid on T1 waived the last unit's turn).
+  const paysCases = [
+    ["two E2 units, no readier", [unit(2, 0), unit(2, 0)], 3,
+     "T1 and T2 take a unit each and the T2 unit is exhausted (143.4) until T3"],
+    ["two E2 units + E2 one-unit readier", [unit(2, 0), unit(2, 0), readier(2, 1)], 2,
+     "T2's 4 runes pay the second unit and the readier, which readies it the turn it lands"],
+    ["E4 unit + E2 one-unit readier", [unit(4, 0), readier(2, 1)], 3,
+     "the readier on T1 readies nothing, T2's 4 runes pay the unit alone, and T3 is the first turn with 6 for both"],
+  ];
   let bad = 0;
-  console.log(`# allocator self-test: ${cases.length} synthetic cost sets, answers hand-derived`);
+  console.log(`# allocator self-test: ${cases.length + paysCases.length} synthetic cost sets, answers hand-derived`);
   for (const [name, costs, want, why] of cases) {
     const got = deployTurn(costs).all;
     const ok = got === want;
     if (!ok) bad++;
     console.log(`  ${ok ? "ok  " : "FAIL"}  T${got} (want T${want})  ${name} — ${why}`);
+  }
+  for (const [name, costs, want, why] of paysCases) {
+    const d = deployTurn(costs);
+    const got = d.all + (d.unitLast ? 1 : 0);
+    const ok = got === want;
+    if (!ok) bad++;
+    console.log(`  ${ok ? "ok  " : "FAIL"}  pays T${got} (want T${want})  ${name} — ${why}`);
   }
   console.log(bad ? `# ${bad} FAILED` : "# all pass");
   process.exit(bad ? 1 : 0);
@@ -1454,6 +1489,8 @@ function equipCost(c) {
  *   turn   the card queues an Additional Turn ("Take a turn after this one")
  *   pow    Power Added once a turn by an ability whose ONLY cost is exhausting the card (#501)
  *   ready  whether that Add is usable the turn the card is paid for
+ *   rdy    how many units it readies on the turn it is paid (#506, `readiesOf`)
+ *   selfReady  a unit that always enters ready, so it never owes 143.4's turn (#506)
  *
  * `pow` is income because the card readies at every Awakening (415.3.a) and the pool empties at the
  * end of the turn (167), so it is one Add a turn, never a bank. Swept 2026-10-27 over every [Add] in
@@ -1484,7 +1521,61 @@ function curveOf(c) {
     turn: /Take a turn after this one/i.test(t),
     pow,
     ready: !!pow && c.type.includes("gear") && !c.type.includes("unit") && !/This enters exhausted/i.test(t),
+    rdy: readiesOf(c, t),
+    selfReady: c.type.includes("unit") && /(?:^|[.)]\s*)I enter ready\./.test(t),
   };
+}
+
+/**
+ * READYING (#506): how many of the units that land on the turn this card is paid it readies, so they
+ * owe no 143.4 readiness turn. 0 for most cards, READY_ALL for "every unit". It is tied to THAT turn
+ * because the effect is one-shot: a spell resolves once, and "this turn" ends with the turn - which is
+ * what the clock got wrong before, paying Upstage Comedy on T1 and still charging the last Tryndamere's
+ * readiness turn on T6. Swept 2026-10-27 over every card whose text says "ready", three wordings:
+ *   "enter ready" for the turn   SFD-004 Bushwhack ("Friendly units enter ready this turn."),
+ *                                OGN-129 Confront ("Units you play this turn enter ready.")  -> all
+ *   "ready your units"           SFD-204 On the Hunt, SFD-192 Shurelya's Requiem ("When you play
+ *                                this, ready your units.")                                   -> all
+ *   "Ready a unit"               UNL-009 Upstage Comedy, OGN-146 Wallop, OGN-260 Last Breath ("Ready
+ *                                a friendly unit."), VEN-012 Perfect Execution, OGN-173 Ride the Wind
+ *                                ("Move a friendly unit and ready it.")                      -> 1
+ *                                VEN-150 Acceleration Gate ("Ready up to 4 units, gear, and/or
+ *                                runes.")                                                    -> 4
+ * Comedy's [Repeat] readies a second unit and its E2 is NOT charged, because this table is a lower
+ * bound and an extra cost it cannot make conditional must err cheap.
+ *
+ * THE LOOSENESS THIS ADMITS, stated because it is the thing to check. "Enter ready" cannot be
+ * counted twice: it is one effect on every unit that lands that turn. The other two wordings can,
+ * when the line ALSO spends that ready on a step - the clock prices card sets, not steps, the same
+ * reason it pays a step's spell on whatever turn is cheapest. Measured 2026-10-27 it moves two ENGINE
+ * rows and no finisher: on-the-hunt-yasuo-triple-third-move T6 -> T5 (both On the Hunts are its own
+ * moves 2 and 3, so a Yasuo landing on T5 gets two moves, not three) and
+ * card-sharp-dropboarder-gold-ready T7 -> T6 (its consumer's Acceleration Gates). Both are EARLIER
+ * than the line, which is the direction this table is allowed to err in.
+ *
+ * Left out on purpose, by name:
+ *   units that ready another     OGN-132 First Mate, SFD-062 Bubble Bot, VEN-020 Twilight Reveler,
+ *                                VEN-068 Jayce: a unit, so it lands exhausted itself
+ *   statics on a unit or legend  OGN-011 Magma Wurm ("Other friendly units"), SFD-171 Renata (tokens),
+ *                                UNL-191 Wuju Master (Level 11), every legend that readies
+ *   conditional or partial       OGN-153 Overt Operation (spends a buff), UNL-109 Blood Rose (3 XP),
+ *                                OGN-021 Sun Disc ([Legion], the next unit), SFD-202 Hostile Takeover
+ *                                (an enemy unit), SFD-154 Guards! / SFD-198 Arise! (tokens only)
+ *   [Accelerate] and conditional "I enter ready"   an additional cost or a condition on the unit
+ *                                itself, which the allocator has no way to make optional
+ * The unconditional "I enter ready." (`selfReady`) is the fourth wording and the simplest: OGN-159
+ * Warwick, OGS-009 Yi, OGS-016 Vanguard Attendant, SFD-006 Eager Drakehound, UNL-001 Arena Kingpin,
+ * UNL-196 Daisy! never owe the turn at all. A [Level] "I enter ready" is a condition and is not one.
+ */
+function readiesOf(c, t) {
+  if (c.type.includes("unit") || c.type.includes("legend")) return 0;
+  if (/\b(?:Friendly units enter ready this turn|Units you play this turn enter ready)\b/i.test(t) ||
+      /\bready your units\b/i.test(t)) return READY_ALL;
+  const upTo = t.match(/(?:^|[.)\]]\s*)Ready up to (\d+) units\b/);
+  if (upTo) return Number(upTo[1]);
+  if (/(?:^|[.)\]]\s*)(?:Ready (?:a|a friendly) unit|Move a friendly unit and ready it)\b/.test(t))
+    return /\[Repeat\]/.test(t) ? 2 : 1;
+  return 0;
 }
 
 /**
@@ -1558,7 +1649,8 @@ const costsOfSet = (set, ign, bodies) => {
     // the player's Base", so the gear is on the board the turn it is played, and no [Equip] cost in
     // this pool contains an exhaust (measured: 0 exhaust symbols across the 40 Equipment).
     const linked = !!(eq && (eq.e || eq.p));
-    // 143.4 exhausts UNITS only, so only a unit costs a readiness turn.
+    // 143.4 exhausts UNITS only, so only a unit costs a readiness turn - and not one that says "I
+    // enter ready." (#506).
     // POST-IGNITION. A card outside the engine's own set is bought after the loop is running, so an
     // `infinite-energy` engine pays its Energy and an `infinite-power` engine its Power. `gated`
     // then forbids paying for it before the engine is complete - see the note on the restriction in
@@ -1566,9 +1658,9 @@ const costsOfSet = (set, ign, bodies) => {
     const post = !!(ign && !ign.bases.has(b));
     const ce = post && ign.freeE ? 0 : c.energy || 0;
     const cp = post && ign.freeP ? 0 : c.power || 0;
-    const { rain, holdx, turn, pow, ready } = curveOf(c);
+    const { rain, holdx, turn, pow, ready, rdy, selfReady } = curveOf(c);
     for (let i = 0; i < q; i++) {
-      out.push({ e: ce, p: cp, unit: c.type.includes("unit"), gated: post, rain, holdx, turn, pow, ready,
+      out.push({ e: ce, p: cp, unit: c.type.includes("unit") && !selfReady, gated: post, rain, holdx, turn, pow, ready, rdy,
                  link: linked ? `${b}#play` : "" });
       if (linked) equips.push({ e: post && ign.freeE ? 0 : eq.e, p: post && ign.freeP ? 0 : eq.p,
                                 unit: false, gated: post, link: `${b}#equip`, after: `${b}#play` });
@@ -1581,7 +1673,7 @@ const costsOfSet = (set, ign, bodies) => {
     for (let i = 0; i < bodies.n; i++) {
       const post = !!(ign && i >= bodies.engine);
       out.push({ e: post && ign.freeE ? 0 : body.e, p: post && ign.freeP ? 0 : body.p, unit: true,
-                 gated: post, rain: 0, holdx: 0, turn: false, pow: 0, ready: false, link: "" });
+                 gated: post, rain: 0, holdx: 0, turn: false, pow: 0, ready: false, rdy: 0, link: "" });
     }
   }
   if (weaponmaster && equips.length) {
@@ -1605,10 +1697,10 @@ const costsOfSet = (set, ign, bodies) => {
   for (const c of all) if (c.link) allFree.set(c.link, (allFree.get(c.link) ?? true) && !c.e && !c.p);
   for (const c of all) if (c.after && !c.e && !c.p && allFree.get(c.after)) { c.after = ""; c.link = ""; }
   const roots = new Set(all.filter((c) => c.after).map((c) => c.after));
-  // A free Sentinel, a free Seal or a free Time Warp still Adds or still queues a turn, and N of them
-  // do that N times, so none is interchangeable with one of itself.
+  // A free Sentinel, a free Seal, a free Time Warp or a free Comedy still Adds, queues a turn or
+  // readies a unit, and N of them do that N times, so none is interchangeable with one of itself.
   const collapsible = (c) => !c.e && !c.p && !c.after && !roots.has(c.link || "") &&
-                             !c.rain && !c.holdx && !c.turn && !c.pow;
+                             !c.rain && !c.holdx && !c.turn && !c.pow && !c.rdy;
   const free = all.filter(collapsible);
   if (free.length < 2) return all;
   const rest = all.filter((c) => !collapsible(c));
@@ -1685,8 +1777,10 @@ if (args.includes("--price")) {
   }
   const costs = costsOfSet(set, null, { n: 0, engine: 0 });
   const d = deployTurn(costs);
+  // `pays` is the row's own formula with no Beginning-Phase payoff: the readiness turn of 143.4 is
+  // owed when a unit nothing readied landed with the last cost.
   console.log(`price ${Object.entries(set).map(([b, q]) => `${b}x${q}`).join(" ")}: all T${d.all}, last unit T${d.unit}` +
-              `, unitLast ${!!d.unitLast}, income ${costs.reduce((a, c) => a + (c.pow || 0), 0)}`);
+              `, unitLast ${!!d.unitLast}, pays T${d.all + (d.unitLast ? 1 : 0)}, income ${costs.reduce((a, c) => a + (c.pow || 0), 0)}`);
   process.exit(0);
 }
 
@@ -1786,6 +1880,7 @@ for (const { e, domains: ownDomains, cards: ownCards } of entries) {
   const merged = [...domainsOfSet(cards)];
   clock.push({ id: e.id, cls: e.class, pays, base: baselineTurn(merged), via: note || null,
                ordered: finalCosts.some((c) => c.after), income: finalCosts.some((c) => c.pow),
+               readier: finalCosts.some((c) => c.rdy),
                domains: (merged.length ? merged : [...ownDomains]).sort().join("/") || "colourless" });
 }
 
@@ -1804,6 +1899,9 @@ if (!onlyTurns && !engines) {
 function incomeLine(rows) {
   return `# power income (an exhaust-only [Add] of Power, 415.3.a + 167): ${rows.filter((c) => c.income).length} of ${rows.length} rows hold an income card`;
 }
+function readierLine(rows) {
+  return `# readying (a readier paid with the last units waives 143.4): ${rows.filter((c) => c.readier).length} of ${rows.length} rows hold a readier`;
+}
 
 if (engines) {
   // WHAT THIS NUMBER IS AND IS NOT. An engine's turn says when its card set is first payable, i.e.
@@ -1820,6 +1918,7 @@ if (engines) {
   console.log(`# ${eng.length} ENGINEs; median T${finite[Math.floor(finite.length / 2)]}, mean T${(finite.reduce((a, b) => a + b, 0) / finite.length).toFixed(2)}`);
   console.log(`# ${late.length} of ${eng.length} (${((100 * late.length) / eng.length).toFixed(0)}%) are deployable only AFTER the do-nothing Hold curve wins in their identity`);
   console.log(incomeLine(eng));
+  console.log(readierLine(eng));
   const hist = new Map();
   for (const c of eng) hist.set(c.pays, (hist.get(c.pays) ?? 0) + 1);
   for (const t of [...hist.keys()].sort((a, b) => a - b))
@@ -1853,6 +1952,8 @@ if (greedyFallbacks !== greedyRows.length)
 // Non-vacuity for the Power income model (#501): it moved no row when it landed, and that null means
 // something only while rows that hold an income card exist and the self-test shows it can move one.
 console.log(incomeLine(clock));
+// The same for readying (#506): it moved no finisher row when it landed.
+console.log(readierLine(clock));
 // Non-vacuity for the ordering model: the constraint can only ever bind on a row that HAS an [Equip]
 // cost, so the size of that population is what makes "it moves nothing" a result rather than a shrug.
 console.log(`# ordering ([Equip] after its own gear, 818.1 + 380): ${clock.filter((c) => c.ordered).length} of ${clock.length} rows carry a linked cost` +
