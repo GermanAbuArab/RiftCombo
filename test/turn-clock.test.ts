@@ -639,7 +639,7 @@ describe("conditional rune readiers (#523)", () => {
   it("sends 3 Gemdragons + 21 other Dragons + 2 Aphelios to the greedy fallback instead of hanging, and says so", () => {
     const r = spawnSync("node", ["scripts/adversarial-check.mjs", "--price",
       "UNL-104:3,OGN-001:3,OGN-131:3,OGN-038:3,VEN-016:3,OGN-142:3,SFD-006:3,UNL-118:3,SFD-224:2"],
-      { encoding: "utf8", timeout: 60_000, env: { ...process.env, RC_FB: "1" } });
+      { encoding: "utf8", timeout: 60_000, env: { ...process.env, RC_FB: "1", RC_LEAVES: "", RC_GUARD: "" } });
     expect(r.status, r.stderr).toBe(0);
     expect(r.stdout).toContain("GREEDY FALLBACK");
     expect(r.stderr).toMatch(/FALLBACK leaves>/);

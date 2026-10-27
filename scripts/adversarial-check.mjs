@@ -562,7 +562,9 @@ function deployTurnUncached(types, costs) {
   // catalogue's largest closure walks 6 million. Past LEAF_CAP leaves the set goes to the same greedy
   // fallback, counted and named like the state guard's. RC_LEAVES sets it for a measurement (0 forces
   // the fallback). A node of the readier search inside a leaf counts against the same budget.
-  const LEAF_CAP = process.env.RC_LEAVES ? Number(process.env.RC_LEAVES) : 3e7;
+  // A value that is not a non-negative number keeps the default: NaN would compare false forever.
+  const leafEnv = process.env.RC_LEAVES ? Number(process.env.RC_LEAVES) : NaN;
+  const LEAF_CAP = Number.isFinite(leafEnv) && leafEnv >= 0 ? leafEnv : 3e7;
   let leaves = 0, over = false;
 
   // HOLD ADDS (#339). UNL-087 Blue Sentinel: "When I hold, [Add] [A] at the start of your next Main
