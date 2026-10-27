@@ -436,6 +436,105 @@ describe("[Accelerate] (#510)", () => {
   });
 });
 
+/**
+ * READYING RUNES (#513), pinned against REAL card text through `--price`. 164.2.a: "[E]: [Reaction] —
+ * Add [1]." 164.2.b: "Recycle this: [Reaction] — Add [C]." A rune's Energy is its EXHAUST and its
+ * Power is its RECYCLE, whose cost has no exhaust in it, so a readied rune pays one more Energy and no
+ * more Power: an exhausted rune recycles all the same, and a recycled one is gone (161.2.b) and cannot
+ * be readied. 167 empties the pool only "at the start of each player's Main Phase and the end of each
+ * player's turn", so every rune can be exhausted up front and the Energy held while the readier
+ * resolves.
+ *
+ * Cards: VEN-150 Acceleration Gate (Spell, E3 + 1, "Ready up to 4 units, gear, and/or runes."),
+ * UNL-066 Moonlight Affliction (Spell, E7), VEN-090 Cataclysmic Duel (Spell, E8 + 3), OGN-142
+ * Mountain Drake (Unit, E9, no text), SFD-087 Premonition (Spell, E2 + 3). Going first, 2 runes a
+ * turn (315.3.b).
+ *
+ * GATE + AFFLICTION, T3. E10 + 1. T3 holds 6 runes: exhaust all six (pool 6), recycle one for the
+ * Gate's Power (5 left, all exhausted), cast the Gate (pool 3), ready 4 of the 5 and exhaust them
+ * again (pool 7), cast Affliction. Not T2: 4 runes, one recycled for the Gate, give 4 + 3 = 7 of 10.
+ * Without the readying it is T4: the same turn needs 10 runes (T5), and the Gate on T2 leaves 3 runes,
+ * so T3 has 5 and T4 has 7, which is Affliction's 7.
+ *
+ * GATE + DUEL, T4 (the control, "up to 4", not every rune). E11 + 4. T3's 6 runes, one recycled for
+ * the Gate, leave 5 to ready, and the Gate readies 4: 6 + 4 = 10 of 11. T4's 8 runes give 8 + 4 = 12,
+ * and Duel's 3 recycles come after the Gate resolves. A clock that readied every rune would print T3
+ * (6 + 5 = 11); one with no readying prints T5 (the Gate on T2 leaves 3, 5, 7, 9 runes, and Duel's E8
+ * first fits on T5).
+ *
+ * GATE + DRAKE, pays T5 (the "up to 4" is SHARED by units, gear and runes). E12 + 1, so `all` is T4
+ * the same way, 8 + 4. All four readies go to runes, so the Gate has none left for the Drake that
+ * lands with it: he is exhausted (143.4) until T5. A clock that readied 4 runes AND 4 units would say
+ * T4; the clock before #513 said T6 (`all` T5, the Drake landing that turn with the Gate on T2).
+ *
+ * THREE GATES + AFFLICTION, T3 (PR #522's review). E16 + 3. T3's 6 runes: exhaust all six (pool 6),
+ * recycle one for the first Gate (5 left), cast it (pool 3), ready 4 and exhaust them (pool 7); recycle
+ * the fifth, still exhausted, for the second Gate (4 left), cast it (pool 4), ready all 4 (pool 8);
+ * recycle one for the third (3 left), cast it (pool 5), ready 3 (pool 8); Affliction is 7. That is
+ * 4 + 4 + 3 = 11 readied, 6 + 11 = 17 of 16. Not T2: 4 runes give 3 + 2 + 1 = 6 back, 10 of 16. A clock
+ * that charged every Gate's recycle to all three readies 3 + 3 + 3 = 9 and says T4.
+ *
+ * GATE ALONE, T2. It is paid before it resolves, so T1's 2 runes cannot pay its E3 whatever it readies.
+ *
+ * GATE + TWO PREMONITIONS, T4 (the Power control, "no Power comes back"). E7 + 7. Seven recycles need
+ * seven runes channelled, and T3 has channelled six, so T4: the Gate and one Premonition on T3 (E5,
+ * 4 recycles, 2 left), the second on T4's 4 runes. A clock that returned Power with the readied runes
+ * would print T2 (4 + 4 of each). This one passes without #513 too: it guards the model, not the bug.
+ */
+describe("readying runes (#513)", () => {
+  const price = (set: string) => {
+    const s = execFileSync("node", ["scripts/adversarial-check.mjs", "--price", set], { encoding: "utf8" });
+    const m = s.match(/all T(\d+|Infinity).*pays T(\d+|Infinity)/);
+    expect(m, s).toBeTruthy();
+    return { all: Number(m![1]), pays: Number(m![2]) };
+  };
+
+  it("pays Acceleration Gate + Moonlight Affliction on T3, as walked: four readied runes are four Energy", () => {
+    expect(price("VEN-150:1,UNL-066:1").all).toBe(3);
+  });
+
+  it("pays Acceleration Gate + Cataclysmic Duel on T4, not T3: the Gate readies up to 4, not every rune (the control)", () => {
+    expect(price("VEN-150:1,VEN-090:1").all).toBe(4);
+  });
+
+  it("pays Acceleration Gate + Mountain Drake all T4 and pays T5: the 4 readies are shared by units and runes", () => {
+    expect(price("VEN-150:1,OGN-142:1")).toEqual({ all: 4, pays: 5 });
+  });
+
+  it("pays three Acceleration Gates + Moonlight Affliction on T3, as walked: each recycle shrinks only the Gates after it", () => {
+    expect(price("VEN-150:3,UNL-066:1").all).toBe(3);
+  });
+
+  it("pays Acceleration Gate alone on T2, not T1: the runes it readies cannot pay its own cost", () => {
+    expect(price("VEN-150:1").all).toBe(2);
+  });
+
+  it("pays Acceleration Gate + two Premonitions on T4: a readied rune returns no Power", () => {
+    expect(price("VEN-150:1,SFD-087:2").all).toBe(4);
+  });
+
+  it("prints its predicate and every member, each modelled or refused with a reason", () => {
+    const m = out.match(/# readying runes \((.*)\): (\d+) cards say it; modelled (\d+): (.*); refused (\d+): (.*); unclassified (\d+); (\d+) of (\d+) rows hold a modelled one/);
+    expect(m, "the rune-readying line is missing from --turns").toBeTruthy();
+    // A second instrument, not the predicate itself: every base whose text says "ready" and "rune" in
+    // one sentence, icons stripped, read straight from data/cards.json.
+    const all = JSON.parse(readFileSync("data/cards.json", "utf8")).cards as { base: string; text?: string; effect?: string }[];
+    const said = new Set<string>();
+    for (const c of all) {
+      const t = `${c.text || ""} ${c.effect || ""}`.replace(/:rb_[a-z_0-9]+:/g, "");
+      if (t.split(/[.\n]/).some((s) => /\bready\b/i.test(s) && /\brunes?\b/i.test(s))) said.add(c.base);
+    }
+    expect(said.size).toBe(12);
+    expect(Number(m![2])).toBe(said.size);
+    expect(Number(m![3]) + Number(m![5])).toBe(said.size);
+    expect(Number(m![7])).toBe(0);
+    for (const b of said) expect(`${m![4]} ${m![6]}`, b).toContain(b);
+    expect(m![4]).toContain("VEN-150");
+    expect(m![6]).toContain("OGN-110");
+    expect(Number(m![8])).toBeGreaterThan(0);
+  });
+});
+
 /** --price input validation (#511): Number() read 0x1 and 1e0 as 1 and the destructure dropped a third field. */
 describe("--price refuses malformed specs (#511)", () => {
   const run = (spec: string) => spawnSync("node", ["scripts/adversarial-check.mjs", "--price", spec], { encoding: "utf8" });
