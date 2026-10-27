@@ -291,15 +291,15 @@ regular play."* What can be answered is the count.
 
 | | pays |
 |---|---|
-| This line, `npm run adversarial -- --turns` | **T3**, too early (below) |
+| This line, `npm run adversarial -- --turns` | **T3**, too early (below). CORRECTED 2026-10-27 (#494 / PR #497): the clock now prints T4 for `up-from-the-deep-flow-grand-plaza`. |
 | This line with its three bodies priced, the same model by hand | **T4** |
 | Chaos/Fury Hold baseline, same command | **T6** |
 | This line in the walk above | not by T4; 3 to 3 after their T4 |
 
-The clock prints T3 for `up-from-the-deep-flow-grand-plaza`, and that is one turn too early. The
+The clock prints T3 for `up-from-the-deep-flow-grand-plaza`, and that is one turn too early. [CORRECTED 2026-10-27 (#494 / PR #497): the clock now prints T4 for this row.] The
 entry declares its three bodies as `anyBodies`, the way `flurry-of-feathers-grand-plaza-win` does,
 because the Plaza counts any seven units and naming three would invent a decklist. The clock does not
-charge `anyBodies`: `grep -c anyBodies scripts/adversarial-check.mjs` is 1, a comment. So it prices
+charge `anyBodies`: `grep -c anyBodies scripts/adversarial-check.mjs` is 1, a comment. [SETTLED 2026-10-27: #494 / PR #497 made the clock charge `anyBodies`.] So it prices
 Up from the Deep alone, E3, payable on T2, plus the turn the Hold waits. Priced by hand under the same
 model, with the bodies at E2 each: one on T1 (2 runes), two on T2 (4), Up from the Deep and its [Flow]
 on T3 (6). The win comes at the **T4** Hold. By the end of T2 the most on the Plaza is three: one
@@ -369,6 +369,7 @@ going second it cannot do before your T2; and the turns after their T4.
   priced as if they were free. This row prints T3 where the arithmetic is T4. The same gap may sit
   under `flurry-of-feathers-grand-plaza-win` (anyBodies 3, T3 on the clock) and the other rows with
   the field; not measured here.
+  SETTLED 2026-10-27: #494 / PR #497 made the clock charge `anyBodies`; it now prints T4 for both `up-from-the-deep-flow-grand-plaza` and `flurry-of-feathers-grand-plaza-win`. CORRECTED 2026-10-27 (#494 / PR #497): the clock now prints T4 for both rows.
 - Rules note to stage: 157 (*"A spell creates a game effect according to its instructions and is then
   placed in the Trash of the player who owns it."*) is cited 9 times in `data/combos.json` and nowhere
   in `CLAUDE.md` or `docs/rules-notes/`. One more entry citing it twice takes it to 11, and

@@ -81,6 +81,7 @@ alphabetically. Its four are ahri-trinity-svellsongur-hold (BURST, T6), nasus-sv
 (Calm BURST, T6), flurry-of-feathers-grand-plaza-win (Calm ALT_WIN, T3) and
 dragonstorm-confront-grand-plaza, a Body ALT_WIN whose clock row is priced with its Fury fuel at T12
 and so counts in Body/Calm only by its own cards.
+CORRECTED 2026-10-27 (#494 / PR #497): the clock now prints T4 for flurry-of-feathers-grand-plaza-win. Still at or before T4, so the count does not change.
 
 The full order, (clocked by T4, all four): chaos/fury (0, 2), body/calm (0, 4), body/chaos (0, 4),
 body/fury (0, 7), body/order (0, 7), chaos/order (0, 9), calm/order (0, 11), chaos/mind (0, 14),
@@ -91,7 +92,7 @@ calm/fury (2, 10), mind/order (2, 31).
 
 | line | class | pays | Chaos/Fury Hold baseline | beats it | catalogue |
 |---|---|---|---|---|---|
-| [Up from the Deep on the Plaza](2026-10-27-up-from-the-deep-puts-seven-on-the-plaza-by-turn-three-and-the-two-bodies-they-already-had-kill-five-of-them.md) | ALT_WIN | T4 (the clock prints T3, without its three bodies) | T6 | yes, by two turns | up-from-the-deep-flow-grand-plaza, `status: candidate` |
+| [Up from the Deep on the Plaza](2026-10-27-up-from-the-deep-puts-seven-on-the-plaza-by-turn-three-and-the-two-bodies-they-already-had-kill-five-of-them.md) | ALT_WIN | T4 (the clock prints T3, without its three bodies); CORRECTED 2026-10-27 (#494 / PR #497): the clock now prints T4 for this row. | T6 | yes, by two turns | up-from-the-deep-flow-grand-plaza, `status: candidate` |
 | [Seal of Rage and Upstage Comedy under Tryndamere](2026-10-27-seal-of-rage-and-upstage-comedy-bring-tryndameres-nine-to-turn-six-the-turn-the-free-hold-curve-wins-and-one-hextech-ray-holds-it-to-three.md) | BURST | T6 | T6 | no, same turn | not entered: negative result |
 
 **The Plaza line** puts three Energy-2 bodies on The Grand Plaza by the end of T2, and one Up from the
@@ -144,7 +145,7 @@ The next pair in the order is **Body/Calm** (baseline T5).
 The table counts entries, not decks. An entry fits a pair if its cards do; whether a real list in that
 pair would run it is not asked. The clock is the optimistic lower bound its own header states: perfect
 draws, nothing cast against the line, no interaction. It also does not charge an entry's `anyBodies`,
-and §3 shows one row where that moves the turn. The other pay-by-T4 rows were not re-priced by hand.
+and §3 shows one row where that moves the turn. The other pay-by-T4 rows were not re-priced by hand. SETTLED 2026-10-27: #494 / PR #497 made the clock charge `anyBodies`.
 ALT_WIN turns are reported, not ranked.
 
 ## 7. The command
