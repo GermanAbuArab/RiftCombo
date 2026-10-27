@@ -1,1 +1,2 @@
 auth or database present: security-scan required before push
+exempt: data/combos.json
