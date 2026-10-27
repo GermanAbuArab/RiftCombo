@@ -422,6 +422,8 @@ describe("[Accelerate] (#510)", () => {
     // A second instrument, not the predicate itself: every base whose text or effect says
     // "accelerate" at all, read straight from data/cards.json. The predicate may not miss one, and
     // each of them is a unit (Rek'Sai's grant sits on a unit that carries the keyword herself).
+    // Comparing sizes is enough: whatever the predicate matches contains "[Accelerate]" and so says
+    // "accelerate", i.e. its set is a SUBSET of this one, and a subset of equal size is the same set.
     const all = JSON.parse(readFileSync("data/cards.json", "utf8")).cards as {
       base: string; type: string[]; text?: string; effect?: string;
     }[];
