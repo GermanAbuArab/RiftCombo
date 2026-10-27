@@ -1680,6 +1680,8 @@ if (args.includes("--price")) {
     const c = [...byBase.values()].find((x) => x.base.toLowerCase() === (b || "").toLowerCase());
     if (!c || !Number.isInteger(Number(q)) || !(Number(q) > 0)) { console.error(`# --price: bad item "${part}", want BASE:QTY`); process.exit(2); }
     set[c.base] = (set[c.base] ?? 0) + Number(q);
+    // 103.2.b caps a named card at 3 copies, and an uncapped count is one cost object per copy
+    if (set[c.base] > 3) { console.error(`# --price: ${c.base} x${set[c.base]}, a deck holds at most 3 (103.2.b)`); process.exit(2); }
   }
   const costs = costsOfSet(set, null, { n: 0, engine: 0 });
   const d = deployTurn(costs);
