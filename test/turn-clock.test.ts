@@ -454,6 +454,12 @@ describe("--price refuses malformed specs (#511)", () => {
     expect(r.stderr).toContain("# --price:");
     expect(r.stderr).toContain(token);
   });
+  it("prints the refused token escaped, never as a raw control byte", () => {
+    const r = run("\x1b[31mOGN-040:1");
+    expect(r.status).toBe(2);
+    expect(r.stderr).not.toContain("\x1b");
+    expect(r.stderr).toContain("\\u001b");
+  });
   it("still prices a valid spec", () => {
     const r = run("OGN-040:1");
     expect(r.status, r.stderr).toBe(0);
