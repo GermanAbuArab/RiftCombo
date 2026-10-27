@@ -258,6 +258,9 @@ describe("which entry a play is about", () => {
     // paragraph, so each needs its own subject here or the other's mention would be promoted.
     "helm-empowered-spell-tax",
     "protective-sands-few-runes-fury",
+    // The subject of the #491 Plaza play. Its coverage play names entry ids without backticks, so it
+    // has no subject, and the Tryndamere play of the same slice is about tryndamere-brambleback-conquer.
+    "up-from-the-deep-flow-grand-plaza",
   ];
 
   it("points each play at the one line it is about, and half of them at none", async () => {
@@ -266,6 +269,7 @@ describe("which entry a play is about", () => {
     expect(at("yasuo-windrider-ride-the-wind-chain")).toEqual(["2026-09-12-chaos-fury-yasuo-shuttle"]);
     expect(at("ivern-ride-the-wind-double-conquer")).toEqual(["2026-09-12-chaos-order-the-one-answer"]);
     expect(at("tryndamere-brambleback-conquer")).toEqual([
+      "2026-10-27-seal-of-rage-and-upstage-comedy-bring-tryndameres-nine-to-turn-six-the-turn-the-free-hold-curve-wins-and-one-hextech-ray-holds-it-to-three",
       "2026-10-24-tryndamere-scores-two-on-turn-five-the-nine-needs-a-garrison-under-four-might-and-eight-might-at-the-battlefield-is-the-free-answer",
       "2026-09-12-the-unopposed-clock",
     ]);
@@ -283,6 +287,9 @@ describe("which entry a play is about", () => {
     ]);
     expect(at("protective-sands-few-runes-fury")).toEqual([
       "2026-10-26-protective-sands-draws-once-on-turn-two-the-sandspinners-three-energy-cost-four-runes-and-the-dragon-cannot-be-cast",
+    ]);
+    expect(at("up-from-the-deep-flow-grand-plaza")).toEqual([
+      "2026-10-27-up-from-the-deep-puts-seven-on-the-plaza-by-turn-three-and-the-two-bodies-they-already-had-kill-five-of-them",
     ]);
     expect(at("bottled-constellation-time-warp")).toEqual(["2026-09-13-the-setup-nobody-prices"]);
     expect(at("shen-sentinel-time-warp-chain")).toEqual(["2026-09-13-the-elegance-is-the-slowness"]);
