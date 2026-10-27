@@ -1814,7 +1814,10 @@ const BODY_PRICE = (() => {
  * unless every option it offers is matched or beaten - no more Energy, no more Power, ready if it is
  * ready - by an option of another candidate, compared over the identity's pool and not one domain's,
  * since a Body/Fury deck plays both. Dropping such a unit is exact: whichever option a body would
- * have taken from it, another candidate offers one at least as good. The order of the sweep keeps
+ * have taken from it, another candidate offers one at least as good. It stays exact after ignition,
+ * where costsOfSet zeroes a post body's Energy, Power or both: the same coordinate goes to zero in
+ * its own price and its [Accelerate]'s alike, so an option that covered another still does. The
+ * order of the sweep keeps
  * the cheaper of two units that offer the same options, the lower base code on a full tie.
  * Swept 2026-10-27, a domain keeps one to three: Fury OGN-010 Legion Rearguard, UNL-001 Arena Kingpin
  * (E5, enters ready: dearer than the Rearguard Accelerated, but with no Power); Calm VEN-043 Steel
@@ -1864,8 +1867,11 @@ const bodyKey = (d) => [...d].sort().join("/") || "colourless";
 const candidateMemo = new Map();
 function candidatesOf(domains) {
   const k = bodyKey(domains);
-  if (!candidateMemo.has(k))
-    candidateMemo.set(k, k === "colourless" ? [EVERY_IDENTITY_BODY] : bodyFront([...domains].flatMap((d) => BODY_UNITS.get(d) || [])));
+  if (!candidateMemo.has(k)) {
+    // An identity whose domains have no unit at all falls back as one with no domain does; none does today.
+    const front = bodyFront([...domains].flatMap((d) => BODY_UNITS.get(d) || []));
+    candidateMemo.set(k, front.length ? front : [EVERY_IDENTITY_BODY]);
+  }
   return candidateMemo.get(k);
 }
 const bodyCandidates = (set) => candidatesOf(domainsOfSet(set));
@@ -2108,7 +2114,8 @@ if (args.includes("--price")) {
   if (!Object.keys(set).length) { console.error(`# --price: empty spec ${JSON.stringify(spec)}, want BASE:QTY,BASE:QTY`); process.exit(2); }
   // --bodies N adds N `anyBodies` bodies (#517), chosen among the set's candidates as a row's are.
   const nb = args.includes("--bodies") ? args[args.indexOf("--bodies") + 1] || "" : "0";
-  if (!/^(?:0|[1-9][0-9]*)$/.test(nb)) { console.error(`# --price: bad --bodies ${JSON.stringify(nb)}, want a decimal integer`); process.exit(2); }
+  // Capped because every mix is priced: the catalogue's largest anyBodies count is 3.
+  if (!/^[0-8]$/.test(nb)) { console.error(`# --price: bad --bodies ${JSON.stringify(nb)}, want a decimal integer from 0 to 8`); process.exit(2); }
   const { d, costs, pick } = priceSet(set, null, { n: Number(nb), engine: 0 });
   // `pays` is the row's own formula with no Beginning-Phase payoff: the readiness turn of 143.4 is
   // owed when a unit nothing readied landed with the last cost.

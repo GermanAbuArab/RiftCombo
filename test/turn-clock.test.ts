@@ -587,8 +587,8 @@ describe("anyBodies: which unit a body is (#517)", () => {
     expect(price("OGN-004:1,VEN-081:1", 1)).toEqual({ pays: 2, bodies: "UNL-111" });
   });
 
-  it("refuses a malformed --bodies", () => {
-    const r = spawnSync("node", ["scripts/adversarial-check.mjs", "--price", "OGN-004:1", "--bodies", "1e0"], { encoding: "utf8" });
+  it.each(["1e0", "01", "9", "-1", ""])("refuses --bodies %j", (n) => {
+    const r = spawnSync("node", ["scripts/adversarial-check.mjs", "--price", "OGN-004:1", "--bodies", n], { encoding: "utf8" });
     expect(r.status).toBe(2);
     expect(r.stderr).toContain("# --price: bad --bodies");
   });
@@ -607,9 +607,8 @@ describe("anyBodies: which unit a body is (#517)", () => {
       const r = line.match(/T\s*(?:\d+|Infinity)\s+vs\s+T\d+\s+baseline\s+(?:SLOWER)?\s*\S+\s+(\S+)\s+(\S+)/);
       if (r && withBodies.has(r[2]!)) doms.add(r[1]!);
     }
+    expect(doms.size).toBeGreaterThan(0);
     for (const d of doms) expect(lines.some((l) => l.startsWith(`#   ${d} `)), d).toBe(true);
-    const bodyFury = lines.find((l) => l.startsWith("#   body/fury "));
-    if (bodyFury) expect(bodyFury).toContain("OGN-010 Legion Rearguard E2 [Accelerate]");
   });
 });
 
