@@ -240,3 +240,54 @@ describe("the allocator's ordering constraint", () => {
     expect(Number(m![1])).toBeLessThan(Number(m![2]));
   });
 });
+
+/**
+ * POWER INCOME (#501), pinned against REAL card text through `--price`, because the line it rests on
+ * declares no Seal in `data/combos.json` and the clock could not see one until this.
+ *
+ * The cards are the ones PR #500 walked for `tryndamere-brambleback-conquer` - OGN-040 Seal of Rage,
+ * three UNL-029 Red Brambleback (E4 + 1), two OGN-034 Tryndamere (E7 + 2) - with SFD-004 Bushwhack
+ * (E2 + 1, "Friendly units enter ready this turn"), which the issue names as the other T6 route. Hand
+ * walk, going first (2 runes a turn, 315.3.b; a recycled rune leaves the board, 161.2.b):
+ *   T2  4 runes: recycle one for the Seal, which enters ready (359.2.d) and Adds Fury for a Brambleback
+ *   T3  5 runes: a Brambleback, its Power from the Seal, readied at the Awakening (415.3.a)
+ *   T4  7 runes: a Tryndamere, Seal + one recycle
+ *   T5  8 runes: the third Brambleback off the Seal
+ *   T6 10 runes: Bushwhack, then the second Tryndamere, E9 and 3 Power = Seal + two recycles
+ *
+ * THE CONTROL, without the Seal, is T7, and by hand: every Power is then a recycle, 8 of them. A
+ * Tryndamere on T6 needs 7 runes there, so at most 5 recycles before T6, so 3 Power paid on T6 - a
+ * Tryndamere plus a Brambleback or Bushwhack, E9 or more on 7 runes. With both on T4 and T5 instead
+ * (T3 has 6 runes at most), T4 needs at most 1 recycle before it and T5 at most 3, which leaves
+ * E10 or more on T6's 7 or 8 runes. So the Seal is worth exactly one turn here.
+ *
+ * Upstage Comedy, the walk's own route, is NOT the pin: the clock pays a readying spell whenever it
+ * is cheapest (T1) rather than after the last unit lands, so with Comedy the no-Seal control also
+ * reads T6 and the pair would prove nothing.
+ */
+describe("power income (#501)", () => {
+  const price = (set: string) => {
+    const s = execFileSync("node", ["scripts/adversarial-check.mjs", "--price", set], { encoding: "utf8" });
+    const m = s.match(/all T(\d+|Infinity), last unit T(\d+|Infinity)/);
+    expect(m, s).toBeTruthy();
+    return { all: Number(m![1]), unit: Number(m![2]) };
+  };
+
+  it("pays the Seal of Rage + Bushwhack Tryndamere line on T6, as walked", () => {
+    expect(price("OGN-040:1,UNL-029:3,OGN-034:2,SFD-004:1").all).toBe(6);
+  });
+
+  it("pays the same cards without the Seal on T7 (the control)", () => {
+    expect(price("UNL-029:3,OGN-034:2,SFD-004:1").all).toBe(7);
+  });
+
+  it("still finds ENGINE rows that hold an income card, so 'it moved no row' cannot go vacuous", () => {
+    const eng = execFileSync("node", ["scripts/adversarial-check.mjs", "--engines"], {
+      encoding: "utf8",
+      maxBuffer: 1 << 24,
+    });
+    const m = eng.match(/power income \([^)]*\): (\d+) of (\d+) rows hold an income card/);
+    expect(m, "the income non-vacuity line is missing from --engines").toBeTruthy();
+    expect(Number(m![1])).toBeGreaterThan(5);
+  }, 60_000);
+});

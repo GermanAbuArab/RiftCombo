@@ -10,6 +10,7 @@
 //   node scripts/adversarial-check.mjs --selftest-answer   which answer the Hold modes name, incl. a counterfactual pool
 //   node scripts/adversarial-check.mjs --selftest-bodies   the anyBodies price against the baseline's cheap-body identities
 //   node scripts/adversarial-check.mjs --recheck-garrison  garrison notables that no longer match their board
+//   node scripts/adversarial-check.mjs --price B:Q,B:Q      the turn clock on a card set that is not an entry
 //
 // It asks two questions of every INFINITE / BURST / CHAIN / ALT_WIN entry:
 //
@@ -458,11 +459,12 @@ function typesOf(costs) {
   for (const c of costs) {
     // `rain`, `holdx` and `turn` (#339) are part of the type for the same reason `link` is: a Blue
     // Sentinel and an unrelated E4/1-Power unit pay the same price, but only one of them Adds rainbow.
+    // `pow` and `ready` (#501) likewise: a Seal and an unrelated E0/1-Power card are not the same type.
     const k = `${c.e}|${c.p}|${c.unit ? 1 : 0}|${c.gated ? 1 : 0}|${c.rain || 0}|${c.holdx || 0}|` +
-              `${c.turn ? 1 : 0}|${c.link || ""}`;
+              `${c.turn ? 1 : 0}|${c.pow || 0}|${c.ready ? 1 : 0}|${c.link || ""}`;
     if (!byType.has(k))
       byType.set(k, { e: c.e, p: c.p, unit: !!c.unit, gated: !!c.gated, rain: c.rain || 0,
-                      holdx: c.holdx || 0, turn: !!c.turn,
+                      holdx: c.holdx || 0, turn: !!c.turn, pow: c.pow || 0, ready: !!c.ready,
                       link: c.link || "", after: c.after || "", n: 0, kids: [] });
     byType.get(k).n++;
   }
@@ -477,7 +479,7 @@ function typesOf(costs) {
     if (parent) parent.kids.push(t); else roots.push(t);
   }
   const desc = (t) => `${t.e}|${t.p}|${t.unit ? 1 : 0}|${t.gated ? 1 : 0}|${t.rain}|${t.holdx}|` +
-                      `${t.turn ? 1 : 0}|${t.n}` +
+                      `${t.turn ? 1 : 0}|${t.pow}|${t.ready ? 1 : 0}|${t.n}` +
                       (t.kids.length ? `(${t.kids.map(desc).sort().join(",")})` : "");
   const cmp = (a, b) => (desc(a) < desc(b) ? -1 : desc(a) > desc(b) ? 1 : 0);
   // Gated roots emit LAST, so that when the recursion reaches one, every ungated type's count for the
@@ -549,18 +551,24 @@ function deployTurnUncached(types, costs) {
   // Rainbow pays Power and only Power, and it is not a rune, so paying with it recycles nothing.
   // Optimistic in the clock's own way: every holder is assumed to hold, at the same battlefield,
   // from the turn after it lands.
+  // POWER INCOME (#501). A card whose exhaust alone Adds Power (the Seals, Honeyfruit) was paid for on
+  // an earlier turn readies at this turn's Awakening (415.3.a) and Adds `pow` once. It rides in the
+  // same Power-only budget as the hold Add and is NOT multiplied by `holdx`, which multiplies hold
+  // effects only. A Seal paid THIS turn enters ready (359.2.d) and Adds the same turn; `walk` prices
+  // that half, because it depends on what the turn buys rather than on the state it starts from.
   const rainAt = new Int16Array(space);
   const holders = [];
-  for (let i = 0; i < dim; i++) if (types[i].rain || types[i].holdx) holders.push(i);
+  for (let i = 0; i < dim; i++) if (types[i].rain || types[i].holdx || types[i].pow) holders.push(i);
   if (holders.length) {
     for (let k = 0; k < space; k++) {
-      let rain = 0, times = 1;
+      let rain = 0, times = 1, income = 0;
       for (const i of holders) {
         const h = ((k / stride[i]) | 0) % (types[i].n + 1);
         rain += h * types[i].rain;
         times += h * types[i].holdx;
+        income += h * types[i].pow;
       }
-      rainAt[k] = rain * times;
+      rainAt[k] = rain * times + income;
     }
   }
 
@@ -582,10 +590,17 @@ function deployTurnUncached(types, costs) {
   // index of the first gated type, or -1 when there are none (every row without an engine fold)
   let ungated = -1;
   for (let i = 0; i < dim; i++) if (types[i].gated) { ungated = i; break; }
-  const walk = (i, e, p, delta, tookUnit, cast) => {
+  // `nf` is the Power the ready income cards bought THIS turn Add (359.2.d) and `fp` the cheapest
+  // Power cost among them. Their Adds pay any Power but the first one's own, which must come from
+  // the turn's other sources: one recycle pays a Seal, the Seal pays the next card's Power - a
+  // second Seal's included, which is why N Seals in one turn still need only that one recycle.
+  const walk = (i, e, p, delta, tookUnit, cast, nf, fp) => {
     if (i === dim) {
       const k = idx + delta + (queued + cast) * space;
-      const nr = runes - (p > rain ? p - rain : 0); // 161.2.b: a recycled rune leaves the board
+      const ext = nf && fp > p - nf ? fp : p - nf;  // Power the fresh Adds cannot pay
+      const rec = ext > rain ? ext - rain : 0;
+      if (rec > runes) return;
+      const nr = runes - rec;                       // 161.2.b: a recycled rune leaves the board
       const nu = tookUnit ? sub : u0;
       // For a fixed set of paid costs MORE RUNES always dominates; ties keep the EARLIEST
       // last-unit turn, because that is what the readiness +1 reads.
@@ -630,9 +645,16 @@ function deployTurnUncached(types, costs) {
       if (have + q > cap) break;
       cnt[i] = have + q;
       const ne = e + t.e * q, np = p + t.p * q;
-      // R runes afford R Energy AND R Power, and Added rainbow affords Power on top
-      if (ne > runes || np > runes + rain) break;
-      walk(i + 1, ne, np, delta + q * stride[i], tookUnit || (q > 0 && t.unit), cast + (t.turn ? q : 0));
+      const fresh = t.ready && q > 0;
+      const nnf = fresh ? nf + t.pow * q : nf;
+      // R runes afford R Energy AND R Power, and Added rainbow affords Power on top. `np - nnf` is
+      // non-decreasing in q for every type whose cost is at least its own Add (a Seal pays 1 and
+      // Adds 1), so the break is safe; a hypothetical ready card that Adds more than it costs only
+      // skips the q it cannot afford yet.
+      if (ne > runes) break;
+      if (np - nnf > runes + rain) { if (fresh && t.pow > t.p) continue; break; }
+      walk(i + 1, ne, np, delta + q * stride[i], tookUnit || (q > 0 && t.unit), cast + (t.turn ? q : 0),
+           nnf, fresh && (!nf || t.p < fp) ? t.p : fp);
     }
   };
   // One sub-turn from every reachable state of `curR`: channel, Add, pay. A state whose queue is
@@ -646,7 +668,7 @@ function deployTurnUncached(types, costs) {
       runes = Math.min(12, curR[k] + 2);
       rain = rainAt[idx];
       u0 = curU[k];
-      walk(0, 0, 0, 0, false, 0);
+      walk(0, 0, 0, 0, false, 0, 0, 0);
     }
   };
   for (let turn = 1; turn <= 40; turn++) {
@@ -737,6 +759,7 @@ if (args.includes("--selftest")) {
   const unit = (e, p, more) => ({ e, p, unit: true, link: "", ...more });
   const sentinel = () => unit(4, 1, { rain: 1, holdx: 1 });     // UNL-087's two hold lines
   const warp = (e, p) => ({ e, p, unit: false, link: "", turn: true });
+  const seal = (ready) => ({ e: 0, p: 1, unit: false, link: "", pow: 1, ready });  // OGN-040's shape
   const cases = [
     // [name, costs, expected `all`, why]
     ["one E2 card", [play(2, 0, "")], 1, "T1 has 2 runes"],
@@ -765,6 +788,14 @@ if (args.includes("--selftest")) {
     ["power-nexus-sentinel-renata-time-warp-chain's costs",
      [sentinel(), sentinel(), unit(5, 0), warp(10, 4), warp(10, 4), warp(10, 4)], 6,
      "the hand walk's T6 on the play: 11 runes on T6, each Warp's 4 Power from the six rainbow"],
+    // #501. The same costs with a Seal that enters ready and one that enters exhausted, so the
+    // same-turn Add of 359.2.d is SEEN, and a chain of Seals that one recycle starts.
+    ["ready Seal + E2/2P spell", [seal(true), play(2, 2, "")], 1,
+     "T1: recycle one rune for the Seal, exhaust it, and the spell's 2 Power is its Add plus the other recycle"],
+    ["exhausted Seal + E2/2P spell", [seal(false), play(2, 2, "")], 2,
+     "T1 affords the Seal or the spell's 2 Power, not 3 Power; T2's 3 runes plus the Seal's Add pay the spell"],
+    ["three ready Seals", [seal(true), seal(true), seal(true)], 1,
+     "one recycle pays the first Seal and each Seal's Add pays the next (two Power from two runes is not three)"],
   ];
   let bad = 0;
   console.log(`# allocator self-test: ${cases.length} synthetic cost sets, answers hand-derived`);
@@ -1421,14 +1452,38 @@ function equipCost(c) {
  *   rain   rainbow Added per hold trigger ("When I hold, [Add] [A] ...")
  *   holdx  extra triggers it gives every hold effect at its battlefield
  *   turn   the card queues an Additional Turn ("Take a turn after this one")
+ *   pow    Power Added once a turn by an ability whose ONLY cost is exhausting the card (#501)
+ *   ready  whether that Add is usable the turn the card is paid for
+ *
+ * `pow` is income because the card readies at every Awakening (415.3.a) and the pool empties at the
+ * end of the turn (167), so it is one Add a turn, never a bank. Swept 2026-10-27 over every [Add] in
+ * the pool, it is the six Seals (OGN-040 Seal of Rage and its five domain twins, twelve printings,
+ * E0 + 1 Power, Add one rune of their domain) and UNL-049 Honeyfruit (E2, Adds rainbow, "This enters
+ * exhausted"). The rest are named and left out on purpose:
+ *   Gold tokens, OGN-113 Malzahar   the exhaust is not the whole cost ("Kill this", "Kill a friendly
+ *                                   unit or gear"), so the Add spends a permanent
+ *   SFD-117 Ancient Henge           converts Energy to rainbow ("Pay any amount of Energy"), no income
+ *   UNL-022 Jhin, Murderous Artist  Adds when he MOVES, a trigger and not a schedule
+ *   legends (Daughter of the Void, Fire Below the Mountain)  restricted to spells or gear, and a
+ *                                   legend is never a cost here
+ *   Energy Conduit, Dragonsoul Sage, Lux, Platewyrm Egg, Scorn of the Moon  Add ENERGY, not Power
+ * A Seal enters ready (359.2.d, a non-unit gear), so it can pay the turn it lands - recycle one rune
+ * for it and exhaust it for the next card's Power; a unit enters exhausted (143.4) and Honeyfruit
+ * says so itself, so theirs starts the turn after. Honeyfruit's [Level 6] line also Adds Energy and
+ * is not priced, which can only make a row later.
  */
+const POWER_ADD = /(?:^|[.)\]]\s*)(?:\[Reaction\](?:\[>\])?\s*)?:rb_exhaust::\s*(?:\[Reaction\]\s*—\s*)?\[Add\]((?:\s*:rb_rune_[a-z]+:)+)(?!\s*:rb_energy|:rb_energy)(?![^.]*\.\s*(?:Use|Spend)\b[^.]*\bonly)/i;
 function curveOf(c) {
   const t = `${c.text || ""} ${c.effect || ""}`;
   const add = t.match(/When I hold, \[Add\]((?:\s*:rb_rune_rainbow:)+)/i);
+  const income = c.type.includes("legend") ? null : t.match(POWER_ADD);
+  const pow = income ? income[1].match(/:rb_rune_[a-z]+:/g).length : 0;
   return {
     rain: add ? add[1].match(/:rb_rune_rainbow:/g).length : 0,
     holdx: /Your hold effects for holding here trigger an additional time/i.test(t) ? 1 : 0,
     turn: /Take a turn after this one/i.test(t),
+    pow,
+    ready: !!pow && c.type.includes("gear") && !c.type.includes("unit") && !/This enters exhausted/i.test(t),
   };
 }
 
@@ -1511,9 +1566,9 @@ const costsOfSet = (set, ign, bodies) => {
     const post = !!(ign && !ign.bases.has(b));
     const ce = post && ign.freeE ? 0 : c.energy || 0;
     const cp = post && ign.freeP ? 0 : c.power || 0;
-    const { rain, holdx, turn } = curveOf(c);
+    const { rain, holdx, turn, pow, ready } = curveOf(c);
     for (let i = 0; i < q; i++) {
-      out.push({ e: ce, p: cp, unit: c.type.includes("unit"), gated: post, rain, holdx, turn,
+      out.push({ e: ce, p: cp, unit: c.type.includes("unit"), gated: post, rain, holdx, turn, pow, ready,
                  link: linked ? `${b}#play` : "" });
       if (linked) equips.push({ e: post && ign.freeE ? 0 : eq.e, p: post && ign.freeP ? 0 : eq.p,
                                 unit: false, gated: post, link: `${b}#equip`, after: `${b}#play` });
@@ -1526,7 +1581,7 @@ const costsOfSet = (set, ign, bodies) => {
     for (let i = 0; i < bodies.n; i++) {
       const post = !!(ign && i >= bodies.engine);
       out.push({ e: post && ign.freeE ? 0 : body.e, p: post && ign.freeP ? 0 : body.p, unit: true,
-                 gated: post, rain: 0, holdx: 0, turn: false, link: "" });
+                 gated: post, rain: 0, holdx: 0, turn: false, pow: 0, ready: false, link: "" });
     }
   }
   if (weaponmaster && equips.length) {
@@ -1550,10 +1605,10 @@ const costsOfSet = (set, ign, bodies) => {
   for (const c of all) if (c.link) allFree.set(c.link, (allFree.get(c.link) ?? true) && !c.e && !c.p);
   for (const c of all) if (c.after && !c.e && !c.p && allFree.get(c.after)) { c.after = ""; c.link = ""; }
   const roots = new Set(all.filter((c) => c.after).map((c) => c.after));
-  // A free Sentinel or a free Time Warp still Adds or still queues a turn, and N of them do that N
-  // times, so neither is interchangeable with one of itself.
+  // A free Sentinel, a free Seal or a free Time Warp still Adds or still queues a turn, and N of them
+  // do that N times, so none is interchangeable with one of itself.
   const collapsible = (c) => !c.e && !c.p && !c.after && !roots.has(c.link || "") &&
-                             !c.rain && !c.holdx && !c.turn;
+                             !c.rain && !c.holdx && !c.turn && !c.pow;
   const free = all.filter(collapsible);
   if (free.length < 2) return all;
   const rest = all.filter((c) => !collapsible(c));
@@ -1611,6 +1666,26 @@ if (args.includes("--selftest-bodies")) {
   const bad = cases.filter(([, ok]) => !ok).length;
   console.log(bad ? `# ${bad} FAILED` : "# all pass");
   process.exit(bad ? 1 : 0);
+}
+
+// --price BASE:QTY,BASE:QTY prices a card set that is not an entry, through the same costsOfSet and
+// deployTurn every row uses, with no bodies, no fold and no ignition (#501). It exists so a hand walk
+// can be pinned against REAL card text - the Seal of Rage line PR #500 walked declares no Seal in
+// `data/combos.json` - and so a control is the same command with one card removed.
+if (args.includes("--price")) {
+  const spec = args[args.indexOf("--price") + 1] || "";
+  const set = {};
+  for (const part of spec.split(",").filter(Boolean)) {
+    const [b, q] = part.split(":");
+    const c = [...byBase.values()].find((x) => x.base.toLowerCase() === (b || "").toLowerCase());
+    if (!c || !(Number(q) > 0)) { console.error(`# --price: bad item "${part}", want BASE:QTY`); process.exit(2); }
+    set[c.base] = (set[c.base] ?? 0) + Number(q);
+  }
+  const costs = costsOfSet(set, null, { n: 0, engine: 0 });
+  const d = deployTurn(costs);
+  console.log(`price ${Object.entries(set).map(([b, q]) => `${b}x${q}`).join(" ")}: all T${d.all}, last unit T${d.unit}` +
+              `, unitLast ${!!d.unitLast}, income ${costs.reduce((a, c) => a + (c.pow || 0), 0)}`);
+  process.exit(0);
 }
 
 for (const { e, domains: ownDomains, cards: ownCards } of entries) {
@@ -1708,7 +1783,7 @@ for (const { e, domains: ownDomains, cards: ownCards } of entries) {
   // fallback for a row that folds nothing.
   const merged = [...domainsOfSet(cards)];
   clock.push({ id: e.id, cls: e.class, pays, base: baselineTurn(merged), via: note || null,
-               ordered: finalCosts.some((c) => c.after),
+               ordered: finalCosts.some((c) => c.after), income: finalCosts.some((c) => c.pow),
                domains: (merged.length ? merged : [...ownDomains]).sort().join("/") || "colourless" });
 }
 
@@ -1722,6 +1797,10 @@ if (!onlyTurns && !engines) {
   console.log(`# gear-kill answer set: ${gearKills.length} base codes, domains ${[...new Set(gearKills.flatMap((g) => g.domains))].sort().join(" ")}`);
   console.log(`# gear-detach answer set: ${gearDetach.length} base codes swept, ${detachAnswers.length} enemy-facing (${detachAnswers.map((d) => `${d.base} ${d.name}`).join(", ") || "none"})\n`);
   for (const f of findings) for (const h of f.holes) console.log(`${f.e.class.padEnd(8)} ${f.e.id}\n         ${h.text}`);
+}
+
+function incomeLine(rows) {
+  return `# power income (an exhaust-only [Add] of Power, 415.3.a + 167): ${rows.filter((c) => c.income).length} of ${rows.length} rows hold an income card`;
 }
 
 if (engines) {
@@ -1738,6 +1817,7 @@ if (engines) {
   console.log(`# cast, no interaction. HONEST IN ONE DIRECTION ONLY, see the note in the source.`);
   console.log(`# ${eng.length} ENGINEs; median T${finite[Math.floor(finite.length / 2)]}, mean T${(finite.reduce((a, b) => a + b, 0) / finite.length).toFixed(2)}`);
   console.log(`# ${late.length} of ${eng.length} (${((100 * late.length) / eng.length).toFixed(0)}%) are deployable only AFTER the do-nothing Hold curve wins in their identity`);
+  console.log(incomeLine(eng));
   const hist = new Map();
   for (const c of eng) hist.set(c.pays, (hist.get(c.pays) ?? 0) + 1);
   for (const t of [...hist.keys()].sort((a, b) => a - b))
@@ -1768,6 +1848,9 @@ if (greedyFallbacks !== greedyRows.length)
   console.log(`# NOTE ${greedyFallbacks - greedyRows.length} fallback${greedyFallbacks - greedyRows.length === 1 ? "" : "s"} priced a CANDIDATE closure while choosing a needs/produces fold, not a row above.` +
               `\n# Every published turn is still exact. Measured 2026-09-14: RC_GUARD=4000000 makes those prices exact too` +
               `\n# (~32s instead of ~0.4s) and the table is BYTE-IDENTICAL, so today it changes nothing - re-run that if the fold changes.`);
+// Non-vacuity for the Power income model (#501): it moved no row when it landed, and that null means
+// something only while rows that hold an income card exist and the self-test shows it can move one.
+console.log(incomeLine(clock));
 // Non-vacuity for the ordering model: the constraint can only ever bind on a row that HAS an [Equip]
 // cost, so the size of that population is what makes "it moves nothing" a result rather than a shrug.
 console.log(`# ordering ([Equip] after its own gear, 818.1 + 380): ${clock.filter((c) => c.ordered).length} of ${clock.length} rows carry a linked cost` +
