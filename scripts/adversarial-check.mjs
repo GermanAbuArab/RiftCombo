@@ -465,12 +465,15 @@ function typesOf(costs) {
     // `pow` and `ready` (#501) likewise: a Seal and an unrelated E0/1-Power card are not the same type.
     // `rdy` (#506) too: Upstage Comedy and an unrelated E2 spell are not. And `acc` (#510): a Red
     // Brambleback and an unrelated E4/1-Power unit are not, and nor are two Accelerate prices.
+    // `rune` and `share` (#513): an Acceleration Gate and an unrelated E3/1-Power spell are not.
     const k = `${c.e}|${c.p}|${c.unit ? 1 : 0}|${c.gated ? 1 : 0}|${c.rain || 0}|${c.holdx || 0}|` +
-              `${c.turn ? 1 : 0}|${c.pow || 0}|${c.ready ? 1 : 0}|${c.rdy || 0}|${accKey(c.acc)}|${c.link || ""}`;
+              `${c.turn ? 1 : 0}|${c.pow || 0}|${c.ready ? 1 : 0}|${c.rdy || 0}|${c.rune || 0}|${c.share ? 1 : 0}|` +
+              `${accKey(c.acc)}|${c.link || ""}`;
     if (!byType.has(k))
       byType.set(k, { e: c.e, p: c.p, unit: !!c.unit, gated: !!c.gated, rain: c.rain || 0,
                       holdx: c.holdx || 0, turn: !!c.turn, pow: c.pow || 0, ready: !!c.ready,
-                      rdy: c.rdy || 0, acc: c.acc || null, link: c.link || "", after: c.after || "", n: 0, kids: [] });
+                      rdy: c.rdy || 0, rune: c.rune || 0, share: !!c.share, acc: c.acc || null, link: c.link || "",
+                      after: c.after || "", n: 0, kids: [] });
     byType.get(k).n++;
   }
   const all = [...byType.values()];
@@ -484,7 +487,7 @@ function typesOf(costs) {
     if (parent) parent.kids.push(t); else roots.push(t);
   }
   const desc = (t) => `${t.e}|${t.p}|${t.unit ? 1 : 0}|${t.gated ? 1 : 0}|${t.rain}|${t.holdx}|` +
-                      `${t.turn ? 1 : 0}|${t.pow}|${t.ready ? 1 : 0}|${t.rdy}|${accKey(t.acc)}|${t.n}` +
+                      `${t.turn ? 1 : 0}|${t.pow}|${t.ready ? 1 : 0}|${t.rdy}|${t.rune}|${t.share ? 1 : 0}|${accKey(t.acc)}|${t.n}` +
                       (t.kids.length ? `(${t.kids.map(desc).sort().join(",")})` : "");
   const cmp = (a, b) => (desc(a) < desc(b) ? -1 : desc(a) > desc(b) ? 1 : 0);
   // Gated roots emit LAST, so that when the recursion reaches one, every ungated type's count for the
@@ -576,6 +579,21 @@ function deployTurnUncached(types, costs) {
       rainAt[k] = rain * times + income;
     }
   }
+  // READYING RUNES (#513). 164.2.a makes a rune's Energy its EXHAUST and 164.2.b its Power its RECYCLE,
+  // "Recycle this: [Reaction] — Add [C].", a cost with no exhaust in it. So a readied rune pays one more
+  // Energy on the turn the readier resolves and no more Power: an exhausted rune recycles all the same,
+  // and a recycled one has left the board (161.2.b) and cannot be readied. 167 empties the pool only at
+  // the start of the Main Phase and the end of the turn, so every rune can be exhausted up front and the
+  // Energy held while the readier resolves, which is why its own Energy never shrinks what it readies.
+  // Its own POWER does: a rune recycled to pay it is gone before it resolves, so a readier readies at
+  // most min(`rune`, runes - the readiers' Power the turn's Adds cannot pay). Every other recycle can
+  // wait until after it resolves. With two readiers on one turn that bound is the same for both, which
+  // is loose by the first one's recycle - the direction this table is allowed to err in.
+  // `share`: Acceleration Gate's "up to 4 units, gear, and/or runes" is ONE count, so a rune it readies
+  // is a unit it does not; the leaf of `walk` spends the shared readies on runes first, only as many as
+  // the Energy needs, and gives the rest to the units that landed with it.
+  const runers = [];
+  for (let i = 0; i < dim; i++) if (types[i].rune) runers.push(i);
 
   let curR = new Int8Array(SZ).fill(-1);        // runes on board, -1 = state unreachable
   let curU = new Int16Array(SZ);                // the SUB-turn the last UNIT landed
@@ -587,7 +605,9 @@ function deployTurnUncached(types, costs) {
   // Hoisted out of the per-state loop on purpose: building this closure inside it cost 14s over the
   // catalogue against 0.4s here, because a recursive closure re-created 300,000 times is not one V8
   // can keep optimized.
-  let idx = 0, runes = 0, rain = 0, u0 = 0, sub = 0, queued = 0;
+  // `rrMax` bounds the Energy this state's readiers can still return, so `walk` can prune on Energy
+  // before the leaf knows how many of them the turn bought.
+  let idx = 0, runes = 0, rain = 0, u0 = 0, sub = 0, queued = 0, rrMax = 0;
   // Where each type stands in the state being BUILT. Hoisted and mutated in place rather than passed,
   // for the same reason the closure itself is hoisted: this is the innermost loop in the file. A
   // dependant reads its root out of this array, which is why typesOf emits a root before its kids.
@@ -609,11 +629,30 @@ function deployTurnUncached(types, costs) {
       const rec = ext > rain ? ext - rain : 0;
       if (rec > runes) return;
       const nr = runes - rec;                       // 161.2.b: a recycled rune leaves the board
+      // READYING RUNES (#513): the Energy past `runes` must come from the readiers bought this turn.
+      let rdn = rd;
+      if (runers.length) {
+        let gp = 0, own = 0, shr = 0, slots = 0, first = Infinity;
+        for (const j of runers) gp += (cnt[j] - ((idx / stride[j]) | 0) % (types[j].n + 1)) * types[j].p;
+        const left = runes - (gp > rain + nf ? gp - rain - nf : 0);
+        for (const j of runers) {
+          const q = cnt[j] - ((idx / stride[j]) | 0) % (types[j].n + 1);
+          if (!q) continue;
+          if (types[j].e < first) first = types[j].e;
+          const r = q * Math.min(types[j].rune, left);
+          if (types[j].share) { shr += r; slots += q * types[j].rune; } else own += r;
+        }
+        // A readier is paid BEFORE it resolves, so the runes it readies never pay its own Energy: the
+        // first one is bought out of the runes alone. Each later one may use what earlier ones returned.
+        const need = e - runes;
+        if (need > own + shr || (need > 0 && first > runes)) return;
+        rdn = rd + slots - (need > own ? need - own : 0);
+      }
       // READYING (#506). A readier works only on the turn it is paid, on the units that land with
       // it, so this sub-turn owes 143.4's readiness turn only if more units landed in it than its
       // readiers ready. A sub-turn whose units were all readied records -sub: a unit landed, so
       // `unit` still reports one, and it is not `sub`, so `unitLast` does not read it as owed.
-      const nu = un > rd ? sub : un ? -sub : u0;
+      const nu = un > rdn ? sub : un ? -sub : u0;
       // For a fixed set of paid costs MORE RUNES always dominates; ties keep the EARLIEST
       // last-unit turn, because that is what the readiness +1 reads. Except at FULL: nothing is left
       // to buy, so the runes decide nothing and the only thing the state still carries is whether the
@@ -669,7 +708,8 @@ function deployTurnUncached(types, costs) {
       // non-decreasing in q for every type whose cost is at least its own Add (a Seal pays 1 and
       // Adds 1), so the break is safe; a hypothetical ready card that Adds more than it costs only
       // skips the q it cannot afford yet.
-      if (ne > runes) break;
+      // `rrMax` is the most Energy readied runes can add on top (#513); the leaf makes it exact.
+      if (ne > runes + rrMax) break;
       if (np - nnf > runes + rain) { if (fresh && t.pow > t.p) continue; break; }
       // [ACCELERATE] (#510): `a` of the `q` copies bought here pay their optional [1][C] (805.1.a) and
       // enter ready, so they owe no 143.4 turn and count in `rd`. Paying it only ever costs runes, and
@@ -681,8 +721,10 @@ function deployTurnUncached(types, costs) {
       const am = t.acc && full ? q : 0;
       for (let a = 0; a <= am; a++) {
         const ae = a ? ne + a * t.acc.e : ne, ap = a ? np + a * t.acc.p : np;
-        if (a && (ae > runes || ap - nnf > runes + rain)) break;
-        walk(i + 1, ae, ap, delta + q * stride[i], t.unit ? un + q : un, rd + t.rdy * q + a, cast + (t.turn ? q : 0),
+        if (a && (ae > runes + rrMax || ap - nnf > runes + rain)) break;
+        // A `share` readier's units are counted at the leaf, out of what its runes leave (#513).
+        walk(i + 1, ae, ap, delta + q * stride[i], t.unit ? un + q : un, rd + (t.share ? 0 : t.rdy) * q + a,
+             cast + (t.turn ? q : 0),
              nnf, fresh && (!nf || t.p < fp) ? t.p : fp, full);
       }
     }
@@ -697,6 +739,8 @@ function deployTurnUncached(types, costs) {
       queued = ((k / space) | 0) - (extraTurn ? 1 : 0);
       runes = Math.min(12, curR[k] + 2);
       rain = rainAt[idx];
+      rrMax = 0;
+      for (const i of runers) rrMax += (types[i].n - ((idx / stride[i]) | 0) % (types[i].n + 1)) * Math.min(types[i].rune, runes);
       u0 = curU[k];
       walk(0, 0, 0, 0, 0, 0, 0, 0, 0, true);
     }
@@ -792,6 +836,7 @@ if (args.includes("--selftest")) {
   const seal = (ready) => ({ e: 0, p: 1, unit: false, link: "", pow: 1, ready });  // OGN-040's shape
   const readier = (e, rdy) => ({ e, p: 0, unit: false, link: "", rdy });           // UNL-009's shape
   const accel = (e, p) => unit(e, p, { acc: { e: 1, p: 1 } });                   // UNL-029's [Accelerate]
+  const gate = (e, p, n) => ({ e, p, unit: false, link: "", rdy: n, rune: n, share: true });  // VEN-150's shape
   const cases = [
     // [name, costs, expected `all`, why]
     ["one E2 card", [play(2, 0, "")], 1, "T1 has 2 runes"],
@@ -828,6 +873,13 @@ if (args.includes("--selftest")) {
      "T1 affords the Seal or the spell's 2 Power, not 3 Power; T2's 3 runes plus the Seal's Add pay the spell"],
     ["three ready Seals", [seal(true), seal(true), seal(true)], 1,
      "one recycle pays the first Seal and each Seal's Add pays the next (two Power from two runes is not three)"],
+    // #513. The same E7 with and without readied runes is #506's E3+E7 pair, so the Energy back is SEEN.
+    ["E3/1 four-rune readier + E7 spell", [gate(3, 1, 4), play(7, 0, "")], 3,
+     "T3's 6 runes, one recycled for the readier's Power, give 6 + 4 readied = 10 Energy"],
+    ["E3/1 + E7, nothing readied", [play(3, 1, ""), play(7, 0, "")], 4,
+     "T2 takes the E3 and leaves 3 runes, so T4's 7 is the first turn with 7"],
+    ["E3/1 four-rune readier alone", [gate(3, 1, 4)], 2,
+     "it is paid before it resolves, so T1's 2 runes cannot pay its E3 whatever it readies"],
   ];
   // #506. These read `pays`, the turn the last unit can act, because a readier moves only the
   // readiness turn of 143.4 and never `all`. The first two are the same units with and without the
@@ -848,6 +900,9 @@ if (args.includes("--selftest")) {
      "T3's 5 runes pay the second unit Accelerated, E5 and 2 Power, and it enters ready"],
     ["one E4/1 unit with Accelerate", [accel(4, 1)], 3,
      "T2's 4 runes pay E4 + 1 but not E5 + 2, so it lands exhausted; Accelerated on T3 it also acts on T3"],
+    // #513: "up to 4 units, gear, and/or runes" is ONE count.
+    ["E3/1 four-rune readier + E9 unit", [gate(3, 1, 4), unit(9, 0)], 5,
+     "T4's 8 runes + 4 readied pay E12, all four readies go to runes, so the unit lands exhausted until T5"],
   ];
   let bad = 0;
   console.log(`# allocator self-test: ${cases.length + paysCases.length} synthetic cost sets, answers hand-derived`);
@@ -1514,6 +1569,8 @@ function equipCost(c) {
  *   pow    Power Added once a turn by an ability whose ONLY cost is exhausting the card (#501)
  *   ready  whether that Add is usable the turn the card is paid for
  *   rdy    how many units it readies on the turn it is paid (#506, `readiesOf`)
+ *   rune   how many runes it readies on the turn it is paid (#513, `runesOf`)
+ *   share  whether `rune` and `rdy` are one count, so a rune it readies is a unit it does not
  *   selfReady  a unit that always enters ready, so it never owes 143.4's turn (#506)
  *   acc    a unit that carries [Accelerate], so it may pay to enter ready (#510, `ACCELERATE`)
  *
@@ -1567,6 +1624,7 @@ function curveOf(c) {
     pow,
     ready: !!pow && c.type.includes("gear") && !c.type.includes("unit") && !/This enters exhausted/i.test(t),
     rdy: readiesOf(c, t),
+    ...runesOf(c, t),
     selfReady: c.type.includes("unit") && /(?:^|[.)]\s*)I enter ready\./.test(t),
     // Each field on its own: `t` joins them with a space, which the line anchor would not see.
     acc: c.type.includes("unit") && (ACCELERATE.test(c.text || "") || ACCELERATE.test(c.effect || "")),
@@ -1587,7 +1645,8 @@ function curveOf(c) {
  *                                a friendly unit."), VEN-012 Perfect Execution, OGN-173 Ride the Wind
  *                                ("Move a friendly unit and ready it.")                      -> 1
  *                                VEN-150 Acceleration Gate ("Ready up to 4 units, gear, and/or
- *                                runes.")                                                    -> 4
+ *                                runes.")                                                    -> 4,
+ *                                one count with the runes it readies since #513 (`runesOf`)
  * Comedy's [Repeat] readies a second unit and its E2 is NOT charged, because this table is a lower
  * bound and an extra cost it cannot make conditional must err cheap.
  *
@@ -1625,6 +1684,51 @@ function readiesOf(c, t) {
     return /\[Repeat\]/.test(t) ? 2 : 1;
   return 0;
 }
+
+/**
+ * READYING RUNES (#513): how many runes a card readies on the turn it is paid, which the clock prices
+ * as that much Energy back and no Power (164.2.a/b; how, in deployTurnUncached). The POPULATION is
+ * RUNE_READY: a sentence that says "ready" and "rune" with the icons stripped, so `:rb_rune_mind:` in a
+ * cost never counts. Swept 2026-10-27 over data/cards.json it is twelve bases, two of them modelled:
+ *   VEN-150 Acceleration Gate   "Ready up to 4 units, gear, and/or runes."    -> 4, shared with `rdy`
+ *   UNL-104 Gentle Gemdragon    "When you play me or another Dragon, ready up to 2 runes." -> 2 on
+ *                               its own play; the other-Dragon half is in RUNE_REFUSED
+ * Every other member is refused BY NAME in RUNE_REFUSED with its reason, and --turns prints any
+ * member that is in neither list as unclassified, so a new printing cannot slip past both.
+ *
+ * THE LOOSENESS THIS ADMITS, the same as `readiesOf`'s: the clock prices card sets, not steps, so a
+ * line that spends a Gate's four readies on its own step (a gear, a unit) also gets them here as
+ * Energy. That errs EARLY, the direction this table is allowed to err in. Measured 2026-10-27, it
+ * moves three finisher rows, all of them through Gemdragon (dragonstorm-brambleback-trinity-conquer,
+ * dragonstorm-confront-grand-plaza, gemdragon-henge-vi-blind-fury, T12 -> T11), and 33 ENGINE rows,
+ * every one of them on an unchanged closure that holds VEN-150 or UNL-104.
+ */
+const RUNE_READY = /\bready\b[^.\n]*\brunes?\b|\brunes?\b[^.\n]*\bready\b/i;
+const stripIcons = (t) => t.replace(/:rb_[a-z_0-9]+:/g, "");
+function runesOf(c, t) {
+  if (c.type.includes("legend") || c.type.includes("battlefield")) return { rune: 0, share: false };
+  const s = stripIcons(t);
+  const gate = !c.type.includes("unit") && s.match(/(?:^|[.)\]]\s*)Ready up to (\d+) units, gear, and\/or runes\./);
+  if (gate) return { rune: Number(gate[1]), share: true };
+  const play = c.type.includes("unit") && s.match(/(?:^|[.)\]]\s*)When you play me(?: or another [A-Z][a-z]+)?, ready up to (\d+) runes\./);
+  if (play) return { rune: Number(play[1]), share: false };
+  return { rune: 0, share: false };
+}
+// Members of RUNE_READY the clock does not price, each with the reason. Every one of these can only
+// make a row LATER than the line, so each is a place this table errs the wrong way and is named here.
+const RUNE_REFUSED = {
+  "OGN-073": "Sona: at the END of your turn, after the Main Phase, and 167 empties the pool then; they ready at the next Awaken anyway (415.3.a)",
+  "VEN-SP2": "Sona's reprint: the same end-of-turn timing",
+  "OGS-017": "Dark Child: a legend, never a cost here, and at the end of your turn",
+  "OGN-289": "Targon's Peak: a battlefield, and its runes ready at the end of the turn you conquer",
+  "OGN-110": "Ekko: [Deathknell], when he dies, and the clock schedules no death",
+  "SFD-049": "Aphelios: when an Equipment attaches to HIM, and the clock does not say which unit an [Equip] picks",
+  "SFD-224": "Aphelios's reprint: the same attach trigger",
+  "UNL-080": "Hwei: when he moves and the card he discards is a gear, a move and a discard the clock does not schedule",
+  "VEN-145": "Curator of the Sands: a legend, never a cost here, and only on a play of Energy 7 or more",
+  "VEN-192": "Curator of the Sands's reprint: the same",
+  "UNL-104": "its OTHER-Dragon half, which needs a Gemdragon already on the board when the second Dragon is played",
+};
 
 /**
  * WHAT ONE `anyBodies` BODY COSTS, swept, not typed (#494). `anyBodies.count` is a number of unit
@@ -1717,7 +1821,7 @@ const costsOfSet = (set, ign, bodies) => {
     const post = !!(ign && !ign.bases.has(b));
     const ce = post && ign.freeE ? 0 : c.energy || 0;
     const cp = post && ign.freeP ? 0 : c.power || 0;
-    const { rain, holdx, turn, pow, ready, rdy, selfReady, acc: hasAcc } = curveOf(c);
+    const { rain, holdx, turn, pow, ready, rdy, rune, share, selfReady, acc: hasAcc } = curveOf(c);
     // [Accelerate] (#510) is part of playing the unit (805.2.a), so a post-ignition unit pays it out of
     // the same engine output as the rest of its cost. When that output covers both halves it costs
     // nothing, and a unit that enters ready for nothing is a `selfReady` one: it owes no turn and
@@ -1727,7 +1831,7 @@ const costsOfSet = (set, ign, bodies) => {
     if (ready0) acc = null;
     for (let i = 0; i < q; i++) {
       out.push({ e: ce, p: cp, unit: c.type.includes("unit") && !ready0, gated: post, rain, holdx, turn, pow, ready, rdy,
-                 acc, link: linked ? `${b}#play` : "" });
+                 rune, share, acc, link: linked ? `${b}#play` : "" });
       if (linked) equips.push({ e: post && ign.freeE ? 0 : eq.e, p: post && ign.freeP ? 0 : eq.p,
                                 unit: false, gated: post, link: `${b}#equip`, after: `${b}#play` });
     }
@@ -1742,7 +1846,7 @@ const costsOfSet = (set, ign, bodies) => {
       const acc = body.acc ? { e: post && ign.freeE ? 0 : 1, p: post && ign.freeP ? 0 : 1 } : null;
       const ready0 = !!(acc && !acc.e && !acc.p);
       out.push({ e: post && ign.freeE ? 0 : body.e, p: post && ign.freeP ? 0 : body.p, unit: !ready0,
-                 gated: post, rain: 0, holdx: 0, turn: false, pow: 0, ready: false, rdy: 0,
+                 gated: post, rain: 0, holdx: 0, turn: false, pow: 0, ready: false, rdy: 0, rune: 0, share: false,
                  acc: ready0 ? null : acc, link: "" });
     }
   }
@@ -1769,9 +1873,10 @@ const costsOfSet = (set, ign, bodies) => {
   const roots = new Set(all.filter((c) => c.after).map((c) => c.after));
   // A free Sentinel, a free Seal, a free Time Warp or a free Comedy still Adds, queues a turn or
   // readies a unit, and N of them do that N times, so none is interchangeable with one of itself.
-  // Nor is a free unit with [Accelerate] (#510): each copy chooses for itself whether to pay it.
+  // Nor is a free unit with [Accelerate] (#510): each copy chooses for itself whether to pay it, and
+  // nor is a free rune readier (#513), which returns Energy per copy.
   const collapsible = (c) => !c.e && !c.p && !c.after && !roots.has(c.link || "") &&
-                             !c.rain && !c.holdx && !c.turn && !c.pow && !c.rdy && !c.acc;
+                             !c.rain && !c.holdx && !c.turn && !c.pow && !c.rdy && !c.rune && !c.acc;
   const free = all.filter(collapsible);
   if (free.length < 2) return all;
   const rest = all.filter((c) => !collapsible(c));
@@ -1967,6 +2072,7 @@ for (const { e, domains: ownDomains, cards: ownCards } of entries) {
   clock.push({ id: e.id, cls: e.class, pays, base: baselineTurn(merged), via: note || null,
                ordered: finalCosts.some((c) => c.after), income: finalCosts.some((c) => c.pow),
                readier: finalCosts.some((c) => c.rdy), accel: finalCosts.some((c) => c.acc),
+               runer: finalCosts.some((c) => c.rune),
                domains: (merged.length ? merged : [...ownDomains]).sort().join("/") || "colourless" });
 }
 
@@ -1990,6 +2096,20 @@ function readierLine(rows) {
 }
 // #510: the predicate and the units it matches, read off the same `curveOf` every row is priced with.
 const ACCEL_UNITS = [...byBase.values()].filter((c) => curveOf(c).acc).length;
+// #513: the population, read off the same text `curveOf` prices, and what became of each member.
+function runeLine(rows) {
+  const seen = new Map();
+  for (const c of byBase.values()) if (RUNE_READY.test(stripIcons(`${c.text || ""} ${c.effect || ""}`))) seen.set(c.base, c);
+  const modelled = [...seen.values()].filter((c) => curveOf(c).rune);
+  const refused = [...seen.keys()].filter((b) => RUNE_REFUSED[b] && !modelled.some((c) => c.base === b));
+  const loose = [...seen.keys()].filter((b) => !RUNE_REFUSED[b] && !modelled.some((c) => c.base === b));
+  return `# readying runes (${RUNE_READY}): ${seen.size} cards say it; ` +
+         `modelled ${modelled.length}: ${modelled.map((c) => `${c.base} ${c.name} (${curveOf(c).rune}${curveOf(c).share ? ", shared with units" : ""}` +
+                                                           `${RUNE_REFUSED[c.base] ? `, NOT ${RUNE_REFUSED[c.base]}` : ""})`).join(", ")}; ` +
+         `refused ${refused.length}: ${refused.map((b) => `${b} (${RUNE_REFUSED[b]})`).join(", ")}; ` +
+         `unclassified ${loose.length}${loose.length ? `: ${loose.join(", ")}` : ""}; ` +
+         `${rows.filter((c) => c.runer).length} of ${rows.length} rows hold a modelled one`;
+}
 function accelLine(rows) {
   return `# accelerate (${ACCELERATE} on a unit, 805.1.a: an optional [1][C] that waives 143.4): ${ACCEL_UNITS} units carry it; ` +
          `${rows.filter((c) => c.accel).length} of ${rows.length} rows hold one`;
@@ -2012,6 +2132,7 @@ if (engines) {
   console.log(incomeLine(eng));
   console.log(readierLine(eng));
   console.log(accelLine(eng));
+  console.log(runeLine(eng));
   const hist = new Map();
   for (const c of eng) hist.set(c.pays, (hist.get(c.pays) ?? 0) + 1);
   for (const t of [...hist.keys()].sort((a, b) => a - b))
@@ -2049,6 +2170,8 @@ console.log(incomeLine(clock));
 console.log(readierLine(clock));
 // And for [Accelerate] (#510).
 console.log(accelLine(clock));
+// And for readying runes (#513).
+console.log(runeLine(clock));
 // Non-vacuity for the ordering model: the constraint can only ever bind on a row that HAS an [Equip]
 // cost, so the size of that population is what makes "it moves nothing" a result rather than a shrug.
 console.log(`# ordering ([Equip] after its own gear, 818.1 + 380): ${clock.filter((c) => c.ordered).length} of ${clock.length} rows carry a linked cost` +
