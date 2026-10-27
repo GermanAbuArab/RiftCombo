@@ -58258,6 +58258,76 @@
         }
       ],
       "rulesVersion": "2026-07-16"
+    },
+    {
+      "id": "up-from-the-deep-flow-grand-plaza",
+      "name": "Up from the Deep and its Flow put four Tentacles on The Grand Plaza on turn three — seven units for a turn-four Hold",
+      "class": "ALT_WIN",
+      "status": "candidate",
+      "uses": [
+        {
+          "card": "OGN-293",
+          "quantity": 1,
+          "role": "battlefield",
+          "zone": "BATTLEFIELD",
+          "state": "controlled, to receive the units",
+          "note": "Colorless battlefield. 'When you hold here, if you have 7+ units here, you win the game.'"
+        },
+        {
+          "card": "VEN-100",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "HAND",
+          "note": "Chaos spell, E3. 'Play two 1 :rb_might: Tentacle unit tokens from Bilgewater. [Flow] :rb_energy_3: (You may play this from your trash for its Flow cost. Then banish it.)' One copy is two castings in the same turn: cast from hand, it goes to the trash (351.2), and [Flow] casts it again from there for E3 (829.1.b) before it is banished. Four Tentacles for six Energy and no Power."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "win-the-game"
+      ],
+      "anyBodies": {
+        "count": 3,
+        "note": "Get three of your units onto The Grand Plaza by the end of T2"
+      },
+      "prerequisites": {
+        "easy": [
+          "Legend's Domain Identity includes Chaos (103.1.b.3); The Grand Plaza is Colorless. Synthesized for Chaos/Fury, the legend pair with the fewest finishers (#491), and walked with SFD-185 Glorious Executioner and four Energy-2 bodies.",
+          "Seven units at the Plaza when your T4 Beginning Phase starts: the three bodies and the four Tentacles."
+        ],
+        "notable": [
+          "THE CHEAPEST ANSWER IS FREE: any ready enemy body in their base on their T3. Four of the seven are 1-Might Tentacles (187.10), so an attack with N Might kills N of them (465.2.c, 465.2.c.3, 142.4.b), and one kill leaves six. Walked in docs/plays/2026-10-27-up-from-the-deep-puts-seven-on-the-plaza-by-turn-three-and-the-two-bodies-they-already-had-kill-five-of-them.md against the Calm/Order Radiant Dawn deck: the two bodies they had played on their T2 attacked with 6 Might and killed four Tentacles and a 2-Might body, the T4 rebuild to seven met the same answer from the bodies of their T3, and it was 3 to 3 after their T4. Both attacks lost them their attackers and neither mattered.",
+          "THE ONE BOARD IT WINS ON: nothing of theirs ready in their base on their T3. Bodies they played to their own battlefield cannot reach the Plaza that turn (144.4.a, 144.4.b), and bodies they play on their T3 enter exhausted (143.4). The answer has to land before the Hold, because 383.2.a.1 counts the seven when the Hold happens and nothing can be added then.",
+          "The cheapest spells, pool-wide: OGN-133 Flurry of Blades (Body, E1) kills all four Tentacles at once; OGN-169 Gust (Chaos, E1) returns one, and a returned token ceases to exist (186.1); OGN-043 Charm (Calm, E1 + 1 Calm Power) moves one off the Plaza. A Tentacle has no [Deflect], so each pays its printed cost.",
+          "TURN CLOCK: npm run adversarial -- --turns prints T3 against the Chaos/Fury Hold baseline of T6, and T3 is too early: the clock does not charge anyBodies, so it prices Up from the Deep alone (E3, payable on T2, plus the turn the Hold waits). With the three bodies the lower bound is T4. Twelve Energy and no Power: one Energy-2 body on T1, two on T2 after the first takes the empty Plaza (316.8.b.1, 348.2.a.1), and Up from the Deep plus its [Flow] on T3, straight onto the Plaza (355.2.a, 185.2.a; the card names no location, 184.2).",
+          "HOW OFTEN: castable by T3 going first in 13.97% of games with twelve Energy-2 bodies and three Up from the Deep in the 39-card draw pile (Tournament Rules 402.1), computed exactly over ordered draws, mulligan ignored; and 485.5 puts the Plaza in play one game in three, so 4.66%. No rune split fails it, because nothing in it costs Power.",
+          "Three copies give twelve Tentacles a game and no more: 829.1.b banishes each copy after its [Flow] casting.",
+          "THE PRE-EMPTIVE ANSWER IS A SPELL TAX: VEN-045 Helm of Suppression ('Opponents' spells cost :rb_energy_1: more.', E4 + 1 Calm Power, all five runes of their T2 going second) makes Up from the Deep and its [Flow] E4 each (356.3; [Flow] is the cost paid, 829.1.c.1), so six runes on T3 no longer buy both. On the clock's terms the line slips to seven by the end of T4 and the T5 Hold, still one turn ahead of the T6 baseline; in the walk the bodies they play on their T3 instead attack on their T4 and leave five, so it does not win on T5 either."
+        ]
+      },
+      "steps": [
+        "Bring The Grand Plaza as one of your three battlefields; 485.5 picks the one in play at random.",
+        "T1: play an Energy-2 body to base. T2: it walks onto the empty Plaza and Conquers (144.4.a, 316.8.b.1, 348.2.a.1), and two more Energy-2 bodies are played straight onto it (355.2.a). Get three of your units onto The Grand Plaza by the end of T2.",
+        "T3: cast Up from the Deep (E3) for two Tentacles at the Plaza, then cast it again from the trash for its [Flow] cost, E3, for two more (351.2, 829.1.b). Seven units.",
+        "Their T3: all seven must survive it. A ready enemy body in their base kills a Tentacle per point of Might it attacks with (465.2.c, 465.2.c.3).",
+        "T4 Beginning Phase: the Hold (315.2.b.2, 469.2) fires the Plaza, 383.2.a.1 counts the seven at that instant, and 195 gives you the game."
+      ],
+      "terminatesIn": "you win the game at the T4 Hold, if all seven units are still at The Grand Plaza when your Beginning Phase starts",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "accessed": "2026-10-27",
+          "quote": "355.2.a: 'By default, Valid locations include the controller’s Base or a Battlefield the controller controls.' 829.1.b: 'It is functionally short for “You may play this from your trash for its flow cost. Then banish it.”' 383.2.a.1: 'Any additional conditional statement immediately after the Condition must be true in order for the Condition to be fulfilled. Such a conditional statement is part of the Trigger Condition and not the Effect.'"
+        },
+        {
+          "title": "Play 2026-10-27 (docs/plays/2026-10-27-up-from-the-deep-puts-seven-on-the-plaza-by-turn-three-and-the-two-bodies-they-already-had-kill-five-of-them.md), issue #491",
+          "kind": "manual-walk",
+          "date": "2026-10-27"
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "SYNTHESIZED 2026-10-27 for #491, the first slice of shape 2 (identity-first) of #200: Chaos/Fury had two finishers and none paying by T4. CANDIDATE, not verified: walked once as a game, going first, and in that walk it did not win on T4, because the opponent had ready bodies in base. Card text verbatim from data/corpus_flat.txt. It and trifarian-war-camp-illaoi-tentacles cannot share a board (485.4.a, 103.4.c), and the War Camp's +1 Might is the one Colorless fix for 1-Might Tentacles."
     }
   ]
 }
