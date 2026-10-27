@@ -589,15 +589,39 @@ function deployTurnUncached(types, costs) {
   // one after another, and each readies at most min(`rune`, runes - the recycles that paid it and every
   // readier before it); every other recycle can wait until after the last one resolves. Charging every
   // readier's recycle to all of them, as this did first, erred LATE: three Gates on T3's 6 runes ready
-  // 4 + 4 + 3, not 3 + 3 + 3 (VEN-150:3,UNL-066:1 is T3 by hand, pinned). The Adds go to the first
-  // readiers and the larger `rune` resolves first, which is exact for identical copies and optimistic
-  // otherwise - the direction this table is allowed to err in.
+  // 4 + 4 + 3, not 3 + 3 + 3 (VEN-150:3,UNL-066:1 is T3 by hand, pinned). The ORDER is searched, not
+  // sorted: no key is exact once two readiers differ in Power (on 4 runes, readying 10 for 3 Power and
+  // then 3 for 1 returns 1, the other way round 3; and sorting by Power fails another pair), so `order`
+  // tries every sequence of TYPES, copies of one type being interchangeable. For a fixed order the
+  // Adds go to the earliest readiers, which is optimal: an Add spent earlier keeps a rune on the board
+  // for every readier after it, one spent later only for those after that.
   // `share`: Acceleration Gate's "up to 4 units, gear, and/or runes" is ONE count, so a rune it readies
   // is a unit it does not; the leaf of `walk` spends the shared readies on runes first, only as many as
   // the Energy needs, and gives the rest to the units that landed with it.
   const runers = [];
   for (let i = 0; i < dim; i++) if (types[i].rune) runers.push(i);
-  runers.sort((a, b) => types[b].rune - types[a].rune || types[a].p - types[b].p);
+  // `order` places `k` more readier copies, `rq` holding how many of each runer type the sub-turn
+  // bought and are still unplaced, and keeps in `rBest` the most Energy the own (non-`share`) readiers
+  // can give up to `rNeed`, among the orders whose readies cover `rNeed` at all; -1 means none does.
+  // Hoisted for the same reason `walk` is.
+  const rq = new Int8Array(runers.length);
+  let rNeed = 0, rBest = -1;
+  const order = (k, left, adds, own, shr) => {
+    if (!k) {
+      if (own + shr >= rNeed) { const sc = own < rNeed ? own : rNeed; if (sc > rBest) rBest = sc; }
+      return;
+    }
+    for (let x = 0; x < runers.length; x++) {
+      if (!rq[x]) continue;
+      const t = types[runers[x]];
+      rq[x]--;
+      const fa = adds < t.p ? adds : t.p;
+      const l = left - (t.p - fa);
+      const r = l <= 0 ? 0 : t.rune < l ? t.rune : l;
+      order(k - 1, l, adds - fa, t.share ? own : own + r, t.share ? shr + r : shr);
+      rq[x]++;
+    }
+  };
 
   let curR = new Int8Array(SZ).fill(-1);        // runes on board, -1 = state unreachable
   let curU = new Int16Array(SZ);                // the SUB-turn the last UNIT landed
@@ -636,27 +660,27 @@ function deployTurnUncached(types, costs) {
       // READYING RUNES (#513): the Energy past `runes` must come from the readiers bought this turn.
       let rdn = rd;
       if (runers.length) {
-        // `adds` is the Power the turn's Adds still have for a readier, `left` the runes still on the
-        // board when the next one resolves.
-        let own = 0, shr = 0, slots = 0, first = Infinity, adds = rain + nf, left = runes;
-        for (const j of runers) {
-          const t = types[j];
-          const q = cnt[j] - ((idx / stride[j]) | 0) % (t.n + 1);
+        let slots = 0, first = Infinity, k = 0;
+        for (let x = 0; x < runers.length; x++) {
+          const t = types[runers[x]];
+          const q = cnt[runers[x]] - ((idx / stride[runers[x]]) | 0) % (t.n + 1);
+          rq[x] = q;
           if (!q) continue;
+          k += q;
           if (t.e < first) first = t.e;
-          for (let c = 0; c < q; c++) {
-            const fromAdds = adds < t.p ? adds : t.p;
-            adds -= fromAdds;
-            left -= t.p - fromAdds;
-            const r = left <= 0 ? 0 : t.rune < left ? t.rune : left;
-            if (t.share) { shr += r; slots += t.rune; } else own += r;
-          }
+          if (t.share) slots += q * t.rune;
         }
         // A readier is paid BEFORE it resolves, so the runes it readies never pay its own Energy: the
         // first one is bought out of the runes alone. Each later one may use what earlier ones returned.
+        // With nothing to return, every shared ready goes to a unit and no order needs searching.
         const need = e - runes;
-        if (need > own + shr || (need > 0 && first > runes)) return;
-        rdn = rd + slots - (need > own ? need - own : 0);
+        if (need > 0) {
+          if (first > runes) return;
+          rNeed = need; rBest = -1;
+          order(k, runes, rain + nf, 0, 0);
+          if (rBest < 0) return;
+          rdn = rd + slots - (need - rBest);
+        } else rdn = rd + slots;
       }
       // READYING (#506). A readier works only on the turn it is paid, on the units that land with
       // it, so this sub-turn owes 143.4's readiness turn only if more units landed in it than its
@@ -847,6 +871,7 @@ if (args.includes("--selftest")) {
   const readier = (e, rdy) => ({ e, p: 0, unit: false, link: "", rdy });           // UNL-009's shape
   const accel = (e, p) => unit(e, p, { acc: { e: 1, p: 1 } });                   // UNL-029's [Accelerate]
   const gate = (e, p, n) => ({ e, p, unit: false, link: "", rdy: n, rune: n, share: true });  // VEN-150's shape
+  const runer = (e, p, n) => ({ e, p, unit: false, link: "", rune: n });                     // runes only
   const cases = [
     // [name, costs, expected `all`, why]
     ["one E2 card", [play(2, 0, "")], 1, "T1 has 2 runes"],
@@ -890,6 +915,10 @@ if (args.includes("--selftest")) {
      "T2 takes the E3 and leaves 3 runes, so T4's 7 is the first turn with 7"],
     ["E3/1 four-rune readier alone", [gate(3, 1, 4)], 2,
      "it is paid before it resolves, so T1's 2 runes cannot pay its E3 whatever it readies"],
+    // The ORDER of two different readiers (PR #522's post-commit review): most runes first is wrong here.
+    ["E1/3 ten-rune + E1/1 three-rune readier + E5", [runer(1, 3, 10), runer(1, 1, 3), play(5, 0, "")], 2,
+     "T2's 4 runes: recycle 1 and the three-rune readier readies 3 (pool 6), recycle the other 3 for the " +
+     "ten-rune one, which has none left to ready, and the E5 takes the 5 left; the other order returns 1"],
   ];
   // #506. These read `pays`, the turn the last unit can act, because a readier moves only the
   // readiness turn of 143.4 and never `all`. The first two are the same units with and without the
