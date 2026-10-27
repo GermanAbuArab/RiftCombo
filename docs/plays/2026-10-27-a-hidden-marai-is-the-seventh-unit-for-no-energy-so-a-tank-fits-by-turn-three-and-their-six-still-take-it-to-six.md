@@ -14,9 +14,10 @@ which this one is compared with throughout.
 **Subject: `towering-combatant-hidden-marai-grand-plaza`**, a new ALT_WIN synthesized for this
 slice. Body/Fury is the least-covered legend pair the identity-first pass has not worked yet: seven
 finishers in the catalogue and none clocked by T4. The slice-3 line put a [Tank] among seven units by
-T3 because Up from the Deep makes two units from one card. Body/Fury has no card like that at Energy 4
-or less, and going first you have seen seven cards by T3, so **all seven have to be units, and seven
-units with the Tank cost 13 Energy against the 12 runes of T1 to T3.** Fury's answer is
+T3 because Up from the Deep makes two units from one card. Body/Fury has no card at Energy 4 or less
+that makes two units for one card, and going first you have seen seven cards by T3, so **all seven have
+to be units, and under a legend that adds no Energy, seven units with the Tank cost 13 Energy against
+the 12 runes of T1 to T3.** Fury's answer here is
 `UNL-003 Mischievous Marai`: hidden at `OGN-293 The Grand Plaza` for one Power, which a rune that has
 already paid its Energy can still give by being recycled, it is played from there later for no Energy.
 **Seven units at the Plaza for 11 Energy and 1 Power, and killing one of them costs 6 Might.** The turn
@@ -92,12 +93,14 @@ Conquer if that player has not yet scored that Battlefield this turn."*
 controller’s Base or a Battlefield the controller controls."*
 
 **Seven cards, seven units, no slack.** Going first you have seen five cards by T1, six by T2 and seven
-by T3. No Body or Fury card at Energy 4 or less puts two units on the board: the multi-unit cards of the
-pair are `VEN-023 Zed, From the Shadows` (E4 + 1 Fury Power, and its Shadow Clone costs a discarded
+by T3. No Body or Fury card at Energy 4 or less puts two units on the board for one card: the
+multi-unit cards of the pair are `VEN-023 Zed, From the Shadows` (E4 + 1 Fury Power, and its Shadow Clone costs a discarded
 card, so it is two units for two cards), `SFD-021 Ferrous Forerunner` (E6, and its Mechs come when it
 dies), and `SFD-019 Assembly Rig` and `VEN-087 Hextech Disc` (E4 gear whose Mechs go to base). So all
 seven cards have to be units on the Plaza, and seven units with the Combatant among them cost at least
-4 + 1 + 1 + 1 + 2 + 2 + 2 = **13 Energy**. T1 to T3 give 2 + 4 + 6 = 12.
+4 + 1 + 1 + 1 + 2 + 2 + 2 = **13 Energy**. T1 to T3 give 2 + 4 + 6 = 12 under the walked legend,
+Relentless Storm, which adds no Energy. The other Fury/Body legend does, and it closes the same gap
+another way (Leads).
 
 **The hide turns the thirteenth Energy into one Power.** [Hidden] is a cost in Power, 811.1.b: *"It is
 functionally short for "While this card is in your hand or in your Champion Zone on your turn during an
@@ -361,7 +364,9 @@ T4 and worse after it.** Body/Fury cannot make two units from one cheap card, so
 the whole of its first seven cards, and the [Tank] does not fit in twelve Energy. Fury fits it with a
 hidden Marai, whose one Power comes from a rune that has already paid its Energy. The kill price is 6, as
 in slice 3, and a deck that answers with bodies needs 6 Might ready on its T3 with no attacker Marai can
-kill. It is the rarest line of the pass: seven with the Tank by T3 in about one game in 12,000 (§8).
+kill. It is the rarest line of the pass: seven with the Tank on the board by the end of T3 in about one
+game in 90,000, one in 13,000 counting a T3 hide that needs their window (§8). The same shell under
+`VEN-141 Butcher of the Sands` needs no Marai and is about fifteen times as castable (Leads).
 
 ## 8. Not verified
 
@@ -376,18 +381,26 @@ a Main Deck of exactly 40 cards (including a chosen champion), 1 Legend, 12 rune
 battlefields each with a unique name."* Going first you have seen 5 cards by T1, 6 by T2 and 7 by T3.
 With the walk's three each of Determined Sentry, Towering Combatant, Pit Rookie, Mischievous Marai and
 Pouty Poro, computed exactly over ordered draws and every way to spend 2, 4 and 6 Energy on T1 to T3
-(the hide on T2 or T3 for a recycled rune, which leaves one Energy fewer on T3 when it is done on T2; a
-unit played before the Plaza is yours goes to base and walks on a later turn), seven units at the Plaza
-with a Combatant among them by the end of T3 happen in **0.008%** of games, and seven in any form in
-**0.013%**. With six more Energy-2 bodies in place of other cards the Tank case is 0.055% and the any
-case 0.239%. The count does not ask that the Rookie be played after the Combatant, so the 6-Might Tank
+(a hide for a recycled rune, which leaves one Energy fewer on T3 when it is done on T2; a unit played
+before the Plaza is yours goes to base and walks on a later turn), the figure splits in two, because a
+Marai hidden on T3 is not a unit at the end of T3: 811.1.b gives it [Reaction] only *"Beginning on the
+next turn"*, so it becomes the seventh only inside a chain or showdown the opponent opens on their T3
+(316.5.b, 309.1.a), and if they open none the T4 Hold counts six.
+
+| | with a Combatant | in any form |
+|---|---|---|
+| seven on the board by the end of T3 (hide on T2 only) | **0.0011%** | **0.0060%** |
+| plus a T3 hide that needs their window | 0.0077% | 0.0129% |
+| with six more Energy-2 bodies, on the board by the end of T3 | 0.0040% | 0.1445% |
+| with six more Energy-2 bodies, plus a T3 hide | 0.0555% | 0.2392% |
+ The count does not ask that the Rookie be played after the Combatant, so the 6-Might Tank
 is a little rarer still. Mulligan ignored. The case is rare because all seven cards seen have to be
 line units: the walked order needs both Sentries in the first five and the Combatant in the first six.
 
 **The Plaza has to be in play.** 485.5: *"Setup: Each player randomly selects one (1) of their three
 (3) Battlefields. The other two are removed and will not be used for this game."* One in three. With
-the 0.008% that is about **0.003%** of games in which the line can be on the board with its Tank by the
-end of T3, before the opponent does anything.
+the 0.0011% that is about **0.0004%** of games in which the line is on the board with its Tank by the
+end of T3, before the opponent does anything; 0.0026% counting a T3 hide.
 
 **Marai's timing.** The walk plays it inside their attack's showdown, where 347.2.b passes Focus to you.
 If the attacker plays something first, Focus passes when that chain closes, 347.1.b: *"When that Chain
@@ -396,18 +409,28 @@ walked: an opponent who answers Marai's own chain item (811.1.c.3: *"Playing a c
 "from Hidden") does open a chain."*).
 
 Not walked: going second (three runes on T1); the mulligan; 2v2 and Match (486.5 lets you choose the
-battlefield); an opponent that runs any of the §5 spells; and `VEN-141 Butcher of the Sands`, the other
-Fury/Body legend that pays Energy (Leads).
+battlefield); an opponent that runs any of the §5 spells; and the same shell under `VEN-141 Butcher of
+the Sands`, the other Fury/Body legend, which needs no Marai (Leads).
 
 ## Leads
 
-- **Body/Fury's T4 Plaza is capped by cards, not by runes.** Going first, seven cards seen by T3 and no
-  two-unit card at Energy 4 or less in the pair make the first seven cards the whole board. A legend
-  that pays Energy does not change that: `VEN-141 Butcher of the Sands` reads *"[Reaction][>]
-  :rb_rune_rainbow::rb_rune_rainbow:, :rb_exhaust:: [Add] :rb_energy_2:. Spend this Energy only to play
-  units or activated abilities of units."*, which buys an eighth unit on T3 that there is no eighth card
-  for. The clock does not price a legend's [Add], so a line built on it would read later there than by
-  hand. A draw would lift the cap, and the pair's cheapest unit that draws, `UNL-097 Kinkou Initiate`
+- **The stronger shell is the same seven under `VEN-141 Butcher of the Sands`, with no Marai.** It reads
+  *"[Reaction][>] :rb_rune_rainbow::rb_rune_rainbow:, :rb_exhaust:: [Add] :rb_energy_2:. Spend this
+  Energy only to play units or activated abilities of units."* A rune already exhausted for Energy can
+  still be recycled for Power (164.2.b), so two of them buy E2 for units, once a turn. Going first: T1,
+  two Sentries to base (E2). T2, they conquer the empty Plaza; four runes give E4 and two of them
+  recycled through Butcher +E2, so E6 for the Combatant and Pit Rookie, and the kill price is 6 at the
+  end of T2 rather than 5. T3, the two runes left and two channelled give E4, two recycled through Butcher
+  +E2, so E6 for a Sentry and two Energy-2 bodies (E5). Seven units with the Tank, 13 of 14 Energy, every
+  card a unit and any Energy-2 unit in the last slots. Computed the same way as §8, with three each of
+  the five cards and Butcher used whenever it helps, seven with a Combatant on the board by the end of T3
+  happen in **0.0160%** of games, about fifteen times the Relentless Storm figure (0.0011%), and 0.2064%
+  with six more Energy-2 bodies. Not walked here: against the walked opponent its T3 board is the same
+  six-plus-one as this walk's, so their 6 Might would again kill only the Combatant. The clock does not
+  price a legend's [Add]; it prices the fourth body at E1, which is how it reaches T4 on this row too.
+- **Body/Fury's T4 Plaza is capped by cards.** Going first, seven cards seen by T3 and no card at Energy
+  4 or less in the pair that makes two units for one card make the first seven cards the whole board, so
+  a legend that pays Energy changes which seven fit, not how many. A draw would lift the cap, and the pair's cheapest unit that draws, `UNL-097 Kinkou Initiate`
   (E3, *"When you play me, draw 1 if your other units have total Might 5 or more."*), fits in place of
   the Poro at exactly twelve Energy and leaves none for the card it draws.
 - **A hidden unit is a seventh body at no Energy, and its play trigger is the only Plaza defence here

@@ -313,8 +313,9 @@ count stays at **0**.
 
 **Slice 4, Body/Fury (#524).** One line was walked:
 [a hidden Marai on the Plaza](2026-10-27-a-hidden-marai-is-the-seventh-unit-for-no-energy-so-a-tank-fits-by-turn-three-and-their-six-still-take-it-to-six.md).
-Body/Fury has no card at Energy 4 or less that makes two units, so going first the seven cards seen by
-T3 have to be the seven units, and seven with Towering Combatant among them cost 13 Energy against 12.
+Body/Fury has no card at Energy 4 or less that makes two units for one card, so going first the seven
+cards seen by T3 have to be the seven units, and under a legend that adds no Energy seven with Towering
+Combatant among them cost 13 Energy against 12.
 Mischievous Marai (Fury) is hidden at the Plaza on T2 for one Power from a rune already exhausted for
 Energy, and played from there for no Energy: two Sentries on T1, the Combatant and the hide on T2, a
 third Sentry, Pit Rookie and Pouty Poro on T3. Seven units, 11 Energy and 1 Power, kill price 6. That is
@@ -322,9 +323,11 @@ T4 on the clock against the Body/Fury Hold baseline of T5, so it enters as a can
 against the same deck and draws as the three earlier Plaza plays, their two 3-Might attackers kill only
 the Combatant; Marai, played inside that showdown, deals 2 and kills neither, and the T4 Hold sees six.
 The hand is empty after T3, so there is no rebuild, and **it does not win by T5**. It is castable with
-its Tank by T3 in 0.008% of games. No other line was walked: the pair's catalogued CHAINs and BURSTs pay
-at T5 or later on the clock, and its other Energy legend, Butcher of the Sands, buys units there is no
-card for (the play's Leads). No new BURST or CHAIN was searched, so its clocked count stays at **0**.
+its Tank on the board by the end of T3 in 0.0011% of games (0.0077% counting a T3 hide that needs the
+opponent's window). No other line was walked: the pair's catalogued CHAINs and BURSTs pay at T5 or later
+on the clock. The same shell under the other Fury/Body legend, Butcher of the Sands, pays the
+thirteenth Energy with no Marai and is about fifteen times as castable (0.0160%); it is a Lead of the
+play, not walked. No new BURST or CHAIN was searched, so its clocked count stays at **0**.
 
 ## 6. Not verified
 
