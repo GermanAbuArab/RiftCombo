@@ -1700,7 +1700,7 @@ function readiesOf(c, t) {
  * line that spends a Gate's four readies on its own step (a gear, a unit) also gets them here as
  * Energy. That errs EARLY, the direction this table is allowed to err in. Measured 2026-10-27, it
  * moves three finisher rows, all of them through Gemdragon (dragonstorm-brambleback-trinity-conquer,
- * dragonstorm-confront-grand-plaza, gemdragon-henge-vi-blind-fury, T12 -> T11), and 33 ENGINE rows,
+ * dragonstorm-confront-grand-plaza, gemdragon-henge-vi-blind-fury, T12 -> T11), and 30 ENGINE rows,
  * every one of them on an unchanged closure that holds VEN-150 or UNL-104.
  */
 const RUNE_READY = /\bready\b[^.\n]*\brunes?\b|\brunes?\b[^.\n]*\bready\b/i;
