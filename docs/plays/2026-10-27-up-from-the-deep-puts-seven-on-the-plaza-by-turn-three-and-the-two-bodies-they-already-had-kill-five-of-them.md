@@ -271,8 +271,8 @@ is their whole T2: five runes, four exhausted and one recycled. Its text: *"[Emp
 :rb_energy_1: more. If this is [Empowered], they cost :rb_energy_1::rb_rune_rainbow: more instead."*
 A cost increase applies to whatever cost the spell is played for, 356.3: *"Apply cost increases."*, and
 [Flow] is that cost for the second casting, 829.1.c.1: *"The cost is an alternate cost that replaces
-the base cost of the spell to be paid during finalization."* So both castings are E4, and the T3 seven
-needs 2 + 4 + 4 = 10 Energy on six runes.
+the base cost of the spell to be paid during finalization."* So both castings are E4: the bodies were
+bought on T1 and T2, and the T3 seven needs 4 + 4 = 8 Energy on six runes.
 
 - **On the clock's terms** (no attacks): T3 is Up from the Deep (E4) and a body (E2), six units; T4 is
   the [Flow] (E4) and two bodies (E2 each), ten units. The win moves to the **T5** Hold. That still
