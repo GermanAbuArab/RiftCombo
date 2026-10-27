@@ -775,6 +775,8 @@ function deployTurnUncached(types, costs) {
                 if (ai >= 0) {
                   const t = types[ai];
                   const n = cnt[ai] - haveOf(ai);
+                  // Each copy is a different Aphelios (at most `aOn` of them), and `aNew` is set only
+                  // when none was on the board before, so charging him per copy pays each one once.
                   vAtt.e = t.e + (aNew ? aNew.e : 0); vAtt.p = t.p + (aNew ? aNew.p : 0); vAtt.rune = t.att;
                   rk[nk] = vAtt; rq[nk] = n < aOn ? n : aOn; kk += rq[nk++];
                 }
@@ -2142,8 +2144,9 @@ const costsOfSet = (set, ign, bodies, pick) => {
     }
   }
   if (weaponmaster && equips.length) {
-    equips.sort((a, b2) => a.e + a.p - (b2.e + b2.p));
-    // The waived attach still ATTACHES (#523), so an Aphelios trigger keeps it as a free cost.
+    // The waived attach still ATTACHES (#523), so an Aphelios trigger keeps it as a free cost; on a tie
+    // the waiver goes to the attach that fires him, which leaves the same cost and a cheaper trigger.
+    equips.sort((a, b2) => a.e + a.p - (b2.e + b2.p) || (b2.att || 0) - (a.att || 0));
     const w = equips.shift();
     if (w.att) equips.push({ ...w, e: 0, p: 0 });
   }
