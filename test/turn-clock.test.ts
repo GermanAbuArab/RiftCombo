@@ -261,16 +261,16 @@ describe("the allocator's ordering constraint", () => {
  * (T3 has 6 runes at most), T4 needs at most 1 recycle before it and T5 at most 3, which leaves
  * E10 or more on T6's 7 or 8 runes. So the Seal is worth exactly one turn here.
  *
- * Upstage Comedy, the walk's own route, is NOT the pin: the clock pays a readying spell whenever it
- * is cheapest (T1) rather than after the last unit lands, so with Comedy the no-Seal control also
- * reads T6 and the pair would prove nothing.
+ * Upstage Comedy, the walk's own route, was NOT the pin here: until #506 the clock paid a readying
+ * spell whenever it was cheapest (T1) rather than with the last unit, so with Comedy the no-Seal
+ * control also read T6 and the pair proved nothing. #506 pins it below.
  */
 describe("power income (#501)", () => {
   const price = (set: string) => {
     const s = execFileSync("node", ["scripts/adversarial-check.mjs", "--price", set], { encoding: "utf8" });
-    const m = s.match(/all T(\d+|Infinity), last unit T(\d+|Infinity)/);
+    const m = s.match(/all T(\d+|Infinity), last unit T(\d+|Infinity), unitLast \w+, pays T(\d+|Infinity)/);
     expect(m, s).toBeTruthy();
-    return { all: Number(m![1]), unit: Number(m![2]) };
+    return { all: Number(m![1]), unit: Number(m![2]), pays: Number(m![3]) };
   };
 
   it("pays the Seal of Rage + Bushwhack Tryndamere line on T6, as walked", () => {
@@ -290,4 +290,63 @@ describe("power income (#501)", () => {
     expect(m, "the income non-vacuity line is missing from --engines").toBeTruthy();
     expect(Number(m![1])).toBeGreaterThan(5);
   }, 60_000);
+});
+
+/**
+ * READYING (#506), pinned against REAL card text through `--price`. A readier works on the turn it is
+ * paid and only on the units that land with it, so it waives the last unit's 143.4 readiness turn
+ * when it shares that turn and does nothing on any other. These read `pays`, the turn the last unit
+ * can act, because a readier never moves `all`.
+ *
+ * The cards are #501's: OGN-040 Seal of Rage, three UNL-029 Red Brambleback (E4 + 1), two OGN-034
+ * Tryndamere (E7 + 2), now with UNL-009 Upstage Comedy (E2, "Ready a unit."), PR #500's own route.
+ * Going first, 2 runes a turn (315.3.b), a recycled rune leaves (161.2.b), and one rune can pay its
+ * exhaust for Energy and its recycle for Power on the same turn (164.2.a, 164.2.b).
+ *
+ * SEAL + COMEDY, T6. #501's walk to T5 (Seal and a Brambleback on T2, a Brambleback T3, a Tryndamere
+ * T4, a Brambleback T5) reaches T6 with 10 runes: the second Tryndamere (E7, its 2 Power the Seal's
+ * Add plus one recycle) and Comedy (E2) are E9, and Comedy readies him on the turn he lands, so he
+ * attacks on T6. Not earlier: `all` is already T6 without Comedy (#501).
+ *
+ * NO SEAL, T7 (the control). Every Power is now a recycle, 7 of them, and a Tryndamere needs 7 runes,
+ * which T3 (6 at most) never has, so the two land on T4 and T5 or later. Acting on T6 needs one of:
+ *   (a) every unit landed by T5. A Tryndamere on T4 allows at most 1 recycle before T4, so at most one
+ *       Brambleback lands before T4 (one recycle each). T4's 7 or 8 runes then hold only the
+ *       Tryndamere, which recycles 2, so T5 has at most 10 - 2 = 8 runes: the second Tryndamere and
+ *       no E4 beside it. At most one Brambleback of three by T5.
+ *   (b) the last unit on T6 with Comedy beside it. If a Tryndamere lands on T6 with k Bramblebacks,
+ *       T6 pays E9 + 4k with 2 + k Power, so 5 - k recycles came earlier and T6 has 7 + k runes,
+ *       short by 2 + 3k. If only Bramblebacks land on T6, k of them, T6 pays E2 + 4k on 5 + k runes,
+ *       so k = 1, and both Tryndamere and two Bramblebacks are down by T5 with 6 recycles. T5 then
+ *       holds a Tryndamere (T4 and T5 are the only turns with 7 runes) and, with b Bramblebacks
+ *       beside it, pays E7 + 4b on 4 + (2 + b) runes, which no b affords.
+ * Neither exists, so T7: which is why the Seal, and not Comedy alone, is worth the turn.
+ *
+ * SEAL WITHOUT COMEDY, T7: the same `all` T6 with the second Tryndamere landing on it exhausted.
+ */
+describe("readying (#506)", () => {
+  const pays = (set: string) => {
+    const s = execFileSync("node", ["scripts/adversarial-check.mjs", "--price", set], { encoding: "utf8" });
+    const m = s.match(/pays T(\d+|Infinity)/);
+    expect(m, s).toBeTruthy();
+    return Number(m![1]);
+  };
+
+  it("pays the Seal of Rage + Upstage Comedy Tryndamere line on T6, as walked", () => {
+    expect(pays("OGN-040:1,UNL-029:3,OGN-034:2,UNL-009:1")).toBe(6);
+  });
+
+  it("pays the same cards without the Seal on T7 (the control)", () => {
+    expect(pays("UNL-029:3,OGN-034:2,UNL-009:1")).toBe(7);
+  });
+
+  it("pays the Seal line without Comedy on T7, so the readier is what moved it", () => {
+    expect(pays("OGN-040:1,UNL-029:3,OGN-034:2")).toBe(7);
+  });
+
+  it("still finds rows that hold a readier, so 'it moved no finisher' cannot go vacuous", () => {
+    const m = out.match(/readying \([^)]*\): (\d+) of (\d+) rows hold a readier/);
+    expect(m, "the readier non-vacuity line is missing from --turns").toBeTruthy();
+    expect(Number(m![1])).toBeGreaterThan(5);
+  });
 });
