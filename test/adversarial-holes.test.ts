@@ -160,7 +160,7 @@ describe("the corrections file", () => {
     expect(written).toMatch(/rc-synth-recheck-\d+\.json$/);
     expect(existsSync(written), "the printed path does not exist").toBe(true);
     unlinkSync(written);
-  });
+  }, 60_000); // spawns scripts/adversarial-check.mjs: 3.7-4.2s on CI at #523's head, 5.8-6.7s and a 5s timeout under load
 });
 
 /**
@@ -338,7 +338,7 @@ describe("the emitted answer", () => {
     for (const r of rows)
       expect(r.notables_to_append[0], "an emitted answer says nothing about whether it is symmetric")
         .toMatch(/IT IS SYMMETRIC|It reads "enemy units"/);
-  });
+  }, 60_000); // spawns scripts/adversarial-check.mjs: 3.7-4.2s on CI at #523's head, 5.8-6.7s and a 5s timeout under load
 });
 
 describe("a garrison protection", () => {
@@ -499,7 +499,7 @@ describe("a spent mode says so", () => {
     }
     const written = out.match(/-> (\S+)/)![1] as string;
     unlinkSync(written);
-  });
+  }, 60_000); // spawns scripts/adversarial-check.mjs: 3.7-4.2s on CI at #523's head, 5.8-6.7s and a 5s timeout under load
 
   it("reports the two halves of --holds-notables separately when one is spent", () => {
     const out = execFileSync("node", ["scripts/adversarial-check.mjs", "--holds-notables", "--out", HOLDS_PROBE], { encoding: "utf8", maxBuffer: 1 << 22 });
@@ -507,7 +507,7 @@ describe("a spent mode says so", () => {
     expect(m, "the mode does not split its two halves").toBeTruthy();
     if (Number(m![1]) === 0) expect(out).toMatch(/REPLACE half is \[SPENT\]|REPLACE half is \[INDETERMINATE\]/);
     unlinkSync(HOLDS_PROBE);
-  });
+  }, 60_000); // spawns scripts/adversarial-check.mjs: 3.7-4.2s on CI at #523's head, 5.8-6.7s and a 5s timeout under load
 });
 
 /**
