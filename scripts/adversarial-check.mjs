@@ -669,10 +669,21 @@ function deployTurnUncached(types, costs, ladd, limit = 40) {
   for (let i = 0; i < dim; i++) if (types[i].red) { reds.push(i); RMAX += types[i].red * types[i].n; FL = types[i].redMin; }
   const cut = (x, R) => (x <= FL ? x : x - R < FL ? FL : x - R);
   for (const t of types) t.re = t.e;
+  // A Herald this sub-turn bought discounts only the Dragons played AFTER it, so when readiers are
+  // sequenced the Heralds are sequenced with them (`order`, one kind per Herald type): a Dragon readier
+  // placed before one pays `cut(e, rPrev + hp)`, `hp` the discount of the Heralds placed so far and
+  // `rPrev` of those from earlier turns, and the overpayment against its `re` rides in `xs`. Costs
+  // that ready nothing are paid after every readier and Herald, at the full discount `re` already is.
+  // Charging every same-sub-turn Herald to the readiers, as this did first, read OGN-140:2,UNL-104:1
+  // as T3 (Herald 4 + Gemdragon 4 out of T3's 6 runes, the Gemdragon's refund paying the Herald) and
+  // three Heralds, three Gemdragons and two Mountain Drakes as T1. NONE is "no order covers it", since
+  // a feasible order may now score below zero.
+  const NONE = -1e6;
+  let rPrev = 0;
   // `order` places `k` more readier copies of the `nk` kinds in `rk`, `rq` holding how many of each
   // the sub-turn bought and are still unplaced, and keeps in `rBest` the most Energy the own
   // (non-`share`) readiers can give up to `rNeed`, among the orders whose readies cover `rNeed` at
-  // all; -1 means none does. Hoisted for the same reason `walk` is.
+  // all, less the overpayment `xs`; NONE means none does. Hoisted for the same reason `walk` is.
   // EVERY readier is paid before it resolves, out of the runes and what the readiers placed before it
   // returned (`spent` is their Energy so far); the costs that ready nothing wait until the last one
   // has resolved. Until #523 only the FIRST readier was checked, which was enough for one Gate and
@@ -681,11 +692,11 @@ function deployTurnUncached(types, costs, ladd, limit = 40) {
   // herald-of-scales-gemdragon-drakehound-net-positive each read a turn early, and so does the
   // two-Gemdragons-and-a-Mountain-Drake pin in test/turn-clock.test.ts.
   const CHAIN = { chain: true };
-  const rk = [...runers.map((i) => types[i]), null, null, null];
-  const rq = new Int8Array(runers.length + 3);
-  const vBig = { e: 0, re: 0, p: 0, rune: 0, share: false }, vAtt = { e: 0, re: 0, p: 0, rune: 0, share: false };
+  const rk = [...runers.map((i) => types[i]), null, null, null, ...reds.map(() => null)];
+  const rq = new Int8Array(rk.length);
+  const vBig = { e: 0, re: 0, p: 0, rune: 0, share: false, drg: 0 }, vAtt = { e: 0, re: 0, p: 0, rune: 0, share: false, drg: 0 };
   // `rMax` bounds what one copy can return in this sub-turn, for the prune at the top of `order`.
-  let rNeed = 0, rBest = -1, nk = runers.length, g0 = 0, rMax = 0;
+  let rNeed = 0, rBest = NONE, nk = runers.length, g0 = 0, rMax = 0;
   const trigMemo = new Map();
   // DOMINANCE (#523's security scan: 3 Gemdragons, 21 other Dragons and an Aphelios ran past 120s).
   // Which copies are placed fixes everything but the readies: `spent` is their Energy, the Adds they
@@ -693,46 +704,63 @@ function deployTurnUncached(types, costs, ladd, limit = 40) {
   // returns whatever came first. So a partial order with no more `own` and `shr` than one already seen
   // at the same counts can do no better, and `order` walks the placement counts instead of every
   // interleaving. `key` packs the counts still unplaced; past SEEN of them it searches unpruned.
-  const kStride = new Int32Array(runers.length + 3);
+  // #532: `xs` too, since which Heralds came first is not fixed by the counts; a record with more
+  // overpayment dominates nothing.
+  const kStride = new Int32Array(rk.length);
   const SEEN = 1 << 16;
-  const seenGen = new Int32Array(SEEN), seenOwn = new Int16Array(SEEN), seenShr = new Int16Array(SEEN);
+  const seenGen = new Int32Array(SEEN), seenOwn = new Int16Array(SEEN), seenShr = new Int16Array(SEEN), seenX = new Int16Array(SEEN);
   let gen = 0, dom = false;
   const search = (k, adds) => {
     let span = 1, key = 0;
     for (let x = 0; x < nk; x++) { kStride[x] = span; key += rq[x] * span; span *= rq[x] + 1; }
     dom = span <= SEEN;
     gen++;
-    order(k, runes, adds, 0, 0, 0, 0, 0, key);
+    order(k, runes, adds, 0, 0, 0, 0, 0, key, 0, 0);
   };
-  const order = (k, left, adds, own, shr, spent, gp, cp, key) => {
+  const order = (k, left, adds, own, shr, spent, gp, cp, key, hp, xs) => {
     if (over || ++leaves > LEAF_CAP) { over = true; return; }
     if (rBest === rNeed) return;  // nothing scores more than the Energy the turn is short of
-    if (own + shr + k * rMax < rNeed) return;  // nor can the copies left cover what is still short
+    if (own + shr + k * rMax < rNeed + xs) return;  // nor can the copies left cover what is still short
     if (dom) {
       if (seenGen[key] === gen) {
-        if (seenOwn[key] >= own && seenShr[key] >= shr) return;
+        if (seenOwn[key] >= own && seenShr[key] >= shr && seenX[key] <= xs) return;
         // Not dominated: it replaces the record only with more `own`, the readies that score.
-        if (own > seenOwn[key] || (own === seenOwn[key] && shr > seenShr[key])) { seenOwn[key] = own; seenShr[key] = shr; }
-      } else { seenGen[key] = gen; seenOwn[key] = own; seenShr[key] = shr; }
+        if (own > seenOwn[key] || (own === seenOwn[key] && (shr > seenShr[key] || (shr === seenShr[key] && xs < seenX[key])))) {
+          seenOwn[key] = own; seenShr[key] = shr; seenX[key] = xs;
+        }
+      } else { seenGen[key] = gen; seenOwn[key] = own; seenShr[key] = shr; seenX[key] = xs; }
     }
     if (!k) {
-      if (own + shr >= rNeed) { const sc = own < rNeed ? own : rNeed; if (sc > rBest) rBest = sc; }
+      const nd = rNeed + xs;
+      if (own + shr >= nd) { const sc = (own < nd ? own : nd) - xs; if (sc > rBest) rBest = sc; }
       return;
     }
     for (let x = 0; x < nk; x++) {
       if (!rq[x]) continue;
       const kind = rk[x];
       const t = kind.chain ? types[chain[cp]] : kind;
-      if (spent + t.re > runes + own + shr) continue;
+      let c = t.re;
+      if (t.drg) { const a = cut(t.e, rPrev + hp); if (a > c) c = a; }
+      if (spent + c > runes + own + shr) continue;
       rq[x]--;
       const fa = adds < t.p ? adds : t.p;
       const l = left - (t.p - fa);
       let r = kind.chain || l <= 0 ? 0 : t.rune < l ? t.rune : l;
       if (kind.chain || t.kinR) r += l <= 0 ? 0 : (g0 + gp) * (KR < l ? KR : l);
-      order(k - 1, l, adds - fa, t.share ? own : own + r, t.share ? shr + r : shr, spent + t.re,
-            t.kinR && !kind.chain ? gp + 1 : gp, kind.chain ? cp + 1 : cp, key - kStride[x]);
+      order(k - 1, l, adds - fa, t.share ? own : own + r, t.share ? shr + r : shr, spent + c,
+            t.kinR && !kind.chain ? gp + 1 : gp, kind.chain ? cp + 1 : cp, key - kStride[x],
+            t.red ? hp + t.red : hp, xs + c - t.re);
       rq[x]++;
     }
+  };
+  // The Heralds this sub-turn bought, as `order` kinds from slot `n` on, when a Dragon readier is
+  // there to be discounted by them; returns the new kind count and leaves their copies in `hq`.
+  let hq = 0;
+  const heralds = (n) => {
+    rPrev = 0; hq = 0;
+    for (const r of reds) rPrev += types[r].red * haveOf(r);
+    for (const r of reds) { const q = cnt[r] - haveOf(r); if (q) { rk[n] = types[r]; rq[n++] = q; hq += q; } }
+    return n;
   };
 
   let curR = new Int8Array(SZ).fill(-1);        // runes on board, -1 = state unreachable
@@ -788,8 +816,12 @@ function deployTurnUncached(types, costs, ladd, limit = 40) {
       // returned (`order`). With nothing to return, every shared ready goes to a unit.
       const need = e - runes;
       if (need > 0) {
-        rNeed = need; rBest = -1; rMax = runeMax;
-        if (!trig) search(k, rain + nf);
+        rNeed = need; rBest = NONE; rMax = runeMax;
+        if (!trig) {
+          if (reds.length) { nk = heralds(nk); k += hq; }
+          search(k, rain + nf);
+          nk = runers.length;
+        }
         else {
           // #523. The other Dragons this sub-turn bought, cheapest first, when a Gemdragon is there
           // to see them: on the board already, or bought in this sub-turn and placed before them.
@@ -816,6 +848,7 @@ function deployTurnUncached(types, costs, ladd, limit = 40) {
           else {
           if (g0 + g) for (const i of chainTypes) for (let q = cnt[i] - haveOf(i); q > 0; q--) chain[cn++] = i;
           if (cn) { rk[nb] = CHAIN; rq[nb++] = cn; kb += cn; }
+          if (reds.length) { nb = heralds(nb); kb += hq; }
           rMax = runeMax + (g0 + g) * KR;
           // Both are optional ("you may exhaust me", and Aphelios may choose another mode), so -1, no
           // trigger at all, is always one of the choices.
@@ -829,7 +862,7 @@ function deployTurnUncached(types, costs, ladd, limit = 40) {
               nk = nb;
               if (bi >= 0) {
                 const t = types[bi];
-                vBig.e = vBig.re = t.re; vBig.p = t.p; vBig.rune = t.big;
+                vBig.e = t.e; vBig.re = t.re; vBig.drg = t.drg; vBig.p = t.p; vBig.rune = t.big;
                 rk[nk] = vBig; rq[nk++] = 1; kk++;
               }
               if (ai >= 0) {
@@ -848,7 +881,7 @@ function deployTurnUncached(types, costs, ladd, limit = 40) {
           trigMemo.set(mk, rBest);
           }
         }
-        if (rBest < 0) return;
+        if (rBest === NONE) return;
         rdn = rd + slots - (need - rBest);
       } else rdn = rd + slots;
     }
@@ -1935,9 +1968,8 @@ const LEGEND_ADD = /^\[Reaction\]\[>\] ((?::rb_rune_rainbow:)+), :rb_exhaust:: \
  * texts are a spell's own cost (OGN-014 Sky Splitter), spells only (OGN-084 Eager Apprentice) and an
  * [Equip] (UNL-188 Hextech Gauntlets), none of them a tribe. --turns prints the members.
  * How the allocator applies it is in deployTurnUncached's `walk` (`cut`).
- * THE LOOSENESS, which errs EARLY: a Herald bought in the same sub-turn discounts that sub-turn's
- * Dragons, but inside the readier search it is paid after the last readier, so a Gemdragon may be
- * discounted by a Herald its own readied runes paid for.
+ * A Herald bought in the same sub-turn discounts only the Dragons played after it: when no readier is
+ * owed the Heralds simply go first, and when one is they are sequenced with the readiers in `order`.
  */
 const REDUCER = /(?:^|[.)\]]\s*)Your ([A-Z][a-z]+)s' Energy costs are reduced by :rb_energy_(\d+):, to a minimum of :rb_energy_(\d+):\./;
 function reducerOf(c, t) {

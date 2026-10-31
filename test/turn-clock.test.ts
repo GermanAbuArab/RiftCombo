@@ -983,6 +983,22 @@ describe("a tribal cost reducer (#532)", () => {
     expect(price("OGN-140:1,UNL-104:1,SFD-006:3")).toBe(3);
   });
 
+  // A Herald bought in the same turn discounts only the Dragons after it, so the readier search
+  // sequences it with them. Charged to every readier, two Heralds and a Gemdragon read T3 (4 + 4 out of
+  // T3's 6 runes, the Gemdragon's refund paying the Herald that discounted it) and three of each with
+  // two Mountain Drakes read T1. An exhaustive search of the same rules gives 4, 4 and 3.
+  it("pays two Heralds + a Gemdragon on T4: a Herald paid after the Gemdragon does not discount it", () => {
+    expect(price("OGN-140:2,UNL-104:1")).toBe(4);
+  });
+
+  it("pays three Heralds + three Gemdragons + two Mountain Drakes on T4, not T1", () => {
+    expect(price("OGN-140:3,UNL-104:3,OGN-142:2")).toBe(4);
+  });
+
+  it("still pays two Heralds + a Gemdragon + two Eager Drakehounds on T3: the Drakehounds' refunds pay", () => {
+    expect(price("OGN-140:2,UNL-104:1,SFD-006:2")).toBe(3);
+  });
+
   it("prices the three Gemdragon rows at pays T6, not T7", () => {
     for (const id of ["gemdragon-henge-vi-blind-fury", "dragonstorm-confront-grand-plaza", "dragonstorm-brambleback-trinity-conquer"])
       expect(rows.get(id)?.pays, id).toBe(6);
