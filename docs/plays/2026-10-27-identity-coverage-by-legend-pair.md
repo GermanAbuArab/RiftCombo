@@ -225,6 +225,55 @@ the entry needs both domains, so it fits no other pair. 89 finishers. The order 
 (0, 3), body/calm (0, 5), body/chaos (0, 6), body/order (0, 7), body/fury (0, 8), and Body/Order is the
 first pair not yet worked.
 
+### Re-measured 2026-10-31 at 07a93ad (#529, slice 5)
+
+The same command (§7) at `07a93ad`, master after slice 4 (#526), three clock changes (#522, #527, and #531,
+which refuses the rune readiers of #523) and a privacy-page change (#535), with nothing of slice 5 in it. 89
+finishers. Against the `2fbe030` table the only difference is slice 4's own entry,
+towering-combatant-hidden-marai-grand-plaza, which gives Body/Fury (0, 8), 2 ALT_WINs and 1 paying by
+T4, exactly as predicted above. No clocked count moved. One priced turn in §4 did:
+dragonstorm-confront-grand-plaza now clocks T7, not T12, and it still counts in no pay-by-T4 column.
+
+| pair | Hold baseline | INFINITE | BURST | CHAIN | clocked, pay by T4 | ALT_WIN | ALT_WIN, pay by T4 | all four |
+|---|---|---|---|---|---|---|---|---|
+| body/calm | T5 | 0 | 2 | 0 | 0 | 3 | 2 | 5 |
+| body/chaos | T5 | 0 | 0 | 2 | 0 | 4 | 2 | 6 |
+| body/fury | T5 | 1 | 3 | 2 | 0 | 2 | 1 | 8 |
+| body/mind | T5 | 2 | 2 | 6 | 0 | 5 | 2 | 15 |
+| body/order | T5 | 0 | 1 | 0 | 0 | 6 | 1 | 7 |
+| calm/chaos | T5 | 0 | 2 | 2 | 1 (yasuo-windrider-ride-the-wind-chain T4) | 4 | 3 | 8 |
+| calm/fury | T5 | 2 | 6 | 0 | 2 (threshold-reveler-infinite-energy T4, reveler-loop-nasus-brambleback-conquer T4) | 3 | 2 | 11 |
+| calm/mind | T5 | 2 | 5 | 6 | 0 | 9 | 6 | 22 |
+| calm/order | T5 | 0 | 3 | 0 | 0 | 9 | 4 | 12 |
+| chaos/fury | T6 | 0 | 1 | 0 | 0 | 2 | 1 | 3 |
+| chaos/mind | T6 | 2 | 0 | 5 | 0 | 8 | 4 | 15 |
+| chaos/order | T6 | 1 | 0 | 2 | 0 | 7 | 3 | 10 (pursuer-herald-recruits banned) |
+| fury/mind | T6 | 3 | 2 | 6 | 0 | 4 | 2 | 15 |
+| fury/order | T6 | 2 | 2 | 0 | 1 (jhin-fiora-facebreaker-recall T4) | 5 | 1 | 9 |
+| mind/order | T6 | 7 | 2 | 10 | 2 (time-warp-hold-burst T4, bottled-constellation-time-warp T4) | 12 | 6 | 31 |
+
+The order: chaos/fury (0, 3), body/calm (0, 5), body/chaos (0, 6), body/order (0, 7), body/fury (0,
+8), chaos/order (0, 10), calm/order (0, 12), body/mind (0, 15), chaos/mind (0, 15), fury/mind (0, 15),
+calm/mind (0, 22), calm/chaos (1, 8), fury/order (1, 9), calm/fury (2, 11), mind/order (2, 31). The six
+entries of §4 are still the six whose priced set is wider than their own cards, now of 89.
+
+**Slice 5's pair: Body/Order.** Chaos/Fury, Body/Calm and Body/Chaos come first in the order and are
+worked (slices 1 to 3). Body/Order is next, at (0, 7), and Body/Fury after it, at (0, 8), was slice 4.
+Body/Order is still the first pair not yet worked once the slice-1 to slice-4 candidates are counted:
+all four are ALT_WINs, none of them fits Body/Order (one is mono-Chaos, one mono-Calm, one Body/Chaos,
+one Body/Fury), and the clocked column, which the target rule ranks first, is 0 for all five pairs.
+Its seven finishers are one BURST (ivern-arena-trinity-body-order-hold T7) and six ALT_WINs:
+grand-plaza-recruit-vanguard T5, karthus-machine-evangel-renata-plaza T6, plaza-armory-miss-fortune T6,
+vanguard-captain-manufactor-plaza T4, ready-recruits-grand-plaza (priced Mind/Order, T4) and
+dragonstorm-confront-grand-plaza (priced Body/Fury, T7). Only vanguard-captain-manufactor-plaza pays by
+T4 inside the pair, with eight units and no Tank. The runner-up for slice 6 is Chaos/Order (0, 10).
+
+After slice 5's entry (galio-vanguard-captain-grand-plaza, a Body/Order ALT_WIN at T4) the same command
+gives Body/Order (0, 8) with 7 ALT_WINs, 2 of them paying by T4, and no other row changes: the entry
+needs both domains, so it fits no other pair. 90 finishers. The order then runs chaos/fury (0, 3),
+body/calm (0, 5), body/chaos (0, 6), body/fury (0, 8), body/order (0, 8), chaos/order (0, 10), and
+Chaos/Order is the first pair not yet worked.
+
 ## 3. The two Chaos/Fury lines
 
 | line | class | pays | Chaos/Fury Hold baseline | beats it | catalogue |
@@ -265,6 +314,8 @@ T4" columns:
 
 Read by own cards alone, bottled-constellation-time-warp would count as paying by T4 in all five
 Mind pairs. It cannot: its T4 is bought with the output of two Mind/Order loops.
+[2026-10-31, #529: at `07a93ad` dragonstorm-confront-grand-plaza clocks T7, not T12; the other five
+turns are unchanged, and the six are still the six of 89 (§2).]
 
 ## 5. Stop rule
 
@@ -277,11 +328,13 @@ beats its baseline.
 | #496 | Body/Calm | yes: frisky-hunter-grand-plaza, T4 against T5 on the clock | 0 |
 | #512 | Body/Chaos | yes: towering-combatant-up-from-the-deep-grand-plaza, T4 against T5 on the clock | 0 |
 | #524 | Body/Fury | yes: towering-combatant-hidden-marai-grand-plaza, T4 against T5 on the clock | 0 |
+| #529 | Body/Order | yes: galio-vanguard-captain-grand-plaza, T4 against T5 on the clock | 0 |
 
 The next pair in the order is **Body/Calm** (baseline T5). [2026-10-27, #496: Body/Calm was slice 2;
 the next pair not yet worked is **Body/Chaos** (baseline T5), §2.] [2026-10-27, #512: Body/Chaos was slice 3; the next
 pair not yet worked is **Body/Fury** (baseline T5), §2.] [2026-10-27, #524: Body/Fury was slice 4; the next pair
-not yet worked is **Body/Order** (baseline T5), §2.]
+not yet worked is **Body/Order** (baseline T5), §2.] [2026-10-31, #529: Body/Order was slice 5; the next
+pair not yet worked is **Chaos/Order** (baseline T6), §2.]
 
 **Slice 2, Body/Calm (#496).** One line was walked:
 [two Frisky Hunters on the Plaza](2026-10-27-two-frisky-hunters-put-seven-on-the-plaza-by-turn-three-a-tank-raises-the-free-answer-to-three-might-and-their-six-still-kill-four.md).
@@ -329,6 +382,22 @@ on the clock. The same shell under the other Fury/Body legend, Butcher of the Sa
 thirteenth Energy with no Marai and is about fifteen times as castable (0.0160%); it is a Lead of the
 play, not walked. No new BURST or CHAIN was searched, so its clocked count stays at **0**.
 
+**Slice 5, Body/Order (#529).** One line was walked:
+[Galio and a Vanguard Captain on the Plaza](2026-10-31-galio-is-a-six-might-tank-for-three-energy-and-a-vanguard-captain-makes-three-so-eight-hold-the-plaza-and-their-six-kill-nothing.md).
+Order has both things the Body slices lacked: a [Tank] that is 6 Might for three Energy, Galio,
+Indefatigable, and a card that is three units, Vanguard Captain, once another card has been played that
+turn. Two Determined Sentries take The Grand Plaza on T2, and Galio and a third Sentry are played onto
+it; on T3 Pit Rookie buffs Galio to 7 and turns the Captain's [Legion] on. Eight units for 11 Energy and
+2 Order Power, both Powers runes that had already paid their Energy, and two kills cost 8 Might. That is
+T4 on the clock against the Body/Order Hold baseline of T5, so it enters as a candidate. In the walk,
+against the same deck and draws as the four earlier Plaza plays, their two 3-Might attackers bring 6,
+all of it must go to Galio, he survives, both of theirs die, and **the T4 Hold wins the game**: the first
+identity-first Plaza walk to win on T4. Eight with Galio by the end of T3 happen in 0.0116% of games and
+seven with Galio in 0.4405%; the two Order Powers fail on 5.63% of six-and-six rune splits. No other
+line was walked: the pair's other cheap multi-unit cards, Faithful Manufactor and Royal Guard, make one
+token each, and the Manufactor shape is already catalogued. No new BURST or CHAIN was searched, so its
+clocked count stays at **0**.
+
 ## 6. Not verified
 
 The table counts entries, not decks. An entry fits a pair if its cards do; whether a real list in that
@@ -344,7 +413,8 @@ later checkout the table moves: this slice's own entry, up-from-the-deep-flow-gr
 mono-Chaos ALT_WIN and adds one to the ALT_WIN and "all four" columns of every Chaos pair. [2026-10-27, #496: the re-measured table in §2 is this command at `d8f796b`, and slice 2's
 entry, frisky-hunter-grand-plaza, does the same to every Calm pair.] [2026-10-27, #512: the slice-3 table in §2 is this
 command at `c200d59`; slice 3's entry fits Body/Chaos only.] [2026-10-27, #524: the slice-4 table in §2 is this command at
-`2fbe030`; slice 4's entry fits Body/Fury only.]
+`2fbe030`; slice 4's entry fits Body/Fury only.] [2026-10-31, #529: the slice-5 table in §2 is this
+command at `07a93ad`; slice 5's entry fits Body/Order only.]
 
 ```
 npm run -s adversarial -- --turns | node coverage.mjs
