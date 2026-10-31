@@ -471,17 +471,18 @@ function typesOf(costs) {
     // `rune` and `share` (#513): an Acceleration Gate and an unrelated E3/1-Power spell are not.
     // `big`, `att`, `aph`, `kin` and `kinR` (#523): a card that fires or enables a conditional readier.
     // `red` and `drg` (#532): a Herald and an unrelated E4 unit are not, nor a Dragon and another E5.
+    // `hen` (#544): an Ancient Henge and an unrelated E2/1-Power gear are not.
     const k = `${c.e}|${c.p}|${c.unit ? 1 : 0}|${c.gated ? 1 : 0}|${c.rain || 0}|${c.holdx || 0}|` +
               `${c.turn ? 1 : 0}|${c.pow || 0}|${c.ready ? 1 : 0}|${c.rdy || 0}|${c.rune || 0}|${c.share ? 1 : 0}|` +
               `${accKey(c.acc)}|${c.big || 0}|${c.att || 0}|${c.aph || 0}|${c.kin || 0}|${c.kinR || 0}|${c.strict ? 1 : 0}|${c.la ? 1 : 0}|` +
-              `${c.red || 0}/${c.redMin || 0}|${c.drg || 0}|${c.link || ""}`;
+              `${c.red || 0}/${c.redMin || 0}|${c.drg || 0}|${c.hen ? 1 : 0}|${c.link || ""}`;
     if (!byType.has(k))
       byType.set(k, { e: c.e, p: c.p, unit: !!c.unit, gated: !!c.gated, rain: c.rain || 0,
                       holdx: c.holdx || 0, turn: !!c.turn, pow: c.pow || 0, ready: !!c.ready,
                       rdy: c.rdy || 0, rune: c.rune || 0, share: !!c.share, acc: c.acc || null,
                       big: c.big || 0, att: c.att || 0, aph: c.aph || 0, kin: c.kin || 0, kinR: c.kinR || 0,
                       strict: !!c.strict, la: !!c.la, red: c.red || 0, redMin: c.redMin || 0, drg: c.drg || 0,
-                      re: c.e, link: c.link || "", after: c.after || "", n: 0, kids: [] });
+                      hen: !!c.hen, re: c.e, link: c.link || "", after: c.after || "", n: 0, kids: [] });
     byType.get(k).n++;
   }
   const all = [...byType.values()];
@@ -497,7 +498,7 @@ function typesOf(costs) {
   const desc = (t) => `${t.e}|${t.p}|${t.unit ? 1 : 0}|${t.gated ? 1 : 0}|${t.rain}|${t.holdx}|` +
                       `${t.turn ? 1 : 0}|${t.pow}|${t.ready ? 1 : 0}|${t.rdy}|${t.rune}|${t.share ? 1 : 0}|${accKey(t.acc)}|` +
                       `${t.big}|${t.att}|${t.aph}|${t.kin}|${t.kinR}|${t.strict ? 1 : 0}|${t.la ? 1 : 0}|` +
-                      `${t.red}/${t.redMin}|${t.drg}|${t.n}` +
+                      `${t.red}/${t.redMin}|${t.drg}|${t.hen ? 1 : 0}|${t.n}` +
                       (t.kids.length ? `(${t.kids.map(desc).sort().join(",")})` : "");
   const cmp = (a, b) => (desc(a) < desc(b) ? -1 : desc(a) > desc(b) ? 1 : 0);
   // Gated roots emit LAST, so that when the recursion reaches one, every ungated type's count for the
@@ -563,7 +564,11 @@ function deployTurnUncached(types, costs, ladd, limit = 40) {
   // RC_GUARD raises the ceiling for a one-off measurement; RC_FB names the rows that hit it. At 2e6
   // every row is exact and the table takes 44 seconds, which is why the default is 2e5 and why the
   // header prints how many rows the fallback priced.
-  if (SZ > (Number(process.env.RC_GUARD) || 2e5)) {
+  // Raised to 3e5 by #544: an Ancient Henge is its own type since it carries the exchange, so it no
+  // longer shares a count with another E2 + 1 Power cost, and dragonstorm-brambleback-trinity-conquer
+  // went from under 2e5 states to 221,184 and to the greedy pass (T14). Measured 2026-10-31 at 3e5:
+  // every row exact, --turns 2.5s and --engines 7.3s, as at 2e5 before the split.
+  if (SZ > (Number(process.env.RC_GUARD) || 3e5)) {
     greedyFallbacks++;
     if (process.env.RC_FB) console.error(`FALLBACK space=${SZ} dim=${dim}`);
     const g = greedyTurn(costs);
@@ -671,6 +676,9 @@ function deployTurnUncached(types, costs, ladd, limit = 40) {
   for (let i = 0; i < dim; i++) if (types[i].red) { reds.push(i); RMAX += types[i].red * types[i].n; FL = types[i].redMin; }
   const cut = (x, R) => (x <= FL ? x : x - R < FL ? FL : x - R);
   for (const t of types) t.re = t.e;
+  // AN ENERGY-TO-POWER EXCHANGE (#544, HENGE): the types that carry one. `pay` spends it at the leaf.
+  const hens = [];
+  for (let i = 0; i < dim; i++) if (types[i].hen) hens.push(i);
   // A Herald this sub-turn bought discounts only the Dragons played AFTER it, so when readiers are
   // sequenced the Heralds are sequenced with them (`order`, one kind per Herald type): a Dragon readier
   // placed before one pays `cut(e, rPrev + hp)`, `hp` the discount of the Heralds placed so far and
@@ -905,20 +913,55 @@ function deployTurnUncached(types, costs, ladd, limit = 40) {
     if (idx + delta === FULL && nxtR[k] >= 0 && (nxtU[k] === sub) !== (nu === sub)) better = nu !== sub;
     if (better) { nxtR[k] = nr; nxtU[k] = nu; }
   };
+  // AN ENERGY-TO-POWER EXCHANGE (#544, HENGE). With a Henge on the board, from an earlier sub-turn or
+  // bought in this one (359.2.d enters a non-unit gear ready, and the ability's only cost is its
+  // exhaust), the sub-turn may pay `h` more Energy and owe `h` less Power: `settle` is offered every
+  // such buy next to the plain one and keeps the best. Once a sub-turn, since the gear exhausts and
+  // readies at every Awaken (415.3.a), and one activation pays "any amount", so a second Henge adds
+  // nothing. The Energy is the runes' and the readiers' (`e + h` must clear `settle` like any other
+  // Energy); a legend's restricted Energy is subtracted before `pay` sees `e`, so it is never moved.
+  // `h` stops at the recycles the buy still owes, past which the Energy buys nothing, and at `rest`,
+  // the Power of the costs that ready nothing, less a Henge's own when it lands this sub-turn: those
+  // are paid after the last readier has resolved, so the Energy left over is in the pool by then, and
+  // a Henge's own Power is paid before it is on the board. A readier is paid BEFORE its runes come
+  // back, so the Energy its Power would be exchanged from may not exist yet: with a Henge out, T3's
+  // five runes cannot pay two Acceleration Gates and a Commander Ledros (E12 + 6), since a Gate
+  // refunds at most the four it costs and Ledros's E6 is more than five runes, and an `h` that paid
+  // the Gates' Power read them as payable. Which costs count as readiers is every kind `order` sequences: a rune
+  // readier, a Gemdragon and every Dragon under one, a Curator or Aphelios source, Aphelios, a Herald.
+  const pay = (e, p, delta, un, rd, cast, nf, fp) => {
+    settle(e, p, delta, un, rd, cast, nf, fp);
+    if (!hens.length) return;
+    let on = false, own = Infinity;
+    for (const i of hens) {
+      if (haveOf(i)) { on = true; own = 0; break; }
+      if (cnt[i]) { on = true; if (types[i].p < own) own = types[i].p; }
+    }
+    if (!on) return;
+    let rest = -own;
+    for (let i = 0; i < dim; i++) {
+      const t = types[i];
+      if (t.rune || t.kinR || (t.kin && gemN) || t.big || t.att || t.aph || t.red) continue;
+      rest += (cnt[i] - haveOf(i)) * t.p;
+    }
+    let top = (nf && fp > p - nf ? fp : p - nf) - rain;
+    if (rest < top) top = rest;
+    for (let h = 1; h <= top && e + h <= runes + rrMax; h++) settle(e + h, p - h, delta, un, rd, cast, nf, fp);
+  };
   const walk = (i, e, p, delta, un, rd, cast, nf, fp, fin, ue) => {
     if (over) return;
     if (i === dim) {
       if (++leaves > LEAF_CAP) { over = true; return; }
-      settle(e, p, delta, un, rd, cast, nf, fp);
+      pay(e, p, delta, un, rd, cast, nf, fp);
       // THE LEGEND'S [Add] (#528, #540), once a sub-turn since it exhausts and the legend readies at
       // every Awaken. `ue` is what the `la` costs this sub-turn bought owe it: their Energy for an
       // Energy [Add], their Power for a rainbow, and for [Legion] the Energy of the cheapest card played,
       // which goes first out of the runes (LEGION_NONE: none was played). Butcher's costs `LP` more
       // Power, so spending it while the runes still cover the Energy only loses runes and is not
       // tried; the free ones never cost anything, so they are simply spent.
-      if (LG) { if (ue < LEGION_NONE && e > runes && e - ue > 0) settle(e - (e - ue < LE ? e - ue : LE), p, delta, un, rd, cast, nf, fp); }
-      else if (LR && ue) settle(e, p - (ue < LR ? ue : LR), delta, un, rd, cast, nf, fp);
-      else if (LE && ue && e > runes) settle(e - (ue < LE ? ue : LE), p + LP, delta, un, rd, cast, nf, fp);
+      if (LG) { if (ue < LEGION_NONE && e > runes && e - ue > 0) pay(e - (e - ue < LE ? e - ue : LE), p, delta, un, rd, cast, nf, fp); }
+      else if (LR && ue) pay(e, p - (ue < LR ? ue : LR), delta, un, rd, cast, nf, fp);
+      else if (LE && ue && e > runes) pay(e - (ue < LE ? ue : LE), p + LP, delta, un, rd, cast, nf, fp);
       return;
     }
     const t = types[i];
@@ -981,7 +1024,10 @@ function deployTurnUncached(types, costs, ladd, limit = 40) {
       // skips the q it cannot afford yet.
       // `rrMax` is the most Energy readied runes can add on top (#513); the leaf makes it exact.
       if (ne > runes + rrMax + LE) break;
-      if (np - nnf > runes + rain + LR) { if (fresh && t.pow > t.p) continue; break; }
+      // A Henge (#544) can pay Power with whatever Energy the runes and readiers leave over (`hv`).
+      // `ne` grows with q, so `np - nnf - hv` is still non-decreasing and the break stays safe.
+      const hv = hens.length && runes + rrMax > ne ? runes + rrMax - ne : 0;
+      if (np - nnf > runes + rain + LR + hv) { if (fresh && t.pow > t.p) continue; break; }
       // [ACCELERATE] (#510): `a` of the `q` copies bought here pay their optional [1][C] (805.1.a) and
       // enter ready, so they owe no 143.4 turn and count in `rd`. Paying it only ever costs runes, and
       // the readiness turn is read only where the set completes, so the clock offers it only on a path
@@ -992,7 +1038,7 @@ function deployTurnUncached(types, costs, ladd, limit = 40) {
       const am = t.acc && full ? q : 0;
       for (let a = 0; a <= am; a++) {
         const ae = a ? ne + a * tae : ne, ap = a ? np + a * t.acc.p : np;
-        if (a && (ae > runes + rrMax + LE || ap - nnf > runes + rain + LR)) break;
+        if (a && (ae > runes + rrMax + LE || ap - nnf > runes + rain + LR + (hens.length && runes + rrMax > ae ? runes + rrMax - ae : 0))) break;
         // A `share` readier's units are counted at the leaf, out of what its runes leave (#513).
         walk(i + 1, ae, ap, delta + q * stride[i], t.unit ? un + q : un, rd + (t.share ? 0 : t.rdy) * q + a,
              cast + (t.turn ? q : 0),
@@ -1902,7 +1948,8 @@ function equipCost(c) {
  * exhausted"). The rest are named and left out on purpose:
  *   Gold tokens, OGN-113 Malzahar   the exhaust is not the whole cost ("Kill this", "Kill a friendly
  *                                   unit or gear"), so the Add spends a permanent
- *   SFD-117 Ancient Henge           converts Energy to rainbow ("Pay any amount of Energy"), no income
+ *   SFD-117 Ancient Henge           converts Energy to rainbow ("Pay any amount of Energy"), no income;
+ *                                   priced as an exchange since #544 (HENGE)
  *   UNL-022 Jhin, Murderous Artist  Adds when he MOVES, a trigger and not a schedule
  *   legends (Daughter of the Void, Fire Below the Mountain)  restricted to spells or gear, and a
  *                                   legend is never a cost here
@@ -2014,6 +2061,37 @@ function reducerOf(c, t) {
     .filter((r) => r.red).map((r) => `${r.redTag}/${r.redMin}`));
   if (shapes.size > 1) throw new Error(`REDUCER: ${[...shapes].join(", ")} - one tribe and one floor are modelled (#532)`);
 }
+/**
+ * AN ENERGY-TO-POWER EXCHANGE (#544). SFD-117 Ancient Henge (body gear, E2 + 1 Power): ":rb_exhaust::
+ * [Reaction] — Pay any amount of Energy to [Add] that much :rb_rune_rainbow:. (Abilities that add
+ * resources can't be reacted to.)" The reminder text is 429.2 and 429.3:
+ *   429.2. "Triggered and activated abilities that Add resources resolve as soon as they are finalized."
+ *   429.2.a. "Priority and Focus will not pass from Add abilities being finalized or resolving, and will
+ *   resolve before any other outstanding items on the chain are finalized."
+ *   429.3. "Activated abilities that Add resources and have the Reaction tag can be activated at any time
+ *   that spells or abilities require resources be paid."
+ * So it creates nothing: once a turn, since it exhausts, it moves Energy the turn has left after its
+ * plays into rainbow Power (135.2.e.5.a, any domain), which a row whose Gemdragons refund Energy and
+ * whose Power comes only from recycles can spend on everything it still owes. Before #544 the clock
+ * read it as an E2 gear and nothing else, and gemdragon-henge-vi-blind-fury and the two rows that fold
+ * it read one turn LATE. A non-unit gear enters ready (359.2.d), so it exchanges the turn it lands, its
+ * own E2 + 1 paid first; a unit would enter exhausted (143.4) and wait a turn, which this does not
+ * model, so the guard below refuses one. How the allocator spends it is in deployTurnUncached's `pay`.
+ * Swept 2026-10-31, the anchored wording matches SFD-117 alone. Its mirror SFD-083 Hextech Anomaly
+ * ("Pay any amount of :rb_rune_rainbow: to [Add] that much Energy") moves Power into Energy and is not
+ * priced, which can only make a row that holds it later.
+ * THE LOOSENESS, both ways, small: the exchange is priced on the sub-turn's totals, not at the moment
+ * the Energy exists. Inside the readier search a readier's Power is still recycled even when the Henge
+ * could have paid it (LATE), and the search does not ask that the Energy moved before a readier
+ * resolved was already in the pool (EARLY). A rainbow paid for the first Seal-like income card bought
+ * the same sub-turn is still charged to the other sources (LATE).
+ */
+const HENGE = /(?:^|[.)\]]\s*):rb_exhaust::\s*\[Reaction\]\s*—\s*Pay any amount of Energy to \[Add\] that much :rb_rune_rainbow:\./;
+{
+  const bad = [...byBase.values()].filter((c) => HENGE.test(`${c.text || ""} ${c.effect || ""}`) &&
+                                                 (!c.type.includes("gear") || c.type.includes("unit")));
+  if (bad.length) throw new Error(`HENGE: ${bad.map((c) => c.base).join(", ")} - only a non-unit gear is modelled (#544)`);
+}
 const LEGEND_REFUSED = {
   "SFD-201": "Chem-Baroness: the [Add] is a Gold token's, played on a hold, and its extra Energy only near the Victory Score",
   "UNL-185": "Bloodharbor Ripper: the [Add] is a Gold token's, which the legend plays for E1 and a returned unit",
@@ -2061,6 +2139,7 @@ function curveOf(c) {
     ...runesOf(c, t),
     ...triggersOf(c, t),
     ...reducerOf(c, t),
+    hen: HENGE.test(t) ? 1 : 0,
     selfReady: c.type.includes("unit") && /(?:^|[.)]\s*)I enter ready\./.test(t),
     // Each field on its own: `t` joins them with a space, which the line anchor would not see.
     acc: c.type.includes("unit") && (ACCELERATE.test(c.text || "") || ACCELERATE.test(c.effect || "")),
@@ -2436,7 +2515,7 @@ const costsOfSet = (set, ign, bodies, pick, hide = {}, bound = false) => {
     let acc = hasAcc ? { e: post && ign.freeE ? 0 : 1, p: post && ign.freeP ? 0 : 1 } : null;
     const ready0 = selfReady || !!(acc && !acc.e && !acc.p);
     if (ready0) acc = null;
-    const { attR: isAph, kinR, red, redMin } = curveOf(c);
+    const { attR: isAph, kinR, red, redMin, hen } = curveOf(c);
     const drg = redTag && c.type.includes("unit") && (c.tags || []).includes(redTag) ? 1 : 0;
     // #523: the PRINTED Energy is what Curator reads (206), whatever the engine pays for it.
     const big = bigR && (c.type.includes("unit") || c.type.includes("gear")) && (c.energy || 0) >= bigAt ? bigR : 0;
@@ -2450,7 +2529,7 @@ const costsOfSet = (set, ign, bodies, pick, hide = {}, bound = false) => {
       const hid = i < (hide[b] || 0);
       const effect = { unit: c.type.includes("unit") && !ready0, la: laOf(c), gated: post, rain, holdx, turn, pow, ready, rdy,
                        rune, share, acc, big, att: equipment && !linked ? attR : 0, aph: isAph ? 1 : 0, kin, kinR,
-                       red, redMin, drg };
+                       red, redMin, drg, hen };
       // `bound`: priceSet's answer past the split guard, every hidden copy free with no hide and no
       // turn's wait. It only drops costs and an ordering, so no split of these copies pays earlier.
       if (hid && bound) out.push({ ...effect, e: 0, p: 0, link: linked ? `${b}#play` : "" });
@@ -2509,10 +2588,11 @@ const costsOfSet = (set, ign, bodies, pick, hide = {}, bound = false) => {
   // readies a unit, and N of them do that N times, so none is interchangeable with one of itself.
   // Nor is a free unit with [Accelerate] (#510): each copy chooses for itself whether to pay it, and
   // nor is a free rune readier (#513), which returns Energy per copy, nor a card that fires or
-  // enables a conditional one (#523), nor a free Herald, which discounts per copy (#532).
+  // enables a conditional one (#523), nor a free Herald, which discounts per copy (#532), nor a free
+  // Henge (#544), whose exchange a collapsed group's representative could drop.
   const collapsible = (c) => !c.e && !c.p && !c.after && !roots.has(c.link || "") &&
                              !c.rain && !c.holdx && !c.turn && !c.pow && !c.rdy && !c.rune && !c.acc &&
-                             !c.big && !c.att && !c.aph && !c.kin && !c.red;
+                             !c.big && !c.att && !c.aph && !c.kin && !c.red && !c.hen;
   const free = all.filter(collapsible);
   if (free.length < 2) return all;
   const rest = all.filter((c) => !collapsible(c));
@@ -2861,6 +2941,7 @@ for (const { e, domains: ownDomains, cards: ownCards } of entries) {
   clock.push({ id: e.id, cls: e.class, pays, base: baselineTurn(merged), via: note || null,
                ordered: finalCosts.some((c) => c.after && !c.strict), income: finalCosts.some((c) => c.pow),
                readier: finalCosts.some((c) => c.rdy), accel: finalCosts.some((c) => c.acc), reducer: finalCosts.some((c) => c.red),
+               exchange: finalCosts.some((c) => c.hen),
                runer: finalCosts.some((c) => c.rune || c.big || c.att || c.kinR), bodies: pick.length ? bodyKey(domainsOfSet(cards)) : null,
                short: cheapShort(cards, bodies.n), holdsHidden: splitCount(cards) > 1,
                hid: Object.values(hide).some(Boolean), hbound: !!bound, cbound: !!cbound, ladd: ladd ? ladd.base : null,
@@ -2952,6 +3033,11 @@ function reducerLine(rows) {
          `${members.map((c) => `${c.base} ${c.name} (${curveOf(c).redTag}s -${curveOf(c).red}, min ${curveOf(c).redMin})`).join(", ")}; ` +
          `${rows.filter((c) => c.reducer).length} of ${rows.length} rows hold one`;
 }
+function exchangeLine(rows) {
+  const members = [...byBase.values()].filter((c) => curveOf(c).hen);
+  return `# exchange (HENGE, 429.3: Energy left after the plays moved to rainbow, once a turn): ${members.length} card${members.length === 1 ? " carries" : "s carry"} it: ` +
+         `${members.map((c) => `${c.base} ${c.name}`).join(", ")}; ${rows.filter((c) => c.exchange).length} of ${rows.length} rows hold one`;
+}
 function accelLine(rows) {
   return `# accelerate (${ACCELERATE} on a unit, 805.1.a: an optional [1][C] that waives 143.4): ${ACCEL_UNITS} units carry it; ` +
          `${rows.filter((c) => c.accel).length} of ${rows.length} rows hold one`;
@@ -2975,6 +3061,7 @@ if (engines) {
   console.log(readierLine(eng));
   console.log(accelLine(eng));
   console.log(reducerLine(eng));
+  console.log(exchangeLine(eng));
   for (const l of bodyLines(eng)) console.log(l);
   console.log(hiddenLine(eng));
   console.log(legendLine(eng));
@@ -3018,6 +3105,8 @@ console.log(readierLine(clock));
 console.log(accelLine(clock));
 // And a tribal cost reducer (#532).
 console.log(reducerLine(clock));
+// And an Energy-to-Power exchange (#544).
+console.log(exchangeLine(clock));
 // And the candidates a body is chosen among (#517).
 for (const l of bodyLines(clock)) console.log(l);
 // And [Hidden] and the legends' [Add] (#528).

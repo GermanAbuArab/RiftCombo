@@ -1035,10 +1035,10 @@ describe("[Equip] outside reminder text (#530)", () => {
  * that fold it. T1 Confront, T2 a Herald, T3 the second Herald + Vi (one rune recycled, five left). T4,
  * seven runes, both Heralds out: three Gemdragons at 4 each, each refunding 2 per Dragon, both Kadregrins,
  * the Grenade, Detonate, and five E5 Dragons at 1, one rune left. T5: Show of Strength, the last Dragon
- * and the Henge. That is the clock's own schedule, and its T5 is exact for the clock: the nine Power can
- * only come from recycles, and eight runes are channelled by T4. By hand the line is all T4 / pays T5,
- * because SFD-117 Ancient Henge turns the refunded Energy into rainbow Power and the clock does not
- * model that conversion, so these rows still read one turn late; that is a separate issue, not this one.
+ * and the Henge. That is the clock's own schedule without SFD-117 Ancient Henge's exchange, under which
+ * the nine Power can only come from recycles and eight runes are channelled by T4. By hand the line is
+ * all T4 / pays T5, because the Henge turns the refunded Energy into rainbow Power; #544 models that
+ * and the pin below reads the rows at pays T5.
  */
 describe("a tribal cost reducer (#532)", () => {
   const price = (set: string) => {
@@ -1080,13 +1080,63 @@ describe("a tribal cost reducer (#532)", () => {
     expect(price("OGN-140:2,UNL-104:1,SFD-006:2")).toBe(3);
   });
 
-  it("prices the three Gemdragon rows at pays T6, not T7", () => {
+  it("prices the three Gemdragon rows at pays T5, not T7 (T6 with the reducer alone, #544 the rest)", () => {
     for (const id of ["gemdragon-henge-vi-blind-fury", "dragonstorm-confront-grand-plaza", "dragonstorm-brambleback-trinity-conquer"])
-      expect(rows.get(id)?.pays, id).toBe(6);
+      expect(rows.get(id)?.pays, id).toBe(5);
   });
 
   it("prints the reducer predicate with its one member and the rows that hold it", () => {
     const m = out.match(/^# reducer [^\n]*: 1 card carries it: OGN-140 Herald of Scales \(Dragons -2, min 1\); (\d+) of (\d+) rows hold one$/m);
+    expect(m, out).toBeTruthy();
+    expect(Number(m![1])).toBeGreaterThanOrEqual(3);
+  });
+});
+
+/**
+ * AN ENERGY-TO-POWER EXCHANGE (#544). SFD-117 Ancient Henge, a gear (E2, one Body Power): ":rb_exhaust::
+ * [Reaction] — Pay any amount of Energy to [Add] that much :rb_rune_rainbow:. (Abilities that add
+ * resources can't be reacted to.)" A non-unit gear enters ready (359.2.d), so it exchanges the turn it
+ * lands, once its own cost is paid, and readies at every Awaken (415.3.a). Runes 2/4/6/8/10 on T1-T5
+ * going first (161.2.a); an exhausted rune still recycles for Power (164.2.a/b).
+ *
+ * HENGE + TWO ACCELERATION GATES + TWO COMMANDER LEDROS, T5. VEN-150 Acceleration Gate (E3 + 1 Power):
+ * "Ready up to 4 units, gear, and/or runes." OGN-231 Commander Ledros is E6 + 4 Power. T2: the Henge,
+ * two runes exhausted and one recycled, three left. T3, five runes: a Gate on three runes plus a fourth
+ * whose Energy the Henge turns into the Gate's Power; the Gate readies three runes and the Henge. The
+ * second Gate the same way, readying four runes: two Gates, nothing recycled, five runes. T4, seven:
+ * Ledros on six, the seventh's Energy through the Henge, three recycled, four left. T5, six: the second
+ * Ledros, four recycled. The control swaps the Henge for OGN-063 Spirit's Refuge, an E2 + 1 Power gear
+ * whose text the clock does not read: every Power is a recycle, each Gate costs a rune, and the clock
+ * says T6. The clock counts one exchange a turn where this walk uses two (the Gate readies the Henge);
+ * that looseness is late, so the T5 is a bound the walk meets.
+ *
+ * THE OTHER DIRECTION. Henge + two Gates + ONE Ledros is T4, as the control: T3's five runes cannot pay
+ * Ledros's E6, and a Gate refunds at most the four it costs. Exchanging a readier's own Power read it
+ * T3, so the exchange is offered only for the Power of costs that ready nothing.
+ */
+describe("an Energy-to-Power exchange (#544)", () => {
+  const price = (set: string) => {
+    const s = execFileSync("node", ["scripts/adversarial-check.mjs", "--price", set], { encoding: "utf8" });
+    const m = s.match(/all T(\d+|Infinity)/);
+    expect(m, s).toBeTruthy();
+    return Number(m![1]);
+  };
+
+  it("pays Henge + two Acceleration Gates + two Commander Ledros on T5, as walked", () => {
+    expect(price("SFD-117:1,VEN-150:2,OGN-231:2")).toBe(5);
+  });
+
+  it("pays Spirit's Refuge + two Acceleration Gates + two Commander Ledros on T6: no exchange (the control)", () => {
+    expect(price("OGN-063:1,VEN-150:2,OGN-231:2")).toBe(6);
+  });
+
+  it("does not exchange a readier's own Power: Henge + two Gates + one Ledros reads T4, as the control", () => {
+    expect(price("SFD-117:1,VEN-150:2,OGN-231:1")).toBe(4);
+    expect(price("OGN-063:1,VEN-150:2,OGN-231:1")).toBe(4);
+  });
+
+  it("prints the exchange predicate with its one member and the rows that hold it", () => {
+    const m = out.match(/^# exchange [^\n]*: 1 card carries it: SFD-117 Ancient Henge; (\d+) of (\d+) rows hold one$/m);
     expect(m, out).toBeTruthy();
     expect(Number(m![1])).toBeGreaterThanOrEqual(3);
   });
