@@ -25,8 +25,9 @@ on Galio, killing two of them costs 8 Might.** The turn clock prices it at **T4 
 Hold baseline of T5**. Walked as a game, going first, against the same Calm/Order Radiant Dawn deck and
 the same draws as the four earlier Plaza plays, **it wins on T4**. Their two T2 bodies attack with
 exactly 6, and all of it has to go to Galio, who has 7. Nothing of yours dies, both of theirs do, and
-the T4 Hold sees eight. It is the first identity-first Plaza walk to win on T4. The cheapest spell is one
-Energy: `OGN-133 Flurry of Blades` (Body) kills the five 1-Might units.
+the T4 Hold sees eight. It is the first identity-first Plaza walk to win on T4. The cheapest break is in
+their own identity: `OGN-043 Charm` (Calm, E1 + 1 Calm, and one Power more for Galio's [Deflect]) moves
+Galio off the Plaza, and then 1 Might of attack is enough. The walked hand held no Charm.
 
 ---
 
@@ -163,8 +164,8 @@ the walk stuns. Its Chosen Champion is `OGN-238 Leona, Determined`, never played
 - `SFD-157 Royal Guard` (Order, E4, M2): *"When you play me, play a 2 :rb_might: Sand Soldier unit
   token here."*
 
-`OGN-216 Soaring Scout`, their own Vanguard Captain and `VEN-045 Helm of Suppression` stay in their
-hand, since the game ends before their T4; §5 says why the Helm does nothing here. Going second, they
+`OGN-216 Soaring Scout` and `VEN-045 Helm of Suppression` stay in their hand, and their Vanguard
+Captain, the T4 draw of the earlier walks, is never drawn, since the game ends before their T4; §5 says why the Helm does nothing here. Going second, they
 channel an extra rune on T1, 485.7: *"First Turn Process: The player going second channels an extra
 Rune from their Rune Deck during their first Channel Phase of the game."*
 
@@ -242,7 +243,10 @@ slices 1, 2 and 4 had six or fewer at their T4 Hold, and slice 3 won at T5.
 cost the game, and their kill prices were 1, 3, 6 and 6. This one puts eight, so it takes two kills,
 and the first of them has to get through a 7-Might Tank. Their 6 is short of 7 by one, which the Rookie's
 buff paid. Without the buff Galio is 6, the 6 kills him and nothing else, and seven are left: **it
-still wins**, because the eighth unit is the slack. Their 6 would have to be 8 to stop it.
+still wins**, because the eighth unit is the slack. Their 6 would have to be 8 to stop it, or the Tank
+would have to leave first: a `OGN-043 Charm` in their T3 hand, cast on Galio before the attack (§5),
+leaves seven with no [Tank], and the same 6 then kills the three Sentries and both Recruits. Two left,
+and no win.
 
 ## 5. Breaks to
 
@@ -261,23 +265,27 @@ so a spell that chooses him costs one Power more, 809.1.c: *"It is functionally 
 abilities an opponent controls that target [me/this] cost an amount of Power equal to [Deflect Value]
 more to play as an additional cost for each time they choose [me/this].""* and 809.1.c.1: *"The Power
 used to pay this cost may always be of any Domain."* Taking two of the eight needs a card that removes
-two, or two cards.
+two, two cards, or one card that removes the Tank and an attack for the second: with Galio gone, the
+seven left have no [Tank], so one kill costs 1 Might (465.2.c.3).
 
 | card | cost | against the eight |
 |---|---|---|
+| `OGN-043 Charm` (Calm spell) on Galio, then an attack | E1 + 1 Calm + 1 Power ([Deflect]), and 1 Might | *"Move an enemy unit."* Cast in their own Main Phase before the attack (it has no [Action]), it moves Galio off the Plaza, and one 1-Might kill leaves six. The walked 6 kills the three Sentries and both Recruits: two left. **The cheapest break, and it is in the walked opponent's identity**: it fits their T3's seven runes beside Royal Guard. |
+| `VEN-148 Shadow Dash` (Calm/Order spell) on Galio, then an attack | E2 + 1 Power + 1 Power ([Deflect]), and 1 Might | *"Move an enemy unit to a battlefield where you have units."* Galio goes to B, where they have Daring Poro (144.4 restricts only a Standard Move), and the same attack follows. Two left. Also in their identity. |
 | `OGN-133 Flurry of Blades` (Body spell) | E1 | *"[Reaction] (Play any time, even before spells and abilities resolve.) Deal 1 to all units at battlefields."* It targets nothing. The three Sentries and both Recruits die; Galio (7), the Rookie (2) and the Captain (3) live. Three left. |
 | `OGN-268 Bullet Time` (Body/Chaos spell) | E1 + X Power | *"[Action] (Play on your turn or in showdowns.) Pay any amount of :rb_rune_rainbow: to deal that much damage to all enemy units at a battlefield."* For X = 1 the five 1-Might units die. Three left. |
 | `OGN-127 Cannon Barrage` (Body spell) | E2 + 1 Body | *"[Reaction] (Play any time, even before spells and abilities resolve.) Deal 2 to all enemy units in combat."* Inside their attack: the Sentries, the Recruits and the Rookie die. Two left. |
-| `UNL-107 Stare Down` (Body spell) | E2 | *"Choose a friendly unit and a battlefield. Move all enemy units at that battlefield with less Might than the chosen unit to their base. Gain 1 XP."* With a 3-Might unit of theirs chosen, everything but Galio and the Captain goes to base. Two left. |
+| `UNL-107 Stare Down` (Body spell) | E2 | *"Choose a friendly unit and a battlefield. Move all enemy units at that battlefield with less Might than the chosen unit to their base. Gain 1 XP."* With a 3-Might unit of theirs chosen, everything but Galio and the Captain goes to base, the Sentries too: they cannot move to base, so 447.2.c turns their move into a Recall (*"If an action would require a Move that would cause a Unit to become present in a Location where it cannot move for any reason, such as a Battlefield with two players that are not the controller of the Unit performing this Move action are in a Combat or such a Combat is Staged, it instead Recalls."*). Two left. |
 | `UNL-192 Alpha Strike` (Calm/Body spell) | E3 + 1 Power | *"[Action] (Play on your turn or in showdowns.) Choose a friendly unit. It deals damage equal to its Might split among enemy units at battlefields. Then for each unit this kills, do this: Gain 1 XP."* With a 3-Might unit, three 1-Might units die. Five left. |
-| two single-target spells | E2 and up | `OGN-169 Gust` (Chaos, E1: *"Return a unit at a battlefield with 3 :rb_might: or less to its owner's hand."*), `OGN-043 Charm` (Calm, E1 + 1 Calm: *"Move an enemy unit."*) or `SFD-162 Blood Money` (Order, E2: *"Kill a unit at a battlefield with 2 :rb_might: or less."*), twice. None of the three can take Galio cheaply: Gust and Blood Money by Might, Charm by [Deflect]. |
+| two single-target spells, no attack | E2 and up | `OGN-169 Gust` (Chaos, E1: *"Return a unit at a battlefield with 3 :rb_might: or less to its owner's hand."*), `SFD-162 Blood Money` (Order, E2: *"Kill a unit at a battlefield with 2 :rb_might: or less."*) or Charm, twice. Gust and Blood Money cannot choose Galio (6, 7 buffed), so with them alone it takes two cards. |
 
 The predicate searched: spells at Energy 3 or less in `data/corpus_flat.txt` whose text contains "all
 units", "each unit", "two units", "units here", "enemy units at" or "all enemy units". It returns the
 five rows above plus `SFD-145 Switcheroo` (Chaos, swaps the Might of two units) and `VEN-148 Shadow Dash`
 (Calm/Order, *"Move an enemy unit to a battlefield where you have units."*, one unit). **No Calm or Order
-card in that search removes two of the eight with one card**, so the walked opponent's identity answers
-with two Charms (E2 + 2 Calm) or two Shadow Dashes, or with 8 Might. This is an absence inside that
+card in that search removes two of the eight with one card.** The walked opponent's identity still has a
+one-card break, because removing one unit is enough when that unit is the Tank: Charm or Shadow Dash on
+Galio, then any attack of 1 Might, or 8 Might with no spell. The sweeper absence is inside that
 predicate, not a pool-wide one: a unit or gear whose ability removes two was not searched.
 
 **No spell tax reaches it.** The slice-1 and slice-3 Plaza lines moved to T5 against
@@ -316,8 +324,10 @@ earlier Plaza lines to T5 or later, this one wins on the clock's turn.
 **One turn faster than the Hold curve on the clock, and in the walk it wins on that turn.** Order has
 what the Body/Fury slice lacked, a card that is three units, and a Tank whose Might is the price of the
 first kill with no [Shield] to lose outside combat. Eight units take two kills to stop, and the first
-is 7 Might. A deck that answers with bodies needs 8 ready on its T3, or one Energy-1 Body sweeper; the
-walked Calm/Order identity has neither sweeper in the predicate searched (§5). It is a rare draw: eight
+is 7 Might. A deck that answers with bodies needs 8 ready on its T3, or one Energy-1 Body sweeper. The
+cheapest answer is cheaper than either, and the walked Calm/Order identity has it: a Charm on Galio
+(E1 + 2 Power, one of them Calm) before the attack, after which 1 Might is enough (§5). The walk won
+because that hand held no Charm. It is a rare draw: eight
 with Galio by the end of T3 in about one game in 8,600, seven with Galio in about one in 230 (§8).
 
 ## 8. Not verified
