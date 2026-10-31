@@ -473,14 +473,14 @@ function typesOf(costs) {
     // `red` and `drg` (#532): a Herald and an unrelated E4 unit are not, nor a Dragon and another E5.
     const k = `${c.e}|${c.p}|${c.unit ? 1 : 0}|${c.gated ? 1 : 0}|${c.rain || 0}|${c.holdx || 0}|` +
               `${c.turn ? 1 : 0}|${c.pow || 0}|${c.ready ? 1 : 0}|${c.rdy || 0}|${c.rune || 0}|${c.share ? 1 : 0}|` +
-              `${accKey(c.acc)}|${c.big || 0}|${c.att || 0}|${c.aph || 0}|${c.kin || 0}|${c.kinR || 0}|${c.strict ? 1 : 0}|${c.isU ? 1 : 0}|` +
+              `${accKey(c.acc)}|${c.big || 0}|${c.att || 0}|${c.aph || 0}|${c.kin || 0}|${c.kinR || 0}|${c.strict ? 1 : 0}|${c.la ? 1 : 0}|` +
               `${c.red || 0}/${c.redMin || 0}|${c.drg || 0}|${c.link || ""}`;
     if (!byType.has(k))
       byType.set(k, { e: c.e, p: c.p, unit: !!c.unit, gated: !!c.gated, rain: c.rain || 0,
                       holdx: c.holdx || 0, turn: !!c.turn, pow: c.pow || 0, ready: !!c.ready,
                       rdy: c.rdy || 0, rune: c.rune || 0, share: !!c.share, acc: c.acc || null,
                       big: c.big || 0, att: c.att || 0, aph: c.aph || 0, kin: c.kin || 0, kinR: c.kinR || 0,
-                      strict: !!c.strict, isU: !!c.isU, red: c.red || 0, redMin: c.redMin || 0, drg: c.drg || 0,
+                      strict: !!c.strict, la: !!c.la, red: c.red || 0, redMin: c.redMin || 0, drg: c.drg || 0,
                       re: c.e, link: c.link || "", after: c.after || "", n: 0, kids: [] });
     byType.get(k).n++;
   }
@@ -496,7 +496,7 @@ function typesOf(costs) {
   }
   const desc = (t) => `${t.e}|${t.p}|${t.unit ? 1 : 0}|${t.gated ? 1 : 0}|${t.rain}|${t.holdx}|` +
                       `${t.turn ? 1 : 0}|${t.pow}|${t.ready ? 1 : 0}|${t.rdy}|${t.rune}|${t.share ? 1 : 0}|${accKey(t.acc)}|` +
-                      `${t.big}|${t.att}|${t.aph}|${t.kin}|${t.kinR}|${t.strict ? 1 : 0}|${t.isU ? 1 : 0}|` +
+                      `${t.big}|${t.att}|${t.aph}|${t.kin}|${t.kinR}|${t.strict ? 1 : 0}|${t.la ? 1 : 0}|` +
                       `${t.red}/${t.redMin}|${t.drg}|${t.n}` +
                       (t.kids.length ? `(${t.kids.map(desc).sort().join(",")})` : "");
   const cmp = (a, b) => (desc(a) < desc(b) ? -1 : desc(a) > desc(b) ? 1 : 0);
@@ -522,7 +522,7 @@ function deployTurn(costs, ladd = null, limit = 40) {
   // Memoized on the canonical cost SIGNATURE, not on the entry: closuresOf and the consumer search
   // both price many candidate card sets and the same multiset recurs constantly.
   const { types, sig: bare } = typesOf(costs);
-  const sig = ladd ? `${bare}|L${ladd.e}/${ladd.p}` : bare;
+  const sig = ladd ? `${bare}|L${ladd.kind}${ladd.e}/${ladd.r}/${ladd.p}` : bare;
   // `limit` stops the search past a turn the caller cannot use (#528, priceSet's incumbent). A set
   // that is not done by then is Infinity with `cut`, which answers a later call only up to the same
   // turn: past it the set is searched again.
@@ -534,7 +534,9 @@ function deployTurn(costs, ladd = null, limit = 40) {
 }
 function deployTurnUncached(types, costs, ladd, limit = 40) {
   const dim = types.length;
-  const LE = ladd ? ladd.e : 0, LP = ladd ? ladd.p : 0;  // the legend's unit-only [Add] (#528)
+  // The legend's [Add] (#528, #540): `LE` Energy or `LR` rainbow for `LP` Power, paying only the costs
+  // flagged `la`. `LG`, a [Legion] one, opens only once a card was played in the sub-turn.
+  const LE = ladd ? ladd.e : 0, LP = ladd ? ladd.p : 0, LR = ladd ? ladd.r : 0, LG = !!ladd && ladd.kind === "legion";
   // Mixed-radix packing: the whole state is ONE integer, so the inner loop allocates nothing. A
   // first version keyed the state on a joined string and took minutes; the arithmetic was never the
   // problem, the 40 million array-and-string allocations were.
@@ -798,6 +800,9 @@ function deployTurnUncached(types, costs, ladd, limit = 40) {
     const rec = ext > rain ? ext - rain : 0;
     if (rec > runes) return;
     const nr = runes - rec;                       // 161.2.b: a recycled rune leaves the board
+    // With nothing to ready a rune, the runes alone pay the Energy. `walk`'s prune let this through
+    // by `LE`, the legend's Energy (#540): only its own `settle` call may spend that, on its own costs.
+    if (e > runes && !runers.length && !trig) return;
     // READYING RUNES (#513): the Energy past `runes` must come from the readiers bought this turn.
     let rdn = rd;
     if (runers.length || trig) {
@@ -905,10 +910,15 @@ function deployTurnUncached(types, costs, ladd, limit = 40) {
     if (i === dim) {
       if (++leaves > LEAF_CAP) { over = true; return; }
       settle(e, p, delta, un, rd, cast, nf, fp);
-      // THE LEGEND'S [Add] (#528, LEGEND_ADD), once a sub-turn since it exhausts and the legend readies
-      // at every Awaken: `LP` more Power for `LE` Energy that pays only the units this sub-turn bought
-      // (`ue`). Spending it while the runes still cover the Energy only loses runes, so it is not tried.
-      if (LE && ue && e > runes) settle(e - (ue < LE ? ue : LE), p + LP, delta, un, rd, cast, nf, fp);
+      // THE LEGEND'S [Add] (#528, #540), once a sub-turn since it exhausts and the legend readies at
+      // every Awaken. `ue` is what the `la` costs this sub-turn bought owe it: their Energy for an
+      // Energy [Add], their Power for a rainbow, and for [Legion] the Energy of the cheapest card played,
+      // which goes first out of the runes (LEGION_NONE: none was played). Butcher's costs `LP` more
+      // Power, so spending it while the runes still cover the Energy only loses runes and is not
+      // tried; the free ones never cost anything, so they are simply spent.
+      if (LG) { if (ue < LEGION_NONE && e > runes && e - ue > 0) settle(e - (e - ue < LE ? e - ue : LE), p, delta, un, rd, cast, nf, fp); }
+      else if (LR && ue) settle(e, p - (ue < LR ? ue : LR), delta, un, rd, cast, nf, fp);
+      else if (LE && ue && e > runes) settle(e - (ue < LE ? ue : LE), p + LP, delta, un, rd, cast, nf, fp);
       return;
     }
     const t = types[i];
@@ -971,7 +981,7 @@ function deployTurnUncached(types, costs, ladd, limit = 40) {
       // skips the q it cannot afford yet.
       // `rrMax` is the most Energy readied runes can add on top (#513); the leaf makes it exact.
       if (ne > runes + rrMax + LE) break;
-      if (np - nnf > runes + rain) { if (fresh && t.pow > t.p) continue; break; }
+      if (np - nnf > runes + rain + LR) { if (fresh && t.pow > t.p) continue; break; }
       // [ACCELERATE] (#510): `a` of the `q` copies bought here pay their optional [1][C] (805.1.a) and
       // enter ready, so they owe no 143.4 turn and count in `rd`. Paying it only ever costs runes, and
       // the readiness turn is read only where the set completes, so the clock offers it only on a path
@@ -982,11 +992,14 @@ function deployTurnUncached(types, costs, ladd, limit = 40) {
       const am = t.acc && full ? q : 0;
       for (let a = 0; a <= am; a++) {
         const ae = a ? ne + a * tae : ne, ap = a ? np + a * t.acc.p : np;
-        if (a && (ae > runes + rrMax + LE || ap - nnf > runes + rain)) break;
+        if (a && (ae > runes + rrMax + LE || ap - nnf > runes + rain + LR)) break;
         // A `share` readier's units are counted at the leaf, out of what its runes leave (#513).
         walk(i + 1, ae, ap, delta + q * stride[i], t.unit ? un + q : un, rd + (t.share ? 0 : t.rdy) * q + a,
              cast + (t.turn ? q : 0),
-             nnf, fresh && (!nf || t.p < fp) ? t.p : fp, full, t.isU ? ue + te * q + (a ? a * tae : 0) : ue);
+             nnf, fresh && (!nf || t.p < fp) ? t.p : fp, full,
+             // [Legion]'s first card pays its whole play, an [Accelerate] included (805.2.a), so a type whose
+             // every copy here is Accelerated offers `te + tae`.
+             !t.la || !q ? ue : LG ? Math.min(ue, a < q ? te : te + tae) : LR ? ue + t.p * q + (a ? a * t.acc.p : 0) : ue + te * q + (a ? a * tae : 0));
       }
     }
   };
@@ -1027,7 +1040,7 @@ function deployTurnUncached(types, costs, ladd, limit = 40) {
         }
       }
       u0 = curU[k];
-      walk(0, 0, 0, 0, 0, 0, 0, 0, 0, true, 0);
+      walk(0, 0, 0, 0, 0, 0, 0, 0, 0, true, LG ? LEGION_NONE : 0);
     }
   };
   for (let turn = 1; turn <= limit; turn++) {
@@ -1952,9 +1965,26 @@ const HIDDEN = /(?:^|\n)\[Hidden\]/;
  * THE LOOSENESS, which errs LATE in one place: inside the readier search a readier is paid out of
  * the runes, so the [Add] never pays a readier unit's own Energy before it resolves. No row puts a
  * readier unit under this legend today.
+ * THREE MORE, each counted only toward a cost of its own kind and once a sub-turn (#540):
+ * - OGN-247 Daughter of the Void (and OGN-299): ":rb_exhaust:: [Reaction] — [Add] :rb_rune_rainbow:.
+ *   Use only to play spells." One free Power that pays a spell's play.
+ * - SFD-189 Fire Below the Mountain (and SFD-244): the same, "Use only to play gear or use gear
+ *   abilities.", so it pays a gear's play or an [Equip], which 818.1 makes an Activated Ability of the
+ *   gear. A hide cost (811.1.b) is neither a play nor an ability of the card, so neither rainbow pays it.
+ * - OGN-253 Hand of Noxus (and OGN-302): ":rb_exhaust:: [Reaction], [Legion] — [Add] :rb_energy_1:.
+ *   (... Get the effect if you've played a card this turn.)" A free E1 for any cost, once a card has
+ *   been played this sub-turn: the cheapest play the sub-turn buys goes first, out of the runes, and
+ *   the E1 pays the rest. An [Equip] or a hide is not a card played, so it never opens it.
+ *   The clock casts nothing on the opponent's turn, so the exhausted legend is never used there.
+ * THE LOOSENESS, which errs LATE: a rainbow that pays a Seal-like income card's own Power (the gear
+ * rainbow could) is still charged to the turn's other sources, because `settle` reads it as Power the
+ * sub-turn no longer owes rather than as an Add. No row holds an income card under these legends.
  * The other legends that print [Add] are refused by name in LEGEND_REFUSED, each with its reason.
  */
 const LEGEND_ADD = /^\[Reaction\]\[>\] ((?::rb_rune_rainbow:)+), :rb_exhaust:: \[Add\] :rb_energy_(\d+):\. Spend this Energy only to play units or activated abilities of units\.$/m;
+const LEGEND_RAIN = /^:rb_exhaust:: \[Reaction\] — \[Add\] :rb_rune_rainbow:\. Use only to (play spells|play gear or use gear abilities)\. \(Abilities that add resources can't be reacted to\.\)$/m;
+const LEGION_NONE = 1e4;  // `ue` of a [Legion] sub-turn that has played no card yet
+const LEGEND_LEGION = /^:rb_exhaust:: \[Reaction\], \[Legion\] — \[Add\] :rb_energy_(\d+):\. \(Abilities that add resources can't be reacted to\. Get the effect if you've played a card this turn\.\)$/m;
 /**
  * A TRIBAL COST REDUCER (#532). OGN-140 Herald of Scales: "Your Dragons' Energy costs are reduced by
  * :rb_energy_2:, to a minimum of :rb_energy_1:." A static ability of a unit on the board, so it
@@ -1985,22 +2015,34 @@ function reducerOf(c, t) {
   if (shapes.size > 1) throw new Error(`REDUCER: ${[...shapes].join(", ")} - one tribe and one floor are modelled (#532)`);
 }
 const LEGEND_REFUSED = {
-  "OGN-247": "Daughter of the Void: rainbow for spells only, so it needs the clock to tell a spell's Power from another card's",
-  "OGN-299": "Daughter of the Void's reprint: the same",
-  "OGN-253": "Hand of Noxus: [Legion], E1 only once a card was played this turn, an order the leaf does not track",
-  "OGN-302": "Hand of Noxus's reprint: the same",
-  "SFD-189": "Fire Below the Mountain: rainbow for gear only, the same split as Daughter of the Void",
-  "SFD-244": "Fire Below the Mountain's reprint: the same",
   "SFD-201": "Chem-Baroness: the [Add] is a Gold token's, played on a hold, and its extra Energy only near the Victory Score",
   "UNL-185": "Bloodharbor Ripper: the [Add] is a Gold token's, which the legend plays for E1 and a returned unit",
   "UNL-197": "Scorn of the Moon: Energy only during showdowns, and the unopposed clock fights none",
   "UNL-234": "Scorn of the Moon's reprint: the same",
 };
+/**
+ * A legend's modelled [Add], or null: `kind` is the cost it may pay (`unit`, `spell`, `gear`, or
+ * `legion` for any cost once a card was played), `e` the Energy it Adds, `r` the rainbow, `p` the
+ * Power it costs to use. `say` is how --turns and --price name it.
+ */
+function legendAddText(t) {
+  let m = t.match(LEGEND_ADD);
+  if (m) {
+    const p = m[1].match(/:rb_rune_rainbow:/g).length;
+    return { kind: "unit", e: Number(m[2]), r: 0, p, say: `E${m[2]} for units at ${p} Power` };
+  }
+  if ((m = t.match(LEGEND_RAIN))) {
+    const kind = m[1] === "play spells" ? "spell" : "gear";
+    return { kind, e: 0, r: 1, p: 0, say: kind === "spell" ? "one rainbow for spells" : "one rainbow for gear and its abilities" };
+  }
+  if ((m = t.match(LEGEND_LEGION))) return { kind: "legion", e: Number(m[1]), r: 0, p: 0, say: `[Legion] E${m[1]} once a card was played` };
+  return null;
+}
 function legendAddOf(set) {
   for (const b of Object.keys(set)) {
     const c = byBase.get(b);
-    const m = c && c.type.includes("legend") && (c.text || "").match(LEGEND_ADD);
-    if (m) return { e: Number(m[2]), p: m[1].match(/:rb_rune_rainbow:/g).length, base: b };
+    const l = c && c.type.includes("legend") && legendAddText(c.text || "");
+    if (l) return { ...l, base: b };
   }
   return null;
 }
@@ -2338,6 +2380,11 @@ function bodiesOf(ids, engineIds = []) {
  */
 const costsOfSet = (set, ign, bodies, pick, hide = {}, bound = false) => {
   const out = [];
+  // `la`: a cost the set's legend [Add] may pay (#528, #540), by the kind legendAddOf names. A play is
+  // a card played; an [Equip] is a gear ability and is paid by the gear rainbow only.
+  const lk = legendAddOf(set)?.kind || "";
+  const laOf = (c) => lk === "legion" || (lk === "unit" && c.type.includes("unit")) ||
+                      (lk === "spell" && c.type.includes("spell")) || (lk === "gear" && c.type.includes("gear"));
   const equips = [];
   // 821.1.c: [Weaponmaster] attaches one of your Equipment "for one rainbow less", so the cheapest
   // single attach in the set is free. Skipping it entirely keeps this a lower bound.
@@ -2401,8 +2448,7 @@ const costsOfSet = (set, ign, bodies, pick, hide = {}, bound = false) => {
       // on a later turn. Their links carry their own names, so a hidden copy's [Equip] waits for a
       // hidden play and a played copy's for a played one.
       const hid = i < (hide[b] || 0);
-      // `isU`: a unit's play, readied or not, which is what a legend's unit-only [Add] pays (#528).
-      const effect = { unit: c.type.includes("unit") && !ready0, isU: c.type.includes("unit"), gated: post, rain, holdx, turn, pow, ready, rdy,
+      const effect = { unit: c.type.includes("unit") && !ready0, la: laOf(c), gated: post, rain, holdx, turn, pow, ready, rdy,
                        rune, share, acc, big, att: equipment && !linked ? attR : 0, aph: isAph ? 1 : 0, kin, kinR,
                        red, redMin, drg };
       // `bound`: priceSet's answer past the split guard, every hidden copy free with no hide and no
@@ -2414,7 +2460,7 @@ const costsOfSet = (set, ign, bodies, pick, hide = {}, bound = false) => {
       } else out.push({ ...effect, e: ce, p: cp, link: linked ? `${b}#play` : "" });
       const hp = hid && !bound;
       if (linked) equips.push({ e: post && ign.freeE ? 0 : eq.e, p: post && ign.freeP ? 0 : eq.p,
-                                unit: false, gated: post, link: hp ? `${b}#hequip` : `${b}#equip`,
+                                unit: false, gated: post, la: lk === "gear", link: hp ? `${b}#hequip` : `${b}#equip`,
                                 after: hp ? `${b}#hplay` : `${b}#play`,
                                 big: bigR && eq.e >= bigAt ? bigR : 0, att: equipment ? attR : 0 });
     }
@@ -2429,7 +2475,7 @@ const costsOfSet = (set, ign, bodies, pick, hide = {}, bound = false) => {
       // body that enters ready by itself owes no turn at all (#517).
       const acc = body.acc ? { e: post && ign.freeE ? 0 : 1, p: post && ign.freeP ? 0 : 1 } : null;
       const ready0 = body.self || !!(acc && !acc.e && !acc.p);
-      out.push({ e: post && ign.freeE ? 0 : body.e, p: post && ign.freeP ? 0 : body.p, unit: !ready0, isU: true,
+      out.push({ e: post && ign.freeE ? 0 : body.e, p: post && ign.freeP ? 0 : body.p, unit: !ready0, la: lk === "unit" || lk === "legion",
                  gated: post, rain: 0, holdx: 0, turn: false, pow: 0, ready: false, rdy: 0, rune: 0, share: false,
                  acc: ready0 ? null : acc, link: "" });
     }
@@ -2711,7 +2757,7 @@ if (args.includes("--price")) {
               (pick.length ? `, bodies ${pick.map((b) => b.base).join("+")} of [${bodyCandidates(set, pick.length).map(bodyLabel).join(", ")}]` : "") +
               // #528: the copies the earliest plan hides, and the legend [Add] it may spend.
               (Object.values(hide).some(Boolean) ? `, hidden ${Object.entries(hide).filter(([, h]) => h).map(([b, h]) => `${b}x${h}`).join(" ")}` : "") +
-              (ladd ? `, legend ${ladd.base} [Add] E${ladd.e} for units at ${ladd.p} Power` : "") +
+              (ladd ? `, legend ${ladd.base} [Add] ${ladd.say}` : "") +
               // A guard's greedy answer is not the exact search's, so it says so (#523).
               (d.greedy ? ", GREEDY FALLBACK (a guard tripped: not exact)" : "") +
               (bound ? ", HIDDEN BOUND (past the split guard: every hidden copy free, errs early)" : "") +
@@ -2818,6 +2864,7 @@ for (const { e, domains: ownDomains, cards: ownCards } of entries) {
                runer: finalCosts.some((c) => c.rune || c.big || c.att || c.kinR), bodies: pick.length ? bodyKey(domainsOfSet(cards)) : null,
                short: cheapShort(cards, bodies.n), holdsHidden: splitCount(cards) > 1,
                hid: Object.values(hide).some(Boolean), hbound: !!bound, cbound: !!cbound, ladd: ladd ? ladd.base : null,
+               lref: Object.keys(cards).filter((b) => LEGEND_REFUSED[b]),
                domains: (merged.length ? merged : [...ownDomains]).sort().join("/") || "colourless" });
 }
 
@@ -2887,12 +2934,14 @@ function hiddenLine(rows) {
 // #528: every legend that prints [Add], and what became of each.
 function legendLine(rows) {
   const say = [...byBase.values()].filter((c) => c.type.includes("legend") && /\[Add\]/.test(`${c.text || ""} ${c.effect || ""}`));
-  const modelled = say.filter((c) => LEGEND_ADD.test(c.text || ""));
+  const modelled = say.filter((c) => legendAddText(c.text || ""));
   const refused = say.filter((c) => !modelled.includes(c) && LEGEND_REFUSED[c.base]);
   const loose = say.filter((c) => !modelled.includes(c) && !LEGEND_REFUSED[c.base]);
+  // #540: the rows a refused legend leaves priced without its [Add], i.e. late or at best on time.
+  const late = (b) => rows.filter((c) => c.lref.includes(b)).length;
   return `# legend [Add] (a legend's own [Add], priced where the row names the legend in \`uses\`): ${say.length} legends print one; ` +
-         `modelled ${modelled.length}: ${modelled.map((c) => { const m = c.text.match(LEGEND_ADD); return `${c.base} ${c.name} (E${m[2]} for units, for ${m[1].match(/:rb_rune_rainbow:/g).length} Power)`; }).join(", ")}; ` +
-         `refused ${refused.length}: ${refused.map((c) => `${c.base} (${LEGEND_REFUSED[c.base]})`).join(", ")}; ` +
+         `modelled ${modelled.length}: ${modelled.map((c) => `${c.base} ${c.name} (${legendAddText(c.text).say})`).join(", ")}; ` +
+         `refused ${refused.length}: ${refused.map((c) => `${c.base} (${LEGEND_REFUSED[c.base]}; ${late(c.base)} rows priced without it)`).join(", ")}; ` +
          `unclassified ${loose.length}${loose.length ? `: ${loose.map((c) => c.base).join(", ")}` : ""}; ` +
          `${rows.filter((c) => c.ladd).length} of ${rows.length} rows name a modelled one`;
 }
