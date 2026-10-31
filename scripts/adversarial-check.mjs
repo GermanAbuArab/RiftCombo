@@ -470,16 +470,18 @@ function typesOf(costs) {
     // Brambleback and an unrelated E4/1-Power unit are not, and nor are two Accelerate prices.
     // `rune` and `share` (#513): an Acceleration Gate and an unrelated E3/1-Power spell are not.
     // `big`, `att`, `aph`, `kin` and `kinR` (#523): a card that fires or enables a conditional readier.
+    // `red` and `drg` (#532): a Herald and an unrelated E4 unit are not, nor a Dragon and another E5.
     const k = `${c.e}|${c.p}|${c.unit ? 1 : 0}|${c.gated ? 1 : 0}|${c.rain || 0}|${c.holdx || 0}|` +
               `${c.turn ? 1 : 0}|${c.pow || 0}|${c.ready ? 1 : 0}|${c.rdy || 0}|${c.rune || 0}|${c.share ? 1 : 0}|` +
-              `${accKey(c.acc)}|${c.big || 0}|${c.att || 0}|${c.aph || 0}|${c.kin || 0}|${c.kinR || 0}|${c.strict ? 1 : 0}|${c.isU ? 1 : 0}|${c.link || ""}`;
+              `${accKey(c.acc)}|${c.big || 0}|${c.att || 0}|${c.aph || 0}|${c.kin || 0}|${c.kinR || 0}|${c.strict ? 1 : 0}|${c.isU ? 1 : 0}|` +
+              `${c.red || 0}/${c.redMin || 0}|${c.drg || 0}|${c.link || ""}`;
     if (!byType.has(k))
       byType.set(k, { e: c.e, p: c.p, unit: !!c.unit, gated: !!c.gated, rain: c.rain || 0,
                       holdx: c.holdx || 0, turn: !!c.turn, pow: c.pow || 0, ready: !!c.ready,
                       rdy: c.rdy || 0, rune: c.rune || 0, share: !!c.share, acc: c.acc || null,
                       big: c.big || 0, att: c.att || 0, aph: c.aph || 0, kin: c.kin || 0, kinR: c.kinR || 0,
-                      strict: !!c.strict, isU: !!c.isU, link: c.link || "",
-                      after: c.after || "", n: 0, kids: [] });
+                      strict: !!c.strict, isU: !!c.isU, red: c.red || 0, redMin: c.redMin || 0, drg: c.drg || 0,
+                      re: c.e, link: c.link || "", after: c.after || "", n: 0, kids: [] });
     byType.get(k).n++;
   }
   const all = [...byType.values()];
@@ -494,12 +496,16 @@ function typesOf(costs) {
   }
   const desc = (t) => `${t.e}|${t.p}|${t.unit ? 1 : 0}|${t.gated ? 1 : 0}|${t.rain}|${t.holdx}|` +
                       `${t.turn ? 1 : 0}|${t.pow}|${t.ready ? 1 : 0}|${t.rdy}|${t.rune}|${t.share ? 1 : 0}|${accKey(t.acc)}|` +
-                      `${t.big}|${t.att}|${t.aph}|${t.kin}|${t.kinR}|${t.strict ? 1 : 0}|${t.isU ? 1 : 0}|${t.n}` +
+                      `${t.big}|${t.att}|${t.aph}|${t.kin}|${t.kinR}|${t.strict ? 1 : 0}|${t.isU ? 1 : 0}|` +
+                      `${t.red}/${t.redMin}|${t.drg}|${t.n}` +
                       (t.kids.length ? `(${t.kids.map(desc).sort().join(",")})` : "");
   const cmp = (a, b) => (desc(a) < desc(b) ? -1 : desc(a) > desc(b) ? 1 : 0);
   // Gated roots emit LAST, so that when the recursion reaches one, every ungated type's count for the
   // state being built is already in `cnt` and the "is the engine complete" test can simply read it.
-  roots.sort((a, b) => (a.gated ? 1 : 0) - (b.gated ? 1 : 0) || cmp(a, b));
+  // A Herald (#532) emits first in its group, so `walk` reaches it before any Dragon its discount
+  // reaches: an ungated Dragon then sees the sub-turn's ungated Heralds, and a gated Herald is bought
+  // after the engine is complete, which is after the ungated Dragons in play as well.
+  roots.sort((a, b) => (a.gated ? 1 : 0) - (b.gated ? 1 : 0) || (b.red ? 1 : 0) - (a.red ? 1 : 0) || cmp(a, b));
   const types = [];
   const emit = (t, dep) => {
     t.dep = dep;
@@ -654,10 +660,30 @@ function deployTurnUncached(types, costs, ladd, limit = 40) {
   for (const i of bigs) if (types[i].big > runeMax) runeMax = types[i].big;
   for (const i of atts) if (types[i].att > runeMax) runeMax = types[i].att;
   const haveOf = (i) => ((idx / stride[i]) | 0) % (types[i].n + 1);
+  // A TRIBAL REDUCER (#532, REDUCER). `cut(x, R)` is an Energy total `x` under R of discount, each
+  // Herald's floored on its own (356.4.e), which is max(floor, x - R) and leaves a cost already at or
+  // under the floor alone. A Dragon's `re` is its Energy under the Heralds on the board when `walk`
+  // reaches it, the price the readier search pays it at; every other type's is its own `e`.
+  const reds = [];
+  let RMAX = 0, FL = 0;
+  for (let i = 0; i < dim; i++) if (types[i].red) { reds.push(i); RMAX += types[i].red * types[i].n; FL = types[i].redMin; }
+  const cut = (x, R) => (x <= FL ? x : x - R < FL ? FL : x - R);
+  for (const t of types) t.re = t.e;
+  // A Herald this sub-turn bought discounts only the Dragons played AFTER it, so when readiers are
+  // sequenced the Heralds are sequenced with them (`order`, one kind per Herald type): a Dragon readier
+  // placed before one pays `cut(e, rPrev + hp)`, `hp` the discount of the Heralds placed so far and
+  // `rPrev` of those from earlier turns, and the overpayment against its `re` rides in `xs`. Costs
+  // that ready nothing are paid after every readier and Herald, at the full discount `re` already is.
+  // Charging every same-sub-turn Herald to the readiers, as this did first, read OGN-140:2,UNL-104:1
+  // as T3 (Herald 4 + Gemdragon 4 out of T3's 6 runes, the Gemdragon's refund paying the Herald) and
+  // three Heralds, three Gemdragons and two Mountain Drakes as T1. NONE is "no order covers it", since
+  // a feasible order may now score below zero.
+  const NONE = -1e6;
+  let rPrev = 0;
   // `order` places `k` more readier copies of the `nk` kinds in `rk`, `rq` holding how many of each
   // the sub-turn bought and are still unplaced, and keeps in `rBest` the most Energy the own
   // (non-`share`) readiers can give up to `rNeed`, among the orders whose readies cover `rNeed` at
-  // all; -1 means none does. Hoisted for the same reason `walk` is.
+  // all, less the overpayment `xs`; NONE means none does. Hoisted for the same reason `walk` is.
   // EVERY readier is paid before it resolves, out of the runes and what the readiers placed before it
   // returned (`spent` is their Energy so far); the costs that ready nothing wait until the last one
   // has resolved. Until #523 only the FIRST readier was checked, which was enough for one Gate and
@@ -666,11 +692,11 @@ function deployTurnUncached(types, costs, ladd, limit = 40) {
   // herald-of-scales-gemdragon-drakehound-net-positive each read a turn early, and so does the
   // two-Gemdragons-and-a-Mountain-Drake pin in test/turn-clock.test.ts.
   const CHAIN = { chain: true };
-  const rk = [...runers.map((i) => types[i]), null, null, null];
-  const rq = new Int8Array(runers.length + 3);
-  const vBig = { e: 0, p: 0, rune: 0, share: false }, vAtt = { e: 0, p: 0, rune: 0, share: false };
+  const rk = [...runers.map((i) => types[i]), null, null, null, ...reds.map(() => null)];
+  const rq = new Int8Array(rk.length);
+  const vBig = { e: 0, re: 0, p: 0, rune: 0, share: false, drg: 0 }, vAtt = { e: 0, re: 0, p: 0, rune: 0, share: false, drg: 0 };
   // `rMax` bounds what one copy can return in this sub-turn, for the prune at the top of `order`.
-  let rNeed = 0, rBest = -1, nk = runers.length, g0 = 0, rMax = 0;
+  let rNeed = 0, rBest = NONE, nk = runers.length, g0 = 0, rMax = 0;
   const trigMemo = new Map();
   // DOMINANCE (#523's security scan: 3 Gemdragons, 21 other Dragons and an Aphelios ran past 120s).
   // Which copies are placed fixes everything but the readies: `spent` is their Energy, the Adds they
@@ -678,46 +704,63 @@ function deployTurnUncached(types, costs, ladd, limit = 40) {
   // returns whatever came first. So a partial order with no more `own` and `shr` than one already seen
   // at the same counts can do no better, and `order` walks the placement counts instead of every
   // interleaving. `key` packs the counts still unplaced; past SEEN of them it searches unpruned.
-  const kStride = new Int32Array(runers.length + 3);
+  // #532: `xs` too, since which Heralds came first is not fixed by the counts; a record with more
+  // overpayment dominates nothing.
+  const kStride = new Int32Array(rk.length);
   const SEEN = 1 << 16;
-  const seenGen = new Int32Array(SEEN), seenOwn = new Int16Array(SEEN), seenShr = new Int16Array(SEEN);
+  const seenGen = new Int32Array(SEEN), seenOwn = new Int16Array(SEEN), seenShr = new Int16Array(SEEN), seenX = new Int16Array(SEEN);
   let gen = 0, dom = false;
   const search = (k, adds) => {
     let span = 1, key = 0;
     for (let x = 0; x < nk; x++) { kStride[x] = span; key += rq[x] * span; span *= rq[x] + 1; }
     dom = span <= SEEN;
     gen++;
-    order(k, runes, adds, 0, 0, 0, 0, 0, key);
+    order(k, runes, adds, 0, 0, 0, 0, 0, key, 0, 0);
   };
-  const order = (k, left, adds, own, shr, spent, gp, cp, key) => {
+  const order = (k, left, adds, own, shr, spent, gp, cp, key, hp, xs) => {
     if (over || ++leaves > LEAF_CAP) { over = true; return; }
     if (rBest === rNeed) return;  // nothing scores more than the Energy the turn is short of
-    if (own + shr + k * rMax < rNeed) return;  // nor can the copies left cover what is still short
+    if (own + shr + k * rMax < rNeed + xs) return;  // nor can the copies left cover what is still short
     if (dom) {
       if (seenGen[key] === gen) {
-        if (seenOwn[key] >= own && seenShr[key] >= shr) return;
+        if (seenOwn[key] >= own && seenShr[key] >= shr && seenX[key] <= xs) return;
         // Not dominated: it replaces the record only with more `own`, the readies that score.
-        if (own > seenOwn[key] || (own === seenOwn[key] && shr > seenShr[key])) { seenOwn[key] = own; seenShr[key] = shr; }
-      } else { seenGen[key] = gen; seenOwn[key] = own; seenShr[key] = shr; }
+        if (own > seenOwn[key] || (own === seenOwn[key] && (shr > seenShr[key] || (shr === seenShr[key] && xs < seenX[key])))) {
+          seenOwn[key] = own; seenShr[key] = shr; seenX[key] = xs;
+        }
+      } else { seenGen[key] = gen; seenOwn[key] = own; seenShr[key] = shr; seenX[key] = xs; }
     }
     if (!k) {
-      if (own + shr >= rNeed) { const sc = own < rNeed ? own : rNeed; if (sc > rBest) rBest = sc; }
+      const nd = rNeed + xs;
+      if (own + shr >= nd) { const sc = (own < nd ? own : nd) - xs; if (sc > rBest) rBest = sc; }
       return;
     }
     for (let x = 0; x < nk; x++) {
       if (!rq[x]) continue;
       const kind = rk[x];
       const t = kind.chain ? types[chain[cp]] : kind;
-      if (spent + t.e > runes + own + shr) continue;
+      let c = t.re;
+      if (t.drg) { const a = cut(t.e, rPrev + hp); if (a > c) c = a; }
+      if (spent + c > runes + own + shr) continue;
       rq[x]--;
       const fa = adds < t.p ? adds : t.p;
       const l = left - (t.p - fa);
       let r = kind.chain || l <= 0 ? 0 : t.rune < l ? t.rune : l;
       if (kind.chain || t.kinR) r += l <= 0 ? 0 : (g0 + gp) * (KR < l ? KR : l);
-      order(k - 1, l, adds - fa, t.share ? own : own + r, t.share ? shr + r : shr, spent + t.e,
-            t.kinR && !kind.chain ? gp + 1 : gp, kind.chain ? cp + 1 : cp, key - kStride[x]);
+      order(k - 1, l, adds - fa, t.share ? own : own + r, t.share ? shr + r : shr, spent + c,
+            t.kinR && !kind.chain ? gp + 1 : gp, kind.chain ? cp + 1 : cp, key - kStride[x],
+            t.red ? hp + t.red : hp, xs + c - t.re);
       rq[x]++;
     }
+  };
+  // The Heralds this sub-turn bought, as `order` kinds from slot `n` on, when a Dragon readier is
+  // there to be discounted by them; returns the new kind count and leaves their copies in `hq`.
+  let hq = 0;
+  const heralds = (n) => {
+    rPrev = 0; hq = 0;
+    for (const r of reds) rPrev += types[r].red * haveOf(r);
+    for (const r of reds) { const q = cnt[r] - haveOf(r); if (q) { rk[n] = types[r]; rq[n++] = q; hq += q; } }
+    return n;
   };
 
   let curR = new Int8Array(SZ).fill(-1);        // runes on board, -1 = state unreachable
@@ -773,8 +816,12 @@ function deployTurnUncached(types, costs, ladd, limit = 40) {
       // returned (`order`). With nothing to return, every shared ready goes to a unit.
       const need = e - runes;
       if (need > 0) {
-        rNeed = need; rBest = -1; rMax = runeMax;
-        if (!trig) search(k, rain + nf);
+        rNeed = need; rBest = NONE; rMax = runeMax;
+        if (!trig) {
+          if (reds.length) { nk = heralds(nk); k += hq; }
+          search(k, rain + nf);
+          nk = runers.length;
+        }
         else {
           // #523. The other Dragons this sub-turn bought, cheapest first, when a Gemdragon is there
           // to see them: on the board already, or bought in this sub-turn and placed before them.
@@ -792,12 +839,16 @@ function deployTurnUncached(types, costs, ladd, limit = 40) {
           if (!fire && g0) for (const i of chainTypes) if (cnt[i] !== haveOf(i)) { fire = true; break; }
           if (!fire) return;
           // The search reads nothing else, so its answer is memoized on exactly these.
-          const mk = delta + space * (runes + 13 * (rain + nf + 64 * (need + 256 * (g0 + 8 * (aOn + 8 * (aNew ? 1 : 0))))));
+          let mk = delta + space * (runes + 13 * (rain + nf + 64 * (need + 256 * (g0 + 8 * (aOn + 8 * (aNew ? 1 : 0))))));
+          // #532: the Heralds already on the board set the Dragons' `re` too, and `delta` holds only
+          // the ones this sub-turn bought.
+          if (reds.length) { let rh = 0; for (const r of reds) rh += haveOf(r) * stride[r]; mk = `${mk}|${rh}`; }
           const hit = trigMemo.get(mk);
           if (hit !== undefined) rBest = hit;
           else {
           if (g0 + g) for (const i of chainTypes) for (let q = cnt[i] - haveOf(i); q > 0; q--) chain[cn++] = i;
           if (cn) { rk[nb] = CHAIN; rq[nb++] = cn; kb += cn; }
+          if (reds.length) { nb = heralds(nb); kb += hq; }
           rMax = runeMax + (g0 + g) * KR;
           // Both are optional ("you may exhaust me", and Aphelios may choose another mode), so -1, no
           // trigger at all, is always one of the choices.
@@ -811,7 +862,7 @@ function deployTurnUncached(types, costs, ladd, limit = 40) {
               nk = nb;
               if (bi >= 0) {
                 const t = types[bi];
-                vBig.e = t.e; vBig.p = t.p; vBig.rune = t.big;
+                vBig.e = t.e; vBig.re = t.re; vBig.drg = t.drg; vBig.p = t.p; vBig.rune = t.big;
                 rk[nk] = vBig; rq[nk++] = 1; kk++;
               }
               if (ai >= 0) {
@@ -819,7 +870,7 @@ function deployTurnUncached(types, costs, ladd, limit = 40) {
                 const n = cnt[ai] - haveOf(ai);
                 // Each copy is a different Aphelios (at most `aOn` of them), and `aNew` is set only
                 // when none was on the board before, so charging him per copy pays each one once.
-                vAtt.e = t.e + (aNew ? aNew.e : 0); vAtt.p = t.p + (aNew ? aNew.p : 0); vAtt.rune = t.att;
+                vAtt.e = vAtt.re = t.re + (aNew ? aNew.re : 0); vAtt.p = t.p + (aNew ? aNew.p : 0); vAtt.rune = t.att;
                 rk[nk] = vAtt; rq[nk] = n < aOn ? n : aOn; kk += rq[nk++];
               }
               search(kk, rain + nf);
@@ -830,7 +881,7 @@ function deployTurnUncached(types, costs, ladd, limit = 40) {
           trigMemo.set(mk, rBest);
           }
         }
-        if (rBest < 0) return;
+        if (rBest === NONE) return;
         rdn = rd + slots - (need - rBest);
       } else rdn = rd + slots;
     }
@@ -896,10 +947,22 @@ function deployTurnUncached(types, costs, ladd, limit = 40) {
       for (let z = 0; z < ungated; z++) if (cnt[z] < types[z].n) { done = false; break; }
       if (!done) cap = have;
     }
+    // A DRAGON UNDER HERALDS (#532): every Herald on the board when it is played discounts it, the ones
+    // from earlier turns and the ones this sub-turn bought, which typesOf emits before any Dragon of
+    // their group. Paying [Accelerate] adds to the total the discount comes off (356.2, 356.4.f), so
+    // `tae` is what the Accelerated copy costs on top, under the same discount.
+    let te = t.e, tae = t.acc ? t.acc.e : 0;
+    if (t.drg && reds.length) {
+      let R = 0;
+      for (const r of reds) R += types[r].red * (r < i ? cnt[r] : haveOf(r));
+      te = cut(t.e, R);
+      if (t.acc) tae = cut(t.e + t.acc.e, R) - te;
+      t.re = te;
+    }
     for (let q = 0; q <= t.n - have; q++) {
       if (have + q > cap) break;
       cnt[i] = have + q;
-      const ne = e + t.e * q, np = p + t.p * q;
+      const ne = e + te * q, np = p + t.p * q;
       const fresh = t.ready && q > 0;
       const nnf = fresh ? nf + t.pow * q : nf;
       // R runes afford R Energy AND R Power, and Added rainbow affords Power on top. `np - nnf` is
@@ -918,12 +981,12 @@ function deployTurnUncached(types, costs, ladd, limit = 40) {
       const full = fin && have + q === t.n;
       const am = t.acc && full ? q : 0;
       for (let a = 0; a <= am; a++) {
-        const ae = a ? ne + a * t.acc.e : ne, ap = a ? np + a * t.acc.p : np;
+        const ae = a ? ne + a * tae : ne, ap = a ? np + a * t.acc.p : np;
         if (a && (ae > runes + rrMax + LE || ap - nnf > runes + rain)) break;
         // A `share` readier's units are counted at the leaf, out of what its runes leave (#513).
         walk(i + 1, ae, ap, delta + q * stride[i], t.unit ? un + q : un, rd + (t.share ? 0 : t.rdy) * q + a,
              cast + (t.turn ? q : 0),
-             nnf, fresh && (!nf || t.p < fp) ? t.p : fp, full, t.isU ? ue + t.e * q + (a ? a * t.acc.e : 0) : ue);
+             nnf, fresh && (!nf || t.p < fp) ? t.p : fp, full, t.isU ? ue + te * q + (a ? a * tae : 0) : ue);
       }
     }
   };
@@ -953,9 +1016,11 @@ function deployTurnUncached(types, costs, ladd, limit = 40) {
         if (gemN) {
           const U = gemN * Math.min(KR, runes);
           let pool = runes + rrMax, m = 0;
+          // At the most discount every Herald can give (#532), which is the cheapest any Dragon gets.
           for (const i of kinsByE) {
             let left = types[i].n - haveOf(i);
-            while (left > 0 && pool >= types[i].e) { pool += U - types[i].e; m++; left--; }
+            const de = types[i].drg ? cut(types[i].e, RMAX) : types[i].e;
+            while (left > 0 && pool >= de) { pool += U - de; m++; left--; }
             if (left) break;
           }
           rrMax += m * U;
@@ -1890,6 +1955,35 @@ const HIDDEN = /(?:^|\n)\[Hidden\]/;
  * The other legends that print [Add] are refused by name in LEGEND_REFUSED, each with its reason.
  */
 const LEGEND_ADD = /^\[Reaction\]\[>\] ((?::rb_rune_rainbow:)+), :rb_exhaust:: \[Add\] :rb_energy_(\d+):\. Spend this Energy only to play units or activated abilities of units\.$/m;
+/**
+ * A TRIBAL COST REDUCER (#532). OGN-140 Herald of Scales: "Your Dragons' Energy costs are reduced by
+ * :rb_energy_2:, to a minimum of :rb_energy_1:." A static ability of a unit on the board, so it
+ * discounts every Dragon played after the Herald landed, and each copy is its own discount: 356.4.e,
+ * "If a discount applies a minimum cost, that minimum applies only to that discount", so two Heralds
+ * take an E5 Dragon 5 -> 3 -> 1 and an E8 one to 4, which is max(1, E - 2 per Herald). It reduces the
+ * TOTAL Energy, an [Accelerate] included: 356.2 adds the additional costs before 356.4 applies the
+ * discounts, and 356.4.f, "Discounts can reduce additional costs, including to 0." Before #532 every
+ * Dragon paid its printed Energy and the rows that carry Heralds read LATE.
+ * Swept 2026-10-31, the anchored wording below matches OGN-140 alone; the pool's other "reduced by"
+ * texts are a spell's own cost (OGN-014 Sky Splitter), spells only (OGN-084 Eager Apprentice) and an
+ * [Equip] (UNL-188 Hextech Gauntlets), none of them a tribe. --turns prints the members.
+ * How the allocator applies it is in deployTurnUncached's `walk` (`cut`).
+ * A Herald bought in the same sub-turn discounts only the Dragons played after it: when no readier is
+ * owed the Heralds simply go first, and when one is they are sequenced with the readiers in `order`.
+ */
+const REDUCER = /(?:^|[.)\]]\s*)Your ([A-Z][a-z]+)s' Energy costs are reduced by :rb_energy_(\d+):, to a minimum of :rb_energy_(\d+):\./;
+function reducerOf(c, t) {
+  const m = (c.type.includes("unit") || c.type.includes("gear")) && t.match(REDUCER);
+  return m ? { redTag: m[1], red: Number(m[2]), redMin: Number(m[3]) } : { redTag: "", red: 0, redMin: 0 };
+}
+// The allocator carries ONE tribe and ONE floor per set (`redTag` in costsOfSet, `FL` in
+// deployTurnUncached), which is exact while every member shares them. A rebuild that adds a reducer
+// for another tribe or with another floor must model it rather than be priced by the last one read.
+{
+  const shapes = new Set([...byBase.values()].map((c) => reducerOf(c, `${c.text || ""} ${c.effect || ""}`))
+    .filter((r) => r.red).map((r) => `${r.redTag}/${r.redMin}`));
+  if (shapes.size > 1) throw new Error(`REDUCER: ${[...shapes].join(", ")} - one tribe and one floor are modelled (#532)`);
+}
 const LEGEND_REFUSED = {
   "OGN-247": "Daughter of the Void: rainbow for spells only, so it needs the clock to tell a spell's Power from another card's",
   "OGN-299": "Daughter of the Void's reprint: the same",
@@ -1924,6 +2018,7 @@ function curveOf(c) {
     rdy: readiesOf(c, t),
     ...runesOf(c, t),
     ...triggersOf(c, t),
+    ...reducerOf(c, t),
     selfReady: c.type.includes("unit") && /(?:^|[.)]\s*)I enter ready\./.test(t),
     // Each field on its own: `t` joins them with a space, which the line anchor would not see.
     acc: c.type.includes("unit") && (ACCELERATE.test(c.text || "") || ACCELERATE.test(c.effect || "")),
@@ -2253,7 +2348,9 @@ const costsOfSet = (set, ign, bodies, pick, hide = {}, bound = false) => {
   // THE CONDITIONAL RUNE READIERS (#523, `triggersOf`), switched on by the set's own cards: Curator by
   // the legend, Aphelios's attach by an Aphelios, the Gemdragon half by a Gemdragon. Each flags the
   // costs that can fire it, and deployTurnUncached decides on which turn they do.
-  let bigAt = 0, bigR = 0, attR = 0, kinTag = "";
+  // A TRIBAL REDUCER (#532, REDUCER) is switched on the same way, by a Herald in the set: its tribe's
+  // units carry `drg`, and the Herald carries its discount.
+  let bigAt = 0, bigR = 0, attR = 0, kinTag = "", redTag = "";
   for (const b of Object.keys(set)) {
     const c = byBase.get(b);
     if (!c) continue;
@@ -2261,6 +2358,7 @@ const costsOfSet = (set, ign, bodies, pick, hide = {}, bound = false) => {
     if (v.bigR) { bigAt = v.bigAt; bigR = v.bigR; }
     if (v.attR) attR = v.attR;
     if (v.kinR) kinTag = v.kinTag;
+    if (v.red) redTag = v.redTag;
   }
   for (const [b, q] of Object.entries(set)) {
     const c = byBase.get(b);
@@ -2291,7 +2389,8 @@ const costsOfSet = (set, ign, bodies, pick, hide = {}, bound = false) => {
     let acc = hasAcc ? { e: post && ign.freeE ? 0 : 1, p: post && ign.freeP ? 0 : 1 } : null;
     const ready0 = selfReady || !!(acc && !acc.e && !acc.p);
     if (ready0) acc = null;
-    const { attR: isAph, kinR } = curveOf(c);
+    const { attR: isAph, kinR, red, redMin } = curveOf(c);
+    const drg = redTag && c.type.includes("unit") && (c.tags || []).includes(redTag) ? 1 : 0;
     // #523: the PRINTED Energy is what Curator reads (206), whatever the engine pays for it.
     const big = bigR && (c.type.includes("unit") || c.type.includes("gear")) && (c.energy || 0) >= bigAt ? bigR : 0;
     const kin = kinTag && c.type.includes("unit") && (c.tags || []).includes(kinTag) ? 1 : 0;
@@ -2304,7 +2403,8 @@ const costsOfSet = (set, ign, bodies, pick, hide = {}, bound = false) => {
       const hid = i < (hide[b] || 0);
       // `isU`: a unit's play, readied or not, which is what a legend's unit-only [Add] pays (#528).
       const effect = { unit: c.type.includes("unit") && !ready0, isU: c.type.includes("unit"), gated: post, rain, holdx, turn, pow, ready, rdy,
-                       rune, share, acc, big, att: equipment && !linked ? attR : 0, aph: isAph ? 1 : 0, kin, kinR };
+                       rune, share, acc, big, att: equipment && !linked ? attR : 0, aph: isAph ? 1 : 0, kin, kinR,
+                       red, redMin, drg };
       // `bound`: priceSet's answer past the split guard, every hidden copy free with no hide and no
       // turn's wait. It only drops costs and an ordering, so no split of these copies pays earlier.
       if (hid && bound) out.push({ ...effect, e: 0, p: 0, link: linked ? `${b}#play` : "" });
@@ -2363,10 +2463,10 @@ const costsOfSet = (set, ign, bodies, pick, hide = {}, bound = false) => {
   // readies a unit, and N of them do that N times, so none is interchangeable with one of itself.
   // Nor is a free unit with [Accelerate] (#510): each copy chooses for itself whether to pay it, and
   // nor is a free rune readier (#513), which returns Energy per copy, nor a card that fires or
-  // enables a conditional one (#523).
+  // enables a conditional one (#523), nor a free Herald, which discounts per copy (#532).
   const collapsible = (c) => !c.e && !c.p && !c.after && !roots.has(c.link || "") &&
                              !c.rain && !c.holdx && !c.turn && !c.pow && !c.rdy && !c.rune && !c.acc &&
-                             !c.big && !c.att && !c.aph && !c.kin;
+                             !c.big && !c.att && !c.aph && !c.kin && !c.red;
   const free = all.filter(collapsible);
   if (free.length < 2) return all;
   const rest = all.filter((c) => !collapsible(c));
@@ -2714,7 +2814,7 @@ for (const { e, domains: ownDomains, cards: ownCards } of entries) {
   const merged = [...domainsOfSet(cards)];
   clock.push({ id: e.id, cls: e.class, pays, base: baselineTurn(merged), via: note || null,
                ordered: finalCosts.some((c) => c.after && !c.strict), income: finalCosts.some((c) => c.pow),
-               readier: finalCosts.some((c) => c.rdy), accel: finalCosts.some((c) => c.acc),
+               readier: finalCosts.some((c) => c.rdy), accel: finalCosts.some((c) => c.acc), reducer: finalCosts.some((c) => c.red),
                runer: finalCosts.some((c) => c.rune || c.big || c.att || c.kinR), bodies: pick.length ? bodyKey(domainsOfSet(cards)) : null,
                short: cheapShort(cards, bodies.n), holdsHidden: splitCount(cards) > 1,
                hid: Object.values(hide).some(Boolean), hbound: !!bound, cbound: !!cbound, ladd: ladd ? ladd.base : null,
@@ -2796,6 +2896,13 @@ function legendLine(rows) {
          `unclassified ${loose.length}${loose.length ? `: ${loose.map((c) => c.base).join(", ")}` : ""}; ` +
          `${rows.filter((c) => c.ladd).length} of ${rows.length} rows name a modelled one`;
 }
+// #532: the tribal reducers, read off the same text `curveOf` prices.
+function reducerLine(rows) {
+  const members = [...byBase.values()].filter((c) => curveOf(c).red);
+  return `# reducer (REDUCER, 356.4.e: each discount floored on its own): ${members.length} card${members.length === 1 ? " carries" : "s carry"} it: ` +
+         `${members.map((c) => `${c.base} ${c.name} (${curveOf(c).redTag}s -${curveOf(c).red}, min ${curveOf(c).redMin})`).join(", ")}; ` +
+         `${rows.filter((c) => c.reducer).length} of ${rows.length} rows hold one`;
+}
 function accelLine(rows) {
   return `# accelerate (${ACCELERATE} on a unit, 805.1.a: an optional [1][C] that waives 143.4): ${ACCEL_UNITS} units carry it; ` +
          `${rows.filter((c) => c.accel).length} of ${rows.length} rows hold one`;
@@ -2818,6 +2925,7 @@ if (engines) {
   console.log(incomeLine(eng));
   console.log(readierLine(eng));
   console.log(accelLine(eng));
+  console.log(reducerLine(eng));
   for (const l of bodyLines(eng)) console.log(l);
   console.log(hiddenLine(eng));
   console.log(legendLine(eng));
@@ -2859,6 +2967,8 @@ console.log(incomeLine(clock));
 console.log(readierLine(clock));
 // And for [Accelerate] (#510).
 console.log(accelLine(clock));
+// And a tribal cost reducer (#532).
+console.log(reducerLine(clock));
 // And the candidates a body is chosen among (#517).
 for (const l of bodyLines(clock)) console.log(l);
 // And [Hidden] and the legends' [Add] (#528).

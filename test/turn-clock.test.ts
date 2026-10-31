@@ -906,8 +906,8 @@ describe("--price refuses malformed specs (#511)", () => {
  * JAX + THREE ANGLE SHOTS + SERRATED DIRK, T3 (jax-angle-shot-attach-draw, the one --engines row that
  * moved, T4 before). Runes 2/4/6 on T1-T3 (161.2.a), and 164.2.a/b: a rune exhausts for 1 Energy and
  * recycles for 1 Power. T1: an Angle Shot (E2). T2: Jax, E4 + 1 Body Power. T3, five runes: the Dirk
- * (E1) and two Angle Shots (E4), and one rune recycled for the Dirk's [Equip] of one Fury rune, which
- * Weaponmaster may waive anyway. Jax landed on T2, so no readiness turn is owed. T4 was the phantom.
+ * (E1) and two Angle Shots (E4), and one rune recycled for the Dirk's [Equip] of one Fury rune. Jax
+ * landed on T2, so no readiness turn is owed. T4 was the phantom.
  */
 describe("[Equip] outside reminder text (#530)", () => {
   const eq = execFileSync("node", ["scripts/adversarial-check.mjs", "--equip-costs"], { encoding: "utf8" });
@@ -931,5 +931,82 @@ describe("[Equip] outside reminder text (#530)", () => {
   it("pays Jax + three Angle Shots + Serrated Dirk on T3, as walked (jax-angle-shot-attach-draw)", () => {
     const s = execFileSync("node", ["scripts/adversarial-check.mjs", "--price", "SFD-119:1,SFD-011:3,SFD-009:1"], { encoding: "utf8" });
     expect(s, s).toMatch(/, pays T3,/);
+  });
+});
+
+/**
+ * A TRIBAL COST REDUCER (#532). OGN-140 Herald of Scales: "Your Dragons' Energy costs are reduced by
+ * [2], to a minimum of [1]." 356.4.e floors each discount on its own, so H Heralds make a Dragon cost
+ * max(1, E - 2H); the Herald itself is tagged Mount Targon, not Dragon. `--turns` prints the predicate
+ * and its members on the `# reducer` line. Runes 2/4/6/8 on T1-T4 going first (161.2.a).
+ *
+ * HERALD + MOUNTAIN DRAKE, T4. T2: the Herald (E4 of 4). T3: six runes, and the Drake's 9 - 2 = 7 is
+ * not payable. T4: eight runes, the Drake at 7. Without the discount the Drake's 9 waits for T5's ten,
+ * which is what master said. The control swaps the Herald for UNL-099 Towering Combatant, a plain E4
+ * Body unit: T5 on both. HERALD + TWO TOWERING COMBATANTS, T4 on both: a non-Dragon pays full price.
+ *
+ * HERALD + GEMDRAGON + THREE EAGER DRAKEHOUNDS, T3 (herald-of-scales-gemdragon-drakehound-net-positive).
+ * T2: the Herald. T3, six runes: the Gemdragon at 8 - 2 = 6 readies 2; each Drakehound (E3 P1, a Dragon)
+ * costs 1 Energy + 1 Power, one rune exhausted and one recycled (164.2.a/b), and readies 2 more. T5
+ * before.
+ *
+ * THE THREE GEMDRAGON ROWS, all T5 / pays T6 (T6 / T7 before): gemdragon-henge-vi-blind-fury and the two
+ * that fold it. T1 Confront, T2 a Herald, T3 the second Herald + Vi (one rune recycled, five left). T4,
+ * seven runes, both Heralds out: three Gemdragons at 4 each, each refunding 2 per Dragon, both Kadregrins,
+ * the Grenade, Detonate, and five E5 Dragons at 1, one rune left. T5: Show of Strength, the last Dragon
+ * and the Henge. That is the clock's own schedule, and its T5 is exact for the clock: the nine Power can
+ * only come from recycles, and eight runes are channelled by T4. By hand the line is all T4 / pays T5,
+ * because SFD-117 Ancient Henge turns the refunded Energy into rainbow Power and the clock does not
+ * model that conversion, so these rows still read one turn late; that is a separate issue, not this one.
+ */
+describe("a tribal cost reducer (#532)", () => {
+  const price = (set: string) => {
+    const s = execFileSync("node", ["scripts/adversarial-check.mjs", "--price", set], { encoding: "utf8" });
+    const m = s.match(/all T(\d+|Infinity)/);
+    expect(m, s).toBeTruthy();
+    return Number(m![1]);
+  };
+
+  it("pays Herald of Scales + Mountain Drake on T4, as walked: the Drake costs 9 - 2", () => {
+    expect(price("OGN-140:1,OGN-142:1")).toBe(4);
+  });
+
+  it("pays Towering Combatant + Mountain Drake on T5: no Herald, no discount (the control)", () => {
+    expect(price("UNL-099:1,OGN-142:1")).toBe(5);
+  });
+
+  it("pays Herald + two Towering Combatants on T4: the discount is for Dragons only", () => {
+    expect(price("OGN-140:1,UNL-099:2")).toBe(4);
+  });
+
+  it("pays Herald + Gemdragon + three Eager Drakehounds on T3, as walked", () => {
+    expect(price("OGN-140:1,UNL-104:1,SFD-006:3")).toBe(3);
+  });
+
+  // A Herald bought in the same turn discounts only the Dragons after it, so the readier search
+  // sequences it with them. Charged to every readier, two Heralds and a Gemdragon read T3 (4 + 4 out of
+  // T3's 6 runes, the Gemdragon's refund paying the Herald that discounted it) and three of each with
+  // two Mountain Drakes read T1. An exhaustive search of the same rules gives 4, 4 and 3.
+  it("pays two Heralds + a Gemdragon on T4: a Herald paid after the Gemdragon does not discount it", () => {
+    expect(price("OGN-140:2,UNL-104:1")).toBe(4);
+  });
+
+  it("pays three Heralds + three Gemdragons + two Mountain Drakes on T4, not T1", () => {
+    expect(price("OGN-140:3,UNL-104:3,OGN-142:2")).toBe(4);
+  });
+
+  it("still pays two Heralds + a Gemdragon + two Eager Drakehounds on T3: the Drakehounds' refunds pay", () => {
+    expect(price("OGN-140:2,UNL-104:1,SFD-006:2")).toBe(3);
+  });
+
+  it("prices the three Gemdragon rows at pays T6, not T7", () => {
+    for (const id of ["gemdragon-henge-vi-blind-fury", "dragonstorm-confront-grand-plaza", "dragonstorm-brambleback-trinity-conquer"])
+      expect(rows.get(id)?.pays, id).toBe(6);
+  });
+
+  it("prints the reducer predicate with its one member and the rows that hold it", () => {
+    const m = out.match(/^# reducer [^\n]*: 1 card carries it: OGN-140 Herald of Scales \(Dragons -2, min 1\); (\d+) of (\d+) rows hold one$/m);
+    expect(m, out).toBeTruthy();
+    expect(Number(m![1])).toBeGreaterThanOrEqual(3);
   });
 });
