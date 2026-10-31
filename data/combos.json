@@ -58689,6 +58689,77 @@
       ],
       "rulesVersion": "2026-07-16",
       "notes": "SYNTHESIZED 2026-10-31 for #529, the fifth slice of shape 2 (identity-first) of #200: Body/Order had seven finishers and none clocked by T4 (its one T4 ALT_WIN, vanguard-captain-manufactor-plaza, is mono-Order with no Tank, so two kills cost 2 Might). CANDIDATE, not verified: walked once as a game, going first, and in that walk it won on T4, because the opponent's 6 Might ready in base could not finish Galio. Card text verbatim from data/corpus_flat.txt."
+    },
+    {
+      "id": "yasuo-ride-the-wind-hold-curve-turn-five",
+      "name": "Yasuo, Windrider played on turn three and shuttled with Ride the Wind from turn four, on top of the Hold curve — two points no board of theirs can switch off, for a turn-five eight",
+      "class": "CHAIN",
+      "status": "candidate",
+      "uses": [
+        {
+          "card": "OGN-205",
+          "quantity": 1,
+          "role": "engine",
+          "zone": "BASE",
+          "state": "ready at your base when your turn starts",
+          "note": "Chaos unit, E5, 1 Chaos Power, M4. '[Ganking] (I can move from battlefield to battlefield.) The third time I move in a turn, you score 1 point.' Played to base on T3 (143.4: it enters exhausted, so it first moves on T4); its Power is a rune already exhausted for Energy, recycled (164.2.b, 164.2.b.1). The point is a 194.1.c gain, not a 469 Score (R2 = A), so 470 does not cap it and 471.1.a.1 lets it be the final point."
+        },
+        {
+          "card": "OGN-173",
+          "quantity": 2,
+          "role": "payoff",
+          "zone": "HAND",
+          "note": "Chaos spell, E2, 1 Power. '[Action] (Play on your turn or in showdowns.) Move a friendly unit and ready it.' The second of the three moves, and the only card in Chaos or Order that moves a friendly unit of any Might and readies it, which refunds the first Standard Move's exhaust (415.1) so a third Standard Move can follow. One a turn, on T4 and T5."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "ability-points"
+      ],
+      "anyBodies": {
+        "count": 2,
+        "note": "Two Energy-2 bodies. T2: it walks onto empty battlefield A and Conquers (144.4.a, 469.1); T3: Hold A (469.2); a body walks to B and Conquers it, 3 points, so the Hold curve stands at 5 when Yasuo first fires on T4"
+      },
+      "prerequisites": {
+        "easy": [
+          "Legend's Domain Identity includes Chaos (103.1.b.3): Yasuo and Ride the Wind are both Chaos. Synthesized for Chaos/Order (#537), the next legend pair of the identity-first pass (Hold baseline T6, no E1 unit in either domain), and walked with VEN-155 Heart of the Tempest, VEN-113 Kennen, Storm of Shuriken as Chosen Champion, and SFD-159 Trusty Ramhound and OGN-210 Daring Poro as the bodies.",
+          "One battlefield of yours (A) on T4 and T5, with a garrison that keeps it while Yasuo is at base (323.6), and Yasuo alive at base at the start of each of those turns.",
+          "A Chaos rune among the six on the board by T3 and a second among the seven by T4, each recycled after paying Energy (164.2.b.1); a third for the second Ride the Wind on T5."
+        ],
+        "notable": [
+          "THE SHUTTLE: Standard Move base to A (144.4.a, its cost the exhaust, 144.2); Ride the Wind A to base, which readies him (449, 415.1); Standard Move base to A again (144.4.a). Moving into a battlefield you already control applies no Contested (190.3.a.1), so no Showdown is staged (323.8) and 144.1.c never blocks the third move.",
+          "WHY T5 AND NOT T6: the Chaos/Fury shuttle play (docs/plays/2026-09-12-chaos-fury-yasuo-shuttle.md) played one Yasuo a turn and fired all three on T6, a turn the Hold curve already wins. Firing the first Yasuo the turn after he lands puts his points on T4 and T5, on a curve that is 5 on T4, so unopposed it is 6 on T4 and 8 on T5.",
+          "WALKED: against the Calm/Order Radiant Dawn deck of the Galio walk, going first, it wins on T6. Their free T3 attack (Ramhound and Sunlit Guardian, 6 into a lone Daring Poro) takes B back while Yasuo has eaten the T3 mana. On that same board the free Hold curve wins on T8, so the line saves two turns there and one unopposed.",
+          "BREAKS TO, priced against the target (Yasuo has no [Deflect], 809.1.c, so no surcharge): OGN-213 Hidden Blade (Order, in their identity), hidden for one Power the turn before and played for no Energy after move 1 puts him at A, kills him; OGN-229 Vengeance (Order, E4 P2) kills him at base; OGN-045 Defy (Calm, E1 P1) counters Ride the Wind. SFD-045 Not So Fast does NOT answer it: Ride the Wind chooses a unit friendly to its caster, not to them. VEN-045 Helm of Suppression only makes Ride the Wind cost E3 + 1. UNL-159 Soul Harvest and SFD-162 Blood Money kill the garrison, never Yasuo (M4).",
+          "TURN CLOCK: npm run adversarial -- --turns prints T5 against the Chaos/Order Hold baseline of T6. The clock does not order a spell after the unit it moves, so with ONE Ride the Wind declared it places the spell on T2 and Yasuo on T3 and prints T4, a turn early; two are declared, which is also what the walk plays by T5. Neither open clock gap (#541, #548) touches it: no [Hidden] card in the line.",
+          "HOW OFTEN: going first with no mulligan, a body among the first 5 cards, two among 6, Yasuo among 7 and Ride the Wind among 8 in 6.76% of 2,000,000 simulated deals with nine Energy-2 bodies in a 39-card draw pile (10.43% with twelve); a second Ride the Wind among 9 as well in 1.29% (2.06%).",
+          "NO BURST OR CHAIN IN CHAOS/ORDER REACHES 8 BY T4: the T4 ceiling is the Hold curve's 5 + Yasuo's 1 + SFD-214 Power Nexus's 1 = 7. Shapes checked: Yasuo (this), VEN-138 Shen, Leader of the Kinkou Order (E6 P2, T5 at best), Power Nexus (one game in three, 485.5), SFD-148 Draven, Audacious (needs a combat won), UNL-177 Ivern, Friend to All (the catalogued T6/T7 CHAINs), OGN-286 Reckoner's Arena and OGN-236 Karthus, Eternal."
+        ]
+      },
+      "steps": [
+        "T1: an Energy-2 body to base. T2: it walks onto empty battlefield A and Conquers (144.4.a, 469.1); a second body is played onto A (355.2.a) or to base.",
+        "T3: Hold A (469.2); a body walks to B and Conquers it, 3 points. Yasuo (E5 + 1 Chaos Power, a recycled rune) is played to base, where their attack cannot reach him.",
+        "T4: Hold A (and B if still yours). Yasuo: Standard Move base to A, Ride the Wind A to base and ready, Standard Move base to A; the third move scores 1 (194.1.c). 6 points unopposed.",
+        "T5: Hold A and B, or Hold A and shuttle again with the second Ride the Wind: 8 points unopposed; the walked contested board is 7, and the T6 Hold of A makes 8."
+      ],
+      "terminatesIn": "8 points on T5 unopposed from the Hold of both battlefields plus one Yasuo point on T4; on a board where they take B back, the T6 Hold of A after Yasuo points on T4 and T5",
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "accessed": "2026-10-31",
+          "quote": "194.1.c: 'Spells, Triggered Abilities and Activated Abilities that instruct them to gain one or more points.' 470: 'A player may only Score, from either method, once per Battlefield per turn.' 471.1.a.1: 'Notably, points Gained from sources that are not Conquer are not beholden to these restrictions.' 190.3.a.1: 'Units moving to or being played to a battlefield apply Contested status if that battlefield is not already Contested and that Unit’s controller does not already control that battlefield.' 143.4: 'Units enter the Board exhausted.'"
+        },
+        {
+          "title": "Play 2026-10-31 (docs/plays/2026-10-31-yasuo-fires-on-turn-four-off-the-hold-curve-so-chaos-order-wins-turn-five-unopposed-and-their-free-turn-three-attack-makes-it-six.md), issue #537",
+          "kind": "manual-walk",
+          "date": "2026-10-31",
+          "quote": ""
+        }
+      ],
+      "rulesVersion": "2026-07-16",
+      "notes": "SYNTHESIZED 2026-10-31 for #537, the sixth slice of shape 2 (identity-first) of #200: Chaos/Order had ten finishers and none clocked by T4, and the slice asked for a BURST or CHAIN shape. None reaches T4 (see the last notable); this is the T5 one. CANDIDATE, not verified: walked once as a game, going first, against Calm/Order Radiant Dawn, where it wins on T6 against the free curve's T8 on the same board; like the slice-4 entry, the walk loses to the clock. Mono-Chaos cards, so it is legal in all five Chaos legend pairs; it beats the Hold baseline only where that baseline is T6 (Chaos/Fury, Chaos/Mind, Chaos/Order)."
     }
   ]
 }
