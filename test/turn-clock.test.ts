@@ -818,6 +818,16 @@ describe("[Hidden], the copy limit and a legend's [Add] (#528)", () => {
     expect(out).toMatch(/mix guard \(256\): 0 rows priced uncapped\n/);
   }, 60_000);
 
+  // The post-commit review of 93514fa: a split searched to `best.pays - 1` lost the 40-turn horizon
+  // when no split before it deployed (Infinity - 1). Twelve E7/P1 and two E8/P2 cards at 3 copies
+  // deploy after T40, so Block's split, searched without a horizon, read T45 while the same set
+  // without Block read never. Both read never now (the control is the set without Block).
+  it("keeps the 40-turn horizon for a hidden split when no other split deploys", () => {
+    const set = "OGN-059:3,OGN-116:3,OGS-009:3,SFD-027:3,SFD-101:3,SFD-168:3,SFD-179:3,UNL-005:3,UNL-050:3,UNL-084:3,UNL-144:3,VEN-089:3,OGN-082:3,OGN-109:3";
+    expect(price(set).pays).toBe(Infinity);
+    expect(price(`${set},OGN-057:1`).pays).toBe(Infinity);
+  }, 60_000);
+
   it("errs early past the mix guard: four bodies with two Flurries go back to four Sentries at T2, under the exact T3", () => {
     const r = spawnSync("node", ["scripts/adversarial-check.mjs", "--price", "OGN-133:2", "--bodies", "4"],
       { encoding: "utf8", env: { ...process.env, RC_MIXES: "0" } });
