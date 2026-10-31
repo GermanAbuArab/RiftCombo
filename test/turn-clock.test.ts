@@ -864,6 +864,87 @@ describe("[Hidden], the copy limit and a legend's [Add] (#528)", () => {
   }, 60_000);
 });
 
+/**
+ * #540, the three legend [Add]s #528 refused, each paying only a cost of its own kind, once a turn.
+ * Hand walks, runes 2/4/6/8 on T1..T4 (161.2.a); R runes pay R Energy and R Power, a recycled rune
+ * leaving the board (164.2.a/b, 161.2.b).
+ *
+ * DAUGHTER OF THE VOID, T2 (was T3). SFD-087 Premonition is an E2 + 3 Power Mind spell, and OGN-247
+ * Adds one rainbow "Use only to play spells". T1: 2 runes pay E2, the rainbow and both runes recycled
+ * pay P3. T2: the 2 runes channelled pay the second the same way. Without it P3 needs three runes, so
+ * one copy on T2 (4 runes, 3 recycled) and the other on T3. RIPTIDE REX (the control): a unit's Power,
+ * which the rainbow cannot pay, so the legend moves nothing.
+ *
+ * FIRE BELOW THE MOUNTAIN, all T3 (was T4). SFD-191 Rabadon's Deathcrown is an E4 + 2 Power gear, SFD-058
+ * Ornn an E5 + 1 Power unit. T2: 4 runes pay E4, the gear rainbow and one recycle P2, 3 runes left. T3:
+ * 5 runes pay Ornn. Without it the gear takes two recycles on T2 and T3's 4 runes cannot pay Ornn, so
+ * Ornn goes on T3 (6 runes) and the gear on T4. ORNN AND THREE CHARMS (the control): no gear, no move.
+ *
+ * HAND OF NOXUS, pays T5 (was T6). OGN-254 Noxian Guillotine is an E4 + 1 Power spell, OGN-034
+ * Tryndamere an E7 + 2 Power unit; [Legion] Adds E1 once a card was played this turn. T3: 6 runes pay a
+ * Guillotine, one recycled, 5 left. T4: 7 runes pay Tryndamere, two recycled, 5 left. T5: 7 runes pay
+ * the first Guillotine, the E1 and the 3 runes left the second, two recycles their Power. Tryndamere
+ * landed on T4 and is ready. Without it T5's 7 runes cannot pay E8, so Tryndamere lands last: T6.
+ * TRYNDAMERE ALONE (the control): the E1 comes after the first card, so it never pays that card.
+ */
+describe("a legend's restricted [Add] (#540)", () => {
+  const price = (set: string) => {
+    const s = execFileSync("node", ["scripts/adversarial-check.mjs", "--price", set], { encoding: "utf8" });
+    const m = s.match(/all T(\d+|Infinity), .*pays T(\d+|Infinity)/);
+    expect(m, s).toBeTruthy();
+    return { all: Number(m![1]), pays: Number(m![2]), line: s.split("\n")[0]! };
+  };
+
+  it.each(["OGN-247", "OGN-299"])("pays two Premonitions under %s Daughter of the Void on T2, as walked: the rainbow pays a spell", (b) => {
+    const r = price(`${b}:1,SFD-087:2`);
+    expect(r.pays).toBe(2);
+    expect(r.line).toContain(`legend ${b} [Add] one rainbow for spells`);
+    expect(price("SFD-087:2").pays).toBe(3);
+  });
+
+  it("leaves a unit's Power under Daughter of the Void unpaid (the control)", () => {
+    expect(price("OGN-247:1,OGN-092:1").all).toBe(price("OGN-092:1").all);
+  });
+
+  it.each(["SFD-189", "SFD-244"])("pays Deathcrown and Ornn under %s Fire Below the Mountain at all T3, as walked: the rainbow pays the gear", (b) => {
+    const r = price(`${b}:1,SFD-191:1,SFD-058:1`);
+    expect(r.all).toBe(3);
+    expect(r.line).toContain(`legend ${b} [Add] one rainbow for gear and its abilities`);
+    expect(price("SFD-191:1,SFD-058:1").all).toBe(4);
+  });
+
+  it("leaves a spell's Power under Fire Below the Mountain unpaid (the control)", () => {
+    expect(price("SFD-189:1,SFD-058:1,OGN-043:3").all).toBe(price("SFD-058:1,OGN-043:3").all);
+  });
+
+  it.each(["OGN-253", "OGN-302"])("pays three Guillotines and Tryndamere under %s Hand of Noxus on T5, as walked: [Legion] E1 after the first card", (b) => {
+    const r = price(`${b}:1,OGN-254:3,OGN-034:1`);
+    expect(r.pays).toBe(5);
+    expect(r.line).toContain(`legend ${b} [Add] [Legion] E1 once a card was played`);
+    expect(price("OGN-254:3,OGN-034:1").pays).toBe(6);
+  });
+
+  it("never pays the first card with Hand of Noxus's E1 (the control)", () => {
+    expect(price("OGN-253:1,OGN-034:1").all).toBe(price("OGN-034:1").all);
+  });
+
+  // The prune in `walk` lets a sub-turn reach the leaf `LE` Energy past its runes, for the legend's
+  // own `settle` call; the plain call, with no readier, accepted it too, free and for any cost. So
+  // under VEN-141 three Volibears read all T7: T5 and T6 each paid E12 out of 10 runes without
+  // Butcher's 2 Power. Paid for (T5: 10 runes, E2, four recycles, 6 left), T6's 8 runes + E2 cannot
+  // pay another, and the earliest plan is the one without Butcher: E12 on T6, T7 and T8.
+  it("pays three Volibears under Butcher of the Sands at all T8: the legend's E2 is never free", () => {
+    expect(price("VEN-141:1,OGN-158:3").all).toBe(8);
+  });
+
+  it("refuses by name only the legends still unmodelled, each with the rows it leaves unpriced", () => {
+    const m = out.match(/# legend \[Add\] [^\n]*; refused (\d+): ([^\n]*); unclassified/);
+    expect(m, "the legend [Add] line is missing from --turns").toBeTruthy();
+    for (const b of ["OGN-247", "OGN-299", "OGN-253", "OGN-302", "SFD-189", "SFD-244"]) expect(m![2]).not.toContain(b);
+    expect([...m![2]!.matchAll(/; (\d+) rows priced without it\)/g)]).toHaveLength(Number(m![1]));
+  });
+});
+
 /** --price input validation (#511): Number() read 0x1 and 1e0 as 1 and the destructure dropped a third field. */
 describe("--price refuses malformed specs (#511)", () => {
   const run = (spec: string) => spawnSync("node", ["scripts/adversarial-check.mjs", "--price", spec], { encoding: "utf8" });
