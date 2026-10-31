@@ -2454,7 +2454,8 @@ function priceSplits(set, ign, bodies, gated, mixes) {
   for (const hide of splits)
     for (const pick of mixes) {
       const costs = costsOfSet(set, ign, bodies, pick, hide);
-      const d = deployTurn(costs, ladd, hide !== splits[0] && best ? best.pays - 1 : 40);
+      // An undeployable incumbent (pays Infinity) cuts nothing: the search keeps its 40-turn horizon.
+      const d = deployTurn(costs, ladd, hide !== splits[0] && best && best.pays !== Infinity ? best.pays - 1 : 40);
       const pays = d.all === Infinity ? Infinity : d.all + (!d.extra && (d.unitLast || gated) ? 1 : 0);
       if (!best || pays < best.pays || (pays === best.pays && d.all < best.d.all)) best = { d, costs, pays, pick, hide, ladd };
     }
