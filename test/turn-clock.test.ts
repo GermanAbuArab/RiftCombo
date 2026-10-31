@@ -40,6 +40,11 @@ const out = execFileSync("node", ["scripts/adversarial-check.mjs", "--turns"], {
   maxBuffer: 1 << 24,
 });
 
+/** `--engines`, spawned once for every test that reads it: ~6s alone since #528's [Hidden] splits. */
+let engOut: string | undefined;
+const engines = () =>
+  (engOut ??= execFileSync("node", ["scripts/adversarial-check.mjs", "--engines"], { encoding: "utf8", maxBuffer: 1 << 24 }));
+
 /** `  T 6 vs T6 baseline  SLOWER  CHAIN    chaos/order  some-entry-id` */
 const rows = new Map<string, { pays: number; base: number }>();
 for (const line of out.split("\n")) {
@@ -291,10 +296,7 @@ describe("power income (#501)", () => {
   });
 
   it("still finds ENGINE rows that hold an income card, so 'it moved no row' cannot go vacuous", () => {
-    const eng = execFileSync("node", ["scripts/adversarial-check.mjs", "--engines"], {
-      encoding: "utf8",
-      maxBuffer: 1 << 24,
-    });
+    const eng = engines();
     const m = eng.match(/power income \([^)]*\): (\d+) of (\d+) rows hold an income card/);
     expect(m, "the income non-vacuity line is missing from --engines").toBeTruthy();
     expect(Number(m![1])).toBeGreaterThan(5);
@@ -713,6 +715,143 @@ describe("anyBodies: which unit a body is (#517)", () => {
     expect(doms.size).toBeGreaterThan(0);
     for (const d of doms) expect(lines.some((l) => l.startsWith(`#   ${d} `)), d).toBe(true);
   });
+});
+
+/**
+ * #528, three ways the clock priced a row it could not have played. Hand walks, runes 2/4/6/8/10/12 on
+ * T1..T6 (161.2.a); R runes pay R Energy and R Power in one turn, a recycled rune leaving the board
+ * (164.2.a/b, 161.2.b).
+ *
+ * [HIDDEN] AT ITS PRINTED COST, T2 (was T3). OGN-057 Block is an E2 Calm spell with [Hidden], OGN-048
+ * Meditation E2, OGN-047 Find Your Center E3: E7 against the 2 + 4 runes of T1 and T2, so T3 when every
+ * card pays its printed cost. 811.1.b: hide it for one Power and play it ignoring its base cost
+ * "Beginning on the next turn". T1: Meditation on both runes, and one of them recycled for the Power
+ * that hides Block. T2: 3 runes pay Find Your Center, and Block is played for nothing. T2.
+ * BLOCK + MEDITATION, T2 (the control). Without the E3 spell the printed cost already fits on T2, and a
+ * hidden copy played on the turn it was hidden would read T1 (Meditation, hide, play), which 811.1.b's
+ * "next turn" forbids.
+ *
+ * THE 3-COPY LIMIT ON BODIES, all T3 (was T2). OGN-133 Flurry of Blades is an E1 Body spell, and the
+ * cheapest Body unit is UNL-111 Determined Sentry E1. Four Sentries and two Flurries are E6 on T1 and
+ * T2's 6 runes, but 103.2.b allows three Sentries, and every other Body unit costs E2 or more (OGN-136
+ * Pit Rookie E2, UNL-115 Nilah E3): E7 or more, so T3. THREE BODIES, T2 (the control): three Sentries
+ * fit the limit and E5 fits T2.
+ *
+ * A LEGEND'S [ADD], pays T6 (was T7). OGN-158 Volibear, Imposing is an E12 + 2 Power Body unit, and
+ * VEN-141 Butcher of the Sands (fury/body) pays two Power and exhausts to Add E2 for units. T5: 10
+ * runes pay E10, Butcher's Add the other E2, and 4 of the 10 recycle for Volibear's 2 Power and
+ * Butcher's 2. Volibear lands exhausted (143.4), so T6. VOLIBEAR ALONE, T7 (the control): E12 needs
+ * T6's 12 runes, and a unit landed on T6 is ready on T7.
+ */
+describe("[Hidden], the copy limit and a legend's [Add] (#528)", () => {
+  const price = (set: string, ...rest: string[]) => {
+    const s = execFileSync("node", ["scripts/adversarial-check.mjs", "--price", set, ...rest], { encoding: "utf8" });
+    const m = s.match(/all T(\d+|Infinity), .*pays T(\d+|Infinity)/);
+    expect(m, s).toBeTruthy();
+    return { all: Number(m![1]), pays: Number(m![2]), line: s.split("\n")[0]! };
+  };
+
+  it("pays Block + Meditation + Find Your Center on T2, as walked: Block is hidden on T1 and played free on T2", () => {
+    const r = price("OGN-057:1,OGN-048:1,OGN-047:1");
+    expect(r.pays).toBe(2);
+    expect(r.line).toContain("hidden OGN-057x1");
+  });
+
+  it("pays Block + Meditation on T2, not T1: a hidden card waits for the next turn (the control)", () => {
+    expect(price("OGN-057:1,OGN-048:1").pays).toBe(2);
+  });
+
+  it("prices four bodies with two Flurries at all T3: three Sentries at most, the fourth a dearer Body unit", () => {
+    const r = price("OGN-133:2", "--bodies", "4");
+    expect(r.all).toBe(3);
+    const bodies = r.line.match(/bodies (\S+) of \[/)![1]!.split("+");
+    expect(bodies.filter((b) => b === "UNL-111")).toHaveLength(3);
+  });
+
+  it("prices three bodies with two Flurries at all T2, three Sentries (the control)", () => {
+    const r = price("OGN-133:2", "--bodies", "3");
+    expect(r.all).toBe(2);
+    expect(r.line).toContain("bodies UNL-111+UNL-111+UNL-111 of [");
+  });
+
+  it.each(["VEN-141", "VEN-190"])("pays %s Butcher of the Sands + Volibear on T6, as walked: the [Add] pays E2 of the unit", (b) => {
+    const r = price(`${b}:1,OGN-158:1`);
+    expect(r.pays).toBe(6);
+    expect(r.line).toContain(`legend ${b} [Add] E2 for units at 2 Power`);
+  });
+
+  it("pays Volibear alone on T7 (the control)", () => {
+    expect(price("OGN-158:1").pays).toBe(7);
+  });
+
+  // #528's security scan: the splits are the product of (copies + 1) over the [Hidden] cards, and this
+  // legal Mind/Chaos set (1,024 splits) took 20s before the split guard; six such cards took minutes.
+  // RC_FB names the guard, so this fails if the set went exact or through another one.
+  it("prices five Hidden cards at 3 copies at the free-copy bound instead of hanging, and says so", () => {
+    const r = spawnSync("node", ["scripts/adversarial-check.mjs", "--price", "OGN-094:3,OGN-097:3,OGN-121:3,UNL-083:3,OGN-168:3"],
+      { encoding: "utf8", timeout: 60_000, env: { ...process.env, RC_FB: "1", RC_SPLITS: "" } });
+    expect(r.status, r.stderr).toBe(0);
+    expect(r.stdout).toContain("HIDDEN BOUND");
+    expect(r.stderr).toMatch(/FALLBACK hidden splits=1024 mixes=1/);
+    expect(out).toMatch(/split guard \(256\): 0 rows priced at the free-copy bound/);
+  }, 60_000);
+
+  // The same scan: the guard first BUILT the (copies + 1)^N splits and then counted them, so fourteen
+  // Hidden cards (268M splits) ran out of heap at 4.4 GB before it could act. It counts first now.
+  it("prices fourteen Hidden cards at the bound without building their 268M splits", () => {
+    const set = "OGN-053:3,OGN-057:3,OGN-077:3,OGN-083:3,OGN-094:3,OGN-097:3,OGN-121:3,OGN-135:3,OGN-168:3,OGN-197:3,OGN-199:3,OGN-213:3,OGN-220:3,OGN-256:3";
+    const r = spawnSync("node", ["scripts/adversarial-check.mjs", "--price", set],
+      { encoding: "utf8", timeout: 60_000, env: { ...process.env, RC_FB: "1", RC_SPLITS: "" } });
+    expect(r.status, r.stderr.slice(-500)).toBe(0);
+    expect(r.stdout).toContain("HIDDEN BOUND");
+    expect(r.stderr).toMatch(/FALLBACK hidden splits=268435456 mixes=1/);
+  }, 60_000);
+
+  // The same scan: the copy limit's layered fronts gave this legal set 8,451 capped mixes at 8 bodies,
+  // 11s (0.1s before #528). Past the mix guard the bodies come from one front with no copy limit.
+  it("prices eight bodies past the mix guard on the uncapped front, says so, and no catalogue row needs it", () => {
+    const r = spawnSync("node", ["scripts/adversarial-check.mjs", "--price", "OGN-136:3,VEN-043:3", "--bodies", "8"],
+      { encoding: "utf8", timeout: 60_000, env: { ...process.env, RC_FB: "1", RC_MIXES: "" } });
+    expect(r.status, r.stderr).toBe(0);
+    expect(r.stdout).toContain("COPY BOUND");
+    expect(r.stderr).toMatch(/FALLBACK copies mixes=8451/);
+    expect(out).toMatch(/mix guard \(256\): 0 rows priced uncapped\n/);
+  }, 60_000);
+
+  it("errs early past the mix guard: four bodies with two Flurries go back to four Sentries at T2, under the exact T3", () => {
+    const r = spawnSync("node", ["scripts/adversarial-check.mjs", "--price", "OGN-133:2", "--bodies", "4"],
+      { encoding: "utf8", env: { ...process.env, RC_MIXES: "0" } });
+    expect(r.stdout).toMatch(/all T2, .*bodies UNL-111\+UNL-111\+UNL-111\+UNL-111 of \[.*COPY BOUND/);
+  });
+
+  it("prints the copy-limit line with the rows it names, so the limit cannot go vacuous", () => {
+    const m = out.match(/# copy limit \(103\.2\.b[^)]*\): (\d+) of (\d+) rows with bodies ask more than their identity's cheapest units supply;[^\n]*\n((?:#   .*\n)*)/);
+    expect(m, "the copy-limit line is missing from --turns").toBeTruthy();
+    expect(Number(m![1])).toBeGreaterThan(0);
+    expect(m![3]!.trim().split("\n")).toHaveLength(Number(m![1]));
+    // A second instrument: a named row holds more bodies than three copies of anything can supply.
+    const combos = JSON.parse(readFileSync("data/combos.json", "utf8")).combos as { id: string; anyBodies?: { count: number } }[];
+    const named = [...m![3]!.matchAll(/^#   (\S+):/gm)].map((x) => x[1]!);
+    for (const id of named) expect(combos.find((c) => c.id === id)?.anyBodies?.count, id).toBeGreaterThan(3);
+  });
+
+  it("prints the [Hidden] carriers and rows that hide a copy, so 'it moved no row' cannot go vacuous", () => {
+    const m = out.match(/# hidden \([^\n]*?\): (\d+) cards carry it: [^\n]*; (\d+) of (\d+) rows hold one, (\d+) hide a copy in their earliest plan/);
+    expect(m, "the hidden line is missing from --turns").toBeTruthy();
+    expect(Number(m![1])).toBeGreaterThan(30);
+    expect(Number(m![4])).toBeGreaterThan(0);
+    expect(out).toContain("OGN-057 Block");
+  });
+
+  it("prints every legend [Add] modelled or refused by name, and finds the ENGINE row that names Butcher", () => {
+    const m = out.match(/# legend \[Add\] [^\n]*: (\d+) legends print one; modelled (\d+): [^\n]*; refused (\d+): [^\n]*; unclassified (\d+);/);
+    expect(m, "the legend [Add] line is missing from --turns").toBeTruthy();
+    expect(Number(m![2]) + Number(m![3])).toBe(Number(m![1]));
+    expect(Number(m![4])).toBe(0);
+    const e = engines().match(/# legend \[Add\] [^\n]*; (\d+) of (\d+) rows name a modelled one/);
+    expect(e, "the legend [Add] line is missing from --engines").toBeTruthy();
+    expect(Number(e![1])).toBeGreaterThan(0);
+  }, 60_000);
 });
 
 /** --price input validation (#511): Number() read 0x1 and 1e0 as 1 and the destructure dropped a third field. */
