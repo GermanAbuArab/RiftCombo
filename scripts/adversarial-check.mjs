@@ -472,12 +472,13 @@ function typesOf(costs) {
     // `big`, `att`, `aph`, `kin` and `kinR` (#523): a card that fires or enables a conditional readier.
     const k = `${c.e}|${c.p}|${c.unit ? 1 : 0}|${c.gated ? 1 : 0}|${c.rain || 0}|${c.holdx || 0}|` +
               `${c.turn ? 1 : 0}|${c.pow || 0}|${c.ready ? 1 : 0}|${c.rdy || 0}|${c.rune || 0}|${c.share ? 1 : 0}|` +
-              `${accKey(c.acc)}|${c.big || 0}|${c.att || 0}|${c.aph || 0}|${c.kin || 0}|${c.kinR || 0}|${c.link || ""}`;
+              `${accKey(c.acc)}|${c.big || 0}|${c.att || 0}|${c.aph || 0}|${c.kin || 0}|${c.kinR || 0}|${c.strict ? 1 : 0}|${c.isU ? 1 : 0}|${c.link || ""}`;
     if (!byType.has(k))
       byType.set(k, { e: c.e, p: c.p, unit: !!c.unit, gated: !!c.gated, rain: c.rain || 0,
                       holdx: c.holdx || 0, turn: !!c.turn, pow: c.pow || 0, ready: !!c.ready,
                       rdy: c.rdy || 0, rune: c.rune || 0, share: !!c.share, acc: c.acc || null,
-                      big: c.big || 0, att: c.att || 0, aph: c.aph || 0, kin: c.kin || 0, kinR: c.kinR || 0, link: c.link || "",
+                      big: c.big || 0, att: c.att || 0, aph: c.aph || 0, kin: c.kin || 0, kinR: c.kinR || 0,
+                      strict: !!c.strict, isU: !!c.isU, link: c.link || "",
                       after: c.after || "", n: 0, kids: [] });
     byType.get(k).n++;
   }
@@ -493,7 +494,7 @@ function typesOf(costs) {
   }
   const desc = (t) => `${t.e}|${t.p}|${t.unit ? 1 : 0}|${t.gated ? 1 : 0}|${t.rain}|${t.holdx}|` +
                       `${t.turn ? 1 : 0}|${t.pow}|${t.ready ? 1 : 0}|${t.rdy}|${t.rune}|${t.share ? 1 : 0}|${accKey(t.acc)}|` +
-                      `${t.big}|${t.att}|${t.aph}|${t.kin}|${t.kinR}|${t.n}` +
+                      `${t.big}|${t.att}|${t.aph}|${t.kin}|${t.kinR}|${t.strict ? 1 : 0}|${t.isU ? 1 : 0}|${t.n}` +
                       (t.kids.length ? `(${t.kids.map(desc).sort().join(",")})` : "");
   const cmp = (a, b) => (desc(a) < desc(b) ? -1 : desc(a) > desc(b) ? 1 : 0);
   // Gated roots emit LAST, so that when the recursion reaches one, every ungated type's count for the
@@ -510,19 +511,24 @@ function typesOf(costs) {
 }
 
 const deployMemo = new Map();
-function deployTurn(costs) {
+function deployTurn(costs, ladd = null, limit = 40) {
   if (!costs.length) return { all: 0, unit: 0 };
   // Memoized on the canonical cost SIGNATURE, not on the entry: closuresOf and the consumer search
   // both price many candidate card sets and the same multiset recurs constantly.
-  const { types, sig } = typesOf(costs);
+  const { types, sig: bare } = typesOf(costs);
+  const sig = ladd ? `${bare}|L${ladd.e}/${ladd.p}` : bare;
+  // `limit` stops the search past a turn the caller cannot use (#528, priceSet's incumbent). A set
+  // that is not done by then is Infinity with `cut`, which answers a later call only up to the same
+  // turn: past it the set is searched again.
   const hit = deployMemo.get(sig);
-  if (hit) return hit;
-  const r = deployTurnUncached(types, costs);
-  deployMemo.set(sig, r);
+  if (hit && (!hit.cut || hit.cut >= limit)) return hit;
+  const r = deployTurnUncached(types, costs, ladd, limit);
+  deployMemo.set(sig, r.all === Infinity && limit < 40 && !r.greedy ? { ...r, cut: limit } : r);
   return r;
 }
-function deployTurnUncached(types, costs) {
+function deployTurnUncached(types, costs, ladd, limit = 40) {
   const dim = types.length;
+  const LE = ladd ? ladd.e : 0, LP = ladd ? ladd.p : 0;  // the legend's unit-only [Add] (#528)
   // Mixed-radix packing: the whole state is ONE integer, so the inner loop allocates nothing. A
   // first version keyed the state on a joined string and took minutes; the arithmetic was never the
   // problem, the 40 million array-and-string allocations were.
@@ -741,108 +747,117 @@ function deployTurnUncached(types, costs) {
   // `un` is the number of units bought this sub-turn and `rd` how many of them the readiers bought
   // with them can ready (#506), or that paid [Accelerate] (#510). `fin` says every type before `i`
   // is at its maximum in the state being built, i.e. this sub-turn may still complete the set.
-  const walk = (i, e, p, delta, un, rd, cast, nf, fp, fin) => {
+  // THE LEAF: one sub-turn's buy, paid out of the runes, the Adds and the readiers it bought. `walk`
+  // calls it once, and a second time with the legend's [Add] spent when there is one (#528).
+  const settle = (e, p, delta, un, rd, cast, nf, fp) => {
+    const k = idx + delta + (queued + cast) * space;
+    const ext = nf && fp > p - nf ? fp : p - nf;  // Power the fresh Adds cannot pay
+    const rec = ext > rain ? ext - rain : 0;
+    if (rec > runes) return;
+    const nr = runes - rec;                       // 161.2.b: a recycled rune leaves the board
+    // READYING RUNES (#513): the Energy past `runes` must come from the readiers bought this turn.
+    let rdn = rd;
+    if (runers.length || trig) {
+      let slots = 0, k = 0;
+      nk = runers.length;
+      for (let x = 0; x < nk; x++) {
+        const t = rk[x];
+        const q = cnt[runers[x]] - haveOf(runers[x]);
+        rq[x] = q;
+        if (!q) continue;
+        k += q;
+        if (t.share) slots += q * t.rune;
+      }
+      // A readier is paid BEFORE it resolves, so the runes it readies never pay its own Energy: the
+      // first one is bought out of the runes alone, and each later one may use what earlier ones
+      // returned (`order`). With nothing to return, every shared ready goes to a unit.
+      const need = e - runes;
+      if (need > 0) {
+        rNeed = need; rBest = -1; rMax = runeMax;
+        if (!trig) search(k, rain + nf);
+        else {
+          // #523. The other Dragons this sub-turn bought, cheapest first, when a Gemdragon is there
+          // to see them: on the board already, or bought in this sub-turn and placed before them.
+          g0 = 0;
+          let g = 0, cn = 0, nb = runers.length, kb = k;
+          for (const i of gems) { const h = haveOf(i); g0 += h; g += cnt[i] - h; }
+          // Aphelios on the board, and whether he lands this sub-turn (then he is paid first).
+          let aOn = 0, aNew = null;
+          for (const i of aphs) { if (cnt[i]) aOn += cnt[i]; if (cnt[i] && !haveOf(i)) aNew = types[i]; }
+          for (const i of aphs) if (haveOf(i)) aNew = null;
+          // Nothing bought this sub-turn that can ready a rune: the Energy past `runes` has no source.
+          let fire = k > 0;
+          if (!fire) for (const i of bigs) if (cnt[i] !== haveOf(i)) { fire = true; break; }
+          if (!fire && aOn) for (const i of atts) if (cnt[i] !== haveOf(i)) { fire = true; break; }
+          if (!fire && g0) for (const i of chainTypes) if (cnt[i] !== haveOf(i)) { fire = true; break; }
+          if (!fire) return;
+          // The search reads nothing else, so its answer is memoized on exactly these.
+          const mk = delta + space * (runes + 13 * (rain + nf + 64 * (need + 256 * (g0 + 8 * (aOn + 8 * (aNew ? 1 : 0))))));
+          const hit = trigMemo.get(mk);
+          if (hit !== undefined) rBest = hit;
+          else {
+          if (g0 + g) for (const i of chainTypes) for (let q = cnt[i] - haveOf(i); q > 0; q--) chain[cn++] = i;
+          if (cn) { rk[nb] = CHAIN; rq[nb++] = cn; kb += cn; }
+          rMax = runeMax + (g0 + g) * KR;
+          // Both are optional ("you may exhaust me", and Aphelios may choose another mode), so -1, no
+          // trigger at all, is always one of the choices.
+          for (let b = -1; b < bigs.length; b++) {
+            const bi = b < 0 ? -1 : bigs[b];
+            if (bi >= 0 && cnt[bi] === haveOf(bi)) continue;
+            for (let a = -1; a < (aOn ? atts.length : 0); a++) {
+              const ai = a < 0 ? -1 : atts[a];
+              if (ai >= 0 && cnt[ai] === haveOf(ai)) continue;
+              let kk = kb;
+              nk = nb;
+              if (bi >= 0) {
+                const t = types[bi];
+                vBig.e = t.e; vBig.p = t.p; vBig.rune = t.big;
+                rk[nk] = vBig; rq[nk++] = 1; kk++;
+              }
+              if (ai >= 0) {
+                const t = types[ai];
+                const n = cnt[ai] - haveOf(ai);
+                // Each copy is a different Aphelios (at most `aOn` of them), and `aNew` is set only
+                // when none was on the board before, so charging him per copy pays each one once.
+                vAtt.e = t.e + (aNew ? aNew.e : 0); vAtt.p = t.p + (aNew ? aNew.p : 0); vAtt.rune = t.att;
+                rk[nk] = vAtt; rq[nk] = n < aOn ? n : aOn; kk += rq[nk++];
+              }
+              search(kk, rain + nf);
+            }
+          }
+          // The extra kinds are spent: `order` restored every count it took.
+          nk = runers.length;
+          trigMemo.set(mk, rBest);
+          }
+        }
+        if (rBest < 0) return;
+        rdn = rd + slots - (need - rBest);
+      } else rdn = rd + slots;
+    }
+    // READYING (#506). A readier works only on the turn it is paid, on the units that land with
+    // it, so this sub-turn owes 143.4's readiness turn only if more units landed in it than its
+    // readiers ready. A sub-turn whose units were all readied records -sub: a unit landed, so
+    // `unit` still reports one, and it is not `sub`, so `unitLast` does not read it as owed.
+    const nu = un > rdn ? sub : un ? -sub : u0;
+    // For a fixed set of paid costs MORE RUNES always dominates; ties keep the EARLIEST
+    // last-unit turn, because that is what the readiness +1 reads. Except at FULL: nothing is left
+    // to buy, so the runes decide nothing and the only thing the state still carries is whether the
+    // completing sub-turn owes the readiness turn; preferring runes there could keep a path that
+    // owes it over one that does not. Measured 2026-10-27, this branch moves no row and no `--price`
+    // pin today: it makes the waiver exact by construction rather than by luck.
+    let better = nxtR[k] < nr || (nxtR[k] === nr && nxtU[k] > nu);
+    if (idx + delta === FULL && nxtR[k] >= 0 && (nxtU[k] === sub) !== (nu === sub)) better = nu !== sub;
+    if (better) { nxtR[k] = nr; nxtU[k] = nu; }
+  };
+  const walk = (i, e, p, delta, un, rd, cast, nf, fp, fin, ue) => {
     if (over) return;
     if (i === dim) {
       if (++leaves > LEAF_CAP) { over = true; return; }
-      const k = idx + delta + (queued + cast) * space;
-      const ext = nf && fp > p - nf ? fp : p - nf;  // Power the fresh Adds cannot pay
-      const rec = ext > rain ? ext - rain : 0;
-      if (rec > runes) return;
-      const nr = runes - rec;                       // 161.2.b: a recycled rune leaves the board
-      // READYING RUNES (#513): the Energy past `runes` must come from the readiers bought this turn.
-      let rdn = rd;
-      if (runers.length || trig) {
-        let slots = 0, k = 0;
-        nk = runers.length;
-        for (let x = 0; x < nk; x++) {
-          const t = rk[x];
-          const q = cnt[runers[x]] - haveOf(runers[x]);
-          rq[x] = q;
-          if (!q) continue;
-          k += q;
-          if (t.share) slots += q * t.rune;
-        }
-        // A readier is paid BEFORE it resolves, so the runes it readies never pay its own Energy: the
-        // first one is bought out of the runes alone, and each later one may use what earlier ones
-        // returned (`order`). With nothing to return, every shared ready goes to a unit.
-        const need = e - runes;
-        if (need > 0) {
-          rNeed = need; rBest = -1; rMax = runeMax;
-          if (!trig) search(k, rain + nf);
-          else {
-            // #523. The other Dragons this sub-turn bought, cheapest first, when a Gemdragon is there
-            // to see them: on the board already, or bought in this sub-turn and placed before them.
-            g0 = 0;
-            let g = 0, cn = 0, nb = runers.length, kb = k;
-            for (const i of gems) { const h = haveOf(i); g0 += h; g += cnt[i] - h; }
-            // Aphelios on the board, and whether he lands this sub-turn (then he is paid first).
-            let aOn = 0, aNew = null;
-            for (const i of aphs) { if (cnt[i]) aOn += cnt[i]; if (cnt[i] && !haveOf(i)) aNew = types[i]; }
-            for (const i of aphs) if (haveOf(i)) aNew = null;
-            // Nothing bought this sub-turn that can ready a rune: the Energy past `runes` has no source.
-            let fire = k > 0;
-            if (!fire) for (const i of bigs) if (cnt[i] !== haveOf(i)) { fire = true; break; }
-            if (!fire && aOn) for (const i of atts) if (cnt[i] !== haveOf(i)) { fire = true; break; }
-            if (!fire && g0) for (const i of chainTypes) if (cnt[i] !== haveOf(i)) { fire = true; break; }
-            if (!fire) return;
-            // The search reads nothing else, so its answer is memoized on exactly these.
-            const mk = delta + space * (runes + 13 * (rain + nf + 64 * (need + 256 * (g0 + 8 * (aOn + 8 * (aNew ? 1 : 0))))));
-            const hit = trigMemo.get(mk);
-            if (hit !== undefined) rBest = hit;
-            else {
-            if (g0 + g) for (const i of chainTypes) for (let q = cnt[i] - haveOf(i); q > 0; q--) chain[cn++] = i;
-            if (cn) { rk[nb] = CHAIN; rq[nb++] = cn; kb += cn; }
-            rMax = runeMax + (g0 + g) * KR;
-            // Both are optional ("you may exhaust me", and Aphelios may choose another mode), so -1, no
-            // trigger at all, is always one of the choices.
-            for (let b = -1; b < bigs.length; b++) {
-              const bi = b < 0 ? -1 : bigs[b];
-              if (bi >= 0 && cnt[bi] === haveOf(bi)) continue;
-              for (let a = -1; a < (aOn ? atts.length : 0); a++) {
-                const ai = a < 0 ? -1 : atts[a];
-                if (ai >= 0 && cnt[ai] === haveOf(ai)) continue;
-                let kk = kb;
-                nk = nb;
-                if (bi >= 0) {
-                  const t = types[bi];
-                  vBig.e = t.e; vBig.p = t.p; vBig.rune = t.big;
-                  rk[nk] = vBig; rq[nk++] = 1; kk++;
-                }
-                if (ai >= 0) {
-                  const t = types[ai];
-                  const n = cnt[ai] - haveOf(ai);
-                  // Each copy is a different Aphelios (at most `aOn` of them), and `aNew` is set only
-                  // when none was on the board before, so charging him per copy pays each one once.
-                  vAtt.e = t.e + (aNew ? aNew.e : 0); vAtt.p = t.p + (aNew ? aNew.p : 0); vAtt.rune = t.att;
-                  rk[nk] = vAtt; rq[nk] = n < aOn ? n : aOn; kk += rq[nk++];
-                }
-                search(kk, rain + nf);
-              }
-            }
-            // The extra kinds are spent: `order` restored every count it took.
-            nk = runers.length;
-            trigMemo.set(mk, rBest);
-            }
-          }
-          if (rBest < 0) return;
-          rdn = rd + slots - (need - rBest);
-        } else rdn = rd + slots;
-      }
-      // READYING (#506). A readier works only on the turn it is paid, on the units that land with
-      // it, so this sub-turn owes 143.4's readiness turn only if more units landed in it than its
-      // readiers ready. A sub-turn whose units were all readied records -sub: a unit landed, so
-      // `unit` still reports one, and it is not `sub`, so `unitLast` does not read it as owed.
-      const nu = un > rdn ? sub : un ? -sub : u0;
-      // For a fixed set of paid costs MORE RUNES always dominates; ties keep the EARLIEST
-      // last-unit turn, because that is what the readiness +1 reads. Except at FULL: nothing is left
-      // to buy, so the runes decide nothing and the only thing the state still carries is whether the
-      // completing sub-turn owes the readiness turn; preferring runes there could keep a path that
-      // owes it over one that does not. Measured 2026-10-27, this branch moves no row and no `--price`
-      // pin today: it makes the waiver exact by construction rather than by luck.
-      let better = nxtR[k] < nr || (nxtR[k] === nr && nxtU[k] > nu);
-      if (idx + delta === FULL && nxtR[k] >= 0 && (nxtU[k] === sub) !== (nu === sub)) better = nu !== sub;
-      if (better) { nxtR[k] = nr; nxtU[k] = nu; }
+      settle(e, p, delta, un, rd, cast, nf, fp);
+      // THE LEGEND'S [Add] (#528, LEGEND_ADD), once a sub-turn since it exhausts and the legend readies
+      // at every Awaken: `LP` more Power for `LE` Energy that pays only the units this sub-turn bought
+      // (`ue`). Spending it while the runes still cover the Energy only loses runes, so it is not tried.
+      if (LE && ue && e > runes) settle(e - (ue < LE ? ue : LE), p + LP, delta, un, rd, cast, nf, fp);
       return;
     }
     const t = types[i];
@@ -856,7 +871,9 @@ function deployTurnUncached(types, costs) {
     // --strict-ordering is a SENSITIVITY probe, not the model: it forbids the same turn as well, so
     // the gap between the two runs says whether the shipped null is inert by a wide margin or by a
     // hair. It is wrong as rules (359.2.d) and is never the default.
-    const root = t.dep < 0 ? -1 : strictOrdering
+    // A play from [Hidden] (#528) is ALWAYS strict: 811.1.b lets a card hidden this turn be played
+    // only "Beginning on the next turn", and an Additional Turn is a next turn like any other.
+    const root = t.dep < 0 ? -1 : strictOrdering || t.strict
       ? ((idx / stride[t.dep]) | 0) % (types[t.dep].n + 1)   // the count BEFORE this turn
       : cnt[t.dep];                                          // the count as at this turn
     let cap = t.dep >= 0 && root < t.n ? root : t.n;
@@ -890,7 +907,7 @@ function deployTurnUncached(types, costs) {
       // Adds 1), so the break is safe; a hypothetical ready card that Adds more than it costs only
       // skips the q it cannot afford yet.
       // `rrMax` is the most Energy readied runes can add on top (#513); the leaf makes it exact.
-      if (ne > runes + rrMax) break;
+      if (ne > runes + rrMax + LE) break;
       if (np - nnf > runes + rain) { if (fresh && t.pow > t.p) continue; break; }
       // [ACCELERATE] (#510): `a` of the `q` copies bought here pay their optional [1][C] (805.1.a) and
       // enter ready, so they owe no 143.4 turn and count in `rd`. Paying it only ever costs runes, and
@@ -902,11 +919,11 @@ function deployTurnUncached(types, costs) {
       const am = t.acc && full ? q : 0;
       for (let a = 0; a <= am; a++) {
         const ae = a ? ne + a * t.acc.e : ne, ap = a ? np + a * t.acc.p : np;
-        if (a && (ae > runes + rrMax || ap - nnf > runes + rain)) break;
+        if (a && (ae > runes + rrMax + LE || ap - nnf > runes + rain)) break;
         // A `share` readier's units are counted at the leaf, out of what its runes leave (#513).
         walk(i + 1, ae, ap, delta + q * stride[i], t.unit ? un + q : un, rd + (t.share ? 0 : t.rdy) * q + a,
              cast + (t.turn ? q : 0),
-             nnf, fresh && (!nf || t.p < fp) ? t.p : fp, full);
+             nnf, fresh && (!nf || t.p < fp) ? t.p : fp, full, t.isU ? ue + t.e * q + (a ? a * t.acc.e : 0) : ue);
       }
     }
   };
@@ -945,10 +962,10 @@ function deployTurnUncached(types, costs) {
         }
       }
       u0 = curU[k];
-      walk(0, 0, 0, 0, 0, 0, 0, 0, 0, true);
+      walk(0, 0, 0, 0, 0, 0, 0, 0, 0, true, 0);
     }
   };
-  for (let turn = 1; turn <= 40; turn++) {
+  for (let turn = 1; turn <= limit; turn++) {
     endR.fill(-1); endU.fill(0);
     // A completion on this clock turn owes no `+1` when a turn is still queued at that moment: the
     // Additional Turn brings both the Awaken that readies the last unit and the Beginning Phase a
@@ -1826,6 +1843,61 @@ const POWER_ADD = /(?:^|[.)\]]\s*)(?:\[Reaction\](?:\[>\])?\s*)?:rb_exhaust::\s*
  * Power like any other. How the allocator pays it is in deployTurnUncached's `walk`.
  */
 const ACCELERATE = /(?:^|\n)\[Accelerate\]/;
+/**
+ * [HIDDEN] (#528), the keyword opening a line of the card's own text, as [Accelerate] does. 811.1.b:
+ * "While this card is in your hand or in your Champion Zone on your turn during an Open State, you
+ * may pay [A] to hide this facedown at a battlefield you control that doesn't already have a facedown
+ * card hidden there for as long as you control that battlefield. Beginning on the next turn, this
+ * gains [Reaction] and you may play this, ignoring its base cost." So a hidden copy is ONE Power of
+ * any domain (135.2.e.5.a) on one turn and its play for no base cost on a later one, and 811.3 still
+ * lets any copy be played for its cost as normal: `priceSet` tries every split. Before #528 every
+ * copy paid its printed cost and a row with more than one hidden card read LATE.
+ * Swept 2026-10-31, 45 cards say "[Hidden]" and 39 carry it; the anchor keeps out the six that only
+ * name it (OGN-018 Noxus Saboteur, OGN-107 Ava Achiever, OGN-167 Ember Monk, the Swift Scout legend
+ * OGN-263/OGN-307, OGN-264 Guerilla Warfare), and none of the 39 carries [Accelerate].
+ * THE LOOSENESS, which errs EARLY and so stays a lower bound: the clock does not ask that you control
+ * a battlefield when you hide, nor that each battlefield hold one facedown card, so it never stops a
+ * third copy hiding while two wait. The play waits only for the next turn of your own: the
+ * unopposed clock casts nothing on the opponent's turn, where the [Reaction] would need their chain.
+ */
+const HIDDEN = /(?:^|\n)\[Hidden\]/;
+/**
+ * A LEGEND'S [Add] (#528). VEN-141 Butcher of the Sands (and its VEN-190 reprint): "[Reaction][>]
+ * :rb_rune_rainbow::rb_rune_rainbow:, :rb_exhaust:: [Add] :rb_energy_2:. Spend this Energy only to
+ * play units or activated abilities of units." Two Power of any domain (135.2.e.5.a), which two runes
+ * already exhausted for their Energy can still pay by recycling (164.2.b), buy E2 that pays only a
+ * unit's play, once a turn because the legend exhausts. Before #528 the clock never counted it and
+ * a row that names the legend read LATE.
+ * THE ROW HAS TO NAME ITS LEGEND: the clock prices a row's own card set, and a legend is in it only
+ * when the row lists it in `uses` (115 of 778 rows do, swept 2026-10-31; Curator of the Sands rides
+ * the same way since #523). A row that names no legend is not priced for one, which keeps it a lower
+ * bound only of the decks that run the legend it names.
+ * THE LOOSENESS, which errs LATE in one place: inside the readier search a readier is paid out of
+ * the runes, so the [Add] never pays a readier unit's own Energy before it resolves. No row puts a
+ * readier unit under this legend today.
+ * The other legends that print [Add] are refused by name in LEGEND_REFUSED, each with its reason.
+ */
+const LEGEND_ADD = /^\[Reaction\]\[>\] ((?::rb_rune_rainbow:)+), :rb_exhaust:: \[Add\] :rb_energy_(\d+):\. Spend this Energy only to play units or activated abilities of units\.$/m;
+const LEGEND_REFUSED = {
+  "OGN-247": "Daughter of the Void: rainbow for spells only, so it needs the clock to tell a spell's Power from another card's",
+  "OGN-299": "Daughter of the Void's reprint: the same",
+  "OGN-253": "Hand of Noxus: [Legion], E1 only once a card was played this turn, an order the leaf does not track",
+  "OGN-302": "Hand of Noxus's reprint: the same",
+  "SFD-189": "Fire Below the Mountain: rainbow for gear only, the same split as Daughter of the Void",
+  "SFD-244": "Fire Below the Mountain's reprint: the same",
+  "SFD-201": "Chem-Baroness: the [Add] is a Gold token's, played on a hold, and its extra Energy only near the Victory Score",
+  "UNL-185": "Bloodharbor Ripper: the [Add] is a Gold token's, which the legend plays for E1 and a returned unit",
+  "UNL-197": "Scorn of the Moon: Energy only during showdowns, and the unopposed clock fights none",
+  "UNL-234": "Scorn of the Moon's reprint: the same",
+};
+function legendAddOf(set) {
+  for (const b of Object.keys(set)) {
+    const c = byBase.get(b);
+    const m = c && c.type.includes("legend") && (c.text || "").match(LEGEND_ADD);
+    if (m) return { e: Number(m[2]), p: m[1].match(/:rb_rune_rainbow:/g).length, base: b };
+  }
+  return null;
+}
 function curveOf(c) {
   const t = `${c.text || ""} ${c.effect || ""}`;
   const add = t.match(/When I hold, \[Add\]((?:\s*:rb_rune_rainbow:)+)/i);
@@ -1843,6 +1915,8 @@ function curveOf(c) {
     selfReady: c.type.includes("unit") && /(?:^|[.)]\s*)I enter ready\./.test(t),
     // Each field on its own: `t` joins them with a space, which the line anchor would not see.
     acc: c.type.includes("unit") && (ACCELERATE.test(c.text || "") || ACCELERATE.test(c.effect || "")),
+    hidden: !c.type.includes("legend") && !c.type.includes("battlefield") &&
+            (HIDDEN.test(c.text || "") || HIDDEN.test(c.effect || "")),
   };
 }
 
@@ -2079,17 +2153,66 @@ const EVERY_IDENTITY_BODY = (() => {
   return { e: b.e, p: b.p, base: b.base, name: byBase.get(b.base).name, acc: false, self: false };
 })();
 const bodyKey = (d) => [...d].sort().join("/") || "colourless";
+/**
+ * THE COPY LIMIT (#528). 103.2.b: "Your Main Deck can include up to 3 copies of the same named card."
+ * A body is a CARD, so a fourth body cannot be a fourth Determined Sentry, and a body cannot be a
+ * copy the row's own `uses` already runs three of. Before #528 every body was drawn from one front
+ * with no count, so a row asking four bodies of an identity with one E1 unit priced all four at E1
+ * and read EARLY.
+ *
+ * The cap is per NAME, not per base (103.2.b names the card; 46 unit names have more than one base,
+ * swept 2026-10-31, none at two prices), so the pool keeps one base per name. The candidates are then
+ * FRONTS IN LAYERS: the front of the pool, then the front of what is left, until the layers' smallest
+ * caps add up to the bodies asked. That stays exact: an option a plan takes from a unit outside the
+ * layers is covered by some unit in EVERY layer (each front covers all that was left when it was
+ * cut), those units carry distinct names, and their copies add up to at least the bodies asked, so
+ * one of them still has a copy the other bodies have not taken. With three bodies or fewer and no
+ * named copy spent, one layer already caps at 3, which is the #517 front unchanged.
+ */
+function copiesByName(set) {
+  const used = new Map();
+  for (const [b, q] of Object.entries(set)) {
+    const c = byBase.get(b);
+    if (c) used.set(c.name, (used.get(c.name) ?? 0) + q);
+  }
+  return used;
+}
+const capOf = (u, used) => (u === EVERY_IDENTITY_BODY ? Infinity : 3 - (used.get(u.name) ?? 0));
+function poolOf(domains) {
+  const byName = new Map();
+  for (const u of [...domains].flatMap((d) => BODY_UNITS.get(d) || [])
+    .sort((a, b) => a.e - b.e || a.p - b.p || (a.base < b.base ? -1 : 1)))
+    if (!byName.has(u.name)) byName.set(u.name, u);
+  return [...byName.values()];
+}
 const candidateMemo = new Map();
-function candidatesOf(domains) {
-  const k = bodyKey(domains);
+function candidatesOf(domains, used = new Map(), n = 1) {
+  const k = `${bodyKey(domains)}|${n}|${[...used].sort().map(([nm, q]) => `${nm}=${q}`).join(";")}`;
   if (!candidateMemo.has(k)) {
+    let pool = poolOf(domains).filter((u) => capOf(u, used) > 0);
+    const kept = [];
+    for (let supply = 0; pool.length && supply < n;) {
+      const front = bodyFront(pool);
+      kept.push(...front);
+      supply += Math.min(...front.map((u) => capOf(u, used)));
+      pool = pool.filter((u) => !front.includes(u));
+    }
     // An identity whose domains have no unit at all falls back as one with no domain does; none does today.
-    const front = bodyFront([...domains].flatMap((d) => BODY_UNITS.get(d) || []));
-    candidateMemo.set(k, front.length ? front : [EVERY_IDENTITY_BODY]);
+    candidateMemo.set(k, kept.length ? kept : [EVERY_IDENTITY_BODY]);
   }
   return candidateMemo.get(k);
 }
-const bodyCandidates = (set) => candidatesOf(domainsOfSet(set));
+const bodyCandidates = (set, n = 1) => candidatesOf(domainsOfSet(set), copiesByName(set), n);
+// The predicate --turns and --engines print (#528): the identity's CHEAPEST units, at its least
+// Energy and then Power, supply fewer copies than the row asks bodies, so the cap moves the row.
+function cheapShort(set, n) {
+  const used = copiesByName(set);
+  const pool = poolOf(domainsOfSet(set));
+  if (!n || !pool.length) return null;
+  const cheapest = pool.filter((u) => u.e === pool[0].e && u.p === pool[0].p);
+  const supply = cheapest.reduce((a, u) => a + Math.max(0, capOf(u, used)), 0);
+  return supply < n ? { n, supply, cheapest } : null;
+}
 const bodyLabel = (b) => `${b.base} ${b.name} E${b.e}${b.p ? `/${b.p}` : ""}${b.acc ? " [Accelerate]" : b.self ? " enters ready" : ""}`;
 /**
  * The bodies a set of folded entries needs: the MAX of their counts, as `bothBodies` merges them in
@@ -2106,7 +2229,7 @@ function bodiesOf(ids, engineIds = []) {
  * the unit each body is (#517), one per body; only `priceSet` calls this, because only it knows the
  * mix to try.
  */
-const costsOfSet = (set, ign, bodies, pick) => {
+const costsOfSet = (set, ign, bodies, pick, hide = {}, bound = false) => {
   const out = [];
   const equips = [];
   // 821.1.c: [Weaponmaster] attaches one of your Equipment "for one rainbow less", so the cheapest
@@ -2163,11 +2286,24 @@ const costsOfSet = (set, ign, bodies, pick) => {
     // An Equipment attaches on its [Equip] cost when one is priced, and on its own play otherwise.
     const equipment = attR && c.type.includes("gear") && (c.tags || []).includes("Equipment");
     for (let i = 0; i < q; i++) {
-      out.push({ e: ce, p: cp, unit: c.type.includes("unit") && !ready0, gated: post, rain, holdx, turn, pow, ready, rdy,
-                 rune, share, acc, link: linked ? `${b}#play` : "",
-                 big, att: equipment && !linked ? attR : 0, aph: isAph ? 1 : 0, kin, kinR });
+      // [Hidden] (#528, HIDDEN): the first `hide[b]` copies pay one Power to hide and are played free
+      // on a later turn. Their links carry their own names, so a hidden copy's [Equip] waits for a
+      // hidden play and a played copy's for a played one.
+      const hid = i < (hide[b] || 0);
+      // `isU`: a unit's play, readied or not, which is what a legend's unit-only [Add] pays (#528).
+      const effect = { unit: c.type.includes("unit") && !ready0, isU: c.type.includes("unit"), gated: post, rain, holdx, turn, pow, ready, rdy,
+                       rune, share, acc, big, att: equipment && !linked ? attR : 0, aph: isAph ? 1 : 0, kin, kinR };
+      // `bound`: priceSet's answer past the split guard, every hidden copy free with no hide and no
+      // turn's wait. It only drops costs and an ordering, so no split of these copies pays earlier.
+      if (hid && bound) out.push({ ...effect, e: 0, p: 0, link: linked ? `${b}#play` : "" });
+      else if (hid) {
+        out.push({ e: 0, p: post && ign.freeP ? 0 : 1, unit: false, gated: post, link: `${b}#hide` });
+        out.push({ ...effect, e: 0, p: 0, link: `${b}#hplay`, after: `${b}#hide`, strict: true });
+      } else out.push({ ...effect, e: ce, p: cp, link: linked ? `${b}#play` : "" });
+      const hp = hid && !bound;
       if (linked) equips.push({ e: post && ign.freeE ? 0 : eq.e, p: post && ign.freeP ? 0 : eq.p,
-                                unit: false, gated: post, link: `${b}#equip`, after: `${b}#play`,
+                                unit: false, gated: post, link: hp ? `${b}#hequip` : `${b}#equip`,
+                                after: hp ? `${b}#hplay` : `${b}#play`,
                                 big: bigR && eq.e >= bigAt ? bigR : 0, att: equipment ? attR : 0 });
     }
   }
@@ -2181,7 +2317,7 @@ const costsOfSet = (set, ign, bodies, pick) => {
       // body that enters ready by itself owes no turn at all (#517).
       const acc = body.acc ? { e: post && ign.freeE ? 0 : 1, p: post && ign.freeP ? 0 : 1 } : null;
       const ready0 = body.self || !!(acc && !acc.e && !acc.p);
-      out.push({ e: post && ign.freeE ? 0 : body.e, p: post && ign.freeP ? 0 : body.p, unit: !ready0,
+      out.push({ e: post && ign.freeE ? 0 : body.e, p: post && ign.freeP ? 0 : body.p, unit: !ready0, isU: true,
                  gated: post, rain: 0, holdx: 0, turn: false, pow: 0, ready: false, rdy: 0, rune: 0, share: false,
                  acc: ready0 ? null : acc, link: "" });
     }
@@ -2208,7 +2344,8 @@ const costsOfSet = (set, ign, bodies, pick) => {
   // fire: without it no play cost is zero and no equip cost is zero.
   const allFree = new Map();
   for (const c of all) if (c.link) allFree.set(c.link, (allFree.get(c.link) ?? true) && !c.e && !c.p);
-  for (const c of all) if (c.after && !c.e && !c.p && allFree.get(c.after)) { c.after = ""; c.link = ""; }
+  // Not a strict one (#528): a free hide still makes its free play wait for the next turn.
+  for (const c of all) if (c.after && !c.strict && !c.e && !c.p && allFree.get(c.after)) { c.after = ""; c.link = ""; }
   const roots = new Set(all.filter((c) => c.after).map((c) => c.after));
   // A free Sentinel, a free Seal, a free Time Warp or a free Comedy still Adds, queues a turn or
   // readies a unit, and N of them do that N times, so none is interchangeable with one of itself.
@@ -2235,14 +2372,36 @@ const costsOfSet = (set, ign, bodies, pick) => {
  * are interchangeable, drawn separately for the bodies an ignition engine declares and the ones bought
  * after it, because those two pay different prices.
  */
-function bodyMixes(set, bodies) {
+function bodyMixes(set, bodies, uncapped = false) {
   if (!bodies || !bodies.n) return [[]];
-  const cands = bodyCandidates(set);
-  const multisets = (k, from = 0) => (k === 0 ? [[]] : cands.slice(from).flatMap((c, j) =>
-    multisets(k - 1, from + j).map((m) => [c, ...m])));
-  const pre = multisets(Math.min(bodies.engine, bodies.n));
-  const post = multisets(bodies.n - Math.min(bodies.engine, bodies.n));
-  return pre.flatMap((a) => post.map((b) => [...a, ...b]));
+  const used = copiesByName(set);
+  // `uncapped` is the mix guard's relaxation (priceSet): the one #517 front, every copy allowed.
+  const cands = uncapped ? candidatesOf(domainsOfSet(set)) : bodyCandidates(set, bodies.n);
+  // 103.2.b over the whole mix, engine bodies and bought ones alike: one deck holds them all (#528).
+  // The cap is spent WHILE drawing, so a mix past it is never built: filtering afterwards built every
+  // multiset of the layered candidates first, 66s for a legal --price set at 8 bodies (security scan).
+  // The order is the unfiltered one with those mixes left out, so every answer is unchanged.
+  const taken = new Map();
+  const take = (u, d) => taken.set(u.name, (taken.get(u.name) ?? 0) + d);
+  const multisets = (k, from = 0) => {
+    if (k === 0) return [[]];
+    const out = [];
+    for (let j = from; j < cands.length; j++) {
+      const c = cands[j];
+      if (!uncapped && (taken.get(c.name) ?? 0) >= capOf(c, used)) continue;
+      take(c, 1);
+      for (const m of multisets(k - 1, j)) out.push([c, ...m]);
+      take(c, -1);
+    }
+    return out;
+  };
+  const engine = Math.min(bodies.engine, bodies.n);
+  return multisets(engine).flatMap((a) => {
+    a.forEach((u) => take(u, 1));
+    const mixes = multisets(bodies.n - engine).map((b) => [...a, ...b]);
+    a.forEach((u) => take(u, -1));
+    return mixes;
+  });
 }
 /**
  * A set's price over every body mix, keeping the earliest: the row's own `pays` (with `gated`, the
@@ -2250,15 +2409,77 @@ function bodyMixes(set, bodies) {
  * the least `all` once ties go to `all`, so the fold searches, which compare `all`, read the same
  * mix the row does.
  */
+let hiddenBounds = 0, mixBounds = 0;
+const capEnv = (k) => (process.env[k] ? Number(process.env[k]) : NaN);
+const capFrom = (k) => (Number.isFinite(capEnv(k)) && capEnv(k) >= 0 ? capEnv(k) : 256);
+const SPLIT_CAP = capFrom("RC_SPLITS"), MIX_CAP = capFrom("RC_MIXES");
 function priceSet(set, ign, bodies, gated = false) {
+  const mixes = bodyMixes(set, bodies);
+  // THE MIX GUARD (#528's security scan). The copy limit draws bodies from layered fronts, so a legal
+  // --price set at 8 bodies held 3,823 capped mixes and took 66s, against 0.4s on one uncapped front.
+  // The catalogue's largest mix count is 65 (measured 2026-10-31 over --turns, --engines, --stalled,
+  // --holds, --recheck-notables). Past MIX_CAP the bodies come from the #517 front with no copy limit,
+  // which every capped mix is dominated by: it errs EARLY, never late. RC_MIXES sets the cap.
+  if (mixes.length <= MIX_CAP) return priceSplits(set, ign, bodies, gated, mixes);
+  mixBounds++;
+  if (process.env.RC_FB) console.error(`FALLBACK copies mixes=${mixes.length}`);
+  return { ...priceSplits(set, ign, bodies, gated, bodyMixes(set, bodies, true)), cbound: true };
+}
+function priceSplits(set, ign, bodies, gated, mixes) {
   let best = null;
-  for (const pick of bodyMixes(set, bodies)) {
-    const costs = costsOfSet(set, ign, bodies, pick);
-    const d = deployTurn(costs);
-    const pays = d.all === Infinity ? Infinity : d.all + (!d.extra && (d.unitLast || gated) ? 1 : 0);
-    if (!best || pays < best.pays || (pays === best.pays && d.all < best.d.all)) best = { d, costs, pays, pick };
+  const ladd = legendAddOf(set), nSplits = splitCount(set);
+  // THE SPLIT GUARD (#528's security scan). The splits are the product of (copies + 1) over the set's
+  // [Hidden] cards, so a legal --price set of five Mind/Chaos ones at 3 copies took 20s and six would
+  // take minutes. The catalogue's largest split-by-mix product is 256 (measured 2026-10-31 over
+  // --turns, --engines, --stalled, --holds, --recheck-notables). Past SPLIT_CAP the set is priced
+  // with every hidden copy free and no wait, which is at or under every split: it errs EARLY, the way
+  // the clock may, never late. Counted and named like the greedy fallback; RC_SPLITS sets the cap.
+  // The guard counts the splits before building any: built first, 14 such cards ran out of heap.
+  if (nSplits > 1 && nSplits * mixes.length > SPLIT_CAP) {
+    hiddenBounds++;
+    if (process.env.RC_FB) console.error(`FALLBACK hidden splits=${nSplits} mixes=${mixes.length}`);
+    const hide = Object.fromEntries(Object.entries(set).filter(([b]) => isHiddenBase(b)));
+    for (const pick of mixes) {
+      const costs = costsOfSet(set, ign, bodies, pick, hide, true);
+      const d = deployTurn(costs, ladd);
+      const pays = d.all === Infinity ? Infinity : d.all + (!d.extra && (d.unitLast || gated) ? 1 : 0);
+      if (!best || pays < best.pays || (pays === best.pays && d.all < best.d.all)) best = { d, costs, pays, pick, hide, ladd, bound: true };
+    }
+    return best;
   }
+  // A split that hides copies wins only by finishing before the best `pays` (#528): at that turn or
+  // later it ties `pays` at best and cannot have less `all` than the best's. So it is searched only
+  // up to the turn before, which took --engines from 11.5s to 6.2s (2.4s before #528) and left its output byte-identical.
+  const splits = hideSplits(set);
+  for (const hide of splits)
+    for (const pick of mixes) {
+      const costs = costsOfSet(set, ign, bodies, pick, hide);
+      // An undeployable incumbent (pays Infinity) cuts nothing: the search keeps its 40-turn horizon.
+      const d = deployTurn(costs, ladd, hide !== splits[0] && best && best.pays !== Infinity ? best.pays - 1 : 40);
+      const pays = d.all === Infinity ? Infinity : d.all + (!d.extra && (d.unitLast || gated) ? 1 : 0);
+      if (!best || pays < best.pays || (pays === best.pays && d.all < best.d.all)) best = { d, costs, pays, pick, hide, ladd };
+    }
   return best;
+}
+/**
+ * Every split of a set's [Hidden] copies into hidden and played (#528), from none hidden up: 811.3
+ * keeps the printed cost open to every copy, so the earliest of the splits is the lower bound. A
+ * split only names how many, since the copies of one card are interchangeable.
+ */
+function isHiddenBase(b) {
+  const c = byBase.get(b);
+  return !!c && !!curveOf(c).hidden;
+}
+function splitCount(set) {
+  return Object.entries(set).reduce((n, [b, q]) => (isHiddenBase(b) ? n * (q + 1) : n), 1);
+}
+function hideSplits(set) {
+  let splits = [{}];
+  for (const [b, q] of Object.entries(set)) {
+    if (!isHiddenBase(b)) continue;
+    splits = splits.flatMap((h) => Array.from({ length: q + 1 }, (_, k) => (k ? { ...h, [b]: k } : h)));
+  }
+  return splits;
 }
 
 /**
@@ -2357,16 +2578,21 @@ if (args.includes("--price")) {
   if (!Object.keys(set).length) { console.error(`# --price: empty spec ${JSON.stringify(spec)}, want BASE:QTY,BASE:QTY`); process.exit(2); }
   // --bodies N adds N `anyBodies` bodies (#517), chosen among the set's candidates as a row's are.
   const nb = args.includes("--bodies") ? args[args.indexOf("--bodies") + 1] || "" : "0";
-  // Capped because every mix is priced: the catalogue's largest anyBodies count is 3.
+  // Capped because every mix is priced: the catalogue's largest anyBodies count is 4 (#528).
   if (!/^[0-8]$/.test(nb)) { console.error(`# --price: bad --bodies ${JSON.stringify(nb)}, want a decimal integer from 0 to 8`); process.exit(2); }
-  const { d, costs, pick } = priceSet(set, null, { n: Number(nb), engine: 0 });
+  const { d, costs, pick, hide, ladd, bound, cbound } = priceSet(set, null, { n: Number(nb), engine: 0 });
   // `pays` is the row's own formula with no Beginning-Phase payoff: the readiness turn of 143.4 is
   // owed when a unit nothing readied landed with the last cost.
   console.log(`price ${Object.entries(set).map(([b, q]) => `${b}x${q}`).join(" ")}: all T${d.all}, last unit T${d.unit}` +
               `, unitLast ${!!d.unitLast}, pays T${d.all + (d.unitLast ? 1 : 0)}, income ${costs.reduce((a, c) => a + (c.pow || 0), 0)}` +
-              (pick.length ? `, bodies ${pick.map((b) => b.base).join("+")} of [${bodyCandidates(set).map(bodyLabel).join(", ")}]` : "") +
+              (pick.length ? `, bodies ${pick.map((b) => b.base).join("+")} of [${bodyCandidates(set, pick.length).map(bodyLabel).join(", ")}]` : "") +
+              // #528: the copies the earliest plan hides, and the legend [Add] it may spend.
+              (Object.values(hide).some(Boolean) ? `, hidden ${Object.entries(hide).filter(([, h]) => h).map(([b, h]) => `${b}x${h}`).join(" ")}` : "") +
+              (ladd ? `, legend ${ladd.base} [Add] E${ladd.e} for units at ${ladd.p} Power` : "") +
               // A guard's greedy answer is not the exact search's, so it says so (#523).
-              (d.greedy ? ", GREEDY FALLBACK (a guard tripped: not exact)" : ""));
+              (d.greedy ? ", GREEDY FALLBACK (a guard tripped: not exact)" : "") +
+              (bound ? ", HIDDEN BOUND (past the split guard: every hidden copy free, errs early)" : "") +
+              (cbound ? ", COPY BOUND (past the mix guard: bodies from the cheapest front, no copy limit, errs early)" : ""));
   process.exit(0);
 }
 
@@ -2450,7 +2676,7 @@ for (const { e, domains: ownDomains, cards: ownCards } of entries) {
   // An Additional Turn still queued when the set completes (#339) is itself the next Beginning
   // Phase and the next Awaken, so it owes neither reason and the clock does not move. `priceSet`
   // reads `pays` that way, over every mix of candidate bodies (#517).
-  const { d, costs: finalCosts, pays, pick } = priceSet(cards, ign, bodies, gated);
+  const { d, costs: finalCosts, pays, pick, hide, ladd, bound, cbound } = priceSet(cards, ign, bodies, gated);
   if (d.greedy) greedyRows.push(e.id);
   // RC_DBG=<id>,<id> prints the parts a row's turn is made of. This is how the five-row gap between
   // --ignition and --ignition-nogate turned out to be the readiness `+1` and not a residual: `all`
@@ -2464,9 +2690,11 @@ for (const { e, domains: ownDomains, cards: ownCards } of entries) {
   // fallback for a row that folds nothing.
   const merged = [...domainsOfSet(cards)];
   clock.push({ id: e.id, cls: e.class, pays, base: baselineTurn(merged), via: note || null,
-               ordered: finalCosts.some((c) => c.after), income: finalCosts.some((c) => c.pow),
+               ordered: finalCosts.some((c) => c.after && !c.strict), income: finalCosts.some((c) => c.pow),
                readier: finalCosts.some((c) => c.rdy), accel: finalCosts.some((c) => c.acc),
                runer: finalCosts.some((c) => c.rune || c.big || c.att || c.kinR), bodies: pick.length ? bodyKey(domainsOfSet(cards)) : null,
+               short: cheapShort(cards, bodies.n), holdsHidden: splitCount(cards) > 1,
+               hid: Object.values(hide).some(Boolean), hbound: !!bound, cbound: !!cbound, ladd: ladd ? ladd.base : null,
                domains: (merged.length ? merged : [...ownDomains]).sort().join("/") || "colourless" });
 }
 
@@ -2512,7 +2740,38 @@ function runeLine(rows) {
 function bodyLines(rows) {
   const ids = [...new Set(rows.map((c) => c.bodies).filter(Boolean))].sort();
   return [`# body candidates (anyBodies, #517: the earliest mix of these per row): ${rows.filter((c) => c.bodies).length} of ${rows.length} rows carry bodies, in ${ids.length} identities`,
-          ...ids.map((k) => `#   ${k.padEnd(12)} ${candidatesOf(k === "colourless" ? [] : k.split("/")).map(bodyLabel).join(", ")}`)];
+          ...ids.map((k) => `#   ${k.padEnd(12)} ${candidatesOf(k === "colourless" ? [] : k.split("/")).map(bodyLabel).join(", ")}`),
+          ...copyLines(rows)];
+}
+// #528: the rows whose identity's cheapest bodies run out under 103.2.b, the ones the cap can move.
+function copyLines(rows) {
+  const short = rows.filter((c) => c.short), bounded = rows.filter((c) => c.cbound);
+  return [`# copy limit (103.2.b, 3 per name, #528): ${short.length} of ${rows.filter((c) => c.bodies).length} rows with bodies ask more than their identity's cheapest units supply; ` +
+          `mix guard (${MIX_CAP}): ${bounded.length} rows priced uncapped${bounded.length ? `: ${bounded.map((c) => c.id).join(", ")}` : ""}` +
+          (mixBounds > bounded.length ? `, and ${mixBounds - bounded.length} candidate closures` : ""),
+          ...short.map((c) => `#   ${c.id}: ${c.short.n} bodies in ${c.bodies}, cheapest ${c.short.cheapest.map((u) => `${u.base} ${u.name} E${u.e}${u.p ? `/${u.p}` : ""}`).join(", ")} supplies ${c.short.supply}`)];
+}
+// #528: the [Hidden] population, read off the same `curveOf` every row is priced with.
+function hiddenLine(rows) {
+  const bounded = rows.filter((c) => c.hbound);
+  const holders = [...byBase.values()].filter((c) => curveOf(c).hidden);
+  return `# hidden (${HIDDEN} on a card's own line, 811.1.b: one Power to hide, the play free from the next turn): ` +
+         `${holders.length} cards carry it: ${holders.map((c) => `${c.base} ${c.name}`).join(", ")}; ` +
+         `${rows.filter((c) => c.holdsHidden).length} of ${rows.length} rows hold one, ${rows.filter((c) => c.hid).length} hide a copy in their earliest plan; ` +
+         `split guard (${SPLIT_CAP}): ${bounded.length} rows priced at the free-copy bound${bounded.length ? `: ${bounded.map((c) => c.id).join(", ")}` : ""}` +
+         (hiddenBounds > bounded.length ? `, and ${hiddenBounds - bounded.length} candidate closures` : "");
+}
+// #528: every legend that prints [Add], and what became of each.
+function legendLine(rows) {
+  const say = [...byBase.values()].filter((c) => c.type.includes("legend") && /\[Add\]/.test(`${c.text || ""} ${c.effect || ""}`));
+  const modelled = say.filter((c) => LEGEND_ADD.test(c.text || ""));
+  const refused = say.filter((c) => !modelled.includes(c) && LEGEND_REFUSED[c.base]);
+  const loose = say.filter((c) => !modelled.includes(c) && !LEGEND_REFUSED[c.base]);
+  return `# legend [Add] (a legend's own [Add], priced where the row names the legend in \`uses\`): ${say.length} legends print one; ` +
+         `modelled ${modelled.length}: ${modelled.map((c) => { const m = c.text.match(LEGEND_ADD); return `${c.base} ${c.name} (E${m[2]} for units, for ${m[1].match(/:rb_rune_rainbow:/g).length} Power)`; }).join(", ")}; ` +
+         `refused ${refused.length}: ${refused.map((c) => `${c.base} (${LEGEND_REFUSED[c.base]})`).join(", ")}; ` +
+         `unclassified ${loose.length}${loose.length ? `: ${loose.map((c) => c.base).join(", ")}` : ""}; ` +
+         `${rows.filter((c) => c.ladd).length} of ${rows.length} rows name a modelled one`;
 }
 function accelLine(rows) {
   return `# accelerate (${ACCELERATE} on a unit, 805.1.a: an optional [1][C] that waives 143.4): ${ACCEL_UNITS} units carry it; ` +
@@ -2537,6 +2796,8 @@ if (engines) {
   console.log(readierLine(eng));
   console.log(accelLine(eng));
   for (const l of bodyLines(eng)) console.log(l);
+  console.log(hiddenLine(eng));
+  console.log(legendLine(eng));
   console.log(runeLine(eng));
   const hist = new Map();
   for (const c of eng) hist.set(c.pays, (hist.get(c.pays) ?? 0) + 1);
@@ -2577,6 +2838,9 @@ console.log(readierLine(clock));
 console.log(accelLine(clock));
 // And the candidates a body is chosen among (#517).
 for (const l of bodyLines(clock)) console.log(l);
+// And [Hidden] and the legends' [Add] (#528).
+console.log(hiddenLine(clock));
+console.log(legendLine(clock));
 // And for readying runes (#513).
 console.log(runeLine(clock));
 // Non-vacuity for the ordering model: the constraint can only ever bind on a row that HAS an [Equip]
