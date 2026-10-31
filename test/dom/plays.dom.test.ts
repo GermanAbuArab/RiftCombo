@@ -269,6 +269,9 @@ describe("which entry a play is about", () => {
     "towering-combatant-up-from-the-deep-grand-plaza",
     // The subject of the #524 Plaza play, which names the three earlier Plaza entries without backticks.
     "towering-combatant-hidden-marai-grand-plaza",
+    // The subject of the #529 Plaza play, which names the four earlier Plaza entries and
+    // vanguard-captain-manufactor-plaza without backticks.
+    "galio-vanguard-captain-grand-plaza",
   ];
 
   it("points each play at the one line it is about, and half of them at none", async () => {
@@ -307,6 +310,9 @@ describe("which entry a play is about", () => {
     ]);
     expect(at("towering-combatant-hidden-marai-grand-plaza")).toEqual([
       "2026-10-27-a-hidden-marai-is-the-seventh-unit-for-no-energy-so-a-tank-fits-by-turn-three-and-their-six-still-take-it-to-six",
+    ]);
+    expect(at("galio-vanguard-captain-grand-plaza")).toEqual([
+      "2026-10-31-galio-is-a-six-might-tank-for-three-energy-and-a-vanguard-captain-makes-three-so-eight-hold-the-plaza-and-their-six-kill-nothing",
     ]);
     expect(at("bottled-constellation-time-warp")).toEqual(["2026-09-13-the-setup-nobody-prices"]);
     expect(at("shen-sentinel-time-warp-chain")).toEqual(["2026-09-13-the-elegance-is-the-slowness"]);
