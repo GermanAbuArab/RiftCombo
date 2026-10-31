@@ -894,3 +894,42 @@ describe("--price refuses malformed specs (#511)", () => {
     expect(r.stdout).toMatch(/^price OGN-040x1: all T/);
   });
 });
+
+/**
+ * [EQUIP] IS READ OUTSIDE REMINDER TEXT ONLY (#530). The Weaponmaster reminder, "(When you play me, you
+ * may [Equip] one of your Equipment to me for [rainbow] less, ...)", was parsed as an Equip cost: 1 Power
+ * on ten units and E1 + 1 on SFD-119 Jax, Unrelenting, whose span ran on into "pay [1] to draw 1", so
+ * every row holding one read late. `--equip-costs` prints the predicate, every base `equipCost` returns
+ * a cost for. The control is SFD-090 The Zero Drive, an Equipment whose reminder repeats its cost:
+ * deleting the reminder instead of skipping it would run its span into its banish and charge E4 + 2.
+ *
+ * JAX + THREE ANGLE SHOTS + SERRATED DIRK, T3 (jax-angle-shot-attach-draw, the one --engines row that
+ * moved, T4 before). Runes 2/4/6 on T1-T3 (161.2.a), and 164.2.a/b: a rune exhausts for 1 Energy and
+ * recycles for 1 Power. T1: an Angle Shot (E2). T2: Jax, E4 + 1 Body Power. T3, five runes: the Dirk
+ * (E1) and two Angle Shots (E4), and one rune recycled for the Dirk's [Equip] of one Fury rune, which
+ * Weaponmaster may waive anyway. Jax landed on T2, so no readiness turn is owed. T4 was the phantom.
+ */
+describe("[Equip] outside reminder text (#530)", () => {
+  const eq = execFileSync("node", ["scripts/adversarial-check.mjs", "--equip-costs"], { encoding: "utf8" });
+  const cost = (base: string) => eq.match(new RegExp(`^${base} (E\\d+\\+\\d+) `, "m"))?.[1] ?? null;
+
+  it("charges no Equip cost to a Weaponmaster unit (SFD-119 Jax, Unrelenting)", () => {
+    expect(cost("SFD-119"), eq).toBeNull();
+  });
+
+  it("still charges a real Equipment whose reminder repeats its cost (SFD-090 The Zero Drive, E1 + 1; the control)", () => {
+    expect(cost("SFD-090"), eq).toBe("E1+1");
+  });
+
+  it("returns a cost for Equipment only, and for a non-vacuous number of them", () => {
+    const m = eq.match(/^# equipCost: (\d+) bases, (\d+) not Equipment$/m);
+    expect(m, eq).toBeTruthy();
+    expect(Number(m![1])).toBeGreaterThanOrEqual(30);
+    expect(Number(m![2])).toBe(0);
+  });
+
+  it("pays Jax + three Angle Shots + Serrated Dirk on T3, as walked (jax-angle-shot-attach-draw)", () => {
+    const s = execFileSync("node", ["scripts/adversarial-check.mjs", "--price", "SFD-119:1,SFD-011:3,SFD-009:1"], { encoding: "utf8" });
+    expect(s, s).toMatch(/, pays T3,/);
+  });
+});

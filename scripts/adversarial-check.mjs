@@ -1776,12 +1776,24 @@ const domainsOfSet = (set) => {
  *                                 attaches it for the rainbow alone                -> 1 Power
  */
 const EQUIP_MANA_ONLY = { "UNL-188": { e: 0, p: 1 } };
+/*
+ * Only an [Equip] OUTSIDE reminder parentheses is a cost (#530). The Weaponmaster reminder, "(When you
+ * play me, you may [Equip] one of your Equipment to me for [rainbow] less, ...)", is not one, and read as
+ * one it charged 1 Power to ten units and E1 + 1 to SFD-119 Jax, whose span ran on into his "pay [1]
+ * to draw 1", and E1 + 1 to the legend SFD-247 Emperor of the Sands, which no row prices. Measured
+ * 2026-10-31 over data/cards.json: 47 bases returned a cost, 35 do now, and the 12 that left are those.
+ * The parentheses are blanked, not deleted, so the span is still read from the ORIGINAL text: SFD-090
+ * The Zero Drive prints "[Equip] [1][M] ([1][M]: Attach this ...)", and deleting the reminder would run
+ * its span on into its banish ability and charge E4 + 2. No card text nests parentheses or leaves one
+ * open, and `[^()]` keeps the blanking linear on a text that did.
+ */
 function equipCost(c) {
   const t = `${c.text || ""} ${c.effect || ""}`;
-  if (!/\[Equip\]/i.test(t)) return null;
+  const at = t.replace(/\([^()]*\)/g, (s) => " ".repeat(s.length)).search(/\[Equip\]/i);
+  if (at < 0) return null;
   if (/\[Quick-Draw\]/i.test(t)) return null;     // 819.1.d attaches on play; no Equip cost is determined
   if (EQUIP_MANA_ONLY[c.base]) return EQUIP_MANA_ONLY[c.base];
-  const m = t.match(/\[Equip\]\s*([^(\[]*)/i);
+  const m = t.slice(at).match(/\[Equip\]\s*([^(\[]*)/i);
   if (!m) return null;
   return {
     e: [...m[1].matchAll(/:rb_energy_(\d+):/g)].reduce((a, x) => a + Number(x[1]), 0),
@@ -2556,6 +2568,17 @@ if (args.includes("--selftest-bodies")) {
   const bad = cases.filter(([, ok]) => !ok).length;
   console.log(bad ? `# ${bad} FAILED` : "# all pass");
   process.exit(bad ? 1 : 0);
+}
+
+// --equip-costs prints the predicate of #530, every base `equipCost` returns a cost for, with that cost
+// and whether the card is an Equipment, so a reminder read as a cost shows up as a member.
+if (args.includes("--equip-costs")) {
+  const rows = [...byBase.values()].map((c) => ({ c, eq: equipCost(c) })).filter((x) => x.eq)
+    .sort((a, b) => a.c.base.localeCompare(b.c.base));
+  console.log(`# equipCost: ${rows.length} bases, ${rows.filter((x) => !x.c.tags?.includes("Equipment")).length} not Equipment`);
+  for (const { c, eq } of rows)
+    console.log(`${c.base} E${eq.e}+${eq.p} ${c.tags?.includes("Equipment") ? "Equipment" : c.type.join("/")} ${c.name}`);
+  process.exit(0);
 }
 
 // --price BASE:QTY,BASE:QTY prices a card set that is not an entry, through the same costsOfSet and
