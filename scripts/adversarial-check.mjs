@@ -1944,6 +1944,14 @@ function reducerOf(c, t) {
   const m = (c.type.includes("unit") || c.type.includes("gear")) && t.match(REDUCER);
   return m ? { redTag: m[1], red: Number(m[2]), redMin: Number(m[3]) } : { redTag: "", red: 0, redMin: 0 };
 }
+// The allocator carries ONE tribe and ONE floor per set (`redTag` in costsOfSet, `FL` in
+// deployTurnUncached), which is exact while every member shares them. A rebuild that adds a reducer
+// for another tribe or with another floor must model it rather than be priced by the last one read.
+{
+  const shapes = new Set([...byBase.values()].map((c) => reducerOf(c, `${c.text || ""} ${c.effect || ""}`))
+    .filter((r) => r.red).map((r) => `${r.redTag}/${r.redMin}`));
+  if (shapes.size > 1) throw new Error(`REDUCER: ${[...shapes].join(", ")} - one tribe and one floor are modelled (#532)`);
+}
 const LEGEND_REFUSED = {
   "OGN-247": "Daughter of the Void: rainbow for spells only, so it needs the clock to tell a spell's Power from another card's",
   "OGN-299": "Daughter of the Void's reprint: the same",

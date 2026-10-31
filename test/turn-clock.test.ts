@@ -954,10 +954,10 @@ describe("[Equip] outside reminder text (#530)", () => {
  * that fold it. T1 Confront, T2 a Herald, T3 the second Herald + Vi (one rune recycled, five left). T4,
  * seven runes, both Heralds out: three Gemdragons at 4 each, each refunding 2 per Dragon, both Kadregrins,
  * the Grenade, Detonate, and five E5 Dragons at 1, one rune left. T5: Show of Strength, the last Dragon
- * and the Henge. T4 is out of the clock's reach: its nine Power can only come from recycles, and eight
- * runes are channelled by T4. By hand the line ends on T4, because SFD-117 Ancient Henge turns the
- * refunded Energy into rainbow Power and the clock does not model that conversion, so these rows still
- * read one turn late; that is a separate issue, not this one.
+ * and the Henge. That is the clock's own schedule, and its T5 is exact for the clock: the nine Power can
+ * only come from recycles, and eight runes are channelled by T4. By hand the line is all T4 / pays T5,
+ * because SFD-117 Ancient Henge turns the refunded Energy into rainbow Power and the clock does not
+ * model that conversion, so these rows still read one turn late; that is a separate issue, not this one.
  */
 describe("a tribal cost reducer (#532)", () => {
   const price = (set: string) => {
