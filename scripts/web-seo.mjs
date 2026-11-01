@@ -32,9 +32,22 @@ export function sitemapXml(entries) {
   return `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls}\n</urlset>\n`;
 }
 
-/** Write each rendered page to its file under `out`. */
+/** The shape of a combo id, a play slug and every directory and file name a page is written under (#557). */
+export const SLUG_SHAPE = /^[a-z0-9]+(-[a-z0-9]+)*$/;
+
+/**
+ * Write each rendered page to its file under `out`. Every path segment of `p.file` (a combo id or play
+ * slug among them, read from data/combos.json and docs/plays/) must have the slug shape, so no value
+ * can leave `out` or name an unroutable page; a miss fails the build naming the value and its source.
+ */
 export function writePages(out, pages) {
   for (const p of pages) {
+    const segs = String(p.file).replace(/\.html$/, "").split("/");
+    const bad = segs.find((seg) => !SLUG_SHAPE.test(seg));
+    // A page is `<slug>.html` or `<dir>/<slug>.html`: a deeper path is a separator inside an id.
+    if (bad !== undefined || segs.length > 2 || !String(p.file).endsWith(".html")) {
+      throw new Error(`writePages: page file ${JSON.stringify(p.file)} has segment ${JSON.stringify(bad ?? p.file)} outside ${SLUG_SHAPE} (source: ${(p.sources ?? []).join(", ") || "unknown"})`);
+    }
     const file = join(out, p.file);
     mkdirSync(dirname(file), { recursive: true });
     writeFileSync(file, p.html);

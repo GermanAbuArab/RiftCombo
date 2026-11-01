@@ -15,7 +15,7 @@ import { loadPlays } from "../scripts/web-plays.mjs";
 // @ts-expect-error same.
 import { stripInternalDeep } from "../scripts/web-combo-prose.mjs";
 // @ts-expect-error same.
-import { ORIGIN as SEO_ORIGIN, sitemapEntries, writePages, writeSeo } from "../scripts/web-seo.mjs";
+import { ORIGIN as SEO_ORIGIN, SLUG_SHAPE, sitemapEntries, writePages, writeSeo } from "../scripts/web-seo.mjs";
 
 /**
  * #286: the public pages, rendered from the same data the build reads and checked page by page. The
@@ -196,6 +196,24 @@ describe("the build writes a file for every sitemap URL (#286)", () => {
     }
     for (const c of combos) expect(existsSync(join(out, "combos", `${c.id}.html`)), c.id).toBe(true);
     for (const e of entries) if (e.lastmod) expect(e.lastmod, e.path).toMatch(/^\d{4}-\d{2}-\d{2}$/);
+  });
+
+  it("refuses a combo id or play slug outside the slug shape (#557)", () => {
+    const out = mkdtempSync(join(tmpdir(), "render-"));
+    for (const id of ["../x", "a/b", "A-B", "", "a--b", "-a", "a.b", "a b"]) {
+      expect(() => writePages(out, [{ file: `combos/${id}.html`, html: "", sources: ["data/combos.json"] }]), JSON.stringify(id)).toThrow(/data\/combos\.json/);
+    }
+    expect(() => writePages(out, [{ file: "../escape.html", html: "" }])).toThrow(/outside/);
+    expect(() => writePages(out, [{ file: "plays/ok-slug.txt", html: "" }])).toThrow(/outside/);
+    expect(() => writePages(out, [{ file: "plays/ok-slug-2.html", html: "x" }])).not.toThrow();
+  });
+
+  it("every combo id and play slug has the slug shape (#557)", () => {
+    const ids = combos.map((c) => c.id);
+    const slugs = plays.map((p) => p.slug);
+    const bad = [...ids, ...slugs].filter((v) => !SLUG_SHAPE.test(v));
+    console.log(`#557 shape check: ${ids.length} combo ids, ${slugs.length} play slugs, ${pages.length} pages, ${bad.length} failing`);
+    expect(bad).toEqual([]);
   });
 
   it("is wired into build:web after the static copy", () => {
