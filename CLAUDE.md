@@ -60,7 +60,7 @@
 - No emoji, no blue/purple gradients, no decorative shadows, no glassmorphism.
 - Hand-rolled SVG graph — no graph library.
 - The **What to add** panel (#18, 2026-09-04) lives in the deck panel under the status card, not as a third view segment and not as a separate page — the user chose that placement over both. Its logic is `src/plan.ts` (`planDeck`), kept out of `web/` so it has tests. Three rules the user set and that must not be quietly reversed: it ranks by **copies to add**, with the combo class only breaking a tie; it shows the cheapest route **whatever it costs** — a six-card route is still displayed, because the count itself is the honest signal and hiding it hides a real answer; and it never suggests a card outside the legend's two domains (Domain Identity 103.1.b), which `test/plan.test.ts` pins against the mono-Fury fixture. It also drops any line whose ingredients are banned in the format being matched, so the panel never recommends buying an illegal card even when the matcher correctly reports the hit.
-- **The editor at `#/decks/<id>` is the deckbuilder (#101, 2026-09-06), not a textarea.** Two fixed columns (pool with search, domain chips, zone, type/set/cost/sort; deck in text rows per zone with −/+, Runes Auto, a cost curve and Construction as a one-line-per-rule checklist), `Pool | Deck` tabs under 900px. The arithmetic (caps, auto-runes, curve, identity filter) is `src/builder.ts` with tests; `web/builder.ts` is the DOM; paste/deck code/Piltover URL import lives in a dialog and still goes through `loadDeck`. A saved deck is still `text` + `name` + `format`, so nothing in Supabase changed. The spec the user approved is `docs/superpowers/specs/2026-09-06-deckbuilder-design.md`; Stats, sample hand and playtest are out of scope by decision. The sideboard an imported list carries is drawn read-only.
+- **The editor at `#/decks/<id>` is the deckbuilder (#101, 2026-09-06), not a textarea.** Two fixed columns (pool with search, domain chips, zone, type/set/cost/sort; deck in text rows per zone with −/+, Runes Auto, a cost curve and Construction as a one-line-per-rule checklist), `Pool | Deck` tabs under 900px. The arithmetic (caps, auto-runes, curve, identity filter) is `src/builder.ts` with tests; `web/builder.ts` is the DOM; paste/deck code/Piltover URL import lives in a dialog and still goes through `loadDeck`. A saved deck is still `text` + `name` + `format`, so nothing in the database changed (Supabase until 2026-09-25, Neon since). The spec the user approved is `docs/superpowers/specs/2026-09-06-deckbuilder-design.md`; Stats, sample hand and playtest are out of scope by decision. The sideboard an imported list carries is drawn read-only.
 - The **Banned and restricted** panel (#23, 2026-09-04) is the first thing in the deck panel, above the status card, because a list brought to a tournament wants that before any combo. `deckRestrictions(deck, cards, format)` in `src/deck.ts` takes the format rather than storing a flag on the parse, so the panel re-reads on the format toggle. `banned` and `restricted` are NOT the same thing and must not render the same: restricted is a cap, not an illegal card, and `OGS-019` is restricted in 2v2 only.
 - The panel answers only what is computable. The narrative half of a hunt entry ("Svellsongur on Hwei fires twice per move") came from an agent reading card text and is NOT derivable from `combos.json`; "Already in this list" therefore means catalogued lines the deck completes plus catalogued pieces it holds, and nothing is invented to fill that section.
 
@@ -76,20 +76,23 @@
   redirect is a **project-domain setting** (`PATCH /v9/projects/<id>/domains/<host>` with
   `{"redirect":"riftcombo.app","redirectStatusCode":308}`), not a `vercel.json` rule: a host-matched
   `redirects` entry in `vercel.json` was tried first on 2026-09-05 and never matched on a Git deploy.
-  The old host stays in the Supabase redirect allow-list; every link, `site_url` and doc names `.app`.
-- The hosted Supabase project is `bpbwsimgiyxzaorunqeo` in `us-east-1`, the region iad deploys to.
-  Its **anon key is public by design** and rides in `public/app.js`; what keeps one player's rows
-  away from another is RLS, proved by `node scripts/check-rls.mjs` (14 checks, two real users,
-  run it **against the hosted project**, not only a local stack). The `service_role` key and the
-  database password live in `.env.local` and reach nothing else — `test/headers.test.ts` fails if
-  either name appears anywhere under `web/`.
-- **`supabase/config.toml` is the source of truth for Auth, and `supabase config push` applies it.**
-  Site URL, the redirect allow-list and the Google provider are all in there, with the client id and
-  secret read as `env(...)`. Changing them in the dashboard by hand puts the repo and the project out
-  of step, and the next `config push` silently reverts it.
-- **`vercel.json` is generated, never hand-edited.** `SUPABASE_URL=… node scripts/build-headers.mjs`
-  writes it and the result is committed, because Vercel reads it before the build command runs. The
-  same variable feeds the bundle through esbuild's `define`, so the origin is set in one place.
+  Every link, the Auth trusted domain and every doc names `.app`.
+- **Accounts run on Neon** (project `quiet-breeze-27436036`, branch `main`; backing decision and
+  region in README `## Infraestructura`): Neon Auth with the project's own Google OAuth client, and
+  the Data API. The two URLs, `NEON_AUTH_URL` and `NEON_DATA_API_URL`, are **public by design** and
+  ride in `public/app.js`; they are the only account variables Vercel production holds (measured
+  2026-11-01, `npx vercel env ls production`). What keeps one player's rows away from another is
+  RLS, proved by `npm run check:rls` (`scripts/check-rls-neon.mjs`, two real users) **on a throwaway
+  child branch, never on `main`**: production has email-and-password sign-up off, and the script
+  refuses the default branch (its header gives the `neonctl` steps to turn it on in the child).
+- **Auth config lives in Neon, applied with `neonctl neon-auth ...`** (`oauth-provider`, `domain`,
+  `config`; each takes `--project-id` and `--branch`), not in a repo file. Trusted domain on `main`
+  read 2026-11-01: `https://riftcombo.app` (`neonctl neon-auth domain list`). Change it there, not
+  in a dashboard by hand, and write what changed on the issue.
+- **`vercel.json` is generated, never hand-edited.** `NEON_AUTH_URL=… NEON_DATA_API_URL=… node
+  scripts/build-headers.mjs` (`npm run headers`) writes it and the result is committed, because
+  Vercel reads it before the build command runs. The same two variables feed the bundle through
+  esbuild's `define` in `scripts/build-web.mjs`, so each origin is set in one place.
 - Sign-in is a **full-page redirect**, and that is load-bearing: `Cross-Origin-Opener-Policy:
   same-origin` severs a popup from the window that opened it and the flow never reports back, with
   no error printed anywhere.
@@ -99,14 +102,15 @@
   restorable for 30 days.
 - **The whole app sits behind sign-in (#39, user decision 2026-09-05, reversing #31's "anonymous stays
   identical").** `<body data-auth>` carries the state — `pending` (HTML default, shows neither side so
-  nothing flashes), `out` (the entrance only), `in` (the app), `open` (a build with no `SUPABASE_URL`,
+  nothing flashes), `out` (the entrance only), `in` (the app), `open` (a build with no `NEON_AUTH_URL`,
   which has no gate to open and behaves as before). `gate()` in `web/account.ts` sets it from the
-  same supabase-js listener that reports the exchanged `?code=` session, and `web/styles.css` does the
+  same auth listener that reports the exchanged session, and `web/styles.css` does the
   showing. The entrance carries the ONE sign-in button; the header shows only name + Sign out.
   `test/headers.test.ts` pins the single button and the pending default.
-- Adding a redirect URI can take Google "5 minutes to a few hours" to apply. Do not debug it blind:
-  `curl -sL "$(curl -s -o /dev/null -w '%{redirect_url}' 'https://<ref>.supabase.co/auth/v1/authorize?provider=google&redirect_to=https%3A%2F%2Friftcombo.app')"`
-  answers `redirect_uri_mismatch` until it is live and the Google sign-in page after.
+- Adding a redirect URI to the Google client can take Google "5 minutes to a few hours" to apply.
+  Do not debug it blind: until it is live the sign-in answers `redirect_uri_mismatch`, and the
+  Google sign-in page after.
+- History: Supabase until 2026-09-25 (PR #225), deleted 2026-10-30 (#238); the old `supabase/` migrations stay in the repo as record.
 
 ## Verify
 - Run `npm test` and `npm run typecheck` before claiming anything works. Rebuild data with `npm run build:data`.
