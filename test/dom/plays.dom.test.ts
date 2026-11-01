@@ -272,6 +272,9 @@ describe("which entry a play is about", () => {
     // The subject of the #529 Plaza play, which names the four earlier Plaza entries and
     // vanguard-captain-manufactor-plaza without backticks.
     "galio-vanguard-captain-grand-plaza",
+    // The subject of the #537 Chaos/Order play, which names its own entry first and the earlier
+    // Yasuo and Ivern lines after it.
+    "yasuo-ride-the-wind-hold-curve-turn-five",
   ];
 
   it("points each play at the one line it is about, and half of them at none", async () => {
@@ -313,6 +316,9 @@ describe("which entry a play is about", () => {
     ]);
     expect(at("galio-vanguard-captain-grand-plaza")).toEqual([
       "2026-10-31-galio-is-a-six-might-tank-for-three-energy-and-a-vanguard-captain-makes-three-so-eight-hold-the-plaza-and-their-six-kill-nothing",
+    ]);
+    expect(at("yasuo-ride-the-wind-hold-curve-turn-five")).toEqual([
+      "2026-10-31-yasuo-fires-on-turn-four-off-the-hold-curve-so-chaos-order-wins-turn-five-unopposed-and-their-free-turn-three-attack-makes-it-six",
     ]);
     expect(at("bottled-constellation-time-warp")).toEqual(["2026-09-13-the-setup-nobody-prices"]);
     expect(at("shen-sentinel-time-warp-chain")).toEqual(["2026-09-13-the-elegance-is-the-slowness"]);

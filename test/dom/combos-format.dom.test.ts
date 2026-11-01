@@ -61,7 +61,10 @@ describe("the class tag carries its threshold", () => {
   it("prints the points a BURST or CHAIN has to reach, and nothing for the classes it does not describe", async () => {
     await setFormat("constructed");
     expect(chips().length).toBeGreaterThan(0);
-    expect(chipFor("CHAIN")!.querySelector(".chip-meta")!.textContent).toBe("CHAIN · 8 points · VERIFIED");
+    // The list also matches candidate CHAINs (#537's Yasuo line), so the verified one is looked for
+    // among every CHAIN chip rather than taken to be the first.
+    const metas = chips().map((c) => c.querySelector(".chip-meta")!.textContent).filter((t) => t!.startsWith("CHAIN"));
+    expect(metas).toContain("CHAIN · 8 points · VERIFIED");
     // ENGINE does not close a game, so a Victory Score says nothing about it.
     expect(chipFor("ENGINE")!.querySelector(".chip-meta")!.textContent).toBe("ENGINE · VERIFIED");
   });
