@@ -18,6 +18,7 @@ import { cardDataNote, guideBody, sourcesBody } from "../src/render/pages.js";
 import { accountsEnabled } from "./supabase.js";
 import type { SavedDeck } from "../src/saved.js";
 import { esc } from "../src/html.js";
+import { safeHref } from "../src/markdown.js";
 import { classLabel, victoryNote } from "../src/victory.js";
 import { OUTCOME_PALETTE, renderGraph, thumb, type GraphView, type Layout } from "./graph.js";
 import { go, onRoute, route, startRouter } from "./router.js";
@@ -543,9 +544,11 @@ function renderBans() {
 
 function banRow(r: DeckRestriction): string {
   const copies = `${r.count} ${r.count === 1 ? "copy" : "copies"}`;
+  const href = safeHref(r.entry.source);
+  const notice = href ? `<a href="${esc(href)}" target="_blank" rel="noopener noreferrer">Riot's notice</a>` : `<span>Riot's notice</span>`;
   return `<div class="ban-row ${r.entry.status}">
     <p class="ban-name">${esc(r.entry.name)} <span class="ban-tag">${r.entry.status}</span></p>
-    <p class="ban-meta">${copies} in your list · ${esc(FORMAT_LABEL[r.entry.format])} · since ${esc(r.entry.since)} · <a href="${esc(r.entry.source)}" target="_blank" rel="noopener noreferrer">Riot's notice</a></p>
+    <p class="ban-meta">${copies} in your list · ${esc(FORMAT_LABEL[r.entry.format])} · since ${esc(r.entry.since)} · ${notice}</p>
   </div>`;
 }
 
