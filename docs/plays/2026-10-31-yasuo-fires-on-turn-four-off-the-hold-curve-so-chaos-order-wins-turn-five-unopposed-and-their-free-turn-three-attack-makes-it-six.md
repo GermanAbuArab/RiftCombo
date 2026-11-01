@@ -86,8 +86,8 @@ move 2   Ride the Wind (E2 + 1 Chaos Power), A -> base  449: an effect move; the
 move 3   Standard Move, base -> A                     144.4.a again; the third move scores 1
 ```
 
-Three moves from base always end at a battlefield, so the T4 shuttle leaves Yasuo at A. **The mirror,**
-with Yasuo starting the turn at A, is what T5 runs:
+The T4 shuttle's third move is base -> A, so it leaves Yasuo at A. **The mirror,** with Yasuo starting
+the turn at A, is what T5 runs:
 
 ```
 move 1   Standard Move, A -> base                     144.4.b; its cost is Yasuo's exhaust, 144.2
