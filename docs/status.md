@@ -20,7 +20,7 @@ entirely in the browser against a static bundle; there is no matching server.
 **The whole site sits behind sign-in** (#39, user decision of 2026-09-05, which deliberately reverses
 the "anonymous is identical" posture #31 was built with). `<body data-auth>` carries the state —
 `pending` (the HTML default, which shows neither side so nothing flashes), `out` (the entrance only),
-`in` (the application) and `open` (a build with no `SUPABASE_URL`, which has no gate to open). The CSS
+`in` (the application) and `open` (a build with no `NEON_AUTH_URL`, which has no gate to open). The CSS
 decides what is visible; `web/account.ts` sets the attribute.
 
 **Five views**, routed by hash (`web/router.ts`, `VIEWS = ["combos","decks","plays","guide","sources"]`):
@@ -134,7 +134,7 @@ Two artifacts that are read by nothing and are easy to mistake for inputs (both 
 **`scripts/` — the builds.** `build-cards.mjs` downloads the 6 pages of Riot's gallery API, applies the
 errata, resolves legality and resolves `signature.src.json` → `cards.json` (with `Card.signature`) +
 `legality.json`; `build-corpus.mjs` → `corpus_flat.txt`; `build-web.mjs` compiles `web/` into `public/`
-with esbuild, baking in `SUPABASE_URL` and `SUPABASE_ANON_KEY` via `define`; `build-headers.mjs`
+with esbuild, baking in `NEON_AUTH_URL` and `NEON_DATA_API_URL` via `define`; `build-headers.mjs`
 **generates `vercel.json`** (never edited by hand, because Vercel reads it before running the build
 command, so it is committed); `check-rls-neon.mjs` proves row isolation with two real users on a throwaway
 Neon branch; `adversarial-check.mjs` is the turn clock and the answer sweeps; `claude-md-gap.mjs`
