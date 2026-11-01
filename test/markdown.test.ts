@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { parseInline, parseMarkdown, resolvePlayHref, splitRow, type Block, type Span } from "../src/markdown.js";
+import { parseInline, parseMarkdown, resolvePlayHref, safeHref, splitRow, type Block, type Span } from "../src/markdown.js";
 // @ts-expect-error plain .mjs shared with scripts/build-web.mjs, which cannot import TypeScript.
 import { loadPlays } from "../scripts/web-plays.mjs";
 
@@ -180,6 +180,27 @@ describe("where a play's links point", () => {
 
   it("leaves every other address exactly as written", () => {
     for (const h of ["https://example.com/x", "/privacy", "#/combos"]) expect(resolvePlayHref(h, slugs)).toBe(h);
+  });
+
+  it("refuses every scheme off the href allow-list, so the caller draws a span (#556)", () => {
+    for (const h of ["javascript:alert(1)", "JaVaScRiPt:alert(1)", "\tjavascript:alert(1)", "java\nscript:alert(1)",
+      " javascript:alert(1)", "data:text/html,x", "vbscript:x", "//evil.example/x", "/\\evil.example", "relative/path.html",
+      "javascript:alert(1)//x.md", ""]) {
+      expect(resolvePlayHref(h, slugs), JSON.stringify(h)).toBeNull();
+      expect(safeHref(h), JSON.stringify(h)).toBeNull();
+    }
+  });
+
+  it("returns an allowed href as written, not as it was checked (#556)", () => {
+    expect(safeHref("/mi pagina")).toBe("/mi pagina");
+    expect(safeHref("  https://a.example/x y ")).toBe("https://a.example/x y");
+  });
+
+  it("keeps every allowed form, whatever the case of its scheme (#556)", () => {
+    for (const h of ["https://example.com/x", "http://example.com", "HTTPS://example.com", "mailto:a@b.co", "/privacy", "#top", "#/combos"]) {
+      expect(safeHref(h), h).toBe(h);
+      expect(resolvePlayHref(h, slugs), h).toBe(h);
+    }
   });
 });
 
