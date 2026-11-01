@@ -61,7 +61,9 @@ export function clip(text: string, max = 160): string {
   const flat = text.replace(/\s+/g, " ").trim();
   if (flat.length <= max) return flat;
   const cut = flat.slice(0, max - 1);
-  return `${cut.slice(0, Math.max(cut.lastIndexOf(" "), 1)).replace(/[\s,;:.—–-]+$/, "")}…`;
+  // At the last word boundary; a text with no space in reach is cut where it stands.
+  const at = cut.lastIndexOf(" ");
+  return `${(at > 0 ? cut.slice(0, at) : cut).replace(/[\s,;:.—–-]+$/, "")}…`;
 }
 
 const BRAND_MARK = `<svg class="brand-mark" viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.5 18.5 10 10 18.5 1.5 10Z"/><path d="M10 6.2 13.8 10 10 13.8 6.2 10Z"/></svg>`;

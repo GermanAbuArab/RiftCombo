@@ -15,7 +15,8 @@ export const ORIGIN = "https://riftcombo.app";
  * file in public/, and the source file whose last commit dates them.
  */
 export const STATIC_PAGES = [
-  { path: "/", file: "index.html", sources: ["web/index.html"] },
+  // The Guide and Sources views at / are filled from src/render/pages.ts.
+  { path: "/", file: "index.html", sources: ["web/index.html", "src/render/pages.ts"] },
   { path: "/privacy", file: "privacy.html", sources: ["web/privacy.html"] },
   { path: "/terms", file: "terms.html", sources: ["web/terms.html"] },
 ];

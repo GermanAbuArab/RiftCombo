@@ -3,7 +3,7 @@ import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { describe, expect, it } from "vitest";
 import { authoredWords, comboPage, THIN_WORDS, type ComboContext } from "../src/render/combo.js";
-import { DISCLAIMER, ORIGIN } from "../src/render/layout.js";
+import { clip, DISCLAIMER, ORIGIN } from "../src/render/layout.js";
 import { guideBody, sourcesBody } from "../src/render/pages.js";
 import { APP, playArticle, type Play } from "../src/render/play.js";
 import { fileOf, renderSite, type BuiltPage, type SiteInput } from "../src/render/site.js";
@@ -90,6 +90,28 @@ describe("every pre-rendered page (#286)", () => {
         if (href!.includes("#")) expect(href, p.path).toBe("/#/decks");
       }
     }
+  });
+
+  it("says 'walked by hand' in a description only of what was walked", () => {
+    const desc = (html: string) => /<meta name="description" content="([^"]*)">/.exec(html)![1]!;
+    const verified = combos.filter((c) => c.status === "verified").length;
+    for (const c of combos) {
+      const d = desc(pages.find((p) => p.path === `/combos/${c.id}`)!.html);
+      expect(d.includes("not yet walked"), c.id).toBe(c.status !== "verified");
+    }
+    const index = desc(pages.find((p) => p.path === "/combos")!.html);
+    if (verified < combos.length) expect(index).toContain(`${verified} walked by hand`);
+    const one = combos[0]!;
+    const asCandidate = renderSite({ ...input, combos: [{ ...one, status: "candidate" }] });
+    expect(desc(asCandidate.find((p) => p.path === `/combos/${one.id}`)!.html)).toContain("not yet walked by hand");
+    expect(desc(asCandidate.find((p) => p.path === "/combos")!.html)).toContain("1 Riftbound combos, 0 walked by hand");
+  });
+
+  it("clips a description at a word boundary, and a text with no space at the limit", () => {
+    expect(clip("word ".repeat(60))).toMatch(/^(word )+word…$/);
+    expect(clip("word ".repeat(60)).length).toBeLessThanOrEqual(160);
+    const solid = "x".repeat(300);
+    expect(clip(solid)).toBe(`${"x".repeat(159)}…`);
   });
 
   it("names Inter and nothing else: the pages load the app's own stylesheet and font", () => {

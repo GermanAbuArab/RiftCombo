@@ -135,7 +135,7 @@ export function comboPage(c: Combo, ctx: ComboContext): string {
     {
       path: `/combos/${c.id}`,
       title: c.name,
-      description: clip(`${classLabel(c.class)} Riftbound combo: ${pieceNames(c, ctx)}. ${c.steps.length} steps walked by hand against Core Rules ${c.rulesVersion}, with sources.`),
+      description: clip(`${classLabel(c.class)} Riftbound combo: ${pieceNames(c, ctx)}. ${c.steps.length} steps ${c.status === "verified" ? "walked by hand" : "proposed by an automated sweep, not yet walked by hand,"} against Core Rules ${c.rulesVersion}, with sources.`),
       section: "combos",
       noindex: authoredWords(c) < THIN_WORDS,
       ogType: "article",
@@ -152,6 +152,7 @@ export function combosIndexPage(combos: Combo[], ctx: ComboContext): string {
   const groups = CLASSES.map((cls) => ({ cls, entries: combos.filter((c) => c.class === cls).sort((a, b) => a.name.localeCompare(b.name)) }))
     .filter((g) => g.entries.length);
   const verified = combos.filter((c) => c.status === "verified").length;
+  const walked = verified === combos.length ? `${combos.length} Riftbound combos walked by hand` : `${combos.length} Riftbound combos, ${verified} walked by hand`;
   const body = `<h1>Combos</h1>
 <p>${combos.length} catalogued Riftbound lines${verified === combos.length ? ", every one walked by hand" : ` (${verified} walked by hand)`} against the card text and the Core Rules, with the paragraphs and sources behind each step. They are grouped by class, the ones that end the game first.</p>
 ${groups.map((g) => `<h2>${esc(classLabel(g.cls))} <span class="count">${g.entries.length}</span></h2>
@@ -160,7 +161,7 @@ ${groups.map((g) => `<h2>${esc(classLabel(g.cls))} <span class="count">${g.entri
     {
       path: "/combos",
       title: "Combos",
-      description: clip(`${combos.length} Riftbound combos walked by hand against the Core Rules: infinite loops, one-turn bursts, chains and engines, each with its pieces, steps and sources.`),
+      description: clip(`${walked} against the Core Rules: infinite loops, one-turn bursts, chains and engines, each with its pieces, steps and sources.`),
       section: "combos",
     },
     body,
