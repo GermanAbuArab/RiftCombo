@@ -41,6 +41,7 @@ export const SLUG_SHAPE = /^[a-z0-9]+(-[a-z0-9]+)*$/;
  * can leave `out` or name an unroutable page; a miss fails the build naming the value and its source.
  */
 export function writePages(out, pages) {
+  // Check every page before writing any, so a bad id never leaves a partial public/ behind.
   for (const p of pages) {
     const segs = String(p.file).replace(/\.html$/, "").split("/");
     const bad = segs.find((seg) => !SLUG_SHAPE.test(seg));
@@ -48,6 +49,8 @@ export function writePages(out, pages) {
     if (bad !== undefined || segs.length > 2 || !String(p.file).endsWith(".html")) {
       throw new Error(`writePages: page file ${JSON.stringify(p.file)} has segment ${JSON.stringify(bad ?? p.file)} outside ${SLUG_SHAPE} (source: ${(p.sources ?? []).join(", ") || "unknown"})`);
     }
+  }
+  for (const p of pages) {
     const file = join(out, p.file);
     mkdirSync(dirname(file), { recursive: true });
     writeFileSync(file, p.html);

@@ -1,4 +1,4 @@
-import { existsSync, mkdtempSync, readFileSync } from "node:fs";
+import { existsSync, mkdtempSync, readdirSync, readFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { describe, expect, it } from "vitest";
@@ -208,12 +208,21 @@ describe("the build writes a file for every sitemap URL (#286)", () => {
     expect(() => writePages(out, [{ file: "plays/ok-slug-2.html", html: "x" }])).not.toThrow();
   });
 
-  it("every combo id and play slug has the slug shape (#557)", () => {
+  it("writes nothing when a later page is bad (#557)", () => {
+    const out = mkdtempSync(join(tmpdir(), "render-"));
+    const batch = [{ file: "combos/good-one.html", html: "x" }, { file: "combos/../bad.html", html: "x", sources: ["data/combos.json"] }];
+    expect(() => writePages(out, batch)).toThrow(/data\/combos\.json/);
+    expect(readdirSync(out)).toEqual([]);
+  });
+
+  it("every combo id, play slug and page file has the slug shape (#557)", () => {
     const ids = combos.map((c) => c.id);
     const slugs = plays.map((p) => p.slug);
     const bad = [...ids, ...slugs].filter((v) => !SLUG_SHAPE.test(v));
     console.log(`#557 shape check: ${ids.length} combo ids, ${slugs.length} play slugs, ${pages.length} pages, ${bad.length} failing`);
     expect(bad).toEqual([]);
+    const badFiles = pages.map((p) => p.file).filter((f) => f.replace(/\.html$/, "").split("/").some((s) => !SLUG_SHAPE.test(s)));
+    expect(badFiles).toEqual([]);
   });
 
   it("is wired into build:web after the static copy", () => {
