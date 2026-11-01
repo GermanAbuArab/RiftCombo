@@ -1,5 +1,6 @@
 import { addCard, emptyDeck } from "./builder.js";
 import type { CardIndex } from "./cards.js";
+import { safeHref } from "./markdown.js";
 import { COMBO_KEYS, INGREDIENT_ROLES, ZONES } from "./types.js";
 import type { Combo, ComboClass, ComboStatus, Domain, Feature, Variant } from "./types.js";
 
@@ -240,7 +241,7 @@ const REPO_BLOB = "https://github.com/GermanAbuArab/RiftCombo/blob/master/";
  * a URL; this turns it into one. Returns null when the title names no such file.
  */
 export function sourceHref(source: { title: string; url?: string }): string | null {
-  if (source.url) return source.url;
+  if (source.url) return safeHref(source.url);
   const path = /\((docs\/[^\s)]+\.md)/.exec(source.title)?.[1];
   return path ? REPO_BLOB + path : null;
 }

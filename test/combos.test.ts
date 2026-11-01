@@ -387,6 +387,15 @@ describe("a cited walk is a link a reader can open (#55)", () => {
       .toBe("https://www.tcgplayer.com/content/article/x/");
     expect(sourceHref({ title: "Equipment lens hunt, issue #41 candidate 1 (rc-huntE)" })).toBeNull();
   });
+
+  it("refuses a source url off the href allow-list and keeps the allowed ones (#556)", () => {
+    for (const url of ["javascript:alert(1)", "JaVaScRiPt:alert(1)", "\tjavascript:alert(1)", "data:text/html,x", "vbscript:x", "//evil.example/x"]) {
+      expect(sourceHref({ title: "x", url }), url).toBeNull();
+    }
+    for (const url of ["https://a.example/x", "http://a.example/x", "mailto:a@b.co", "/privacy", "#top"]) {
+      expect(sourceHref({ title: "x", url }), url).toBe(url);
+    }
+  });
 });
 
 /**

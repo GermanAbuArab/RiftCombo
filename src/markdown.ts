@@ -231,6 +231,20 @@ export function parseMarkdown(src: string): Block[] {
 }
 
 /**
+ * An href a page may draw as a link, or null. Allow-list: `https:`, `http:`, `mailto:`, a hash
+ * (`#…`) and a root-relative path (`/…`). Anything else — `javascript:`, `data:`, `vbscript:`, a bare
+ * relative path, and protocol-relative `//host` (it leaves the site on whatever scheme the page has,
+ * so it is not "root-relative") — is refused and the caller renders a span. Control characters and
+ * whitespace are stripped first, because browsers drop them inside a scheme (`java\tscript:`).
+ * The result is a URL, not markup: a caller puts it in an attribute through `esc()`.
+ */
+export function safeHref(href: string): string | null {
+  const h = href.replace(/[\u0000-\u0020\u007f-\u009f]/g, "");
+  if (/^(?:https?|mailto):/i.test(h) || h.startsWith("#")) return h;
+  return h.startsWith("/") && !h.startsWith("//") && !h.startsWith("/\\") ? h : null;
+}
+
+/**
  * Where an `[…](…)` in a play should point, or null for "render the words and drop the link".
  *
  * The plays cross-link each other by file name, which is an address the browser cannot serve: the
@@ -242,7 +256,7 @@ export function parseMarkdown(src: string): Block[] {
  * real path on a pre-rendered page (#286).
  */
 export function resolvePlayHref(href: string, slugs: ReadonlySet<string>, prefix = "#/plays/"): string | null {
-  if (!href.endsWith(".md")) return href;
+  if (!href.endsWith(".md")) return safeHref(href);
   const slug = href.replace(/^.*\//, "").replace(/\.md$/, "");
   return slugs.has(slug) ? `${prefix}${slug}` : null;
 }
