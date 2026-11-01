@@ -36,18 +36,27 @@ export function sitemapXml(entries) {
 export const SLUG_SHAPE = /^[a-z0-9]+(-[a-z0-9]+)*$/;
 
 /**
+ * The offending path segment of a page file (or the whole value), or null when it is acceptable: a
+ * page is `<slug>.html` or `<dir>/<slug>.html`, and a deeper path is a separator inside an id.
+ */
+export function pageFileProblem(file) {
+  const segs = String(file).replace(/\.html$/, "").split("/");
+  const bad = segs.find((seg) => !SLUG_SHAPE.test(seg));
+  if (bad !== undefined) return bad;
+  return segs.length > 2 || !String(file).endsWith(".html") ? String(file) : null;
+}
+
+/**
  * Write each rendered page to its file under `out`. Every path segment of `p.file` (a combo id or play
  * slug among them, read from data/combos.json and docs/plays/) must have the slug shape, so no value
  * can leave `out` or name an unroutable page; a miss fails the build naming the value and its source.
  */
 export function writePages(out, pages) {
-  // Check every page before writing any, so a bad id never leaves a partial public/ behind.
+  // Check every file name before writing any, so a bad id never leaves a partial public/ behind.
   for (const p of pages) {
-    const segs = String(p.file).replace(/\.html$/, "").split("/");
-    const bad = segs.find((seg) => !SLUG_SHAPE.test(seg));
-    // A page is `<slug>.html` or `<dir>/<slug>.html`: a deeper path is a separator inside an id.
-    if (bad !== undefined || segs.length > 2 || !String(p.file).endsWith(".html")) {
-      throw new Error(`writePages: page file ${JSON.stringify(p.file)} has segment ${JSON.stringify(bad ?? p.file)} outside ${SLUG_SHAPE} (source: ${(p.sources ?? []).join(", ") || "unknown"})`);
+    const bad = pageFileProblem(p.file);
+    if (bad !== null) {
+      throw new Error(`writePages: page file ${JSON.stringify(p.file)} has segment ${JSON.stringify(bad)} outside ${SLUG_SHAPE} (source: ${(p.sources ?? []).join(", ") || "unknown"})`);
     }
   }
   for (const p of pages) {

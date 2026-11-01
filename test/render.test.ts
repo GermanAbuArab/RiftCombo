@@ -15,7 +15,7 @@ import { loadPlays } from "../scripts/web-plays.mjs";
 // @ts-expect-error same.
 import { stripInternalDeep } from "../scripts/web-combo-prose.mjs";
 // @ts-expect-error same.
-import { ORIGIN as SEO_ORIGIN, SLUG_SHAPE, sitemapEntries, writePages, writeSeo } from "../scripts/web-seo.mjs";
+import { ORIGIN as SEO_ORIGIN, SLUG_SHAPE, pageFileProblem, sitemapEntries, writePages, writeSeo } from "../scripts/web-seo.mjs";
 
 /**
  * #286: the public pages, rendered from the same data the build reads and checked page by page. The
@@ -221,7 +221,7 @@ describe("the build writes a file for every sitemap URL (#286)", () => {
     const bad = [...ids, ...slugs].filter((v) => !SLUG_SHAPE.test(v));
     console.log(`#557 shape check: ${ids.length} combo ids, ${slugs.length} play slugs, ${pages.length} pages, ${bad.length} failing`);
     expect(bad).toEqual([]);
-    const badFiles = pages.map((p) => p.file).filter((f) => f.replace(/\.html$/, "").split("/").some((s) => !SLUG_SHAPE.test(s)));
+    const badFiles = pages.map((p) => p.file).filter((f) => pageFileProblem(f) !== null);
     expect(badFiles).toEqual([]);
   });
 
