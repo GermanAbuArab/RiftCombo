@@ -43,8 +43,8 @@ no Energy as soon as his first move puts him at a battlefield. The walked hand h
 The line pays two Chaos Power by T4 (Yasuo's and one Ride the Wind's), and a third on T5 for the second
 Ride the Wind. Each Power comes from a rune that has already paid its Energy, recycled: **one Chaos rune
 among the six runes on the board by T3, and a second Chaos rune among the seven by T4.** From the
-opponent the line needs one battlefield that is yours on T4 and T5, with Yasuo alive at your base when
-your turn starts.
+opponent the line needs one battlefield that is yours on T4 and T5, with Yasuo alive when each of those
+turns starts: at your base on T4, and at A on T5, where the T4 shuttle leaves him.
 
 Heart of the Tempest is Order/Chaos and its tag is Kennen, so Kennen, Storm of Shuriken can be the
 Chosen Champion, 103.2.a.2: *"Must be a champion unit with a champion tag that matches the tag on your
@@ -85,6 +85,17 @@ move 1   Standard Move, base -> A                     144.4.a; its cost is Yasuo
 move 2   Ride the Wind (E2 + 1 Chaos Power), A -> base  449: an effect move; the ready refunds the exhaust
 move 3   Standard Move, base -> A                     144.4.a again; the third move scores 1
 ```
+
+Three moves from base always end at a battlefield, so the T4 shuttle leaves Yasuo at A. **The mirror,**
+with Yasuo starting the turn at A, is what T5 runs:
+
+```
+move 1   Standard Move, A -> base                     144.4.b; its cost is Yasuo's exhaust, 144.2
+move 2   Ride the Wind (E2 + 1 Chaos Power), base -> A  449: an effect move; the ready refunds the exhaust
+move 3   Standard Move, A -> base                     144.4.b again; the third move scores 1
+```
+
+It ends at base (or at B, if move 3 is a [Ganking] Standard Move, 144.4.c.1), never at A.
 
 - 144.4.a: *"Units may move from their Base to a Battlefield."* 144.4.b: *"Units may move from a
   Battlefield to their Base."* 144.2: *"Exhausting the Unit is the Cost for this action."*
@@ -188,9 +199,11 @@ their T4  9       Hold B. Soaring Scout (E2), Vanguard Captain (E3,         3
                   [Legion] on, two Recruits at B), Helm of Suppression
                   (E4); two runes recycled for the two Powers. None
                   left.
-T5        8       Hold A: +1. The shuttle with the second Ride the Wind,    7
-                  E3 under the Helm (a third Chaos rune recycled): +1.
-                  Crimson Pigeons walks to A. Four left.
+T5        8       Hold A: +1. The mirror shuttle from A with the second     7
+                  Ride the Wind, E3 under the Helm (a third Chaos rune
+                  recycled): +1; Yasuo ends at base. Crimson Pigeons
+                  walks to A. Five left; seven runes stay. A holds
+                  3 + 3 + 2 + 3 = 11.
 their T5  9       Hold B.                                                   4
 T6        9       Hold A: +1. Eight.                                        8, win
 ```
@@ -232,8 +245,8 @@ with both sides wiped. B costs them nothing.
 **T4, 5.** Seven runes (five plus the two channelled, 315.3.b: *"1. The Turn Player channels 2 runes
 from their Rune Deck."*). Hold A. Yasuo is ready at your base. Move 1, a Standard Move to A. Move 2,
 Ride the Wind: two runes exhausted, and one of them, a Chaos rune, recycled for the Power. Yasuo goes
-back to base and is readied. Move 3, a Standard Move to A. That is the third move: +1. Five runes
-remain unexhausted. Mystic Poro goes to A (its [Vision] looks at your top card, and nothing in the walk
+back to base and is readied. Move 3, a Standard Move to A. That is the third move: +1, and Yasuo ends the turn at A. Five
+runes remain unexhausted. Mystic Poro goes to A (its [Vision] looks at your top card, and nothing in the walk
 depends on what it is), and Crimson Pigeons goes to base. A now holds two Ramhounds (3 + 3), Yasuo (4)
 and Mystic Poro (2), so it defends with 12. B holds their Ramhound (3) and Guardian (3 + 1 [Shield] =
 4), so it defends with 7, and Yasuo's third move cannot take it (see the alternative route below).
@@ -245,12 +258,19 @@ is E2 + E3 + E4 = 9 Energy and two Powers, both from runes already exhausted and
 defends with 3 + 4 + 3 + 1 + 1 = 12. Their base holds Royal Guard (2), the Sand Soldier (2), Stalwart
 Poro (2) and Soaring Scout (1), seven against your 12 at A, so they do not attack.
 
-**T5, 7.** Eight runes (six plus two). Hold A: 6. Yasuo shuttles again with the second Ride the Wind,
-which the Helm makes cost one more Energy: three runes exhausted and a Chaos rune recycled. +1: 7.
-Crimson Pigeons walks from base to A. Four runes stay unexhausted, and nothing you hold can take B.
+**T5, 7.** Eight runes (six plus two). Hold A: 6. Yasuo starts the turn at A, where the T4 shuttle
+left him, so he runs the mirror of §2: a Standard Move from A to base (144.4.b), the second Ride the
+Wind from base to A, which readies him, and a Standard Move from A to base. The Helm makes Ride the Wind
+cost one more Energy: three runes exhausted, and one of those three, a Chaos rune, recycled for the
+Power. +1: 7. Yasuo ends the turn at base. Crimson Pigeons walks from base to A. Seven runes stay on the
+board and five of them are unexhausted, and nothing you hold can take B. A now holds two Ramhounds
+(3 + 3), Mystic Poro (2) and Crimson Pigeons (3): 11.
 
-**Their T5, 7–4.** Hold B. Nothing they have reaches the 15 at A (§8 says what this walk does not
-check).
+**Their T5, 7–4.** Hold B. With Yasuo at base, A defends with 11. Their movable Might is still only
+the 7 at base: Royal Guard (2), the Sand Soldier (2), Stalwart Poro (2, whose [Shield] counts only while
+defending) and Soaring Scout (1). Their units at B cannot move to A, since none has [Ganking]
+(144.4.c.1), and the units they play on their T5 enter exhausted (143.4). So nothing reaches A (§8 says
+what this walk does not check).
 
 **T6, 8.** Hold A: **eight points. You win on T6.**
 
@@ -282,7 +302,10 @@ each time they choose [me/this].""* (809.1.b.3, *"If X is omitted, it is presume
   :rb_rune_rainbow: to react with later for :rb_energy_0:.) [Action] (Play on your turn or in showdowns.)
   Kill a unit at a battlefield. Its controller draws 2."* **The cheapest answer.** One Power on their
   turn hides it, and no Energy on yours plays it after move 1 puts Yasuo at A. Yasuo dies before move 3,
-  and every later point with him. You draw 2. Played as a plain spell, it costs E2 + 1. Clock gap #541
+  and every later point with him. You draw 2. Played as a plain spell, it costs E2 + 1. **The window is
+  wider than move 1:** the T4 shuttle ends at A, so from the end of your T4 through their T4 Yasuo sits
+  at a battlefield, and the plain spell reaches him on their own turn too. The cheapest break stays the
+  hidden one. Clock gap #541
   (one facedown card per battlefield, and battlefield control) does not touch this, because the hidden
   card is theirs and not part of the line.
 - **`OGN-229 Vengeance`** (Order, E4 P2): *"Kill a unit."* No location clause, so it kills Yasuo at your
@@ -309,7 +332,8 @@ each time they choose [me/this].""* (809.1.b.3, *"If X is omitted, it is presume
 - **Outside their identity,** other decks have cheaper shapes: `VEN-152 Rebuttal` (Mind/Chaos, E1 P1)
   and `UNL-131 Abandon` (Chaos, E2) answer Ride the Wind, `SFD-136 Hard Bargain` (Chaos, E2) is another
   Chaos Reaction, and `OGN-024 Void Seeker` (Fury, E3 P1, *"[Action] (Play on your turn or in
-  showdowns.) Deal 4 to a unit at a battlefield. Draw 1."*) kills Yasuo at A. These names come from a
+  showdowns.) Deal 4 to a unit at a battlefield. Draw 1."*) kills Yasuo at A, on their own turn as well
+  between the end of your T4 and the start of your T5. These names come from a
   regex sweep of the corpus for "kill", "deal 4 or more" and "counter". They were not walked, and the
   sweep is the instrument, not a proof that nothing else exists.
 
@@ -367,7 +391,7 @@ refined. Yasuo is Chaos, and he needs one battlefield that is yours, not a board
   numbers; they were not modelled.
 - **Their choices.** The walk keeps the Galio walk's deck and draws. It does not play Hidden Blade,
   Vengeance or Defy, which their identity allows. It does not walk a T5 attack on A with whatever they
-  draw on T5, against the 15 at A.
+  draw on T5, against the 11 at A.
 - **The Helm branch past T4.**
 - **The rune order.** Two Chaos runes are needed among the first seven, as in §1, and no rune deck was
   dealt.

@@ -272,7 +272,8 @@ Yasuo, Windrider with Ride the Wind (a point per copy per turn); Shen, Leader of
 P2, T5 at best); Power Nexus (four rainbow Power at a Hold, one game in three); Draven, Audacious
 (needs a combat won); the two catalogued Ivern CHAINs (T6, T7); Reckoner's Arena and Karthus, Eternal.
 The CHAIN that pays is the Yasuo one, on T5. One Yasuo played to base on T3 shuttles base to A, A to
-base with Ride the Wind, which readies him, and base to A again on T4, and again on T5. The point is a
+base with Ride the Wind, which readies him, and base to A again on T4. He starts T5 at A, so T5 runs the
+mirror, A to base, Ride the Wind to A, and A to base. The point is a
 194.1.c gain, so 470 does not cap it. On top of the Hold curve that is 6 on T4 and 8 on T5. The
 Chaos/Fury shuttle play had the same cards at T6 because it fired three Yasuos together. That is T5 on
 the clock against the Chaos/Order Hold baseline of T6, so it enters as a candidate CHAIN. In the walk,
