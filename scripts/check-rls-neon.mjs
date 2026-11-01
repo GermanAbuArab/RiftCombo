@@ -1,7 +1,6 @@
 #!/usr/bin/env node
 // Prove the isolation between two real users on NEON instead of assuming it because the policies
-// were written. The Neon twin of `scripts/check-rls.mjs`, which it replaces at cutover; both exist
-// only while the migration is in flight.
+// were written. It replaced the Supabase `check-rls.mjs` at the 2026-09-25 cutover (PR #225).
 //
 // It creates throwaway accounts, has each save a deck, then tries every way one of them could reach
 // the other's row: read it, list it, rename it, delete it, or insert a row under the other's id.

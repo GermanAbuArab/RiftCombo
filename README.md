@@ -49,39 +49,45 @@ http.server 8788`, que alcanza para todo menos la ruta `/api/deck-url`.
 committeado. `public/` es artefacto de build de `web/` — no se edita a mano.
 
 > ⚠️ No hay ambiente de staging: cualquier push a `master` deploya a producción de inmediato, y el
-> único proyecto Supabase configurado también es el de producción.
+> único proyecto Neon configurado también es el de producción. Para probar cuentas o RLS, creá un
+> branch hijo de Neon (ver `scripts/check-rls-neon.mjs`); nunca corras el check contra `main`.
 
 ## Cuentas
 
-Todo el sitio está detrás del login con Google. Dos valores públicos lo configuran, desde
-`.env.local` localmente y desde las variables de entorno de Vercel en producción:
+Todo el sitio está detrás del login con Google (Neon Auth, con el cliente OAuth propio del
+proyecto). Dos valores públicos lo configuran, desde `.env.local` localmente y desde las variables
+de entorno de Vercel en producción:
 
 ```
-SUPABASE_URL=https://<ref>.supabase.co
-SUPABASE_ANON_KEY=<la anon key del proyecto>
+NEON_AUTH_URL=https://<ep>.neonauth.<región>.neon.tech/neondb/auth
+NEON_DATA_API_URL=https://<ep>.apirest.<región>.neon.tech/neondb/rest/v1
 ```
 
-Las dos son públicas por diseño: la anon key viaja en cada bundle del navegador, y lo que mantiene
-las filas de un jugador lejos de otro es row-level security en la base. `scripts/build-web.mjs` las
-hornea en el bundle, y `npm run headers` regenera `vercel.json` para que el mismo origen aparezca
-literal en `connect-src` — corrélo después de cambiar `SUPABASE_URL` y committeá el resultado,
-porque Vercel lee `vercel.json` antes de correr el build.
+Las dos son públicas por diseño: viajan en cada bundle del navegador, y lo que mantiene las filas
+de un jugador lejos de otro es row-level security en la base, servida por la Data API de Neon.
+`scripts/build-web.mjs` las hornea en el bundle, y `npm run headers` regenera `vercel.json` para
+que el mismo origen aparezca literal en `connect-src` — corrélo después de cambiar cualquiera de
+las dos y committeá el resultado, porque Vercel lee `vercel.json` antes de correr el build.
 
 El sign-in es una redirección de página completa, no un popup: el sitio manda
 `Cross-Origin-Opener-Policy: same-origin`, bajo la cual un popup queda cortado de la página que lo
 abrió y el flujo nunca vuelve, sin nada en la consola que lo diga.
 
 ```
-supabase db push                    # aplica supabase/migrations/ al proyecto linkeado
-npm run check:rls                   # dos usuarios reales; ninguno puede tocar las filas del otro
+npm run check:rls   # dos usuarios reales; ninguno puede tocar las filas del otro
 ```
 
-`npm run check:rls` necesita además `SUPABASE_SERVICE_ROLE_KEY`, que es una clave de servidor:
-saltea RLS, la lee ese script y nada más, y no aparece en `web/` ni en un commit.
+`npm run check:rls` corre `scripts/check-rls-neon.mjs` y **solo en un branch hijo de Neon**, nunca
+en `main` (producción tiene el sign-up por email apagado; el header del script explica cómo
+prenderlo en el branch). Lee `NEON_AUTH_URL`, `NEON_DATA_API_URL`, `NEON_PROJECT_ID` y
+`NEON_BRANCH_ID`, todas públicas; no maneja ninguna clave.
+
+*Historia: hasta el 2026-09-25 las cuentas vivían en Supabase; el corte a Neon fue el PR #225.
+`supabase/` queda en el repo solo como registro de esas migraciones.*
 
 ## Infraestructura
 
-- **Hosting**: Vercel project `riftcombo` (Pro team), production branch `master`. The latest deploy showed CANCELED at the time of the sync (2026-09-25); check before assuming it is serving traffic.
+- **Hosting**: Vercel project `riftcombo` (Pro team), production branch `master`. `npx vercel ls riftcombo` on 2026-11-01 shows the latest production deploys Ready.
 - **Database and auth**: Neon `quiet-breeze-27436036` (aws-us-east-1), branch `main` = `br-wandering-haze-av7v6x9v`; Neon Auth with the project's own Google OAuth client, and the Data API (RLS). Production reads `NEON_AUTH_URL` and `NEON_DATA_API_URL`.
 - **Backing decision**: `_infra/decisions/2026-09-19-todo-a-neon-salvo-sir-loin`.
 - **Search engines (#271, 2026-10-07)**: Google Search Console, **domain** property `riftcombo.app`, verified by DNS with the record `TXT @ "google-site-verification=O7V2TlovaHfx_-ex5s7ZBLlH3kaBi7hYXlNRou8RHsw"` (Vercel DNS, team `germanabuarabs-projects`, `rec_dd3a9683fe204fc2892c09c7`; deleting it un-verifies the property). Bing Webmaster Tools, site `https://riftcombo.app/` imported from Search Console (no record of its own; Bing re-validates against Search Console with read-only access). `https://riftcombo.app/sitemap.xml` is submitted in both. Account: the owner's Google account, in both.
