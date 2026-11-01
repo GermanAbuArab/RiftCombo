@@ -240,8 +240,9 @@ export function parseMarkdown(src: string): Block[] {
  */
 export function safeHref(href: string): string | null {
   const h = href.replace(/[\u0000-\u0020\u007f-\u009f]/g, "");
-  if (/^(?:https?|mailto):/i.test(h) || h.startsWith("#")) return h;
-  return h.startsWith("/") && !h.startsWith("//") && !h.startsWith("/\\") ? h : null;
+  const ok = /^(?:https?|mailto):/i.test(h) || h.startsWith("#") || (h.startsWith("/") && !h.startsWith("//") && !h.startsWith("/\\"));
+  // The stripped copy only decides; the href goes out as written, so a space inside a path is still the browser's to encode.
+  return ok ? href.trim() : null;
 }
 
 /**

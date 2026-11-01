@@ -191,6 +191,11 @@ describe("where a play's links point", () => {
     }
   });
 
+  it("returns an allowed href as written, not as it was checked (#556)", () => {
+    expect(safeHref("/mi pagina")).toBe("/mi pagina");
+    expect(safeHref("  https://a.example/x y ")).toBe("https://a.example/x y");
+  });
+
   it("keeps every allowed form, whatever the case of its scheme (#556)", () => {
     for (const h of ["https://example.com/x", "http://example.com", "HTTPS://example.com", "mailto:a@b.co", "/privacy", "#top", "#/combos"]) {
       expect(safeHref(h), h).toBe(h);
