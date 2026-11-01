@@ -106,7 +106,8 @@ describe("the 2v2 toggle", () => {
 
 describe("the Guide", () => {
   it("gives both numbers with the paragraph each comes from", () => {
-    const guide = file("web/index.html");
+    // The Guide is written once, in src/render/pages.ts, for the app's view and the /guide page (#286).
+    const guide = file("src/render/pages.ts");
     expect(guide).toContain("The Victory Score is 8 points by default");
     expect(guide).toContain("194.3");
     expect(guide).toContain("489.3");

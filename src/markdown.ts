@@ -8,10 +8,9 @@
  * text it is, which is the honest failure: a construct we do not support shows up as itself rather
  * than as silently dropped prose.
  *
- * It is a parser to a tree and not a renderer to HTML on purpose. The Content-Security-Policy this
- * site ships forbids inline `style=`, and the whole class of mistake behind that rule is building
- * markup out of strings; `web/plays.ts` walks this tree with `createElement` and `textContent`, so
- * no document text is ever interpreted as markup. It is also why the parser lives in `src/` — the
+ * It is a parser to a tree, and the renderer is a separate walk of that tree in `src/render/play.ts`
+ * (#286), shared by the app and the pre-rendered pages, which passes every piece of document text
+ * through `esc()` so none of it is ever interpreted as markup. The parser lives in `src/` for the
  * same reason `src/plan.ts` does, so it has tests that do not need a DOM.
  */
 
@@ -239,9 +238,11 @@ export function parseMarkdown(src: string): Block[] {
  * only for a slug the payload actually carries — a link to a play that was renamed or never shipped
  * becomes plain text rather than a dead address, because a reader can tell a missing link from a
  * broken one and cannot tell a 404 from a bug. Anything else is left exactly as written.
+ * `prefix` is the play's address on the surface drawing it: the app's hash route by default, the
+ * real path on a pre-rendered page (#286).
  */
-export function resolvePlayHref(href: string, slugs: ReadonlySet<string>): string | null {
+export function resolvePlayHref(href: string, slugs: ReadonlySet<string>, prefix = "#/plays/"): string | null {
   if (!href.endsWith(".md")) return href;
   const slug = href.replace(/^.*\//, "").replace(/\.md$/, "");
-  return slugs.has(slug) ? `#/plays/${slug}` : null;
+  return slugs.has(slug) ? `${prefix}${slug}` : null;
 }

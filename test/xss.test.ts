@@ -13,7 +13,7 @@ import { esc } from "../src/html.js";
  * its class was `[&<>"]`, which is safe only while every attribute it feeds is double-quoted.
  */
 const read = (p: string) => readFileSync(new URL(`../${p}`, import.meta.url), "utf8");
-const WEB = ["web/main.ts", "web/decks.ts", "web/builder.ts", "web/account.ts"] as const;
+const WEB = ["web/main.ts", "web/decks.ts", "web/builder.ts", "web/account.ts", "web/plays.ts", "src/render/layout.ts", "src/render/combo.ts", "src/render/play.ts", "src/render/pages.ts"] as const;
 
 describe("the HTML escape", () => {
   it("neutralises a tag, an attribute break and an apostrophe", () => {

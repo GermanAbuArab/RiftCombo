@@ -7,14 +7,15 @@
 //   node scripts/build-web.mjs --watch   # rebuild on change
 
 import { build, context } from "esbuild";
+import { tsImport } from "tsx/esm/api";
 import { copyFileSync, cpSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 import { siteConfig } from "./site-config.mjs";
 import { slimCard } from "./web-card-fields.mjs";
 import { loadPlays } from "./web-plays.mjs";
-import { stripProsePlugin } from "./web-combo-prose.mjs";
-import { writeSeo } from "./web-seo.mjs";
+import { stripInternalDeep, stripProsePlugin } from "./web-combo-prose.mjs";
+import { sitemapEntries, writePages, writeSeo } from "./web-seo.mjs";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
 const OUT = join(ROOT, "public");
@@ -48,8 +49,28 @@ const STATIC = ["index.html", "privacy.html", "terms.html", "404.html", "styles.
 for (const f of STATIC) copyFileSync(join(ROOT, "web", f), join(OUT, f));
 // Inter is served from this origin (#295), so no page asks Google Fonts for it before any consent choice.
 cpSync(join(ROOT, "web", "fonts"), join(OUT, "fonts"), { recursive: true });
-// After the copy, because writeSeo checks every sitemap path against a file in public/ (#268).
-writeSeo(OUT);
+
+// The public pages (#286): one static file per combo, play and prose page, from the same render
+// functions the browser imports. The data goes through the same strip the bundle's copy does
+// (`stripProsePlugin` below), so a page carries no sentence app.js would not. tsx loads the .ts
+// sources, which Node cannot import on its own (they import each other as .js).
+const prerenderStart = performance.now();
+const readData = (f) => stripInternalDeep(JSON.parse(readFileSync(join(ROOT, "data", f), "utf8")));
+const { renderSite } = await tsImport("../src/render/site.ts", import.meta.url);
+const pages = renderSite({
+  combos: readData("combos.json").combos,
+  cards: slim.cards,
+  legality: readData("legality.json").entries,
+  features: readData("features.json").features,
+  plays: plays.map((p) => ({ ...p, file: `docs/plays/${p.slug}.md` })),
+  resultsUpdatedAt: slim.resultsUpdatedAt,
+});
+writePages(OUT, pages);
+// After the copy and the pages, because writeSeo checks every sitemap path against a file in
+// public/ (#268) and the sitemap is generated from the pages written.
+const sitemap = sitemapEntries(ROOT, pages);
+writeSeo(OUT, sitemap);
+const prerenderMs = Math.round(performance.now() - prerenderStart);
 
 // Both values are public by design and are baked in rather than fetched, so the account layer is
 // either present in a build or absent from it — never half-configured at runtime. An empty pair
@@ -91,6 +112,7 @@ if (watch) {
 } else {
   await build(options);
   const size = (f) => `${(readFileSync(join(OUT, f)).length / 1024).toFixed(0)} KB`;
+  console.log(`pre-rendered ${pages.length} pages (${pages.filter((p) => p.noindex).length} noindex), sitemap ${sitemap.length} URLs, in ${prerenderMs} ms`);
   console.log(`public/app.js ${size("app.js")} · public/data/cards.json ${size("data/cards.json")} · public/data/plays.json ${size("data/plays.json")} (${plays.length} plays)`);
   console.log(site.authUrl ? `accounts: ${site.origins.join(" + ")}` : "accounts: off (NEON_AUTH_URL / NEON_DATA_API_URL unset)");
 }

@@ -3,7 +3,7 @@ import featuresJson from "../data/features.json" with { type: "json" };
 import legalityJson from "../data/legality.json" with { type: "json" };
 import synergiesJson from "../data/synergies.json" with { type: "json" };
 import { CardIndex, readableCardText } from "../src/cards.js";
-import { generateVariants, sourceHref } from "../src/combos.js";
+import { generateVariants } from "../src/combos.js";
 import { checkBuild, LEGALITY_RULE } from "../src/build.js";
 import { deckCountLine, deckRestrictions, deckToText, isDeckCode, loadDeck, normalizeDeck, type DeckEntry, type DeckRestriction } from "../src/deck.js";
 import { matchDeck, type Hit, type MatchResult } from "../src/matcher.js";
@@ -13,6 +13,8 @@ import type { Card, Combo, Deck, Domain, Feature, Format, LegalityEntry, Synergy
 import { gate, initAccount } from "./account.js";
 import { initDecks } from "./decks.js";
 import { initPlays, playsAbout } from "./plays.js";
+import { comboSections } from "../src/render/combo.js";
+import { cardDataNote, guideBody, sourcesBody } from "../src/render/pages.js";
 import { accountsEnabled } from "./supabase.js";
 import type { SavedDeck } from "../src/saved.js";
 import { esc } from "../src/html.js";
@@ -179,8 +181,20 @@ const setStatus = (title: string, body: string, kind: "" | "ok" | "error" = "") 
   if (kind) statusCard.classList.add(kind);
 };
 
+/**
+ * The Guide and Sources views, from the functions the public /guide and /sources pages are built
+ * from. The word "candidate" only means something while the catalogue holds one; with every entry
+ * walked, the sentences explaining it would point at nothing, so they stay out of the page.
+ */
+function renderProse(note?: string): void {
+  const candidates = combos.some((c) => c.status !== "verified");
+  $<HTMLElement>("#how").innerHTML = guideBody({ base: 2, candidates });
+  $<HTMLElement>("#data").innerHTML = sourcesBody({ base: 2, candidates, note });
+}
+
 async function boot() {
   gate();
+  renderProse();
   setStatus("Loading", "Fetching the card index…");
   const res = await fetch("/data/cards.json");
   // Without this the body is parsed as JSON whatever came back, so an error page throws deep inside
@@ -190,12 +204,9 @@ async function boot() {
   const data = (await res.json()) as { cards: Card[]; resultsUpdatedAt: string };
   cards = new CardIndex(data.cards, legality);
   variants = generateVariants(combos, cards);
-  const verified = combos.filter((c) => c.status === "verified").length;
-  // The word "candidate" only means something while the catalogue holds one; with every entry
-  // walked, the sentences explaining it would point at nothing, so they stay out of the page.
-  for (const el of document.querySelectorAll<HTMLElement>('[data-when="candidates"]')) el.hidden = verified === combos.length;
-  const tally = verified === combos.length ? `${combos.length} combos, every one walked by hand` : `${combos.length} combos (${verified} verified)`;
-  $<HTMLElement>("#data-note").insertAdjacentHTML("beforeend", ` Card data as of ${esc(data.resultsUpdatedAt.slice(0, 10))}: ${cards.cards.length} printings, ${tally}.`);
+  // The Sources view is drawn again now that the card index can be counted (#286: the same text the
+  // public /sources page is built from).
+  renderProse(cardDataNote(data.resultsUpdatedAt, cards.cards.length, combos));
   setStatus("Ready", "Paste a deck list to begin.");
   // A `#deck=<list>` link shared before the views existed still opens Combos with that list.
   const opened = route();
@@ -899,32 +910,6 @@ function showDetail(id: string | null) {
   const legendDomains = variant?.domains ?? [...new Set(entries.flatMap((c) => c.uses.flatMap((u) => cards.domainsOf(u.card))))];
 
   /**
-   * A source a reader can open elsewhere and a record of this project's own walk are two different
-   * claims, and giving them the same accent link said they were one. The walk records are 63% of
-   * the 862 sources, which is why they were the whole of the wall.
-   */
-  const EXTERNAL = new Set(["article", "riot", "video", "tournament-report"]);
-  const sourcesOf = (c: Combo) => {
-    const ext = c.sources.filter((s) => s.url || EXTERNAL.has(s.kind));
-    const own_ = c.sources.filter((s) => !ext.includes(s));
-    const extLi = ext.map((s) => {
-      const href = sourceHref(s);
-      return `<li>${href ? `<a href="${esc(href)}" rel="noopener" target="_blank">${esc(s.title)}</a>` : esc(s.title)}${
-        s.date ? ` <span class="csub">${esc(s.date)}</span>` : ""}</li>`;
-    }).join("");
-    // The title of a walk record ends in the repo path it names; the path is the link, not the label.
-    const ownLi = own_.map((s) => {
-      const href = sourceHref(s);
-      const label = s.title.replace(/\s*\((docs\/[^\s)]+\.md)\)\s*$/, "");
-      return `<li>${esc(label)}${s.date ? ` <span class="csub">${esc(s.date)}</span>` : ""}${
-        href ? ` <a class="record" href="${esc(href)}" rel="noopener" target="_blank">record</a>` : ""}</li>`;
-    }).join("");
-    return `<h3>Sources</h3>${
-      ext.length ? `<p class="src-kind">Published elsewhere</p><ul class="sources">${extLi}</ul>` : ""}${
-      own_.length ? `<p class="src-kind">Walked here, in this project</p><ul class="sources own">${ownLi}</ul>` : ""}`;
-  };
-
-  /**
    * A run play covering this line (#206). It is a different kind of claim from everything else in the
    * drawer — the entry prices the combo, the play prices a GAME: which turn it lands on, against an
    * opponent who is doing something, and whether that beats what they are doing. So it is named as a
@@ -941,23 +926,9 @@ function showDetail(id: string | null) {
       : "";
   };
 
-  // Stated whether or not this list is short of it: the check in `src/bodies.ts` only counts unit
-  // cards, and the requirement it stands for is usually about WHERE a body is — so a reader holding
-  // ten units still has to be told the line wants one at a battlefield besides the Apothecary.
-  const bodiesOf = (c: Combo) => c.anyBodies
-    ? `<h3>Bodies no card supplies</h3><p class="net">${esc(c.anyBodies.note)}</p>`
-    : "";
-
-  const body = (c: Combo) => `
-    ${c.prerequisites.notable.length ? `<h3>Prerequisites</h3><ul>${c.prerequisites.notable.map((s) => `<li>${esc(s)}</li>`).join("")}</ul>` : ""}
-    ${bodiesOf(c)}
-    <h3>Steps</h3><ol>${c.steps.map((s) => `<li>${esc(s)}</li>`).join("")}</ol>
-    ${c.netPerIteration ? `<h3>Per iteration</h3><p class="net">${esc(c.netPerIteration)}</p>` : ""}
-    ${c.terminatesIn ? `<h3>How it ends</h3><p class="ends">${esc(c.terminatesIn)}</p>` : ""}
-    ${sourcesOf(c)}
-    ${c.notes ? `<details class="audit"><summary>How this entry was audited</summary>
-      <p class="audit-key">${AUDIT_KEY}</p><p>${esc(c.notes)}</p></details>` : ""}
-    <p class="rules-version">Walked against Core Rules ${esc(c.rulesVersion)}</p>`;
+  // The entry's prose is `comboSections`, the same definition the public page at /combos/<id> is
+  // built from (#286); here it sits under the drawer's h2, so its headings are h3.
+  const body = (c: Combo) => comboSections(c, "h3");
 
   const ordered = entries.length > 1 ? [...entries].reverse() : entries;
   const supplies = (c: Combo) => {
@@ -1001,14 +972,6 @@ function showDetail(id: string | null) {
 
 /** Letting the drawer go is the same four steps wherever it is asked for: the ×, or Escape (#76). */
 function closeDetail(): void { selected = null; view?.select(null); showDetail(null); markChips(); }
-
-/**
- * The audit register speaks its own language, and the player is not expected to know it (#72). The
- * notes stay verbatim — they are the record this catalogue stands on and their precision is worth more
- * than their prose — so the four terms are translated beside them instead of being edited out of
- * `data/combos.json`.
- */
-const AUDIT_KEY = "REFUTE = a refutation pass, with its date and verdict · WOUNDED = the pass found a flaw and the entry was rewritten · BUDGETED = the pass checked the recycle-and-draw ledger · lens = the hunt that proposed it.";
 
 // --- card preview ---------------------------------------------------------------------
 // The drawer thumbnails are 34px wide, which is enough to recognise a card and not enough to
