@@ -136,8 +136,8 @@ errata, resolves legality and resolves `signature.src.json` → `cards.json` (wi
 `legality.json`; `build-corpus.mjs` → `corpus_flat.txt`; `build-web.mjs` compiles `web/` into `public/`
 with esbuild, baking in `SUPABASE_URL` and `SUPABASE_ANON_KEY` via `define`; `build-headers.mjs`
 **generates `vercel.json`** (never edited by hand, because Vercel reads it before running the build
-command, so it is committed); `check-rls.mjs` proves row isolation with two real users against the
-hosted project; `adversarial-check.mjs` is the turn clock and the answer sweeps; `claude-md-gap.mjs`
+command, so it is committed); `check-rls-neon.mjs` proves row isolation with two real users on a throwaway
+Neon branch; `adversarial-check.mjs` is the turn clock and the answer sweeps; `claude-md-gap.mjs`
 joins the catalogue's rule citations against `CLAUDE.md`.
 
 **`test/` — 710 tests in 52 files** with vitest (the 525/40 figure dated 2026-09-13). `headers.test.ts` is the one that watches the posture:
@@ -185,12 +185,11 @@ The domain is **`riftcombo.app`**, bought on 2026-09-05 through Vercel (US$15/yr
 **project domain setting**, not a rule in `vercel.json` — a `redirects` entry with `has: host` was
 tried first and never matched on a Git deploy.
 
-The hosted Supabase project is `bpbwsimgiyxzaorunqeo` in `us-east-1` (the region Vercel deploys to).
-Its **anon key is public by design** and ships in `public/app.js`; what keeps one player's rows away
-from another is RLS, proved by `node scripts/check-rls.mjs` (14 checks, two real users, against the
-hosted project). The `service_role` key and the password live in `.env.local` and reach nothing else.
-**That guard runs nowhere automatic** (#199 §5) and cannot as written, because it needs live
-credentials against the hosted project; run it by hand after any change to `supabase/` or to RLS.
+Accounts run on Neon (`quiet-breeze-27436036`): the two URLs `NEON_AUTH_URL` and `NEON_DATA_API_URL`
+are public by design and ship in `public/app.js`; what keeps one player's rows away from another is
+RLS, proved by `node scripts/check-rls-neon.mjs` (two real users, on a throwaway child branch, never
+`main`). **That guard runs nowhere automatic** (#199 §5) and cannot as written, because it needs a
+live Neon branch; run it by hand after any change to RLS or the Data API.
 
 Sign-in is a **full-page redirect**, and that is structural: `Cross-Origin-Opener-Policy: same-origin`
 severs a popup from the window that opened it and the flow never reports back, with no error in any
