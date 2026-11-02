@@ -20,8 +20,11 @@ entirely in the browser against a static bundle; there is no matching server.
 **The whole site sits behind sign-in** (#39, user decision of 2026-09-05, which deliberately reverses
 the "anonymous is identical" posture #31 was built with). `<body data-auth>` carries the state —
 `pending` (the HTML default, which shows neither side so nothing flashes), `out` (the entrance only),
-`in` (the application) and `open` (a build with no `NEON_AUTH_URL`, which has no gate to open). The CSS
-decides what is visible; `web/account.ts` sets the attribute.
+`in` (the application) and `open` (any build missing `NEON_AUTH_URL` or `NEON_DATA_API_URL`, which has no gate to open). The CSS
+decides what is visible; `web/account.ts` sets the attribute. `test/headers.test.ts` fails if
+`DATABASE_URL`, `NEON_API_KEY`, `DB_PASSWORD`, `service_role` or a postgres URL appears in the seven
+`web/` files it names (`main.ts`, `account.ts`, `decks.ts`, `router.ts`, `supabase.ts`, `graph.ts`,
+`index.html`).
 
 **Five views**, routed by hash (`web/router.ts`, `VIEWS = ["combos","decks","plays","guide","sources"]`):
 
@@ -141,7 +144,8 @@ Neon branch; `adversarial-check.mjs` is the turn clock and the answer sweeps; `c
 joins the catalogue's rule citations against `CLAUDE.md`.
 
 **`test/` — 710 tests in 52 files** with vitest (the 525/40 figure dated 2026-09-13). `headers.test.ts` is the one that watches the posture:
-it fails if the `service_role` name or the database password appears anywhere under `web/`, if there
+it fails if `DATABASE_URL`, `NEON_API_KEY`,
+`DB_PASSWORD`, `service_role` or a postgres URL appears in one of the seven `web/` files it names, if there
 is more than one sign-in button, or if the `data-auth` default stops being `pending`.
 **#138 (HIGH, ultrareview 2026-09-06)** found that day's whole DOM layer untested — no DOM environment
 was installed at all, so nothing could mount `web/builder.ts`, the router, the gate or `web/decks.ts`.
