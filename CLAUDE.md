@@ -109,7 +109,8 @@
   showing. The entrance carries the ONE sign-in button; the header shows only name + Sign out.
   `test/headers.test.ts` pins the single button and the pending default, and its "what the browser bundle
   is allowed to know" test fails if `DATABASE_URL`, `NEON_API_KEY`, `DB_PASSWORD`, `service_role` or a
-  postgres URL appears anywhere under `web/`.
+  postgres URL appears in any of the seven `web/` files it names (`main.ts`, `account.ts`, `decks.ts`,
+  `router.ts`, `supabase.ts`, `graph.ts`, `index.html`); the other `web/` files are not scanned.
 - Adding a redirect URI to the Google client can take Google "5 minutes to a few hours" to apply.
   Do not debug it blind: until it is live the sign-in answers `redirect_uri_mismatch`, and the
   Google sign-in page after.
