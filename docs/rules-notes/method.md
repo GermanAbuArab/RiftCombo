@@ -143,3 +143,61 @@
 - **A CHECK CAN BE SAVED BY AN INCIDENTAL DETAIL WHOSE LOAD-BEARING ROLE IS UNDOCUMENTED, SO THE NEXT TIDY-UP DISABLES IT SILENTLY — THE SIXTH INSTANCE OF THE VACUITY CLASS, AND IT SITS IN THE WIRE FORMAT RATHER THAN IN THE ASSERTION (panel3 and rc-manager12, 2026-09-19).** Found while porting `scripts/check-rls.mjs` to Neon and verified at PostgREST's own reference before being believed: **`Prefer: return=minimal` is the default for every write** — *"With `Prefer: return=minimal`, no response body will be returned. This is the default mode for all write requests."* A `204` with no body is therefore what you get **whether the `UPDATE` touched a row or touched none**, so a negative check on an update or a delete, written the obvious way, cannot tell *denied* from *applied*. **That was true of our script until this morning and is no longer, and the correction is worth more than the warning.** Checks 5 and 6 chain `.select("id")`, which forces `return=representation` and produces the row array the assertion reads, **and nothing in the file says that is why** — so under the ORIGINAL predicate, `(data?.length ?? 0) === 0`, dropping that `.select` would have turned both into assertions that can never fail. **`3603382` closed it by accident while fixing something else.** Measured by feeding four response shapes through both predicates side by side rather than by reading them: with `.select`, a denial passes under both; **without it, the original PASSES for a denial AND for a row that was actually changed — the two are indistinguishable — while the current helper FAILS both.** **The load-bearing token turns out not to be the `.select` but the `Array.isArray(data)` in the helper**, because `return=minimal` yields `null`, an array test rejects it, and a numeric test (`?? 0`) silently converts it to a passing zero. **So the durable rule is about how a negative assertion is WRITTEN: require a POSITIVE SHAPE — an array, of length zero — never a numeric comparison that a missing value can satisfy.** A shape test fails closed on an absent payload; `?? 0` fails open. Note what the current helper does NOT do: it still cannot tell *denied* from *applied* when the payload is missing — it refuses to call either one a pass, which is the honest behaviour rather than a distinction it has not got. **That is the durable half and it generalises past this file: the five earlier instances were all defects in what an assertion READ, and this one is a defect in what the PROTOCOL SENDS, which no amount of reading the assertion can reveal.** The companion is the reference table any PostgREST-shaped checker needs, all verified: a read **denied by RLS is `200` with `[]` and `error` null and is NOT an error**; a write denied by `with check` is Postgres `42501`; a missing or unexposed table is `PGRST205`; an unexposed schema `PGRST106`; a bad JWT `PGRST301`; an unreachable database `PGRST000`–`PGRST003`. **Four of those six are ways a negative check comes back looking like a denial**, which is why a *denied* helper must require success-with-zero-rows and a *rejected* helper must require exactly `42501`, naming and failing anything else. **One calibration kept rather than smoothed, because it is the only inference in the list**: the error page maps `42501` to *insufficient privileges* and does **not** say in so many words that an RLS `with check` violation returns it — and requiring it exactly is still right, because a wrong guess makes the check name what it saw and fail, **which is the safe direction for a guess about a security assertion.**
 
 - **A RUNTIME CONSTRAINT IS A PROPERTY OF A DIRECTORY, AND A PLAN CAN THEREFORE SPECIFY SOMETHING THAT CANNOT RUN AT ALL (rc-manager12, 2026-09-19).** The Neon migration spec said its account-deletion endpoint would remove rows *"over a direct Postgres connection using a server-side connection string"*. **`api/deck-url.ts` line 9 declares `export const config = { runtime: "edge" }`**, and Vercel's Edge runtime lists the only importable Node modules — `async_hooks`, `events`, `buffer`, `assert`, `util` — and then says of everything else *"Some Node.js APIs other than the ones listed above **are not supported**"*. There is no `net`, so **`pg` and every ordinary driver are unusable in that directory**, and `api/tsconfig.json` agrees in its own way with `"types": []`. **The sentence would have failed at DEPLOY rather than at review**, and nothing in this project's toolchain could have caught it: every citation resolved, the arithmetic was right, and the instruction was impossible. It was found on a third review pass by asking **what `api/` IS** rather than what it contains — which is the reusable move, because a file inherits its neighbours' runtime and nothing in the file says so. The fix is `@neondatabase/serverless`, which exists for exactly this and speaks HTTP or WebSockets *"in place of TCP"*. **Rider from the same hour, and it is the shared-tree lesson in a new place: a file measured as PRESENT can be absent an hour later.** `.strix-gate` was measured in this repo, **fired on one of this session's own commands**, and was then replaced by `8ab00bb` — *"Remove Strix gate (replaced by security-scan skill)"* — with `.security-gate` and a `security-gate.sh` hook, while the cutover step naming it was being written. That is not a bad measurement; it is a measurement of a moment, and anything citing tooling by filename should say where to look when the name moves.
+
+## Signed-in QA (#533)
+
+For any PR that touches sign-in, `/decks` or RLS, and for the smoke test after an account-layer change. Production signs in with Google only, and no agent has an identity there, so the test identity lives on a throwaway Neon branch. Run both halves: neither stands in for the other.
+
+**A green run does not prove a production sign-in: it does not cover the real Google round trip, the Vercel edge, or rows on main.**
+
+The test identity is `RIFTCOMBO_QA_EMAIL` and `RIFTCOMBO_QA_PASSWORD` in `~/.config/secrets/riftcombo.env` (mode 600), read through `scripts/secret-env`. It exists only on the branch of the run, created by `scripts/qa-serve.mjs` at start, so if the file is missing on a machine, generate a random password and a `.test` address into it. It is never the owner's identity. Report counts and page states only: no address, no cookie, no token, no URL query.
+
+### Half 1: anonymous, on production
+
+In the playwright MCP (hidden Brave), at most one load per deploy (CLAUDE.md, "Do not loop-poll"):
+
+1. `browser_navigate` to `https://riftcombo.app/`, `browser_wait_for` 2 seconds (`pending` is the HTML default until `get-session` answers), then `browser_evaluate` `() => ({ auth: document.body.dataset.auth, signIn: document.querySelectorAll('button.gate-signin').length })`. Expect `out` and `1`.
+2. `browser_console_messages` at `error`: expect 0. `browser_network_requests` with `static: true`: list the origins only; expect `riftcombo.app` and the Neon Auth endpoint, and 0 requests to any `supabase` host.
+3. `browser_evaluate` `() => { setTimeout(() => document.getElementById('gate-signin').click(), 50); return 'armed'; }`, then `browser_evaluate` `() => ({ host: location.hostname, mismatch: document.body.innerText.includes('redirect_uri_mismatch') })`, repeating it until the host changes. Expect `accounts.google.com` and `false`. Stop there and type nothing into Google's page. Do not use `browser_click`, `browser_wait_for` or `browser_network_requests` from this step on: the first two print the page URL, which on Google's page carries the OAuth query, and the transport redaction is the backstop, not the plan.
+
+### Half 2: signed in, on a throwaway branch
+
+Run this block with `run_in_background`, because the last line stays up. It never touches main: `scripts/qa-serve.mjs` refuses the default branch, URLs that are not the branch's own, and a bundle built against another branch.
+
+```bash
+export NEON_PROJECT_ID=quiet-breeze-27436036
+B=qa-$(date +%s)
+neonctl branches create --project-id $NEON_PROJECT_ID --parent main --name $B >/dev/null
+neonctl neon-auth config email-password update --project-id $NEON_PROJECT_ID --branch $B --enabled true >/dev/null
+export NEON_BRANCH_ID=$(neonctl branches get $B --project-id $NEON_PROJECT_ID -o json | jq -r '.branch.id // .id')
+export NEON_AUTH_URL=$(neonctl neon-auth status --project-id $NEON_PROJECT_ID --branch $B -o json | jq -r .base_url)
+export NEON_DATA_API_URL=$(neonctl data-api get --project-id $NEON_PROJECT_ID --branch $B -o json | jq -r .url)
+echo "branch $B"
+npm run -s build:web >/dev/null
+~/.personal-claude/scripts/secret-env riftcombo -- node scripts/qa-serve.mjs
+```
+
+It prints the branch name, `saved decks of the test identity: 1` and the page to open. Then, in the same hidden Brave:
+
+1. `browser_navigate` to the printed `http://localhost:<port>/__qa/sign-in`. That page signs in by itself and lands on `#/decks`. The credential reaches the browser once, inside the page's script, so nothing is typed. Never use `browser_type` for it, and never open the sign-in script or the `sign-in/email` POST with `browser_network_request` or `playwright-cli request-body`: both hold the credential. The page answers 403 to any other page, so a link to it does not work. If it stays on its first line, the one-shot script was spent: restart the last line of the block.
+2. `browser_wait_for` the text `saved list`, then `browser_evaluate` `() => ({ auth: document.body.dataset.auth, sub: document.querySelector('.decks-sub')?.textContent, cards: document.querySelectorAll('a.deck-card').length })`. Expect `in`, `1 saved list, readable only by you.` and `1`.
+3. `browser_evaluate` `() => { location.reload(); }`, wait for `saved list` again, and repeat step 2: the session has to survive a reload.
+4. `browser_click` on `a.deck-card`, wait 2 seconds, then `browser_evaluate` `() => ({ route: location.hash.replace(/[0-9a-f-]{36}/, '<id>'), name: document.querySelector('.detail-name')?.value })`. Expect `#/decks/<id>` and `QA deck`. This is the loaded saved deck.
+5. `browser_console_messages` at `error`: expect 0. `browser_network_requests` with `filter: "neon\\.tech"` and `filename: ".playwright-mcp/qa-net.txt"`, so the URLs stay out of the transcript, then count from the file: `grep -c 'neon\.tech'`, `grep -c ep-shiny-feather` (production's endpoint, expect 0) and the `=> [200]` lines. Delete the file after.
+
+### Smoke test after an account-layer deploy (replaces #238's)
+
+#238 asked to smoke-test "sign-in and a deck load" after a redeploy and could only run its anonymous part, because no identity existed. After any change to Vercel's variables, the Neon Auth config or the account code:
+
+1. `npx vercel ls riftcombo` once, and wait for the deploy to read Ready.
+2. Half 1 against that deploy, which exercises the real redirect and origins.
+3. Half 2 from the same commit, which exercises sign-in and the deck load.
+
+It passes when every Half 1 expectation holds and Half 2 ends with `QA deck` loaded. Report the deploy id and the states of both halves, and repeat the bold sentence above with the result.
+
+### Cleanup, always, also after a failure
+
+1. `browser_close`, and stop the background task.
+2. `neonctl branches delete <the printed branch> --project-id quiet-breeze-27436036`.
+3. Read main back: `neonctl neon-auth plugins list --project-id quiet-breeze-27436036 --branch main` shows `email_and_password disabled`, and `neonctl branches list --project-id quiet-breeze-27436036` shows no `qa-` branch.
+4. `npm run build:web` again if the worktree goes on to anything else: `public/` still points at the deleted branch.
