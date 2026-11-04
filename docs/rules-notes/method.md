@@ -185,6 +185,16 @@ It prints the branch name, `saved decks of the test identity: 1` and the page to
 4. `browser_click` on `a.deck-card`, wait 2 seconds, then `browser_evaluate` `() => ({ route: location.hash.replace(/[0-9a-f-]{36}/, '<id>'), name: document.querySelector('.detail-name')?.value })`. Expect `#/decks/<id>` and `QA deck`. This is the loaded saved deck.
 5. `browser_console_messages` at `error`: expect 0. `browser_network_requests` with `filter: "neon\\.tech"` and `filename: ".playwright-mcp/qa-net.txt"`, so the URLs stay out of the transcript, then count from the file: `grep -c 'neon\.tech'`, `grep -c ep-shiny-feather` (production's endpoint, expect 0) and the `=> [200]` lines. Delete the file after.
 
+### Smoke test after an account-layer deploy (replaces #238's)
+
+#238 asked to smoke-test "sign-in and a deck load" after a redeploy and could only run its anonymous part, because no identity existed. After any change to Vercel's variables, the Neon Auth config or the account code:
+
+1. `npx vercel ls riftcombo` once, and wait for the deploy to read Ready.
+2. Half 1 against that deploy, which exercises the real redirect and origins.
+3. Half 2 from the same commit, which exercises sign-in and the deck load.
+
+It passes when every Half 1 expectation holds and Half 2 ends with `QA deck` loaded. Report the deploy id and the states of both halves, and repeat the bold sentence above with the result.
+
 ### Cleanup, always, also after a failure
 
 1. `browser_close`, and stop the background task.
