@@ -1,6 +1,6 @@
 // The server behind the "Signed-in QA" procedure in docs/rules-notes/method.md (#533). It hands a
 // credential to a page, so what it refuses matters more than what it serves.
-import { mkdtempSync, readFileSync, readdirSync, writeFileSync } from "node:fs";
+import { mkdirSync, mkdtempSync, readFileSync, readdirSync, writeFileSync } from "node:fs";
 import type { AddressInfo } from "node:net";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
@@ -64,7 +64,10 @@ describe("qaHeaders", () => {
 });
 
 describe("publicFile", () => {
-  const root = mkdtempSync(join(tmpdir(), "qa-public-"));
+  const outer = mkdtempSync(join(tmpdir(), "qa-public-"));
+  const root = join(outer, "public");
+  mkdirSync(root);
+  writeFileSync(join(outer, "secret.txt"), "beside the root");
   writeFileSync(join(root, "index.html"), "home");
   writeFileSync(join(root, "combos.html"), "combos");
   writeFileSync(join(root, "app.js"), "js");
@@ -76,8 +79,9 @@ describe("publicFile", () => {
   });
 
   it("refuses to leave the directory and answers null for a missing file", () => {
-    expect(publicFile(root, "/../package.json")).toBeNull();
-    expect(publicFile(root, "/%2e%2e/package.json")).toBeNull();
+    expect(publicFile(root, "/../secret.txt")).toBeNull();
+    expect(publicFile(root, "/%2e%2e/secret.txt")).toBeNull();
+    expect(publicFile(root, "/..%2fsecret.txt")).toBeNull();
     expect(publicFile(root, "/%zz")).toBeNull();
     expect(publicFile(root, "/nothing")).toBeNull();
   });
@@ -183,7 +187,7 @@ describe("createQaServer", () => {
     const base = await start();
     const { request } = await import("node:http");
     const status = await new Promise<number | undefined>((done) => {
-      request(`${base}${SIGN_IN_SCRIPT}`, { headers: { Host: "evil.example" } }, (res) => {
+      request(`${base}${SIGN_IN_SCRIPT}`, { headers: { ...OWN_SCRIPT, Host: "evil.example" } }, (res) => {
         res.resume();
         done(res.statusCode);
       }).end();
