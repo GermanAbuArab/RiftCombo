@@ -6,7 +6,7 @@ import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { afterEach, describe, expect, it } from "vitest";
 // @ts-expect-error plain .mjs: it runs under node, which cannot import TypeScript.
-import { createQaServer, isThrowaway, publicFile, qaHeaders, SIGN_IN_PAGE, SIGN_IN_SCRIPT, urlsOfBranch } from "../scripts/qa-serve.mjs";
+import { createQaServer, isBuiltFor, isThrowaway, publicFile, qaHeaders, SIGN_IN_PAGE, SIGN_IN_SCRIPT, urlsOfBranch } from "../scripts/qa-serve.mjs";
 
 const CHILD = ["https://child.neonauth.example.neon.tech", "https://child.apirest.example.neon.tech"];
 const vercel = JSON.parse(readFileSync("vercel.json", "utf8"));
@@ -34,6 +34,16 @@ describe("urlsOfBranch", () => {
     expect(urlsOfBranch({ ...given, dataUrl: "https://main.apirest.example.neon.tech/neondb/rest/v1" }, auth, data)).toBe(false);
     expect(urlsOfBranch(given, {}, data)).toBe(false);
     expect(urlsOfBranch(given, auth, {})).toBe(false);
+  });
+});
+
+describe("isBuiltFor", () => {
+  const urls = { authUrl: `${CHILD[0]}/neondb/auth`, dataUrl: `${CHILD[1]}/neondb/rest/v1` };
+
+  it("wants both of the branch's URLs in the bundle, not just the auth one", () => {
+    expect(isBuiltFor(`"${urls.authUrl}","${urls.dataUrl}"`, urls)).toBe(true);
+    expect(isBuiltFor(`"${urls.authUrl}","https://main.apirest.example.neon.tech/neondb/rest/v1"`, urls)).toBe(false);
+    expect(isBuiltFor(`"https://main.neonauth.example.neon.tech/neondb/auth","${urls.dataUrl}"`, urls)).toBe(false);
   });
 });
 
@@ -134,6 +144,12 @@ describe("createQaServer", () => {
     expect((await fetch(`${base}${SIGN_IN_SCRIPT}`, { headers: OWN_SCRIPT })).status).toBe(200);
   });
 
+  it("spends the credential only on a GET", async () => {
+    const base = await start();
+    expect((await fetch(`${base}${SIGN_IN_SCRIPT}`, { method: "HEAD", headers: OWN_SCRIPT })).status).toBe(403);
+    expect((await fetch(`${base}${SIGN_IN_SCRIPT}`, { headers: OWN_SCRIPT })).status).toBe(200);
+  });
+
   it("runs the sign-in only when the page was opened directly, never from another page", async () => {
     const base = await start();
     expect((await fetch(`${base}${SIGN_IN_PAGE}`, { headers: OPENED })).status).toBe(200);
@@ -184,8 +200,8 @@ describe("createQaServer", () => {
 
 describe("the QA sign-in stays out of the product", () => {
   it("is named nowhere in web/", () => {
-    for (const file of readdirSync("web")) {
-      if (/\.(ts|html|css)$/.test(file)) expect(readFileSync(join("web", file), "utf8")).not.toContain("__qa");
-    }
+    const files = readdirSync("web", { recursive: true, withFileTypes: true }).filter((entry) => entry.isFile());
+    expect(files.some((entry) => entry.parentPath !== "web")).toBe(true);
+    for (const entry of files) expect(readFileSync(join(entry.parentPath, entry.name), "latin1")).not.toContain("__qa");
   });
 });

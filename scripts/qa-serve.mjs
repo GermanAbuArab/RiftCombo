@@ -60,6 +60,9 @@ export function urlsOfBranch({ authUrl, dataUrl }, auth, dataApi) {
   return trim(auth?.base_url) === authUrl && trim(dataApi?.url) === dataUrl;
 }
 
+/** Whether the bundle talks to this branch: with only the auth URL right, the page reads another branch's rows. */
+export const isBuiltFor = (bundle, { authUrl, dataUrl }) => bundle.includes(authUrl) && bundle.includes(dataUrl);
+
 /** The file under `root` a path means, with Vercel's `cleanUrls` reading, or null. Never outside `root`. */
 export function publicFile(root, pathname) {
   let decoded;
@@ -130,7 +133,7 @@ export function createQaServer({ root, headers, authUrl, email, password }) {
       return send(200, TYPES[".html"], signInPage);
     }
     if (pathname === SIGN_IN_SCRIPT) {
-      if (!isOwnScript(req.headers)) return send(403, TYPES[".txt"], "Forbidden");
+      if (req.method !== "GET" || !isOwnScript(req.headers)) return send(403, TYPES[".txt"], "Forbidden");
       if (handedOut) return send(410, TYPES[".txt"], "Gone");
       handedOut = true;
       return send(200, TYPES[".js"], signInScript({ authUrl, email, password }), { "Cache-Control": "no-store" });
@@ -153,7 +156,8 @@ async function seed({ authUrl, dataUrl, email, password }) {
   const login = await post("/sign-in/email", { email, password });
   if (!login.ok) throw new Error(`sign-in answered ${login.status}`);
 
-  const session = await fetch(`${authUrl}/get-session`, { headers: { Cookie: login.headers.get("set-cookie") ?? "" } });
+  const cookie = login.headers.getSetCookie().map((line) => line.split(";", 1)[0]).join("; ");
+  const session = await fetch(`${authUrl}/get-session`, { headers: { Cookie: cookie } });
   const jwt = session.headers.get("Set-Auth-Jwt");
   if (!jwt) throw new Error("get-session returned no Set-Auth-Jwt");
 
@@ -198,7 +202,7 @@ async function main() {
     console.error(`refusing: the two URLs are not the ones Neon names for ${NEON_BRANCH_ID}.`);
     process.exit(2);
   }
-  if (!readFileSync(join(root, "app.js"), "utf8").includes(authUrl)) {
+  if (!isBuiltFor(readFileSync(join(root, "app.js"), "utf8"), { authUrl, dataUrl })) {
     console.error("refusing: public/app.js was not built against this branch. Run npm run build:web with these two URLs.");
     process.exit(2);
   }
