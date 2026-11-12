@@ -20,7 +20,9 @@ createServer((req, res) => {
   try { path = decodeURIComponent(new URL(req.url, "http://x").pathname); } catch { res.writeHead(400).end("bad request"); return; }
   let file = resolve(join(PUBLIC, path.endsWith("/") ? `${path}index.html` : path));
   if (file !== PUBLIC && !file.startsWith(PUBLIC + sep)) { res.writeHead(403).end(); return; }
-  if (!existsSync(file) || statSync(file).isDirectory()) file += ".html";
-  if (!existsSync(file)) { res.writeHead(404).end("not found"); return; }
-  res.writeHead(200, { "content-type": TYPES[extname(file)] ?? "application/octet-stream" }).end(readFileSync(file));
+  try {
+    if (!existsSync(file) || statSync(file).isDirectory()) file = existsSync(`${file}.html`) ? `${file}.html` : join(file, "index.html");
+    if (!existsSync(file) || !statSync(file).isFile()) { res.writeHead(404).end("not found"); return; }
+    res.writeHead(200, { "content-type": TYPES[extname(file)] ?? "application/octet-stream" }).end(readFileSync(file));
+  } catch { res.writeHead(500).end("read failed"); }
 }).listen(Number(process.env.PORT), "127.0.0.1");
