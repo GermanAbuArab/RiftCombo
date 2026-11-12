@@ -127,7 +127,7 @@ const notice = (text: string) => el("p", "quiet play-notice", text);
 
 function backLink(label: string): HTMLAnchorElement {
   const a = el("a", "play-back");
-  a.href = "#/plays";
+  a.href = "/plays";
   a.textContent = `← ${label}`;
   return a;
 }

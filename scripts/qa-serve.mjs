@@ -63,6 +63,18 @@ export function urlsOfBranch({ authUrl, dataUrl }, auth, dataApi) {
 /** Whether the bundle talks to this branch: with only the auth URL right, the page reads another branch's rows. */
 export const isBuiltFor = (bundle, { authUrl, dataUrl }) => bundle.includes(authUrl) && bundle.includes(dataUrl);
 
+/**
+ * The destination a vercel.json rewrite gives a path, or the path itself. Only the two source shapes
+ * the file uses: an exact path and a `/<prefix>/:path*` tail, which matches `/<prefix>` too (#287).
+ */
+export function rewritten(rewrites, pathname) {
+  for (const { source, destination } of rewrites ?? []) {
+    const tail = /^(.*)\/:path\*$/.exec(source);
+    if (tail ? pathname === tail[1] || pathname.startsWith(`${tail[1]}/`) : pathname === source) return destination;
+  }
+  return pathname;
+}
+
 /** The file under `root` a path means, with Vercel's `cleanUrls` reading, or null. Never outside `root`. */
 export function publicFile(root, pathname) {
   let decoded;
@@ -97,7 +109,7 @@ try {
     headers: { "Content-Type": "application/json" },
     body: ${JSON.stringify(JSON.stringify({ email, password }))},
   });
-  if (res.ok) location.replace("/#/decks");
+  if (res.ok) location.replace("/decks");
   else state.textContent = "Sign-in refused: " + res.status;
 } catch {
   state.textContent = "Sign-in failed: no answer from the auth host";
@@ -115,7 +127,7 @@ const isOwnScript = ({ "sec-fetch-site": site, "sec-fetch-mode": mode, "sec-fetc
  * running the sign-in or touching its script, and the credential goes out once, so a second reader
  * gets nothing. A local process can forge those headers, but it can read the secrets file as well.
  */
-export function createQaServer({ root, headers, authUrl, email, password }) {
+export function createQaServer({ root, headers, rewrites, authUrl, email, password }) {
   let handedOut = false;
   const server = createServer((req, res) => {
     const { port } = server.address();
@@ -138,7 +150,7 @@ export function createQaServer({ root, headers, authUrl, email, password }) {
       handedOut = true;
       return send(200, TYPES[".js"], signInScript({ authUrl, email, password }), { "Cache-Control": "no-store" });
     }
-    const file = publicFile(root, pathname);
+    const file = publicFile(root, rewritten(rewrites, pathname));
     if (!file) return send(404, TYPES[".txt"], "Not found");
     return send(200, TYPES[extname(file)] ?? "application/octet-stream", readFileSync(file));
   });
@@ -210,9 +222,10 @@ async function main() {
   const identity = { email: RIFTCOMBO_QA_EMAIL, password: RIFTCOMBO_QA_PASSWORD };
   const decks = await seed({ authUrl, dataUrl, ...identity });
   const origins = [new URL(authUrl).origin, new URL(dataUrl).origin];
-  const headers = qaHeaders(JSON.parse(readFileSync(join(ROOT, "vercel.json"), "utf8")), origins);
+  const vercel = JSON.parse(readFileSync(join(ROOT, "vercel.json"), "utf8"));
+  const headers = qaHeaders(vercel, origins);
 
-  const server = createQaServer({ root, headers, authUrl, ...identity });
+  const server = createQaServer({ root, headers, rewrites: vercel.rewrites, authUrl, ...identity });
   server.listen(0, "127.0.0.1", () => {
     console.log(`saved decks of the test identity: ${decks}`);
     console.log(`open http://localhost:${server.address().port}${SIGN_IN_PAGE}`);

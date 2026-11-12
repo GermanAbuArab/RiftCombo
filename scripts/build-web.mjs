@@ -15,7 +15,7 @@ import { siteConfig } from "./site-config.mjs";
 import { slimCard } from "./web-card-fields.mjs";
 import { loadPlays } from "./web-plays.mjs";
 import { stripInternalDeep, stripProsePlugin } from "./web-combo-prose.mjs";
-import { sitemapEntries, writePages, writeSeo } from "./web-seo.mjs";
+import { appShell, sitemapEntries, writePages, writeSeo } from "./web-seo.mjs";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
 const OUT = join(ROOT, "public");
@@ -47,6 +47,9 @@ writeFileSync(join(OUT, "data", "plays.json"), JSON.stringify({ plays }));
 // and committed, so the build only copies them.
 const STATIC = ["index.html", "privacy.html", "terms.html", "404.html", "styles.css", "favicon.svg", "og.png", "apple-touch-icon.png", "icon-192.png", "icon-512.png", "manifest.webmanifest", "riot.txt"];
 for (const f of STATIC) copyFileSync(join(ROOT, "web", f), join(OUT, f));
+// The app shell at /app and, through vercel.json's one rewrite, /decks/* (#287): the same page with
+// `noindex` in place of the canonical, so a signed-in tool screen never enters an index.
+writeFileSync(join(OUT, "app.html"), appShell(readFileSync(join(ROOT, "web", "index.html"), "utf8")));
 // Inter is served from this origin (#295), so no page asks Google Fonts for it before any consent choice.
 cpSync(join(ROOT, "web", "fonts"), join(OUT, "fonts"), { recursive: true });
 

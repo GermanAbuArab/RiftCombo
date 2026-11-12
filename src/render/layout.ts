@@ -35,7 +35,7 @@ export type Section = "combos" | "plays" | "guide" | "sources" | "about" | null;
  */
 const NAV: { section: Section; href: string; label: string }[] = [
   { section: "combos", href: "/combos", label: "Combos" },
-  { section: null, href: "/#/decks", label: "My decks" },
+  { section: null, href: "/decks", label: "My decks" },
   { section: "plays", href: "/plays", label: "Run plays" },
   { section: "guide", href: "/guide", label: "Guide" },
   { section: "sources", href: "/sources", label: "Sources" },

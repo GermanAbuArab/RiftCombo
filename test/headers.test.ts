@@ -1,6 +1,10 @@
 import { readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
 import { deckCountLine } from "../src/deck.js";
+// @ts-expect-error -- plain .mjs script, no types
+import { rewritten } from "../scripts/qa-serve.mjs";
+// @ts-expect-error -- plain .mjs build script, no types
+import { appShell } from "../scripts/web-seo.mjs";
 
 /**
  * The three things about accounts (#31) that break silently rather than loudly, pinned here because
@@ -112,8 +116,9 @@ describe("the top bar is a view switcher, not three anchors (#43)", () => {
     expect(home).not.toContain('href="#data"');
   });
 
-  it("links the four views by hash route", () => {
-    for (const h of ["#/combos", "#/decks", "#/guide", "#/sources"]) expect(home, h).toContain(`href="${h}"`);
+  it("links the views by path (#287), never by hash route", () => {
+    for (const h of ["/app", "/decks", "/plays", "/guide", "/sources"]) expect(home, h).toContain(`href="${h}"`);
+    expect(home).not.toMatch(/href="\/?#\//);
   });
 
   it("carries one container per view, and only Combos ships visible", () => {
@@ -308,5 +313,33 @@ describe("only master deploys (#277)", () => {
       if (!on) expect(matches(glob, "master"), `"${glob}": false would switch production off`).toBe(false);
     }
     expect(Object.keys(rules)).not.toContain("*");
+  });
+});
+
+/**
+ * #287: the app shell is served at /app (`cleanUrls` finds `app.html`) and at every /decks address
+ * through ONE rewrite, and the shell says `noindex` (#272 §2: the signed-in tool screens never enter an
+ * index). `/` keeps serving `index.html`, indexable, until #288 gives it a landing of its own.
+ */
+describe("the app shell (#287)", () => {
+  const rewrites = (vercel as unknown as { rewrites: { source: string; destination: string }[] }).rewrites;
+  const index = readFileSync(new URL("../web/index.html", import.meta.url), "utf8");
+
+  it("has exactly one SPA rewrite, every /decks address to the noindex shell", () => {
+    const spa = rewrites.filter((r) => r.destination === "/app.html" || r.destination === "/index.html");
+    expect(spa).toEqual([{ source: "/decks/:path*", destination: "/app.html" }]);
+  });
+
+  it("is index.html with noindex in place of its canonical", () => {
+    const shell = appShell(index) as string;
+    expect(shell).toContain('<meta name="robots" content="noindex">');
+    expect(shell).not.toContain('rel="canonical"');
+    expect(shell.replace('<meta name="robots" content="noindex">', '<link rel="canonical" href="https://riftcombo.app/">')).toBe(index);
+    expect(index).not.toContain("noindex");
+  });
+
+  it("is served for /decks and below by the local QA server too, and nowhere else", () => {
+    for (const p of ["/decks", "/decks/new", "/decks/8f3c-1"]) expect(rewritten(rewrites, p), p).toBe("/app.html");
+    for (const p of ["/decksx", "/app", "/", "/combos/x"]) expect(rewritten(rewrites, p), p).toBe(p);
   });
 });

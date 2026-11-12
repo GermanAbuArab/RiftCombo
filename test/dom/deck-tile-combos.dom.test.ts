@@ -60,8 +60,8 @@ vi.mock("../../web/supabase.js", () => ({
 }));
 
 const HTML = `
-  <nav class="topnav"><a href="#/combos">Combos</a><a href="#/decks">My decks</a>
-    <a href="#/guide">Guide</a><a href="#/sources">Sources</a></nav>
+  <nav class="topnav"><a href="/app">Combos</a><a href="/decks">My decks</a>
+    <a href="/guide">Guide</a><a href="/sources">Sources</a></nav>
   <main id="view-combos"></main>
   <main id="view-decks"><div id="decks-host"></div></main>
   <main id="view-guide" hidden></main>
@@ -69,15 +69,19 @@ const HTML = `
 
 const tick = async () => { for (let i = 0; i < 4; i++) await Promise.resolve(); };
 
+/** The router listens on window and document, which outlive vi.resetModules(): detach the last one before booting another. */
+let stopRouter = (): void => {};
+
 async function boot() {
   vi.resetModules();
   api.listeners.length = 0;
   document.body.innerHTML = HTML;
-  location.hash = "#/decks";
+  history.replaceState(null, "", "/decks");
   const decks = await import("../../web/decks.js");
   const router = await import("../../web/router.js");
   decks.initDecks({ cards: () => cards, variants: () => variants, analyze: () => {}, showCard: () => {} });
-  router.startRouter();
+  stopRouter();
+  stopRouter = router.startRouter();
   api.listeners.forEach((cb) => cb({ id: "u1", label: "german abu arab" }));
   await tick();
 }

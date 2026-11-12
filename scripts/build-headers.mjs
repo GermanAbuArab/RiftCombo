@@ -101,7 +101,13 @@ const config = {
   // /privacy and /terms rather than /privacy.html: Google's OAuth branding page wants both links,
   // and they are printed in the footer of every page.
   cleanUrls: true,
-  rewrites: [{ source: "/favicon.ico", destination: "/favicon.svg" }],
+  // The one SPA rewrite (#287): every `/decks` address is the app shell. `/app` itself needs none,
+  // because `cleanUrls` already serves `app.html` there; that file is `index.html` plus `noindex`,
+  // written by `scripts/build-web.mjs`, so the saved-deck screens never enter an index.
+  rewrites: [
+    { source: "/favicon.ico", destination: "/favicon.svg" },
+    { source: "/decks/:path*", destination: "/app.html" },
+  ],
   headers: [
     {
       source: "/(.*)",
