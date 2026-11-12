@@ -63,9 +63,7 @@ const HTML = `
   <nav class="topnav"><a href="/app">Combos</a><a href="/decks">My decks</a>
     <a href="/guide">Guide</a><a href="/sources">Sources</a></nav>
   <main id="view-combos"></main>
-  <main id="view-decks"><div id="decks-host"></div></main>
-  <main id="view-guide" hidden></main>
-  <main id="view-sources" hidden></main>`;
+  <main id="view-decks"><div id="decks-host"></div></main>`;
 
 const tick = async () => { for (let i = 0; i < 4; i++) await Promise.resolve(); };
 

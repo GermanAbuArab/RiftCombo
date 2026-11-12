@@ -12,10 +12,7 @@ const HTML = `
     <a href="/guide">Guide</a><a href="/sources">Sources</a>
   </nav>
   <main id="view-combos"><a id="to-deck" href="/decks/d1">a deck</a><a id="to-stage" href="#stage">diagram</a></main>
-  <main id="view-decks" hidden></main>
-  <main id="view-plays" hidden></main>
-  <main id="view-guide" hidden></main>
-  <main id="view-sources" hidden></main>`;
+  <main id="view-decks" hidden></main>`;
 
 /** Detaches the router the previous test started; its listeners outlive vi.resetModules(). */
 let stopRouter = (): void => {};

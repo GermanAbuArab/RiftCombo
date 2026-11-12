@@ -5,7 +5,7 @@ import { describe, expect, it } from "vitest";
 import { authoredWords, comboPage, THIN_WORDS, type ComboContext } from "../src/render/combo.js";
 import { clip, DISCLAIMER, ORIGIN } from "../src/render/layout.js";
 import { guideBody, sourcesBody } from "../src/render/pages.js";
-import { APP, playArticle, type Play } from "../src/render/play.js";
+import { PAGE, playArticle, type Play } from "../src/render/play.js";
 import { fileOf, renderSite, type BuiltPage, type SiteInput } from "../src/render/site.js";
 import type { Combo } from "../src/types.js";
 // @ts-expect-error plain .mjs shared with scripts/build-web.mjs.
@@ -175,16 +175,15 @@ describe("one text for the app and the page", () => {
     expect(sourcesBody({ base: 2, candidates: false })).not.toContain("candidate");
   });
 
-  it("gives a play the same body in both places, one heading level apart", () => {
+  it("draws a play's page from the one renderer, its title the h1 and its sections under it (#575)", () => {
     const p = plays.find((x) => /\n## /.test(x.markdown))!;
     const slugs = new Set(plays.map((x) => x.slug));
-    const app = playArticle(p, { ...APP, slugs });
+    const article = playArticle(p, { ...PAGE, slugs });
     const page = pages.find((x) => x.path === `/plays/${p.slug}`)!.html;
-    expect(levels(app)[0]).toBe(2);
-    expect(Math.min(...levels(app))).toBe(2);
-    // Same number of headings, each one level higher on the page.
-    const pageLevels = levels(page.slice(page.indexOf("<main")));
-    expect(pageLevels).toEqual(levels(app).map((l) => l - 1));
+    expect(page).toContain(article);
+    expect(levels(article)[0]).toBe(1);
+    expect(levels(article).filter((l) => l === 1)).toHaveLength(1);
+    expect(levels(article).slice(1).every((l) => l >= 2)).toBe(true);
   });
 });
 

@@ -153,7 +153,7 @@ describe("what a screen reader is told", () => {
     expect((home.match(/<h1[\s>]/g) ?? []).length).toBe(1);
     const header = /<header class="topbar">([\s\S]*?)<\/header>/.exec(home)?.[1] ?? "";
     expect(header).toMatch(/<h1 class="brand-name">RIFTCOMBO<\/h1>/);
-    // My decks and Run plays render their titles at runtime, so the h1 rule reaches their source too.
+    // My decks renders its titles at runtime, so the h1 rule reaches its source too.
     for (const f of ["web/decks.ts", "web/plays.ts", "web/main.ts", "web/builder.ts"]) {
       expect(read(f), f).not.toMatch(/<h1[\s>]|el\("h1"/);
     }
@@ -190,12 +190,17 @@ describe("what a screen reader is told", () => {
   });
 
   it("carries one navigation across the whole site, pointing at every view", () => {
-    // The legal pages are static and carry a copy of the nav, so a view added to the app alone is a
-    // dead end from them. Checking all five rather than a sample is what catches that (#206).
+    // The legal pages are static and carry a copy of the nav, so a destination added to the app alone
+    // is a dead end from them. Driven off the shell's own nav, which links both of its views and the
+    // three public pages (Run plays, Guide, Sources) that stopped being views in #287 (#206, #575).
+    const navOf = (html: string) => /<nav class="topnav">([\s\S]*?)<\/nav>/.exec(html)?.[1] ?? "";
+    const hrefs = [...navOf(home).matchAll(/href="([^"]+)"/g)].map((m) => m[1]!);
+    for (const view of VIEWS) expect(hrefs, view).toContain(VIEW_PATHS[view]);
+    for (const path of ["/plays", "/guide", "/sources"]) expect(hrefs, path).toContain(path);
     for (const f of ["privacy.html", "terms.html", "404.html"]) {
-      const nav = /<nav class="topnav">([\s\S]*?)<\/nav>/.exec(read(`web/${f}`))?.[1] ?? "";
+      const nav = navOf(read(`web/${f}`));
       expect(nav, `${f} has no top nav`).not.toBe("");
-      for (const view of VIEWS) expect(nav, `${f} → ${VIEW_PATHS[view]}`).toContain(`href="${VIEW_PATHS[view]}"`);
+      for (const href of hrefs) expect(nav, `${f} → ${href}`).toContain(`href="${href}"`);
     }
   });
 });

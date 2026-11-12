@@ -2,8 +2,8 @@
 //
 // The markdown in `docs/plays/` is the SINGLE SOURCE OF TRUTH and nothing is authored twice: this
 // reads every file in that directory into the payload verbatim and derives only what an index needs
-// — the slug, the title, the date and a one-line lede. The rendering happens in the browser, in
-// `web/plays.ts`, so the parser is typed and tested rather than living in an untyped build script.
+// — the slug, the title, the date and a one-line lede. The rendering happens in `src/render/play.ts`
+// (the public /plays pages), so the parser is typed and tested rather than living in an untyped build script.
 //
 // The same trap as `web-card-fields.mjs` applies and is why this is an importable module rather than
 // a few lines inside `build-web.mjs`: a play that never reaches the payload is blank ONLY in the

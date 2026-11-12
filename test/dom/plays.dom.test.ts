@@ -1,52 +1,42 @@
 // @vitest-environment happy-dom
 //
-// The renderer (#206). The four plays are the spec, so this renders THEM and not only a fixture: the
-// subset was measured against that corpus, and a fifth play written in something outside it should
+// The renderer (#206; since #575 only the public page draws it). The plays are the spec, so this
+// renders THEM and not only a fixture: the subset was measured against that corpus, and a fifth play written in something outside it should
 // fail here rather than show a reader a stray `**` in the middle of a sentence.
 //
 // The CSP forbids inline `style=`, and the rule behind it is that document text must never be built
 // into markup. Every assertion about escaping below is about that: the parser is handed hostile text
 // and the result is checked for elements, not for strings.
-import { beforeEach, describe, expect, it, vi } from "vitest";
+import { describe, expect, it, vi } from "vitest";
+import { PAGE, playArticle, playsIndex } from "../../src/render/play.js";
 // @ts-expect-error plain .mjs shared with scripts/build-web.mjs, which cannot import TypeScript.
-import { loadPlays } from "../../scripts/web-plays.mjs";
+import { loadPlays as readPlays } from "../../scripts/web-plays.mjs";
 
 interface Play { slug: string; date: string; title: string; lede: string; markdown: string }
-const PLAYS = loadPlays(".") as Play[];
+const PLAYS = readPlays(".") as Play[];
 
-const HTML = `
-  <nav class="topnav"><a href="/app">Combos</a><a href="/plays">Run plays</a></nav>
-  <main id="view-combos"></main>
-  <section id="view-plays" hidden><main class="doc play" id="plays-host"></main></section>`;
-
-/** The router listens on window and document, which outlive vi.resetModules(): detach the last one before booting another. */
-let stopRouter = (): void => {};
-
-/** Boot the view at a hash, with the payload served by a stubbed fetch. */
-const open = async (hash: string, plays: Play[] = PLAYS) => {
-  vi.resetModules();
-  document.body.innerHTML = HTML;
-  history.replaceState(null, "", hash);
-  vi.stubGlobal("fetch", vi.fn(async () => ({ ok: true, json: async () => ({ plays }) })));
-  const { initPlays } = await import("../../web/plays.js");
-  const { startRouter } = await import("../../web/router.js");
-  initPlays();
-  stopRouter();
-  stopRouter = startRouter();
-  await new Promise((r) => setTimeout(r, 0));
-  return document.querySelector<HTMLElement>("#plays-host")!;
+/**
+ * The app shell has no plays view since #575 (#287 made it unreachable), so a play is drawn in one
+ * place: `playArticle` on the PAGE surface, which is what the build writes to /plays/<slug>. Rendering
+ * it into a DOM here is what lets the escaping assertions check elements rather than strings.
+ */
+const SLUGS = new Set(PLAYS.map((p) => p.slug));
+const render = (play: Play, slugs: ReadonlySet<string> = SLUGS): HTMLElement => {
+  const host = document.createElement("main");
+  host.className = "doc play";
+  host.innerHTML = playArticle(play, { ...PAGE, slugs });
+  return host;
 };
+const bySlug = (slug: string) => PLAYS.find((p) => p.slug === slug)!;
 
-// Every test re-imports the view after vi.resetModules() and renders the real plays, so the file is
-// 28 of 28 alone and timed out at vitest's 5s default under full-suite load (#239). Explicit budget,
-// like the 222-list sweeps: a slow test with no explicit timeout is a flake waiting for load.
+// Each test renders the real plays; explicit budget, like the 222-list sweeps: a slow test with no
+// explicit timeout is a flake waiting for load (#239).
 vi.setConfig({ testTimeout: 60_000 });
 
-beforeEach(() => { document.body.innerHTML = HTML; });
-
 describe("the plays index", () => {
-  it("lists every play with its title, date and lede", async () => {
-    const host = await open("/plays");
+  it("lists every play with its title, date and lede", () => {
+    const host = document.createElement("main");
+    host.innerHTML = playsIndex(PLAYS, { ...PAGE, slugs: SLUGS });
     const items = [...host.querySelectorAll(".play-item")];
     expect(items).toHaveLength(PLAYS.length);
     for (const p of PLAYS) {
@@ -54,32 +44,23 @@ describe("the plays index", () => {
       expect(link, p.slug).not.toBeNull();
       expect(link!.textContent).toContain(p.title);
     }
-    // The page's one h1 is the brand in the header (#270), so the view's title is an h2.
-    expect(host.querySelectorAll("h1")).toHaveLength(0);
-    expect(host.querySelectorAll("h2.doc-title")).toHaveLength(1);
-  });
-
-  it("fetches the payload once, on the first visit rather than at boot", async () => {
-    await open("/plays");
-    expect(vi.mocked(fetch)).toHaveBeenCalledTimes(1);
-    expect(vi.mocked(fetch).mock.calls[0]![0]).toBe("/data/plays.json");
+    // A page of its own: its title is the one h1.
+    expect(host.querySelectorAll("h1.doc-title")).toHaveLength(1);
   });
 });
 
 describe("a play rendered", () => {
-  // One test per play (#378): a single test looping over the corpus grew ~1.2 s per play in CI and
-  // timed out at 60 s; this way each play has its own budget and a failure names it.
-  it.each(PLAYS)("renders every construct the corpus uses, on $slug", async (p) => {
-    const host = await open(`/plays/${p.slug}`);
-    // No h1 (the page's one h1 is the brand in the header, #270) and one title, the index's title
-    // rather than the file's "Play — " prefix; the sections sit one level under it.
-    expect(host.querySelectorAll("h1"), p.slug).toHaveLength(0);
-    const titles = host.querySelectorAll("h2");
+  // One test per play (#378): a failure names it and each play has its own budget.
+  it.each(PLAYS)("renders every construct the corpus uses, on $slug", (p) => {
+    const host = render(p);
+    // One title, the index's title rather than the file's "Play — " prefix; the sections sit one
+    // level under it.
+    const titles = host.querySelectorAll("h1");
     expect(titles, p.slug).toHaveLength(1);
     expect(titles[0]!.textContent, p.slug).toBe(p.title);
-    expect(host.querySelectorAll("h3").length, `${p.slug} h3`).toBeGreaterThan(0);
-    // No skipped levels: under the header's h1, every heading is at most one below the last.
-    let last = 1;
+    expect(host.querySelectorAll("h2").length, `${p.slug} h2`).toBeGreaterThan(0);
+    // No skipped levels: every heading is at most one below the last.
+    let last = 0;
     for (const h of host.querySelectorAll("h1, h2, h3, h4, h5, h6")) {
       const level = Number(h.tagName[1]);
       expect(level, `${p.slug} ${h.tagName} "${h.textContent}" after h${last}`).toBeLessThanOrEqual(last + 1);
@@ -89,8 +70,7 @@ describe("a play rendered", () => {
     expect(host.querySelectorAll(".play-table").length, `${p.slug} tables`).toBeGreaterThan(0);
     expect(host.querySelectorAll("code").length, `${p.slug} code`).toBeGreaterThan(5);
     expect(host.querySelectorAll("strong").length, `${p.slug} strong`).toBeGreaterThan(5);
-    expect(host.querySelector(".play-back"), `${p.slug} back link`).not.toBeNull();
-    expect(document.title, p.slug).toBe(`${p.title} — RiftCombo`);
+    expect(host.querySelector<HTMLAnchorElement>(".play-back")?.getAttribute("href"), `${p.slug} back link`).toBe("/plays");
   });
 
   /**
@@ -115,8 +95,8 @@ describe("a play rendered", () => {
    * ``**`code`**`` is `<strong><code>` and carries no asterisk at all, while a leaked one leaves its
    * `**` outside the span where this still sees it.
    */
-  it.each(PLAYS)("leaves no raw markdown marker in the rendered text of $slug", async (p) => {
-    const host = await open(`/plays/${p.slug}`);
+  it.each(PLAYS)("leaves no raw markdown marker in the rendered text of $slug", (p) => {
+    const host = render(p);
     // Fenced blocks are verbatim by design and a turn table may legitimately hold any character.
     // Code spans go with them: 45 printings are alt-arts whose base code ENDS in `*`, so a play
     // quoting one would trip the single-asterisk check below, correctly and uselessly.
@@ -126,17 +106,16 @@ describe("a play rendered", () => {
     expect(text, `${p.slug} carries a marker`).not.toMatch(/\*|`|\]\(/);
   });
 
-  it("keeps a fenced turn table's alignment exactly as it was written", async () => {
+  it("keeps a fenced turn table's alignment exactly as it was written", () => {
     const clock = PLAYS.find((p) => p.slug.endsWith("the-unopposed-clock"))!;
-    const host = await open(`/plays/${clock.slug}`);
-    const pre = host.querySelector("pre")!;
+    const pre = render(clock).querySelector("pre")!;
     expect(pre.textContent).toContain("T1  channel 2 (R=2).");
     // The leading run of spaces on a continuation line is what makes the column line up.
     expect(pre.textContent).toMatch(/\n {2,}/);
   });
 
-  it("turns a cross-link between two plays into a route, and marks no internal link external", async () => {
-    const host = await open("/plays/2026-09-12-chaos-fury-yasuo-shuttle");
+  it("turns a cross-link between two plays into a path, and marks no internal link external", () => {
+    const host = render(bySlug("2026-09-12-chaos-fury-yasuo-shuttle"));
     const links = [...host.querySelectorAll<HTMLAnchorElement>("a")].filter((a) => a.className !== "play-back");
     expect(links.length).toBeGreaterThan(0);
     for (const a of links) {
@@ -145,39 +124,13 @@ describe("a play rendered", () => {
     }
   });
 
-  it("draws a header row only when the table has one, so an empty header is not a band of nothing", async () => {
+  it("draws a header row only when the table has one, so an empty header is not a band of nothing", () => {
     // The "Needs" tables open `| | |`: two empty cells, which is how markdown writes a definition list.
-    const host = await open("/plays/2026-09-12-chaos-order-the-one-answer");
-    const tables = [...host.querySelectorAll(".play-table")];
+    const tables = [...render(bySlug("2026-09-12-chaos-order-the-one-answer")).querySelectorAll(".play-table")];
     expect(tables.length).toBeGreaterThan(1);
     expect(tables.some((t) => !t.querySelector("thead")), "no headerless table rendered").toBe(true);
     expect(tables.some((t) => t.querySelector("thead")), "no headed table rendered").toBe(true);
     for (const t of tables) for (const th of t.querySelectorAll("th")) expect(th.textContent!.trim()).not.toBe("");
-  });
-});
-
-describe("what the view does when it cannot show a play", () => {
-  it("says so on a slug the payload does not carry, and offers the index", async () => {
-    const host = await open("/plays/2026-09-12-never-written");
-    expect(host.textContent).toContain("There is no play at");
-    expect(host.querySelector<HTMLAnchorElement>(".play-back")!.getAttribute("href")).toBe("/plays");
-    expect(host.querySelectorAll("h1")).toHaveLength(0);
-    expect(host.querySelectorAll("h2.doc-title")).toHaveLength(1);
-  });
-
-  it("says so when the payload itself fails, rather than showing an empty page", async () => {
-    vi.resetModules();
-    document.body.innerHTML = HTML;
-    history.replaceState(null, "", "/plays");
-    vi.stubGlobal("fetch", vi.fn(async () => ({ ok: false, status: 500, json: async () => ({}) })));
-    const { initPlays } = await import("../../web/plays.js");
-    const { startRouter } = await import("../../web/router.js");
-    initPlays();
-    stopRouter();
-    stopRouter = startRouter();
-    await new Promise((r) => setTimeout(r, 0));
-    const host = document.querySelector<HTMLElement>("#plays-host")!;
-    expect(host.textContent).toContain("could not be loaded");
   });
 
   /**
@@ -185,7 +138,7 @@ describe("what the view does when it cannot show a play", () => {
    * is ever interpreted as markup. This hands it a play written to break that and checks the result
    * holds no element it did not create — which is what an `innerHTML` renderer would fail.
    */
-  it("never lets a play's own text become markup", async () => {
+  it("never lets a play's own text become markup", () => {
     const hostile: Play = {
       slug: "2026-09-12-hostile",
       date: "2026-09-12",
@@ -201,14 +154,33 @@ describe("what the view does when it cannot show a play", () => {
         "| <b>bold?</b> | `<i>code</i>` |",
       ].join("\n"),
     };
-    const host = await open(`/plays/${hostile.slug}`, [hostile]);
+    const host = render(hostile, new Set([hostile.slug]));
     expect(host.querySelector("script")).toBeNull();
     expect(host.querySelector("img")).toBeNull();
     expect(host.querySelector("b")).toBeNull();
     expect(host.querySelector("i")).toBeNull();
     // The angle brackets survive as the characters they are, which is what the file actually said.
     expect(host.textContent).toContain("<script>alert(1)</script>");
-    expect(host.querySelector("h2.doc-title")!.textContent).toBe('<img src=x onerror="alert(1)">');
+    expect(host.querySelector(".doc-title")!.textContent).toBe('<img src=x onerror="alert(1)">');
+  });
+});
+
+describe("the payload the combo drawer reads", () => {
+  it("is fetched once, at boot, however many times it is asked for", async () => {
+    vi.resetModules();
+    vi.stubGlobal("fetch", vi.fn(async () => ({ ok: true, json: async () => ({ plays: PLAYS }) })));
+    const { loadPlays } = await import("../../web/plays.js");
+    await Promise.all([loadPlays(), loadPlays()]);
+    expect(vi.mocked(fetch)).toHaveBeenCalledTimes(1);
+    expect(vi.mocked(fetch).mock.calls[0]![0]).toBe("/data/plays.json");
+  });
+
+  it("answers no play about any line when the payload fails, so the drawer draws no section", async () => {
+    vi.resetModules();
+    vi.stubGlobal("fetch", vi.fn(async () => ({ ok: false, status: 500, json: async () => ({}) })));
+    const { loadPlays, playsAbout } = await import("../../web/plays.js");
+    await loadPlays({ comboIds: new Set(["time-warp-hold-burst"]) });
+    expect(playsAbout(["time-warp-hold-burst"])).toEqual([]);
   });
 });
 
@@ -220,15 +192,9 @@ describe("what the view does when it cannot show a play", () => {
 describe("which entry a play is about", () => {
   const subjects = async (known: string[]) => {
     vi.resetModules();
-    document.body.innerHTML = HTML;
-    history.replaceState(null, "", "/plays");
     vi.stubGlobal("fetch", vi.fn(async () => ({ ok: true, json: async () => ({ plays: PLAYS }) })));
     const mod = await import("../../web/plays.js");
-    const { startRouter } = await import("../../web/router.js");
-    mod.initPlays({ comboIds: new Set(known) });
-    stopRouter();
-    stopRouter = startRouter();
-    await new Promise((r) => setTimeout(r, 0));
+    await mod.loadPlays({ comboIds: new Set(known) });
     return mod;
   };
 

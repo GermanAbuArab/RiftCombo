@@ -12,9 +12,8 @@ import { matchSynergies, planSynergies, type SynergyGap, type SynergyHit } from 
 import type { Card, Combo, Deck, Domain, Feature, Format, LegalityEntry, Synergy, Variant } from "../src/types.js";
 import { gate, initAccount } from "./account.js";
 import { initDecks } from "./decks.js";
-import { initPlays, playsAbout } from "./plays.js";
+import { loadPlays, playsAbout } from "./plays.js";
 import { comboSections } from "../src/render/combo.js";
-import { cardDataNote, guideBody, sourcesBody } from "../src/render/pages.js";
 import { accountsEnabled } from "./supabase.js";
 import type { SavedDeck } from "../src/saved.js";
 import { esc } from "../src/html.js";
@@ -182,22 +181,10 @@ const setStatus = (title: string, body: string, kind: "" | "ok" | "error" = "") 
   if (kind) statusCard.classList.add(kind);
 };
 
-/**
- * The Guide and Sources views, from the functions the public /guide and /sources pages are built
- * from. The word "candidate" only means something while the catalogue holds one; with every entry
- * walked, the sentences explaining it would point at nothing, so they stay out of the page.
- */
-function renderProse(note?: string): void {
-  const candidates = combos.some((c) => c.status !== "verified");
-  $<HTMLElement>("#how").innerHTML = guideBody({ base: 2, candidates });
-  $<HTMLElement>("#data").innerHTML = sourcesBody({ base: 2, candidates, note });
-}
-
 async function boot() {
   // An old `#/...` or `#deck=` link becomes its path before anything reads the route (#287).
   if (redirectLegacyHash()) return;
   gate();
-  renderProse();
   setStatus("Loading", "Fetching the card index…");
   const res = await fetch("/data/cards.json");
   // Without this the body is parsed as JSON whatever came back, so an error page throws deep inside
@@ -207,15 +194,12 @@ async function boot() {
   const data = (await res.json()) as { cards: Card[]; resultsUpdatedAt: string };
   cards = new CardIndex(data.cards, legality);
   variants = generateVariants(combos, cards);
-  // The Sources view is drawn again now that the card index can be counted (#286: the same text the
-  // public /sources page is built from).
-  renderProse(cardDataNote(data.resultsUpdatedAt, cards.cards.length, combos));
   setStatus("Ready", "Paste a deck list to begin.");
   // A `/app#deck=<list>` link (or an old `#deck=` one, redirected above) opens Combos with that list.
   const opened = route();
   if (opened.legacyDeck) { input.value = opened.legacyDeck; void run(); }
   initAccount();
-  initPlays({ comboIds: new Set(combosById.keys()) });
+  void loadPlays({ comboIds: new Set(combosById.keys()) });
   initDecks({
     cards: () => cards,
     variants: () => variants,
