@@ -24,8 +24,8 @@ export interface Play {
 }
 
 export interface PlaySurface {
-  /** 1 on a page of its own (2 was the app's removed plays view). The title is `h<base>`, the sections one level under. */
-  base: 1 | 2;
+  /** 1 on a page of its own (the app's plays view that drew 2 is gone, #575). The title is `h<base>`, the sections one level under. */
+  base: 1;
   /** Where a play's own address points: "/plays/" since the path router (#287). */
   prefix: string;
   /** Slugs a cross-link may point at; a link to any other play keeps its words and loses its href. */
