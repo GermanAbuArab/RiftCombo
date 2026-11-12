@@ -463,8 +463,6 @@ textarea::placeholder, input::placeholder { color: var(--faint); }
 .play-item-title { display: block; }
 .play-item-title::first-letter, .play .doc-title::first-letter { text-transform: uppercase; }
 
-/* Its own name: .empty is a page-wide absolute empty state and would throw this to the viewport. */
-.play-notice { margin: 0 0 14px; font-size: inherit; line-height: inherit; }
 .play .play-back { display: inline-block; margin: 0 0 10px; font-size: 0.8125rem; color: var(--muted); text-decoration: none; }
 .play .play-back:hover, .play .play-back:focus-visible { color: var(--accent); }
 

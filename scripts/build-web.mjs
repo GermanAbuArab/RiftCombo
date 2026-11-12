@@ -32,7 +32,8 @@ const slim = {
 writeFileSync(join(OUT, "data", "cards.json"), JSON.stringify(slim));
 // Fetched rather than bundled, and only when the view is first opened: the plays are prose, nobody
 // reading a deck list needs them, and keeping them out of app.js keeps the cost on the page that
-// asks for it. The markdown ships verbatim; web/plays.ts renders it.
+// asks for it. The markdown ships verbatim; web/plays.ts reads it for the combo drawer's Run plays
+// list, and the public /plays pages are rendered from the same payload by src/render/play.ts.
 // The source IS the render, so the only filter is the one on the prose itself: the plays were
 // WITHHELD on 2026-09-19 (15 of 15 carried sentences addressed to another agent — a "For the
 // manager" punch-list rendered under an h1 beside the Riot disclaimer) and republished on 2026-09-20

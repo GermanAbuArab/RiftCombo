@@ -8,7 +8,7 @@ import { isAppPath, legacyTarget, parseUrl, VIEW_PATHS, VIEWS } from "../web/rou
  * path. `parseUrl` and `legacyTarget` are pure — they never touch `location` — so this test can exist.
  */
 describe("the path routes", () => {
-  it("reads each of the five views from its own path", () => {
+  it("reads each of the shell's two views from its own path", () => {
     for (const view of VIEWS) expect(parseUrl(VIEW_PATHS[view]).view, view).toBe(view);
   });
 
@@ -27,14 +27,15 @@ describe("the path routes", () => {
     expect(parseUrl("/app").analyzing).toBeNull();
     // Under the hash router `#stage` was an unknown view and lost the id; now the fragment is not the route.
     expect(parseUrl("/app?deck=8f3c-1#stage").analyzing).toBe("8f3c-1");
-    expect(parseUrl("/guide?deck=8f3c-1").analyzing).toBeNull();
+    expect(parseUrl("/decks?deck=8f3c-1").analyzing).toBeNull();
   });
 
-  it("carries the play slug out of /plays/<slug>, and keeps slug and deck id apart", () => {
-    expect(parseUrl("/plays/2026-09-12-the-unopposed-clock").playSlug).toBe("2026-09-12-the-unopposed-clock");
-    expect(parseUrl("/plays").playSlug).toBeNull();
-    expect(parseUrl("/plays/2026-09-12-the-unopposed-clock").deckId).toBeNull();
-    expect(parseUrl("/decks/8f3c-1").playSlug).toBeNull();
+  it("renders no plays, guide or sources view: those paths are public pages the shell only links to (#575)", () => {
+    expect(VIEWS).toEqual(["combos", "decks"]);
+    for (const p of ["/plays", "/plays/2026-09-12-the-unopposed-clock", "/guide", "/sources"]) {
+      expect(isAppPath(p), p).toBe(false);
+      expect(parseUrl(p).deckId, p).toBeNull();
+    }
   });
 
   it("opens Combos with a list carried in the fragment, never in the query a server logs", () => {

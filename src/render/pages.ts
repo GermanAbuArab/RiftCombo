@@ -1,13 +1,13 @@
 /**
  * The three prose pages — Guide, Sources, About — as HTML (#286).
  *
- * The Guide and Sources used to be written into `web/index.html`; they live here now so the app's
- * views and the public pages at /guide and /sources are one text. `web/main.ts` fills `#how` and
- * `#data` from these functions at boot, the build writes the pages from them, and neither can drift
- * from the other. About exists only as a page (#289's verify lines; it is linked from every footer).
+ * The Guide and Sources used to be written into `web/index.html`; they live here now, and the build
+ * writes the public pages at /guide and /sources from them. The app shell's own Guide and Sources
+ * views went with #575 (#287 had made them unreachable). About exists only as a page (#289's verify
+ * lines; it is linked from every footer).
  *
- * `base` is the same switch the play renderer has: 2 inside the app, whose one h1 is the brand
- * (#270), 1 on a page of its own.
+ * `base` is the same switch the play renderer has: 1 on a page of its own; 2 was the app's removed
+ * views, whose one h1 was the brand (#270).
  */
 import { esc } from "../html.js";
 import { DISCLAIMER, renderDocument } from "./layout.js";

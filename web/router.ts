@@ -1,6 +1,7 @@
-// The five views (#43, fifth added by #206). This is the only file that knows the view names, so
-// adding one is an entry in VIEWS and a container in the HTML — and `test/a11y.test.ts` reads VIEWS
-// from here rather than repeating the list.
+// The app shell's two views (#43). This is the only file that knows the view names, so adding one
+// is an entry in VIEWS and a container in the HTML — and `test/a11y.test.ts` reads VIEWS from here
+// rather than repeating the list. Run plays, Guide and Sources were views too until #287 made them
+// public pages the shell only links to; #575 removed their dead containers.
 //
 // #287 moved the router from the hash to the History API (#272 design §2). The app is the shell at
 //   /app  /app?deck=<id>  /app#deck=<code>  /decks  /decks/new  /decks/<id>
@@ -12,38 +13,28 @@
 // Old hash links (`#/plays/x`, `#/combos?deck=<id>`, `#deck=<code>`, every other `#/<view>`) still
 // work: the server never sees a fragment, so `redirectLegacyHash` turns them into paths on boot.
 
-export const VIEWS = ["combos", "decks", "plays", "guide", "sources"] as const;
+export const VIEWS = ["combos", "decks"] as const;
 export type ViewName = (typeof VIEWS)[number];
 
 export interface Route {
   view: ViewName;
   /** The saved deck id in `/decks/<id>`, or the literal "new". Null on every other route. */
   deckId: string | null;
-  /** The play's file slug in `/plays/<slug>`. Null on `/plays` itself and on every other route. */
-  playSlug: string | null;
   /** `/app?deck=<id>`: which saved deck the Combos view is showing. */
   analyzing: string | null;
   /** `/app#deck=<code>`: a list or deck code carried in the fragment, so it never reaches a server log. */
   legacyDeck: string | null;
 }
 
-const DEFAULT: Route = { view: "combos", deckId: null, playSlug: null, analyzing: null, legacyDeck: null };
+const DEFAULT: Route = { view: "combos", deckId: null, analyzing: null, legacyDeck: null };
 
-/** Where each view lives. The app's own two are in-app paths; the other three are public pages. */
-export const VIEW_PATHS: Record<ViewName, string> = {
-  combos: "/app", decks: "/decks", plays: "/plays", guide: "/guide", sources: "/sources",
-};
+/** Where each view lives: both are in-app paths. */
+export const VIEW_PATHS: Record<ViewName, string> = { combos: "/app", decks: "/decks" };
 
-/**
- * What the browser tab says on each route (#79). On `/plays/<slug>` the play's own renderer narrows
- * this further to the play's title, which is why the title is written before the listeners run.
- */
+/** What the browser tab says on each route (#79). */
 const TITLES: Record<ViewName, string> = {
   combos: "RiftCombo — Riftbound combo finder",
   decks: "My decks — RiftCombo",
-  plays: "Run plays — RiftCombo",
-  guide: "Guide — RiftCombo",
-  sources: "Sources — RiftCombo",
 };
 
 /** The paths the app shell serves; everything else on the origin is a public page. */
@@ -60,11 +51,10 @@ export function parseUrl(url: string): Route {
   const { pathname, searchParams, hash } = new URL(url, "https://riftcombo.app");
   const legacyDeck = hash.startsWith("#deck=") ? decode(hash.slice(6)) : null;
   const [head = "", tail = ""] = pathname.replace(/^\//, "").split("/");
-  const view: ViewName = head === "app" || !(VIEWS as readonly string[]).includes(head) ? "combos" : (head as ViewName);
+  const view: ViewName = head === "decks" ? "decks" : "combos";
   return {
     view,
     deckId: view === "decks" && tail ? decode(tail) : null,
-    playSlug: view === "plays" && tail ? decode(tail) : null,
     analyzing: view === "combos" ? searchParams.get("deck") : null,
     legacyDeck: view === "combos" ? legacyDeck : null,
   };

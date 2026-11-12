@@ -249,14 +249,13 @@ export function safeHref(href: string): string | null {
  * Where an `[…](…)` in a play should point, or null for "render the words and drop the link".
  *
  * The plays cross-link each other by file name, which is an address the browser cannot serve: the
- * markdown is not deployed, only the payload built from it is. Those become `#/plays/<slug>`, and
+ * markdown is not deployed, only the payload built from it is. Those become `<prefix><slug>`, and
  * only for a slug the payload actually carries — a link to a play that was renamed or never shipped
  * becomes plain text rather than a dead address, because a reader can tell a missing link from a
  * broken one and cannot tell a 404 from a bug. Anything else is left exactly as written.
- * `prefix` is the play's address on the surface drawing it: the app's hash route by default, the
- * real path on a pre-rendered page (#286).
+ * `prefix` is the play's address on the surface drawing it: "/plays/" on the pre-rendered page (#286).
  */
-export function resolvePlayHref(href: string, slugs: ReadonlySet<string>, prefix = "#/plays/"): string | null {
+export function resolvePlayHref(href: string, slugs: ReadonlySet<string>, prefix: string): string | null {
   if (!href.endsWith(".md")) return safeHref(href);
   const slug = href.replace(/^.*\//, "").replace(/\.md$/, "");
   return slugs.has(slug) ? `${prefix}${slug}` : null;

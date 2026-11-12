@@ -133,14 +133,14 @@ describe("the top bar is a view switcher, not three anchors (#43)", () => {
   });
 
   it("carries one container per view, and only Combos ships visible", () => {
-    for (const name of ["combos", "decks", "guide", "sources"]) {
+    for (const name of ["combos", "decks"]) {
       expect(home, name).toContain(`id="view-${name}"`);
     }
     // Combos is the default view, so it is the one that ships visible; the router hides it when the
-    // hash says otherwise, and the other three never flash before it runs.
-    for (const name of ["decks", "guide", "sources"]) {
-      expect(new RegExp(`id="view-${name}" hidden`).test(home), `view-${name} must ship hidden`).toBe(true);
-    }
+    // path says otherwise, and My decks never flashes before it runs.
+    expect(/id="view-decks" hidden/.test(home), "view-decks must ship hidden").toBe(true);
+    // Run plays, Guide and Sources are public pages since #287; the shell keeps no container for them (#575).
+    for (const name of ["plays", "guide", "sources"]) expect(home, name).not.toContain(`id="view-${name}"`);
   });
 });
 

@@ -170,23 +170,23 @@ describe("blocks", () => {
 describe("where a play's links point", () => {
   const slugs = new Set(["2026-09-12-the-unopposed-clock"]);
 
-  it("turns a cross-link between two plays into the route that serves it", () => {
-    expect(resolvePlayHref("2026-09-12-the-unopposed-clock.md", slugs)).toBe("#/plays/2026-09-12-the-unopposed-clock");
+  it("turns a cross-link between two plays into the path that serves it", () => {
+    expect(resolvePlayHref("2026-09-12-the-unopposed-clock.md", slugs, "/plays/")).toBe("/plays/2026-09-12-the-unopposed-clock");
   });
 
   it("drops a link to a play the payload does not carry, keeping the words", () => {
-    expect(resolvePlayHref("2026-09-12-renamed.md", slugs)).toBeNull();
+    expect(resolvePlayHref("2026-09-12-renamed.md", slugs, "/plays/")).toBeNull();
   });
 
   it("leaves every other address exactly as written", () => {
-    for (const h of ["https://example.com/x", "/privacy", "#/combos"]) expect(resolvePlayHref(h, slugs)).toBe(h);
+    for (const h of ["https://example.com/x", "/privacy", "#/combos"]) expect(resolvePlayHref(h, slugs, "/plays/")).toBe(h);
   });
 
   it("refuses every scheme off the href allow-list, so the caller draws a span (#556)", () => {
     for (const h of ["javascript:alert(1)", "JaVaScRiPt:alert(1)", "\tjavascript:alert(1)", "java\nscript:alert(1)",
       " javascript:alert(1)", "data:text/html,x", "vbscript:x", "//evil.example/x", "/\\evil.example", "relative/path.html",
       "javascript:alert(1)//x.md", ""]) {
-      expect(resolvePlayHref(h, slugs), JSON.stringify(h)).toBeNull();
+      expect(resolvePlayHref(h, slugs, "/plays/"), JSON.stringify(h)).toBeNull();
       expect(safeHref(h), JSON.stringify(h)).toBeNull();
     }
   });
@@ -199,7 +199,7 @@ describe("where a play's links point", () => {
   it("keeps every allowed form, whatever the case of its scheme (#556)", () => {
     for (const h of ["https://example.com/x", "http://example.com", "HTTPS://example.com", "mailto:a@b.co", "/privacy", "#top", "#/combos"]) {
       expect(safeHref(h), h).toBe(h);
-      expect(resolvePlayHref(h, slugs), h).toBe(h);
+      expect(resolvePlayHref(h, slugs, "/plays/"), h).toBe(h);
     }
   });
 });
@@ -240,12 +240,12 @@ describe("the four plays as they are actually written", () => {
     }
   });
 
-  it("finds every cross-link between the plays and resolves it to a route", () => {
+  it("finds every cross-link between the plays and resolves it to a path", () => {
     const slugs = new Set(plays.map((p) => p.slug));
     const links = plays.flatMap((p) => [...p.markdown.matchAll(/\]\(([^)\s]+)\)/g)].map((m) => m[1]!));
     // A FLOOR, not a pin: the guard exists so `resolvePlayHref` cannot become dead code if the
     // corpus stops cross-linking, and every play added after #206 may legitimately add a link.
     expect(links.length, "the plays stopped cross-linking — is the .md rewrite still needed?").toBeGreaterThanOrEqual(3);
-    for (const href of links) expect(resolvePlayHref(href, slugs), href).toMatch(/^#\/plays\//);
+    for (const href of links) expect(resolvePlayHref(href, slugs, "/plays/"), href).toMatch(/^\/plays\//);
   });
 });

@@ -1,16 +1,15 @@
 /**
- * A run play as HTML (#286): the document `web/plays.ts` shows at `/plays/<slug>` and the public page
- * built at /plays/<slug>, from one function.
+ * A run play as HTML (#286): the public page built at /plays/<slug>, and the one place a play is
+ * drawn since the app shell lost its own plays view (#287, #575).
  *
  * The markdown in `docs/plays/` is the single source of truth; `src/markdown.ts` parses it into a
  * tree and this walks the tree into a string. Every piece of document text goes through `esc()` on
  * the way out — text, code, link targets, table cells — so no sentence of a play can become markup,
  * and `test/dom/plays.dom.test.ts` hands it hostile text and checks the result for elements.
  *
- * The two surfaces differ only in where they sit. The app is one document whose one h1 is the brand
- * (#270), so there the title is an h2 and the sections start at h3; a pre-rendered page is its own
- * document, so its title is the h1 and its sections start at h2. Links between plays are hash
- * routes in the app and real paths on the page.
+ * A pre-rendered page is its own document, so a play's title is the h1 and its sections start at
+ * h2, and links between plays are real paths. `base` 2 was the app's plays view, whose one h1 was
+ * the brand (#270); that view is gone (#575) and PAGE is the only surface left.
  */
 import { esc } from "../html.js";
 import { parseMarkdown, resolvePlayHref, type Block, type Span } from "../markdown.js";
@@ -25,15 +24,14 @@ export interface Play {
 }
 
 export interface PlaySurface {
-  /** 1 on a page of its own, 2 inside the app. The title is `h<base>`, the sections one level under. */
+  /** 1 on a page of its own (2 was the app's removed plays view). The title is `h<base>`, the sections one level under. */
   base: 1 | 2;
-  /** Where a play's own address points: "/plays/" on both surfaces since the path router (#287). */
+  /** Where a play's own address points: "/plays/" since the path router (#287). */
   prefix: string;
   /** Slugs a cross-link may point at; a link to any other play keeps its words and loses its href. */
   slugs: ReadonlySet<string>;
 }
 
-export const APP: Omit<PlaySurface, "slugs"> = { base: 2, prefix: "/plays/" };
 export const PAGE: Omit<PlaySurface, "slugs"> = { base: 1, prefix: "/plays/" };
 
 export const PLAYS_INTRO =
