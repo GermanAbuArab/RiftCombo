@@ -16,7 +16,8 @@ const TYPES = {
 };
 
 createServer((req, res) => {
-  const path = decodeURIComponent(new URL(req.url, "http://x").pathname);
+  let path;
+  try { path = decodeURIComponent(new URL(req.url, "http://x").pathname); } catch { res.writeHead(400).end("bad request"); return; }
   let file = resolve(join(PUBLIC, path.endsWith("/") ? `${path}index.html` : path));
   if (file !== PUBLIC && !file.startsWith(PUBLIC + sep)) { res.writeHead(403).end(); return; }
   if (!existsSync(file) || statSync(file).isDirectory()) file += ".html";
