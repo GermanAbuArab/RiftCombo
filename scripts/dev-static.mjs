@@ -2,11 +2,13 @@
 // The `devCommand` in vercel.json (#586). `vercel dev` runs that command and proxies to the port in $PORT;
 // without one it falls back to the package.json `dev` script, which calls `vercel dev` again and fails with
 // DEV_RECURSIVE_INVOCATION. vercel dev itself applies cleanUrls, rewrites and the api/ functions, so this
-// only has to hand out the built files in public/.
+// only has to hand out the built files in public/ (requestPath drops the query vercel dev encodes into a
+// rewritten path, #597).
 import { existsSync, readFileSync, statSync } from "node:fs";
 import { createServer } from "node:http";
 import { dirname, extname, join, resolve, sep } from "node:path";
 import { fileURLToPath } from "node:url";
+import { requestPath } from "./dev-support.mjs";
 
 const PUBLIC = resolve(join(dirname(fileURLToPath(import.meta.url)), "..", "public"));
 const TYPES = {
@@ -16,8 +18,8 @@ const TYPES = {
 };
 
 createServer((req, res) => {
-  let path;
-  try { path = decodeURIComponent(new URL(req.url, "http://x").pathname); } catch { res.writeHead(400).end("bad request"); return; }
+  const path = requestPath(req.url);
+  if (path === null) { res.writeHead(400).end("bad request"); return; }
   let file = resolve(join(PUBLIC, path.endsWith("/") ? `${path}index.html` : path));
   if (file !== PUBLIC && !file.startsWith(PUBLIC + sep)) { res.writeHead(403).end(); return; }
   try {
