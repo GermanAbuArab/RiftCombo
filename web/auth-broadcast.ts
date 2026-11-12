@@ -19,22 +19,34 @@ export const BROADCAST_KEY = "better-auth.message";
 
 let installed = false;
 
-/**
- * Install once, before the SDK client exists, so its first write is already covered. Where there is
- * no `localStorage` (a test in Node) the SDK's channel writes nothing either, so there is nothing to
- * scrub: the same guard its `post` uses.
- */
+/** The page's localStorage, or null where there is none (a test in Node) or the browser blocks it. */
+function pageStorage(): Storage | null {
+  try {
+    return typeof localStorage === "undefined" ? null : localStorage;
+  } catch {
+    // Reading the global throws a SecurityError when the user blocks site data; the SDK's channel
+    // cannot write there either, and the app must still get its client.
+    return null;
+  }
+}
+
+/** Install once, before the SDK client exists, so its first write is already covered. */
 export function scrubAuthBroadcast(): void {
-  if (installed || typeof localStorage === "undefined") return;
+  if (installed) return;
+  const storage = pageStorage();
+  if (!storage) return;
   installed = true;
-  const storage = localStorage;
   const setItem = Storage.prototype.setItem;
   // On the prototype, because a Storage object turns any property assigned on it into a stored item.
   // The removal goes to whichever storage took the write (`this`), not to a captured reference, so
-  // no identity check is needed; the SDK writes only to localStorage.
+  // no identity check is needed; the SDK writes only to localStorage. `finally`, so a write that
+  // fails on quota still clears what an earlier one left.
   Storage.prototype.setItem = function (this: Storage, key: string, value: string) {
-    setItem.call(this, key, value);
-    if (key === BROADCAST_KEY) this.removeItem(BROADCAST_KEY);
+    try {
+      setItem.call(this, key, value);
+    } finally {
+      if (key === BROADCAST_KEY) this.removeItem(BROADCAST_KEY);
+    }
   };
   addEventListener("storage", (event) => {
     if (event.key === BROADCAST_KEY && event.newValue !== null) storage.removeItem(BROADCAST_KEY);

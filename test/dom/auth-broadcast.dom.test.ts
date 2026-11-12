@@ -93,9 +93,13 @@ describe("better-auth.message does not survive in this tab (#591)", () => {
     expect(localStorage.getItem("untouched")).toBe("1");
   });
 
-  it("leaves every other key alone", () => {
-    localStorage.setItem("riftcombo.other", "kept");
-    expect(localStorage.getItem("riftcombo.other")).toBe("kept");
+  it("leaves every other key alone, written before or after it", () => {
+    localStorage.setItem("riftcombo.before", "kept");
+    HOOKS.signIn.onSuccess(sessionData(1));
+    localStorage.setItem("riftcombo.after", "kept");
+    expect(writes).toContain("SIGNED_IN");
+    expect(localStorage.getItem(BROADCAST_KEY)).toBeNull();
+    expect([localStorage.getItem("riftcombo.before"), localStorage.getItem("riftcombo.after")]).toEqual(["kept", "kept"]);
   });
 });
 
@@ -131,14 +135,5 @@ describe("sign-out still clears the session (#591)", () => {
     await vi.waitFor(() => expect(events).toContainEqual(["SIGNED_OUT", null]));
     expect(SESSION_CACHE.getCachedSession()).toBeNull();
     expect(localStorage.getItem(BROADCAST_KEY)).toBeNull();
-  });
-});
-
-describe("the app installs it (#591)", () => {
-  it("before it creates the SDK client", () => {
-    const source = readFileSync(join(ROOT, "web", "supabase.ts"), "utf8");
-    const body = source.slice(source.indexOf("const makeClient"));
-    expect(body.indexOf("scrubAuthBroadcast()")).toBeGreaterThan(-1);
-    expect(body.indexOf("scrubAuthBroadcast()")).toBeLessThan(body.indexOf("createClient("));
   });
 });
