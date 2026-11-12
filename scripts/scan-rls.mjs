@@ -88,7 +88,7 @@ function main() {
     verdict.rls_exit = rls.status;
     verdict.rls_pass = ((rls.stdout ?? "").match(/^pass {2}/gm) ?? []).length;
     verdict.rls_fail = ((rls.stdout ?? "").match(/^FAIL {2}/gm) ?? []).length;
-    if (rls.error) throw new Error(`check-rls-neon.mjs did not finish: ${rls.error.code ?? rls.error.message} after ${CHILD_TIMEOUT_MS} ms (partial: ${verdict.rls_pass} pass, ${verdict.rls_fail} FAIL)`);
+    if (rls.error) throw new Error(`check-rls-neon.mjs did not finish: ${rls.error.code ?? rls.error.message}${rls.error.code === "ETIMEDOUT" ? ` after ${CHILD_TIMEOUT_MS} ms` : ""} (partial: ${verdict.rls_pass} pass, ${verdict.rls_fail} FAIL)`);
     log(`check-rls-neon.mjs exit ${rls.status}: ${verdict.rls_pass} pass, ${verdict.rls_fail} FAIL`);
   } catch (err) {
     verdict.error = err.message;
