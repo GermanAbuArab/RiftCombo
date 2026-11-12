@@ -17,6 +17,7 @@
 // Measured 2026-09-24 in Chrome and in WebKit before this file was written.
 
 import { createClient, SupabaseAuthAdapter } from "@neondatabase/neon-js";
+import { scrubAuthBroadcast } from "./auth-broadcast.js";
 import { fromRow, type DeckRow, type SavedDeck } from "../src/saved.js";
 import type { Format } from "../src/types.js";
 
@@ -34,10 +35,14 @@ const DATA_URL = typeof __NEON_DATA_API_URL__ === "string" ? __NEON_DATA_API_URL
 export const accountsEnabled = Boolean(AUTH_URL && DATA_URL);
 
 type Client = ReturnType<typeof makeClient>;
-const makeClient = () => createClient({
-  auth: { adapter: SupabaseAuthAdapter(), url: AUTH_URL },
-  dataApi: { url: DATA_URL },
-});
+// The SDK's cross-tab channel leaves the session JWT in localStorage; the scrub goes in first (#591).
+const makeClient = () => {
+  scrubAuthBroadcast();
+  return createClient({
+    auth: { adapter: SupabaseAuthAdapter(), url: AUTH_URL },
+    dataApi: { url: DATA_URL },
+  });
+};
 let client: Client | null = null;
 function db(): Client {
   client ??= makeClient();
