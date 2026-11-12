@@ -48,9 +48,9 @@ export function guideBody(s: ProseSurface): string {
 }
 
 /**
- * Sources. `note` is `cardDataNote(…)` once the card index is known; the app renders without it first
- * and again when cards.json arrives. Inside the app the view has no footer, so the disclaimer and the
- * Privacy · Terms links are part of the view; on a page the footer carries both.
+ * Sources. `note` is `cardDataNote(…)`, which the build computes from the card index. On a page the
+ * footer carries the disclaimer and the Privacy · Terms links; the `base === 2` lines below drew them
+ * inside the app's own Sources view, which #575 removed.
  */
 export function sourcesBody(s: ProseSurface & { note?: string }): string {
   return `${title(s, "Sources")}
