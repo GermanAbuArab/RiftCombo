@@ -47,17 +47,23 @@ export function headersFor(path, rules) {
   return Object.fromEntries(out.values());
 }
 
-// path-to-regexp's grammar, as far as a vercel.json source uses it: `(...)` is a regular expression, `/:name`
-// one segment, `/:name*` / `/:name+` / `/:name?` zero-or-more / one-or-more / optional segments, and an
-// optional trailing slash (its default, non-strict). Anything else path-to-regexp would read as syntax (a `:`
-// not after `/`, `\`, `{`, `}`) throws at start rather than match as literal text and drop a header silently.
+// path-to-regexp's grammar, as far as a vercel.json source uses it: `(...)` is a regular expression (`\`
+// escapes inside it are honoured), `/:name` one segment, `/:name*` / `/:name+` / `/:name?` zero-or-more /
+// one-or-more / optional segments, and an optional trailing slash (its default, non-strict). Outside a group,
+// anything else path-to-regexp would read as syntax (a `:` not opening a `/:name`, `\`, `{`, `}`, `)`) throws
+// at start rather than match as literal text and drop a header silently.
 function sourceRegExp(source) {
-  if (/\\|[{}]|[^/]:/.test(source)) throw new Error(`vercel.json header source ${source}: syntax dev-static does not evaluate`);
+  const refuse = () => { throw new Error(`vercel.json header source ${source}: syntax dev-static does not evaluate`); };
   let re = "";
   for (let i = 0; i < source.length;) {
     if (source[i] === "(") {
       let depth = 0, j = i;
-      for (; j < source.length; j++) { if (source[j] === "(") depth++; else if (source[j] === ")" && --depth === 0) break; }
+      for (; j < source.length; j++) {
+        if (source[j] === "\\") j++;
+        else if (source[j] === "(") depth++;
+        else if (source[j] === ")" && --depth === 0) break;
+      }
+      if (j >= source.length) refuse();
       re += source.slice(i, j + 1);
       i = j + 1;
       continue;
@@ -68,11 +74,12 @@ function sourceRegExp(source) {
       i += param[0].length;
       continue;
     }
+    if (":\\{})".includes(source[i])) refuse();
     re += source[i].replace(/[.*+?^${}|[\]\\]/g, "\\$&");
     i++;
   }
   // dotAll: a request path can decode to a CR or LF, and /(.*) still has to match it (#605 scan).
-  return new RegExp(`^${re}/?$`, "s");
+  return new RegExp(`^${re.endsWith("/") ? re.slice(0, -1) : re}/?$`, "s");
 }
 
 // The vercel dev arguments with the router on loopback: vercel dev listens on 0.0.0.0:3000 unless told

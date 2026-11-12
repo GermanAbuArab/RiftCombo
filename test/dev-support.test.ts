@@ -95,10 +95,28 @@ describe("dev-static headers from vercel.json (#605)", () => {
     expect(at("/manifest.webmanifest/", config)["Content-Type"]).toBe("application/manifest+json");
     const cfg = { headers: [{ source: "/u/:id", headers: [{ key: "X-U", value: "1" }] }] };
     expect(at("/u/7/", cfg)["X-U"]).toBe("1");
+    const slash = { headers: [
+      { source: "/x/", headers: [{ key: "X-X", value: "1" }] },
+      { source: "/", headers: [{ key: "X-R", value: "1" }] },
+    ] };
+    expect(at("/x", slash)["X-X"]).toBe("1");
+    expect(at("/x/", slash)["X-X"]).toBe("1");
+    expect(at("/", slash)["X-R"]).toBe("1");
+    expect(at("//", slash)["X-R"]).toBeUndefined();
+  });
+
+  it("reads a group as a regular expression, escapes and braces included", () => {
+    const cfg = { headers: [
+      { source: "/y/(\\d{4})", headers: [{ key: "X-Y", value: "1" }] },
+      { source: "/p/(a\\)b)", headers: [{ key: "X-P", value: "1" }] },
+    ] };
+    expect(at("/y/2026", cfg)["X-Y"]).toBe("1");
+    expect(at("/y/26", cfg)["X-Y"]).toBeUndefined();
+    expect(at("/p/a)b", cfg)["X-P"]).toBe("1");
   });
 
   it("refuses source syntax it would otherwise match as literal text", () => {
-    for (const source of ["/file.:ext", "/a/(x\\)y)", "/{a}"]) {
+    for (const source of ["/file.:ext", ":x", "/a\\b", "/{a}", "/a)", "/(.*"]) {
       expect(() => headerRules({ headers: [{ source, headers: [] }] })).toThrow(/does not evaluate/);
     }
   });
