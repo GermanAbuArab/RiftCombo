@@ -70,6 +70,7 @@ if (missing.length) {
 }
 
 import { execFileSync } from "node:child_process";
+import { cleanupUsers } from "./rls-cleanup.mjs";
 
 /** `neonctl <head> --project-id … --branch … <tail>`; the tail is what follows psql's `--`. */
 const neonctl = (head, tail = []) => execFileSync("neonctl",
@@ -389,6 +390,7 @@ try {
   if (retry.ok) {
     const body = await retry.json().catch(() => null);
     if (body?.user?.id) created.push({ id: body.user.id });
+    else check("12b. the re-registered account's id is known, so cleanup can delete it", false, "sign-up response carried no user.id");
   }
   // The detail is built ONLY when the check fails. A passing line that still prints "the session
   // survived" reads like a warning nobody has to act on, and this file is in the business of making
@@ -401,6 +403,10 @@ try {
         ? `signing up the freed email was not accepted (${retry.status}), so it proves nothing`
         : `the deleted account's session still resolves (${sessionB.status} ${bodyB.slice(0, 40)})`);
 
+  // B's row is gone (proved above), so cleanup must not try to delete it a second time: that delete
+  // fails, and since #590 a failed delete fails the run. The re-registered B is still in `created`.
+  if (gone) created.splice(created.indexOf(b), 1);
+
   const rowsOfBAfter = sql(`select count(*) from public.decks where user_id = '${b.id}'`);
   check("18. the deleted account's decks went with it (1 before, 0 after)",
     rowsOfBAfter === "0", `${rowsOfBAfter} rows after`);
@@ -409,8 +415,7 @@ try {
   check("14. and leaves the other user's decks alone",
     !errorDecks && decksA?.length === 1, errorDecks?.message ?? `${decksA?.length ?? 0} rows`);
 } finally {
-  for (const u of created) await deleteUser(u.id).catch(() => {});
-  console.log(`cleanup: all ${created.length} test users deleted`);
+  failures += await cleanupUsers(created, deleteUser);
 }
 
 process.exit(failures ? 1 : 0);
