@@ -29,7 +29,7 @@ describe("cleanupUsers (#590)", () => {
 describe("scan-rls with a hung neonctl (#590)", () => {
   it("times out into a fail verdict", () => {
     const dir = mkdtempSync(join(tmpdir(), "scan-rls-"));
-    writeFileSync(join(dir, "neonctl"), "#!/bin/sh\nsleep 30\n");
+    writeFileSync(join(dir, "neonctl"), "#!/bin/sh\nexec sleep 30\n");
     chmodSync(join(dir, "neonctl"), 0o755);
     const out = join(dir, "out");
     const started = Date.now();
