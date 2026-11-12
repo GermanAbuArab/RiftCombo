@@ -41,11 +41,11 @@ export function scrubAuthBroadcast(): void {
   // The removal goes to whichever storage took the write (`this`), not to a captured reference, so
   // no identity check is needed; the SDK writes only to localStorage. `finally`, so a write that
   // fails on quota still clears what an earlier one left.
-  Storage.prototype.setItem = function (this: Storage, key: string, value: string) {
+  Storage.prototype.setItem = function (this: Storage, ...args: [string, string]) {
     try {
-      setItem.call(this, key, value);
+      setItem.apply(this, args);
     } finally {
-      if (key === BROADCAST_KEY) this.removeItem(BROADCAST_KEY);
+      if (args[0] === BROADCAST_KEY) this.removeItem(BROADCAST_KEY);
     }
   };
   addEventListener("storage", (event) => {
