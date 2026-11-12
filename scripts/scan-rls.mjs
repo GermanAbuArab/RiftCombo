@@ -25,6 +25,8 @@ import { dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 
 const PROJECT = process.env.NEON_PROJECT_ID || "quiet-breeze-27436036";
+// A hung neonctl must end the scan as a `fail` verdict (the catch blocks record it), never hang it (#590).
+const NEON_TIMEOUT_MS = Number(process.env.SCAN_RLS_NEON_TIMEOUT_MS) || 120000;
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
 
 /** `rls-<run>`, the run name verbatim (`RiftCombo_1e6375cf`, or an issue tag such as `585-…`), so two runs never share a branch. */
@@ -45,7 +47,7 @@ function main() {
   const logFile = join(out, "check-rls.log");
   writeFileSync(logFile, "");
   const log = (line) => { console.log(line); appendFileSync(logFile, `${line}\n`); };
-  const neon = (args) => execFileSync("neonctl", [...args, "--project-id", PROJECT, "-o", "json"], { encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+  const neon = (args) => execFileSync("neonctl", [...args, "--project-id", PROJECT, "-o", "json"], { encoding: "utf8", stdio: ["ignore", "pipe", "pipe"], timeout: NEON_TIMEOUT_MS, killSignal: "SIGKILL" });
   const verdict = { check: "check 4 of #585: RLS unmocked on a throwaway branch", run, branch, project: PROJECT, started: new Date().toISOString() };
 
   log(`scan:rls run ${run} -> branch ${branch} (project ${PROJECT})`);
@@ -82,7 +84,7 @@ function main() {
     log(`ERROR ${err.message}`);
   } finally {
     if (created) {
-      try { neon(["branches", "delete", branch]); log(`deleted branch ${branch}`); }
+      try { neon(["branches", "delete", verdict.branch_id ?? branch]); log(`deleted branch ${branch}`); }
       catch (err) { log(`ERROR deleting ${branch}: ${err.message}`); }
     }
     // Each read-back is guarded on its own, so a failed read is a `fail` verdict on disk, never a
