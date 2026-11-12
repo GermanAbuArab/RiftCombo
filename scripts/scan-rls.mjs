@@ -27,6 +27,8 @@ import { fileURLToPath } from "node:url";
 const PROJECT = process.env.NEON_PROJECT_ID || "quiet-breeze-27436036";
 // A hung neonctl must end the scan as a `fail` verdict (the catch blocks record it), never hang it (#590).
 const NEON_TIMEOUT_MS = Number(process.env.SCAN_RLS_NEON_TIMEOUT_MS) || 120000;
+// Longer than the child's worst legitimate run (its own neonctl calls are bounded separately); a hung child ends as `verdict.error` and the branch is still deleted (#603).
+const CHILD_TIMEOUT_MS = Number(process.env.SCAN_RLS_CHILD_TIMEOUT_MS) || 900000;
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
 
 /** `rls-<run>`, the run name verbatim (`RiftCombo_1e6375cf`, or an issue tag such as `585-…`), so two runs never share a branch. */
@@ -78,12 +80,15 @@ function main() {
     const rls = spawnSync(process.execPath, [join(ROOT, "scripts", "check-rls-neon.mjs")], {
       cwd: ROOT,
       encoding: "utf8",
+      timeout: CHILD_TIMEOUT_MS,
+      killSignal: "SIGKILL",
       env: { ...process.env, NEON_PROJECT_ID: PROJECT, NEON_BRANCH_ID: verdict.branch_id, NEON_AUTH_URL: authUrl, NEON_DATA_API_URL: dataUrl },
     });
-    for (const line of `${rls.stdout}${rls.stderr}`.split("\n")) if (line.trim()) log(`  ${line}`);
+    for (const line of `${rls.stdout ?? ""}${rls.stderr ?? ""}`.split("\n")) if (line.trim()) log(`  ${line}`);
     verdict.rls_exit = rls.status;
-    verdict.rls_pass = (rls.stdout.match(/^pass {2}/gm) ?? []).length;
-    verdict.rls_fail = (rls.stdout.match(/^FAIL {2}/gm) ?? []).length;
+    verdict.rls_pass = ((rls.stdout ?? "").match(/^pass {2}/gm) ?? []).length;
+    verdict.rls_fail = ((rls.stdout ?? "").match(/^FAIL {2}/gm) ?? []).length;
+    if (rls.error) throw new Error(`check-rls-neon.mjs did not finish: ${rls.error.code ?? rls.error.message}${rls.error.code === "ETIMEDOUT" ? ` after ${CHILD_TIMEOUT_MS} ms` : ""} (partial: ${verdict.rls_pass} pass, ${verdict.rls_fail} FAIL)`);
     log(`check-rls-neon.mjs exit ${rls.status}: ${verdict.rls_pass} pass, ${verdict.rls_fail} FAIL`);
   } catch (err) {
     verdict.error = err.message;
