@@ -26,7 +26,7 @@ describe("scan:rls branch name (#585)", () => {
 // #604: the delete path reads the branch back and deletes only `default === false`. A stub neonctl on PATH
 // stands in for Neon; nothing touches the real project.
 describe("scan:rls refuses to delete a default branch (#604)", () => {
-  const runScan = (isDefault: boolean | "garbage") => {
+  const runScan = (isDefault: boolean | "garbage" | "nokey") => {
     const dir = mkdtempSync(join(tmpdir(), "scan-rls-"));
     const calls = join(dir, "calls.log");
     const stub = join(dir, "neonctl");
@@ -34,7 +34,7 @@ describe("scan:rls refuses to delete a default branch (#604)", () => {
 echo "$1 $2 $3" >> "$STUB_CALLS"
 case "$1 $2" in
   "branches create") echo '{"branch":{"id":"br-stub","name":"rls-stub"}}' ;;
-  "branches get") echo '${isDefault === "garbage" ? "not json" : `{"branch":{"id":"br-stub","default":${isDefault}}}`}' ;;
+  "branches get") echo '${isDefault === "garbage" ? "not json" : isDefault === "nokey" ? '{"branch":{"id":"br-stub"}}' : `{"branch":{"id":"br-stub","default":${isDefault}}}`}' ;;
   "branches list") echo '{"branches":[]}' ;;
   "neon-auth config") echo '{"enabled":false}' ;;
   *) echo '{}' ;;
@@ -63,6 +63,12 @@ esac
     expect(calls.some((c) => c.startsWith("branches delete"))).toBe(false);
     expect(verdict.result).toBe("fail");
     expect(verdict.error).toMatch(/branch cleanup of br-stub/);
+  });
+
+  it("does not delete when the read-back has no default key", () => {
+    const { calls, verdict } = runScan("nokey");
+    expect(calls.some((c) => c.startsWith("branches delete"))).toBe(false);
+    expect(verdict.error).toMatch(/refusing to delete br-stub/);
   });
 
   it("deletes the branch when it reads default: false", () => {

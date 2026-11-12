@@ -105,7 +105,7 @@ function main() {
           log(`ERROR ${refusal}`);
         } else { neon(["branches", "delete", target]); log(`deleted branch ${branch}`); }
       } catch (err) {
-        // A failed read-back leaves the branch undeleted (nothing confirmed it is not the default); the run is a `fail` verdict with the cause on disk.
+        // A failed read-back leaves the branch undeleted (nothing confirmed it is not the default), and a failed delete leaves it too; either way the run is a `fail` verdict with the cause on disk.
         verdict.error = verdict.error ? `${verdict.error}; branch cleanup of ${target}: ${err.message}` : `branch cleanup of ${target}: ${err.message}`;
         log(`ERROR deleting ${branch}: ${err.message}`);
       }
