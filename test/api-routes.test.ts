@@ -235,6 +235,18 @@ describe("check 2: the build exposes no function outside the table (#585)", () =
     expect(lines).toContain("FAIL unclassified function: api/linked.ts (classify this route in scripts/api-routes.mjs)");
   });
 
+  it("counts the functions inside a symlinked directory", () => {
+    const dir = fixture({ "api/deck-url.ts": "", "lib/routes/hidden.ts": "" });
+    symlinkSync(join(dir, "lib/routes"), join(dir, "api/shared"));
+    expect(compareWithTable(deployableFunctions(dir)).unclassified).toEqual(["api/shared/hidden.ts"]);
+  });
+
+  it("ends a symlink loop and names each function once", () => {
+    const dir = fixture({ "api/deck-url.ts": "" });
+    symlinkSync(join(dir, "api"), join(dir, "api/loop"));
+    expect(deployableFunctions(dir)).toEqual(["api/deck-url.ts"]);
+  });
+
   it("counts a vercel.json functions entry with its own runtime, whatever its extension (scan RiftCombo_3d7d8559)", () => {
     const dir = fixture({
       "api/deck-url.ts": "",

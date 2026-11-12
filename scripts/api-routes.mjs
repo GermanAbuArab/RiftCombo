@@ -8,7 +8,7 @@
 // without it before any upstream fetch. `public` carries the one-line reason it is open on purpose,
 // and the suite proves its own guards in process instead.
 
-import { existsSync, readdirSync, readFileSync } from "node:fs";
+import { existsSync, readdirSync, readFileSync, realpathSync, statSync } from "node:fs";
 import { join } from "node:path";
 
 /** Path relative to the repo root -> its class. The ONLY hand-written list. */
@@ -28,13 +28,32 @@ const FUNCTION_EXT = /\.(js|mjs|cjs|jsx|ts|mts|cts|tsx|go|py|rb)$/;
  * module and not a route). A `.d.ts` is counted on purpose: the check would rather name a file
  * that never deploys than miss one that does.
  */
+/**
+ * Every file under `dir`, following symlinks to files and to directories, since Vercel deploys what a
+ * link points at; this does not lean on whether a given Node's recursive `readdirSync` follows them.
+ * A directory already walked (by its real path) is not walked again, so a link loop ends. A link
+ * that cannot be resolved is listed as a file, so it is named rather than skipped.
+ */
+function walk(dir, seen) {
+  const real = realpathSync(dir);
+  if (seen.has(real)) return [];
+  seen.add(real);
+  const files = [];
+  for (const name of readdirSync(dir)) {
+    const p = join(dir, name);
+    let isDir = false;
+    try { isDir = statSync(p).isDirectory(); } catch { /* dangling link: listed below */ }
+    if (isDir) files.push(...walk(p, seen));
+    else files.push(p);
+  }
+  return files;
+}
+
 export function apiFunctions(root) {
   const dir = join(root, "api");
   if (!existsSync(dir)) return [];
-  return readdirSync(dir, { recursive: true, withFileTypes: true })
-    // A symlinked file is not `isFile()` on its Dirent, and Vercel deploys what the link points at.
-    .filter((e) => e.isFile() || e.isSymbolicLink())
-    .map((e) => join(e.parentPath, e.name).slice(root.length + 1).split("\\").join("/"))
+  return walk(dir, new Set())
+    .map((p) => p.slice(root.length + 1).split("\\").join("/"))
     .filter((p) => FUNCTION_EXT.test(p) && !p.split("/").some((s) => s.startsWith("_") || s.startsWith(".")))
     .sort();
 }
