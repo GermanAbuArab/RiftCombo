@@ -106,7 +106,7 @@ const config = {
   // written by `scripts/build-web.mjs`, so the saved-deck screens never enter an index.
   rewrites: [
     { source: "/favicon.ico", destination: "/favicon.svg" },
-    { source: "/decks/:path*", destination: "/app.html" },
+    { source: "/decks/:path*", destination: "/app" },
   ],
   headers: [
     {
