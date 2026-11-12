@@ -1,6 +1,7 @@
 import { describe, expect, it } from "vitest";
 // @ts-expect-error plain .mjs, imported by the two node-run dev scripts, which cannot import TypeScript.
-import { devNodeOptions, requestPath } from "../scripts/dev-support.mjs";
+import { devListenArgs, devNodeOptions, headersFor, requestPath } from "../scripts/dev-support.mjs";
+import { readFileSync } from "node:fs";
 
 // vercel dev applies the /decks/:path* rewrite, then appends the unused capture as a query ENCODED into the
 // path: GET /decks/x reached scripts/dev-static.mjs as /app%3Fpath=x and answered 404 (measured 2026-11-12, #597).
@@ -35,5 +36,73 @@ describe("dev NODE_OPTIONS (#597)", () => {
 
   it("keeps what the caller already set, in front", () => {
     expect(devNodeOptions("--max-old-space-size=4096").startsWith("--max-old-space-size=4096 --dns-result-order")).toBe(true);
+  });
+});
+
+// vercel dev proxies HTML to scripts/dev-static.mjs and does not add vercel.json's headers to what it returns,
+// so /, /app and /decks/x came back with no CSP, COOP, HSTS, nosniff or X-Frame-Options (#605).
+describe("dev-static headers from vercel.json (#605)", () => {
+  const config = JSON.parse(readFileSync(new URL("../vercel.json", import.meta.url), "utf8"));
+  const all = config.headers.find((r: { source: string }) => r.source === "/(.*)");
+
+  it("gives every page the /(.*) rule, keys and values as vercel.json has them", () => {
+    for (const path of ["/", "/app", "/app.html", "/fonts/inter.woff2"]) {
+      const got = headersFor(path, config);
+      for (const { key, value } of all.headers) expect(got[key]).toBe(value);
+    }
+    expect(Object.keys(headersFor("/", config))).toEqual(all.headers.map((h: { key: string }) => h.key));
+  });
+
+  it("adds a rule scoped to one path only on that path, a later rule winning", () => {
+    expect(headersFor("/manifest.webmanifest", config)["Content-Type"]).toBe("application/manifest+json");
+    expect(headersFor("/app", config)["Content-Type"]).toBeUndefined();
+    expect(headersFor("/manifest.webmanifestx", config)["Content-Type"]).toBeUndefined();
+    const two = { headers: [
+      { source: "/(.*)", headers: [{ key: "X-A", value: "1" }] },
+      { source: "/a", headers: [{ key: "X-A", value: "2" }] },
+    ] };
+    expect(headersFor("/a", two)["X-A"]).toBe("2");
+    expect(headersFor("/b", two)["X-A"]).toBe("1");
+  });
+
+  it("matches named parameters the way path-to-regexp does", () => {
+    const cfg = { headers: [
+      { source: "/decks/:path*", headers: [{ key: "X-D", value: "1" }] },
+      { source: "/u/:id", headers: [{ key: "X-U", value: "1" }] },
+    ] };
+    expect(headersFor("/decks", cfg)["X-D"]).toBe("1");
+    expect(headersFor("/decks/a/b", cfg)["X-D"]).toBe("1");
+    expect(headersFor("/decksx", cfg)["X-D"]).toBeUndefined();
+    expect(headersFor("/u/7", cfg)["X-U"]).toBe("1");
+    expect(headersFor("/u/7/8", cfg)["X-U"]).toBeUndefined();
+  });
+
+  it("refuses a rule with has or missing, which it cannot evaluate", () => {
+    const cfg = { headers: [{ source: "/(.*)", has: [{ type: "host", value: "x" }], headers: [] }] };
+    expect(() => headersFor("/", cfg)).toThrow(/has/);
+  });
+
+  it("answers nothing when vercel.json has no headers", () => {
+    expect(headersFor("/", {})).toEqual({});
+  });
+});
+
+// vercel dev's router listens on 0.0.0.0:3000 by default (`vercel dev --help`, CLI 65.11.0), so the dev
+// server was reachable from the network (#605). The CLI accepts --listen <host:port>.
+describe("dev router bound to loopback (#605)", () => {
+  it("adds --listen 127.0.0.1:3000 when the caller named no address", () => {
+    expect(devListenArgs([])).toEqual(["--listen", "127.0.0.1:3000"]);
+    expect(devListenArgs(["--debug"])).toEqual(["--debug", "--listen", "127.0.0.1:3000"]);
+  });
+
+  it("puts a bare port on 127.0.0.1, in each spelling", () => {
+    expect(devListenArgs(["--listen", "3597"])).toEqual(["--listen", "127.0.0.1:3597"]);
+    expect(devListenArgs(["--listen=3597"])).toEqual(["--listen=127.0.0.1:3597"]);
+    expect(devListenArgs(["-l", "3597"])).toEqual(["-l", "127.0.0.1:3597"]);
+  });
+
+  it("keeps an address the caller named with a host", () => {
+    expect(devListenArgs(["--listen", "0.0.0.0:4000"])).toEqual(["--listen", "0.0.0.0:4000"]);
+    expect(devListenArgs(["--listen=localhost:4000"])).toEqual(["--listen=localhost:4000"]);
   });
 });

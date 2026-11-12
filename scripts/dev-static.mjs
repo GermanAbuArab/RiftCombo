@@ -3,14 +3,17 @@
 // without one it falls back to the package.json `dev` script, which calls `vercel dev` again and fails with
 // DEV_RECURSIVE_INVOCATION. vercel dev itself applies cleanUrls, rewrites and the api/ functions, so this
 // only has to hand out the built files in public/ (requestPath drops the query vercel dev encodes into a
-// rewritten path, #597).
+// rewritten path, #597), with the headers vercel.json declares for it, which vercel dev does not add to a
+// proxied response (#605). vercel.json is read once at start: restart npm run dev after `npm run headers`.
 import { existsSync, readFileSync, statSync } from "node:fs";
 import { createServer } from "node:http";
 import { dirname, extname, join, resolve, sep } from "node:path";
 import { fileURLToPath } from "node:url";
-import { requestPath } from "./dev-support.mjs";
+import { headersFor, requestPath } from "./dev-support.mjs";
 
-const PUBLIC = resolve(join(dirname(fileURLToPath(import.meta.url)), "..", "public"));
+const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
+const PUBLIC = resolve(join(ROOT, "public"));
+const VERCEL = JSON.parse(readFileSync(join(ROOT, "vercel.json"), "utf8"));
 const TYPES = {
   ".html": "text/html; charset=utf-8", ".js": "text/javascript; charset=utf-8", ".css": "text/css; charset=utf-8",
   ".json": "application/json", ".svg": "image/svg+xml", ".webmanifest": "application/manifest+json",
@@ -25,6 +28,10 @@ createServer((req, res) => {
   try {
     if (!existsSync(file) || statSync(file).isDirectory()) file = existsSync(`${file}.html`) ? `${file}.html` : join(file, "index.html");
     if (!existsSync(file) || !statSync(file).isFile()) { res.writeHead(404).end("not found"); return; }
-    res.writeHead(200, { "content-type": TYPES[extname(file)] ?? "application/octet-stream" }).end(readFileSync(file));
+    const body = readFileSync(file);
+    // setHeader is case-insensitive, so a vercel.json Content-Type (the manifest's) replaces ours, not doubles it.
+    res.setHeader("content-type", TYPES[extname(file)] ?? "application/octet-stream");
+    for (const [key, value] of Object.entries(headersFor(path, VERCEL))) res.setHeader(key, value);
+    res.writeHead(200).end(body);
   } catch { res.writeHead(500).end("read failed"); }
 }).listen(Number(process.env.PORT), "127.0.0.1");
