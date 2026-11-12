@@ -91,6 +91,18 @@ describe("dev-static headers from vercel.json (#605)", () => {
     expect(at("/u/7/8", cfg)["X-U"]).toBeUndefined();
   });
 
+  it("accepts a trailing slash, as path-to-regexp does by default", () => {
+    expect(at("/manifest.webmanifest/", config)["Content-Type"]).toBe("application/manifest+json");
+    const cfg = { headers: [{ source: "/u/:id", headers: [{ key: "X-U", value: "1" }] }] };
+    expect(at("/u/7/", cfg)["X-U"]).toBe("1");
+  });
+
+  it("refuses source syntax it would otherwise match as literal text", () => {
+    for (const source of ["/file.:ext", "/a/(x\\)y)", "/{a}"]) {
+      expect(() => headerRules({ headers: [{ source, headers: [] }] })).toThrow(/does not evaluate/);
+    }
+  });
+
   it("refuses a rule with has or missing, which it cannot evaluate", () => {
     const cfg = { headers: [{ source: "/(.*)", has: [{ type: "host", value: "x" }], headers: [] }] };
     expect(() => headerRules(cfg)).toThrow(/has/);

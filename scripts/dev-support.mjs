@@ -47,9 +47,12 @@ export function headersFor(path, rules) {
   return Object.fromEntries(out.values());
 }
 
-// path-to-regexp's grammar, as far as a vercel.json source uses it: `(...)` is a regular expression, `:name`
-// one segment, `:name*` / `:name+` / `:name?` zero-or-more / one-or-more / optional segments with their `/`.
+// path-to-regexp's grammar, as far as a vercel.json source uses it: `(...)` is a regular expression, `/:name`
+// one segment, `/:name*` / `/:name+` / `/:name?` zero-or-more / one-or-more / optional segments, and an
+// optional trailing slash (its default, non-strict). Anything else path-to-regexp would read as syntax (a `:`
+// not after `/`, `\`, `{`, `}`) throws at start rather than match as literal text and drop a header silently.
 function sourceRegExp(source) {
+  if (/\\|[{}]|[^/]:/.test(source)) throw new Error(`vercel.json header source ${source}: syntax dev-static does not evaluate`);
   let re = "";
   for (let i = 0; i < source.length;) {
     if (source[i] === "(") {
@@ -69,7 +72,7 @@ function sourceRegExp(source) {
     i++;
   }
   // dotAll: a request path can decode to a CR or LF, and /(.*) still has to match it (#605 scan).
-  return new RegExp(`^${re}$`, "s");
+  return new RegExp(`^${re}/?$`, "s");
 }
 
 // The vercel dev arguments with the router on loopback: vercel dev listens on 0.0.0.0:3000 unless told
