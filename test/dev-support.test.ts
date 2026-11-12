@@ -91,18 +91,22 @@ describe("dev-static headers from vercel.json (#605)", () => {
     expect(at("/u/7/8", cfg)["X-U"]).toBeUndefined();
   });
 
-  it("accepts a trailing slash, as path-to-regexp does by default", () => {
-    expect(at("/manifest.webmanifest/", config)["Content-Type"]).toBe("application/manifest+json");
-    const cfg = { headers: [{ source: "/u/:id", headers: [{ key: "X-U", value: "1" }] }] };
-    expect(at("/u/7/", cfg)["X-U"]).toBe("1");
-    const slash = { headers: [
+  // Vercel compiles a header source strict and case-sensitive (sourceToRegex in CLI 65.11.0, path-to-regexp
+  // 6.1.0 with strict: true, sensitive: true): a trailing slash is part of the source, never optional.
+  it("matches a trailing slash only as written, as Vercel compiles a source strict", () => {
+    expect(at("/manifest.webmanifest/", config)["Content-Type"]).toBeUndefined();
+    expect(at("/a/", config)["Content-Security-Policy"]).toBe(all.headers[0].value);
+    const cfg = { headers: [
+      { source: "/u/:id", headers: [{ key: "X-U", value: "1" }] },
       { source: "/x/", headers: [{ key: "X-X", value: "1" }] },
       { source: "/", headers: [{ key: "X-R", value: "1" }] },
     ] };
-    expect(at("/x", slash)["X-X"]).toBe("1");
-    expect(at("/x/", slash)["X-X"]).toBe("1");
-    expect(at("/", slash)["X-R"]).toBe("1");
-    expect(at("//", slash)["X-R"]).toBeUndefined();
+    expect(at("/u/7/", cfg)["X-U"]).toBeUndefined();
+    expect(at("/x", cfg)["X-X"]).toBeUndefined();
+    expect(at("/x/", cfg)["X-X"]).toBe("1");
+    expect(at("/", cfg)["X-R"]).toBe("1");
+    expect(at("//", cfg)["X-R"]).toBeUndefined();
+    expect(at("/Manifest.webmanifest", config)["Content-Type"]).toBeUndefined();
   });
 
   it("reads a group as a regular expression, escapes and braces included", () => {

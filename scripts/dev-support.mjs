@@ -49,7 +49,8 @@ export function headersFor(path, rules) {
 
 // path-to-regexp's grammar, as far as a vercel.json source uses it: `(...)` is a regular expression (`\`
 // escapes inside it are honoured), `/:name` one segment, `/:name*` / `/:name+` / `/:name?` zero-or-more /
-// one-or-more / optional segments, and an optional trailing slash (its default, non-strict). Outside a group,
+// one-or-more / optional segments, compiled strict and case-sensitive as Vercel's sourceToRegex does
+// (`strict: true, sensitive: true`, CLI 65.11.0): no optional trailing slash, the source as written. Outside a group,
 // anything else path-to-regexp would read as syntax (a `:` not opening a `/:name`, `\`, `{`, `}`, `)`) throws
 // at start rather than match as literal text and drop a header silently.
 function sourceRegExp(source) {
@@ -79,7 +80,7 @@ function sourceRegExp(source) {
     i++;
   }
   // dotAll: a request path can decode to a CR or LF, and /(.*) still has to match it (#605 scan).
-  return new RegExp(`^${re.endsWith("/") ? re.slice(0, -1) : re}/?$`, "s");
+  return new RegExp(`^${re}$`, "s");
 }
 
 // The vercel dev arguments with the router on loopback: vercel dev listens on 0.0.0.0:3000 unless told
