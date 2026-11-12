@@ -53,7 +53,13 @@ function main() {
   log(`scan:rls run ${run} -> branch ${branch} (project ${PROJECT})`);
   let created = false;
   try {
-    const made = neon(["branches", "create", "--parent", "main", "--name", branch]);
+    let made;
+    try { made = neon(["branches", "create", "--parent", "main", "--name", branch]); }
+    catch (err) {
+      // A create killed by the timeout may already exist server-side: try to delete it by name.
+      if (err.code === "ETIMEDOUT") created = true;
+      throw err;
+    }
     // Set before the output is read: once neonctl has returned, the branch exists and must be deleted.
     created = true;
     verdict.branch_id = (JSON.parse(made).branch ?? JSON.parse(made)).id;

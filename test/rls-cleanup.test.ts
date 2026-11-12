@@ -1,8 +1,8 @@
 // #590: the cleanup of the RLS scripts must not report success when it failed, and a hung neonctl
 // must end a scan as a `fail` verdict, never a hang. neonctl is stubbed with a script on PATH.
-import { describe, expect, it } from "vitest";
+import { describe, expect, it, onTestFinished } from "vitest";
 import { spawnSync } from "node:child_process";
-import { chmodSync, mkdtempSync, readFileSync, writeFileSync } from "node:fs";
+import { chmodSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 // @ts-expect-error plain .mjs.
@@ -32,8 +32,9 @@ describe("scan-rls with a hung neonctl (#590)", () => {
     writeFileSync(join(dir, "neonctl"), "#!/bin/sh\nexec sleep 30\n");
     chmodSync(join(dir, "neonctl"), 0o755);
     const out = join(dir, "out");
+    onTestFinished(() => rmSync(dir, { recursive: true }));
     const started = Date.now();
-    const r = spawnSync(process.execPath, ["scripts/scan-rls.mjs", "--run", "590-test", "--out", out], {
+    const r = spawnSync(process.execPath, [join(process.cwd(), "scripts/scan-rls.mjs"), "--run", "590-test", "--out", out], {
       encoding: "utf8",
       env: { ...process.env, PATH: `${dir}:${process.env.PATH}`, SCAN_RLS_NEON_TIMEOUT_MS: "300" },
       timeout: 20000,

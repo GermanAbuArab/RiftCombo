@@ -390,6 +390,7 @@ try {
   if (retry.ok) {
     const body = await retry.json().catch(() => null);
     if (body?.user?.id) created.push({ id: body.user.id });
+    else check("12b. the re-registered account's id is known, so cleanup can delete it", false, "sign-up response carried no user.id");
   }
   // The detail is built ONLY when the check fails. A passing line that still prints "the session
   // survived" reads like a warning nobody has to act on, and this file is in the business of making
