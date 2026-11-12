@@ -18,7 +18,7 @@ import { esc } from "../src/html.js";
 import { accountsEnabled, createDeck, deleteDeck, listDecks, onAccount, updateDeck, type Account } from "./supabase.js";
 import { builderHtml, initBuilder, openImport, openList, refreshBuilder } from "./builder.js";
 import { thumb } from "./graph.js";
-import { go, onRoute, type Route } from "./router.js";
+import { go, onLeave, onRoute, type Route } from "./router.js";
 
 export interface DeckHooks {
   cards(): CardIndex;
@@ -104,8 +104,9 @@ export function initDecks(h: DeckHooks): void {
       decks = sortSaved(await listDecks());
       loaded = true;
       // Somebody with saved lists almost always came back for one of them; somebody with none has
-      // nothing to see there. Only ever on a bare entry, so a shared link still wins.
-      const bare = (location.pathname === "/" || location.pathname === "/app") && !location.search && !location.hash;
+      // nothing to see there. Only ever on a bare entry, so a shared link still wins; /app is the
+      // Combos tab's own address (#/combos before #287), so being there is asking for Combos.
+      const bare = location.pathname === "/" && !location.search && !location.hash;
       if (bare && decks.length) go("/decks");
       // A page opened straight on /app?deck=<id> asked for a list we only have now.
       handOver(current);
@@ -113,6 +114,7 @@ export function initDecks(h: DeckHooks): void {
   });
 
   onRoute(onRouteChange);
+  onLeave(dirtyNow);
 }
 
 function onRouteChange(next: Route): void {
@@ -138,8 +140,9 @@ function handOver(r: Route): void {
 }
 
 /**
- * Leaving the detail with an unsaved edit asks once. The guard sits on the route rather than on
- * `beforeunload`, because switching views is the way out a player actually takes.
+ * Leaving the detail with an unsaved edit asks once. The guard sits on the route, because switching
+ * views is the way out a player actually takes; a link to a public page is a full load that no route
+ * sees, and `onLeave` covers that one with the browser's leave prompt (#287).
  * Returns false when it put the route back, so the caller stops.
  */
 function guardUnsaved(next: Route): boolean {

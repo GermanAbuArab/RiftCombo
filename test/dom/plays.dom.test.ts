@@ -19,6 +19,9 @@ const HTML = `
   <main id="view-combos"></main>
   <section id="view-plays" hidden><main class="doc play" id="plays-host"></main></section>`;
 
+/** The router listens on window and document, which outlive vi.resetModules(): detach the last one before booting another. */
+let stopRouter = (): void => {};
+
 /** Boot the view at a hash, with the payload served by a stubbed fetch. */
 const open = async (hash: string, plays: Play[] = PLAYS) => {
   vi.resetModules();
@@ -28,7 +31,8 @@ const open = async (hash: string, plays: Play[] = PLAYS) => {
   const { initPlays } = await import("../../web/plays.js");
   const { startRouter } = await import("../../web/router.js");
   initPlays();
-  startRouter();
+  stopRouter();
+  stopRouter = startRouter();
   await new Promise((r) => setTimeout(r, 0));
   return document.querySelector<HTMLElement>("#plays-host")!;
 };
@@ -169,7 +173,8 @@ describe("what the view does when it cannot show a play", () => {
     const { initPlays } = await import("../../web/plays.js");
     const { startRouter } = await import("../../web/router.js");
     initPlays();
-    startRouter();
+    stopRouter();
+    stopRouter = startRouter();
     await new Promise((r) => setTimeout(r, 0));
     const host = document.querySelector<HTMLElement>("#plays-host")!;
     expect(host.textContent).toContain("could not be loaded");
@@ -221,7 +226,8 @@ describe("which entry a play is about", () => {
     const mod = await import("../../web/plays.js");
     const { startRouter } = await import("../../web/router.js");
     mod.initPlays({ comboIds: new Set(known) });
-    startRouter();
+    stopRouter();
+    stopRouter = startRouter();
     await new Promise((r) => setTimeout(r, 0));
     return mod;
   };

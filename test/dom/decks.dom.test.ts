@@ -74,6 +74,9 @@ const deadArtIndex = (base: CardIndex): CardIndex => new Proxy(base, {
   },
 });
 
+/** The router listens on window and document, which outlive vi.resetModules(): detach the last one before booting another. */
+let stopRouter = (): void => {};
+
 /** Boot My decks with a session, on a fresh copy of every module that keeps state. */
 async function boot(path = "/decks", index: CardIndex = cards) {
   vi.resetModules();
@@ -94,7 +97,8 @@ async function boot(path = "/decks", index: CardIndex = cards) {
     analyze: (d) => analyzed.push(d),
     showCard: () => {},
   });
-  router.startRouter();
+  stopRouter();
+  stopRouter = router.startRouter();
   api.listeners.forEach((cb) => cb({ id: "u1", label: "german abu arab" }));
   await tick();
   return router;
@@ -108,6 +112,20 @@ const press = (sel: string) => document.querySelector<HTMLButtonElement>(sel)!.c
 beforeEach(() => { api.decks = []; document.body.innerHTML = HTML; });
 
 describe("the library", () => {
+  /**
+   * Somebody who opens the bare site with saved lists is sent to them; somebody who asked for Combos
+   * by its own address (#287: the tab links /app, as it linked #/combos before) stays there.
+   */
+  it("opens My decks on a bare entry only, never over an address that asked for Combos", async () => {
+    api.decks = [row()];
+    await boot("/");
+    expect(location.pathname).toBe("/decks");
+    for (const path of ["/app", "/app?deck=d1"]) {
+      await boot(path);
+      expect(location.pathname + location.search, path).toBe(path);
+    }
+  });
+
   it("says the account is empty rather than that it is loading", async () => {
     await boot();
     expect(host().textContent).toContain("Nothing saved yet.");

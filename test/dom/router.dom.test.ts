@@ -17,8 +17,12 @@ const HTML = `
   <main id="view-guide" hidden></main>
   <main id="view-sources" hidden></main>`;
 
+/** Detaches the router the previous test started; its listeners outlive vi.resetModules(). */
+let stopRouter = (): void => {};
+
 /** The router keeps `applied` and its listeners at module scope, so every test gets a fresh one. */
 const load = async (url: string) => {
+  stopRouter();
   vi.resetModules();
   document.body.innerHTML = HTML;
   history.replaceState(null, "", url);
@@ -26,7 +30,8 @@ const load = async (url: string) => {
   const load = vi.spyOn(mod.navigate, "load").mockImplementation(() => {});
   const replace = vi.spyOn(mod.navigate, "replace").mockImplementation(() => {});
   const push = vi.spyOn(history, "pushState");
-  return { ...mod, spies: { load, replace, push } };
+  const startRouter = () => { stopRouter(); stopRouter = mod.startRouter(); };
+  return { ...mod, startRouter, spies: { load, replace, push } };
 };
 
 const shown = () =>
@@ -164,6 +169,25 @@ describe("the public/app boundary is a full load, never a pushState", () => {
     expect(click(document.querySelector("#to-deck")!)).toBe(false);
     expect(click(document.querySelector('a[href="/app"]')!)).toBe(false);
     expect(spies.push).not.toHaveBeenCalled();
+  });
+
+  /**
+   * A route guard never sees a full load, so leaving the shell for a public page would drop an
+   * unsaved edit with no word. The browser's own leave prompt is what is left to ask with.
+   */
+  it("a full load away from unsaved work raises the browser's leave prompt, and only then", async () => {
+    const { startRouter, onLeave } = await load("/decks/d1");
+    let dirty = true;
+    onLeave(() => dirty);
+    startRouter();
+    const leave = () => {
+      const ev = new Event("beforeunload", { cancelable: true });
+      window.dispatchEvent(ev);
+      return ev.defaultPrevented;
+    };
+    expect(leave()).toBe(true);
+    dirty = false;
+    expect(leave()).toBe(false);
   });
 
   it("app → public: go() and a click both leave the shell with a full load", async () => {

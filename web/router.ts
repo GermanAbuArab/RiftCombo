@@ -164,6 +164,20 @@ export function onRoute(cb: (r: Route) => void): void {
 }
 
 /**
+ * Register a check for work that a full load would lose. A route listener can stop a pushState, but
+ * a link to a public page leaves the document (#287), so that way out only gets the browser's own
+ * leave prompt, raised while any check says yes.
+ */
+const leaveChecks: (() => boolean)[] = [];
+export function onLeave(unsaved: () => boolean): void {
+  leaveChecks.push(unsaved);
+}
+
+function onBeforeUnload(ev: Event): void {
+  if (leaveChecks.some((unsaved) => unsaved())) ev.preventDefault();
+}
+
+/**
  * A plain left click on a link from the shell to the shell stays in the page. Anything else — a
  * modified click, a new tab, another origin, a public page on either end, a bare in-page fragment —
  * is left to the browser, which is what makes public → app a full load.
@@ -180,8 +194,12 @@ function onClick(ev: MouseEvent): void {
   go(next.href);
 }
 
-export function startRouter(): void {
-  window.addEventListener("popstate", () => apply());
-  document.addEventListener("click", onClick);
+/** Returns the way to detach it again, so a test that loads a fresh router leaves no old one listening. */
+export function startRouter(): () => void {
+  const stop = new AbortController();
+  window.addEventListener("popstate", () => apply(), { signal: stop.signal });
+  document.addEventListener("click", onClick, { signal: stop.signal });
+  window.addEventListener("beforeunload", onBeforeUnload, { signal: stop.signal });
   apply();
+  return () => stop.abort();
 }
