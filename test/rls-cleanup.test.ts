@@ -85,7 +85,7 @@ case "$*" in
   *"neon-auth status"*) echo '{"base_url":"https://b.example/auth"}';;
   *"data-api get"*"--branch main"*) echo '{"url":"https://main.example/d"}';;
   *"data-api get"*) echo '{"url":"https://b.example/d"}';;
-  *"branches get"*) exec sleep 30;;
+  *"branches get"*) if [ -n "$NEON_BRANCH_ID" ]; then exec sleep 30; fi; echo '{"branch":{"id":"br-1","default":false}}';;
   *"branches list"*) echo '{"branches":[]}';;
   *"email-password get"*) echo '{"enabled":false}';;
   *) echo '{}';;

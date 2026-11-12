@@ -95,8 +95,20 @@ function main() {
     log(`ERROR ${err.message}`);
   } finally {
     if (created) {
-      try { neon(["branches", "delete", verdict.branch_id ?? branch]); log(`deleted branch ${branch}`); }
-      catch (err) { log(`ERROR deleting ${branch}: ${err.message}`); }
+      const target = verdict.branch_id ?? branch;
+      try {
+        // Neon refuses to delete a default branch (docs: "a branch carrying the default branch designation cannot be deleted"), but this script does not lean on that: it deletes only a branch read back as `default === false` (#604).
+        const got = JSON.parse(neon(["branches", "get", target]));
+        if ((got.branch ?? got).default !== false) {
+          const refusal = `refusing to delete ${target}: not read back as default === false`;
+          verdict.error = verdict.error ? `${verdict.error}; ${refusal}` : refusal;
+          log(`ERROR ${refusal}`);
+        } else { neon(["branches", "delete", target]); log(`deleted branch ${branch}`); }
+      } catch (err) {
+        // A failed read-back leaves the branch undeleted (nothing confirmed it is not the default), and a failed delete leaves it too; either way the run is a `fail` verdict with the cause on disk.
+        verdict.error = verdict.error ? `${verdict.error}; branch cleanup of ${target}: ${err.message}` : `branch cleanup of ${target}: ${err.message}`;
+        log(`ERROR deleting ${branch}: ${err.message}`);
+      }
     }
     // Each read-back is guarded on its own, so a failed read is a `fail` verdict on disk, never a
     // missing one.
