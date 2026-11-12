@@ -22,20 +22,29 @@ export function devNodeOptions(existing) {
   return existing ? `${existing} ${ours}` : ours;
 }
 
-// The headers vercel.json gives `path`, in production's order: every rule whose source matches, a later rule
-// winning a key an earlier one set. vercel dev adds them to its own api/ responses but not to what it proxies
-// from the devCommand, so scripts/dev-static.mjs applies them itself (#605). `config` is vercel.json as parsed,
-// which scripts/build-headers.mjs writes; nothing here repeats a header. `path` is the one dev-static sees,
-// after vercel dev's rewrites: production matches the path before the rewrite, which for /decks/x is /decks/x
-// and here is /app. The only rule keyed to one path today is /manifest.webmanifest, which no rewrite touches.
-export function headersFor(path, config) {
-  const out = {};
-  for (const rule of config.headers ?? []) {
+// vercel.json's header rules, compiled once: dev-static calls this at start, so a rule it cannot evaluate
+// (`has` / `missing`) stops the server at launch instead of failing every request. `config` is vercel.json as
+// parsed, which scripts/build-headers.mjs writes; nothing here repeats a header.
+export function headerRules(config) {
+  return (config.headers ?? []).map((rule) => {
     if (rule.has || rule.missing) throw new Error(`vercel.json header rule ${rule.source}: has/missing is not evaluated by dev-static`);
-    if (!sourceRegExp(rule.source).test(path)) continue;
-    for (const { key, value } of rule.headers) out[key] = value;
+    return { re: sourceRegExp(rule.source), headers: rule.headers };
+  });
+}
+
+// The headers `rules` give `path`, in production's order: every rule whose source matches, a later rule
+// winning a key an earlier one set, whatever its case. vercel dev adds them to its own api/ responses but not
+// to what it proxies from the devCommand, so scripts/dev-static.mjs applies them itself (#605). `path` is the
+// one dev-static sees, after vercel dev's rewrites: production matches the path before the rewrite, which for
+// /decks/x is /decks/x and here is /app. The only rule keyed to one path today is /manifest.webmanifest, which
+// no rewrite touches.
+export function headersFor(path, rules) {
+  const out = new Map();
+  for (const { re, headers } of rules) {
+    if (!re.test(path)) continue;
+    for (const { key, value } of headers) out.set(key.toLowerCase(), [key, value]);
   }
-  return out;
+  return Object.fromEntries(out.values());
 }
 
 // path-to-regexp's grammar, as far as a vercel.json source uses it: `(...)` is a regular expression, `:name`
@@ -59,17 +68,19 @@ function sourceRegExp(source) {
     re += source[i].replace(/[.*+?^${}|[\]\\]/g, "\\$&");
     i++;
   }
-  return new RegExp(`^${re}$`);
+  // dotAll: a request path can decode to a CR or LF, and /(.*) still has to match it (#605 scan).
+  return new RegExp(`^${re}$`, "s");
 }
 
 // The vercel dev arguments with the router on loopback: vercel dev listens on 0.0.0.0:3000 unless told
 // otherwise (`vercel dev --help`, CLI 65.11.0), and accepts `--listen <host:port>` (#605). A bare port the
-// caller gave is put on 127.0.0.1; an address with a host is the caller's choice and stays.
+// caller gave, or one with an empty host (`:3000`), is put on 127.0.0.1; an address with a host is the
+// caller's choice and stays. A `--listen` with no value is left for vercel dev to refuse.
 export function devListenArgs(argv) {
-  const loopback = (v) => (/^\d+$/.test(v) ? `127.0.0.1:${v}` : v);
+  const loopback = (v) => (/^:?\d+$/.test(v) ? `127.0.0.1:${v.replace(/^:/, "")}` : v);
   const out = [...argv];
   for (let i = 0; i < out.length; i++) {
-    if ((out[i] === "--listen" || out[i] === "-l") && i + 1 < out.length) { out[i + 1] = loopback(out[i + 1]); return out; }
+    if (out[i] === "--listen" || out[i] === "-l") { if (i + 1 < out.length) out[i + 1] = loopback(out[i + 1]); return out; }
     if (out[i].startsWith("--listen=")) { out[i] = `--listen=${loopback(out[i].slice(9))}`; return out; }
   }
   return [...out, "--listen", "127.0.0.1:3000"];

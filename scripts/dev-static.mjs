@@ -9,11 +9,11 @@ import { existsSync, readFileSync, statSync } from "node:fs";
 import { createServer } from "node:http";
 import { dirname, extname, join, resolve, sep } from "node:path";
 import { fileURLToPath } from "node:url";
-import { headersFor, requestPath } from "./dev-support.mjs";
+import { headerRules, headersFor, requestPath } from "./dev-support.mjs";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
 const PUBLIC = resolve(join(ROOT, "public"));
-const VERCEL = JSON.parse(readFileSync(join(ROOT, "vercel.json"), "utf8"));
+const HEADERS = headerRules(JSON.parse(readFileSync(join(ROOT, "vercel.json"), "utf8")));
 const TYPES = {
   ".html": "text/html; charset=utf-8", ".js": "text/javascript; charset=utf-8", ".css": "text/css; charset=utf-8",
   ".json": "application/json", ".svg": "image/svg+xml", ".webmanifest": "application/manifest+json",
@@ -22,6 +22,9 @@ const TYPES = {
 
 createServer((req, res) => {
   const path = requestPath(req.url);
+  // On every answer, 400 and 404 included, as production's vercel.json headers are; a path that does not
+  // decode is matched raw, which only the /(.*) rule can match.
+  for (const [key, value] of Object.entries(headersFor(path ?? req.url, HEADERS))) res.setHeader(key, value);
   if (path === null) { res.writeHead(400).end("bad request"); return; }
   let file = resolve(join(PUBLIC, path.endsWith("/") ? `${path}index.html` : path));
   if (file !== PUBLIC && !file.startsWith(PUBLIC + sep)) { res.writeHead(403).end(); return; }
@@ -29,9 +32,8 @@ createServer((req, res) => {
     if (!existsSync(file) || statSync(file).isDirectory()) file = existsSync(`${file}.html`) ? `${file}.html` : join(file, "index.html");
     if (!existsSync(file) || !statSync(file).isFile()) { res.writeHead(404).end("not found"); return; }
     const body = readFileSync(file);
-    // setHeader is case-insensitive, so a vercel.json Content-Type (the manifest's) replaces ours, not doubles it.
-    res.setHeader("content-type", TYPES[extname(file)] ?? "application/octet-stream");
-    for (const [key, value] of Object.entries(headersFor(path, VERCEL))) res.setHeader(key, value);
+    // hasHeader is case-insensitive: a vercel.json Content-Type (the manifest's) wins over ours, not doubles it.
+    if (!res.hasHeader("content-type")) res.setHeader("content-type", TYPES[extname(file)] ?? "application/octet-stream");
     res.writeHead(200).end(body);
   } catch { res.writeHead(500).end("read failed"); }
 }).listen(Number(process.env.PORT), "127.0.0.1");

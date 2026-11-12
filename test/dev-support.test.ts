@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 // @ts-expect-error plain .mjs, imported by the two node-run dev scripts, which cannot import TypeScript.
-import { devListenArgs, devNodeOptions, headersFor, requestPath } from "../scripts/dev-support.mjs";
+import { devListenArgs, devNodeOptions, headerRules, headersFor, requestPath } from "../scripts/dev-support.mjs";
 import { readFileSync } from "node:fs";
 
 // vercel dev applies the /decks/:path* rewrite, then appends the unused capture as a query ENCODED into the
@@ -43,26 +43,40 @@ describe("dev NODE_OPTIONS (#597)", () => {
 // so /, /app and /decks/x came back with no CSP, COOP, HSTS, nosniff or X-Frame-Options (#605).
 describe("dev-static headers from vercel.json (#605)", () => {
   const config = JSON.parse(readFileSync(new URL("../vercel.json", import.meta.url), "utf8"));
+  const at = (path: string, cfg: object): Record<string, string> => headersFor(path, headerRules(cfg));
   const all = config.headers.find((r: { source: string }) => r.source === "/(.*)");
 
   it("gives every page the /(.*) rule, keys and values as vercel.json has them", () => {
     for (const path of ["/", "/app", "/app.html", "/fonts/inter.woff2"]) {
-      const got = headersFor(path, config);
+      const got = at(path, config);
       for (const { key, value } of all.headers) expect(got[key]).toBe(value);
     }
-    expect(Object.keys(headersFor("/", config))).toEqual(all.headers.map((h: { key: string }) => h.key));
+    expect(Object.keys(at("/", config))).toEqual(all.headers.map((h: { key: string }) => h.key));
+  });
+
+  it("matches /(.*) on a path that decodes to a line break", () => {
+    expect(at("/x\r\nX-Evil:1", config)["Content-Security-Policy"]).toBe(all.headers[0].value);
   });
 
   it("adds a rule scoped to one path only on that path, a later rule winning", () => {
-    expect(headersFor("/manifest.webmanifest", config)["Content-Type"]).toBe("application/manifest+json");
-    expect(headersFor("/app", config)["Content-Type"]).toBeUndefined();
-    expect(headersFor("/manifest.webmanifestx", config)["Content-Type"]).toBeUndefined();
+    expect(at("/manifest.webmanifest", config)["Content-Type"]).toBe("application/manifest+json");
+    expect(at("/app", config)["Content-Type"]).toBeUndefined();
+    expect(at("/manifest.webmanifestx", config)["Content-Type"]).toBeUndefined();
     const two = { headers: [
       { source: "/(.*)", headers: [{ key: "X-A", value: "1" }] },
       { source: "/a", headers: [{ key: "X-A", value: "2" }] },
     ] };
-    expect(headersFor("/a", two)["X-A"]).toBe("2");
-    expect(headersFor("/b", two)["X-A"]).toBe("1");
+    expect(at("/a", two)["X-A"]).toBe("2");
+    expect(at("/b", two)["X-A"]).toBe("1");
+  });
+
+  it("lets a later rule win a key whatever its case, as production does", () => {
+    const cased = { headers: [
+      { source: "/(.*)", headers: [{ key: "X-A", value: "1" }] },
+      { source: "/(.*)", headers: [{ key: "x-a", value: "2" }] },
+      { source: "/(.*)", headers: [{ key: "X-A", value: "3" }] },
+    ] };
+    expect(at("/", cased)).toEqual({ "X-A": "3" });
   });
 
   it("matches named parameters the way path-to-regexp does", () => {
@@ -70,20 +84,20 @@ describe("dev-static headers from vercel.json (#605)", () => {
       { source: "/decks/:path*", headers: [{ key: "X-D", value: "1" }] },
       { source: "/u/:id", headers: [{ key: "X-U", value: "1" }] },
     ] };
-    expect(headersFor("/decks", cfg)["X-D"]).toBe("1");
-    expect(headersFor("/decks/a/b", cfg)["X-D"]).toBe("1");
-    expect(headersFor("/decksx", cfg)["X-D"]).toBeUndefined();
-    expect(headersFor("/u/7", cfg)["X-U"]).toBe("1");
-    expect(headersFor("/u/7/8", cfg)["X-U"]).toBeUndefined();
+    expect(at("/decks", cfg)["X-D"]).toBe("1");
+    expect(at("/decks/a/b", cfg)["X-D"]).toBe("1");
+    expect(at("/decksx", cfg)["X-D"]).toBeUndefined();
+    expect(at("/u/7", cfg)["X-U"]).toBe("1");
+    expect(at("/u/7/8", cfg)["X-U"]).toBeUndefined();
   });
 
   it("refuses a rule with has or missing, which it cannot evaluate", () => {
     const cfg = { headers: [{ source: "/(.*)", has: [{ type: "host", value: "x" }], headers: [] }] };
-    expect(() => headersFor("/", cfg)).toThrow(/has/);
+    expect(() => headerRules(cfg)).toThrow(/has/);
   });
 
   it("answers nothing when vercel.json has no headers", () => {
-    expect(headersFor("/", {})).toEqual({});
+    expect(at("/", {})).toEqual({});
   });
 });
 
@@ -99,6 +113,13 @@ describe("dev router bound to loopback (#605)", () => {
     expect(devListenArgs(["--listen", "3597"])).toEqual(["--listen", "127.0.0.1:3597"]);
     expect(devListenArgs(["--listen=3597"])).toEqual(["--listen=127.0.0.1:3597"]);
     expect(devListenArgs(["-l", "3597"])).toEqual(["-l", "127.0.0.1:3597"]);
+    expect(devListenArgs(["--listen", ":3597"])).toEqual(["--listen", "127.0.0.1:3597"]);
+    expect(devListenArgs(["--listen=:3597"])).toEqual(["--listen=127.0.0.1:3597"]);
+  });
+
+  it("leaves a --listen with no value for vercel dev to refuse, adding no second one", () => {
+    expect(devListenArgs(["--listen"])).toEqual(["--listen"]);
+    expect(devListenArgs(["-l"])).toEqual(["-l"]);
   });
 
   it("keeps an address the caller named with a host", () => {
