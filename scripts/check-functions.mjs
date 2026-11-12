@@ -1,7 +1,10 @@
 #!/usr/bin/env node
 // Check 2 of #585: after `npm run build:web`, the set of functions Vercel would deploy is exactly the
-// table in `scripts/api-routes.mjs`. It runs as the last step of `build:web`, so a build that grows a
-// function nobody classified fails before it can deploy, and it prints both lists either way.
+// table in `scripts/api-routes.mjs`. It runs as the last step of `build:web`, so a function nobody
+// classified under `api/`, a root middleware, a `vercel.json` `builds` entry or a Build Output tree
+// that this build writes fails it before it can deploy, and it prints both lists either way. It runs
+// before Vercel's own packaging, so it sees what the repo and this build produce, not what the
+// platform generates afterwards (with `framework: null`, nothing).
 //
 //   node scripts/check-functions.mjs [root]
 

@@ -143,15 +143,34 @@ describe("check 1: api/deck-url.ts, classified public, holds its guards in proce
     expect(fetched).toEqual([]);
   });
 
-  it("refuses a redirect off the allowlist without requesting it", async () => {
-    vi.stubGlobal("fetch", vi.fn(async (input: unknown) => {
+  /** Piltover answers every deck page with a 302 to `location`, and the hop it is sent to with 200. */
+  const redirectingTo = (location: string) => {
+    const redirectModes: unknown[] = [];
+    vi.stubGlobal("fetch", vi.fn(async (input: unknown, init?: RequestInit) => {
       fetched.push(String(input));
-      if (String(input).startsWith("https://piltoverarchive.com/")) return new Response(null, { status: 302, headers: { location: "https://evil.example/steal" } });
+      redirectModes.push(init?.redirect);
+      if (String(input) === "https://piltoverarchive.com/decks/view/abc") return new Response(null, { status: 302, headers: { location } });
+      if (String(input).startsWith("https://piltoverarchive.com/")) return new Response("ok", { status: 200 });
       throw new Error(`${UPSTREAM}: ${String(input)}`);
     }));
+    return redirectModes;
+  };
+
+  it("refuses a redirect off the allowlist without requesting it", async () => {
+    const modes = redirectingTo("https://evil.example/steal");
     const res = await call("https://piltoverarchive.com/decks/view/abc");
     expect(res.status).toBe(502);
     expect(fetched).toEqual(["https://piltoverarchive.com/decks/view/abc"]);
+    // The platform must not follow it on its own, or the hop would never be checked.
+    expect(modes).toEqual(["manual"]);
+  });
+
+  it("is not vacuous: the same stub follows a redirect that stays on the allowlist", async () => {
+    const modes = redirectingTo("/decks/view/def");
+    await call("https://piltoverarchive.com/decks/view/abc");
+    // The second request is the evidence; the stub's "ok" page holds no deck, so the status is not.
+    expect(fetched).toEqual(["https://piltoverarchive.com/decks/view/abc", "https://piltoverarchive.com/decks/view/def"]);
+    expect(modes).toEqual(["manual", "manual"]);
   });
 
   it("refuses an oversized body at the upstream read, and stops reading it", async () => {

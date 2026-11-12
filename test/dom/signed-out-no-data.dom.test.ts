@@ -12,7 +12,7 @@
 // page code that can reach the Data API is the shell above.
 import { readFileSync, readdirSync } from "node:fs";
 import { join } from "node:path";
-import { describe, expect, it, vi } from "vitest";
+import { afterEach, describe, expect, it, vi } from "vitest";
 import { renderSite, type SiteInput } from "../../src/render/site.js";
 // @ts-expect-error plain .mjs shared with scripts/build-web.mjs.
 import { slimCard } from "../../scripts/web-card-fields.mjs";
@@ -96,6 +96,8 @@ async function boot(path: string) {
   vi.spyOn(router.navigate, "load").mockImplementation(() => {});
   return router;
 }
+
+afterEach(() => { vi.unstubAllGlobals(); vi.restoreAllMocks(); });
 
 const PATHS = ["/decks", "/decks/0b8e6a52-6f0e-4d1b-9f1e-58500000585a", "/app", "/app?deck=0b8e6a52-6f0e-4d1b-9f1e-58500000585a"];
 

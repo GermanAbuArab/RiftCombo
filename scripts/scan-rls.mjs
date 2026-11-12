@@ -14,7 +14,7 @@
 //   5. writes `check-rls.log` (every line of the run) and `check-rls.json` (the verdict) to
 //      `<main checkout>/security_runs/<run_name>/suite/`, or to `--out`.
 //
-// Exit 0 only when the RLS run exited 0, the branch is deleted and main reads disabled. The verdict
+// Exit 0 only when the RLS run exited 0 with at least one pass line and no FAIL line, the branch is deleted and main reads disabled. The verdict
 // counts for the scan run it is named after and for no other. No key is handled: `neonctl` is
 // already authenticated on the operator's machine, the two URLs are public coordinates, and the RLS
 // script creates and deletes its own random throwaway users.
@@ -27,12 +27,12 @@ import { fileURLToPath } from "node:url";
 const PROJECT = process.env.NEON_PROJECT_ID || "quiet-breeze-27436036";
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
 
-/** `rls-<run>`, from a run name a scan writes (`RiftCombo_1e6375cf`) or an issue tag (`585-…`). */
+/** `rls-<run>`, the run name verbatim (`RiftCombo_1e6375cf`, or an issue tag such as `585-…`), so two runs never share a branch. */
 export function branchName(run) {
   if (typeof run !== "string" || !/^[A-Za-z0-9_-]{1,48}$/.test(run)) {
     throw new Error("--run <name> is required: letters, digits, '-' or '_', at most 48 characters");
   }
-  return `rls-${run.toLowerCase().replace(/_/g, "-")}`;
+  return `rls-${run}`;
 }
 
 function main() {
@@ -51,9 +51,10 @@ function main() {
   log(`scan:rls run ${run} -> branch ${branch} (project ${PROJECT})`);
   let created = false;
   try {
-    const made = JSON.parse(neon(["branches", "create", "--parent", "main", "--name", branch]));
+    const made = neon(["branches", "create", "--parent", "main", "--name", branch]);
+    // Set before the output is read: once neonctl has returned, the branch exists and must be deleted.
     created = true;
-    verdict.branch_id = (made.branch ?? made).id;
+    verdict.branch_id = (JSON.parse(made).branch ?? JSON.parse(made)).id;
     log(`created branch ${branch} = ${verdict.branch_id}`);
     neon(["neon-auth", "config", "email-password", "update", "--branch", branch, "--enabled", "true"]);
     log(`email-and-password enabled on ${branch} only`);
@@ -84,15 +85,21 @@ function main() {
       try { neon(["branches", "delete", branch]); log(`deleted branch ${branch}`); }
       catch (err) { log(`ERROR deleting ${branch}: ${err.message}`); }
     }
-    const names = JSON.parse(neon(["branches", "list"]));
-    verdict.branches_after = (Array.isArray(names) ? names : names.branches).map((b) => b.name).sort();
-    verdict.branch_deleted = !verdict.branches_after.includes(branch);
-    verdict.main_email_password_enabled = JSON.parse(neon(["neon-auth", "config", "email-password", "get", "--branch", "main"])).enabled;
-    log(`branches after: ${verdict.branches_after.join(", ")}`);
-    log(`main email-and-password enabled: ${verdict.main_email_password_enabled}`);
+    // Each read-back is guarded on its own, so a failed read is a `fail` verdict on disk, never a
+    // missing one.
+    try {
+      const names = JSON.parse(neon(["branches", "list"]));
+      verdict.branches_after = (Array.isArray(names) ? names : names.branches).map((b) => b.name).sort();
+      verdict.branch_deleted = !verdict.branches_after.includes(branch);
+      log(`branches after: ${verdict.branches_after.join(", ")}`);
+    } catch (err) { verdict.error ??= `branches list: ${err.message}`; log(`ERROR branches list: ${err.message}`); }
+    try {
+      verdict.main_email_password_enabled = JSON.parse(neon(["neon-auth", "config", "email-password", "get", "--branch", "main"])).enabled;
+      log(`main email-and-password enabled: ${verdict.main_email_password_enabled}`);
+    } catch (err) { verdict.error ??= `main email-password read: ${err.message}`; log(`ERROR main email-password read: ${err.message}`); }
   }
   verdict.ended = new Date().toISOString();
-  verdict.result = verdict.rls_exit === 0 && !verdict.error && verdict.branch_deleted && verdict.main_email_password_enabled === false ? "pass" : "fail";
+  verdict.result = verdict.rls_exit === 0 && verdict.rls_fail === 0 && verdict.rls_pass > 0 && !verdict.error && verdict.branch_deleted && verdict.main_email_password_enabled === false ? "pass" : "fail";
   writeFileSync(join(out, "check-rls.json"), `${JSON.stringify(verdict, null, 2)}\n`);
   log(`result: ${verdict.result} (written to ${out})`);
   process.exit(verdict.result === "pass" ? 0 : 1);
