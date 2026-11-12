@@ -88,9 +88,11 @@ function main() {
     // Each read-back is guarded on its own, so a failed read is a `fail` verdict on disk, never a
     // missing one.
     try {
-      const names = JSON.parse(neon(["branches", "list"]));
-      verdict.branches_after = (Array.isArray(names) ? names : names.branches).map((b) => b.name).sort();
-      verdict.branch_deleted = !verdict.branches_after.includes(branch);
+      const listed = JSON.parse(neon(["branches", "list"]));
+      const after = Array.isArray(listed) ? listed : listed.branches;
+      verdict.branches_after = after.map((b) => b.name).sort();
+      // By id first, so the check does not depend on how Neon spells the name back.
+      verdict.branch_deleted = !after.some((b) => b.id === verdict.branch_id || b.name.toLowerCase() === branch.toLowerCase());
       log(`branches after: ${verdict.branches_after.join(", ")}`);
     } catch (err) { verdict.error ??= `branches list: ${err.message}`; log(`ERROR branches list: ${err.message}`); }
     try {
