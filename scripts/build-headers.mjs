@@ -102,11 +102,13 @@ const config = {
   // and they are printed in the footer of every page.
   cleanUrls: true,
   // The one SPA rewrite (#287): every `/decks` address is the app shell. `/app` itself needs none,
-  // because `cleanUrls` already serves `app.html` there; that file is `index.html` plus `noindex`,
+  // because `cleanUrls` already serves `app.html` there. The destination is `/app`, never `/app.html`:
+  // under `cleanUrls` the `.html` name is not served, so that rewrite 404ed in production (#578).
+  // The file is `index.html` plus `noindex`,
   // written by `scripts/build-web.mjs`, so the saved-deck screens never enter an index.
   rewrites: [
     { source: "/favicon.ico", destination: "/favicon.svg" },
-    { source: "/decks/:path*", destination: "/app.html" },
+    { source: "/decks/:path*", destination: "/app" },
   ],
   headers: [
     {

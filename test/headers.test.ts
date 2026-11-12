@@ -106,6 +106,17 @@ describe("every page the site serves", () => {
     const config = JSON.parse(readFileSync(new URL("../vercel.json", import.meta.url), "utf8")) as { cleanUrls?: boolean };
     expect(config.cleanUrls).toBe(true);
   });
+
+  it("never rewrites to a destination ending in .html while cleanUrls is on (#578)", () => {
+    const config = JSON.parse(readFileSync(new URL("../vercel.json", import.meta.url), "utf8")) as {
+      cleanUrls?: boolean;
+      rewrites: { source: string; destination: string }[];
+    };
+    expect(config.cleanUrls).toBe(true);
+    // Under cleanUrls Vercel does not serve `/app.html` by that name, so the rewrite 404s in production.
+    for (const r of config.rewrites) expect(r.destination, `${r.source} points at an .html file`).not.toMatch(/\.html$/);
+    expect(config.rewrites.find((r) => r.source === "/decks/:path*")?.destination).toBe("/app");
+  });
 });
 
 describe("the top bar is a view switcher, not three anchors (#43)", () => {
@@ -326,8 +337,8 @@ describe("the app shell (#287)", () => {
   const index = readFileSync(new URL("../web/index.html", import.meta.url), "utf8");
 
   it("has exactly one SPA rewrite, every /decks address to the noindex shell", () => {
-    const spa = rewrites.filter((r) => r.destination === "/app.html" || r.destination === "/index.html");
-    expect(spa).toEqual([{ source: "/decks/:path*", destination: "/app.html" }]);
+    const spa = rewrites.filter((r) => r.destination === "/app" || r.destination === "/index.html");
+    expect(spa).toEqual([{ source: "/decks/:path*", destination: "/app" }]);
   });
 
   it("is index.html with noindex in place of its canonical", () => {
@@ -339,7 +350,7 @@ describe("the app shell (#287)", () => {
   });
 
   it("is served for /decks and below by the local QA server too, and nowhere else", () => {
-    for (const p of ["/decks", "/decks/new", "/decks/8f3c-1"]) expect(rewritten(rewrites, p), p).toBe("/app.html");
+    for (const p of ["/decks", "/decks/new", "/decks/8f3c-1"]) expect(rewritten(rewrites, p), p).toBe("/app");
     for (const p of ["/decksx", "/app", "/", "/combos/x"]) expect(rewritten(rewrites, p), p).toBe(p);
   });
 });
