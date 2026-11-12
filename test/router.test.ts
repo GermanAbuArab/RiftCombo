@@ -1,80 +1,95 @@
 import { describe, expect, it } from "vitest";
-import { parseHash, VIEWS } from "../web/router.js";
+import { isAppPath, legacyTarget, parseUrl, VIEW_PATHS, VIEWS } from "../web/router.js";
 
 /**
- * The hash is the site's only durable address (#43): a link to the Guide has to open the Guide, and the
- * `#deck=<list>` links shared before the views existed have to keep opening Combos with that list. Both
- * are contracts with URLs already in the wild, so they are pinned here rather than only walked in a
- * browser. `parseHash` is pure — it never touches `location` — precisely so this test can exist.
+ * Since #287 the address is a path (#272 design §2). Two contracts are pinned here because they are
+ * contracts with URLs already in the wild: every path the app shell serves opens the right view, and
+ * every hash link shared before #287 (`#/plays/x`, `#/combos?deck=<id>`, `#deck=<list>`) maps onto a
+ * path. `parseUrl` and `legacyTarget` are pure — they never touch `location` — so this test can exist.
  */
-describe("the hash routes", () => {
-  it("reads each of the five views", () => {
-    for (const view of VIEWS) expect(parseHash(`#/${view}`).view).toBe(view);
+describe("the path routes", () => {
+  it("reads each of the five views from its own path", () => {
+    for (const view of VIEWS) expect(parseUrl(VIEW_PATHS[view]).view, view).toBe(view);
   });
 
-  it("falls back to Combos on an empty or unknown hash", () => {
-    for (const h of ["", "#", "#/", "#/nonsense", "#/decks-of-cards"]) {
-      expect(parseHash(h).view, h).toBe("combos");
-    }
+  it("reads Combos on / and on any path it does not know", () => {
+    for (const p of ["/", "/app", "/nonsense", "/decks-of-cards"]) expect(parseUrl(p).view, p).toBe("combos");
   });
 
-  /**
-   * A plain in-page fragment is an unknown view, and the fall-back is LOSSY: it lands on Combos with
-   * no `?deck=`, so following `#stage` from `#/combos?deck=<id>` — the route My decks hands over on —
-   * would leave an address that reopens an empty Combos. That is why the mobile "See the diagram"
-   * link calls `preventDefault` and scrolls instead of letting the browser take the hash
-   * (`web/main.ts`, D6 of the 2026-09-20 review). Pinned here because it is a property of the
-   * ROUTER, so a later change that makes fragments survive is free to delete the workaround.
-   */
-  it("treats a bare in-page fragment as unknown, and loses the deck id doing it", () => {
-    expect(parseHash("#stage").view).toBe("combos");
-    expect(parseHash("#stage").analyzing).toBeNull();
-    expect(parseHash("#/combos?deck=8f3c-1").analyzing).toBe("8f3c-1");
+  it("carries the saved deck id out of /decks/<id>", () => {
+    expect(parseUrl("/decks/8f3c-1").deckId).toBe("8f3c-1");
+    expect(parseUrl("/decks/new").deckId).toBe("new");
+    expect(parseUrl("/decks").deckId).toBeNull();
   });
 
-  it("carries the saved deck id out of #/decks/<id>", () => {
-    expect(parseHash("#/decks/8f3c-1").deckId).toBe("8f3c-1");
-    expect(parseHash("#/decks/new").deckId).toBe("new");
-    expect(parseHash("#/decks").deckId).toBeNull();
+  it("carries which saved deck Combos is analysing, and keeps it across an in-page fragment", () => {
+    expect(parseUrl("/app?deck=8f3c-1").analyzing).toBe("8f3c-1");
+    expect(parseUrl("/app").analyzing).toBeNull();
+    // Under the hash router `#stage` was an unknown view and lost the id; now the fragment is not the route.
+    expect(parseUrl("/app?deck=8f3c-1#stage").analyzing).toBe("8f3c-1");
+    expect(parseUrl("/guide?deck=8f3c-1").analyzing).toBeNull();
   });
 
-  it("carries which saved deck Combos is analysing", () => {
-    expect(parseHash("#/combos?deck=8f3c-1").analyzing).toBe("8f3c-1");
-    expect(parseHash("#/combos").analyzing).toBeNull();
-    // A deck id only means something on Combos; on another view it is not this route's business.
-    expect(parseHash("#/guide?deck=8f3c-1").analyzing).toBeNull();
+  it("carries the play slug out of /plays/<slug>, and keeps slug and deck id apart", () => {
+    expect(parseUrl("/plays/2026-09-12-the-unopposed-clock").playSlug).toBe("2026-09-12-the-unopposed-clock");
+    expect(parseUrl("/plays").playSlug).toBeNull();
+    expect(parseUrl("/plays/2026-09-12-the-unopposed-clock").deckId).toBeNull();
+    expect(parseUrl("/decks/8f3c-1").playSlug).toBeNull();
   });
 
-  /**
-   * The fifth view (#206). A play is a document addressed by its own slug, so `#/plays/<slug>` has to
-   * survive being pasted: the four plays cross-link each other by filename, and those links are
-   * rewritten to this shape at render time.
-   */
-  it("carries the play slug out of #/plays/<slug>", () => {
-    expect(parseHash("#/plays/2026-09-12-the-unopposed-clock").playSlug).toBe("2026-09-12-the-unopposed-clock");
-    expect(parseHash("#/plays").playSlug).toBeNull();
-    expect(parseHash("#/plays").view).toBe("plays");
-  });
-
-  it("keeps a slug and a deck id out of each other's routes", () => {
-    // Both live in the same path position; neither may be read on the other's view.
-    expect(parseHash("#/plays/2026-09-12-the-unopposed-clock").deckId).toBeNull();
-    expect(parseHash("#/decks/8f3c-1").playSlug).toBeNull();
-  });
-
-  it("still opens Combos with a list shared as the old #deck= link", () => {
+  it("opens Combos with a list carried in the fragment, never in the query a server logs", () => {
     const list = "1 Lady of Luminosity - Starter\n3 Retreat";
-    const r = parseHash(`#deck=${encodeURIComponent(list)}`);
+    const r = parseUrl(`/app#deck=${encodeURIComponent(list)}`);
     expect(r.view).toBe("combos");
     expect(r.legacyDeck).toBe(list);
-    expect(r.deckId).toBeNull();
-  });
-
-  it("does not mistake a route for a legacy list", () => {
-    expect(parseHash("#/decks").legacyDeck).toBeNull();
+    expect(parseUrl("/decks#deck=x").legacyDeck).toBeNull();
   });
 
   it("decodes an id that needed escaping", () => {
-    expect(parseHash(`#/decks/${encodeURIComponent("a b/c")}`).deckId).toBe("a b/c");
+    expect(parseUrl(`/decks/${encodeURIComponent("a b/c")}`).deckId).toBe("a b/c");
+  });
+
+  it("knows which paths the app shell serves; every other path is a public page", () => {
+    for (const p of ["/", "/app", "/decks", "/decks/new", "/decks/8f3c-1"]) expect(isAppPath(p), p).toBe(true);
+    for (const p of ["/combos", "/combos/x", "/plays", "/plays/x", "/guide", "/sources", "/about", "/privacy", "/decksx", "/application"]) {
+      expect(isAppPath(p), p).toBe(false);
+    }
+  });
+});
+
+describe("old hash links land on the new paths (#287)", () => {
+  it("maps the three link shapes named in the issue", () => {
+    expect(legacyTarget("#/plays/2026-09-12-the-unopposed-clock")).toBe("/plays/2026-09-12-the-unopposed-clock");
+    expect(legacyTarget("#/combos?deck=8f3c-1")).toBe("/app?deck=8f3c-1");
+    expect(legacyTarget("#deck=CMAAAAA")).toBe("/app#deck=CMAAAAA");
+  });
+
+  it("maps every other old view, and an unknown one to Combos as the hash router did", () => {
+    expect(legacyTarget("#/combos")).toBe("/app");
+    expect(legacyTarget("#/decks")).toBe("/decks");
+    expect(legacyTarget("#/decks/new")).toBe("/decks/new");
+    expect(legacyTarget("#/decks/abc%20123")).toBe("/decks/abc%20123");
+    expect(legacyTarget("#/plays")).toBe("/plays");
+    expect(legacyTarget("#/guide")).toBe("/guide");
+    expect(legacyTarget("#/sources")).toBe("/sources");
+    expect(legacyTarget("#/")).toBe("/app");
+    expect(legacyTarget("#/nonsense")).toBe("/app");
+  });
+
+  it("keeps the id escaped, so an id with a separator is still one id", () => {
+    const id = "a&b=c d";
+    expect(parseUrl(legacyTarget(`#/combos?deck=${encodeURIComponent(id)}`)!).analyzing).toBe(id);
+  });
+
+  it("never builds an address off this origin, whatever the fragment says", () => {
+    for (const h of ["#//evil.example", "#/plays//evil.example", "#/decks/\\evil.example", "#/\\evil.example", "#/guide/x?deck=//e"]) {
+      const target = legacyTarget(h)!;
+      expect(new URL(target, "https://riftcombo.app").origin, h).toBe("https://riftcombo.app");
+      expect(target, h).toMatch(/^\/(app|decks|plays|guide|sources)\b/);
+    }
+  });
+
+  it("leaves a plain fragment and an empty hash alone", () => {
+    for (const h of ["", "#", "#stage", "#how"]) expect(legacyTarget(h), h).toBeNull();
   });
 });

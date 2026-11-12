@@ -19,6 +19,10 @@
     {
       "source": "/favicon.ico",
       "destination": "/favicon.svg"
+    },
+    {
+      "source": "/decks/:path*",
+      "destination": "/app.html"
     }
   ],
   "headers": [

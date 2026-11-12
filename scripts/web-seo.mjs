@@ -21,6 +21,18 @@ export const STATIC_PAGES = [
   { path: "/terms", file: "terms.html", sources: ["web/terms.html"] },
 ];
 
+const CANONICAL = `<link rel="canonical" href="${ORIGIN}/">`;
+
+/**
+ * The app shell served at /app and /decks/* (#287): `index.html` with `noindex` where its canonical
+ * was. A canonical pointing at `/` beside `noindex` would send a crawler two answers, and the shell
+ * is a signed-in tool, never a page to index (#272 §2).
+ */
+export function appShell(indexHtml) {
+  if (!indexHtml.includes(CANONICAL)) throw new Error(`index.html has no ${CANONICAL} to replace`);
+  return indexHtml.replace(CANONICAL, '<meta name="robots" content="noindex">');
+}
+
 export function robotsTxt() {
   return `User-agent: *\nAllow: /\nDisallow: /api/\n\nSitemap: ${ORIGIN}/sitemap.xml\n`;
 }

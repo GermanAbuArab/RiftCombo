@@ -1,6 +1,6 @@
 import { readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
-import { VIEWS } from "../web/router.js";
+import { VIEW_PATHS, VIEWS } from "../web/router.js";
 
 /**
  * What the keyboard and the screen reader are owed, pinned here because none of it shows up as an
@@ -195,7 +195,7 @@ describe("what a screen reader is told", () => {
     for (const f of ["privacy.html", "terms.html", "404.html"]) {
       const nav = /<nav class="topnav">([\s\S]*?)<\/nav>/.exec(read(`web/${f}`))?.[1] ?? "";
       expect(nav, `${f} has no top nav`).not.toBe("");
-      for (const view of VIEWS) expect(nav, `${f} → /#/${view}`).toContain(`href="/#/${view}"`);
+      for (const view of VIEWS) expect(nav, `${f} → ${VIEW_PATHS[view]}`).toContain(`href="${VIEW_PATHS[view]}"`);
     }
   });
 });

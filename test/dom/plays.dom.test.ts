@@ -15,7 +15,7 @@ interface Play { slug: string; date: string; title: string; lede: string; markdo
 const PLAYS = loadPlays(".") as Play[];
 
 const HTML = `
-  <nav class="topnav"><a href="#/combos">Combos</a><a href="#/plays">Run plays</a></nav>
+  <nav class="topnav"><a href="/app">Combos</a><a href="/plays">Run plays</a></nav>
   <main id="view-combos"></main>
   <section id="view-plays" hidden><main class="doc play" id="plays-host"></main></section>`;
 
@@ -23,7 +23,7 @@ const HTML = `
 const open = async (hash: string, plays: Play[] = PLAYS) => {
   vi.resetModules();
   document.body.innerHTML = HTML;
-  location.hash = hash;
+  history.replaceState(null, "", hash);
   vi.stubGlobal("fetch", vi.fn(async () => ({ ok: true, json: async () => ({ plays }) })));
   const { initPlays } = await import("../../web/plays.js");
   const { startRouter } = await import("../../web/router.js");
@@ -42,11 +42,11 @@ beforeEach(() => { document.body.innerHTML = HTML; });
 
 describe("the plays index", () => {
   it("lists every play with its title, date and lede", async () => {
-    const host = await open("#/plays");
+    const host = await open("/plays");
     const items = [...host.querySelectorAll(".play-item")];
     expect(items).toHaveLength(PLAYS.length);
     for (const p of PLAYS) {
-      const link = host.querySelector<HTMLAnchorElement>(`a[href="#/plays/${p.slug}"]`);
+      const link = host.querySelector<HTMLAnchorElement>(`a[href="/plays/${p.slug}"]`);
       expect(link, p.slug).not.toBeNull();
       expect(link!.textContent).toContain(p.title);
     }
@@ -56,7 +56,7 @@ describe("the plays index", () => {
   });
 
   it("fetches the payload once, on the first visit rather than at boot", async () => {
-    await open("#/plays");
+    await open("/plays");
     expect(vi.mocked(fetch)).toHaveBeenCalledTimes(1);
     expect(vi.mocked(fetch).mock.calls[0]![0]).toBe("/data/plays.json");
   });
@@ -66,7 +66,7 @@ describe("a play rendered", () => {
   // One test per play (#378): a single test looping over the corpus grew ~1.2 s per play in CI and
   // timed out at 60 s; this way each play has its own budget and a failure names it.
   it.each(PLAYS)("renders every construct the corpus uses, on $slug", async (p) => {
-    const host = await open(`#/plays/${p.slug}`);
+    const host = await open(`/plays/${p.slug}`);
     // No h1 (the page's one h1 is the brand in the header, #270) and one title, the index's title
     // rather than the file's "Play — " prefix; the sections sit one level under it.
     expect(host.querySelectorAll("h1"), p.slug).toHaveLength(0);
@@ -112,7 +112,7 @@ describe("a play rendered", () => {
    * `**` outside the span where this still sees it.
    */
   it.each(PLAYS)("leaves no raw markdown marker in the rendered text of $slug", async (p) => {
-    const host = await open(`#/plays/${p.slug}`);
+    const host = await open(`/plays/${p.slug}`);
     // Fenced blocks are verbatim by design and a turn table may legitimately hold any character.
     // Code spans go with them: 45 printings are alt-arts whose base code ENDS in `*`, so a play
     // quoting one would trip the single-asterisk check below, correctly and uselessly.
@@ -124,7 +124,7 @@ describe("a play rendered", () => {
 
   it("keeps a fenced turn table's alignment exactly as it was written", async () => {
     const clock = PLAYS.find((p) => p.slug.endsWith("the-unopposed-clock"))!;
-    const host = await open(`#/plays/${clock.slug}`);
+    const host = await open(`/plays/${clock.slug}`);
     const pre = host.querySelector("pre")!;
     expect(pre.textContent).toContain("T1  channel 2 (R=2).");
     // The leading run of spaces on a continuation line is what makes the column line up.
@@ -132,18 +132,18 @@ describe("a play rendered", () => {
   });
 
   it("turns a cross-link between two plays into a route, and marks no internal link external", async () => {
-    const host = await open("#/plays/2026-09-12-chaos-fury-yasuo-shuttle");
+    const host = await open("/plays/2026-09-12-chaos-fury-yasuo-shuttle");
     const links = [...host.querySelectorAll<HTMLAnchorElement>("a")].filter((a) => a.className !== "play-back");
     expect(links.length).toBeGreaterThan(0);
     for (const a of links) {
-      expect(a.getAttribute("href"), a.textContent ?? "").toMatch(/^#\/plays\//);
+      expect(a.getAttribute("href"), a.textContent ?? "").toMatch(/^\/plays\//);
       expect(a.target).toBe("");
     }
   });
 
   it("draws a header row only when the table has one, so an empty header is not a band of nothing", async () => {
     // The "Needs" tables open `| | |`: two empty cells, which is how markdown writes a definition list.
-    const host = await open("#/plays/2026-09-12-chaos-order-the-one-answer");
+    const host = await open("/plays/2026-09-12-chaos-order-the-one-answer");
     const tables = [...host.querySelectorAll(".play-table")];
     expect(tables.length).toBeGreaterThan(1);
     expect(tables.some((t) => !t.querySelector("thead")), "no headerless table rendered").toBe(true);
@@ -154,9 +154,9 @@ describe("a play rendered", () => {
 
 describe("what the view does when it cannot show a play", () => {
   it("says so on a slug the payload does not carry, and offers the index", async () => {
-    const host = await open("#/plays/2026-09-12-never-written");
+    const host = await open("/plays/2026-09-12-never-written");
     expect(host.textContent).toContain("There is no play at");
-    expect(host.querySelector<HTMLAnchorElement>(".play-back")!.getAttribute("href")).toBe("#/plays");
+    expect(host.querySelector<HTMLAnchorElement>(".play-back")!.getAttribute("href")).toBe("/plays");
     expect(host.querySelectorAll("h1")).toHaveLength(0);
     expect(host.querySelectorAll("h2.doc-title")).toHaveLength(1);
   });
@@ -164,7 +164,7 @@ describe("what the view does when it cannot show a play", () => {
   it("says so when the payload itself fails, rather than showing an empty page", async () => {
     vi.resetModules();
     document.body.innerHTML = HTML;
-    location.hash = "#/plays";
+    history.replaceState(null, "", "/plays");
     vi.stubGlobal("fetch", vi.fn(async () => ({ ok: false, status: 500, json: async () => ({}) })));
     const { initPlays } = await import("../../web/plays.js");
     const { startRouter } = await import("../../web/router.js");
@@ -196,7 +196,7 @@ describe("what the view does when it cannot show a play", () => {
         "| <b>bold?</b> | `<i>code</i>` |",
       ].join("\n"),
     };
-    const host = await open(`#/plays/${hostile.slug}`, [hostile]);
+    const host = await open(`/plays/${hostile.slug}`, [hostile]);
     expect(host.querySelector("script")).toBeNull();
     expect(host.querySelector("img")).toBeNull();
     expect(host.querySelector("b")).toBeNull();
@@ -216,7 +216,7 @@ describe("which entry a play is about", () => {
   const subjects = async (known: string[]) => {
     vi.resetModules();
     document.body.innerHTML = HTML;
-    location.hash = "#/plays";
+    history.replaceState(null, "", "/plays");
     vi.stubGlobal("fetch", vi.fn(async () => ({ ok: true, json: async () => ({ plays: PLAYS }) })));
     const mod = await import("../../web/plays.js");
     const { startRouter } = await import("../../web/router.js");

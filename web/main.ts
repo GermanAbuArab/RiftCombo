@@ -21,7 +21,7 @@ import { esc } from "../src/html.js";
 import { safeHref } from "../src/markdown.js";
 import { classLabel, victoryNote } from "../src/victory.js";
 import { OUTCOME_PALETTE, renderGraph, thumb, type GraphView, type Layout } from "./graph.js";
-import { go, onRoute, route, startRouter } from "./router.js";
+import { go, onRoute, redirectLegacyHash, route, startRouter } from "./router.js";
 import { download, graphCss, rasterise, serialize, stageBg, stripArt } from "./export.js";
 
 const combos = (combosJson as { combos: Combo[] }).combos;
@@ -194,6 +194,8 @@ function renderProse(note?: string): void {
 }
 
 async function boot() {
+  // An old `#/...` or `#deck=` link becomes its path before anything reads the route (#287).
+  if (redirectLegacyHash()) return;
   gate();
   renderProse();
   setStatus("Loading", "Fetching the card index…");
@@ -209,7 +211,7 @@ async function boot() {
   // public /sources page is built from).
   renderProse(cardDataNote(data.resultsUpdatedAt, cards.cards.length, combos));
   setStatus("Ready", "Paste a deck list to begin.");
-  // A `#deck=<list>` link shared before the views existed still opens Combos with that list.
+  // A `/app#deck=<list>` link (or an old `#deck=` one, redirected above) opens Combos with that list.
   const opened = route();
   if (opened.legacyDeck) { input.value = opened.legacyDeck; void run(); }
   initAccount();
@@ -226,7 +228,7 @@ async function boot() {
       input.dispatchEvent(new Event("input"));
       // Switch tabs BEFORE matching: the diagram measures its own box to fit, and a hidden container
       // measures zero, which renders the SVG with a NaN viewBox.
-      go(saved.id ? `#/combos?deck=${encodeURIComponent(saved.id)}` : "#/combos");
+      go(saved.id ? `/app?deck=${encodeURIComponent(saved.id)}` : "/app");
       void run("text");
     },
   });
@@ -290,8 +292,8 @@ async function run(source: "text" | "url" = "text") {
     // Keep the address honest: a deck code travels in the hash itself, a list opened from My decks
     // keeps its id there, and a list pasted here has nothing to put in a link.
     if (source === "text") {
-      if (isDeckCode(text)) go(`#deck=${encodeURIComponent(text)}`);
-      else go(analyzing?.id ? `#/combos?deck=${encodeURIComponent(analyzing.id)}` : "#/combos");
+      if (isDeckCode(text)) go(`/app#deck=${encodeURIComponent(text)}`);
+      else go(analyzing?.id ? `/app?deck=${encodeURIComponent(analyzing.id)}` : "/app");
     }
   } catch (err) {
     setStatus("Could not read that", (err as Error).message, "error");
@@ -777,7 +779,7 @@ function renderAnalyzing() {
   const shown = analyzing !== null && analyzing.deckText === input.value;
   strip.hidden = !shown;
   if (shown && analyzing!.id) {
-    strip.innerHTML = `Analyzing <strong>${esc(analyzing!.name)}</strong> · <a href="#/decks/${esc(encodeURIComponent(analyzing!.id))}">edit it</a>`;
+    strip.innerHTML = `Analyzing <strong>${esc(analyzing!.name)}</strong> · <a href="/decks/${esc(encodeURIComponent(analyzing!.id))}">edit it</a>`;
   } else if (shown) {
     strip.innerHTML = `Analyzing <strong>${esc(analyzing!.name)}</strong>, which is not saved yet.`;
   }
@@ -925,7 +927,7 @@ function showDetail(id: string | null) {
     const found = playsAbout(cs.map((c) => c.id));
     return found.length
       ? `<h3>Run play${found.length === 1 ? "" : "s"}</h3><ul class="play-refs">${found
-          .map((p) => `<li><a href="#/plays/${esc(p.slug)}">${esc(p.title)}</a></li>`).join("")}</ul>`
+          .map((p) => `<li><a href="/plays/${esc(p.slug)}">${esc(p.title)}</a></li>`).join("")}</ul>`
       : "";
   };
 
@@ -1089,7 +1091,7 @@ loadExample.addEventListener("click", () => { input.value = EXAMPLE; analyzing =
 // player's back: nothing is written until they press Save there.
 $<HTMLButtonElement>("#save-to-decks").addEventListener("click", () => {
   sessionStorage.setItem("riftcombo:draft", input.value);
-  go("#/decks/new");
+  go("/decks/new");
 });
 input.addEventListener("input", () => { showCount(); renderAnalyzing(); });
 // Collapsing changes the stage's aspect ratio, and the layered layout picks its column count from
@@ -1171,11 +1173,11 @@ $<HTMLButtonElement>("#dl-png").addEventListener("click", () => { void exportPng
  * whose script never ran all still behave like a link. A MODIFIED click — cmd, ctrl, shift — is
  * cancelled along with the plain one, and deliberately: the target is a fragment of THIS page, so a
  * new tab of it would load the site from scratch at an unknown hash and land on an empty Combos.
- * There is nothing there to open. What the handler adds is that the ADDRESS does not change, and
- * that is the whole reason it exists: `parseHash("#stage")` is an unknown view and
- * falls back to Combos, which loses the `?deck=<id>` of `#/combos?deck=<id>` — the route My decks
- * hands over on. The results on screen survive either way; the address does not, and a reload or a
- * shared link after the jump would open an empty Combos. `test/router.test.ts` pins that fact.
+ * There is nothing there to open. What the handler adds is that the ADDRESS does not change. Under
+ * the hash router `#stage` was an unknown view that lost the `?deck=<id>` My decks hands over on;
+ * since #287 the route lives in the path (`/app?deck=<id>`) and survives a fragment
+ * (`test/router.test.ts` pins that), so the handler now only keeps a stray `#stage` out of the
+ * address a player copies.
  *
  * Focus moves with the scroll, or a keyboard user is scrolled somewhere their Tab key has not gone.
  */

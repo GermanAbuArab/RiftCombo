@@ -43,8 +43,8 @@ vi.mock("../../web/supabase.js", () => ({
 }));
 
 const HTML = `
-  <nav class="topnav"><a href="#/combos">Combos</a><a href="#/decks">My decks</a>
-    <a href="#/guide">Guide</a><a href="#/sources">Sources</a></nav>
+  <nav class="topnav"><a href="/app">Combos</a><a href="/decks">My decks</a>
+    <a href="/guide">Guide</a><a href="/sources">Sources</a></nav>
   <main id="view-combos"></main>
   <main id="view-decks"><div id="decks-host"></div></main>
   <main id="view-guide" hidden></main>
@@ -75,7 +75,7 @@ const deadArtIndex = (base: CardIndex): CardIndex => new Proxy(base, {
 });
 
 /** Boot My decks with a session, on a fresh copy of every module that keeps state. */
-async function boot(hash = "#/decks", index: CardIndex = cards) {
+async function boot(path = "/decks", index: CardIndex = cards) {
   vi.resetModules();
   api.listeners.length = 0;
   api.createDeck.mockReset();
@@ -85,7 +85,7 @@ async function boot(hash = "#/decks", index: CardIndex = cards) {
   confirmed.mockClear();
   confirmed.mockReturnValue(true);
   document.body.innerHTML = HTML;
-  location.hash = hash;
+  history.replaceState(null, "", path);
   const decks = await import("../../web/decks.js");
   const router = await import("../../web/router.js");
   decks.initDecks({
@@ -119,7 +119,7 @@ describe("the library", () => {
     api.decks = [row()];
     await boot();
     const card = host().querySelector<HTMLAnchorElement>("a.deck-card")!;
-    expect(card.getAttribute("href")).toBe("#/decks/d1");
+    expect(card.getAttribute("href")).toBe("/decks/d1");
     expect(card.textContent).toContain("Lux engine");
     expect(card.textContent).toContain("Lady of Luminosity");
     expect(card.textContent).toContain("40 cards");
@@ -206,7 +206,7 @@ describe("the library", () => {
    */
   it("falls back to the empty thumbnail when a dead URL fails to load", async () => {
     api.decks = [row()];
-    await boot("#/decks", deadArtIndex(cards));
+    await boot("/decks", deadArtIndex(cards));
     const img = host().querySelector<HTMLImageElement>(".deck-card-art img")!;
     expect(img.getAttribute("src")).toContain("deadbeef");
     const box = img.parentElement!;
@@ -225,10 +225,10 @@ describe("the library", () => {
    */
   it("guards the art again after the library is re-rendered", async () => {
     api.decks = [row()];
-    const router = await boot("#/decks", deadArtIndex(cards));
-    router.go("#/decks/d1");
+    const router = await boot("/decks", deadArtIndex(cards));
+    router.go("/decks/d1");
     await tick();
-    router.go("#/decks");
+    router.go("/decks");
     await tick();
     const img = host().querySelector<HTMLImageElement>(".deck-card-art img")!;
     // Held before the event: the handler empties the box, so the image has no parent afterwards.
@@ -259,7 +259,7 @@ describe("the library", () => {
   it("opens the editor on a saved list, with the builder inside it", async () => {
     api.decks = [row()];
     const router = await boot();
-    router.go("#/decks/d1");
+    router.go("/decks/d1");
     await tick();
     expect(host().querySelector<HTMLInputElement>("#deck-name")!.value).toBe("Lux engine");
     expect(host().querySelector("#builder")).not.toBeNull();
@@ -279,7 +279,7 @@ describe("the library", () => {
     api.decks = [row()];
     const router = await boot();
     const outline = () => [...host().querySelectorAll("h1, h2, h3, h4, h5, h6")].filter((h) => !h.closest("dialog"));
-    for (const hash of ["#/decks", "#/decks/d1", "#/decks/new"]) {
+    for (const hash of ["/decks", "/decks/d1", "/decks/new"]) {
       router.go(hash);
       await tick();
       const heads = outline();
@@ -298,7 +298,7 @@ describe("the library", () => {
 describe("writing to the account", () => {
   it("creates a deck from the editor, and only when Save is pressed", async () => {
     const router = await boot();
-    router.go("#/decks/new");
+    router.go("/decks/new");
     await tick();
     const name = host().querySelector<HTMLInputElement>("#deck-name")!;
     name.value = "My new list";
@@ -327,7 +327,7 @@ describe("writing to the account", () => {
 
   it("refuses to save a list with no name, and says so in the status line", async () => {
     const router = await boot();
-    router.go("#/decks/new");
+    router.go("/decks/new");
     await tick();
     press('[data-act="import"]');
     document.querySelector<HTMLTextAreaElement>("#bld-import-text")!.value = list;
@@ -342,7 +342,7 @@ describe("writing to the account", () => {
   it("deletes only on the second press, and goes back to the library", async () => {
     api.decks = [row()];
     const router = await boot();
-    router.go("#/decks/d1");
+    router.go("/decks/d1");
     await tick();
 
     press('[data-act="delete"]');
@@ -356,7 +356,7 @@ describe("writing to the account", () => {
     press('[data-act="delete-confirm"]');
     await tick();
     expect(api.deleteDeck).toHaveBeenCalledWith("d1");
-    expect(location.hash).toBe("#/decks");
+    expect(location.pathname).toBe("/decks");
     expect(host().textContent).toContain("Nothing saved yet.");
   });
 
@@ -367,35 +367,35 @@ describe("writing to the account", () => {
   it("asks before leaving an edit, and stays put when the answer is no", async () => {
     api.decks = [row()];
     const router = await boot();
-    router.go("#/decks/d1");
+    router.go("/decks/d1");
     await tick();
     const name = host().querySelector<HTMLInputElement>("#deck-name")!;
     name.value = "Lux engine, edited";
     name.dispatchEvent(new Event("input", { bubbles: true }));
 
     confirmed.mockReturnValue(false);
-    router.go("#/decks");
+    router.go("/decks");
     await tick();
     expect(confirmed).toHaveBeenCalledTimes(1);
-    expect(location.hash).toBe("#/decks/d1");
+    expect(location.pathname).toBe("/decks/d1");
     expect(host().querySelector("#deck-name")).not.toBeNull();
 
     confirmed.mockReturnValue(true);
-    router.go("#/decks");
+    router.go("/decks");
     await tick();
-    expect(location.hash).toBe("#/decks");
+    expect(location.pathname).toBe("/decks");
     expect(host().querySelector("#deck-name")).toBeNull();
   });
 
   it("does not ask when nothing was edited", async () => {
     api.decks = [row()];
     const router = await boot();
-    router.go("#/decks/d1");
+    router.go("/decks/d1");
     await tick();
-    router.go("#/decks");
+    router.go("/decks");
     await tick();
     expect(confirmed).not.toHaveBeenCalled();
-    expect(location.hash).toBe("#/decks");
+    expect(location.pathname).toBe("/decks");
   });
 
   /**
@@ -406,14 +406,14 @@ describe("writing to the account", () => {
   it("hands the list to Combos, saved or edited, without navigating itself", async () => {
     api.decks = [row()];
     const router = await boot();
-    router.go("#/decks/d1");
+    router.go("/decks/d1");
     await tick();
     press('[data-act="analyze"]');
     await tick();
     expect(analyzed).toHaveLength(1);
     expect(analyzed[0]!.id).toBe("d1");
     expect(analyzed[0]!.name).toBe("Lux engine");
-    expect(location.hash).toBe("#/decks/d1");
+    expect(location.pathname).toBe("/decks/d1");
 
     // Now edit the list and hand it over again: the draft wins over the stored row.
     press('[data-act="import"]');

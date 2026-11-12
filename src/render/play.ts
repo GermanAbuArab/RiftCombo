@@ -1,5 +1,5 @@
 /**
- * A run play as HTML (#286): the document `web/plays.ts` shows at `#/plays/<slug>` and the public page
+ * A run play as HTML (#286): the document `web/plays.ts` shows at `/plays/<slug>` and the public page
  * built at /plays/<slug>, from one function.
  *
  * The markdown in `docs/plays/` is the single source of truth; `src/markdown.ts` parses it into a
@@ -27,13 +27,13 @@ export interface Play {
 export interface PlaySurface {
   /** 1 on a page of its own, 2 inside the app. The title is `h<base>`, the sections one level under. */
   base: 1 | 2;
-  /** Where a play's own address points: "#/plays/" in the app, "/plays/" on a page. */
+  /** Where a play's own address points: "/plays/" on both surfaces since the path router (#287). */
   prefix: string;
   /** Slugs a cross-link may point at; a link to any other play keeps its words and loses its href. */
   slugs: ReadonlySet<string>;
 }
 
-export const APP: Omit<PlaySurface, "slugs"> = { base: 2, prefix: "#/plays/" };
+export const APP: Omit<PlaySurface, "slugs"> = { base: 2, prefix: "/plays/" };
 export const PAGE: Omit<PlaySurface, "slugs"> = { base: 1, prefix: "/plays/" };
 
 export const PLAYS_INTRO =

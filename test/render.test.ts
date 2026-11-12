@@ -84,12 +84,22 @@ describe("every pre-rendered page (#286)", () => {
     }
   });
 
-  it("links only real paths between pages, never a hash route except the app's own My decks", () => {
+  it("links only real paths between pages, never a hash route (#287)", () => {
     for (const p of pages) {
-      for (const [, href] of p.html.matchAll(/href="([^"]+)"/g)) {
-        if (href!.includes("#")) expect(href, p.path).toBe("/#/decks");
-      }
+      for (const [, href] of p.html.matchAll(/href="([^"]+)"/g)) expect(href, p.path).not.toMatch(/#\//);
     }
+  });
+
+  /**
+   * #287, #272 §5: public → app is a FULL load, so the browser applies the app's own headers. A public
+   * page carries no script at all, so nothing on it can pushState into /app or /decks; every link
+   * there is a plain href the browser follows. The router's half (it never pushStates from a public
+   * path) is pinned in test/dom/router.dom.test.ts.
+   */
+  it("reaches the app only through plain links, from a page that runs no script", () => {
+    const toApp = pages.filter((p) => /href="\/(app|decks)(\/|"|\?)/.test(p.html));
+    expect(toApp.length).toBeGreaterThan(0);
+    for (const p of toApp) expect(p.html, p.path).not.toMatch(/<script\b(?![^>]*application\/ld\+json)/);
   });
 
   it("says 'walked by hand' in a description only of what was walked", () => {

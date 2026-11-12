@@ -56,7 +56,7 @@ const HANDOFF = "riftcombo:draft";
 
 export function initDecks(h: DeckHooks): void {
   if (!accountsEnabled) {
-    // A build with no account layer (SUPABASE_URL unset) still routes #/decks and still shows the
+    // A build with no account layer (SUPABASE_URL unset) still routes /decks and still shows the
     // link, and until 2026-09-20 the view was a blank page: nothing said why (design review,
     // FINDING-008). One sentence, written once, since nothing else here runs without an account.
     $<HTMLElement>("#decks-host").innerHTML = `<h2 class="decks-title">My decks</h2><p class="decks-sub">This build runs without accounts, so there is nowhere to save a list. Paste one on the Combos tab instead.</p>`;
@@ -105,8 +105,9 @@ export function initDecks(h: DeckHooks): void {
       loaded = true;
       // Somebody with saved lists almost always came back for one of them; somebody with none has
       // nothing to see there. Only ever on a bare entry, so a shared link still wins.
-      if (!location.hash && decks.length) go("#/decks");
-      // A page opened straight on #/combos?deck=<id> asked for a list we only have now.
+      const bare = (location.pathname === "/" || location.pathname === "/app") && !location.search && !location.hash;
+      if (bare && decks.length) go("/decks");
+      // A page opened straight on /app?deck=<id> asked for a list we only have now.
       handOver(current);
     });
   });
@@ -122,7 +123,7 @@ function onRouteChange(next: Route): void {
 }
 
 /**
- * `#/combos?deck=<id>` is an address, not a souvenir: opening it loads that saved list into Combos. The
+ * `/app?deck=<id>` is an address, not a souvenir: opening it loads that saved list into Combos. The
  * id last handed over is remembered so returning to the tab does not overwrite an edit made there, and so
  * the route we write ourselves does not bounce straight back through here.
  */
@@ -150,7 +151,7 @@ function guardUnsaved(next: Route): boolean {
     ? saved.deckText !== draft.text || saved.name !== draft.name.trim() || saved.format !== draft.format
     : Boolean(draft.text.trim() || draft.name.trim());
   if (dirty && !confirm("This deck has changes you have not saved. Leave and lose them?")) {
-    go(`#/decks/${encodeURIComponent(here)}`);
+    go(`/decks/${encodeURIComponent(here)}`);
     return false;
   }
   draft = null;
@@ -321,7 +322,7 @@ function deckCard(d: SavedDeck): string {
   const saidDomains = domains.length
     ? `<span class="sr-only">, ${esc(domains.map((dm) => dm[0]!.toUpperCase() + dm.slice(1)).join(" and "))}</span>`
     : "";
-  return `<a class="deck-card" href="#/decks/${encodeURIComponent(d.id)}">
+  return `<a class="deck-card" href="/decks/${encodeURIComponent(d.id)}">
     <span class="deck-card-art${art ? "" : " noart"}" aria-hidden="true">${art ? `<img src="${esc(art)}" alt="" loading="lazy">` : "—"}</span>
     <span class="deck-card-body">
       <span class="deck-card-name">${esc(d.name)}</span>
@@ -407,7 +408,7 @@ async function importFromPiltover(): Promise<void> {
   if (!check.ok) { message = check.message; return; }
   const created = await createDeck(account.id, check.name, text, "constructed");
   decks = sortSaved([created, ...decks]);
-  go(`#/decks/${encodeURIComponent(created.id)}`);
+  go(`/decks/${encodeURIComponent(created.id)}`);
 }
 
 // --- the detail -----------------------------------------------------------------------
@@ -419,7 +420,7 @@ function detailView(id: string): string {
     // first listDecks() answers we do not know which of the two it is, so we do not claim either.
     if (!loaded) return `<p class="quiet plan-note">Opening that deck…</p>`;
     message = "That deck is not in your account any more.";
-    queueMicrotask(() => go("#/decks"));
+    queueMicrotask(() => go("/decks"));
     return "";
   }
   if (!draft || draft.id !== (saved?.id ?? null)) {
@@ -436,7 +437,7 @@ function detailView(id: string): string {
     openList(draft.text);
   }
 
-  return `<nav class="detail-back"><a href="#/decks">← My decks</a></nav>
+  return `<nav class="detail-back"><a href="/decks">← My decks</a></nav>
   <div class="detail-top">
     <input id="deck-name" class="detail-name" type="text" maxlength="${MAX_NAME}" autocomplete="off" spellcheck="false"
       placeholder="Name this deck" aria-label="Deck name" value="${esc(draft.name)}">
@@ -523,7 +524,7 @@ function onClick(ev: Event): void {
   if (!el) return;
   ev.preventDefault();
   switch (el.dataset["act"]) {
-    case "new": go("#/decks/new"); return;
+    case "new": go("/decks/new"); return;
     case "save": void guard(saveDraft); return;
     case "analyze": analyzeDraft(); return;
     case "export": void guard(exportCode); return;
@@ -548,7 +549,7 @@ async function saveDraft(): Promise<void> {
     decks = sortSaved([created, ...decks]);
     draft = { id: created.id, name: created.name, text: created.deckText, format: created.format };
     message = `Saved "${created.name}".`;
-    go(`#/decks/${encodeURIComponent(created.id)}`);
+    go(`/decks/${encodeURIComponent(created.id)}`);
   }
 }
 
@@ -578,5 +579,5 @@ async function removeDraft(): Promise<void> {
   decks = decks.filter((d) => d.id !== id);
   draft = null;
   confirmingDelete = false;
-  go("#/decks");
+  go("/decks");
 }

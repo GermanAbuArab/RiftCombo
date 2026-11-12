@@ -60,8 +60,8 @@ vi.mock("../../web/supabase.js", () => ({
 }));
 
 const HTML = `
-  <nav class="topnav"><a href="#/combos">Combos</a><a href="#/decks">My decks</a>
-    <a href="#/guide">Guide</a><a href="#/sources">Sources</a></nav>
+  <nav class="topnav"><a href="/app">Combos</a><a href="/decks">My decks</a>
+    <a href="/guide">Guide</a><a href="/sources">Sources</a></nav>
   <main id="view-combos"></main>
   <main id="view-decks"><div id="decks-host"></div></main>
   <main id="view-guide" hidden></main>
@@ -73,7 +73,7 @@ async function boot() {
   vi.resetModules();
   api.listeners.length = 0;
   document.body.innerHTML = HTML;
-  location.hash = "#/decks";
+  history.replaceState(null, "", "/decks");
   const decks = await import("../../web/decks.js");
   const router = await import("../../web/router.js");
   decks.initDecks({ cards: () => cards, variants: () => variants, analyze: () => {}, showCard: () => {} });
