@@ -23,32 +23,33 @@ export const ROUTES = {
 const FUNCTION_EXT = /\.(js|mjs|cjs|jsx|ts|mts|cts|tsx|go|py|rb)$/;
 
 /**
- * Every file under `api/` Vercel would deploy as a function: a function extension, and no path
- * segment starting with `_` or `.` (Vercel skips those, which is why `api/_deck-url-guards.ts` is a
- * module and not a route). A `.d.ts` is counted on purpose: the check would rather name a file
- * that never deploys than miss one that does.
- */
-/**
  * Every file under `dir`, following symlinks to files and to directories, since Vercel deploys what a
  * link points at; this does not lean on whether a given Node's recursive `readdirSync` follows them.
- * A directory already walked (by its real path) is not walked again, so a link loop ends. A link
+ * A directory is skipped only when it is already on its OWN path (`ancestors`, by real path), so a
+ * link loop ends while two links to one directory are both listed, each under its own name. A link
  * that cannot be resolved is listed as a file, so it is named rather than skipped.
  */
-function walk(dir, seen) {
+function walk(dir, ancestors) {
   const real = realpathSync(dir);
-  if (seen.has(real)) return [];
-  seen.add(real);
+  if (ancestors.has(real)) return [];
+  const inside = new Set(ancestors).add(real);
   const files = [];
   for (const name of readdirSync(dir)) {
     const p = join(dir, name);
     let isDir = false;
     try { isDir = statSync(p).isDirectory(); } catch { /* dangling link: listed below */ }
-    if (isDir) files.push(...walk(p, seen));
+    if (isDir) files.push(...walk(p, inside));
     else files.push(p);
   }
   return files;
 }
 
+/**
+ * Every file under `api/` Vercel would deploy as a function: a function extension, and no path
+ * segment starting with `_` or `.` (Vercel skips those, which is why `api/_deck-url-guards.ts` is a
+ * module and not a route). A `.d.ts` is counted on purpose: the check would rather name a file
+ * that never deploys than miss one that does.
+ */
 export function apiFunctions(root) {
   const dir = join(root, "api");
   if (!existsSync(dir)) return [];

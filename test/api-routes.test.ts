@@ -241,6 +241,13 @@ describe("check 2: the build exposes no function outside the table (#585)", () =
     expect(compareWithTable(deployableFunctions(dir)).unclassified).toEqual(["api/shared/hidden.ts"]);
   });
 
+  it("names a function under every link to its directory, not only the first", () => {
+    const dir = fixture({ "api/deck-url.ts": "", "lib/routes/x.ts": "" });
+    symlinkSync(join(dir, "lib/routes"), join(dir, "api/a"));
+    symlinkSync(join(dir, "lib/routes"), join(dir, "api/b"));
+    expect(compareWithTable(deployableFunctions(dir), { "api/deck-url.ts": {}, "api/a/x.ts": {} }).unclassified).toEqual(["api/b/x.ts"]);
+  });
+
   it("ends a symlink loop and names each function once", () => {
     const dir = fixture({ "api/deck-url.ts": "" });
     symlinkSync(join(dir, "api"), join(dir, "api/loop"));
