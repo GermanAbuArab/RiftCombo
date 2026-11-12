@@ -43,9 +43,11 @@ const writes: string[] = [];
 
 beforeAll(() => {
   const set = Storage.prototype.setItem;
-  vi.spyOn(Storage.prototype, "setItem").mockImplementation(function (this: Storage, key: string, value: string) {
-    if (key === BROADCAST_KEY) writes.push(JSON.parse(value).data?.trigger);
-    return set.call(this, key, value);
+  vi.spyOn(Storage.prototype, "setItem").mockImplementation(function (this: Storage, ...args: [string, string]) {
+    // happy-dom stores "undefined" for a one-argument call; a browser's WebIDL binding throws.
+    if (args.length < 2) throw new TypeError(`Failed to execute 'setItem' on 'Storage': 2 arguments required, but only ${args.length} present.`);
+    if (args[0] === BROADCAST_KEY) writes.push(JSON.parse(args[1]).data?.trigger);
+    return set.apply(this, args);
   });
   scrubAuthBroadcast();
 });
@@ -135,5 +137,14 @@ describe("sign-out still clears the session (#591)", () => {
     await vi.waitFor(() => expect(events).toContainEqual(["SIGNED_OUT", null]));
     expect(SESSION_CACHE.getCachedSession()).toBeNull();
     expect(localStorage.getItem(BROADCAST_KEY)).toBeNull();
+  });
+});
+
+describe("the wrapper keeps the native argument contract (#594)", () => {
+  it("a one-argument setItem throws TypeError, as the native method does", () => {
+    // The spy installed above stands in for the browser's native method (it throws on arity < 2) and
+    // sits under the wrapper, so this passes only if the wrapper forwards the caller's real arguments.
+    expect(() => (localStorage.setItem as (...a: unknown[]) => void)("k")).toThrow(TypeError);
+    expect(localStorage.getItem("k")).toBeNull();
   });
 });
