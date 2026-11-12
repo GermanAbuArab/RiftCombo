@@ -6,14 +6,14 @@
  * views went with #575 (#287 had made them unreachable). About exists only as a page (#289's verify
  * lines; it is linked from every footer).
  *
- * `base` is the same switch the play renderer has: 1 on a page of its own; 2 was the app's removed
- * views, whose one h1 was the brand (#270).
+ * `base` is the same switch the play renderer has: 1, a page of its own (the app's views that drew 2
+ * are gone, #575).
  */
 import { esc } from "../html.js";
-import { DISCLAIMER, renderDocument } from "./layout.js";
+import { renderDocument } from "./layout.js";
 
 export interface ProseSurface {
-  base: 1 | 2;
+  base: 1;
   /** Whether the catalogue holds an unwalked entry; the word "candidate" is explained only then. */
   candidates: boolean;
 }
@@ -48,16 +48,14 @@ export function guideBody(s: ProseSurface): string {
 }
 
 /**
- * Sources. `note` is `cardDataNote(…)`, which the build computes from the card index. On a page the
- * footer carries the disclaimer and the Privacy · Terms links; the `base === 2` lines below drew them
- * inside the app's own Sources view, which #575 removed.
+ * Sources. `note` is `cardDataNote(…)`, which the build computes from the card index. The page
+ * footer carries the disclaimer and the Privacy · Terms links.
  */
 export function sourcesBody(s: ProseSurface & { note?: string }): string {
   return `${title(s, "Sources")}
   <p id="data-note">Card text and art come from Riot's official card gallery, with Riot's published errata applied. Legality follows the official Rules Hub. Combos are walked by hand against the Core Rules, card text and rule numbers cited.${when(s, ` Entries marked <em>candidate</em> were proposed by an automated sweep and not yet reviewed.`)} Pairs are a separate file with a weaker guarantee: the rule is walked once and cites its paragraphs, the instances are text matches, and every rule's whole match list was read card by card before it shipped.${s.note ? ` ${esc(s.note)}` : ""}</p>
   <p>Saving a deck stores the list text you typed, not the result of matching it, so an old list is read again against today's catalogue and today's ban list every time you open it. Only you can read your own rows.</p>
-  ${s.base === 2 ? `<p>${DISCLAIMER}</p>\n  ` : ""}<p>No advertising, no donations, no play-rate or win-rate data. RiftCombo describes combos; it never plays them for you.</p>
-  ${s.base === 2 ? `<p><a href="/privacy">Privacy</a> · <a href="/terms">Terms</a></p>` : ""}`;
+  <p>No advertising, no donations, no play-rate or win-rate data. RiftCombo describes combos; it never plays them for you.</p>`;
 }
 
 const REPO = "https://github.com/GermanAbuArab/RiftCombo";
