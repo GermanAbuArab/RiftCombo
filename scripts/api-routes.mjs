@@ -32,7 +32,8 @@ export function apiFunctions(root) {
   const dir = join(root, "api");
   if (!existsSync(dir)) return [];
   return readdirSync(dir, { recursive: true, withFileTypes: true })
-    .filter((e) => e.isFile())
+    // A symlinked file is not `isFile()` on its Dirent, and Vercel deploys what the link points at.
+    .filter((e) => e.isFile() || e.isSymbolicLink())
     .map((e) => join(e.parentPath, e.name).slice(root.length + 1).split("\\").join("/"))
     .filter((p) => FUNCTION_EXT.test(p) && !p.split("/").some((s) => s.startsWith("_") || s.startsWith(".")))
     .sort();
@@ -40,8 +41,9 @@ export function apiFunctions(root) {
 
 /**
  * The other ways a Vercel project grows code that runs on a request, outside `api/`: Edge
- * Middleware at the root, a Build Output API tree the build may write, and the legacy `builds`
- * key in `vercel.json`. None exists today; each one found is named so it can be classified.
+ * Middleware at the root, a Build Output API tree the build may write, the legacy `builds` key in
+ * `vercel.json`, and a `functions` entry there that sets its own `runtime`. None exists today; each
+ * one found is named so it can be classified.
  */
 export function otherFunctions(root) {
   const found = [];
@@ -56,6 +58,9 @@ export function otherFunctions(root) {
   if (existsSync(vercel)) {
     const config = JSON.parse(readFileSync(vercel, "utf8"));
     for (const b of config.builds ?? []) found.push(`vercel.json builds: ${b.src}`);
+    // A `functions` entry that names a runtime (a community runtime such as vercel-php) deploys files
+    // whose extension the list above does not know, so the entry itself is named.
+    for (const [glob, f] of Object.entries(config.functions ?? {})) if (f?.runtime) found.push(`vercel.json functions runtime: ${glob}`);
   }
   return found.sort();
 }

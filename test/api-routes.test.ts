@@ -9,7 +9,7 @@
 //    and an oversized body at or before the upstream fetch.
 // 2. `scripts/check-functions.mjs`, which `npm run build:web` runs last, fails when the set Vercel
 //    would deploy differs from the table, and prints both lists.
-import { mkdirSync, mkdtempSync, writeFileSync } from "node:fs";
+import { mkdirSync, mkdtempSync, symlinkSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
@@ -225,6 +225,23 @@ describe("check 2: the build exposes no function outside the table (#585)", () =
     expect(compareWithTable(deployableFunctions(dir)).unclassified).toEqual([
       ".vercel/output/functions/x.func", "middleware.ts", "vercel.json builds: server.js",
     ]);
+  });
+
+  it("counts a function that is a symlink, which a plain file filter misses (scan RiftCombo_3d7d8559)", () => {
+    const dir = fixture({ "api/deck-url.ts": "", "outside/evil.ts": "" });
+    symlinkSync(join(dir, "outside/evil.ts"), join(dir, "api/linked.ts"));
+    const { ok, lines } = checkFunctions(dir);
+    expect(ok).toBe(false);
+    expect(lines).toContain("FAIL unclassified function: api/linked.ts (classify this route in scripts/api-routes.mjs)");
+  });
+
+  it("counts a vercel.json functions entry with its own runtime, whatever its extension (scan RiftCombo_3d7d8559)", () => {
+    const dir = fixture({
+      "api/deck-url.ts": "",
+      "api/admin.php": "<?php echo 1;",
+      "vercel.json": JSON.stringify({ functions: { "api/*.php": { runtime: "vercel-php@0.7.4" }, "api/deck-url.ts": { maxDuration: 10 } } }),
+    });
+    expect(compareWithTable(deployableFunctions(dir)).unclassified).toEqual(["vercel.json functions runtime: api/*.php"]);
   });
 
   it("fails when the table names a route the tree no longer has", () => {
