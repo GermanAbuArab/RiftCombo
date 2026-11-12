@@ -72,17 +72,21 @@ if (missing.length) {
 import { execFileSync } from "node:child_process";
 import { cleanupUsers } from "./rls-cleanup.mjs";
 
+// A hung neonctl must end this run non-zero, never hang it (#603); scan-rls.mjs's #590 timeout, same default.
+const NEON_TIMEOUT_MS = Number(process.env.CHECK_RLS_NEON_TIMEOUT_MS) || 120000;
+const NEON_EXEC = { encoding: "utf8", stdio: ["ignore", "pipe", "pipe"], timeout: NEON_TIMEOUT_MS, killSignal: "SIGKILL" };
+
 /** `neonctl <head> --project-id … --branch … <tail>`; the tail is what follows psql's `--`. */
 const neonctl = (head, tail = []) => execFileSync("neonctl",
   [...head, "--project-id", NEON_PROJECT_ID, "--branch", NEON_BRANCH_ID, ...tail],
-  { encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+  NEON_EXEC);
 
 // The runtime half of the header's rule. Production's email-and-password setting is what stops this
 // script today, and a configuration can be flipped back; so refuse the project's default branch here
 // too, before any account is created. Exit 2 like a missing variable: this run tested nothing.
 const branch = JSON.parse(execFileSync("neonctl",
   ["branches", "get", NEON_BRANCH_ID, "--project-id", NEON_PROJECT_ID, "-o", "json"],
-  { encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] }));
+  NEON_EXEC));
 if ((branch.branch ?? branch).default !== false) {
   console.error(`refusing: ${NEON_BRANCH_ID} is the project's default branch (production). Run this on a throwaway child branch.`);
   process.exit(2);
