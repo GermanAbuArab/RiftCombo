@@ -10,7 +10,7 @@
     "typecheck": "tsc --noEmit",
     "find": "tsx src/cli.ts",
     "build:web": "node scripts/build-web.mjs && node scripts/check-functions.mjs",
-    "dev": "node scripts/build-web.mjs && vercel dev",
+    "dev": "node scripts/build-web.mjs && node scripts/dev-vercel.mjs",
     "deploy": "vercel deploy --prod",
     "deploy:preview": "vercel deploy",
     "synergies": "tsx src/cli-synergies.ts",

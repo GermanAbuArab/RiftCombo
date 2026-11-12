@@ -36,6 +36,9 @@ const scriptSrc = ["'self'", ...inlineScriptHashes(readFileSync(join(ROOT, "web"
 const config = {
   $schema: "https://openapi.vercel.sh/vercel.json",
   buildCommand: "npm run build:web",
+  // `vercel dev` runs this and proxies to $PORT. Left unset it runs the package.json `dev` script, which calls
+  // `vercel dev` again: DEV_RECURSIVE_INVOCATION (#586). It serves public/ only; vercel dev does the rewrites and api/.
+  devCommand: "node scripts/dev-static.mjs",
   // Skip the build when a commit touches nothing the bundle reads — CLAUDE.md and walk documents were most of
   // 2026-09-06's 130 commits. Exit 0 = skip the build, 1 = build.
   //
