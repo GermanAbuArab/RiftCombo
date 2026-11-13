@@ -158,7 +158,7 @@ verbatim against its source; `rule-refs.test.ts` proves every cited paragraph ex
 client, and the Data API with RLS; the project and branch are in README `## Infraestructura`). Auth
 config lives in Neon, not in a repo file, and is applied with `neonctl neon-auth ...` (`oauth-provider`,
 `domain`, `config`); changing it anywhere else puts the record out of step. The `supabase/` directory
-(`config.toml` and the migrations `decks.sql` and `delete_account.sql`) is kept as history from before
+(`config.toml` and the migrations `20260905120000_decks.sql` and `20260905130000_delete_account.sql`) is kept as history from before
 the 2026-09-25 cutover; Supabase itself was deleted on 2026-10-30 (#238).
 
 ---
