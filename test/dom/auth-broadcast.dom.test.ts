@@ -148,3 +148,16 @@ describe("the wrapper keeps the native argument contract (#594)", () => {
     expect(localStorage.getItem("k")).toBeNull();
   });
 });
+
+describe("the wrapper compares the coerced key, as the native method does (#599)", () => {
+  it("scrubs a String object key that names better-auth.message", () => {
+    localStorage.setItem(new String("better-auth.message") as unknown as string, "x");
+    expect(localStorage.getItem("better-auth.message")).toBeNull();
+  });
+
+  it("scrubs an object key whose toString returns better-auth.message", () => {
+    const key = { toString: () => "better-auth.message" };
+    localStorage.setItem(key as unknown as string, "x");
+    expect(localStorage.getItem("better-auth.message")).toBeNull();
+  });
+});

@@ -45,7 +45,7 @@ export function scrubAuthBroadcast(): void {
     try {
       setItem.apply(this, args);
     } finally {
-      if (args[0] === BROADCAST_KEY) this.removeItem(BROADCAST_KEY);
+      if (`${args[0]}` === BROADCAST_KEY) this.removeItem(BROADCAST_KEY);
     }
   };
   addEventListener("storage", (event) => {
