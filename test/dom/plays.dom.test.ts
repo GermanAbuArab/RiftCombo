@@ -8,7 +8,7 @@
 // into markup. Every assertion about escaping below is about that: the parser is handed hostile text
 // and the result is checked for elements, not for strings.
 import { describe, expect, it, vi } from "vitest";
-import { PAGE, playArticle, playsIndex } from "../../src/render/play.js";
+import { playArticle, playsIndex } from "../../src/render/play.js";
 // @ts-expect-error plain .mjs shared with scripts/build-web.mjs, which cannot import TypeScript.
 import { loadPlays as readPlays } from "../../scripts/web-plays.mjs";
 
@@ -17,14 +17,14 @@ const PLAYS = readPlays(".") as Play[];
 
 /**
  * The app shell has no plays view since #575 (#287 made it unreachable), so a play is drawn in one
- * place: `playArticle` on the PAGE surface, which is what the build writes to /plays/<slug>. Rendering
+ * place: `playArticle` which is what the build writes to /plays/<slug>. Rendering
  * it into a DOM here is what lets the escaping assertions check elements rather than strings.
  */
 const SLUGS = new Set(PLAYS.map((p) => p.slug));
 const render = (play: Play, slugs: ReadonlySet<string> = SLUGS): HTMLElement => {
   const host = document.createElement("main");
   host.className = "doc play";
-  host.innerHTML = playArticle(play, { ...PAGE, slugs });
+  host.innerHTML = playArticle(play, slugs);
   return host;
 };
 const bySlug = (slug: string) => PLAYS.find((p) => p.slug === slug)!;
@@ -36,7 +36,7 @@ vi.setConfig({ testTimeout: 60_000 });
 describe("the plays index", () => {
   it("lists every play with its title, date and lede", () => {
     const host = document.createElement("main");
-    host.innerHTML = playsIndex(PLAYS, { ...PAGE, slugs: SLUGS });
+    host.innerHTML = playsIndex(PLAYS);
     const items = [...host.querySelectorAll(".play-item")];
     expect(items).toHaveLength(PLAYS.length);
     for (const p of PLAYS) {

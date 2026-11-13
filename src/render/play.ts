@@ -8,8 +8,8 @@
  * and `test/dom/plays.dom.test.ts` hands it hostile text and checks the result for elements.
  *
  * A pre-rendered page is its own document, so a play's title is the h1 and its sections start at
- * h2, and links between plays are real paths. `base` 2 was the app's plays view, whose one h1 was
- * the brand (#270); that view is gone (#575) and PAGE is the only surface left.
+ * h2, and links between plays are real paths. The app's plays view, whose one h1 was
+ * the brand (#270), is gone (#575), so this is the only surface.
  */
 import { esc } from "../html.js";
 import { parseMarkdown, resolvePlayHref, type Block, type Span } from "../markdown.js";
@@ -23,43 +23,38 @@ export interface Play {
   markdown: string;
 }
 
-export interface PlaySurface {
-  /** 1 on a page of its own (the app's plays view that drew 2 is gone, #575). The title is `h<base>`, the sections one level under. */
-  base: 1;
-  /** Where a play's own address points: "/plays/" since the path router (#287). */
-  prefix: string;
-  /** Slugs a cross-link may point at; a link to any other play keeps its words and loses its href. */
-  slugs: ReadonlySet<string>;
-}
+/** Where a play's own address points: "/plays/" since the path router (#287). */
+const PREFIX = "/plays/";
 
-export const PAGE: Omit<PlaySurface, "slugs"> = { base: 1, prefix: "/plays/" };
+/** Slugs a cross-link may point at; a link to any other play keeps its words and loses its href. */
+type Slugs = ReadonlySet<string>;
 
 export const PLAYS_INTRO =
   "A combo entry prices a line. A run play prices a game: turn by turn, with the mana, against an " +
   "opponent who is doing something. Each one below states what it checked, what it found, and where " +
   "it was wrong.";
 
-function spans(list: Span[], s: PlaySurface): string {
-  return list.map((x) => span(x, s)).join("");
+function spans(list: Span[], slugs: Slugs): string {
+  return list.map((x) => span(x, slugs)).join("");
 }
 
-function span(x: Span, s: PlaySurface): string {
+function span(x: Span, slugs: Slugs): string {
   switch (x.kind) {
     case "text":
       return esc(x.text);
     case "code":
       return `<code class="play-code">${esc(x.text)}</code>`;
     case "strong":
-      return `<strong>${spans(x.spans, s)}</strong>`;
+      return `<strong>${spans(x.spans, slugs)}</strong>`;
     case "em":
-      return `<em>${spans(x.spans, s)}</em>`;
+      return `<em>${spans(x.spans, slugs)}</em>`;
     case "link": {
-      const href = resolvePlayHref(x.href, s.slugs, s.prefix);
+      const href = resolvePlayHref(x.href, slugs, PREFIX);
       // A link we will not follow keeps its words and loses its underline. A reader can tell a
       // missing link from a broken one and cannot tell a dead address from a bug.
-      if (href === null) return `<span>${spans(x.spans, s)}</span>`;
+      if (href === null) return `<span>${spans(x.spans, slugs)}</span>`;
       const external = /^https?:/.test(href) ? ' rel="noopener noreferrer" target="_blank"' : "";
-      return `<a href="${esc(href)}"${external}>${spans(x.spans, s)}</a>`;
+      return `<a href="${esc(href)}"${external}>${spans(x.spans, slugs)}</a>`;
     }
   }
 }
@@ -70,23 +65,23 @@ function span(x: Span, s: PlaySurface): string {
  * with nothing in it would be drawing the author's punctuation, so a head whose every cell is empty
  * is left out.
  */
-function table(head: Span[][], rows: Span[][][], s: PlaySurface): string {
+function table(head: Span[][], rows: Span[][][], slugs: Slugs): string {
   const labelled = head.some((cell) => cell.length > 0);
-  const thead = labelled ? `<thead><tr>${head.map((c) => `<th>${spans(c, s)}</th>`).join("")}</tr></thead>` : "";
-  const tbody = `<tbody>${rows.map((r) => `<tr>${r.map((c) => `<td>${spans(c, s)}</td>`).join("")}</tr>`).join("")}</tbody>`;
+  const thead = labelled ? `<thead><tr>${head.map((c) => `<th>${spans(c, slugs)}</th>`).join("")}</tr></thead>` : "";
+  const tbody = `<tbody>${rows.map((r) => `<tr>${r.map((c) => `<td>${spans(c, slugs)}</td>`).join("")}</tr>`).join("")}</tbody>`;
   return `<div class="play-table-wrap"><table class="play-table">${thead}${tbody}</table></div>`;
 }
 
-function block(b: Block, s: PlaySurface): string {
+function block(b: Block, slugs: Slugs): string {
   switch (b.kind) {
     case "heading": {
       // The document's headings start one level under the title whatever they were written as: a
       // play that opened a section with `#` would otherwise sit level with its title.
-      const tag = `h${Math.min(Math.max(b.level, 2) + s.base - 1, 6)}`;
-      return `<${tag}>${spans(b.spans, s)}</${tag}>`;
+      const tag = `h${Math.min(Math.max(b.level, 2), 6)}`;
+      return `<${tag}>${spans(b.spans, slugs)}</${tag}>`;
     }
     case "para":
-      return `<p>${spans(b.spans, s)}</p>`;
+      return `<p>${spans(b.spans, slugs)}</p>`;
     case "rule":
       return "<hr>";
     case "code":
@@ -95,12 +90,12 @@ function block(b: Block, s: PlaySurface): string {
       return `<pre class="play-pre">\n${esc(b.text)}</pre>`;
     case "list": {
       const tag = b.ordered ? "ol" : "ul";
-      return `<${tag} class="play-list-block">${b.items.map((i) => `<li>${spans(i, s)}</li>`).join("")}</${tag}>`;
+      return `<${tag} class="play-list-block">${b.items.map((i) => `<li>${spans(i, slugs)}</li>`).join("")}</${tag}>`;
     }
     case "quote":
-      return `<blockquote class="play-quote">${b.paragraphs.map((p) => `<p>${spans(p, s)}</p>`).join("")}</blockquote>`;
+      return `<blockquote class="play-quote">${b.paragraphs.map((p) => `<p>${spans(p, slugs)}</p>`).join("")}</blockquote>`;
     case "table":
-      return table(b.head, b.rows, s);
+      return table(b.head, b.rows, slugs);
   }
 }
 
@@ -109,23 +104,21 @@ function block(b: Block, s: PlaySurface): string {
  * surfaces agree: the files are filed under a "Play — " prefix, which is a filing convention and pure
  * repetition under a heading that already says Run plays.
  */
-export function playArticle(play: Play, s: PlaySurface): string {
+export function playArticle(play: Play, slugs: Slugs): string {
   const blocks = parseMarkdown(play.markdown);
   const body = blocks[0]?.kind === "heading" && blocks[0].level === 1 ? blocks.slice(1) : blocks;
-  const t = `h${s.base}`;
-  return `<a class="play-back" href="${esc(s.prefix.replace(/\/$/, ""))}">← All plays</a>`
-    + `<${t} class="doc-title">${esc(play.title)}</${t}>`
-    + body.map((b) => block(b, s)).join("\n");
+  return `<a class="play-back" href="${esc(PREFIX.replace(/\/$/, ""))}">← All plays</a>`
+    + `<h1 class="doc-title">${esc(play.title)}</h1>`
+    + body.map((b) => block(b, slugs)).join("\n");
 }
 
 /**
  * The index. A play's own title is a verdict — "denial is a wash, removal is a turn" — so the list is
  * titles and ledes rather than a table: there is nothing to sort by that the titles do not say.
  */
-export function playsIndex(plays: Play[], s: PlaySurface): string {
-  const t = `h${s.base}`;
-  const items = plays.map((p) => `<li class="play-item"><a class="play-link" href="${esc(s.prefix + p.slug)}"><span class="play-item-title">${esc(p.title)}</span><time class="play-item-date" datetime="${esc(p.date)}">${esc(p.date)}</time></a><p class="play-item-lede">${esc(p.lede)}</p></li>`);
-  return `<${t} class="doc-title">Run plays</${t}><p class="play-intro">${esc(PLAYS_INTRO)}</p><ul class="play-list">${items.join("")}</ul>`;
+export function playsIndex(plays: Play[]): string {
+  const items = plays.map((p) => `<li class="play-item"><a class="play-link" href="${esc(PREFIX + p.slug)}"><span class="play-item-title">${esc(p.title)}</span><time class="play-item-date" datetime="${esc(p.date)}">${esc(p.date)}</time></a><p class="play-item-lede">${esc(p.lede)}</p></li>`);
+  return `<h1 class="doc-title">Run plays</h1><p class="play-intro">${esc(PLAYS_INTRO)}</p><ul class="play-list">${items.join("")}</ul>`;
 }
 
 /** Word count of a play as written, for the same thin-content line the combo pages use. */
@@ -145,7 +138,7 @@ export function playPage(play: Play, slugs: ReadonlySet<string>, noindex: boolea
       ogType: "article",
       mainClass: "play",
     },
-    playArticle(play, { ...PAGE, slugs }),
+    playArticle(play, slugs),
   );
 }
 
@@ -158,7 +151,7 @@ export function playsIndexPage(plays: Play[]): string {
       section: "plays",
       mainClass: "play",
     },
-    playsIndex(plays, { ...PAGE, slugs: new Set(plays.map((p) => p.slug)) }),
+    playsIndex(plays),
   );
 }
 

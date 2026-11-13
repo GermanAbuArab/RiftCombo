@@ -5,7 +5,7 @@ import { describe, expect, it } from "vitest";
 import { authoredWords, comboPage, THIN_WORDS, type ComboContext } from "../src/render/combo.js";
 import { clip, DISCLAIMER, ORIGIN } from "../src/render/layout.js";
 import { guideBody, sourcesBody } from "../src/render/pages.js";
-import { PAGE, playArticle, type Play } from "../src/render/play.js";
+import { playArticle, type Play } from "../src/render/play.js";
 import { fileOf, renderSite, type BuiltPage, type SiteInput } from "../src/render/site.js";
 import type { Combo } from "../src/types.js";
 // @ts-expect-error plain .mjs shared with scripts/build-web.mjs.
@@ -164,20 +164,20 @@ describe("the thin-content line (#272 §2)", () => {
 describe("one text for the app and the page", () => {
   it("draws the Guide and Sources an h1 on a page", () => {
     for (const body of [guideBody, sourcesBody]) {
-      expect(body({ base: 1, candidates: false })).toMatch(/^<h1 class="doc-title">/);
+      expect(body({ candidates: false })).toMatch(/^<h1 class="doc-title">/);
     }
   });
 
   it("mentions candidates only while the catalogue holds one", () => {
-    expect(guideBody({ base: 1, candidates: false })).not.toContain("candidate");
-    expect(guideBody({ base: 1, candidates: true })).toContain("<strong>candidate</strong>");
-    expect(sourcesBody({ base: 1, candidates: false })).not.toContain("candidate");
+    expect(guideBody({ candidates: false })).not.toContain("candidate");
+    expect(guideBody({ candidates: true })).toContain("<strong>candidate</strong>");
+    expect(sourcesBody({ candidates: false })).not.toContain("candidate");
   });
 
   it("draws a play's page from the one renderer, its title the h1 and its sections under it (#575)", () => {
     const p = plays.find((x) => /\n## /.test(x.markdown))!;
     const slugs = new Set(plays.map((x) => x.slug));
-    const article = playArticle(p, { ...PAGE, slugs });
+    const article = playArticle(p, slugs);
     const page = pages.find((x) => x.path === `/plays/${p.slug}`)!.html;
     expect(page).toContain(article);
     expect(levels(article)[0]).toBe(1);
