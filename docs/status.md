@@ -154,10 +154,12 @@ pragma rather than a global config, so the files under `test/dom/` opt in while 
 runs with no DOM and no per-test startup cost. `source-quotes.test.ts` proves every quoted passage is
 verbatim against its source; `rule-refs.test.ts` proves every cited paragraph exists.
 
-**`supabase/` — Auth and saved decks.** `config.toml` is the source of truth for Auth (site URL, the
-allowed-redirect list, the Google provider with client and secret as `env(...)`) and is applied with
-`supabase config push`; changing it from the dashboard puts the repo and the project out of step. Two
-migrations: `decks.sql` and `delete_account.sql`.
+**Auth and saved decks — Neon.** Accounts run on Neon (Neon Auth with the project's own Google OAuth
+client, and the Data API with RLS; the project and branch are in README `## Infraestructura`). Auth
+config lives in Neon, not in a repo file, and is applied with `neonctl neon-auth ...` (`oauth-provider`,
+`domain`, `config`); changing it anywhere else puts the record out of step. The `supabase/` directory
+(`config.toml` and the migrations `20260905120000_decks.sql` and `20260905130000_delete_account.sql`) is kept as history from before
+the 2026-09-25 cutover; Supabase itself was deleted on 2026-10-30 (#238).
 
 ---
 
