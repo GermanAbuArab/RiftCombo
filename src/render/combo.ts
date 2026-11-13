@@ -91,13 +91,13 @@ export const authoredWords = (c: Combo): number =>
 
 /** What a combo page needs besides the entry: card text, feature names, the plays about it. */
 export interface ComboContext {
-  card: (base: string) => Card | undefined;
+  card: (code: string) => Card | undefined;
   feature: (id: string) => Feature | undefined;
   /** The run plays whose subject is this entry, as /plays/<slug> links. */
   playsAbout: (id: string) => { slug: string; title: string }[];
 }
 
-const cardName = (ctx: ComboContext, base: string) => ctx.card(base)?.name ?? base;
+const cardName = (ctx: ComboContext, code: string) => ctx.card(code)?.name ?? code;
 
 /** "Card A + Card B + Card C", the shape the drawer's title and the index both use. */
 const pieceNames = (c: Combo, ctx: ComboContext) => c.uses.map((u) => cardName(ctx, u.card)).join(" + ");
