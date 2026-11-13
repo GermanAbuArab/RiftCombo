@@ -176,7 +176,8 @@ still exists but uploads the working tree, which twice published another session
 it is a fallback, not the normal path.
 
 > ⚠️ There is no staging environment: any push to `master` deploys to production immediately, and the
-> only configured Supabase project is also the production one.
+> production database is branch `main` of the Neon project. Checks that write (`npm run check:rls`) run
+> on a throwaway child branch, never on `main`.
 
 **Since 2026-11-13 (#611), implementers push `issue-<n>-<short>` branches and open a PR; a merge to
 `master` is the deploy** — see CLAUDE.md's "Deploy flow" bullet for the full rule (nobody pushes
