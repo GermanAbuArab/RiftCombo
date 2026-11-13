@@ -41,11 +41,15 @@ export function scrubAuthBroadcast(): void {
   // The removal goes to whichever storage took the write (`this`), not to a captured reference, so
   // no identity check is needed; the SDK writes only to localStorage. `finally`, so a write that
   // fails on quota still clears what an earlier one left.
+  // The key is coerced ONCE, the way the native method would, and that string is both written and
+  // compared, so a key whose toString changes between calls cannot be written under one name and
+  // checked under another (#599). Arity is kept: a one-argument call stays one argument.
   Storage.prototype.setItem = function (this: Storage, ...args: [string, string]) {
+    const key = args.length ? `${args[0]}` : "";
     try {
-      setItem.apply(this, args);
+      setItem.apply(this, args.length ? ([key, ...args.slice(1)] as [string, string]) : args);
     } finally {
-      if (`${args[0]}` === BROADCAST_KEY) this.removeItem(BROADCAST_KEY);
+      if (key === BROADCAST_KEY) this.removeItem(BROADCAST_KEY);
     }
   };
   addEventListener("storage", (event) => {

@@ -149,15 +149,25 @@ describe("the wrapper keeps the native argument contract (#594)", () => {
   });
 });
 
+const MSG = '{"data":{"trigger":"t"}}';
+
 describe("the wrapper compares the coerced key, as the native method does (#599)", () => {
   it("scrubs a String object key that names better-auth.message", () => {
-    localStorage.setItem(new String("better-auth.message") as unknown as string, "x");
+    localStorage.setItem(new String("better-auth.message") as unknown as string, MSG);
     expect(localStorage.getItem("better-auth.message")).toBeNull();
   });
 
   it("scrubs an object key whose toString returns better-auth.message", () => {
     const key = { toString: () => "better-auth.message" };
-    localStorage.setItem(key as unknown as string, "x");
+    localStorage.setItem(key as unknown as string, MSG);
     expect(localStorage.getItem("better-auth.message")).toBeNull();
+  });
+
+  it("coerces the key once: a toString that changes between calls cannot slip past", () => {
+    let calls = 0;
+    const key = { toString: () => (calls++ === 0 ? "better-auth.message" : "other") };
+    localStorage.setItem(key as unknown as string, MSG);
+    expect(localStorage.getItem("better-auth.message")).toBeNull();
+    expect(calls).toBe(1);
   });
 });
