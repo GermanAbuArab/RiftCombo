@@ -178,9 +178,9 @@ it is a fallback, not the normal path.
 > ⚠️ There is no staging environment: any push to `master` deploys to production immediately, and the
 > only configured Supabase project is also the production one.
 
-**Since 2026-09-06, sessions push to `work` and only the orchestrator pushes `master`** — see
-CLAUDE.md's "Deploy quota" bullet for the full rule (Vercel's Hobby cap is 100 deployments/day, scoped
-to the whole account, and it has been spent more than once). Re-run `npx vercel inspect
+**Since 2026-11-13 (#611), implementers push `issue-<n>-<short>` branches and open a PR; a merge to
+`master` is the deploy** — see CLAUDE.md's "Deploy flow" bullet for the full rule (nobody pushes
+`work` or `master` from a session, and the Vercel account is on Pro). Re-run `npx vercel inspect
 https://riftcombo.app --logs` before trusting any claim that production is caught up; it is a photo,
 not a guarantee.
 
