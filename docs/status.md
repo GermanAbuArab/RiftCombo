@@ -143,7 +143,7 @@ command, so it is committed); `check-rls-neon.mjs` proves row isolation with two
 Neon branch; `adversarial-check.mjs` is the turn clock and the answer sweeps; `claude-md-gap.mjs`
 joins the catalogue's rule citations against `CLAUDE.md`.
 
-**`test/` — 710 tests in 52 files** with vitest (the 525/40 figure dated 2026-09-13). `headers.test.ts` is the one that watches the posture:
+**`test/` — 1278 tests in 72 files** with vitest (2026-11-16, `npm test` on the Mac; earlier figures: 710/52 before 2026-11-16, 525/40 dated 2026-09-13). `headers.test.ts` is the one that watches the posture:
 it fails if `DATABASE_URL`, `NEON_API_KEY`,
 `DB_PASSWORD`, `service_role` or a postgres URL appears in any git-tracked `web/` file with a `ts`, `html`, `css`, `svg`, `webmanifest`, `txt`, `json` or `js` extension, if there
 is more than one sign-in button, or if the `data-auth` default stops being `pending`.
