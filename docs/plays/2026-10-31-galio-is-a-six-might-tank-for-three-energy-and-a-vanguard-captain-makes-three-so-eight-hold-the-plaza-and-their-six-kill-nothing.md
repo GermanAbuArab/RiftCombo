@@ -381,11 +381,13 @@ Body/Order legends (Leads).
   Played in their showdown, it is a second Tank they had not counted. It costs a third Power.
   2026-11-16 (#538): OGN-241 Shen, what the third Power costs the clock. The clocked line spends every rune on T3
   (Pit Rookie E2 + Vanguard Captain E3 against five runes, "None left") and holds Order Power from two
-  runes only; the T3 row of the table ends "None left", so no rune is ready in their T3 showdown and Shen
-  (E3 + 1 Power) has nothing to pay with. Paying for it means leaving the Captain unplayed, and then
-  five units stand at A (three Sentries, Galio, Pit Rookie; the Captain and its two Recruits are the
-  other three) and Shen sits in base, so the T4 Hold sees five, not eight: the Plaza does not
-  trigger. So with Shen inside their attack the line does not pay by T4; it is a T5 follow-up at best
+  runes only; the T3 row of the table reads "None left; four runes stay", and I read "None left" as no
+  ready rune in their T3 showdown, so Shen (E3 + 1 Power) has nothing to pay with. Paying for it means
+  leaving the Captain unplayed. Shen then lands at A, inside their attack (it is a [Reaction] that can
+  go to a battlefield you control), so the T4 Hold sees six at A (three Sentries, Galio, Pit Rookie,
+  Shen), one short of the Plaza's 7+ (*"When you hold here, if you have 7+ units here, you win the
+  game."*): no win on T4. So with Shen inside their attack the line does not pay by T4; it is a T5
+  follow-up at best
   (reading from the table above, not walked as a game).
 - **Sett, Kingpin is a Tank that grows with buffs**: *"[Tank] (I must be assigned combat damage first.)
   I get +1 :rb_might: for each buffed friendly unit at my battlefield."* At E4 + 1 Power it is a T4

@@ -58688,7 +58688,7 @@
         }
       ],
       "rulesVersion": "2026-07-16",
-      "notes": "SYNTHESIZED 2026-10-31 for #529, the fifth slice of shape 2 (identity-first) of #200: Body/Order had seven finishers and none clocked by T4 (its one T4 ALT_WIN, vanguard-captain-manufactor-plaza, is mono-Order with no Tank, so two kills cost 2 Might). CANDIDATE, not verified: walked once as a game, going first, and in that walk it won on T4, because the opponent's 6 Might ready in base could not finish Galio. Card text verbatim from data/corpus_flat.txt. 2026-11-16 (#538): the other Body/Order ALT_WIN that pays by T4 is vanguard-captain-manufactor-plaza (mono-Order, eight units, two kills cost 2 Might; this entry's two kills cost 8); the clock assumes no Shen in their showdown, see the play doc's Leads, where a Shen costs it the T4 win)."
+      "notes": "SYNTHESIZED 2026-10-31 for #529, the fifth slice of shape 2 (identity-first) of #200: Body/Order had seven finishers and none clocked by T4 (its one T4 ALT_WIN, vanguard-captain-manufactor-plaza, is mono-Order with no Tank, so two kills cost 2 Might). CANDIDATE, not verified: walked once as a game, going first, and in that walk it won on T4, because the opponent's 6 Might ready in base could not finish Galio. Card text verbatim from data/corpus_flat.txt. 2026-11-16 (#538): the other Body/Order ALT_WIN that pays by T4 is vanguard-captain-manufactor-plaza (mono-Order, eight units, two kills cost 2 Might; this entry's two kills cost 8); the clock assumes no Shen in their showdown; see the play doc's Leads, where a Shen costs it the T4 win."
     },
     {
       "id": "yasuo-ride-the-wind-hold-curve-turn-five",
