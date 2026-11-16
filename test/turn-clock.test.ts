@@ -154,7 +154,9 @@ describe("the turn clock", () => {
     const m = out.match(/^# points at turn start \(pointsAtStart\): (\d+) entr(?:y|ies) declares? it: ([^;]+); (\d+) of (\d+) rows moved by it: (.*)$/m);
     expect(m, out).toBeTruthy();
     expect(m![2]).toContain("yasuo-windrider-ride-the-wind-chain (5)");
-    expect(m![5]).toContain("yasuo-windrider-ride-the-wind-chain T4->T5");
+    // Since #552 orders Ride the Wind after Yasuo, the schedule reaches T5 by itself and the start score
+    // moves no row: the line now prints the start turn it checks, which is where this pin stands.
+    expect(m![5]).toContain("start turn: yasuo-windrider-ride-the-wind-chain T5 (schedule T5)");
   });
 
   /**
@@ -1158,5 +1160,57 @@ describe("an Energy-to-Power exchange (#544)", () => {
     const m = out.match(/^# exchange [^\n]*: 1 card carries it: SFD-117 Ancient Henge; (\d+) of (\d+) rows hold one$/m);
     expect(m, out).toBeTruthy();
     expect(Number(m![1])).toBeGreaterThanOrEqual(3);
+  });
+});
+
+/**
+ * A SPELL AIMED AT A UNIT THE ROW PLAYS (#552), pinned against REAL card text through `--price ... --aim`.
+ * OGN-173 Ride the Wind: "Move a friendly unit and ready it." It cannot be cast before its target is
+ * on the board. OGN-205 Yasuo is E5 + 1 Power and Ride the Wind E2 + 1 Power, with 2, 4 and 6 runes on
+ * T1-T3. UNORDERED (master's schedule): the spell on T2's 4 runes, Yasuo on T3's 6, so all T3, and a
+ * one-copy Yasuo row printed T4, a turn early. AIMED: Yasuo and the spell together are E7, past T3's 6
+ * runes, so the spell waits for T4: all T4, one turn later. THE SAME TURN STAYS LEGAL (the control):
+ * OGN-036 Vi and Ride the Wind are both paid on T2, and the spell readies her.
+ */
+describe("a spell aimed at a unit the row plays (#552)", () => {
+  const price = (set: string, ...rest: string[]) => {
+    const s = execFileSync("node", ["scripts/adversarial-check.mjs", "--price", set, ...rest], { encoding: "utf8" });
+    const m = s.match(/all T(\d+|Infinity), .*unitLast (true|false), pays T(\d+|Infinity)/);
+    expect(m, s).toBeTruthy();
+    return { all: Number(m![1]), unitLast: m![2] === "true", pays: Number(m![3]) };
+  };
+
+  it("pays Ride the Wind aimed at Yasuo at all T4, one turn later than the unordered schedule", () => {
+    expect(price("OGN-205:1,OGN-173:1", "--aim", "OGN-173@OGN-205")).toEqual({ all: 4, unitLast: false, pays: 4 });
+  });
+
+  it("pays the same cards unordered at all T3, the spell before Yasuo (the control: master's schedule)", () => {
+    expect(price("OGN-205:1,OGN-173:1")).toEqual({ all: 3, unitLast: true, pays: 4 });
+  });
+
+  it("pays Ride the Wind aimed at Vi on T2, the turn Vi lands: the same turn is legal", () => {
+    expect(price("OGN-036:1,OGN-173:1", "--aim", "OGN-173@OGN-036")).toEqual({ all: 2, unitLast: false, pays: 2 });
+  });
+
+  it("refuses an --aim whose cards are not both in the set", () => {
+    const r = spawnSync("node", ["scripts/adversarial-check.mjs", "--price", "OGN-205:1,OGN-173:1", "--aim", "OGN-173@OGN-036"], { encoding: "utf8" });
+    expect(r.status).toBe(2);
+    expect(r.stderr).toContain("# --price: bad --aim");
+  });
+
+  it("holds the two-copy Yasuo Hold-curve CHAIN at T5 and the Windrider CHAIN's schedule at T5", () => {
+    expect(rows.get("yasuo-ride-the-wind-hold-curve-turn-five")?.pays).toBe(5);
+    expect(rows.get("yasuo-windrider-ride-the-wind-chain")?.pays).toBe(5);
+  });
+
+  it("prints the pairs it read from the steps and the rows that carry one, so 'it moved nothing' cannot go vacuous", () => {
+    for (const text of [out, engines()]) {
+      const m = text.match(/^# aimed spells \(a spell no earlier than the unit its steps aim it at, #552\): (\d+) pairs: (.*); (\d+) of (\d+) rows carry one$/m);
+      expect(m, text).toBeTruthy();
+      expect(Number(m![1])).toBeGreaterThan(0);
+      expect(Number(m![3])).toBeGreaterThan(0);
+      expect(m![2]).toContain("OGN-173>OGN-205 (yasuo-ride-the-wind-hold-curve-turn-five)");
+      expect(m![2]).toContain("OGN-173>UNL-177 (ivern-ride-the-wind-double-conquer)");
+    }
   });
 });

@@ -472,17 +472,18 @@ function typesOf(costs) {
     // `big`, `att`, `aph`, `kin` and `kinR` (#523): a card that fires or enables a conditional readier.
     // `red` and `drg` (#532): a Herald and an unrelated E4 unit are not, nor a Dragon and another E5.
     // `hen` (#544): an Ancient Henge and an unrelated E2/1-Power gear are not.
+    // `tgt` (#552): a spell that waits for one copy of its target and an [Equip] that waits for one each.
     const k = `${c.e}|${c.p}|${c.unit ? 1 : 0}|${c.gated ? 1 : 0}|${c.rain || 0}|${c.holdx || 0}|` +
               `${c.turn ? 1 : 0}|${c.pow || 0}|${c.ready ? 1 : 0}|${c.rdy || 0}|${c.rune || 0}|${c.share ? 1 : 0}|` +
               `${accKey(c.acc)}|${c.big || 0}|${c.att || 0}|${c.aph || 0}|${c.kin || 0}|${c.kinR || 0}|${c.strict ? 1 : 0}|${c.la ? 1 : 0}|` +
-              `${c.red || 0}/${c.redMin || 0}|${c.drg || 0}|${c.hen ? 1 : 0}|${c.link || ""}`;
+              `${c.red || 0}/${c.redMin || 0}|${c.drg || 0}|${c.hen ? 1 : 0}|${c.tgt ? 1 : 0}|${c.link || ""}`;
     if (!byType.has(k))
       byType.set(k, { e: c.e, p: c.p, unit: !!c.unit, gated: !!c.gated, rain: c.rain || 0,
                       holdx: c.holdx || 0, turn: !!c.turn, pow: c.pow || 0, ready: !!c.ready,
                       rdy: c.rdy || 0, rune: c.rune || 0, share: !!c.share, acc: c.acc || null,
                       big: c.big || 0, att: c.att || 0, aph: c.aph || 0, kin: c.kin || 0, kinR: c.kinR || 0,
                       strict: !!c.strict, la: !!c.la, red: c.red || 0, redMin: c.redMin || 0, drg: c.drg || 0,
-                      hen: !!c.hen, re: c.e, link: c.link || "", after: c.after || "", n: 0, kids: [] });
+                      hen: !!c.hen, tgt: !!c.tgt, re: c.e, link: c.link || "", after: c.after || "", n: 0, kids: [] });
     byType.get(k).n++;
   }
   const all = [...byType.values()];
@@ -498,7 +499,7 @@ function typesOf(costs) {
   const desc = (t) => `${t.e}|${t.p}|${t.unit ? 1 : 0}|${t.gated ? 1 : 0}|${t.rain}|${t.holdx}|` +
                       `${t.turn ? 1 : 0}|${t.pow}|${t.ready ? 1 : 0}|${t.rdy}|${t.rune}|${t.share ? 1 : 0}|${accKey(t.acc)}|` +
                       `${t.big}|${t.att}|${t.aph}|${t.kin}|${t.kinR}|${t.strict ? 1 : 0}|${t.la ? 1 : 0}|` +
-                      `${t.red}/${t.redMin}|${t.drg}|${t.hen ? 1 : 0}|${t.n}` +
+                      `${t.red}/${t.redMin}|${t.drg}|${t.hen ? 1 : 0}|${t.tgt ? 1 : 0}|${t.n}` +
                       (t.kids.length ? `(${t.kids.map(desc).sort().join(",")})` : "");
   const cmp = (a, b) => (desc(a) < desc(b) ? -1 : desc(a) > desc(b) ? 1 : 0);
   // Gated roots emit LAST, so that when the recursion reaches one, every ungated type's count for the
@@ -980,7 +981,8 @@ function deployTurnUncached(types, costs, ladd, limit = 40) {
     const root = t.dep < 0 ? -1 : strictOrdering || t.strict
       ? ((idx / stride[t.dep]) | 0) % (types[t.dep].n + 1)   // the count BEFORE this turn
       : cnt[t.dep];                                          // the count as at this turn
-    let cap = t.dep >= 0 && root < t.n ? root : t.n;
+    // A spell aimed at a unit (#552, `tgt`) needs ONE copy of it on the board, however many it casts.
+    let cap = t.dep < 0 ? t.n : t.tgt ? (root > 0 ? t.n : 0) : root < t.n ? root : t.n;
     // IGNITION. A gated cost belongs to a card bought with the engine's own output, so it cannot be
     // paid until the engine is complete. `ungated` is the index of the first gated type, and every
     // type before it has already written its count for the state being built (typesOf emits gated
@@ -1152,7 +1154,7 @@ function greedyTurn(costs) {
       progress = false;
       for (let i = 0; i < remaining.length; i++) {
         const c = remaining[i];
-        if (c.after && (paid.get(c.after) ?? 0) <= (paid.get(c.link) ?? 0)) continue;
+        if (c.after && (paid.get(c.after) ?? 0) <= (c.tgt ? 0 : paid.get(c.link) ?? 0)) continue;
         // the --ignition gate, so a fallback row cannot buy the payoff with Energy the loop has not
         // started producing yet
         if (c.gated && !ignNoGate && remaining.some((o) => !o.gated)) continue;
@@ -2464,7 +2466,47 @@ const bodyLabel = (b) => `${b.base} ${b.name} E${b.e}${b.p ? `/${b.p}` : ""}${b.
  */
 function bodiesOf(ids, engineIds = []) {
   const max = (xs) => xs.reduce((a, id) => Math.max(a, byId.get(id)?.anyBodies?.count ?? 0), 0);
-  return { n: max(ids), engine: max(engineIds) };
+  const aims = new Map();
+  for (const id of ids) for (const [s, u] of aimsOf(byId.get(id))) aims.set(s, u);
+  return { n: max(ids), engine: max(engineIds), aims };
+}
+
+/**
+ * A SPELL AIMED AT A UNIT THE ROW PLAYS (#552). OGN-173 Ride the Wind: "Move a friendly unit and ready
+ * it." It cannot be cast until that unit is on the board, but the clock priced card sets with no order
+ * between a spell and its target, so a one-copy Yasuo line paid the spell on T2, Yasuo on T3, and read
+ * a turn early. The target is read from the entry's own STEPS, as a sentence that names the spell and
+ * then aims it at the unit by name ("Ride the Wind ... moving each Ivern", "Retreat on Bubble Bot",
+ * "choosing Vi", "targeting Ekko") or names the unit and then the spell it takes ("Yasuo: Standard Move
+ * base to A, Ride the Wind A to base"); the card side is a spell whose text chooses a unit that can be
+ * friendly (AIM_TEXT). A spell aimed at more than one unit of the row is left unordered: one `after`
+ * cannot say "either", and no order errs early, the direction this table may err in.
+ * The SAME turn is legal and is left legal: a unit is on the board once played (143.4 only exhausts
+ * it), and none of these spells needs its target ready. --turns prints the pairs and the rows.
+ */
+const AIM_TEXT = /\b(?:a|another|one) friendly unit\b|\ba unit you control\b|\bChoose (?:a|a friendly) unit\b/i;
+const AIM_VERB = String.raw`(?:choos(?:e|ing)|mov(?:e|es|ing)|readying|ready|return(?:s|ing)?|targeting|on|at)`;
+const reEsc = (s) => s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+const aimMemo = new Map();
+function aimsOf(e) {
+  if (!e) return new Map();
+  if (aimMemo.has(e.id)) return aimMemo.get(e.id);
+  const used = (e.uses || []).map((u) => byBase.get(u.card)).filter(Boolean);
+  const units = used.filter((c) => c.type.includes("unit"));
+  const sentences = (e.steps || []).flatMap((s) => s.split(/(?<=[.;])\s+/));
+  const out = new Map();
+  for (const s of used) {
+    if (!s.type.includes("spell") || s.type.includes("unit") || !AIM_TEXT.test(`${s.text || ""} ${s.effect || ""}`)) continue;
+    const S = reEsc(s.name.split(",")[0].trim());
+    const hit = units.filter((u) => {
+      const U = reEsc(u.name.split(",")[0].trim());
+      const aim = new RegExp(String.raw`\b${S}\b[^.;]*?\b${AIM_VERB}\s+(?:each\s+|the\s+)?${U}\b|\b${U}:[^.;]*\b${S}\b`);
+      return sentences.some((x) => aim.test(x));
+    });
+    if (hit.length === 1) out.set(s.base, hit[0].base);
+  }
+  aimMemo.set(e.id, out);
+  return out;
 }
 
 /**
@@ -2501,6 +2543,14 @@ const costsOfSet = (set, ign, bodies, pick, hide = {}, bound = false) => {
     if (v.kinR) kinTag = v.kinTag;
     if (v.red) redTag = v.redTag;
   }
+  // #552: a spell aimed at a unit of the row waits for that unit's play (`aimsOf`). The unit's played
+  // copies carry `#aim`, and `tgt` makes the spell need ONE of them, not one per copy as an [Equip] does.
+  const aimed = new Map();
+  for (const [s, u] of bodies?.aims || []) {
+    const uc = byBase.get(u);
+    if (set[s] && set[u] && uc && !curveOf(uc).hidden && !equipCost(uc)) aimed.set(s, u);
+  }
+  const targets = new Set(aimed.values());
   for (const [b, q] of Object.entries(set)) {
     const c = byBase.get(b);
     if (!c || c.type.includes("legend") || c.type.includes("battlefield")) continue;
@@ -2551,7 +2601,8 @@ const costsOfSet = (set, ign, bodies, pick, hide = {}, bound = false) => {
       else if (hid) {
         out.push({ e: 0, p: post && ign.freeP ? 0 : 1, unit: false, gated: post, link: `${b}#hide` });
         out.push({ ...effect, e: 0, p: 0, link: `${b}#hplay`, after: `${b}#hide`, strict: true });
-      } else out.push({ ...effect, e: ce, p: cp, link: linked ? `${b}#play` : "" });
+      } else out.push({ ...effect, e: ce, p: cp, link: linked ? `${b}#play` : targets.has(b) ? `${b}#aim` : "",
+                        ...(aimed.has(b) ? { after: `${aimed.get(b)}#aim`, tgt: true } : {}) });
       const hp = hid && !bound;
       if (linked) equips.push({ e: post && ign.freeE ? 0 : eq.e, p: post && ign.freeP ? 0 : eq.p,
                                 unit: false, gated: post, la: lk === "gear", link: hp ? `${b}#hequip` : `${b}#equip`,
@@ -2844,7 +2895,14 @@ if (args.includes("--price")) {
   const nb = args.includes("--bodies") ? args[args.indexOf("--bodies") + 1] || "" : "0";
   // Capped because every mix is priced: the catalogue's largest anyBodies count is 4 (#528).
   if (!/^[0-8]$/.test(nb)) { console.error(`# --price: bad --bodies ${JSON.stringify(nb)}, want a decimal integer from 0 to 8`); process.exit(2); }
-  const { d, costs, pick, hide, ladd, bound, cbound } = priceSet(set, null, { n: Number(nb), engine: 0 });
+  // --aim SPELL@UNIT,... orders a spell after the unit it is aimed at (#552), as an entry's steps do.
+  const aims = new Map();
+  for (const part of (args.includes("--aim") ? args[args.indexOf("--aim") + 1] || "" : "").split(",").filter(Boolean)) {
+    const [s, u, extra] = part.split("@");
+    if (extra !== undefined || !set[s] || !set[u]) { console.error(`# --price: bad --aim ${JSON.stringify(part)}, want SPELL@UNIT, both in the set`); process.exit(2); }
+    aims.set(s, u);
+  }
+  const { d, costs, pick, hide, ladd, bound, cbound } = priceSet(set, null, { n: Number(nb), engine: 0, aims });
   // `pays` is the row's own formula with no Beginning-Phase payoff: the readiness turn of 143.4 is
   // owed when a unit nothing readied landed with the last cost.
   console.log(`price ${Object.entries(set).map(([b, q]) => `${b}x${q}`).join(" ")}: all T${d.all}, last unit T${d.unit}` +
@@ -2957,9 +3015,9 @@ for (const { e, domains: ownDomains, cards: ownCards } of entries) {
   // payoff - since each of them runs in the turn the row is clocked on, so any one's start score binds.
   const atStart = Math.max(0, ...rowIds.map((id) => byId.get(id)?.pointsAtStart ?? 0));
   const startTurn = pointsStartTurn(atStart, merged);
-  if (atStart) startRows.push({ id: e.id, n: atStart, from: pays, to: Math.max(pays, startTurn) });
+  if (atStart) startRows.push({ id: e.id, n: atStart, from: pays, to: Math.max(pays, startTurn), at: startTurn });
   clock.push({ id: e.id, cls: e.class, pays: Math.max(pays, startTurn), base: baselineTurn(merged), via: note || null,
-               ordered: finalCosts.some((c) => c.after && !c.strict), income: finalCosts.some((c) => c.pow),
+               ordered: finalCosts.some((c) => c.after && !c.strict && !c.tgt), aimed: finalCosts.some((c) => c.tgt), income: finalCosts.some((c) => c.pow),
                readier: finalCosts.some((c) => c.rdy), accel: finalCosts.some((c) => c.acc), reducer: finalCosts.some((c) => c.red),
                exchange: finalCosts.some((c) => c.hen),
                runer: finalCosts.some((c) => c.rune || c.big || c.att || c.kinR), bodies: pick.length ? bodyKey(domainsOfSet(cards)) : null,
@@ -3053,6 +3111,12 @@ function reducerLine(rows) {
          `${members.map((c) => `${c.base} ${c.name} (${curveOf(c).redTag}s -${curveOf(c).red}, min ${curveOf(c).redMin})`).join(", ")}; ` +
          `${rows.filter((c) => c.reducer).length} of ${rows.length} rows hold one`;
 }
+// Every spell>unit pair the catalogue's steps declare (#552, `aimsOf`), and the rows that carry one.
+function aimLine(rows) {
+  const pairs = db.combos.flatMap((c) => [...aimsOf(c)].map(([s, u]) => `${s}>${u} (${c.id})`));
+  return `# aimed spells (a spell no earlier than the unit its steps aim it at, #552): ${pairs.length} pairs: ` +
+         `${pairs.join(", ") || "none"}; ${rows.filter((c) => c.aimed).length} of ${rows.length} rows carry one`;
+}
 function exchangeLine(rows) {
   const members = [...byBase.values()].filter((c) => curveOf(c).hen);
   return `# exchange (HENGE, 429.3: Energy left after the plays moved to rainbow, once a turn): ${members.length} card${members.length === 1 ? " carries" : "s carry"} it: ` +
@@ -3082,6 +3146,7 @@ if (engines) {
   console.log(accelLine(eng));
   console.log(reducerLine(eng));
   console.log(exchangeLine(eng));
+  console.log(aimLine(eng));
   for (const l of bodyLines(eng)) console.log(l);
   console.log(hiddenLine(eng));
   console.log(legendLine(eng));
@@ -3140,12 +3205,17 @@ console.log(runeLine(clock));
   const moved = startRows.filter((r) => r.to !== r.from);
   console.log(`# points at turn start (pointsAtStart): ${declared.length} ${declared.length === 1 ? "entry declares" : "entries declare"} it: ` +
               `${declared.map((c) => `${c.id} (${c.pointsAtStart})`).join(", ") || "none"}; ` +
-              `${moved.length} of ${clock.length} rows moved by it: ${moved.map((r) => `${r.id} T${r.from}->T${r.to}`).join(", ") || "none"}`);
+              `${moved.length} of ${clock.length} rows moved by it: ${moved.map((r) => `${r.id} T${r.from}->T${r.to}`).join(", ") || "none"}; ` +
+              // The start turn of every row that declares one, so a row whose schedule already reaches it
+              // (yasuo-windrider-ride-the-wind-chain once #552 ordered its spell) still shows the check it passes.
+              `start turn: ${startRows.map((r) => `${r.id} T${r.at} (schedule T${r.from})`).join(", ") || "none"}`);
 }
 // Non-vacuity for the ordering model: the constraint can only ever bind on a row that HAS an [Equip]
 // cost, so the size of that population is what makes "it moves nothing" a result rather than a shrug.
 console.log(`# ordering ([Equip] after its own gear, 818.1 + 380): ${clock.filter((c) => c.ordered).length} of ${clock.length} rows carry a linked cost` +
             `${strictOrdering ? "; --strict-ordering IS ON, so this run also forbids the same turn and is NOT the rules model" : ""}`);
+// And a spell after the unit its steps aim it at (#552).
+console.log(aimLine(clock));
 for (const cls of ["INFINITE", "BURST", "CHAIN", "ALT_WIN"]) {
   const all = clock.filter((c) => c.cls === cls);
   console.log(`#   ${cls.padEnd(9)} ${String(all.filter((c) => c.pays > c.base).length).padStart(2)} of ${String(all.length).padStart(2)} unopposed` +
