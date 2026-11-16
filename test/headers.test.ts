@@ -170,8 +170,9 @@ describe("the order of the deck panel", () => {
 
 describe("what the browser bundle is allowed to know", () => {
   it("never mentions a server key, a connection string or a database password in web/", () => {
-    // Every tracked text file under web/, so a new file is guarded by default. Binaries are skipped by
-    // extension. An empty list (wrong cwd) must fail loudly rather than pass vacuously.
+    // Every git-tracked file under web/ with a listed text extension (an untracked file or another
+    // extension is not scanned; a new .ts/.html/.css/... file is covered once it is tracked). An empty
+    // list (wrong cwd) must fail loudly rather than pass vacuously.
     const root = fileURLToPath(new URL("..", import.meta.url));
     const files = execFileSync("git", ["ls-files", "-z", "web"], { cwd: root, encoding: "utf8" })
       .split("\0")
