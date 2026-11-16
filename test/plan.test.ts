@@ -4,9 +4,10 @@ import { CLASS_RANK, generateVariants } from "../src/combos.js";
 import { loadDeck } from "../src/deck.js";
 import { CardIndex } from "../src/cards.js";
 import { loadCardIndex, loadCombos } from "../src/load.js";
+import { FIXTURE_DAY } from "./fixture-day.js";
 import { planDeck } from "../src/plan.js";
 
-const cards = loadCardIndex();
+const cards = loadCardIndex(FIXTURE_DAY);
 const { combos } = loadCombos();
 const variants = generateVariants(combos, cards);
 const fixture = (n: string) => readFileSync(new URL(`./fixtures/${n}`, import.meta.url), "utf8");

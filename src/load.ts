@@ -8,10 +8,11 @@ import type { Card, Combo, Feature, LegalityEntry, Synergy } from "./types.js";
 const DATA = join(dirname(fileURLToPath(import.meta.url)), "..", "data");
 const read = <T>(file: string): T => JSON.parse(readFileSync(join(DATA, file), "utf8")) as T;
 
-export function loadCardIndex(): CardIndex {
+/** `asOf` (YYYY-MM-DD) is the day the ban list is read for; default today, as in `CardIndex` (#647). */
+export function loadCardIndex(asOf?: string): CardIndex {
   const cards = read<{ cards: Card[] }>("cards.json");
   const legality = read<{ entries: LegalityEntry[] }>("legality.json");
-  return new CardIndex(cards.cards, legality.entries);
+  return new CardIndex(cards.cards, legality.entries, asOf);
 }
 
 export function loadCombos(): { combos: Combo[]; features: Feature[] } {

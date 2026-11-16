@@ -59,8 +59,17 @@ export const normalise = (s: string): string =>
     .replace(/\s+/g, " ")
     .trim();
 
+/**
+ * A `[BANNED ...]` tag is the corpus's own annotation, not card text, and it moves with the ban list:
+ * a row quoted before its card was banned still quotes the card (#647: Baited Hook gained its tag with
+ * the Radiance bans). The corpus is searched both with and without the tags.
+ */
+const untagged = (s: string) => s.replace(/\[BANNED [^\]]*\] /g, "");
 const TEXT = Object.fromEntries(
-  Object.entries(FILES).map(([k, f]) => [k, normalise(readFileSync(new URL(f, root), "utf8"))]),
+  Object.entries(FILES).map(([k, f]) => {
+    const raw = readFileSync(new URL(f, root), "utf8");
+    return [k, k === "corpus" ? `${normalise(raw)} || ${normalise(untagged(raw))}` : normalise(raw)];
+  }),
 ) as Record<FileKey, string>;
 
 /**

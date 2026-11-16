@@ -9,6 +9,7 @@
 // numbers back off the same click.
 import { readFileSync } from "node:fs";
 import { beforeAll, describe, expect, it, vi } from "vitest";
+import { fixtureClock } from "../fixture-day.js";
 
 vi.mock("../../web/neon.js", () => ({
   accountsEnabled: false,
@@ -35,6 +36,9 @@ const chipFacts = (c: HTMLElement) => ({
 });
 
 beforeAll(async () => {
+  // The app reads the ban list for the clock's day; the Lux fixture predates the 2026-09-18 bans (test/fixture-day.ts).
+  vi.useFakeTimers({ toFake: ["Date"] });
+  vi.setSystemTime(fixtureClock());
   const html = file("web/index.html");
   document.documentElement.innerHTML = html.replace(/^[\s\S]*?<body[^>]*>/i, "").replace(/<\/body>[\s\S]*$/i, "");
   const data = file("data/cards.json");

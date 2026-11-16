@@ -7,10 +7,11 @@
 import { readFileSync } from "node:fs";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 import { loadCardIndex } from "../../src/load.js";
+import { FIXTURE_DAY } from "../fixture-day.js";
 import { loadDeck } from "../../src/deck.js";
 import { canonicalizeDeck, capOf, sideboardCapOf } from "../../src/builder.js";
 
-const cards = loadCardIndex();
+const cards = loadCardIndex(FIXTURE_DAY);
 // `import.meta.url` is a page URL under happy-dom, not a file one, so fixtures are read from the
 // repo root the way src/load.ts reads the card data.
 const fixture = (n: string) => readFileSync(`${process.cwd()}/test/fixtures/${n}`, "utf8");

@@ -7,11 +7,12 @@
 import { readFileSync } from "node:fs";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 import { loadCardIndex, loadCombos } from "../../src/load.js";
+import { FIXTURE_DAY } from "../fixture-day.js";
 import { generateVariants } from "../../src/combos.js";
 import type { CardIndex } from "../../src/cards.js";
 import type { SavedDeck } from "../../src/saved.js";
 
-const cards = loadCardIndex();
+const cards = loadCardIndex(FIXTURE_DAY);
 const variants = generateVariants(loadCombos().combos, cards);
 const list = readFileSync(`${process.cwd()}/test/fixtures/lux.txt`, "utf8");
 
