@@ -18,11 +18,13 @@
 import fs from "fs";
 import { citeRe } from "./citation-form.mjs";
 import { rulesNotesText } from "./rules-notes.mjs";
+import { catalogueText } from "./rules-editions.mjs";
 
 const R = fs.readFileSync("data/Riftbound-Core-Rules-2026-07-16.txt", "utf8");
 const walkDir = "docs/phase0/walks";
 const walks = fs.readdirSync(walkDir).filter(f => f.endsWith(".md")).map(f => fs.readFileSync(`${walkDir}/${f}`, "utf8"));
-const catalogue = fs.readFileSync("data/combos.json", "utf8") + fs.readFileSync("data/synergies.json", "utf8");
+// In the 07-16 numbering of R, the notes and the walks: moved entries translated back (#645).
+const catalogue = catalogueText();
 const hay = [catalogue, rulesNotesText(), ...walks].join("\n");
 
 // Every heading line, in file order, so each sub-rule's block ends at the next heading of any depth.

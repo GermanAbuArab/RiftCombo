@@ -173,3 +173,48 @@ export function citations(entry) {
   walk(entry, "", "");
   return out;
 }
+
+/**
+ * data/combos.json plus data/synergies.json as one text, every rule number in the 2026-07-16 numbering
+ * that CLAUDE.md, docs/rules-notes and the walks are written in (#645). The readers that count the
+ * catalogue's citations against those (scripts/claude-md-gap.mjs, scripts/uncited-examples.mjs) read
+ * this, not the raw file: an entry moved to 2026-10-09 says 103.2.b.1 where 07-16 says another number
+ * for the same text, and counting it raw found 15 "rules the notes never carry" that were only that.
+ * Each number an entry cites goes back to the one 07-16 paragraph its ledger hash names: one the move
+ * rewrote, or else the number itself.
+ */
+export function catalogueText() {
+  const read = (p) => fs.readFileSync(new URL(p, root), "utf8");
+  const [OLD, NEW] = Object.keys(EDITIONS);
+  const db = JSON.parse(read("data/combos.json"));
+  const ledger = JSON.parse(read(`data/rules-remap-${NEW}.json`)).entries;
+  const byHash = {};
+  for (const b of BOOKS) {
+    byHash[b] = new Map();
+    for (const [id, t] of paragraphs(OLD, b)) (byHash[b].get(hash(t)) || byHash[b].set(hash(t), []).get(hash(t))).push(id);
+  }
+  const TOKEN = /(?<![-#=_0-9.A-Za-z$])\d{3}(?:\.(?:\d+[a-z]?|[a-z]))*(?![0-9a-z])/g;
+  const back = (node, map, key) =>
+    typeof node === "string"
+      ? NOT_PROSE.has(key) ? node : node.replace(TOKEN, (t) => map.get(t) ?? t)
+      : Array.isArray(node) ? node.map((v) => back(v, map, key))
+      : node && typeof node === "object" ? Object.fromEntries(Object.entries(node).map(([k, v]) => [k, back(v, map, k)]))
+      : node;
+  db.combos = db.combos.map((e) => {
+    if (e.rulesVersion === OLD) return e;
+    const row = ledger[e.id];
+    if (!row) throw new Error(`${e.id} is on ${e.rulesVersion} with no row in the ledger`);
+    const map = new Map();
+    for (const [num, [book, , h]] of Object.entries(row.refs)) {
+      // 07-16 prints some sentences at several numbers (485.4.a and 487.4.a are one Battlefield-count
+      // line), so a number the move rewrote wins, and the number itself only when none did.
+      const same = byHash[book].get(h) || [];
+      const rewrote = same.filter((id) => row.moved.includes(id));
+      const ids = rewrote.length ? rewrote : same.filter((id) => id === num);
+      if (ids.length !== 1) throw new Error(`${e.id}: ${num} has ${ids.length} ${OLD} paragraphs with its text (${ids.join(", ")})`);
+      map.set(num, ids[0]);
+    }
+    return back(e, map, "");
+  });
+  return JSON.stringify(db, null, 2) + "\n" + read("data/synergies.json");
+}

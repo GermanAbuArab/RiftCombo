@@ -5,7 +5,9 @@
 // rules the CATALOGUE cites often and CLAUDE.md does not carry at all.
 import fs from "fs";
 import { countCites } from "./citation-form.mjs";
-const blob=fs.readFileSync("data/combos.json","utf8")+fs.readFileSync("data/synergies.json","utf8");
+// In the 07-16 numbering the notes are written in, moved entries translated back (#645).
+import { catalogueText } from "./rules-editions.mjs";
+const blob=catalogueText();
 import { rulesNotesText } from "./rules-notes.mjs";
 const CL=rulesNotesText();
 const R=fs.readFileSync("data/Riftbound-Core-Rules-2026-07-16.txt","utf8");
