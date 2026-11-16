@@ -1,6 +1,7 @@
 import { readdirSync, readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
 import { loadCardIndex } from "../src/load.js";
+import { FIXTURE_DAY } from "./fixture-day.js";
 import { loadDeck } from "../src/deck.js";
 import { checkBuild } from "../src/build.js";
 import type { Deck } from "../src/types.js";
@@ -17,7 +18,7 @@ import type { Deck } from "../src/types.js";
  * names are stored: `test/fixtures/tournament-lists/README.md`.
  */
 
-const cards = loadCardIndex();
+const cards = loadCardIndex(FIXTURE_DAY);
 const DIR = new URL("./fixtures/tournament-lists/", import.meta.url);
 
 const FILES = readdirSync(DIR).filter((f) => f.endsWith(".txt")).sort();
@@ -97,7 +98,7 @@ describe("checkBuild over the lists that parse clean", () => {
   /**
    * `Aspirant's Climb` y `The Arena's Greatest` se banearon el 2026-07-24 y los cinco primeros
    * eventos se jugaron antes, así que la fila 103.2.e de esas listas es un dato de fecha, no un bug:
-   * `checkBuild` responde por el formato de HOY. Barcelona (2026-08-26) es el único artículo
+   * `checkBuild` responde por el formato del día que lee (FIXTURE_DAY, test/fixture-day.ts). Barcelona (2026-08-26) es el único artículo
    * posterior al baneo, y es la prueba de que la explicación se sostiene: da cero.
    */
   it("the only row that fails on legality is the 2026-07-24 ban, and Barcelona does not have it", () => {
@@ -136,9 +137,36 @@ describe("checkBuild over the lists that parse clean", () => {
     expect(byFile.get(BATTLEFIELD_SIDEBOARD_ERRATA)!.map((r) => r.rule)).toEqual(["Tournament Rules 601.1.c.2"]);
   });
 
-  it("the 37 Barcelona lists, the only post-ban event, are all legal today", () => {
+  it(`the 37 Barcelona lists, the only post-ban event, are all legal on ${FIXTURE_DAY}`, () => {
     const barcelona = clean.filter((f) => cityOf(f) === "barcelona");
     expect(barcelona).toHaveLength(37);
     expect(barcelona.filter((f) => !checkBuild(decks.get(f)!, cards, "constructed").legal)).toEqual([]);
+  });
+
+  /**
+   * #647: the Rules Hub's 2026-09-18 update banned Ekko, Recurrent and Stacked Deck, and Riot's
+   * Radiance list bans ten more from 2026-11-23. Read on that date, every list that was legal on
+   * FIXTURE_DAY and is not any more fails on 103.2.e alone, and only for cards on those two updates.
+   */
+  it("read on 2026-11-23, what changed since FIXTURE_DAY is 103.2.e alone, for the 09-18 and 11-23 bans only", () => {
+    const later = loadCardIndex("2026-11-23");
+    const after = new Set(["Ekko, Recurrent", "Stacked Deck", "Riven, Broken Blade", "Zhonya's Hourglass", "Stellacorn Herder",
+      "Nocturne, Horrifying", "Rhasa the Sunderer", "Brynhir Thundersong", "Dazzling Aurora", "Baited Hook", "Emperor's Dais", "Star Spring"]);
+    const named = new Set<string>();
+    let changed = 0;
+    for (const f of clean) {
+      const before = fails(f).map((r) => `${r.rule}|${r.detail}`);
+      const now = checkBuild(decks.get(f)!, later, "constructed").rules.filter((r) => r.status === "fail");
+      const extra = now.filter((r) => !before.includes(`${r.rule}|${r.detail}`));
+      if (!extra.length) continue;
+      changed++;
+      expect(extra.map((r) => r.rule)).toEqual(["103.2.e"]);
+      for (const d of extra[0]!.detail.split(" · ")) named.add(d.replace(/ is banned( in this format\.)?$/, ""));
+    }
+    expect(changed).toBeGreaterThan(0);
+    for (const n of named) expect(after.has(n) || n === "Aspirant's Climb" || n === "The Arena's Greatest").toBe(true);
+    // And every one of them fires: each card of both updates that the pool holds is in some list
+    // (Riven, Broken Blade is RAD-043, not in the pool until #664).
+    expect([...after].filter((n) => n !== "Riven, Broken Blade" && !named.has(n))).toEqual([]);
   });
 });

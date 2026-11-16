@@ -2,9 +2,10 @@ import { readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
 import { loadDeck } from "../src/deck.js";
 import { loadCardIndex, loadCombos, loadSynergies } from "../src/load.js";
+import { FIXTURE_DAY } from "./fixture-day.js";
 import { fingerprintOf, matchSynergies, partnersOf, planSynergies, validateSynergies } from "../src/synergies.js";
 
-const cards = loadCardIndex();
+const cards = loadCardIndex(FIXTURE_DAY);
 const synergies = loadSynergies();
 const { combos } = loadCombos();
 const catalogued = new Set(combos.filter((c) => c.status === "verified").flatMap((c) => c.uses.map((u) => u.card)));

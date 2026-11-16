@@ -1,12 +1,13 @@
 import { readdirSync, readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
 import { loadCardIndex } from "../src/load.js";
+import { FIXTURE_DAY } from "./fixture-day.js";
 import { loadDeck } from "../src/deck.js";
 import { CardIndex } from "../src/cards.js";
 import { championTagOf, checkBuild, type BuildReport } from "../src/build.js";
 import { emptyDeck, sideboardCapOf } from "../src/builder.js";
 
-const cards = loadCardIndex();
+const cards = loadCardIndex(FIXTURE_DAY);
 
 /**
  * A list that satisfies every rule: Lady of Luminosity (Mind + Order), Lux, Illuminated as the Chosen

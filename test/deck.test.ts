@@ -2,10 +2,11 @@ import { readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
 import { getCodeFromDeck } from "@piltoverarchive/riftbound-deck-codes";
 import { loadCardIndex } from "../src/load.js";
+import { FIXTURE_DAY } from "./fixture-day.js";
 import { checkBuild } from "../src/build.js";
 import { deckCountLine, deckRestrictions, decodeDeckCode, deckToText, encodeDeckCode, isDeckCode, loadDeck, normalizeDeck, parseDeckText, type DeckEntry } from "../src/deck.js";
 
-const cards = loadCardIndex();
+const cards = loadCardIndex(FIXTURE_DAY);
 const fixture = (n: string) => readFileSync(new URL(`./fixtures/${n}`, import.meta.url), "utf8");
 
 describe("plaintext decklists", () => {
