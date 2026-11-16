@@ -127,6 +127,21 @@ let dim = true;
 /** The saved deck Combos is showing, when My decks handed it over. Null for a list pasted here. */
 let analyzing: SavedDeck | null = null;
 
+/**
+ * Re-reads the ban list for today (UTC, `banDay`) every time something is evaluated, so a tab left
+ * open past midnight UTC picks up a ban that has come into force without a reload (#671). `variants`
+ * is rebuilt with the index because it was generated from it.
+ */
+const syncDay = () => {
+  const now = cards.current();
+  if (now === cards) return;
+  cards = now;
+  variants = generateVariants(combos, cards);
+  // `result` was matched against the previous day's index; match again at the swap, whichever caller
+  // triggered it, so no later render() mixes two days.
+  if (deck) result = matchDeck(deck, variants, cards, { format: fmt(), maxMissing: maxMissing() });
+};
+
 const name = (base: string) => cards.get(base)?.name ?? base;
 const fmt = () => document.querySelector<HTMLInputElement>("input[name=format]:checked")!.value as Format;
 const mode = () => document.querySelector<HTMLInputElement>("input[name=view]:checked")!.value as "network" | "suggestions";
@@ -201,8 +216,8 @@ async function boot() {
   initAccount();
   void loadPlays({ comboIds: new Set(combosById.keys()) });
   initDecks({
-    cards: () => cards,
-    variants: () => variants,
+    cards: () => { syncDay(); return cards; },
+    variants: () => { syncDay(); return variants; },
     showCard: (base) => showCard(base),
     analyze: (saved) => {
       $<HTMLInputElement>(`input[name=format][value="${saved.format}"]`).checked = true;
@@ -247,6 +262,7 @@ let running = false;
 
 async function run(source: "text" | "url" = "text") {
   if (!cards || running) return;
+  syncDay();
   const text = input.value.trim();
   const url = urlInput.value.trim();
   if (source === "url" && !url) { setStatus("No link", "Paste a Piltover Archive deck link first.", "error"); return; }
@@ -726,6 +742,7 @@ function synergyRow(h: SynergyHit): string {
 
 function render() {
   if (!deck || !result) return;
+  syncDay();
   showStatus();
   // `all` is what the deck HOLDS and is what the counts speak for; `hits` is what fits on screen.
   const all = shownHits();
@@ -1113,8 +1130,8 @@ $<HTMLButtonElement>("#enter-deck").addEventListener("click", () => setPanel(tru
 const syncNearMiss = () => { $<HTMLElement>("#near-miss").hidden = mode() === "network"; };
 syncNearMiss();
 document.querySelectorAll("input[name=view], input[name=layout]").forEach((r) => r.addEventListener("change", () => { selected = null; trayExpanded = false; syncNearMiss(); render(); }));
-document.querySelectorAll("input[name=format]").forEach((r) => r.addEventListener("change", () => { if (deck) { result = matchDeck(deck, variants, cards, { format: fmt(), maxMissing: maxMissing() }); render(); } }));
-$<HTMLSelectElement>("#max-missing").addEventListener("change", () => { if (deck) { result = matchDeck(deck, variants, cards, { format: fmt(), maxMissing: maxMissing() }); render(); } });
+document.querySelectorAll("input[name=format]").forEach((r) => r.addEventListener("change", () => { if (deck) { syncDay(); result = matchDeck(deck, variants, cards, { format: fmt(), maxMissing: maxMissing() }); render(); } }));
+$<HTMLSelectElement>("#max-missing").addEventListener("change", () => { if (deck) { syncDay(); result = matchDeck(deck, variants, cards, { format: fmt(), maxMissing: maxMissing() }); render(); } });
 $<HTMLButtonElement>("#fit").addEventListener("click", () => view?.fit());
 $<HTMLButtonElement>("#zoom-in").addEventListener("click", () => view?.zoomBy(1 / 1.25));
 $<HTMLButtonElement>("#zoom-out").addEventListener("click", () => view?.zoomBy(1.25));
