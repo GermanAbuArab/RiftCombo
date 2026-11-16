@@ -12,7 +12,7 @@
     "repository": {
       "url": "https://github.com/GermanAbuArab/RiftCombo",
       "provider": "github",
-      "revision": "849680b88a3dadb6bf6964f41ef2489c609b9135"
+      "revision": "d16d2e4b3f7b2ce88764755107dbffb64a6f8753"
     },
     "views": [
       {
@@ -373,7 +373,7 @@
       ],
       "sources": [
         {
-          "path": "web/supabase.ts",
+          "path": "web/neon.ts",
           "line": 1,
           "end_line": 24,
           "label": "the only file that calls Supabase"
