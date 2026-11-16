@@ -1,6 +1,7 @@
 import { readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
 import { CardIndex } from "../src/cards.js";
+import { deckRestrictions, deckUpcomingBans, loadDeck } from "../src/deck.js";
 import type { Card, LegalityEntry } from "../src/types.js";
 // @ts-expect-error — untyped .mjs import, see test/errata.test.ts
 import { resolveLegality } from "../scripts/build-cards.mjs";
@@ -104,5 +105,32 @@ describe("notInPool records a ban on a card the pool does not hold yet", () => {
 
   it("an ordinary name that does not resolve still fails", () => {
     expect(() => resolveLegality(pool, one({ entity: "unit", name: "Riven, Broken Blade" }))).toThrow(/not found/);
+  });
+});
+
+describe("an announced ban is exposed with its date before it is in force (#670)", () => {
+  const list = readFileSync(new URL("test/fixtures/tournament-lists/atlanta-06.txt", root), "utf8");
+
+  it("the day before, SFD-048 Stellacorn Herder and OGN-077 Zhonya's Hourglass are upcoming with their date and not banned; on the day, nothing is upcoming and both are banned", () => {
+    for (const format of ["constructed", "2v2"] as const) {
+      const before = on("2026-11-22");
+      const deck = loadDeck(list, before);
+      const up = deckUpcomingBans(deck, before, format);
+      expect(up.map((r) => [r.base, r.entry.since, r.count])).toEqual([["SFD-048", "2026-11-23", 3], ["OGN-077", "2026-11-23", 3]]);
+      expect(deckRestrictions(deck, before, format).map((r) => r.base)).not.toContain("OGN-077");
+      expect(deckRestrictions(deck, before, format).map((r) => r.base)).not.toContain("SFD-048");
+
+      const day = on("2026-11-23");
+      expect(deckUpcomingBans(loadDeck(list, day), day, format)).toEqual([]);
+      for (const base of ["SFD-048", "OGN-077"]) {
+        expect(deckRestrictions(loadDeck(list, day), day, format).find((r) => r.base === base)?.entry.status).toBe("banned");
+      }
+    }
+  });
+
+  it("the index answers upcoming() only for rows not yet in force", () => {
+    expect(on("2026-11-22").upcoming("OGN-160", "constructed")?.since).toBe("2026-11-23");
+    expect(on("2026-11-23").upcoming("OGN-160", "constructed")).toBeUndefined();
+    expect(on("2026-11-22").upcoming("OGN-110", "constructed")).toBeUndefined();
   });
 });
