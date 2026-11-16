@@ -47,8 +47,13 @@ excluded by `docs/architecture/*.visual-check.*` in `.gitignore`.
 
 ## What was true when these were drawn
 
-Pinned at `849680b88a3dadb6bf6964f41ef2489c609b9135`: 1,189 card printings, 715 combo entries,
-197 synergy rules, 19 features, 81 walk documents, 36 test files. `meta.repository.revision` in the
-architecture specification is that commit, and its 32 source links were verified against blobs at it.
-Re-running `validate --repo-root .` after the tree moves will still verify against that commit; bump
+History, the original drawing: pinned at `849680b88a3dadb6bf6964f41ef2489c609b9135`: 1,189 card
+printings, 715 combo entries, 197 synergy rules, 19 features, 81 walk documents, 36 test files; its
+32 source links were verified against blobs at that commit. The counts above are that commit's and
+were not re-measured since.
+
+2026-11-16 (#632): the current pin, `meta.repository.revision` in the architecture specification, is
+`8d29b824663508ce807b1a7928047b79363dec0b`. The accounts node now draws Neon (Neon Auth, the Data API,
+saved decks under RLS) instead of Supabase, and all 32 source links were verified against blobs at
+that commit with `validate --repo-root .`. Re-running `validate --repo-root .` after the tree moves will still verify against that commit; bump
 the revision when a cited line number has actually moved.
