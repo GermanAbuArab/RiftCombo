@@ -52,7 +52,8 @@ finishers of all four classes, then alphabetically.
 
 One current table (#537 collapsed the five that slices 1 to 5 appended here). It is the command of §7
 run on this PR's tree: master `9c11e01` (`scripts/` byte-identical to it) plus slice 7's entry in
-`data/combos.json`. 92 finishers.
+`data/combos.json`. 92 finishers. [2026-11-16, #639: re-measured on #639's branch, master `b6086e9`
+plus the turn clock's `pointsAtStart` precondition; one row moved, calm/chaos, see the changelog.]
 
 | pair | Hold baseline | INFINITE | BURST | CHAIN | clocked, pay by T4 | ALT_WIN | ALT_WIN, pay by T4 | all four |
 |---|---|---|---|---|---|---|---|---|
@@ -61,7 +62,7 @@ run on this PR's tree: master `9c11e01` (`scripts/` byte-identical to it) plus s
 | body/fury | T5 | 1 | 3 | 2 | 0 | 2 | 1 | 8 |
 | body/mind | T5 | 2 | 2 | 6 | 0 | 5 | 2 | 15 |
 | body/order | T5 | 0 | 1 | 0 | 0 | 7 | 3 | 8 |
-| calm/chaos | T5 | 0 | 2 | 4 | 2 (yasuo-windrider-ride-the-wind-chain T4, ahri-alluring-power-nexus-hold-curve-turn-four T4) | 4 | 3 | 10 |
+| calm/chaos | T5 | 0 | 2 | 4 | 1 (ahri-alluring-power-nexus-hold-curve-turn-four T4) | 4 | 3 | 10 |
 | calm/fury | T5 | 2 | 6 | 1 | 3 (threshold-reveler-infinite-energy T4, reveler-loop-nasus-brambleback-conquer T4, ahri-alluring-power-nexus-hold-curve-turn-four T4) | 3 | 2 | 12 |
 | calm/mind | T5 | 2 | 5 | 7 | 1 (ahri-alluring-power-nexus-hold-curve-turn-four T4) | 9 | 6 | 23 |
 | calm/order | T5 | 0 | 3 | 1 | 1 (ahri-alluring-power-nexus-hold-curve-turn-four T4) | 9 | 5 | 13 |
@@ -74,7 +75,7 @@ run on this PR's tree: master `9c11e01` (`scripts/` byte-identical to it) plus s
 
 The order, (clocked by T4, all four): chaos/fury (0, 4), body/chaos (0, 7), body/fury (0, 8),
 body/order (0, 8), chaos/order (0, 11), body/mind (0, 15), fury/mind (0, 15), chaos/mind (0, 16),
-body/calm (1, 6), fury/order (1, 9), calm/order (1, 13), calm/mind (1, 23), calm/chaos (2, 10),
+body/calm (1, 6), fury/order (1, 9), calm/chaos (1, 10), calm/order (1, 13), calm/mind (1, 23),
 mind/order (2, 31), calm/fury (3, 12). Slices 1 to 7 worked Chaos/Fury, Body/Calm, Body/Chaos,
 Body/Fury, Body/Order, Chaos/Order and Calm/Order, so the first pair not yet worked is **Body/Mind**
 (0, 15), baseline T5, ahead of Fury/Mind at the same count alphabetically. §4 lists the entries whose
@@ -91,6 +92,7 @@ added anything, and what moved since the line above. The earlier tables are in g
 - 2026-10-31, `07a93ad`, #529 (slice 5): slice 4's towering-combatant-hidden-marai-grand-plaza (Body/Fury ALT_WIN, T4) gives Body/Fury (0, 8); dragonstorm-confront-grand-plaza clocks T7, not T12; 89 finishers; Body/Order (0, 7) worked.
 - 2026-10-31, `aec0933`, #537 (slice 6): slice 5's galio-vanguard-captain-grand-plaza (Body/Order ALT_WIN, T4) gives Body/Order 7 ALT_WINs; #528 (`18374ab`) prices ready-recruits-grand-plaza by Order alone at T4, so it now pays by T4 in every Order pair (ALT_WIN, pay by T4: body/order 1 to 3 with Galio, calm/order 4 to 5, chaos/order 3 to 4, fury/order 1 to 2) and leaves §4; #532 and #544 move dragonstorm-confront-grand-plaza T7 to T6 to T5; #530 and #540 move no row; no clocked count moved; 90 finishers; Chaos/Order (0, 10) worked. Then slice 6's own entry, yasuo-ride-the-wind-hold-curve-turn-five (mono-Chaos CHAIN, T5), adds one CHAIN and one to "all four" in every Chaos pair and moves no clocked count, because it pays on T5: 91 finishers.
 - 2026-11-16, `9c11e01`, #553 (slice 7): no row moved from `aec0933` to `9c11e01` (the table at `9c11e01` is byte-identical to the one above it); 91 finishers; Calm/Order (0, 12) worked. Then slice 7's own entry, ahri-alluring-power-nexus-hold-curve-turn-four (mono-Calm plus a colourless battlefield, CHAIN, T4), adds one CHAIN, one clocked by T4 and one to "all four" in every Calm pair (body/calm, calm/chaos, calm/fury, calm/mind, calm/order): the table above, 92 finishers.
+- 2026-11-16, `b6086e9`, #639 (no slice): at `b6086e9` the command still printed the slice 7 table byte for byte (backticks aside). #639 gives the turn clock a points-at-turn-start precondition (`pointsAtStart` in `data/combos.json`), and yasuo-windrider-ride-the-wind-chain, corrected by #551 to win only from 5 at the start of its turn, declares 5: it clocks T5 (tying the Calm/Chaos baseline), not T4, so calm/chaos goes from 2 to 1 clocked by T4 and moves from (2, 10) to (1, 10) in the order; no other row moved; 92 finishers; Body/Mind is still the first pair not yet worked. #552's spell sequencing is not what moved it.
 
 ### Why each slice took its pair
 

@@ -1303,6 +1303,18 @@ function beginningPhaseGated(e) {
 const CHEAP_BODY_DOMAINS = new Set(["body", "calm"]);
 const baselineTurn = (domains) => ([...domains].some((d) => CHEAP_BODY_DOMAINS.has(d)) ? 5 : 6);
 
+// THE SCORE A FINISHER STARTS FROM (#639). An entry that declares `pointsAtStart` wins only from that
+// score at the START of its turn, before the Beginning Phase Hold: yasuo-windrider-ride-the-wind-chain
+// is three points in one turn (a Hold, a Conquer and an ability point) and so wins "from five". Its
+// cards are paid by T3, so a clock that reads no score printed T4. The score is read off the SAME
+// unopposed curve `baselineTurn` is: both battlefields Conquered on T(base-3), 315.2.b.2 Holding both
+// for 2 a turn after that, so the score at the start of turn T is 2 * (T - base + 3) - 0, 0, 2, 4, 6
+// on T1-T5 in a cheap-body identity - and the first turn that reaches N is base - 3 + ceil(N / 2).
+// It is the optimistic curve on purpose: the clock is a lower bound, and the contested curve only
+// ever reaches the score later. N = 5 lands ON the baseline in every identity, which is the result:
+// a three-point finisher from five ties the do-nothing curve rather than beating it.
+const pointsStartTurn = (n, domains) => (n > 0 ? baselineTurn(domains) - 3 + Math.ceil(n / 2) : 0);
+
 /**
  * THE SECOND BASELINE, AND THE FIRST ONE IS THE WRONG BOARD FOR THE QUESTION.
  *
@@ -1800,6 +1812,9 @@ if (args.includes("--selftest-holes")) {
 // ---------------------------------------------------------------- run it
 const findings = [];
 const clock = [];
+// Every row whose entry or payoff declares `pointsAtStart` (#639), with its turn before and after the
+// precondition, for the header's non-vacuity line.
+const startRows = [];
 const entries = [];
 for (const e of db.combos) {
   // ENGINEs are priced only under --engines, and reported in their own section with their own
@@ -2938,7 +2953,12 @@ for (const { e, domains: ownDomains, cards: ownCards } of entries) {
   // is the closure, and 103.1.b is what caps it at two domains. `ownDomains` is kept only as the
   // fallback for a row that folds nothing.
   const merged = [...domainsOfSet(cards)];
-  clock.push({ id: e.id, cls: e.class, pays, base: baselineTurn(merged), via: note || null,
+  // The precondition is read where `gated` is (#639): on the entry and on the payoff it folds, never
+  // on the fuel, since a score to start from is a property of the turn the finisher runs.
+  const atStart = Math.max(e.pointsAtStart ?? 0, consumer?.pointsAtStart ?? 0);
+  const startTurn = pointsStartTurn(atStart, merged);
+  if (atStart) startRows.push({ id: e.id, n: atStart, from: pays, to: Math.max(pays, startTurn) });
+  clock.push({ id: e.id, cls: e.class, pays: Math.max(pays, startTurn), base: baselineTurn(merged), via: note || null,
                ordered: finalCosts.some((c) => c.after && !c.strict), income: finalCosts.some((c) => c.pow),
                readier: finalCosts.some((c) => c.rdy), accel: finalCosts.some((c) => c.acc), reducer: finalCosts.some((c) => c.red),
                exchange: finalCosts.some((c) => c.hen),
@@ -3114,6 +3134,14 @@ console.log(hiddenLine(clock));
 console.log(legendLine(clock));
 // And for readying runes (#513).
 console.log(runeLine(clock));
+// And the score a finisher starts from (#639): which entries declare one, and which rows it moved.
+{
+  const declared = db.combos.filter((c) => c.pointsAtStart);
+  const moved = startRows.filter((r) => r.to !== r.from);
+  console.log(`# points at turn start (pointsAtStart): ${declared.length} ${declared.length === 1 ? "entry declares" : "entries declare"} it: ` +
+              `${declared.map((c) => `${c.id} (${c.pointsAtStart})`).join(", ") || "none"}; ` +
+              `${moved.length} of ${clock.length} rows moved by it: ${moved.map((r) => `${r.id} T${r.from}->T${r.to}`).join(", ") || "none"}`);
+}
 // Non-vacuity for the ordering model: the constraint can only ever bind on a row that HAS an [Equip]
 // cost, so the size of that population is what makes "it moves nothing" a result rather than a shrug.
 console.log(`# ordering ([Equip] after its own gear, 818.1 + 380): ${clock.filter((c) => c.ordered).length} of ${clock.length} rows carry a linked cost` +

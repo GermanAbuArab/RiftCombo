@@ -98,6 +98,12 @@ export function validateCombos(combos: Combo[], features: Feature[], cards: Card
       }
       if (!c.anyBodies.note?.trim()) errors.push(`${c.id}: anyBodies.note must quote the requirement`);
     }
+    // A score precondition outside 1..7 is either nothing (0) or already a win (8, 472), so it is
+    // a typo rather than a requirement (#639).
+    if (c.pointsAtStart !== undefined &&
+        (!Number.isInteger(c.pointsAtStart) || c.pointsAtStart < 1 || c.pointsAtStart > 7)) {
+      errors.push(`${c.id}: pointsAtStart must be an integer from 1 to 7`);
+    }
   }
   return errors;
 }

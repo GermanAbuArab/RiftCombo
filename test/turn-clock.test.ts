@@ -139,6 +139,25 @@ describe("the turn clock", () => {
   });
 
   /**
+   * THE SEVENTH reference point, and the one that pins `pointsAtStart` (#639). The corrected line
+   * (#551) is three points in one turn - a Hold, a Conquer and Yasuo's third move - so it wins only
+   * from 5 at the START of the turn. Its cards are paid by T3 and the clock said T4 for as long as it
+   * read no score. On the unopposed Calm/Chaos curve (two Steel Paws T1, Conquer both T2, Hold 2 a
+   * turn) the start score is 0, 0, 2, 4, 6 on T1-T5: 4 at T4 start is one short, so the line runs on
+   * T5 and TIES the baseline rather than beating it.
+   */
+  it("holds yasuo-windrider-ride-the-wind-chain to the turn its 5-point start is reachable (T5, ties T5)", () => {
+    expect(rows.get("yasuo-windrider-ride-the-wind-chain")).toEqual({ pays: 5, base: 5 });
+  });
+
+  it("prints the pointsAtStart predicate with its members and the rows it moved", () => {
+    const m = out.match(/^# points at turn start \(pointsAtStart\): (\d+) entr(?:y|ies) declares? it: ([^;]+); (\d+) of (\d+) rows moved by it: (.*)$/m);
+    expect(m, out).toBeTruthy();
+    expect(m![2]).toContain("yasuo-windrider-ride-the-wind-chain (5)");
+    expect(m![5]).toContain("yasuo-windrider-ride-the-wind-chain T4->T5");
+  });
+
+  /**
    * 143.4 exhausts UNITS only — 359.2.d enters a non-unit gear READY at base and 359.3 makes a spell
    * linger on the Chain — so the readiness turn must NOT be universal. If some row does not pay it,
    * the narrowing is live; if every row paid it, the `+1` would be unconditional again.

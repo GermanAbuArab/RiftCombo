@@ -52,6 +52,14 @@ describe("validateCombos", () => {
     expect(validateCombos([ok], features, cards)).toEqual([]);
   });
 
+  // #639: the score a finisher needs at the START of its turn. 8 wins (472), so 1..7 is the range.
+  it("accepts pointsAtStart 1..7 and rejects anything else", () => {
+    expect(validateCombos([combo({ id: "five", pointsAtStart: 5 })], features, cards)).toEqual([]);
+    for (const n of [0, 8, 2.5, -1])
+      expect(validateCombos([combo({ id: "bad", pointsAtStart: n })], features, cards), String(n))
+        .toEqual(["bad: pointsAtStart must be an integer from 1 to 7"]);
+  });
+
   it("rejects a duplicate id", () => {
     const a = combo({ id: "twice" });
     expect(validateCombos([a, combo({ id: "twice" })], features, cards)).toEqual(["twice: duplicate id"]);
