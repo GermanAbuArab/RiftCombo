@@ -678,9 +678,13 @@
         ]
       },
       "status": "rule-verified",
-      "reviewed": "2026-09-04",
+      "reviewed": "2026-11-16",
       "reviewedCount": 10,
-      "reviewedSet": "e78f47a5"
+      "reviewedSet": "e78f47a5",
+      "retired": {
+        "since": "2026-09-18",
+        "why": "Anchor OGN-110 Ekko, Recurrent is banned in Constructed and 2v2 from 2026-09-18 (data/legality.json), so the rule can never fire in a legal deck. Kept, not deleted, so the walked rule and its reading stay on record (#667)."
+      }
     },
     {
       "id": "malzahar-token-fodder",
@@ -2104,9 +2108,13 @@
         ]
       },
       "status": "rule-verified",
-      "reviewed": "2026-09-06",
+      "reviewed": "2026-11-16",
       "reviewedCount": 29,
-      "reviewedSet": "66921f80"
+      "reviewedSet": "66921f80",
+      "retired": {
+        "since": "2026-11-23",
+        "why": "Anchor OGN-195 Rhasa the Sunderer is banned in Constructed and 2v2 from 2026-11-23 (the Radiance bans in data/legality.json), so from that day the rule can never fire in a legal deck. Shown until then; kept, not deleted (#667)."
+      }
     },
     {
       "id": "startipped-peak-rune-ramp",
@@ -6448,9 +6456,13 @@
         ]
       },
       "status": "rule-verified",
-      "reviewed": "2026-09-09",
+      "reviewed": "2026-11-16",
       "reviewedCount": 8,
-      "reviewedSet": "2d60512e"
+      "reviewedSet": "2d60512e",
+      "retired": {
+        "since": "2026-11-23",
+        "why": "Anchor OGN-077 Zhonya's Hourglass is banned in Constructed and 2v2 from 2026-11-23 (the Radiance bans in data/legality.json), so from that day the rule can never fire in a legal deck. Shown until then; kept, not deleted. Not named in #667's body; found by its every-ban-date test (#667)."
+      }
     },
     {
       "id": "vanguard-captain-legion-one-card",
@@ -7289,9 +7301,13 @@
         "combos": []
       },
       "status": "rule-verified",
-      "reviewed": "2026-09-14",
+      "reviewed": "2026-11-16",
       "reviewedCount": 29,
-      "reviewedSet": "9bcc8898"
+      "reviewedSet": "9bcc8898",
+      "retired": {
+        "since": "2026-11-23",
+        "why": "Anchor OGN-194 Nocturne, Horrifying is banned in Constructed and 2v2 from 2026-11-23 (the Radiance bans in data/legality.json), so from that day the rule can never fire in a legal deck. Shown until then; kept, not deleted (#667)."
+      }
     },
     {
       "id": "factory-recall-reready-gear",

@@ -1,5 +1,5 @@
 import type { CardIndex } from "./cards.js";
-import { CARD_TYPES, SYNERGY_BASIS_KEYS, SYNERGY_EXCLUDE_KEYS, SYNERGY_KEYS, SYNERGY_PARTNER_KEYS } from "./types.js";
+import { CARD_TYPES, SYNERGY_BASIS_KEYS, SYNERGY_EXCLUDE_KEYS, SYNERGY_KEYS, SYNERGY_PARTNER_KEYS, SYNERGY_RETIRED_KEYS } from "./types.js";
 import type { Card, Deck, Domain, Format, Synergy } from "./types.js";
 
 /** Rules text plus, for Equipment, the text it grants the unit it is attached to. */
@@ -40,7 +40,14 @@ export function fingerprintOf(partners: { base: string }[]): string {
   return h.toString(16).padStart(8, "0");
 }
 
-/** Sanity checks the authored file must pass before anything is matched against it. */
+/** Whether a rule is retired on `asOf` (`YYYY-MM-DD`): its `retired.since` has come (#667). */
+export const isRetired = (s: Synergy, asOf: string): boolean =>
+  typeof s.retired?.since === "string" && /^\d{4}-\d{2}-\d{2}$/.test(s.retired.since) && s.retired.since <= asOf;
+
+/**
+ * Sanity checks the authored file must pass before anything is matched against it, on the day
+ * `cards` reads the ban list for (`cards.asOf`).
+ */
 export function validateSynergies(synergies: Synergy[], cards: CardIndex, opts: ValidateOptions = {}): string[] {
   const errors: string[] = [];
   const ids = new Set<string>();
@@ -61,6 +68,13 @@ export function validateSynergies(synergies: Synergy[], cards: CardIndex, opts: 
     keys(s.partner, SYNERGY_PARTNER_KEYS, "partner.");
     keys(s.basis, SYNERGY_BASIS_KEYS, "basis.");
     for (const x of s.partner?.excludes ?? []) keys(x, SYNERGY_EXCLUDE_KEYS, "partner.excludes[].");
+    if (s.retired !== undefined && (typeof s.retired !== "object" || s.retired === null)) {
+      errors.push(`${s.id}: retired must be an object with since and why`);
+    } else if (s.retired) {
+      keys(s.retired, SYNERGY_RETIRED_KEYS, "retired.");
+      if (typeof s.retired.since !== "string" || !/^\d{4}-\d{2}-\d{2}$/.test(s.retired.since)) errors.push(`${s.id}: retired.since must be a YYYY-MM-DD date`);
+      if (typeof s.retired.why !== "string" || !s.retired.why.trim()) errors.push(`${s.id}: retired with no reason`);
+    }
     // `partner.types` was read straight into a filter and validated by nothing, so a mistyped type
     // would silently match NOTHING rather than fail - and a rule stamped in the same edit would
     // carry the mistake as its reviewed baseline.
@@ -86,9 +100,16 @@ export function validateSynergies(synergies: Synergy[], cards: CardIndex, opts: 
     if (!/^\d{4}-\d{2}-\d{2}$/.test(s.reviewed)) errors.push(`${s.id}: reviewed must be a YYYY-MM-DD date`);
     if (s.basis.rules.length === 0) errors.push(`${s.id}: basis.rules is empty`);
     // A rule anchored on a card banned everywhere can never fire, so it is dead weight in the UI.
+    // Unless it is retired on this day (#667), and then it must be retired on exactly the days its
+    // anchor is banned everywhere: early would hide a live rule, late is the dead weight again.
     const formats: Format[] = ["constructed", "2v2"];
-    if (anchor && formats.every((f) => cards.legality(s.anchor, f))) {
+    // `status === "banned"`, as in `playableUnder`: a restricted card is a cap, not a dead anchor.
+    const deadEverywhere = !!anchor && formats.every((f) => cards.legality(s.anchor, f)?.status === "banned");
+    const retired = isRetired(s, cards.asOf);
+    if (deadEverywhere && !retired) {
       errors.push(`${s.id}: anchor ${s.anchor} is banned in every format`);
+    } else if (retired && !deadEverywhere) {
+      errors.push(`${s.id}: retired since ${s.retired!.since} but anchor ${s.anchor} is not banned in every format on ${cards.asOf}`);
     }
     const partners = partnersOf(s, cards);
     const found = partners.length;

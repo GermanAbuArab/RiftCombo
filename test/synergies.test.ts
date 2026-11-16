@@ -1,9 +1,10 @@
 import { readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
+import { CardIndex } from "../src/cards.js";
 import { loadDeck } from "../src/deck.js";
 import { loadCardIndex, loadCombos, loadSynergies } from "../src/load.js";
 import { FIXTURE_DAY } from "./fixture-day.js";
-import { fingerprintOf, matchSynergies, partnersOf, planSynergies, validateSynergies } from "../src/synergies.js";
+import { fingerprintOf, isRetired, matchSynergies, partnersOf, planSynergies, validateSynergies } from "../src/synergies.js";
 
 const cards = loadCardIndex(FIXTURE_DAY);
 const synergies = loadSynergies();
@@ -538,5 +539,95 @@ describe("a synergy rule can be domain-dead", () => {
       (p) => new Set([...highlander.domains, ...(p.domains ?? [])]).size <= 2,
     );
     expect(legal).toEqual([]);
+  });
+});
+
+describe("a rule on a banned anchor is retired by date (#667)", () => {
+  /**
+   * `validateSynergies` holds a rule whose anchor is banned in every format to be an error, and
+   * #667's ruling keeps that rule as it is. A ban is dated (`since` in data/legality.json, #647), so
+   * the rule carries the day it stops being shown in `retired.since`, and the validator holds the two
+   * together on every day it reads: retired on day D if and only if the anchor is banned everywhere
+   * on D. Forgetting to retire is the old error; retiring on the wrong day is a new one. The rest of
+   * the suite reads the ban list on FIXTURE_DAY (2026-09-17), before any of these bans, so this block
+   * reads it on explicit days on both sides of each ban instead.
+   */
+  const retiredOn: Record<string, string[]> = {
+    "2026-09-17": [],
+    "2026-09-19": ["ekko-deathknell-runes"],
+    "2026-11-22": ["ekko-deathknell-runes"],
+    // zhonyas-hourglass-cost-still-paid is the fourth: #667 named three, and the every-ban-date test
+    // below found Zhonya's Hourglass (OGN-077) in the same Radiance list.
+    "2026-11-23": ["ekko-deathknell-runes", "nocturne-horrifying-deck-top-look", "rhasa-trash-counter", "zhonyas-hourglass-cost-still-paid"],
+  };
+  for (const [day, ids] of Object.entries(retiredOn)) {
+    it(`on ${day} validates clean and retires exactly ${ids.length ? ids.join(", ") : "nothing"}`, () => {
+      const onDay = loadCardIndex(day);
+      expect(validateSynergies(synergies, onDay)).toEqual([]);
+      expect(synergies.filter((s) => isRetired(s, day)).map((s) => s.id).sort()).toEqual(ids);
+      // The UI hides a retired rule because its anchor is not playable, never by a second list.
+      const anchors = new Set(synergies.filter((s) => isRetired(s, day)).map((s) => s.anchor));
+      for (const s of synergies) {
+        if (!anchors.has(s.anchor)) continue;
+        for (const f of ["constructed", "2v2"] as const) expect(onDay.legality(s.anchor, f)?.status, `${s.id} ${f}`).toBe("banned");
+      }
+    });
+  }
+
+  it("validates clean on today's date and on both sides of every date in the ban list", () => {
+    // Today, and the day of and the day before every `since` the ban list holds, so a ban entered
+    // ahead of its date fails here the day it is entered rather than the day it starts.
+    const legality = JSON.parse(readFileSync(new URL("../data/legality.json", import.meta.url), "utf8")) as { entries: { since: string }[] };
+    const dayBefore = (d: string) => new Date(Date.parse(`${d}T12:00:00Z`) - 864e5).toISOString().slice(0, 10);
+    const days = new Set([loadCardIndex().asOf, ...legality.entries.flatMap((e) => [e.since, dayBefore(e.since)])]);
+    for (const day of [...days].sort()) expect(validateSynergies(synergies, loadCardIndex(day)), day).toEqual([]);
+  });
+
+  it("fails a rule retired before its anchor is banned, and one left standing after", () => {
+    const ekko = synergies.find((s) => s.id === "ekko-deathknell-runes")!;
+    // Retired a day early: on 2026-09-17 Ekko is still legal everywhere.
+    const early = { ...ekko, retired: { ...ekko.retired!, since: "2026-09-17" } };
+    expect(validateSynergies([early], loadCardIndex("2026-09-17"))).toEqual([
+      "ekko-deathknell-runes: retired since 2026-09-17 but anchor OGN-110 is not banned in every format on 2026-09-17",
+    ]);
+    // Retired a day late: on 2026-09-18 Ekko is banned and the rule is still shown.
+    const late = { ...ekko, retired: { ...ekko.retired!, since: "2026-09-19" } };
+    expect(validateSynergies([late], loadCardIndex("2026-09-18"))).toEqual([
+      "ekko-deathknell-runes: anchor OGN-110 is banned in every format",
+    ]);
+    const { retired: _gone, ...standing } = ekko;
+    expect(validateSynergies([standing], loadCardIndex("2026-09-19"))).toEqual([
+      "ekko-deathknell-runes: anchor OGN-110 is banned in every format",
+    ]);
+  });
+
+  it("fails a retirement with no reason, a bad date or an unknown field", () => {
+    const ekko = synergies.find((s) => s.id === "ekko-deathknell-runes")!;
+    const day = loadCardIndex("2026-09-19");
+    expect(validateSynergies([{ ...ekko, retired: { since: "2026-09-18", why: " " } }], day)).toEqual([
+      "ekko-deathknell-runes: retired with no reason",
+    ]);
+    expect(validateSynergies([{ ...ekko, retired: { since: "18 Sep 2026", why: "banned" } }], day)).toContain(
+      "ekko-deathknell-runes: retired.since must be a YYYY-MM-DD date",
+    );
+    expect(validateSynergies([{ ...ekko, retired: { ...ekko.retired!, on: "x" } as never }], day)).toEqual([
+      "ekko-deathknell-runes: unknown field retired.on",
+    ]);
+    // A malformed date never counts as retired, so the banned anchor is still reported.
+    expect(validateSynergies([{ ...ekko, retired: { since: "18 Sep 2026", why: "banned" } }], day)).toContain(
+      "ekko-deathknell-runes: anchor OGN-110 is banned in every format",
+    );
+    expect(validateSynergies([{ ...ekko, retired: true as never }], day)).toContain(
+      "ekko-deathknell-runes: retired must be an object with since and why",
+    );
+  });
+
+  it("does not count a RESTRICTED anchor as dead: a restriction is a cap, not a ban", () => {
+    const ekko = synergies.find((s) => s.id === "ekko-deathknell-runes")!;
+    const { retired: _gone, ...live } = ekko;
+    const restricted = (format: "constructed" | "2v2") =>
+      ({ format, entity: "unit", name: "Ekko, Recurrent", codes: ["OGN-110"], bases: ["OGN-110"], status: "restricted", since: "2026-01-01", source: "test" });
+    const both = new CardIndex(cards.cards, [restricted("constructed"), restricted("2v2")] as never, "2026-09-19");
+    expect(validateSynergies([live], both)).toEqual([]);
   });
 });

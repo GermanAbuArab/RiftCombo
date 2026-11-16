@@ -53,6 +53,8 @@ export class CardIndex {
   /** Multi-word tags keyed by their normalised last word ("yi" -> "Master Yi"). Read by `resolveName`. */
   private readonly longTags = new Map<string, Set<string>>();
   private readonly banned = new Map<Format, Map<string, LegalityEntry>>();
+  /** The day the ban list was read for, `YYYY-MM-DD` (see the constructor). */
+  readonly asOf: string;
 
   /**
    * `asOf` is the day the ban list is read for, `YYYY-MM-DD`, default the viewer's local date. An
@@ -61,6 +63,7 @@ export class CardIndex {
    */
   constructor(cards: Card[], legality: LegalityEntry[], asOf: string = localDate(new Date())) {
     this.cards = cards;
+    this.asOf = asOf;
     for (const c of cards) {
       this.byCode.set(c.code, c);
       // Prefer the base printing for the base lookup; alt-arts sometimes drop reminder text.

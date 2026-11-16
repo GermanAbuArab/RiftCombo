@@ -7,15 +7,19 @@
 //   npm run synergies -- <id…>     # just these
 //   npm run synergies -- --terse   # counts only
 //   npm run synergies -- --match   # show only the fragment the predicate caught, ±30 chars
+//   npm run synergies -- --as-of=2026-11-23   # read the ban list for that day, not today (#667)
 import { loadCardIndex, loadSynergies } from "./load.js";
-import { partnersOf, synergyText, validateSynergies } from "./synergies.js";
+import { isRetired, partnersOf, synergyText, validateSynergies } from "./synergies.js";
 
 const args = process.argv.slice(2);
 const terse = args.includes("--terse");
 const fragment = args.includes("--match");
 const wanted = args.filter((a) => !a.startsWith("--"));
+const asOfArg = args.find((a) => a.startsWith("--as-of="))?.slice("--as-of=".length);
+if (asOfArg !== undefined && !/^\d{4}-\d{2}-\d{2}$/.test(asOfArg)) { console.error(`--as-of wants YYYY-MM-DD, got ${asOfArg}`); process.exit(2); }
 
-const cards = loadCardIndex();
+const cards = loadCardIndex(asOfArg);
+console.log(`ban list as of ${cards.asOf}`);
 const synergies = loadSynergies();
 // The count guard is skipped here on purpose: a rule whose list has grown is exactly the one this
 // tool has to print, and refusing to start would hide it. `npm test` still fails on it.
@@ -42,6 +46,9 @@ for (const s of selected) {
   console.log(`  reviewed  ${s.reviewed} · ${partners.length} partners in the pool` +
     (drift === 0 ? "" : `  ** ${drift > 0 ? "+" : ""}${drift} since it was read (${s.reviewedCount}); read the list again and restamp **`));
   if (drift !== 0) stale.push(s.id);
+  if (s.retired) {
+    console.log(`  retired   ${isRetired(s, cards.asOf) ? "since" : "from"} ${s.retired.since}${isRetired(s, cards.asOf) ? "" : " (shown until then)"} — ${s.retired.why}`);
+  }
   for (const x of s.partner.excludes ?? []) {
     console.log(`  excluded  ${x.card} ${cards.get(x.card)?.name ?? "?"} — ${x.why}`);
   }
@@ -58,7 +65,9 @@ for (const s of selected) {
     console.log(head.padEnd(74) + body);
   }
 }
-console.log(`\n${selected.length} rules · ${total} anchor\u2013partner pairs`);
+const retiredNow = selected.filter((s) => isRetired(s, cards.asOf));
+console.log(`\n${selected.length} rules · ${total} anchor\u2013partner pairs` +
+  (retiredNow.length ? ` · ${retiredNow.length} retired on ${cards.asOf}: ${retiredNow.map((s) => s.id).join(", ")}` : ""));
 if (stale.length) {
   console.log(`${stale.length} rule(s) drifted since they were read: ${stale.join(", ")}`);
   process.exit(1);
