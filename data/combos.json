@@ -683,7 +683,7 @@
           "End your turn at exactly 4 cards in hand and exactly 4 units at battlefields; its own ability tunes both counts at once, in the direction the check needs (hand -1, units +1).",
           "The Bird reaches a battlefield: 355.2 has you choose the location a played Unit enters, and 355.2.a makes the controller's Base or a Battlefield they control valid by default. The instruction names no location, so the ordinary choice applies.",
           "Timing is why this works with a normal hand: the check is the Beginning Step (315.2.a), while the draw is two phases later in the Draw Phase (315.4). The count is taken against the hand you passed the turn with.",
-          "Gear enters ready (143.4 makes only Units enter exhausted), so the ability is live the turn Gutter Palace lands, but it exhausts: one adjustment per turn.",
+          "Gear enters ready (149.1), so the ability is live the turn Gutter Palace lands, but it exhausts: one adjustment per turn.",
           "Exposed for a full opponent turn. Killing one unit at a battlefield breaks the count; [Deflect] on the Bird is the only protection in the card. Time Warp (OGN-122) removes the exposure by giving you the next Beginning Phase with no opponent turn between - count Time Warp itself leaving the hand.",
           "ONE ENERGY ANSWERS THE DIAL ITSELF, AND *EXACTLY* IS WHY ONE BODY IS ENOUGH (added 2026-09-13, #200). `UNL-088 Gutter Palace` makes its own bodies — *\"Discard 1, :rb_exhaust:: Play a 1 :rb_might: Bird unit token with [Deflect]\"* — and 187.7 fixes that token at 1 Might by rule, so `OGN-133 Flurry of Blades` (Body, E1, `[Reaction]`, *\"Deal 1 to all units at battlefields\"*) kills every Bird on the board at once under 143.2.a. [Deflect] does not help: 355.10.d makes a deal-to-ALL programmatic rather than targeted, so 809.1.c charges nothing however many Birds are standing. AND THIS WIN CONDITION IS THE ONE THE CATALOGUE HAS THAT CAN BE OVERSHOT: the Palace asks for *\"exactly 4 cards in hand and exactly 4 units at battlefields\"*, so an opponent does not have to clear the board — REMOVING ONE BODY IS ENOUGH, and so is HANDING YOU A CARD. Every other finisher here asks for MORE of something — with ONE exception, `VEN-138 Shen, Leader of the Kinkou Order`, which pays *\"if there is exactly one other unit you control here\"* and heads two finishers (narrowed 2026-09-13). What is still unique to the Palace is the axis: **Shen’s count is something the opponent can only push DOWN, while the Palace’s hand size is one they can push UP BY HELPING YOU.** And that half has a card: `SFD-005 Detonate` (Fury, E1 + 1 Power) reads *\"Kill a gear. Its controller draws 2.\"* — **the Gutter Palace IS a gear**, so one Energy and one Fury Power destroys the win condition AND pushes the hand dial in the same card. `OGN-033 Shakedown` (Fury, E2 + 1 Power, `[Reaction]`) offers *\"Deal 6 to it unless its controller has you draw 2\"* — either axis, the OPPONENT’s choice, inside the window. Before this note no Gutter Palace entry named gear removal at all, against a win condition that IS the gear. The timing is what makes it hard to defend rather than merely fragile. The clause sits immediately after *\"At the start of your Beginning Phase\"*, so 383.2.a.1 makes it part of the Trigger Condition and it is READ WHEN THE TRIGGER IS PLACED — there is nothing to respond to afterwards. And the Palace’s own dial is an Activated Ability with an exhaust in its cost, so 381 (*\"All Activated Abilities can only be activated on the Controlling Player’s Turn and during an Open State\"*) confines it to YOUR turn, which is never the turn on which the opponent moves a dial. The answer therefore has to be BANKED and held through their whole turn, which is what `gutter-palace-reaction-dials` buys and what this line does not."
         ]
@@ -834,7 +834,7 @@
       },
       "steps": [
         "Play Ekko, Recurrent (5 Energy + 1 Mind Power).",
-        "Play Gutter Palace (4 Energy). Gear enters ready (143.4), but its adjust ability is not needed here.",
+        "Play Gutter Palace (4 Energy). Gear enters ready (149.1; 359.2.d for the play from hand), but its adjust ability is not needed here.",
         "Malzahar: kill Ekko, exhaust, Add 2 Power. Ekko's Deathknell recycles him and readies your runes.",
         "Play Time Warp (10 Energy + 4 Power): you get the next turn with no opponent turn in between.",
         "Play Invert Timelines (3 Energy + 1 Power): discard your hand, draw 4. Hand is now exactly 4.",
@@ -1085,7 +1085,7 @@
           "THE SIX CARDS MUST BE IN HAND BEFORE THE LOOP REACHES REGIME. One of them left in the Main Deck breaks the same equality from the other side. The setup already drains the deck through Kadregrin's 'draw 1 for each of your Mighty units'; the deck is simply six cards larger than the engine alone needs.",
           "AN OPEN BATTLEFIELD IS ENOUGH — NO GARRISON REQUIRED. Moving onto an uncontrolled battlefield makes it Contested (190.3.a), 344.2 opens a Showdown at the next Cleanup because no units of different players are there, 348.2.a establishes Control and 348.2.a.1 says outright 'This results in a Conquer.' No damage step, so the M4 second Brambleback cannot be killed before 383.4.c.2.a checks that both are present. A garrisoned battlefield is the fallback (466.5, 466.5.d), not the requirement. In a Duel there are exactly 2 battlefields (485.4), both uncontrolled at the start (190.1). CORRECTED 2026-10-26 (#472, the follow-up PR #471 listed for #464): the garrison fallback does not score ten. Every multiplier rides two bodies, and after a combat a dead one is not present: 383.4.c.2.a: 'The Conquer Abilities of Units are put on the Chain as Pending Items after the Unit(s) these effects correspond to are present at a Battlefield when a player gains control of it and gains 1 Victory Point from Conquering.' 365.1: 'Passive Abilities of Permanents are typically only active while on the Board.' The defender picks the deaths: 465.2.c: 'Starting with the Attacker, each player assigns an amount of damage equal to their summed Might among the other's Units.' With 465.2.c.3: 'Units must have lethal damage assigned to them in full before damage is assigned to a different Unit. Example: If a player has 5 damage to distribute among four 3 Might units, they may not choose to assign 2 damage to one of the units and 1 damage to each of the remaining 3. They must assign at least 3 damage to one, and the remaining 2 to another.' A dead carrier takes its gear with it, because a detached gear appends nothing to it: 719.5: 'When a Top-Most Card changes zones from a board zone to a non-board zone, all Attached cards Detach from it, remaining in their current zones.' 718.3: 'While in this state, Abilities in the card’s Effect Text are appended to the Rules Text of the Top-Most Card.' (718.3 is a rule of an Attached card). The board attacks with the carrier at 12 Might and the second Brambleback at 4, 16 in all. Against a garrison of summed Might G with no damage marked and nothing else changing Might in the combat, the defender choosing the deaths that cost most, the line scores: an empty battlefield, since nobody fights (316.8.b.1: 'Showdowns that occur as a result of a player moving to an empty Battlefield are a stand-alone Phase and do not create a Combat.'), 10; G 1 to 3, 10; 4 to 11, 7 (the second Brambleback dies; the carrier needs 12); 12 to 15, 1 (the carrier dies, its three Trinity Forces detach, and the second Brambleback conquers alone); 16 or more, 0 (both sides die, or the garrison survives, and 466.5: 'If no Showdown or Combat is staged at this location, the player with Units remaining here Establishes Control if they didn’t already control this Battlefield.'). These are the bands brambleback-trinity-skyfall-conquer carries for the same board. Re-derived on 2026-10-26 from the rules above. THE DECLARED QUANTITIES STILL REACH 8, so the class stays BURST: ten on the open battlefield this notable prefers, or against a garrison of 1 to 3 summed Might.",
           "THE BRAMBLEBACKS ENTER READY FOR FREE. Confront ('Units you play this turn enter ready. Draw 1.') is cast every pass and is a turn-long continuous effect, which 143.4.a admits ('This can be altered by Accelerate or similar game effects'). If it has been spent otherwise, [Accelerate] on the Brambleback itself is the fallback at 1 Energy + 1 Fury Power each. 144.3 moves both as one action and 144.2 makes exhausting them the whole cost.",
-          "Equip resolves the turn the gear lands: 818.1 makes it an Activated Ability, 818.1.c.2 spells the cost out as '[Cost]: Attach this gear to a unit you control' with no exhaust, and gear enters ready because 143.4 exhausts Units only.",
+          "Equip resolves the turn the gear lands: 818.1 makes it an Activated Ability, 818.1.c.2 spells the cost out as '[Cost]: Attach this gear to a unit you control' with no exhaust, and gear enters ready because 149.1 has gear enter play Ready.",
           "NOTHING IN THIS LINE IS PROTECTED FROM A GEAR KILL, AND THE POOL PRINTS SIXTEEN OF THEM. 718.5.b: 'Attached cards still can be chosen or targeted by game effects while Attached' - the Equipment's own printed Rules Text is Inactive while attached (718.2) and its [Equip] is unusable (721.2), but the CARD is a legal target for every turn it sits there. Swept with /\\bkills?\\b[^.]{0,80}\\bgear\\b/i over text+effect of every deckable base in data/cards.json, the pool has 16 base codes (15 names; Jayce, Man of Progress is printed twice) and EVERY ONE OF THE SIX DOMAINS prints at least one, so there is no identity this line can hide in. The unconditional enemy-facing ones are OGN-022 Thermo Beam, SFD-005 Detonate and VEN-003 Brittle Steel (Fury), OGN-224 Salvage (Order), SFD-032 Disarming Rake (Calm) and SFD-077 Rocket Barrage (Mind). OGN-022 Thermo Beam - Fury, E5 + 2 Fury Power, '[Action] (Play on your turn or in showdowns.) Kill all gear.' - is the only card in the pool that kills EVERY gear at once, so it answers the whole payoff with one card; it is symmetric, which makes it cheap for a gearless deck and expensive for anyone else (the shape acceptable-losses-ravenbloom-prefect-gearless-gear-hate already records for OGN-179).",
           "THE TIMING CUTS BOTH WAYS, AND NO [Reaction] GEAR KILL EXISTS. Swept over all sixteen gear kills: none carries [Reaction]. Thermo Beam and Salvage are [Action], which 806.1.c.1 makes short for 'This can be played during showdowns on any player's turn'; Detonate and Brittle Steel are plain spells, and 155 confines a spell to 'an Open State outside of Showdowns on its controller's turn'. The Score this line pays on happens at 315.2.b.2 inside your own Beginning Phase, where the opponent holds no priority in a Neutral Open State (312.2.a) and the Closed State the trigger opens admits only a [Reaction] (813.1.c.1). So the opponent can NEVER strip the gear in the window that pays - every answer has to be cast on their own turn, one full turn before. That is what keeps the line alive, and it is also the window in which to defend it: the removal spell on the Chain is a Closed State, 312.2.c hands out priority there and 813.1.c.1 admits a [Reaction] in response.",
           "7 ENERGY ANSWERS THE GARRISON THIS LINE NEEDS. OGN-123 Unchecked Power is mind, 7 Energy + 2 Power: \"Exhaust all friendly units, then deal 12 to ALL units at battlefields.\". 143.2.a kills on marked damage at or above Might, so it kills every body at or below Might 12 SIMULTANEOUSLY however many there are: the binding constraint is MIGHT PER BODY, not the number of bodies, so going wider answers nothing. A CHEAPER ANSWER EXISTS AND IT IS NOT AVAILABLE TO EVERY OPPONENT: OGN-268 Bullet Time costs 1 Energy + 4 Power here (it pays per point of damage, so it scales to any garrison) and is [Action], so 806.1.c.1 puts it inside any showdown on any player's turn - but it is a SIGNATURE card tagged Miss Fortune, and 103.2.d.2 requires every Signature card to carry the Chosen Champion Legend's tag, so only a Miss Fortune legend can run it. Count it as a matchup, not as the field. THE IDENTITY DOES HOLD AN ANSWER: OGN-294 Trifarian War Camp +1 (that battlefield only), UNL-T03 Brush +1 (that battlefield only), VEN-018 Rage Amplifier +1 - a permanent, garrison-wide +Might is the only thing that lifts every body at once, since a single-target pump is useless against a sweep that hits all of them. (A battlefield protection is a 1-in-3: 485.5 has each player \"randomly select one (1) of their three (3) Battlefields\", so it is not a card you can count on drawing.) WHEN THE ANSWER LANDS, AND IT IS NOT INSIDE THE HOLD. A Hold resolves at 315.2.b.2, which Holds \"all Battlefields they Control\", inside YOUR Beginning Phase - and 312.2.a gives a player priority only \"When the turn is in a Neutral Open State during their Main Phase\", i.e. their own. So the opponent cannot answer in the Hold window itself; they answer on THEIR turn, which is the turn immediately before it. The cost of that is yours, not theirs: your own Main Phase comes AFTER your Beginning Phase (315 then 316), so there is no window in which to rebuild the garrison. Holding up a [Reaction] on their turn is the only response this line has.",
@@ -4276,7 +4276,7 @@
           "quantity": 1,
           "role": "engine",
           "zone": "BOARD",
-          "note": "Body gear, E2 P1. 'Exhaust: Pay ANY amount of Energy to [Add] that much rainbow.' ONE activation converts without a cap — this is the piece the 2026-09-03 reconstruction did not have, and it is why Power is not the loop's scarce currency. Gear enters ready (143.4 exhausts only units), so a replayed Henge converts the turn it lands."
+          "note": "Body gear, E2 P1. 'Exhaust: Pay ANY amount of Energy to [Add] that much rainbow.' ONE activation converts without a cap — this is the piece the 2026-09-03 reconstruction did not have, and it is why Power is not the loop's scarce currency. Gear enters ready (149.1), so a replayed Henge converts the turn it lands."
         }
       ],
       "needs": [],
@@ -4312,7 +4312,7 @@
         "Vi recycles Detonate and the Henge: deck 8.",
         "Play the two drawn Dragons for 1 Energy each; the three Gemdragons ready 6 runes apiece, and exhausting them is +6 Energy per Dragon. +10 Energy.",
         "Show of Strength (2 Energy + 1 Power): eight Mighty units — three Gemdragons, Vi, the two Kadregrin, the two fresh Dragons — draw exactly the 8 cards in the deck. Deck 0.",
-        "Replay Ancient Henge (2 Energy + 1 Power). It enters ready (143.4).",
+        "Replay Ancient Henge (2 Energy + 1 Power). It enters ready (149.1; 359.2.d for the play from hand).",
         "Vi recycles the spent Show of Strength: deck 1. Confront (2 Energy) draws it back. Deck 0.",
         "Play the remaining four Dragons: +20 Energy. The board is exactly as it was at step 1.",
         "REPEAT from step 2. Nothing decremented: 11 cards drawn against 11 spent, and +21 Energy against 11 Power, which one Henge activation converts one for one. Each pass banks +10 Energy and the loop has no exit condition."
@@ -8947,7 +8947,7 @@
         ]
       },
       "steps": [
-        "Play the Vanguard Armory (7 Energy + 1 Power). Gear enters ready (143.4 exhausts only units), so it can fire the same turn.",
+        "Play the Vanguard Armory (7 Energy + 1 Power). Gear enters ready (149.1), so it can fire the same turn.",
         "Play Heimerdinger, Inventor (3 Energy + 1 Power). He enters exhausted.",
         "Next turn, Awaken readies both. Exhaust the Armory: three Recruits. Exhaust Heimerdinger, using his copy of the same ability: three more.",
         "Six 1 Might Recruits a turn, placed at your base or at battlefields you control."
@@ -9615,7 +9615,7 @@
         ]
       },
       "steps": [
-        "Play Svellsongur (3 Energy + 1 Power). Gear enters ready — 143.4 exhausts units only.",
+        "Play Svellsongur (3 Energy + 1 Power). Gear enters ready (149.1).",
         "Play Corina Veraza for 7 Energy + 1 Power, paying [Accelerate]'s extra 1 Energy + 1 Order Power so she enters ready and can use her Standard Move this turn.",
         "Attach Svellsongur to Corina: 1 Energy + 1 Calm Power. Her Rules Text now carries the move trigger twice (434.1.c, 053.1).",
         "Still in the same Main Phase, walk any cheap body into The Grand Plaza while it is uncontrolled and take it: 190.3.a.1 → 344.2 → 348.2.a → 348.2.a.1. The Plaza is yours, with that body on it.",
@@ -9772,7 +9772,7 @@
       },
       "steps": [
         "Establish Control of a battlefield; 811.1.b only lets you hide at one you control.",
-        "Play Chemtech Cask (1 Energy, gear, enters ready under 143.4) and Black Market Broker (3 Energy).",
+        "Play Chemtech Cask (1 Energy, gear, enters ready under 149.1) and Black Market Broker (3 Energy).",
         "On your turn, hide Sprite Call there: 1 Energy under Swift Scout instead of 1 rainbow Power.",
         "On the opponent's turn, the moment a chain exists, play it from facedown for 0 (811.1.b, 811.6).",
         "Collect: Broker 1 Gold, Cask 1 Gold (exhausting the Cask), plus a ready 3 Might Sprite at that battlefield.",
@@ -16154,7 +16154,7 @@
           "SOLARI CHIEF IS NOT THE ONLY MIGHT-CAPLESS REMOVAL, AND ISSUE #61 SAID IT WAS. A grep of the whole corpus for 'kill' returns at least five others, four of them in Order and so inside Radiant Dawn's own identity: OGN-229 Vengeance (E4 P2, 'Kill a unit.', no condition at all), OGN-213 Hidden Blade (E2 P1 and 0 from Hidden, 'Kill a unit at a battlefield. Its controller draws 2.'), OGS-012 Blast of Power (E6 P1, 'Kill a unit at a battlefield.'), SFD-164 Drag Under (E5 P1, and 'costs [2] less to play from anywhere other than your hand') and UNL-186 Death from Below (Fury/Chaos E4 P1). Vengeance is cheaper in Energy than Solari Chief and needs no stun at all. What Solari Chief actually is: the only one of the six that ARRIVES AS A BODY (4 Might), and the only one that primes itself.",
           "THE KILL IS NOT DAMAGE, WHICH IS THE POINT AGAINST A BIG BODY. 428.1.a.1: 'Active Kill is when the action is taken when instructed by a game effect or as a cost for a card or ability', and 428.2 places the permanent 'directly in the trash from its place of origin'. Might never enters the calculation, so 423.1.c - 'A Stunned Unit must still have damage applied to it equal to, or greater than, its full might value to be killed' - is bypassed and a 10 Might body dies to it exactly as a 1 Might body does. This is the honest form of #61's claim.",
           "THE BUFF COMES FROM THE STUN BRANCH, NEVER THE KILL BRANCH. Radiant Dawn reads 'When you stun one or more enemy units'. Solari Chief's text is 'If it is stunned, kill it. Otherwise, stun it' - on the kill branch nothing is stunned, so nothing is buffed. The buff in this line is Facebreaker's, or the first Solari Chief's. Spend it on OGN-207 Call to Glory (see radiant-dawn-stun-buff-free-glory) or on OGN-282 Monastery of Hirana, 'When you conquer here, you may spend a buff to draw 1', which is colourless.",
-          "SOLARI SHRINE'S CONDITION IS MET, AND ITS CAP IS ONE PER TURN. 'When you kill a stunned enemy unit' - Solari Chief's target is stunned at the moment it dies, and the kill is yours. 'You may exhaust this' is the cap: 414.1.b, 'A Game Object that is already Exhausted cannot be Exhausted again', and 415.3.a readies it only in your own Awakening Phase. None of the five cards in the pool that ready gear (VEN-149, VEN-150, SFD-221, OGN-162, VEN-068) is Calm or Order, so inside this identity it is one draw per turn and there is no way around it. The Shrine is gear, so 143.4 ('Units enter the Board exhausted') never touches it.",
+          "SOLARI SHRINE'S CONDITION IS MET, AND ITS CAP IS ONE PER TURN. 'When you kill a stunned enemy unit' - Solari Chief's target is stunned at the moment it dies, and the kill is yours. 'You may exhaust this' is the cap: 414.1.b, 'A Game Object that is already Exhausted cannot be Exhausted again', and 415.3.a readies it only in your own Awakening Phase. None of the five cards in the pool that ready gear (VEN-149, VEN-150, SFD-221, OGN-162, VEN-068) is Calm or Order, so inside this identity it is one draw per turn and there is no way around it. The Shrine is gear, so 149.1 ('Gear enter play Ready.') applies to it.",
           "THE HIDDEN HALF IS CONFINED, THE UNIT HALF IS NOT. 811.1.d.2 makes Facebreaker's targets 'chosen from among options at that battlefield', so the priming stun lands where the card was hidden - and it also stuns a FRIENDLY body there, since the card says so. Solari Chief is played from hand and its text names no location ('choose an enemy unit'), so the kill reaches any battlefield.",
           "ARITHMETIC WITH THE QUANTITIES DECLARED. One [A] on the previous turn plus E5 + 1 Power removes ANY enemy unit whatever its Might, and leaves behind a 4 Might body, one card drawn and one buff. Without the Facebreaker the same line is two Solari Chiefs - E10 + 2 Power for the same removal plus a second body - which is why the entry declares three copies. The stun does not survive the turn (423.1.a.2), so both copies must be played in the same turn."
         ]
@@ -16413,7 +16413,7 @@
         ]
       },
       "steps": [
-        "Play Forgotten Signpost (2 Energy). It is gear, so 143.4 does not exhaust it.",
+        "Play Forgotten Signpost (2 Energy). It is gear, so 149.1 has it enter ready.",
         "In your Main Phase - 155, since Conscription has neither [Action] nor [Reaction] - play Conscription: 5 Energy + 2 Power for an enemy of 3 Might or less, or the same plus 5 XP for any enemy at a battlefield.",
         "Take control of it, exhaust it, recall it: 158.1 runs those in printed order, so 455 with 107.1.c put it in YOUR base, exhausted.",
         "If that was their last body at the battlefield, 323.6 strips their Control in the same Cleanup and the battlefield is open.",
@@ -18788,7 +18788,7 @@
           "quantity": 1,
           "role": "engine",
           "zone": "BOARD",
-          "note": "Order gear, E3. '1 Energy + 1 Order Power, exhaust: Kill a friendly unit. Look at the top 5 cards of your Main Deck. You may banish a unit from among them that has Might up to 1 more than the killed unit and play it, ignoring its cost. Then recycle the rest.' Gear enters ready (143.4 exhausts units; 359.2.d), so it works the turn it is played."
+          "note": "Order gear, E3. '1 Energy + 1 Order Power, exhaust: Kill a friendly unit. Look at the top 5 cards of your Main Deck. You may banish a unit from among them that has Might up to 1 more than the killed unit and play it, ignoring its cost. Then recycle the rest.' Gear enters ready (149.1; 359.2.d), so it works the turn it is played."
         },
         {
           "card": "UNL-084",
@@ -18821,7 +18821,7 @@
         ]
       },
       "steps": [
-        "Play Baited Hook (3 Energy). It enters ready — 143.4 exhausts units, and 359.2.d puts non-unit gear on the board ready at your base.",
+        "Play Baited Hook (3 Energy). It enters ready — 149.1, and 359.2.d puts non-unit gear on the board ready at your base.",
         "Play Sprite Queen (7 Energy + 1 Power). Her play trigger gives the first ready 3-Might Sprite with [Temporary], at your base.",
         "Each Beginning Phase: 315.1.b readies the Hook; the old Sprite dies (816.1.b) and a fresh ready Sprite is played. Both triggers are yours, so 383.3.d lets you order them.",
         "In your Main Phase (312.2.a), pay 1 Energy + 1 Order Power and exhaust the Hook. Kill the Sprite — free, since 816.1.b was going to kill it at the start of your next Beginning Phase anyway.",
@@ -20753,7 +20753,7 @@
         }
       ],
       "rulesVersion": "2026-07-16",
-      "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-orphan-synergy-rules.md §13), issue #153, from the two orphan rules hextech-formula-empower-gear and veiled-temple-readies-gear. Card text verbatim from data/corpus_flat.txt. Citations opened: 103.1.b.2, 103.4.c, 190.1, 190.6.d, 315.1.b, 441.1, 441.1.a, 441.1.b, 441.1.c, 441.2, 485.4.a, 485.5, 486.5, 487.5, 716. 827.1.c.3 is deliberately NOT cited: it governs discounts on an Empower COST, and nothing in this line pays one. The keyword-lens rule from CLAUDE.md was applied — the Empower family was opened with grep -i on 'empower', not on the bracketed form, which is what #34 found necessary. Trap check: no attack; no [Repeat]; no [Temporary]; no token; no recall; the gear enters exhausted by its own text rather than by 143.4, which applies to units only; nothing added in Awaken is carried past 167, since the E1 for the draw is spent in the Main Phase; the battlefield is declared a 1-in-3 draw with an uncontrolled start.",
+      "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-orphan-synergy-rules.md §13), issue #153, from the two orphan rules hextech-formula-empower-gear and veiled-temple-readies-gear. Card text verbatim from data/corpus_flat.txt. Citations opened: 103.1.b.2, 103.4.c, 190.1, 190.6.d, 315.1.b, 441.1, 441.1.a, 441.1.b, 441.1.c, 441.2, 485.4.a, 485.5, 486.5, 487.5, 716. 827.1.c.3 is deliberately NOT cited: it governs discounts on an Empower COST, and nothing in this line pays one. The keyword-lens rule from CLAUDE.md was applied — the Empower family was opened with grep -i on 'empower', not on the bracketed form, which is what #34 found necessary. Trap check: no attack; no [Repeat]; no [Temporary]; no token; no recall; the gear enters exhausted by its own text rather than by the 149.1 default (gear enter play Ready); nothing added in Awaken is carried past 167, since the E1 for the draw is spent in the Main Phase; the battlefield is declared a 1-in-3 draw with an uncontrolled start.",
       "anyBodies": {
         "count": 1,
         "note": "On a turn you conquer at the Veiled Temple, ready the Formula there for a second Empower in the same turn"
@@ -21127,7 +21127,7 @@
         }
       ],
       "rulesVersion": "2026-07-16",
-      "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-orphan-synergy-rules.md §18), issue #153, from the orphan rule profiteer-empower-relay. Card text verbatim from data/corpus_flat.txt. Citations opened: 103.1.b.3, 103.2.b, 315.1.b, 441.1, 441.1.a, 441.1.b, 441.2, 710. The uniqueness claim was swept over all 935 BASE codes, per walk document §11a. 827.1.c.3 is deliberately excluded, for the same reason as in hextech-formula-rage-amplifier-free-empower. Trap check: no attack of the entry's own and no Attacker designation claimed; no [Repeat]; no [Temporary]; no token is used as a cost, so 185 never arises; no recall; the gear enters exhausted by its own text, not by 143.4, which is a units rule; 167 is not touched."
+      "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-orphan-synergy-rules.md §18), issue #153, from the orphan rule profiteer-empower-relay. Card text verbatim from data/corpus_flat.txt. Citations opened: 103.1.b.3, 103.2.b, 315.1.b, 441.1, 441.1.a, 441.1.b, 441.2, 710. The uniqueness claim was swept over all 935 BASE codes, per walk document §11a. 827.1.c.3 is deliberately excluded, for the same reason as in hextech-formula-rage-amplifier-free-empower. Trap check: no attack of the entry's own and no Attacker designation claimed; no [Repeat]; no [Temporary]; no token is used as a cost, so 185 never arises; no recall; the gear enters exhausted by its own text, not by the 149.1 default (gear enter play Ready); 167 is not touched."
     },
     {
       "id": "scrutinizing-sergeant-blood-rose-xp-spike",
@@ -22829,7 +22829,7 @@
           "quantity": 1,
           "role": "engine",
           "zone": "BOARD",
-          "note": "Order gear, E7 P1. '[exhaust]: Play three 1 Might Recruit unit tokens. (You may play them to different locations.)' Gear enters ready (143.4 exhausts only units), so it can fire the turn it lands."
+          "note": "Order gear, E7 P1. '[exhaust]: Play three 1 Might Recruit unit tokens. (You may play them to different locations.)' Gear enters ready (149.1), so it can fire the turn it lands."
         }
       ],
       "needs": [],
@@ -23370,7 +23370,7 @@
           "quantity": 1,
           "role": "engine",
           "zone": "BASE",
-          "note": "Order gear, E7 P1. 'exhaust: Play three 1 Might Recruit unit tokens. (You may play them to different locations.)' Gear is not covered by 143.4 (which exhausts UNITS), so it enters ready and fires the turn it lands."
+          "note": "Order gear, E7 P1. 'exhaust: Play three 1 Might Recruit unit tokens. (You may play them to different locations.)' Gear enters ready (149.1), so it is ready and fires the turn it lands."
         },
         {
           "card": "OGN-111",
@@ -23413,7 +23413,7 @@
       },
       "steps": [
         "Establish Control of The Grand Plaza. A battlefield you provide starts uncontrolled (190.1): walk a body in, 190.3.a.1 applies Contested, 344.2 stages the Showdown, 348.2.a establishes Control and 348.2.a.1 makes it a Conquer worth 1 point.",
-        "Big turn: play the Vanguard Armory for E7 + 1 Order Power. Gear is not a unit, so 143.4 does not exhaust it — activate it the same turn for three 1 Might Recruits, played to the Plaza (its own reminder text plus 355.2.a).",
+        "Big turn: play the Vanguard Armory for E7 + 1 Order Power. Gear is not a unit, so 149.1 has it enter ready — activate it the same turn for three 1 Might Recruits, played to the Plaza (its own reminder text plus 355.2.a).",
         "Same turn: play Heimerdinger, Inventor for E3 + 1 Mind Power to the Plaza. He enters exhausted (143.4) and cannot use a copied exhaust ability yet. Four units at the Plaza.",
         "Next Main Phase: 315.1.b has readied both. Exhaust the Armory for three Recruits, then exhaust Heimerdinger for three more off his copy of the same ability. Ten units at the Plaza.",
         "Survive the opponent's turn with at least seven of the ten still there.",
@@ -24631,7 +24631,7 @@
         ]
       },
       "steps": [
-        "Play Gutter Palace (E4). Gear is not covered by 143.4, so it enters ready and its dial is available the same turn.",
+        "Play Gutter Palace (E4). Gear enters ready (149.1), so it is ready and its dial is available the same turn.",
         "In your Main Phase, set the two counters to exactly 4 and 4, using the Palace's own ability (discard 1, exhaust: a [Deflect] Bird at a battlefield) as the free adjustment.",
         "End your turn holding ready runes rather than spending them: 167 empties the Rune Pool, not the runes.",
         "On the opponent's turn, whenever they put a spell or ability on the Chain the state closes and 312.2.c gives you priority (813.1.c.1 admits a [Reaction] card there).",
@@ -26867,7 +26867,7 @@
           "quantity": 1,
           "role": "engine",
           "zone": "BOARD",
-          "note": "Order gear, E3. '[1 Energy][Order], [exhaust]: Kill a friendly unit. Look at the top 5 cards of your Main Deck. You may banish a unit from among them that has Might up to 1 more than the killed unit and play it, ignoring its cost. Then recycle the rest.' Gear enters ready (143.4 exhausts only units), so it fires the turn it lands, and 315.1.b readies it every Awakening."
+          "note": "Order gear, E3. '[1 Energy][Order], [exhaust]: Kill a friendly unit. Look at the top 5 cards of your Main Deck. You may banish a unit from among them that has Might up to 1 more than the killed unit and play it, ignoring its cost. Then recycle the rest.' Gear enters ready (149.1), so it fires the turn it lands, and 315.1.b readies it every Awakening."
         },
         {
           "card": "OGN-228",
@@ -26898,7 +26898,7 @@
         ]
       },
       "steps": [
-        "Play Baited Hook (3 Energy) and Vanguard Helm (2 Energy). Both are gear, so 143.4 leaves them ready.",
+        "Play Baited Hook (3 Energy) and Vanguard Helm (2 Energy). Both are gear, so 149.1 has them enter ready.",
         "First activation: pay 1 Energy + 1 Order Power and exhaust the Hook to kill any friendly unit. Look at the top five, banish a unit of Might up to one more than the killed one, and play it for free. Recycle the other four to the bottom (416.1.a).",
         "Buff that new body — the Helm does it for you from the second turn on, and any Order buff source does it on the first.",
         "Next Awakening readies the Hook (315.1.b). Kill the body it fetched. **705 removes every Buff as it leaves play** (*\"If a Unit leaves play, remove all Buffs from it\"*) and **711 reads the corpse at PRINTED Might** (*\"Units in Non-Board Zones are evaluated according to their printed Might\"*, whose example says outright that it does not matter if there were effects raising or lowering its might while it was on the board), so the tutor ceiling is printed Might plus one and NOT two.",
@@ -27834,7 +27834,7 @@
         ]
       },
       "steps": [
-        "Play the Arena Bar (E3). It is gear, so 143.4 does not exhaust it and it can fire the turn it lands.",
+        "Play the Arena Bar (E3). It is gear, so 149.1 has it enter ready and it can fire the turn it lands.",
         "Have a friendly unit at Might 4 with no buff on it — a body that has moved this turn is the natural target, since the Arena Bar requires an exhausted one.",
         "Exhaust the Arena Bar: buff that unit. 703 gives +1 Might, taking it from 4 to 5.",
         "709's event fires — it has become [Mighty]. Exhaust Grand Duelist and channel 1 rune exhausted.",
@@ -27981,7 +27981,7 @@
         ]
       },
       "steps": [
-        "Play Questionable Tome (3 Energy). Gear enters ready (143.4 exhausts only units).",
+        "Play Questionable Tome (3 Energy). Gear enters ready (149.1).",
         "Exhaust the Tome to pay its own [Empower] cost. It becomes Empowered — which is 'you empower something else' for the legend, so Soul's Reflection becomes Empowered too (441.1).",
         "Disempower the legend and exhaust it: give a unit at a battlefield -2 Might this turn.",
         "Next turn, Awaken readies both (315.1.b). Pay 1 Energy, disempower the Tome and exhaust it: draw 1. The Tome is now un-Empowered again.",
@@ -28478,7 +28478,7 @@
           "THE SWEEP MUST BE TOTAL, AND THAT IS THE WHOLE ENTRY. Yone's trigger is not 'when I conquer' — it is 'When I conquer a battlefield that was uncontrolled'. The word arrives only if Stare Down moves EVERY enemy body home: 323.6, 'Players lose control of any controlled Battlefields without their Units occupying them if the turn is in an Open State and there is no Showdown or Combat ongoing there', strips the opponent's Control at the next Cleanup only when their last unit has left. Leave one body of 7+ Might behind and three things go wrong at once — the opponent keeps Control, so the battlefield was never uncontrolled; Yone's move stages a COMBAT rather than a Showdown, because 323.9 marks a Combat 'at each Battlefield that Contested was applied to that have Units present controlled by opposing players'; and even winning that combat conquers a battlefield that WAS controlled (466.5.d), so 383.4.g.1 keeps the base strike off the Chain. A partial sweep is not a cheaper version of this line, it is a different line (see stare-down-arachnoid-horror-lone-survivor, which wants exactly that).",
           "THE THRESHOLD AND THE DAMAGE ARE THE SAME NUMBER, WHICH IS WHY BONESHIVER IS IN uses[] AND NOT IN A NOTE. Yone is M5. 434.1.d — 'The Top-Most Card has its Might modulated by the Might Bonus of all cards Attached to it' — plus 137.3 and 477.3.d put Boneshiver's +2 on him: M7. Stare Down chooses Yone, so it sweeps every enemy body under 7; Yone then deals 7. One card raises both bars by the same 2. A Might Bonus is NOT a buff (702 counter): 702.3's one-per-unit cap never touches it, and it does not collide with anything that buffs him.",
           "THE EQUIP IS NEARLY FREE, AND IT IS FREE ONLY ONCE. [Weaponmaster] reads 'When you play me', so 818.1 ('Equip is an Activated Ability keyword') and 818.1.b are paid at full price on any later re-attach: play Boneshiver first for E3, then play Yone and take the one-rainbow discount on its [Equip] cost of 1 Energy + 1 Body rune, which 356.6 ('Energy and Power costs can't be reduced below 0') leaves at 1 Energy and no rune. And 818.1's Equip is an activation, never a play, so nothing here fires a 'when you play' trigger twice.",
-          "THE TURN AFTER, NOT THE TURN OF. 143.4 — 'Units enter the Board exhausted' — so Yone cannot Standard-Move the turn he lands, and 144.1.a confines the move to the Main Phase anyway. The engine runs from the turn after he arrives, with 315.1.b readying him in your Awaken. Boneshiver is gear and 143.4 speaks only of Units, so it attaches and works the turn it is played.",
+          "THE TURN AFTER, NOT THE TURN OF. 143.4 — 'Units enter the Board exhausted' — so Yone cannot Standard-Move the turn he lands, and 144.1.a confines the move to the Main Phase anyway. The engine runs from the turn after he arrives, with 315.1.b readying him in your Awaken. Boneshiver is gear and 149.1 has gear enter play ready, so it attaches and works the turn it is played.",
           "THE CONQUER, RULE BY RULE, AND WHY NO DAMAGE IS TAKEN. Stare Down MOVES the garrison home; 455 makes a Recall a relocation 'without it being a Move', so this is a Move and 323.6 reads it. Yone walks in (144.4.a; the cost is his own exhaust, 144.2 / 420.3.a) and applies Contested (190.3.a.1, 450). The next Cleanup stages a Showdown (323.8) and NO Combat (323.9 needs 'Units present controlled by opposing players'), 323.12 opens it, 348.2.a establishes Control and 348.2.a.1 says outright 'This results in a Conquer'. 471.1 gives the point. Nothing is assigned any damage in either direction — 465.1's damage tasks never run — which is also why no [Assault] and no excess-damage card belongs beside this one.",
           "THE VICTIMS ARE NOT TARGETS. 355.10.d: an object is not a target when 'It is programmatically selected based on its characteristics rather than chosen', worked example \"'Kill all units at a battlefield' targets a battlefield, but does not target any units.\" 'All enemy units at that battlefield with less Might than the chosen unit' is that shape, so a garrison of [Deflect] bodies is swept for free. Yone's own base strike is the opposite: 'an enemy unit in a base' is chosen, and 809.1.c / 809.1.d tax it.",
           "WHAT IT COSTS, WITH THE QUANTITIES DECLARED. Setup: Boneshiver E3, Yone E5 + 1 Body Power, the discounted [Equip] E1 — nine Energy and one Power, spread over a turn. Recurring, from the next turn on: Stare Down E2 plus Yone's own exhaust. Per bloodless Conquer it pays 1 point, 7 damage to a unit standing in the enemy BASE (a zone almost nothing in the pool reaches — OGN-229, OGN-234 and SFD-158 are the others that do not restrict themselves to a battlefield) and 1 rune channelled exhausted from Boneshiver's appended [Effect]. Three Stare Downs is the cap (103.2.b) and 470 allows one Score per battlefield per turn."
@@ -30766,7 +30766,7 @@
         ]
       },
       "steps": [
-        "Earlier turns: play Pakaa Protector (E5) and Forgotten Signpost (E2). 143.4 exhausts the unit on arrival; gear enters ready.",
+        "Earlier turns: play Pakaa Protector (E5) and Forgotten Signpost (E2). 143.4 exhausts the unit on arrival; gear enters ready (149.1).",
         "Main Phase. Standard-Move Pakaa base to battlefield (144.4.a; her exhaust is the cost, 144.2 / 420.3.a). Her trigger reveals the top card of your Main Deck.",
         "If it is a unit — an Undertitan among them — draw it, and the Undertitan's own 'As I'm revealed from your deck' trigger adds 2 Energy (424.1). If it is not a unit, it goes to your trash and Pakaa gets +2 Might this turn.",
         "Activate Forgotten Signpost: exhaust any other unit you control and exhaust the Signpost, and move Pakaa to that unit's location. She is not exhausted by this move (420.3.a).",
@@ -34215,7 +34215,7 @@
       },
       "steps": [
         "Provide the Veiled Temple as one of your three battlefields (103.4.c); 485.5 decides whether it is in play.",
-        "Play Temporal Portal (E3). Gear enters ready, since 143.4 exhausts units only.",
+        "Play Temporal Portal (E3). Gear enters ready (149.1).",
         "In a Main Phase, pay 1 rainbow and exhaust the Portal: the next spell you play this turn has [Repeat] equal to its cost.",
         "Play that spell and pay the [Repeat] cost as an Additional Cost during the steps of playing it (820.1.c.1). Its effect executes a second time (820.1.b), with different choices if you want them (820.2.a).",
         "Take the Veiled Temple — walk a unit in and Conquer it (348.2.a / 348.2.a.1 for a Showdown, or 466.5 / 466.5.d out of a Combat). The Temple's trigger fires: ready a friendly gear.",
@@ -37509,7 +37509,7 @@
           "THE MONUMENT'S [Temporary] IS A WINDOW, NOT A DRAWBACK. 816.1.b is 'At the start of this permanent's controller's Beginning Phase, before scoring, kill this' — so a Monument played in your Main Phase covers the rest of your turn AND the whole of the opponent's turn, and dies before your own Scoring Step. It is a two-Energy shield over exactly the window in which the opponent acts, and it cannot get in the way of anything that happens at 315.2.",
           "816.1.c is worth knowing beside it: 'The Trigger Condition is the controller of the permanent's Beginning Phase starting', so a Monument that ARRIVES during that same instant is not killed by it — which is why the card is played on your own turn, deliberately, and not left around.",
           "Ruin Runner is the anchor the Monument cannot replace: at 6 Energy and 5 Might he is a body the opponent's single-target removal simply cannot address, so he holds a battlefield through 469.2's Hold check without needing the gear at all. The Monument is what extends that immunity — as a tax rather than a prohibition — to the rest of the garrison for one round trip.",
-          "The Monument is gear, so 143.4 (units enter exhausted) never applies to it and it is live the moment it lands; and it grants [Deflect] to friendly UNITS, not to itself, so `OGN-022 Thermo Beam` and `SFD-135 Factory Recall` answer the Monument at full price."
+          "The Monument is gear, so 149.1 (gear enter play ready) applies to it and it is live the moment it lands; and it grants [Deflect] to friendly UNITS, not to itself, so `OGN-022 Thermo Beam` and `SFD-135 Factory Recall` answer the Monument at full price."
         ]
       },
       "steps": [
@@ -40655,7 +40655,7 @@
       },
       "steps": [
         "Bring Ripper's Bay as one of your three battlefields; 190.6.d never switches it off, so it is live from turn one whether or not anyone controls it.",
-        "Play Pack of Wonders (E2). It is gear, so 143.4 does not apply and its exhaust ability is available the turn it lands.",
+        "Play Pack of Wonders (E2). It is gear, so 149.1 has it enter ready and its exhaust ability is available the turn it lands.",
         "Each of your Main Phases, exhaust it to return one of your own units standing at the Bay to your hand.",
         "The Bay's trigger fires on that return. Pay 1 Energy and channel 1 rune exhausted (430.2.a's default is overridden by the card's own wording).",
         "164.2.b's 'Recycle this: [Reaction] — Add [C]' carries no exhaust, so the new rune is live Power at once; 415.3.a readies it, and the Pack, at your next Awakening.",
@@ -41911,7 +41911,7 @@
         ]
       },
       "steps": [
-        "Play Galio, Indefatigable (3 Energy + 1 Power) to a battlefield and play Divining Shells (2 Energy); 143.4 exhausts units only, so the gear is ready to use the turn it lands.",
+        "Play Galio, Indefatigable (3 Energy + 1 Power) to a battlefield and play Divining Shells (2 Energy); 149.1 has gear enter ready, so the gear is ready to use the turn it lands.",
         "Let the opponent declare the attack. 464.2.c.3 hands out the Attacker and Defender designations and 465.2.c fixes their summed Might, which is now countable.",
         "In the resulting Closed State play Back to Back (3 Energy, [Reaction], 813.1.c.1): +2 on Galio and +2 on a second body of yours. Galio is Might 8.",
         "If the attack still reaches 8, activate Divining Shells - 'Kill this, exhaust', no Energy and no Power, at [Action] speed (806.1.c.2) - for +2 more. Galio is Might 10.",
@@ -43419,7 +43419,7 @@
           "THE TEMPLATE IS SHARED AND THE REFERENT IS NOT, WHICH IS THE ENTRY. Tools of Empire reads 'If THIS is [Empowered]' - 053.2 makes 'this' the gear itself - so its doubling is bought once, on the gear, and applies to every target forever. Guttural Roar reads 'If IT'S [Empowered]', where 'it' is the unit just chosen, so its doubling has to be bought on the BODY. Two cards, one wording, opposite objects; a reader who Empowers the gear and expects the spell to double as well has paid for the wrong thing.",
           "AND ONE BODY SATISFIES BOTH SIDES AT ONCE. Brutal Hunter Empowered is a 6 Might body with [Ganking]. Point an Empowered Tools of Empire at him for +4, and a Guttural Roar at him for another +4 because HE is Empowered: 6 + 4 + 4 = 14 Might for the turn, off a 3 Energy + 1 Power body. Without the Empowers the same two cards give 4 + 2 + 2 = 8.",
           "441.2 IS WHY THE SPEND IS A PURCHASE AND NOT A COST. '\"Empowered\" is a state for Game Objects on the board that other game effects and abilities can reference', and 441.1.b forbids re-Empowering. So the three payments - 3 Energy for the Hunter, 2 Energy for the gear, and nothing further - are made once and every activation afterwards is at the doubled rate.",
-          "THE GEAR IS FREE EVERY TURN, AND THE PHASE ORDER IS WHY. Its cost is ':rb_exhaust:' and nothing else, and 415.3.a readies all non-spell Game Objects a player controls during their Awakening Phase - which 315.1 places BEFORE the Beginning Phase and 316, the Main Phase. So +4 Might a turn costs zero resources after the 4 Energy that put the gear down. 143.4 exhausts units and not gear, so it is live the turn it lands.",
+          "THE GEAR IS FREE EVERY TURN, AND THE PHASE ORDER IS WHY. Its cost is ':rb_exhaust:' and nothing else, and 415.3.a readies all non-spell Game Objects a player controls during their Awakening Phase - which 315.1 places BEFORE the Beginning Phase and 316, the Main Phase. So +4 Might a turn costs zero resources after the 4 Energy that put the gear down. 149.1 has gear enter ready, so it is live the turn it lands.",
           "AND [GANKING] IS THE OTHER HALF OF WHAT THE EMPOWER BUYS. 144.4.c.1: 'Units with Ganking may use their Standard Move to Move from Battlefield to Battlefield.' 810.1.c.3 is the limit - 'It does not give additional abilities or activations of Movement, only new options for the Standard Move' - so it is not an extra move, it is the one move reaching a battlefield the base-and-back walk of 144.4 cannot.",
           "WHERE THE 14 GOES. 465.2.c reads Might at assignment and 465.2.c.4 caps each assignment at minimum lethal, so a 14 Might attacker into a small garrison is mostly excess damage (R28 = A) with no payoff in this domain - the Might is for winning combats and for surviving them, not for feeding anything. Both pumps say 'this turn' and expire at cleanup.",
           "WHAT IT IS NOT. Nothing here scores; 469 defines Scoring as Conquer or Hold and none of the three touches either."
@@ -44486,7 +44486,7 @@
           "quantity": 1,
           "role": "engine",
           "zone": "BATTLEFIELD",
-          "note": "Order gear, E7 P1. ':rb_exhaust:: Play three 1 :rb_might: Recruit unit tokens. (You may play them to different locations.)' Gear enters ready (143.4 exhausts only units) and 315.1.b readies it every Awakening, so it is three bodies a turn, forever. One Recruit carries the Blade and stands at Might 5; another pays the next [Equip] cost."
+          "note": "Order gear, E7 P1. ':rb_exhaust:: Play three 1 :rb_might: Recruit unit tokens. (You may play them to different locations.)' Gear enters ready (149.1) and 315.1.b readies it every Awakening, so it is three bodies a turn, forever. One Recruit carries the Blade and stands at Might 5; another pays the next [Equip] cost."
         }
       ],
       "needs": [],
@@ -44510,7 +44510,7 @@
         ]
       },
       "steps": [
-        "Play SFD-168 Vanguard Armory (7 Energy + 1 Power). It is gear, so 143.4 does not exhaust it and its ability is live the same turn.",
+        "Play SFD-168 Vanguard Armory (7 Energy + 1 Power). It is gear, so 149.1 has it enter ready and its ability is live the same turn.",
         "Exhaust the Armory: play three 1 Might Recruit unit tokens, at least two of them to the same location.",
         "Play SFD-178 Blade of the Ruined King (3 Energy + 1 Power) and pay its [Equip]: one Order rune, and kill one Recruit (185.2.d makes the token a legal friendly unit for the cost). Attach it to a second Recruit, now Might 5 (718.4, 477.3.d) and therefore [Mighty] (709).",
         "The opponent removes the carrier. It changes zones from the board to the trash, so 719.5 detaches the Blade, which remains in its current zone - still on the board, at that battlefield.",
@@ -46263,7 +46263,7 @@
           "FLOORED AND UNFLOORED ARE DIFFERENT CARDS, AND THE POOL SPLITS BY SET. The nine Origins reductions carry a 'to a minimum of 1' floor and the fourteen from Spiritforged, Unleashed and Vendetta do not. Both cards here are Origins and both are floored, so neither can kill: 143.2.a needs marked damage at or above Might and a body at 1 Might still needs 1 damage. What they do is move a target under somebody else's threshold.",
           "WHICH IS WHERE THE VALUE IS, AND IT IS TWO DIFFERENT THRESHOLDS. A Might gate - 'kill an enemy unit with 3 :rb_might: or less' and its siblings - becomes reachable; and 465.2.c.4 caps combat assignment at 'the minimum required to constitute lethal damage', so a shrunk defender costs less of your attacking Might and the remainder is excess damage. Shrinking the defender is the cheaper of the two levers on excess: a buff is fixed at +1 by 703, and Smoke Screen is -4 for 2 Energy and a Power.",
           "THE FLOORS DO NOT STACK INTO SOMETHING WORSE. Each reduction is snapshotted separately at its own moment of application, so an Orb (-1) followed by a Smoke Screen (-4) on a 10 Might body is 10 - 1 - 4 = 5, and the same pair on a 3 Might body is 3 - 1 = 2 and then -1 more (snapshotted, since 2 - 4 would breach the floor) = 1. Read the floor as capping the REDUCTION, never the result.",
-          "AND THE GEAR IS THE REPEATABLE HALF. The Orb's cost is an exhaust and nothing else, and 415.3.a readies all non-spell Game Objects you control in your own Awakening Phase, so it is -1 Might every turn for one Energy paid once. 143.4 exhausts units and not gear, so it is live the turn it lands.",
+          "AND THE GEAR IS THE REPEATABLE HALF. The Orb's cost is an exhaust and nothing else, and 415.3.a readies all non-spell Game Objects you control in your own Awakening Phase, so it is -1 Might every turn for one Energy paid once. 149.1 has gear enter ready, so it is live the turn it lands.",
           "WHAT IT IS NOT. Nothing here scores; 469 defines Scoring as Conquer or Hold. And 143.2.b is why a reduction is not damage: negative Might READS as 0 for spells, abilities and combat damage but IS NOT 0, so nothing here generates a kill event."
         ]
       },
@@ -47975,14 +47975,14 @@
           "THE [TEMPORARY] CLOCK RUNS ON YOUR TURN, NOT THEIRS. 816.1.b: 'At the start of this permanent's controller's Beginning Phase, before scoring, kill this', with 816.1.c making the Trigger Condition your own Beginning Phase starting. So a Sumpworks Map played in YOUR Main Phase lives through the rest of your turn AND the whole of the opponent's, and dies at the start of your next Beginning Phase - before your own scoring, which costs you nothing since the card only reads THEIR scores. That is a full opponent's turn of coverage for 2 Energy.",
           "AND PLAYING IT REACTIVELY IS USUALLY WORSE, WHICH IS THE TRAP. 813.1.c.1 lets a [Reaction] card be played 'during Closed States on any player's turn' - but 312.2.a gives priority in a Neutral Open State only to the Turn Player, so on the opponent's turn you get a window only inside a Closed State or a Showdown. Their Hold at 315.2.b.2 happens in the Beginning Phase, where 335 gives nobody priority with an empty chain; unless one of their own triggers opens a Closed State first, there is no moment in which to answer a Hold with this card. Play it in advance.",
           "WHAT IT ACTUALLY CATCHES, AND HOW MANY TIMES. 469 defines Scoring as a Conquer or a Hold, 470 caps Scoring at once per battlefield per turn and 485.4 puts two on a Duel table - so the ceiling is TWO draws per opponent turn, and only if they score at both. 471.1.a.1 is the reason a card-text point does not count for you here either way: it is a Gain and not a Score, and this card says 'scores'.",
-          "IT IS A GEAR, WHICH MATTERS FOR TWO THINGS. 143.4 makes only UNITS enter exhausted, so a gear is live the turn it lands; and it counts toward every 'control N or more gear' threshold while it is out - which in this domain is VEN-058 Patched Porobot (3 or more OTHER gear), SFD-072 Dropboarder (2 or more gear), VEN-064 Plaza Guardian (1 Energy less per gear) and VEN-076 Repair Specialist ([Assault] equal to the number of gear). A card you were playing for the draw is also a step on that count for one turn.",
+          "IT IS A GEAR, WHICH MATTERS FOR TWO THINGS. 149.1 has gear enter ready, so a gear is live the turn it lands; and it counts toward every 'control N or more gear' threshold while it is out - which in this domain is VEN-058 Patched Porobot (3 or more OTHER gear), SFD-072 Dropboarder (2 or more gear), VEN-064 Plaza Guardian (1 Energy less per gear) and VEN-076 Repair Specialist ([Assault] equal to the number of gear). A card you were playing for the draw is also a step on that count for one turn.",
           "AND 816.2 CAPS THE OBVIOUS MISPLAY IN THE OTHER DIRECTION. 'Multiple instances of Temporary are redundant', so nothing you do to it shortens or lengthens the clock; the only way to keep the effect running is a second copy, and 103.2.b allows three.",
           "WHY IT IS A SINGLE-CARD ENTRY. Nothing in the pool extends a [Temporary] permanent's life or makes an opponent score more often on your terms, and the card reads the opponent's action rather than yours - so there is no partner to price. Its value is the timing, which is a property of the card.",
           "WHAT IT IS NOT. Nothing here scores; 469 defines Scoring as Conquer or Hold, and this card is paid BY the opponent doing it."
         ]
       },
       "steps": [
-        "Play Sumpworks Map (2 Energy) in your OWN Main Phase, not in response to anything. 143.4 exhausts units and not gear, so it is live at once.",
+        "Play Sumpworks Map (2 Energy) in your OWN Main Phase, not in response to anything. 149.1 has gear enter ready, so it is live at once.",
         "816.1.b will kill it at the start of your NEXT Beginning Phase, before scoring - so it covers the rest of your turn and all of the opponent's.",
         "Every time an opponent scores during that window, draw 1. 470 with 485.4 caps them at two Scores a turn, so the ceiling is two cards.",
         "While it is out it also counts toward every gear-count clause in the deck.",
@@ -48206,7 +48206,7 @@
           "AND THE SARCOPHAGUS IS THE ONLY PLACE IT IS WORTH ANYTHING. Every other route out of the trash in the pool ignores the Energy cost outright - OGN-198 The Harrowing, OGN-196 Soulgorger, UNL-142 Heedless Resurrection, UNL-179 Rift Herald's Deathknell, SFD-090 The Zero Drive - so a discount buys nothing there. UNL-148 Cursed Sarcophagus prints '(You must pay its costs.)', which is what turns 366.2.a into 2 Energy a turn: Void Drone comes back for 1 Energy, every turn, forever.",
           "206 IS THE OTHER HALF AND IT REFUSES THE OBVIOUS UPGRADE. 'Effects that need to determine a card's cost for any purpose always use its printed or copied cost, even if that cost is increased, decreased, or ignored as the card is played.' So the discount is real for PAYING and invisible to any COST GATE: SFD-140 Fizz, Trickster's 'a spell from your trash with Energy cost no more than :rb_energy_3:' still reads Drag Under's printed 5, and UNL-142 Heedless Resurrection's 'costs no more Energy ... than the killed unit' still reads Void Drone's printed 3. The pool has exactly TWO cards with this passive, swept on the corpus: SFD-010 Void Drone (Fury) and SFD-164 Drag Under (Order).",
           "397 MAKES THE SARCOPHAGUS'S POOL EXCLUSIVE, AND ITS WORKED EXAMPLE IS A POOL CARD. 'A component Linked Ability that references a Game Object affected by another Ability in the set may only interact with Game Objects affected by the Abilities it is Linked with', with 'Any units banished by effects other than component Linked Abilities in the same set as the activated ability cannot be played when resolving the activated ability.' So 'a unit banished with this' reaches ONLY what this Sarcophagus's own play trigger banished - no other banisher can feed it - and 395 scopes a linked set to one Game Object, so a second Sarcophagus does not share the first one's pool and finds a trash the first already emptied.",
-          "THE RATE IS ONE BODY A TURN AND 381 IS WHY. The Sarcophagus's ability carries no [Action] and no [Reaction], so 'All Activated Abilities can only be activated on the Controlling Player's Turn and during an Open State' confines it to your own Main Phase; 315.1.b readies it every Awakening. Gear enters ready (143.4 exhausts only units), so the first activation is available the turn it is played - but only after something has already died into the trash.",
+          "THE RATE IS ONE BODY A TURN AND 381 IS WHY. The Sarcophagus's ability carries no [Action] and no [Reaction], so 'All Activated Abilities can only be activated on the Controlling Player's Turn and during an Open State' confines it to your own Main Phase; 315.1.b readies it every Awakening. Gear enters ready (149.1), so the first activation is available the turn it is played - but only after something has already died into the trash.",
           "THE BODY ARRIVES EXHAUSTED AND AT YOUR BASE. 143.4 has it enter exhausted, so it walks on the following turn (144.4 confines the Standard Move to base and battlefield), and 355.2.a sends a played unit to 'the controller's Base or a Battlefield the controller controls'. This is a grinding engine, not a tempo one, and the entry prices it that way.",
           "WHY VOID DRONE AND NOT A BIGGER BODY. The Sarcophagus makes you pay full price, so the cheapest body is the most activations - and Void Drone is the only unit in the pool whose printed cost DROPS when it is played from the Sarcophagus. Any other 3-Energy body costs 3 there; this one costs 1, which is the entire content of 366.2.a."
         ]
@@ -48214,7 +48214,7 @@
       "steps": [
         "Run a Fury/Chaos legend and get SFD-010 Void Drone into your trash - played and killed, discarded, or milled.",
         "Play UNL-148 Cursed Sarcophagus (4 Energy + 1 Power). Its play trigger banishes all units from your trash, Void Drone among them. 397 makes that banished set the only thing its exhaust can ever reach.",
-        "Gear enters ready (143.4 exhausts only units), so exhaust the Sarcophagus the same turn if the trash was already stocked: play a unit banished with this, paying its costs.",
+        "Gear enters ready (149.1), so exhaust the Sarcophagus the same turn if the trash was already stocked: play a unit banished with this, paying its costs.",
         "366.2.a applies Void Drone's passive in Banishment - 'These apply at all times in any zone from which the card with the ability can be played' - so its cost there is 3 - 2 = 1 Energy.",
         "It enters your base exhausted (143.4, 355.2.a) and walks on the following turn.",
         "Your Awakening readies the Sarcophagus (315.1.b) and 381 lets you activate it again in your own Main Phase: one body a turn for 1 Energy, for as long as the banished pool lasts.",
@@ -49460,12 +49460,12 @@
           "429.3 IS WHY IT ARRIVES IN TIME. 'Activated abilities that Add resources and have the Reaction tag can be activated at any time that spells or abilities require resources be paid', with Riot's own example spelling out that this includes the Pay Costs step after you have begun playing the spell. 429.2 resolves such an ability as soon as it is finalized and 429.2.a stops Priority and Focus passing while it does - which is the reminder text 'Abilities that add resources can't be reacted to' is pointing at.",
           "THE SWEEP, WITH ITS MEMBERS NAMED. Cards that add ENERGY at [Reaction] speed, over the whole pool: OGN-098 Energy Conduit (Mind gear, unconditional), UNL-049 Honeyfruit's [Level 6] mode (Calm gear), UNL-093 Dragonsoul Sage (Body unit), OGS-014 Lux, Crownguard (Order unit, and only to play spells), OGN-253 Hand of Noxus (Fury/Order legend, [Legion]-gated), UNL-197 Scorn of the Moon (Mind/Chaos legend), VEN-141 Butcher of the Sands (Fury/Body legend, costs 2 rainbow) and SFD-083 Hextech Anomaly (Mind gear, the general Power-to-Energy converter, already catalogued in this lane as hextech-anomaly-wind-wall-off-turn-counter). In Calm/Mind the unconditional permanents are exactly these two.",
           "HONEYFRUIT'S RIDER IS A CONTINUOUS DEPENDENT ABILITY, NOT A PLAY TRIGGER. 824.1.d makes it Active or Inactive as the counter moves, so a Honeyfruit played at 0 XP simply improves when you reach six - unlike a [Level] rider on a play trigger, which is spent for good if the copy is played early. Below six it is 1 rainbow Power; at six it is 1 Power AND 1 Energy off the same exhaust, which is the best rate in the domain.",
-          "AND BOTH ARE GEAR, WHICH PAYS TWICE. 143.4 exhausts only UNITS, so the Conduit is live the turn it lands (Honeyfruit prints its own 'This enters exhausted' and is not); and while they are out they count toward every 'control N or more gear' clause - SFD-072 Dropboarder, VEN-058 Patched Porobot, VEN-064 Plaza Guardian, VEN-076 Repair Specialist.",
+          "AND BOTH ARE GEAR, WHICH PAYS TWICE. 149.1 has gear enter ready, so the Conduit is live the turn it lands (Honeyfruit prints its own 'This enters exhausted' and is not); and while they are out they count toward every 'control N or more gear' clause - SFD-072 Dropboarder, VEN-058 Patched Porobot, VEN-064 Plaza Guardian, VEN-076 Repair Specialist.",
           "WHAT IT IS NOT. Nothing here scores; 469 defines Scoring as Conquer or Hold. And one exhaust each per turn is the cap - 415.3.a readies them only in your own Awakening, so three of each (103.2.b) is the only way to hold more than two answers open."
         ]
       },
       "steps": [
-        "Play Energy Conduit (3 Energy); 143.4 exhausts units and not gear, so it is live at once. Play Honeyfruit (2 Energy), which prints its own 'This enters exhausted' and comes online at your next Awakening (415.3.a).",
+        "Play Energy Conduit (3 Energy); 149.1 has gear enter ready, so it is live at once. Play Honeyfruit (2 Energy), which prints its own 'This enters exhausted' and comes online at your next Awakening (415.3.a).",
         "Leave them ready at the end of your turn. 167 empties the Rune Pool, but an exhaust-cost ability is not a pool.",
         "On the opponent's turn, when a spell you want to answer goes on the Chain, begin playing your counter.",
         "In the Pay Costs step, activate the Conduit for 1 Energy and Honeyfruit for 1 rainbow Power (429.3), and 429.2.a keeps priority from passing while they resolve.",
@@ -49820,7 +49820,7 @@
           "187.5 IS WHY 'ENTERS EXHAUSTED' IS NOT A COSMETIC. The Gold token prints '[Reaction][>] Kill this, :rb_exhaust:: [Add] :rb_rune_rainbow:' - its own cost includes an exhaust, so an EXHAUSTED Gold cannot pay it and is dead until its controller's next Awakening (315.1.b, 415.3.a). 184.1 is the rule that lets an effect override the default: 'The effect may state that the token enters ready or exhausted, if that state is contrary to the default for the token's type.' Card Sharp says exhausted; Renata's static says your tokens enter ready, and R25 = A settles that the static wins.",
           "SO RENATA CONVERTS YOUR TWO GOLD INTO LIVE POWER AND LEAVES THEIRS DEAD FOR A TURN. Your two enter ready and can be killed for 2 rainbow Power in the window they were created - which is the whole tempo of the card. Theirs entered exhausted and stays that way until their Awaken, so it never answers anything you do this turn. 182 is the reason Renata cannot help them: she says 'Your tokens', and the Gold they took is theirs.",
           "AND THE CHEM-BARONESS TAXES THE SAME WORD AGAIN. 'While your score is within 3 points of the Victory Score, your Gold [Add] an additional :rb_energy_1:' - so late in the game each of your two Gold is 1 Power AND 1 Energy while theirs is still 1 Power. The threshold is format-sensitive: 5 of 8 under 194.3, 8 of 11 under 489.3.",
-          "THE GOLD IS GEAR, NOT A UNIT, AND THAT MATTERS TWICE. 143.4 exhausts only units, so the 'exhausted' on a Gold is entirely the creating effect's doing (184.1) rather than the default; and 457.1 recalls an un-attached non-Unit Gear at a battlefield to its controller's base at the next Cleanup, so a Gold made at a battlefield does not stay there. Neither changes the arithmetic, but both are why the token behaves unlike the Recruit tokens Renata is usually paired with.",
+          "THE GOLD IS GEAR, NOT A UNIT, AND THAT MATTERS TWICE. 149.1 has gear enter ready, so the 'exhausted' on a Gold is entirely the creating effect's doing (184.1) rather than the default; and 457.1 recalls an un-attached non-Unit Gear at a battlefield to its controller's base at the next Cleanup, so a Gold made at a battlefield does not stay there. Neither changes the arithmetic, but both are why the token behaves unlike the Recruit tokens Renata is usually paired with.",
           "IT IS ALSO A BODY. Card Sharp is a Might 3 unit, so the 3 Energy is not paid purely for the ramp - which is the difference between this and every Gold-producing gear in the pool."
         ]
       },
@@ -50204,7 +50204,7 @@
         ]
       },
       "steps": [
-        "Play Questionable Tome (3 Energy). 143.4 exhausts units and not gear, so it is live at once.",
+        "Play Questionable Tome (3 Energy). 149.1 has gear enter ready, so it is live at once.",
         "Activate its [Empower] by exhausting it - no Energy, no Power - and 441.2 makes the state permanent until something disempowers it.",
         "Every Shock Blast from now on costs 1 Energy + 1 Power (356.4.b, floored by 356.6) for Deal 4, at [Action] speed.",
         "If you want the Tome's card instead, pay 'Disempower this, 1 Energy, exhaust' - and accept that the discount is off until your next Awakening lets you re-Empower (441.1.b, 415.3.a).",
@@ -51360,14 +51360,14 @@
           "THE PROBLEM THIS SOLVES IS THE ONE THIS PROJECT HAS MEASURED ON EVERY TOKEN LINE. A 1 Might token dies to any single point of damage (143.2.a kills on marked damage at or above Might), and a simultaneous 1 to every body at a battlefield removes ANY number of them at once - which is why the binding constraint on a token board is Might PER BODY and not the number of bodies. A mass +2 makes every Recruit a 3 and takes the whole board out of that range for the turn.",
           "AND IT IS THE ONLY ONE IN THIS DOMAIN PAIR AT [ACTION] SPEED. 806.1.c.1 gives it 'This can be played during showdowns on any player's turn', so it is bought AFTER 464.2.c.3 has designated the attackers and 465.2.c has fixed both sides' summed Might - the sweeper is already on the Chain when you decide. Compare OGN-233 Grand Strategem (Order, 6 Energy + 3 Power, +5 to friendly units, also [Action]): bigger and far more expensive. The Strike is 5 Energy + 1 Power for +2, which on a board of six bodies is +12 summed Might.",
           "'FRIENDLY UNITS' MEANS ALL OF THEM, EVERYWHERE. There is no 'up to' and no location clause, so bodies at both battlefields and at your base are all covered - which matters because the Armory's own parenthetical, '(You may play them to different locations.)', is what puts Recruits at two battlefields in one activation. 485.4 gives a Duel two, and 355.2.a would otherwise put a token at your base or one battlefield you control.",
-          "THE ARMORY IS ONE ACTIVATION A TURN AND THAT IS THE RATE. Its cost is an exhaust and nothing else, so it is free after the 7 Energy + 1 Power that put it down, and 415.3.a readies it in your own Awakening; 143.4 exhausts only units, so it is live the turn it lands. Three tokens a turn forever, and 187.1 makes each a domainless unit token with 1 Might and the Recruit tag.",
+          "THE ARMORY IS ONE ACTIVATION A TURN AND THAT IS THE RATE. Its cost is an exhaust and nothing else, so it is free after the 7 Energy + 1 Power that put it down, and 415.3.a readies it in your own Awakening; 149.1 has gear enter ready, so it is live the turn it lands. Three tokens a turn forever, and 187.1 makes each a domainless unit token with 1 Might and the Recruit tag.",
           "THE TOKENS ENTER EXHAUSTED, WHICH IS THE OTHER HALF OF THE PRICE. 143.4: 'Units enter the Board exhausted', so a Recruit played to a battlefield holds it but cannot move again this turn, and one played to the base walks next turn (144.2, 144.4). The only card in the pool that overrides that for tokens is SFD-171 Renata Glasc, Industrialist (R25 = A), which is mono-Order and therefore legal beside both of these under 103.1.b.3 - though NOT beside the Garen legend this Signature card forces, which is Body/Order and admits her fine.",
           "AND ITS TWIN IN THE SAME DOMAIN PAIR CAN NEVER SHARE THE LIST. UNL-204 Keeper's Verdict is also Body/Order and also a Signature card, tagged Poppy, which 103.2.d.2 forces to UNL-203 / UNL-237 Keeper of the Hammer. Both are walked in this batch and they are mutually exclusive by the Signature rule alone.",
           "WHAT IT IS NOT. Nothing here scores; 469 defines Scoring as Conquer or Hold, and a board of 3 Might Recruits still has to walk in and win a combat to convert. The pump is 'this turn' and expires at cleanup."
         ]
       },
       "steps": [
-        "Play Vanguard Armory (7 Energy + 1 Power). 143.4 exhausts units and not gear, so it is live at once.",
+        "Play Vanguard Armory (7 Energy + 1 Power). 149.1 has gear enter ready, so it is live at once.",
         "Each turn, exhaust it for three 1 Might Recruit tokens - and use the parenthetical to split them across your two battlefields (485.4).",
         "Hold Decisive Strike. Its [Action] permission (806.1.c.1) means you do not commit until a sweeper is on the Chain or a combat has opened.",
         "Play it (5 Energy + 1 Power): every friendly unit is +2 this turn, so every Recruit is a 3 and out of one-damage range (143.2.a).",
@@ -52671,7 +52671,7 @@
           "THE THREE PARAGRAPHS THAT PRICE IT. 809.1.b: 'It is formatted as \"Deflect [X]\".' 809.1.b.2: 'The X is referred to as the Deflect Value.' 809.1.b.3: 'If X is omitted, it is presumed to be 1.' Both grants here print a bare [Deflect], so each is worth exactly 1, and 809.2 adds them: 'If a Game Object has Deflect, or has been granted Deflect, and is granted Deflect by an additional source, the Deflect Value of all granted Deflect keywords is summed.' Two grants, Deflect 2 on every friendly body at Allay's battlefield - and Allay herself is at 3, since her printed keyword joins the sum.",
           "THE TAX IS PER CHOICE AND IN ANY DOMAIN. 809.1.c: 'It is functionally short for \"Spells and abilities an opponent controls that target [me/this] cost an amount of Power equal to [Deflect Value] more to play as an additional cost for each time they choose [me/this].\"' So one spell choosing two of your bodies pays FOUR rainbow, not two. 809.1.c.1: 'The Power used to pay this cost may always be of any Domain', which is what stops an off-domain opponent from simply ignoring it, and 809.1.d makes it 'a Mandatory Additional Cost on Spells and Abilities that choose the Game Object that has this ability'.",
           "THE PRINTED OPT-OUT, WITH THE WHOLE GRANTER SET NAMED. Measured 2026-09-07 over data/corpus_flat.txt, exactly FOUR cards grant [Deflect] to units other than themselves by a static: OGN-063 Spirit's Refuge, SFD-071 Breakneck Mech ('Your Mechs'), SFD-104 Petricite Monument and UNL-041 Allay, Eager Admirer. Two more give it by a different mechanism - SFD-102 Hexdrinker grants it to its carrier through attached [Effect] text, and UNL-044 Flurry of Feathers mints Bird tokens that carry it by rule (187.7). And ONE of the four prints a clause opting out of 809.2's summing: Spirit's Refuge says 'Friendly buffed units have [Deflect] if they didn't already', so it can be a first source and never a second. Pick the other two.",
-          "THE MONUMENT'S [Temporary] IS A FEATURE, NOT A COST. 816.1.b kills it 'at the start of this permanent's controller's Beginning Phase, before scoring' - your own 315.2.a - so it taxes the whole of the OPPONENT'S turn, which is when their removal is aimed at your garrison, and it is already gone before 315.2.b.2 asks what you hold. It never costs you a body at the Scoring Step, and 143.4 does not touch it because gear does not enter exhausted. Three copies (103.2.b) is three such turns.",
+          "THE MONUMENT'S [Temporary] IS A FEATURE, NOT A COST. 816.1.b kills it 'at the start of this permanent's controller's Beginning Phase, before scoring' - your own 315.2.a - so it taxes the whole of the OPPONENT'S turn, which is when their removal is aimed at your garrison, and it is already gone before 315.2.b.2 asks what you hold. It never costs you a body at the Scoring Step, and 149.1 has gear enter play ready, so it never enters exhausted. Three copies (103.2.b) is three such turns.",
           "WHAT IT DOES NOT STOP, WITH THE MEMBERS NAMED. 809.1.c charges for CHOOSING, so 355.10.d ('programmatically selected based on its characteristics rather than chosen'), 355.10.e and 355.10.f all pay nothing - every sweeper and every 'each player kills a unit they control' walks through for free. And exactly two cards in the pool ignore Deflect outright (swept 2026-09-07): VEN-061 Decree of Insight, 'Ignore [Deflect] while paying this spell's cost', which is its own cost only, and VEN-158 Heisho, Shell of the World, 'Players ignore [Deflect] while paying for spells and abilities choosing something here', which is symmetric.",
           "IT IS A TAX AND NOT A PROHIBITION, AND THAT DISTINCTION IS THE WHOLE CEILING. 054.1 makes SFD-105 Ruin Runner's 'I can't be chosen by enemy spells and abilities' absolute; Deflect is priced, and an opponent with the Power simply pays. What it buys is a tempo tax on a turn they were going to spend all their mana anyway. 809.3 is the other half of the keyword and is worth knowing exists: 'Deflect, and whether or not a Game Object has Deflect, is a characteristic of the permanent and may be checked or referenced by other Game Effects.'"
         ]
@@ -54892,7 +54892,7 @@
         "easy": [
           "Insightful Investigator is mono-Chaos and Blood Rose is mono-Body, so 103.1.b.2 needs a legend covering both. Measured over data/cards.json on 2026-09-12 there are exactly THREE Body/Chaos legend names: Bounty Hunter, Battle Mistress and Voidreaver.",
           "Neither is a Signature card (checked against data/cards.json), and neither appears in data/legality.json in any format - checked 2026-09-12, and data/legality.json's only non-banned row is the Wuju Bladesman starter legend, restricted in 2v2, which is Calm/Body and not a legend this line can use.",
-          "Blood Rose has to be on the board before the Investigator is played, because its trigger watches that play. It is E1 and a gear, so 143.4 never exhausts it and it can be cast the turn before for one Energy.",
+          "Blood Rose has to be on the board before the Investigator is played, because its trigger watches that play. It is E1 and a gear, so 149.1 has it enter ready and it can be cast the turn before for one Energy.",
           "The opponent has to hold a card. The reveal happens whether or not you pay, so the information is free and only the removal costs XP."
         ],
         "notable": [
@@ -55004,7 +55004,7 @@
       },
       "steps": [
         "Take a battlefield and hold it. 190.1 leaves both uncontrolled at the start of a Duel and 107.3.c requires Control before anything can be hidden there.",
-        "Play OGN-101 Mushroom Pouch for 2 Energy. It is a gear, so 143.4 never exhausts it and its trigger carries no exhaust.",
+        "Play OGN-101 Mushroom Pouch for 2 Energy. It is a gear, so 149.1 has it enter ready and its trigger carries no exhaust.",
         "Hide UNL-083 Smoke and Mirrors face down at that battlefield for one rainbow Power (811.1.b). 107.3.b allows exactly one facedown card there.",
         "From your next Beginning Phase the Pouch draws you 1 for holding it. Three Pouches draw 3 - the condition is 'if you control a facedown card at a battlefield', so one facedown card satisfies all three.",
         "Do not play Smoke and Mirrors while the draws are worth more than the spell. It costs 0 whenever you change your mind (811.1.b), and it cantrips when you do.",
@@ -55615,7 +55615,7 @@
           "quantity": 1,
           "role": "payoff",
           "zone": "BOARD",
-          "note": "Chaos gear, E4 P1. 'When you play this, you may move an enemy unit. When you move an enemy unit, you may exhaust this to [Stun] it. (It doesn't deal combat damage this turn.)' The SECOND sentence is Riot's own worked example at 411.4, quoted there almost verbatim. Gear enters ready (143.4 exhausts units only), and 415.3.a readies it every Awakening, so it is one stun per turn forever."
+          "note": "Chaos gear, E4 P1. 'When you play this, you may move an enemy unit. When you move an enemy unit, you may exhaust this to [Stun] it. (It doesn't deal combat damage this turn.)' The SECOND sentence is Riot's own worked example at 411.4, quoted there almost verbatim. Gear enters ready (149.1), and 415.3.a readies it every Awakening, so it is one stun per turn forever."
         },
         {
           "card": "UNL-050",
@@ -56008,7 +56008,7 @@
         ]
       },
       "steps": [
-        "Have SFD-144 Spirit Wheel on the board (E2, a gear, so 143.4 never exhausts it) and SFD-195 Blade Dancer as your legend.",
+        "Have SFD-144 Spirit Wheel on the board (E2, a gear, so 149.1 has it enter ready) and SFD-195 Blade Dancer as your legend.",
         "In your own Main Phase - 813.2 lets a [Reaction] card be played there - play VEN-035 Sanction for 3 Energy and 1 Calm Power.",
         "Choose the first mode and choose a friendly unit that is not already Empowered (441.1.b). Pick a body with an [Empowered][>] ability if you have one; the Empower is free and switches that text on for the turn.",
         "Choosing a friendly unit meets both payoffs' Trigger Conditions at once. 383.3.d gives you the order.",
@@ -56347,7 +56347,7 @@
           "quantity": 1,
           "role": "engine",
           "zone": "BOARD",
-          "note": "Order gear, 3 Energy. '1 Energy + 1 Order rune, exhaust: Kill a friendly unit. Look at the top 5 cards of your Main Deck. You may banish a unit from among them that has Might up to 1 more than the killed unit and play it, ignoring its cost. Then recycle the rest.' Gear enters ready (143.4 exhausts only units), so it fires the turn it lands, and 315.1.b readies it every Awakening."
+          "note": "Order gear, 3 Energy. '1 Energy + 1 Order rune, exhaust: Kill a friendly unit. Look at the top 5 cards of your Main Deck. You may banish a unit from among them that has Might up to 1 more than the killed unit and play it, ignoring its cost. Then recycle the rest.' Gear enters ready (149.1), so it fires the turn it lands, and 315.1.b readies it every Awakening."
         },
         {
           "card": "UNL-171",
@@ -56379,7 +56379,7 @@
         ]
       },
       "steps": [
-        "Play Baited Hook (3 Energy) and Galio, Indefatigable (3 Energy + 1 Order Power). The Hook is gear and enters ready (143.4); Galio enters exhausted and walls.",
+        "Play Baited Hook (3 Energy) and Galio, Indefatigable (3 Energy + 1 Order Power). The Hook is gear and enters ready (149.1; 359.2.d); Galio enters exhausted and walls.",
         "Let Galio do his defensive job for as long as he is useful: 815.1.c.2 makes him the only legal damage assignment among your bodies until he has taken lethal, and 809.1.c charges the opponent a rainbow every time they choose him with a spell or ability.",
         "When the fetch is worth more than the wall, pay 1 Energy + 1 Order Power and exhaust the Hook, killing Galio.",
         "Read the ceiling off the CORPSE: he is in the trash, so 711 evaluates him at his printed 6 whatever his Might was on the board, and the Hook may take a unit of Might up to 7.",
@@ -57383,7 +57383,7 @@
         ]
       },
       "steps": [
-        "Play UNL-109 Blood Rose for 1 Energy on any turn you have it. It is a gear and enters ready (143.4 exhausts units only), though nothing here needs it ready.",
+        "Play UNL-109 Blood Rose for 1 Energy on any turn you have it. It is a gear and enters ready (149.1), though nothing here needs it ready.",
         "Play UNL-092 Demacian Diplomat for 2 Energy. Two triggers go on the chain: his own 'gain 1 XP', and Blood Rose's 'you may pay 1 Energy to gain 1 XP'.",
         "Blood Rose's trigger asks for its cost AT FINALIZATION (204.3.a, 383.3.b.1) and asks for the DECISION there too (383.3.e.2.a). Pay the Energy - finding it with a rune at that instant if the pool is empty (444.2.c, 164.2).",
         "Both resolve: 2 XP for 3 Energy, with nothing asked of the board.",
@@ -57522,7 +57522,7 @@
       "steps": [
         "Play Nasus, Ascended for 8 Energy + 1 Calm Power. He enters exhausted (143.4) at your base or a battlefield you control (355.2.a).",
         "Empower him with his own [Empower] 8 Energy. 441.2 makes Empowered a permanent state of a Game Object on the board, so this is paid once and his '[Empowered][>] When I conquer, you score 1 point' is active from here on.",
-        "Play three Svellsongur, 3 Energy + 1 Calm Power each. Gear does not enter exhausted — 143.4 is written for units.",
+        "Play three Svellsongur, 3 Energy + 1 Calm Power each. Gear enters ready (149.1).",
         "ON THE TURN YOU SWING, and not before: attach all three to Nasus, 1 Energy + 1 Calm Power each. 818.1 makes [Equip] an Activated Ability and 381 confines it to 'the Controlling Player's Turn and during an Open State', so all three attaches happen in your Main Phase before the move. Attaching late is deliberate — an unattached Svellsongur copies nothing, so the eight-instance stack exists for one turn instead of sitting through an opponent turn as three gear-kill targets.",
         "By 434.1.c, 477.2.c, 476.1, 479.1 and 480.3 the three copies compound in attach order: Nasus's Rules Text now carries 8 instances of the conquer trigger, 8 instances of [Deflect 2] summed by 809.2 to Deflect 16, and dead copies of his [Empower] (441.1.b).",
         "Standard-move Nasus to a battlefield you do not control. 450: 'The Destination becomes Contested if it is an Uncontested Battlefield not controlled by the controller of the Unit or Units that moved.'",
@@ -57731,7 +57731,7 @@
           "THE TRIGGER CONDITION IS HISTORICAL, SO IT CANNOT BE ANSWERED - AND THAT IS THE OPPOSITE OF THE IVERN FAMILY. Swain reads 'When I conquer, if you've played a non-token unit, a non-token gear, and a spell this turn' - the conditional sits IMMEDIATELY AFTER the trigger, which is exactly 383.2.a.1's Sona, Harmonious shape: 'Any additional conditional statement immediately after the Condition must be true in order for the Condition to be fulfilled. Such a conditional statement is part of the Trigger Condition and not the Effect', and Riot's Sona example ends 'If she is removed in reaction to the triggered ability, it will still resolve.' Two consequences. First, the condition asks what you PLAYED this turn, which is a fact about the past: killing Steel Paws, countering Bellows Breath after it resolves or blowing up the third Svellsongur changes nothing, and 419.4.b even counts a COUNTERED card as played for a non-triggered check. Second, it is checked when the trigger is PLACED, so there is no window in which to falsify it. Contrast ivern-ride-the-wind-double-conquer, whose four-tag clause follows the effect verb and is therefore the rule's Loose Cannon shape, checked on resolution and answerable by killing one Might-2 body.",
           "THE ANSWER IS THE GEAR, AND UNLIKE A HOLD LINE THIS ONE CAN BE ANSWERED IN ITS OWN WINDOW. 718.5.b - 'Attached cards still can be chosen or targeted by game effects while Attached' - keeps all three Svellsongur legal targets the whole time they sit there, even though 718.2 makes their printed Rules Text Inactive and 721.2 their [Equip] unusable. Stripping ONE takes the line from 8 instances to 4 and the total from 9 to 5; stripping two leaves 3. Swept over text+effect of every deckable base in data/cards.json, the pool prints 16 gear-kill printings across 15 names and every one of the six domains prints at least one, of which the unconditional enemy-facing answers are OGN-022 Thermo Beam, SFD-005 Detonate, VEN-003 Brittle Steel, OGN-224 Salvage, SFD-032 Disarming Rake and SFD-077 Rocket Barrage. OGN-022 Thermo Beam (Fury, E5 + 2 Fury Power, '[Action] Kill all gear') answers all three with one card. AND THE TIMING IS WORSE HERE THAN FOR THE HOLD BURSTS: a Hold pays at 315.2.b.2 inside your own Beginning Phase, where 312.2.a gives the opponent priority only 'When the turn is in a Neutral Open State during their Main Phase' - their own - so no gear kill reaches it. A Conquer is a MAIN PHASE event, and 806.1.c.1 makes [Action] short for 'This can be played during showdowns on any player's turn', so Thermo Beam and Salvage reach the very Showdown this line's move opens. That is the price of a payoff that works on a board you do not already control, and attaching in the same Main Phase as the move keeps the exposure to one turn rather than a full opponent turn.",
           "WHY CALM/MIND, AND WHAT IT IS NOT A DUPLICATE OF. Measured at 763 entries, calm/mind could run 18 finishers, SEVEN of which span both domains - and six of those seven are Hold-gated, leaving exactly one that survives a stalled board. This is the second. The mechanism has two catalogued siblings and this is neither: swain-brambleback-conquer-burst is FURY/mind and reaches ten by running THREE Swains under two Red Brambleback, so it pays with bodies where this pays with gear - three removal targets that 465.2.c can assign damage to, against one body wearing three gears that 718.5.b can shoot; and nasus-svellsongur-conquer-burst is mono-CALM, the same Svellsongur multiplication on VEN-046 Nasus, Ascended, at E28 + 7 Calm Power for nine. This one is E20 and 8 Power for the same nine, and it is the only member of the family a Calm/Mind legend can run. Neither dominates the others: they are one mechanism in three identities.",
-          "THE FINISHING TURN IS SIX ENERGY. Deploy Swain and two Svellsongur over earlier turns and attach those two; 143.4 exhausts units on entry, so Swain has to arrive a turn early anyway, and gear is unaffected by that rule and enters ready. On the finishing turn you play the third Svellsongur (E3 + 1 Calm - and this is the play that satisfies the gear clause), pay its [Equip] (E1 + 1 Calm), play Steel Paws (E1), cast Bellows Breath (E1 + 1 Mind), and Standard-Move Swain in (144.2, his own exhaust). Six Energy, two Calm Power and one Mind Power on the turn that wins; E20 and 8 Power counted from scratch."
+          "THE FINISHING TURN IS SIX ENERGY. Deploy Swain and two Svellsongur over earlier turns and attach those two; 143.4 exhausts units on entry, so Swain has to arrive a turn early anyway, and gear enters ready (149.1). On the finishing turn you play the third Svellsongur (E3 + 1 Calm - and this is the play that satisfies the gear clause), pay its [Equip] (E1 + 1 Calm), play Steel Paws (E1), cast Bellows Breath (E1 + 1 Mind), and Standard-Move Swain in (144.2, his own exhaust). Six Energy, two Calm Power and one Mind Power on the turn that wins; E20 and 8 Power counted from scratch."
         ]
       },
       "steps": [
@@ -57861,7 +57861,7 @@
         ]
       },
       "steps": [
-        "Over earlier turns, play two Tryndamere, Barbarian (E7 + 2 Fury Power each) and three Svellsongur (E3 + 1 Calm Power each), attaching all three Svellsongur to the SAME Tryndamere for E1 + 1 Calm Power apiece. 143.4 has the units enter exhausted; 315.1.b readies them at your next Awakening. Gear is unaffected by 143.4 and enters ready.",
+        "Over earlier turns, play two Tryndamere, Barbarian (E7 + 2 Fury Power each) and three Svellsongur (E3 + 1 Calm Power each), attaching all three Svellsongur to the SAME Tryndamere for E1 + 1 Calm Power apiece. 143.4 has the units enter exhausted; 315.1.b readies them at your next Awakening. Gear enters ready (149.1).",
         "On the finishing turn, Standard-Move both Tryndamere to an enemy-held battlefield in ONE action (144.3 with 144.3.a's shared destination), each paying its exhaust under 144.2. 450 applies Contested status.",
         "At the Cleanup, 323.9 stages a Combat because units of opposing players are present, and it opens. Your summed attacking Might is 16 (465.2.c).",
         "In the damage step, 465.2.c.4 caps each assignment at the minimum lethal, so against a garrison of summed Might D you assign D and leave 16 - D unassigned. That remainder is the excess damage (R28 = A), and the clause needs 5 or more, i.e. D <= 11. CORRECTED 2026-10-26 (#464, the follow-up PR #463 listed for #457): that is the excess condition only. Ten needs both Tryndamere alive at the Conquer, which is D <= 7 (the threshold notable).",
