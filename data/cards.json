@@ -1,7 +1,7 @@
 {
  "source": "https://content.publishing.riotgames.com/publishing-content/v2.0/public/channel/riftbound_website/list/riftbound_gallery_cards",
- "resultsUpdatedAt": "2026-09-06T14:41:55.019809836Z",
- "built": "2026-09-06T14:42:03.863Z",
+ "resultsUpdatedAt": "2026-11-16T19:58:21.271633683Z",
+ "built": "2026-11-16T19:58:26.058Z",
  "count": 1189,
  "cards": [
   {
@@ -55,7 +55,7 @@
    "power": null,
    "might": 5,
    "mightBonus": null,
-   "text": "As you play me, you may discard 1 as an additional cost. If you do, reduce my cost by :rb_energy_2:.",
+   "text": "As you play me, you may discard a card as an additional cost. If you do, reduce my cost by :rb_energy_2:.",
    "effect": null,
    "tags": [
     "Pirate",
@@ -2578,7 +2578,7 @@
    ],
    "orientation": "portrait",
    "artist": "Six More Vodka",
-   "image": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/70734e8833bfbbdb2736407c449f418553e3cf7c-744x1039.png?accountingTag=RB",
+   "image": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/c6cc55639ad87cf9c8a74d6b3e5292d0b192c9b8-744x1039.png?accountingTag=RB",
    "signature": false
   },
   {
@@ -4143,7 +4143,7 @@
    "power": 2,
    "might": null,
    "mightBonus": null,
-   "text": "Exhaust all friendly units, then deal 12 to ALL units at battlefields.",
+   "text": "Exhaust all friendly units, then deal 12 to all units at battlefields.",
    "effect": null,
    "tags": [],
    "orientation": "portrait",
@@ -5229,7 +5229,7 @@
    "power": 2,
    "might": 10,
    "mightBonus": null,
-   "text": "[Shield 3] (+3 :rb_might: while I'm a defender.)\n[Tank] (I must be assigned combat damage first.)\nWhen an opponent moves to a battlefield other than mine, draw 1. (Bases are not battlefield.)",
+   "text": "[Shield 3] (+3 :rb_might: while I'm a defender.)\n[Tank] (I must be assigned combat damage first.)\nWhen an opponent moves to a battlefield other than mine, draw 1. (Bases are not battlefields.)",
    "effect": null,
    "tags": [
     "Volibear",
@@ -5260,7 +5260,7 @@
    "power": 2,
    "might": 10,
    "mightBonus": null,
-   "text": "[Shield 3] (+3 :rb_might: while I'm a defender.)\n[Tank] (I must be assigned combat damage first.)\nWhen an opponent moves to a battlefield other than mine, draw 1. (Bases are not battlefield.)",
+   "text": "[Shield 3] (+3 :rb_might: while I'm a defender.)\n[Tank] (I must be assigned combat damage first.)\nWhen an opponent moves to a battlefield other than mine, draw 1. (Bases are not battlefields.)",
    "effect": null,
    "tags": [
     "Volibear",
@@ -6212,7 +6212,7 @@
    "domains": [
     "chaos"
    ],
-   "energy": 3,
+   "energy": 4,
    "power": 1,
    "might": null,
    "mightBonus": null,
@@ -8315,7 +8315,7 @@
    ],
    "orientation": "portrait",
    "artist": "Kudos Productions",
-   "image": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/a576472c7bb00f475882ac814e1d8f9be233b402-744x1040.png?accountingTag=RB",
+   "image": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/3ea826277086945a2cdfda4e41b771075aa8b15b-744x1039.png?accountingTag=RB",
    "signature": false
   },
   {
@@ -8377,7 +8377,7 @@
    ],
    "orientation": "portrait",
    "artist": "Grafit Studio",
-   "image": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/f1842ef373434db3e8109d8959832f9d184866c3-744x1040.png?accountingTag=RB",
+   "image": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/8ef9c1827ccbba313d4591275e831854afffa5b1-744x1039.png?accountingTag=RB",
    "signature": false
   },
   {
@@ -8563,7 +8563,7 @@
    ],
    "orientation": "portrait",
    "artist": "Envar Studio",
-   "image": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/fbce641f5e4d8cdf2956e8ead5884b6cd3ccd90d-744x1040.png?accountingTag=RB",
+   "image": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/56457c7986d3f140b7123a988149cc30a83493a7-744x1039.png?accountingTag=RB",
    "signature": false
   },
   {
@@ -8686,14 +8686,14 @@
    "power": null,
    "might": null,
    "mightBonus": null,
-   "text": ":rb_energy_2:, :rb_exhaust:: Move a friendly unit to or from its base.",
+   "text": ":rb_energy_2:, :rb_exhaust:: Move a friendly unit to or from your base.",
    "effect": null,
    "tags": [
     "Yasuo"
    ],
    "orientation": "portrait",
    "artist": "TSWCK逍",
-   "image": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/68e4d3230b785738ae9d86f780f7f5607ef11807-744x1040.png?accountingTag=RB",
+   "image": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/33e3d5596de0f560087d40414d62b8245d1dbb0d-744x1039.png?accountingTag=RB",
    "signature": false
   },
   {
@@ -8841,7 +8841,7 @@
    "power": 1,
    "might": null,
    "mightBonus": null,
-   "text": "Return up to two cards with [Hidden] from your trash to your hand. You can hide cards ignoring costs this turn.",
+   "text": "Return up to two cards with [Hidden] from your trash to your hand. You can hide ignoring costs this turn.",
    "effect": null,
    "tags": [
     "Teemo"
@@ -8941,7 +8941,7 @@
    ],
    "orientation": "portrait",
    "artist": "Six More Vodka",
-   "image": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/cc11261fcdbf0851525030bd9e835b718efad3bc-744x1040.png?accountingTag=RB",
+   "image": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/e0635cebc3dd8ee5355dbbc090ca27ebeacebad7-744x1039.png?accountingTag=RB",
    "signature": false
   },
   {
@@ -10573,7 +10573,7 @@
    "power": 1,
    "might": 4,
    "mightBonus": null,
-   "text": "Your spells and abilities deal 1 Bonus Damage. (Each instance of damage the spell deals is increased by 1.)",
+   "text": "Your spells and abilities deal 1 Bonus Damage. (Each instance of damage they deal is increased by 1.)",
    "effect": null,
    "tags": [
     "Annie",
@@ -10646,7 +10646,7 @@
    "base": "OGS-004",
    "variant": "",
    "publicCode": "OGS-004/024",
-   "name": "Yi, Meditative",
+   "name": "Master Yi, Meditative",
    "set": "OGS",
    "collectorNumber": 4,
    "type": [
@@ -10799,7 +10799,7 @@
    "base": "OGS-009",
    "variant": "",
    "publicCode": "OGS-009/024",
-   "name": "Yi, Honed",
+   "name": "Master Yi, Honed",
    "set": "OGS",
    "collectorNumber": 9,
    "type": [
@@ -16270,7 +16270,7 @@
    "power": 2,
    "might": null,
    "mightBonus": null,
-   "text": "[Hidden] (Hide now for :rb_rune_rainbow: to react with later for :rb_energy_0:.)\n[Action] (Play on your turn or in showdowns.)\nSwap the Might of two units at the same battlefield this turn.",
+   "text": "[Hidden] (Hide now for :rb_rune_rainbow: to react with later for :rb_energy_0:.)\n[Action] (Play on your turn or in showdowns.)\nSwap the Mights of two units at the same battlefield this turn.",
    "effect": null,
    "tags": [],
    "orientation": "portrait",
@@ -18653,7 +18653,7 @@
    "power": null,
    "might": null,
    "mightBonus": null,
-   "text": "When you conquer here, draw 1 for each other battlefield you or allies control..",
+   "text": "When you conquer here, draw 1 for each other battlefield you or allies control.",
    "effect": null,
    "tags": [],
    "orientation": "landscape",
@@ -20762,7 +20762,7 @@
    "type": [
     "unit"
    ],
-   "rarity": "rare",
+   "rarity": "showcase",
    "domains": [
     "fury"
    ],
@@ -20856,7 +20856,7 @@
    "type": [
     "unit"
    ],
-   "rarity": "rare",
+   "rarity": "showcase",
    "domains": [
     "fury"
    ],
@@ -21012,7 +21012,7 @@
    "type": [
     "unit"
    ],
-   "rarity": "epic",
+   "rarity": "showcase",
    "domains": [
     "fury"
    ],
@@ -21073,7 +21073,7 @@
    "type": [
     "unit"
    ],
-   "rarity": "epic",
+   "rarity": "showcase",
    "domains": [
     "fury"
    ],
@@ -21132,7 +21132,7 @@
    "type": [
     "unit"
    ],
-   "rarity": "epic",
+   "rarity": "showcase",
    "domains": [
     "fury"
    ],
@@ -21557,7 +21557,7 @@
    "power": 2,
    "might": null,
    "mightBonus": null,
-   "text": "[Reaction]\nChoose one —\n• Counter a spell.\n• Play four 1 :rb_might: Bird unit tokens with [Deflect]. (Opponents must pay :rb_rune_rainbow: to choose them with a spell or ability.)",
+   "text": "[Reaction] (Play any time, even before spells and abilities resolve.)\nChoose one —\n• Counter a spell.\n• Play four 1 :rb_might: Bird unit tokens with [Deflect]. (Opponents must pay :rb_rune_rainbow: to choose them with a spell or ability.)",
    "effect": null,
    "tags": [],
    "orientation": "portrait",
@@ -21784,7 +21784,7 @@
    "type": [
     "unit"
    ],
-   "rarity": "rare",
+   "rarity": "showcase",
    "domains": [
     "calm"
    ],
@@ -21936,7 +21936,7 @@
    "type": [
     "unit"
    ],
-   "rarity": "rare",
+   "rarity": "showcase",
    "domains": [
     "calm"
    ],
@@ -22064,7 +22064,7 @@
    "type": [
     "unit"
    ],
-   "rarity": "epic",
+   "rarity": "showcase",
    "domains": [
     "calm"
    ],
@@ -22127,7 +22127,7 @@
    "type": [
     "unit"
    ],
-   "rarity": "epic",
+   "rarity": "showcase",
    "domains": [
     "calm"
    ],
@@ -22189,7 +22189,7 @@
    "type": [
     "unit"
    ],
-   "rarity": "epic",
+   "rarity": "showcase",
    "domains": [
     "calm"
    ],
@@ -22782,7 +22782,7 @@
    "type": [
     "unit"
    ],
-   "rarity": "rare",
+   "rarity": "showcase",
    "domains": [
     "mind"
    ],
@@ -22918,7 +22918,7 @@
    "type": [
     "unit"
    ],
-   "rarity": "rare",
+   "rarity": "showcase",
    "domains": [
     "mind"
    ],
@@ -23098,7 +23098,7 @@
    "type": [
     "unit"
    ],
-   "rarity": "epic",
+   "rarity": "showcase",
    "domains": [
     "mind"
    ],
@@ -23185,7 +23185,7 @@
    "type": [
     "unit"
    ],
-   "rarity": "epic",
+   "rarity": "showcase",
    "domains": [
     "mind"
    ],
@@ -23247,7 +23247,7 @@
    "type": [
     "unit"
    ],
-   "rarity": "epic",
+   "rarity": "showcase",
    "domains": [
     "mind"
    ],
@@ -23957,7 +23957,7 @@
    "type": [
     "unit"
    ],
-   "rarity": "rare",
+   "rarity": "showcase",
    "domains": [
     "body"
    ],
@@ -24084,7 +24084,7 @@
    "type": [
     "unit"
    ],
-   "rarity": "rare",
+   "rarity": "showcase",
    "domains": [
     "body"
    ],
@@ -24178,7 +24178,7 @@
    "type": [
     "unit"
    ],
-   "rarity": "epic",
+   "rarity": "showcase",
    "domains": [
     "body"
    ],
@@ -24239,7 +24239,7 @@
    "type": [
     "unit"
    ],
-   "rarity": "epic",
+   "rarity": "showcase",
    "domains": [
     "body"
    ],
@@ -24308,7 +24308,7 @@
    "type": [
     "unit"
    ],
-   "rarity": "epic",
+   "rarity": "showcase",
    "domains": [
     "body"
    ],
@@ -25025,7 +25025,7 @@
    "type": [
     "unit"
    ],
-   "rarity": "rare",
+   "rarity": "showcase",
    "domains": [
     "chaos"
    ],
@@ -25117,7 +25117,7 @@
    "type": [
     "unit"
    ],
-   "rarity": "rare",
+   "rarity": "showcase",
    "domains": [
     "chaos"
    ],
@@ -25209,7 +25209,7 @@
    "type": [
     "unit"
    ],
-   "rarity": "epic",
+   "rarity": "showcase",
    "domains": [
     "chaos"
    ],
@@ -25298,7 +25298,7 @@
    "type": [
     "unit"
    ],
-   "rarity": "epic",
+   "rarity": "showcase",
    "domains": [
     "chaos"
    ],
@@ -25361,7 +25361,7 @@
    "type": [
     "unit"
    ],
-   "rarity": "epic",
+   "rarity": "showcase",
    "domains": [
     "chaos"
    ],
@@ -25672,7 +25672,7 @@
    "power": null,
    "might": 5,
    "mightBonus": null,
-   "text": ":rb_exhaust:: Play two :rb_energy_1: :rb_might: Bird unit tokens with [Deflect]. Use this ability only while I'm at a battlefield. (Opponents must pay :rb_rune_rainbow: to choose a [Deflect] unit with a spell or ability.)",
+   "text": ":rb_exhaust:: Play two 1 :rb_might: Bird unit tokens with [Deflect]. Use this ability only while I'm at a battlefield. (Opponents must pay :rb_rune_rainbow: to choose a [Deflect] unit with a spell or ability.)",
    "effect": null,
    "tags": [
     "Poro",
@@ -26063,7 +26063,7 @@
    "type": [
     "unit"
    ],
-   "rarity": "rare",
+   "rarity": "showcase",
    "domains": [
     "order"
    ],
@@ -26209,7 +26209,7 @@
    "type": [
     "unit"
    ],
-   "rarity": "rare",
+   "rarity": "showcase",
    "domains": [
     "order"
    ],
@@ -26271,7 +26271,7 @@
    "type": [
     "unit"
    ],
-   "rarity": "epic",
+   "rarity": "showcase",
    "domains": [
     "order"
    ],
@@ -26334,7 +26334,7 @@
    "type": [
     "unit"
    ],
-   "rarity": "epic",
+   "rarity": "showcase",
    "domains": [
     "order"
    ],
@@ -26396,7 +26396,7 @@
    "type": [
     "unit"
    ],
-   "rarity": "epic",
+   "rarity": "showcase",
    "domains": [
     "order"
    ],
@@ -27609,7 +27609,7 @@
    "type": [
     "unit"
    ],
-   "rarity": "common",
+   "rarity": "showcase",
    "domains": [
     "fury"
    ],
@@ -27639,7 +27639,7 @@
    "type": [
     "unit"
    ],
-   "rarity": "common",
+   "rarity": "showcase",
    "domains": [
     "calm"
    ],
@@ -27670,7 +27670,7 @@
    "type": [
     "unit"
    ],
-   "rarity": "common",
+   "rarity": "showcase",
    "domains": [
     "mind"
    ],
@@ -27702,7 +27702,7 @@
    "type": [
     "unit"
    ],
-   "rarity": "common",
+   "rarity": "showcase",
    "domains": [
     "body"
    ],
@@ -27733,7 +27733,7 @@
    "type": [
     "unit"
    ],
-   "rarity": "common",
+   "rarity": "showcase",
    "domains": [
     "chaos"
    ],
@@ -27763,7 +27763,7 @@
    "type": [
     "unit"
    ],
-   "rarity": "common",
+   "rarity": "showcase",
    "domains": [
     "order"
    ],
@@ -27793,7 +27793,7 @@
    "type": [
     "legend"
    ],
-   "rarity": "rare",
+   "rarity": "showcase",
    "domains": [
     "fury",
     "mind"
@@ -27824,7 +27824,7 @@
    "type": [
     "legend"
    ],
-   "rarity": "rare",
+   "rarity": "showcase",
    "domains": [
     "fury",
     "mind"
@@ -27855,7 +27855,7 @@
    "type": [
     "legend"
    ],
-   "rarity": "rare",
+   "rarity": "showcase",
    "domains": [
     "fury",
     "body"
@@ -27886,7 +27886,7 @@
    "type": [
     "legend"
    ],
-   "rarity": "rare",
+   "rarity": "showcase",
    "domains": [
     "fury",
     "body"
@@ -27917,7 +27917,7 @@
    "type": [
     "legend"
    ],
-   "rarity": "rare",
+   "rarity": "showcase",
    "domains": [
     "fury",
     "chaos"
@@ -27948,7 +27948,7 @@
    "type": [
     "legend"
    ],
-   "rarity": "rare",
+   "rarity": "showcase",
    "domains": [
     "fury",
     "chaos"
@@ -27979,7 +27979,7 @@
    "type": [
     "legend"
    ],
-   "rarity": "rare",
+   "rarity": "showcase",
    "domains": [
     "fury",
     "order"
@@ -28010,7 +28010,7 @@
    "type": [
     "legend"
    ],
-   "rarity": "rare",
+   "rarity": "showcase",
    "domains": [
     "fury",
     "order"
@@ -28041,7 +28041,7 @@
    "type": [
     "legend"
    ],
-   "rarity": "rare",
+   "rarity": "showcase",
    "domains": [
     "calm",
     "mind"
@@ -28072,7 +28072,7 @@
    "type": [
     "legend"
    ],
-   "rarity": "rare",
+   "rarity": "showcase",
    "domains": [
     "calm",
     "mind"
@@ -28103,7 +28103,7 @@
    "type": [
     "legend"
    ],
-   "rarity": "rare",
+   "rarity": "showcase",
    "domains": [
     "calm",
     "body"
@@ -28134,7 +28134,7 @@
    "type": [
     "legend"
    ],
-   "rarity": "rare",
+   "rarity": "showcase",
    "domains": [
     "calm",
     "body"
@@ -28165,7 +28165,7 @@
    "type": [
     "legend"
    ],
-   "rarity": "rare",
+   "rarity": "showcase",
    "domains": [
     "calm",
     "chaos"
@@ -28196,7 +28196,7 @@
    "type": [
     "legend"
    ],
-   "rarity": "rare",
+   "rarity": "showcase",
    "domains": [
     "calm",
     "chaos"
@@ -28227,7 +28227,7 @@
    "type": [
     "legend"
    ],
-   "rarity": "rare",
+   "rarity": "showcase",
    "domains": [
     "calm",
     "order"
@@ -28258,7 +28258,7 @@
    "type": [
     "legend"
    ],
-   "rarity": "rare",
+   "rarity": "showcase",
    "domains": [
     "calm",
     "order"
@@ -28289,7 +28289,7 @@
    "type": [
     "legend"
    ],
-   "rarity": "rare",
+   "rarity": "showcase",
    "domains": [
     "mind",
     "chaos"
@@ -28320,7 +28320,7 @@
    "type": [
     "legend"
    ],
-   "rarity": "rare",
+   "rarity": "showcase",
    "domains": [
     "mind",
     "chaos"
@@ -28351,7 +28351,7 @@
    "type": [
     "legend"
    ],
-   "rarity": "rare",
+   "rarity": "showcase",
    "domains": [
     "mind",
     "order"
@@ -28388,7 +28388,7 @@
    "type": [
     "legend"
    ],
-   "rarity": "rare",
+   "rarity": "showcase",
    "domains": [
     "mind",
     "order"
@@ -28425,7 +28425,7 @@
    "type": [
     "legend"
    ],
-   "rarity": "rare",
+   "rarity": "showcase",
    "domains": [
     "body",
     "chaos"
@@ -28456,7 +28456,7 @@
    "type": [
     "legend"
    ],
-   "rarity": "rare",
+   "rarity": "showcase",
    "domains": [
     "body",
     "chaos"
@@ -28487,7 +28487,7 @@
    "type": [
     "legend"
    ],
-   "rarity": "rare",
+   "rarity": "showcase",
    "domains": [
     "body",
     "order"
@@ -28518,7 +28518,7 @@
    "type": [
     "legend"
    ],
-   "rarity": "rare",
+   "rarity": "showcase",
    "domains": [
     "body",
     "order"
@@ -28661,7 +28661,7 @@
    "domains": [],
    "energy": null,
    "power": null,
-   "might": null,
+   "might": 1,
    "mightBonus": null,
    "text": "A unit may have no more than one buff at a time.",
    "effect": null,
@@ -29350,7 +29350,7 @@
    "type": [
     "unit"
    ],
-   "rarity": "rare",
+   "rarity": "showcase",
    "domains": [
     "fury"
    ],
@@ -29441,7 +29441,7 @@
    "type": [
     "unit"
    ],
-   "rarity": "epic",
+   "rarity": "showcase",
    "domains": [
     "fury"
    ],
@@ -29530,7 +29530,7 @@
    "type": [
     "unit"
    ],
-   "rarity": "epic",
+   "rarity": "showcase",
    "domains": [
     "fury"
    ],
@@ -30016,7 +30016,7 @@
    "type": [
     "unit"
    ],
-   "rarity": "rare",
+   "rarity": "showcase",
    "domains": [
     "calm"
    ],
@@ -30164,7 +30164,7 @@
    "type": [
     "unit"
    ],
-   "rarity": "rare",
+   "rarity": "showcase",
    "domains": [
     "calm"
    ],
@@ -30322,7 +30322,7 @@
    "type": [
     "unit"
    ],
-   "rarity": "epic",
+   "rarity": "showcase",
    "domains": [
     "calm"
    ],
@@ -30852,7 +30852,7 @@
    "type": [
     "unit"
    ],
-   "rarity": "rare",
+   "rarity": "showcase",
    "domains": [
     "mind"
    ],
@@ -31017,7 +31017,7 @@
     "Piltover"
    ],
    "orientation": "portrait",
-   "artist": "Pandart Studio",
+   "artist": "League of Legends",
    "image": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/123e949085a63fdb6e1590ff0e519cab5758688b-744x1039.png?accountingTag=RB",
    "signature": false
   },
@@ -31033,7 +31033,7 @@
    "type": [
     "unit"
    ],
-   "rarity": "epic",
+   "rarity": "showcase",
    "domains": [
     "mind"
    ],
@@ -31094,7 +31094,7 @@
    "type": [
     "unit"
    ],
-   "rarity": "epic",
+   "rarity": "showcase",
    "domains": [
     "mind"
    ],
@@ -31567,7 +31567,7 @@
    "type": [
     "unit"
    ],
-   "rarity": "rare",
+   "rarity": "showcase",
    "domains": [
     "body"
    ],
@@ -31705,7 +31705,7 @@
     "Piltover"
    ],
    "orientation": "portrait",
-   "artist": "League of Legends",
+   "artist": "Pandart Studio",
    "image": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/2dcecc0aab2b62e48388177cc27d220fd70b8a78-744x1039.png?accountingTag=RB",
    "signature": false
   },
@@ -31721,7 +31721,7 @@
    "type": [
     "unit"
    ],
-   "rarity": "rare",
+   "rarity": "showcase",
    "domains": [
     "body"
    ],
@@ -31869,7 +31869,7 @@
    "type": [
     "unit"
    ],
-   "rarity": "epic",
+   "rarity": "showcase",
    "domains": [
     "body"
    ],
@@ -32433,7 +32433,7 @@
    "type": [
     "unit"
    ],
-   "rarity": "rare",
+   "rarity": "showcase",
    "domains": [
     "chaos"
    ],
@@ -32524,7 +32524,7 @@
    "type": [
     "unit"
    ],
-   "rarity": "rare",
+   "rarity": "showcase",
    "domains": [
     "chaos"
    ],
@@ -32585,7 +32585,7 @@
    "type": [
     "unit"
    ],
-   "rarity": "epic",
+   "rarity": "showcase",
    "domains": [
     "chaos"
    ],
@@ -33279,7 +33279,7 @@
    "type": [
     "unit"
    ],
-   "rarity": "rare",
+   "rarity": "showcase",
    "domains": [
     "order"
    ],
@@ -33341,7 +33341,7 @@
    "type": [
     "unit"
    ],
-   "rarity": "epic",
+   "rarity": "showcase",
    "domains": [
     "order"
    ],
@@ -33432,7 +33432,7 @@
    "type": [
     "unit"
    ],
-   "rarity": "epic",
+   "rarity": "showcase",
    "domains": [
     "order"
    ],
@@ -34282,7 +34282,7 @@
    "type": [
     "unit"
    ],
-   "rarity": "rare",
+   "rarity": "showcase",
    "domains": [
     "fury"
    ],
@@ -34312,7 +34312,7 @@
    "type": [
     "unit"
    ],
-   "rarity": "rare",
+   "rarity": "showcase",
    "domains": [
     "fury"
    ],
@@ -34342,7 +34342,7 @@
    "type": [
     "unit"
    ],
-   "rarity": "epic",
+   "rarity": "showcase",
    "domains": [
     "fury"
    ],
@@ -34372,7 +34372,7 @@
    "type": [
     "unit"
    ],
-   "rarity": "rare",
+   "rarity": "showcase",
    "domains": [
     "calm"
    ],
@@ -34402,7 +34402,7 @@
    "type": [
     "unit"
    ],
-   "rarity": "rare",
+   "rarity": "showcase",
    "domains": [
     "calm"
    ],
@@ -34432,7 +34432,7 @@
    "type": [
     "unit"
    ],
-   "rarity": "rare",
+   "rarity": "showcase",
    "domains": [
     "fury"
    ],
@@ -34462,7 +34462,7 @@
    "type": [
     "unit"
    ],
-   "rarity": "rare",
+   "rarity": "showcase",
    "domains": [
     "mind"
    ],
@@ -34492,7 +34492,7 @@
    "type": [
     "unit"
    ],
-   "rarity": "epic",
+   "rarity": "showcase",
    "domains": [
     "calm"
    ],
@@ -34523,7 +34523,7 @@
    "type": [
     "unit"
    ],
-   "rarity": "rare",
+   "rarity": "showcase",
    "domains": [
     "mind"
    ],
@@ -34554,7 +34554,7 @@
    "type": [
     "unit"
    ],
-   "rarity": "rare",
+   "rarity": "showcase",
    "domains": [
     "mind"
    ],
@@ -34584,7 +34584,7 @@
    "type": [
     "unit"
    ],
-   "rarity": "epic",
+   "rarity": "showcase",
    "domains": [
     "body"
    ],
@@ -34614,7 +34614,7 @@
    "type": [
     "unit"
    ],
-   "rarity": "rare",
+   "rarity": "showcase",
    "domains": [
     "mind"
    ],
@@ -34645,7 +34645,7 @@
    "type": [
     "unit"
    ],
-   "rarity": "epic",
+   "rarity": "showcase",
    "domains": [
     "body"
    ],
@@ -34683,7 +34683,7 @@
    "type": [
     "unit"
    ],
-   "rarity": "epic",
+   "rarity": "showcase",
    "domains": [
     "body"
    ],
@@ -34714,7 +34714,7 @@
    "type": [
     "unit"
    ],
-   "rarity": "rare",
+   "rarity": "showcase",
    "domains": [
     "body"
    ],
@@ -34750,7 +34750,7 @@
    "type": [
     "unit"
    ],
-   "rarity": "rare",
+   "rarity": "showcase",
    "domains": [
     "chaos"
    ],
@@ -34780,7 +34780,7 @@
    "type": [
     "unit"
    ],
-   "rarity": "epic",
+   "rarity": "showcase",
    "domains": [
     "chaos"
    ],
@@ -34811,7 +34811,7 @@
    "type": [
     "unit"
    ],
-   "rarity": "rare",
+   "rarity": "showcase",
    "domains": [
     "order"
    ],
@@ -34841,7 +34841,7 @@
    "type": [
     "unit"
    ],
-   "rarity": "rare",
+   "rarity": "showcase",
    "domains": [
     "order"
    ],
@@ -34871,7 +34871,7 @@
    "type": [
     "unit"
    ],
-   "rarity": "rare",
+   "rarity": "showcase",
    "domains": [
     "fury"
    ],
@@ -34901,7 +34901,7 @@
    "type": [
     "unit"
    ],
-   "rarity": "epic",
+   "rarity": "showcase",
    "domains": [
     "order"
    ],
@@ -34931,7 +34931,7 @@
    "type": [
     "unit"
    ],
-   "rarity": "rare",
+   "rarity": "showcase",
    "domains": [
     "chaos"
    ],
@@ -34961,7 +34961,7 @@
    "type": [
     "legend"
    ],
-   "rarity": "rare",
+   "rarity": "showcase",
    "domains": [
     "fury",
     "calm"
@@ -34992,7 +34992,7 @@
    "type": [
     "legend"
    ],
-   "rarity": "rare",
+   "rarity": "showcase",
    "domains": [
     "fury",
     "calm"
@@ -35023,7 +35023,7 @@
    "type": [
     "legend"
    ],
-   "rarity": "rare",
+   "rarity": "showcase",
    "domains": [
     "fury",
     "body"
@@ -35054,7 +35054,7 @@
    "type": [
     "legend"
    ],
-   "rarity": "rare",
+   "rarity": "showcase",
    "domains": [
     "fury",
     "body"
@@ -35085,7 +35085,7 @@
    "type": [
     "legend"
    ],
-   "rarity": "rare",
+   "rarity": "showcase",
    "domains": [
     "fury",
     "chaos"
@@ -35116,7 +35116,7 @@
    "type": [
     "legend"
    ],
-   "rarity": "rare",
+   "rarity": "showcase",
    "domains": [
     "fury",
     "chaos"
@@ -35147,7 +35147,7 @@
    "type": [
     "legend"
    ],
-   "rarity": "rare",
+   "rarity": "showcase",
    "domains": [
     "calm",
     "mind"
@@ -35178,7 +35178,7 @@
    "type": [
     "legend"
    ],
-   "rarity": "rare",
+   "rarity": "showcase",
    "domains": [
     "calm",
     "mind"
@@ -35211,7 +35211,7 @@
    "type": [
     "legend"
    ],
-   "rarity": "rare",
+   "rarity": "showcase",
    "domains": [
     "calm",
     "order"
@@ -35242,7 +35242,7 @@
    "type": [
     "legend"
    ],
-   "rarity": "rare",
+   "rarity": "showcase",
    "domains": [
     "calm",
     "order"
@@ -35273,7 +35273,7 @@
    "type": [
     "legend"
    ],
-   "rarity": "rare",
+   "rarity": "showcase",
    "domains": [
     "mind",
     "body"
@@ -35304,7 +35304,7 @@
    "type": [
     "legend"
    ],
-   "rarity": "rare",
+   "rarity": "showcase",
    "domains": [
     "mind",
     "body"
@@ -35335,7 +35335,7 @@
    "type": [
     "legend"
    ],
-   "rarity": "rare",
+   "rarity": "showcase",
    "domains": [
     "mind",
     "chaos"
@@ -35366,7 +35366,7 @@
    "type": [
     "legend"
    ],
-   "rarity": "rare",
+   "rarity": "showcase",
    "domains": [
     "mind",
     "chaos"
@@ -35397,7 +35397,7 @@
    "type": [
     "legend"
    ],
-   "rarity": "rare",
+   "rarity": "showcase",
    "domains": [
     "body",
     "order"
@@ -35428,7 +35428,7 @@
    "type": [
     "legend"
    ],
-   "rarity": "rare",
+   "rarity": "showcase",
    "domains": [
     "body",
     "order"
@@ -35459,7 +35459,7 @@
    "type": [
     "legend"
    ],
-   "rarity": "rare",
+   "rarity": "showcase",
    "domains": [
     "order",
     "chaos"
@@ -35491,7 +35491,7 @@
    "type": [
     "legend"
    ],
-   "rarity": "rare",
+   "rarity": "showcase",
    "domains": [
     "order",
     "chaos"
@@ -35531,7 +35531,7 @@
    "power": null,
    "might": null,
    "mightBonus": null,
-   "text": "[NO TEXT]",
+   "text": null,
    "effect": null,
    "tags": [],
    "orientation": "portrait",
@@ -35559,7 +35559,7 @@
    "power": null,
    "might": null,
    "mightBonus": null,
-   "text": "[NO TEXT]",
+   "text": null,
    "effect": null,
    "tags": [],
    "orientation": "portrait",
@@ -35587,7 +35587,7 @@
    "power": null,
    "might": null,
    "mightBonus": null,
-   "text": "[NO TEXT]",
+   "text": null,
    "effect": null,
    "tags": [],
    "orientation": "portrait",
@@ -35615,7 +35615,7 @@
    "power": null,
    "might": null,
    "mightBonus": null,
-   "text": "[NO TEXT]",
+   "text": null,
    "effect": null,
    "tags": [],
    "orientation": "portrait",
@@ -35643,7 +35643,7 @@
    "power": null,
    "might": null,
    "mightBonus": null,
-   "text": "[NO TEXT]",
+   "text": null,
    "effect": null,
    "tags": [],
    "orientation": "portrait",
@@ -35671,7 +35671,7 @@
    "power": null,
    "might": null,
    "mightBonus": null,
-   "text": "[NO TEXT]",
+   "text": null,
    "effect": null,
    "tags": [],
    "orientation": "portrait",
@@ -35691,7 +35691,7 @@
    "type": [
     "unit"
    ],
-   "rarity": "epic",
+   "rarity": "showcase",
    "domains": [
     "fury"
    ],
@@ -35721,7 +35721,7 @@
    "type": [
     "unit"
    ],
-   "rarity": "epic",
+   "rarity": "showcase",
    "domains": [
     "calm"
    ],
@@ -35751,7 +35751,7 @@
    "type": [
     "unit"
    ],
-   "rarity": "epic",
+   "rarity": "showcase",
    "domains": [
     "mind"
    ],
@@ -35782,7 +35782,7 @@
    "type": [
     "unit"
    ],
-   "rarity": "epic",
+   "rarity": "showcase",
    "domains": [
     "body"
    ],
@@ -35812,7 +35812,7 @@
    "type": [
     "unit"
    ],
-   "rarity": "epic",
+   "rarity": "showcase",
    "domains": [
     "chaos"
    ],
@@ -35843,7 +35843,7 @@
    "type": [
     "unit"
    ],
-   "rarity": "epic",
+   "rarity": "showcase",
    "domains": [
     "order"
    ],
@@ -35867,7 +35867,7 @@
    "base": "VEN-T04",
    "variant": "",
    "publicCode": "VEN-T04",
-   "name": "Recruit (NX)",
+   "name": "Recruit",
    "set": "VEN",
    "collectorNumber": 4,
    "type": [

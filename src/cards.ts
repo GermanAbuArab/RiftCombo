@@ -47,6 +47,8 @@ export class CardIndex {
   private readonly byName = new Map<string, Card[]>();
   /** Every tag printed in the pool, normalised. Read by `resolveName` and nothing else. */
   private readonly tags = new Set<string>();
+  /** Multi-word tags keyed by their normalised last word ("yi" -> "Master Yi"). Read by `resolveName`. */
+  private readonly longTags = new Map<string, Set<string>>();
   private readonly banned = new Map<Format, Map<string, LegalityEntry>>();
 
   constructor(cards: Card[], legality: LegalityEntry[]) {
@@ -59,7 +61,14 @@ export class CardIndex {
       const k = normalizeName(c.name);
       if (!this.byName.has(k)) this.byName.set(k, []);
       this.byName.get(k)!.push(c);
-      for (const t of c.tags) this.tags.add(normalizeName(t));
+      for (const t of c.tags) {
+        this.tags.add(normalizeName(t));
+        const words = t.trim().split(/\s+/);
+        if (words.length < 2) continue;
+        const last = normalizeName(words[words.length - 1]!);
+        if (!this.longTags.has(last)) this.longTags.set(last, new Set());
+        this.longTags.get(last)!.add(t);
+      }
     }
     for (const e of legality) {
       if (!this.banned.has(e.format)) this.banned.set(e.format, new Map());
@@ -103,7 +112,17 @@ export class CardIndex {
     // the other ten this branch looks up a name that does not exist and changes nothing.
     const head = name.slice(0, comma).trim();
     const words = head.split(/\s+/);
-    if (words.length < 2 || !this.tags.has(normalizeName(head))) return null;
+    if (words.length < 2) {
+      // #660: and back. Riot's gallery renamed OGS-004 and OGS-009 to `Master Yi, ...` in 2026-11,
+      // so a list saved or pasted before that (`Yi, Meditative`) now names nothing. Retry a one-word
+      // head on each multi-word tag the pool prints that ends in it, the mirror of the branch below.
+      for (const long of this.longTags.get(normalizeName(head)) ?? []) {
+        const hit = this.pickByName(`${long},${epithet}`);
+        if (hit) return hit;
+      }
+      return null;
+    }
+    if (!this.tags.has(normalizeName(head))) return null;
     return this.pickByName(`${words[words.length - 1]},${epithet}`);
   }
 
