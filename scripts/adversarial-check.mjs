@@ -1,6 +1,7 @@
 // Adversarial check over every finisher in the catalogue (issue #200, lane rc-synth).
 //
 //   node scripts/adversarial-check.mjs            report everything
+//   ... --as-of YYYY-MM-DD                        read data/legality.json as of that day, default today (#668)
 //   node scripts/adversarial-check.mjs --strict   exit 1 if any finisher has an unanswered hole
 //   node scripts/adversarial-check.mjs --turns    only the turn-clock section
 //   node scripts/adversarial-check.mjs --engines  when the ENGINE class is deployable, and only that

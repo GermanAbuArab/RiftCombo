@@ -11,7 +11,8 @@ export function parseAsOf(argv) {
     const a = argv[i];
     const v = a === "--as-of" ? argv[++i] : a.startsWith("--as-of=") ? a.slice(8) : null;
     if (v === null) { rest.push(a); continue; }
-    if (!/^\d{4}-\d{2}-\d{2}$/.test(v ?? "")) throw new Error(`--as-of wants YYYY-MM-DD, got ${JSON.stringify(v)}`);
+    const real = typeof v === "string" && /^\d{4}-\d{2}-\d{2}$/.test(v) && new Date(`${v}T00:00:00Z`).toISOString().startsWith(v);
+    if (!real) throw new Error(`--as-of wants YYYY-MM-DD, got ${JSON.stringify(v)}`);
     asOf = v;
   }
   return { asOf, rest };

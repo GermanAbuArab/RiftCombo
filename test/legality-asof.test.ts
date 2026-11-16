@@ -25,6 +25,8 @@ describe("dated legality for scripts (#668)", () => {
     expect(parseAsOf(["x", "--as-of", "2026-11-22", "--turns"])).toEqual({ asOf: "2026-11-22", rest: ["x", "--turns"] });
     expect(parseAsOf(["--as-of=2026-11-23"]).asOf).toBe("2026-11-23");
     expect(() => parseAsOf(["--as-of", "tomorrow"])).toThrow();
+    expect(() => parseAsOf(["--as-of", "2026-02-31"])).toThrow();
+    expect(() => parseAsOf(["--as-of"])).toThrow();
   });
 
   it("inForce agrees with CardIndex on the Radiance card the day before and the day of", () => {
@@ -46,14 +48,20 @@ describe("dated legality for scripts (#668)", () => {
       id: "t668", class: "ENGINE", status: "candidate", rulesVersion: "none", produces: [],
       uses: [{ card: CARD, quantity: 1 }], prerequisites: { easy: [] },
     }]));
-    expect(run("scripts/check-stage.mjs", [stage, "--as-of", "2026-11-22"])).not.toContain(`LEGALITY ${CARD}`);
+    // The script must have reached the row (its own banner and the row's uses line) before an absence counts.
+    const day22 = run("scripts/check-stage.mjs", [stage, "--as-of", "2026-11-22"]);
+    expect(day22).toContain("=== t668");
+    expect(day22).toContain(`uses: ${CARD} `);
+    expect(day22).not.toContain(`LEGALITY ${CARD}`);
     expect(run("scripts/check-stage.mjs", [stage, "--as-of", "2026-11-23"])).toContain(`LEGALITY ${CARD} banned constructed`);
   });
 
   it("adversarial-check counts the Radiance bans only from their date", () => {
     const line = (d: string) => run("scripts/adversarial-check.mjs", ["--turns", "--as-of", d]).split("\n")
       .filter((l) => l.includes("desert-call-vi-sand-soldier-plaza"));
-    expect(line("2026-11-22").join()).not.toContain("BANNED in constructed");
+    const day22 = line("2026-11-22");
+    expect(day22.length, "the row was printed").toBe(1);
+    expect(day22.join()).not.toContain("BANNED in constructed");
     expect(line("2026-11-23").join()).toContain("BANNED in constructed");
   }, 60_000);
 });
