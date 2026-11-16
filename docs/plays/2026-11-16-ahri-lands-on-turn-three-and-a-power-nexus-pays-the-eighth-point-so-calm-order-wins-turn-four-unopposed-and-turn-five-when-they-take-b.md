@@ -282,21 +282,21 @@ amount of Power equal to [Deflect Value] more to play as an additional cost for 
 it, 809.1.c.1: *"The Power used to pay this cost may always be of any Domain."* Killing a Paws breaks
 nothing once a Ramhound stands with it, so that surcharge never matters here.
 
-- **`OGN-043 Charm` (Calm, E1 P1, in their identity): *"Move an enemy unit."*** Played on their T3,
+- **`OGN-043 Charm` (Calm, E1 P1, in their identity):** *"Move an enemy unit."* Played on their T3,
   it moves Ahri off A. The caster chooses the destination (355.4), and your base is a valid one
   (355.4.a). At the T4 Beginning Phase she is not at A, so her trigger does not fire: T4 is 6 with
   the Nexus. She walks back on T4, and the T5 Hold of A makes 7 or 8. **One Energy and one Power for
   the turn the line exists to win.** `UNL-038 Skyward Strike` (E2 P1) does the same.
-- **`OGN-213 Hidden Blade` (Order, E2 P1, in their identity): *"[Hidden] (Hide now for
+- **`OGN-213 Hidden Blade` (Order, E2 P1, in their identity):** *"[Hidden] (Hide now for
   :rb_rune_rainbow: to react with later for :rb_energy_0:.) [Action] (Play on your turn or in
-  showdowns.) Kill a unit at a battlefield. Its controller draws 2."*** It cannot be hidden before
+  showdowns.) Kill a unit at a battlefield. Its controller draws 2."* It cannot be hidden before
   their T3, because both battlefields are yours (811.1.b: *"at a battlefield you control"*). Played
   from hand on their T3 for E2 + 1 Power, it kills Ahri at A. T4 is then 6 with the Nexus, and you
   draw two.
-- **`OGN-229 Vengeance` (Order, E4 P2): *"Kill a unit."*** The same result on their T3 for four Energy
+- **`OGN-229 Vengeance` (Order, E4 P2):** *"Kill a unit."* The same result on their T3 for four Energy
   and two Power.
-- **`SFD-060 Tianna Crownguard` (Calm, E7 P2): *"[Deflect] (Opponents must pay :rb_rune_rainbow: to
-  choose me with a spell or ability.) While I'm at a battlefield, opponents can't gain points."*** On
+- **`SFD-060 Tianna Crownguard` (Calm, E7 P2):** *"[Deflect] (Opponents must pay :rb_rune_rainbow: to
+  choose me with a spell or ability.) While I'm at a battlefield, opponents can't gain points."* On
   their T3 they have seven runes and, after the attack, control B. Tianna onto B costs all seven and
   two recycles. Your T4 Holds and both triggers gain nothing while she stands there. It is their whole
   turn and it stops every point source in the line at once.
