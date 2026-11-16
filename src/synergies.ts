@@ -41,7 +41,8 @@ export function fingerprintOf(partners: { base: string }[]): string {
 }
 
 /** Whether a rule is retired on `asOf` (`YYYY-MM-DD`): its `retired.since` has come (#667). */
-export const isRetired = (s: Synergy, asOf: string): boolean => !!s.retired && s.retired.since <= asOf;
+export const isRetired = (s: Synergy, asOf: string): boolean =>
+  typeof s.retired?.since === "string" && /^\d{4}-\d{2}-\d{2}$/.test(s.retired.since) && s.retired.since <= asOf;
 
 /**
  * Sanity checks the authored file must pass before anything is matched against it, on the day
@@ -67,10 +68,12 @@ export function validateSynergies(synergies: Synergy[], cards: CardIndex, opts: 
     keys(s.partner, SYNERGY_PARTNER_KEYS, "partner.");
     keys(s.basis, SYNERGY_BASIS_KEYS, "basis.");
     for (const x of s.partner?.excludes ?? []) keys(x, SYNERGY_EXCLUDE_KEYS, "partner.excludes[].");
-    if (s.retired) {
+    if (s.retired !== undefined && (typeof s.retired !== "object" || s.retired === null)) {
+      errors.push(`${s.id}: retired must be an object with since and why`);
+    } else if (s.retired) {
       keys(s.retired, SYNERGY_RETIRED_KEYS, "retired.");
-      if (!/^\d{4}-\d{2}-\d{2}$/.test(s.retired.since)) errors.push(`${s.id}: retired.since must be a YYYY-MM-DD date`);
-      if (!s.retired.why?.trim()) errors.push(`${s.id}: retired with no reason`);
+      if (typeof s.retired.since !== "string" || !/^\d{4}-\d{2}-\d{2}$/.test(s.retired.since)) errors.push(`${s.id}: retired.since must be a YYYY-MM-DD date`);
+      if (typeof s.retired.why !== "string" || !s.retired.why.trim()) errors.push(`${s.id}: retired with no reason`);
     }
     // `partner.types` was read straight into a filter and validated by nothing, so a mistyped type
     // would silently match NOTHING rather than fail - and a rule stamped in the same edit would
@@ -100,7 +103,8 @@ export function validateSynergies(synergies: Synergy[], cards: CardIndex, opts: 
     // Unless it is retired on this day (#667), and then it must be retired on exactly the days its
     // anchor is banned everywhere: early would hide a live rule, late is the dead weight again.
     const formats: Format[] = ["constructed", "2v2"];
-    const deadEverywhere = !!anchor && formats.every((f) => cards.legality(s.anchor, f));
+    // `status === "banned"`, as in `playableUnder`: a restricted card is a cap, not a dead anchor.
+    const deadEverywhere = !!anchor && formats.every((f) => cards.legality(s.anchor, f)?.status === "banned");
     const retired = isRetired(s, cards.asOf);
     if (deadEverywhere && !retired) {
       errors.push(`${s.id}: anchor ${s.anchor} is banned in every format`);

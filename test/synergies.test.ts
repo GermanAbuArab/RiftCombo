@@ -1,5 +1,6 @@
 import { readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
+import { CardIndex } from "../src/cards.js";
 import { loadDeck } from "../src/deck.js";
 import { loadCardIndex, loadCombos, loadSynergies } from "../src/load.js";
 import { FIXTURE_DAY } from "./fixture-day.js";
@@ -612,5 +613,21 @@ describe("a rule on a banned anchor is retired by date (#667)", () => {
     expect(validateSynergies([{ ...ekko, retired: { ...ekko.retired!, on: "x" } as never }], day)).toEqual([
       "ekko-deathknell-runes: unknown field retired.on",
     ]);
+    // A malformed date never counts as retired, so the banned anchor is still reported.
+    expect(validateSynergies([{ ...ekko, retired: { since: "18 Sep 2026", why: "banned" } }], day)).toContain(
+      "ekko-deathknell-runes: anchor OGN-110 is banned in every format",
+    );
+    expect(validateSynergies([{ ...ekko, retired: true as never }], day)).toContain(
+      "ekko-deathknell-runes: retired must be an object with since and why",
+    );
+  });
+
+  it("does not count a RESTRICTED anchor as dead: a restriction is a cap, not a ban", () => {
+    const ekko = synergies.find((s) => s.id === "ekko-deathknell-runes")!;
+    const { retired: _gone, ...live } = ekko;
+    const restricted = (format: "constructed" | "2v2") =>
+      ({ format, entity: "unit", name: "Ekko, Recurrent", codes: ["OGN-110"], bases: ["OGN-110"], status: "restricted", since: "2026-01-01", source: "test" });
+    const both = new CardIndex(cards.cards, [restricted("constructed"), restricted("2v2")] as never, "2026-09-19");
+    expect(validateSynergies([live], both)).toEqual([]);
   });
 });
