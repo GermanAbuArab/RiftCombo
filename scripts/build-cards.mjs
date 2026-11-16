@@ -101,6 +101,18 @@ export function displayName(item) {
   return `${item.name}${sep}${item.subtitle}`;
 }
 
+// #660: since 2026-11 the gallery also fills `might` on Equipment with the same number as
+// `mightBonus` (all 40 Equipment printings, read 2026-11-16; `might` was null on every gear until
+// then). A gear has no Might of its own, and `might` is what the corpus prints as `M` and the web
+// shows as a unit's Might, so a gear keeps `might: null` and the bonus stays in `mightBonus`. A gear
+// whose two numbers differ would be a new shape, so it fails the build instead of being guessed.
+export function gearMight(item) {
+  const might = num(item.might);
+  if (might === null || !item.cardType.type.some((t) => t.id === "gear")) return might;
+  if (might !== num(item.mightBonus)) throw new Error(`${item.publicCode}: gear might ${might} differs from mightBonus ${num(item.mightBonus)}`);
+  return null;
+}
+
 function normalize(item) {
   const code = shortCode(item.publicCode);
   const { base, variant } = splitVariant(code);
@@ -120,7 +132,7 @@ function normalize(item) {
     domains: (item.domain?.values ?? []).map((d) => d.id).filter((d) => d !== "colorless"),
     energy: num(item.energy),
     power: num(item.power),
-    might: num(item.might),
+    might: gearMight(item),
     mightBonus: num(item.mightBonus),
     text: rich(item.text),
     effect: rich(item.effect),
@@ -213,8 +225,9 @@ function resolveLegality(cards, src) {
 // 51 names became data/signature.src.json, and this resolves each to exactly one base code — zero or
 // two-or-more is a build failure. The gallery now ships `cardType.superType` "signature" (#660), and
 // that is the source `Card.signature` is read from: read 2026-11-16 it marks exactly those 51 bases
-// plus nine Radiance cards. The mirrors' list stays as a cross-check: the build fails if the gallery
-// stops marking any of the 51.
+// in the sets built here (and nine Radiance cards, held below). The mirrors' list stays as a
+// cross-check in both directions: the build fails if the gallery stops marking one of the 51, or
+// marks a base the mirrors do not list, so a new Signature card needs a second source too.
 //
 // resolveLegality does NOT apply that discipline, and must not: 104 names in this pool already span
 // two or more base codes (Vi, Destructive is OGN-036 + VEN-167; Ahri, Inquisitive is OGN-119 +
@@ -256,9 +269,15 @@ function resolveSignature(cards, src) {
 // Gated on direct execution (never on import) so test/errata.test.ts can import applyErrata above
 // without triggering a live fetch of Riot's gallery as a side effect of loading the module.
 
+// Sets the gallery publishes that are not built yet. Radiance (RAD, 219 printings read 2026-11-16)
+// is held until #664 ingests it: it brings new pins to read (synergy lists, or-pairs, the turn
+// clock) and 20 printings whose type or domain contradicts their own text.
+const HELD_SETS = new Set(["RAD"]);
+
 const isMain = import.meta.url === `file://${process.argv[1]}`;
 if (isMain) {
-  const { items, updatedAt } = await fetchAll();
+  const { items: all, updatedAt } = await fetchAll();
+  const items = all.filter((i) => !HELD_SETS.has(i.set.value.id));
   const cards = items.map(normalize);
   const signatureIds = new Set(items.filter(isSignature).map((i) => i.id));
 
@@ -276,6 +295,8 @@ if (isMain) {
   const signatureBases = new Set(cards.filter((c) => signatureIds.has(c.id)).map((c) => c.base));
   const unmarked = [...mirrorBases].filter((b) => !signatureBases.has(b));
   if (unmarked.length > 0) throw new Error(`signature: the gallery does not mark ${unmarked.join(", ")} as Signature`);
+  const unlisted = [...signatureBases].filter((b) => !mirrorBases.has(b));
+  if (unlisted.length > 0) throw new Error(`signature: the gallery marks ${unlisted.join(", ")} as Signature; data/signature.src.json does not list them`);
   for (const c of cards) c.signature = signatureBases.has(c.base);
 
   cards.sort((a, b) => (a.set + a.code).localeCompare(b.set + b.code));
@@ -288,6 +309,7 @@ if (isMain) {
 
   const withEffect = cards.filter((c) => c.effect).length;
   const errataApplied = cards.filter((c) => c.errata).length;
+  console.log(`held: ${all.length - items.length} printings of ${[...HELD_SETS].join(", ")} not built`);
   console.log(`cards: ${cards.length} (${new Set(cards.map((c) => c.base)).size} unique printings ignoring alt-art)`);
   console.log(`equipment effects: ${withEffect}; errata applied to ${errataApplied} printings; legality entries: ${legality.entries.length}`);
   console.log(`signature: ${signatureBases.size} base cards`);

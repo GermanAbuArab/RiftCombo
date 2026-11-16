@@ -67,10 +67,10 @@ git-tracked file under `web/` whose name matches `/\.(ts|html|css|svg|webmanifes
 | Distinct cards used by some entry | **897** | `node -pe 'const a=require("./data/combos.json").combos,s=new Set();for(const e of a)for(const u of e.uses)s.add(u.card);s.size'` |
 | Sources cited | **2281** | `node -pe 'require("./data/combos.json").combos.reduce((n,e)=>n+(e.sources\|\|[]).length,0)'` |
 | Synergy rules | **222** | `node -pe 'require("./data/synergies.json").synergies.length'` |
-| Anchor–partner pairs produced | **5475** | `npm run synergies \| tail -1` |
-| Printings in the pool | **1408** (RAD added 2026-11-16, #660) | `node -pe 'require("./data/cards.json").cards.length'` |
-| Flat corpus lines | **1115** | `wc -l < data/corpus_flat.txt` |
-| Errata replacements | **56** | `node -pe 'require("./data/errata.json").entries.length'` |
+| Anchor–partner pairs produced | **5545** | `npm run synergies \| tail -1` |
+| Printings in the pool | **1189** | `node -pe 'require("./data/cards.json").cards.length'` |
+| Flat corpus lines | **948** | `wc -l < data/corpus_flat.txt` |
+| Errata replacements | **52** | `node -pe 'require("./data/errata.json").entries.length'` |
 | Legality rows (ban/restricted) | **21** | `node -pe 'require("./data/legality.json").entries.length'` |
 | Hand walks archived | **108** | `ls docs/phase0/walks/*.md \| grep -v README \| wc -l` |
 | Run plays | **16** | `ls docs/plays/*.md \| wc -l` |
