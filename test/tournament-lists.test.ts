@@ -165,6 +165,8 @@ describe("checkBuild over the lists that parse clean", () => {
     }
     expect(changed).toBeGreaterThan(0);
     for (const n of named) expect(after.has(n) || n === "Aspirant's Climb" || n === "The Arena's Greatest").toBe(true);
-    expect(named.has("Ekko, Recurrent")).toBe(true);
+    // And every one of them fires: each card of both updates that the pool holds is in some list
+    // (Riven, Broken Blade is RAD-043, not in the pool until #664).
+    expect([...after].filter((n) => n !== "Riven, Broken Blade" && !named.has(n))).toEqual([]);
   });
 });

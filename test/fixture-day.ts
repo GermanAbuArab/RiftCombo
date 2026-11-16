@@ -4,7 +4,7 @@
  * Stacked Deck, and `test/fixtures/lux.txt`, the reference "legal list", registers Ekko. Read as of
  * today the suite would also turn red by itself on every future ban date (the Radiance bans start
  * 2026-11-23), so it reads one fixed day instead. What the later bans change is pinned in
- * test/legality-dates.test.ts and in the "today" test of test/tournament-lists.test.ts.
+ * test/legality-dates.test.ts and in the "read on 2026-11-23" test of test/tournament-lists.test.ts.
  */
 export const FIXTURE_DAY = "2026-09-17";
 
