@@ -83,6 +83,24 @@ const splitVariant = (code) => {
   return { base: m[1], variant: m[2] || "" };
 };
 
+// #660: since 2026-11 the gallery ships the epithet as a separate `subtitle` ("Draven" +
+// "Vanquisher"), where it used to ship one `name` ("Draven, Vanquisher"). Every name in the pool,
+// errata, legality, signature and every saved deck uses the joined form, so it is rebuilt here:
+// - a Signature card's subtitle is the champion it belongs to ("Tibbers" + "Annie"), not part of
+//   its name, which stays bare as it always was;
+// - a legend's subtitle ("Dark Child" + "Starter") is joined with " - ", the gallery's old spelling
+//   of the four Proving Grounds legends (normalizeName in src/cards.ts accepts ", Starter" too);
+// - any other subtitle is joined with ", ".
+// Measured over the 1189 printings built before the change: this reproduces 1186 names exactly;
+// the other three are Riot's renames (OGS-004/009 "Yi" -> "Master Yi", VEN-T04 "Recruit (NX)" ->
+// "Recruit"), listed on #660.
+const isSignature = (item) => (item.cardType.superType ?? []).some((t) => t.id === "signature");
+export function displayName(item) {
+  if (!item.subtitle || isSignature(item)) return item.name;
+  const sep = item.cardType.type.some((t) => t.id === "legend") ? " - " : ", ";
+  return `${item.name}${sep}${item.subtitle}`;
+}
+
 function normalize(item) {
   const code = shortCode(item.publicCode);
   const { base, variant } = splitVariant(code);
@@ -92,7 +110,7 @@ function normalize(item) {
     base,
     variant,
     publicCode: item.publicCode,
-    name: item.name,
+    name: displayName(item),
     set: item.set.value.id,
     collectorNumber: item.collectorNumber,
     type: item.cardType.type.map((t) => t.id),
@@ -190,10 +208,13 @@ function resolveLegality(cards, src) {
 
 // --- signature (#103) --------------------------------------------------------
 //
-// Riot's own gallery ships no Signature marker (Core Rules 133.7.b / 103.2.d). Two independent
-// mirrors (Piltover Archive's `card.super`, dotgg's `supertype`) agree on the same 51 names, so
-// data/signature.src.json carries the names and this resolves each to exactly one base code —
-// zero or two-or-more is a build failure.
+// Until 2026-11 Riot's gallery shipped no Signature marker (Core Rules 133.7.b / 103.2.d), so two
+// independent mirrors (Piltover Archive's `card.super`, dotgg's `supertype`) that agree on the same
+// 51 names became data/signature.src.json, and this resolves each to exactly one base code — zero or
+// two-or-more is a build failure. The gallery now ships `cardType.superType` "signature" (#660), and
+// that is the source `Card.signature` is read from: read 2026-11-16 it marks exactly those 51 bases
+// plus nine Radiance cards. The mirrors' list stays as a cross-check: the build fails if the gallery
+// stops marking any of the 51.
 //
 // resolveLegality does NOT apply that discipline, and must not: 104 names in this pool already span
 // two or more base codes (Vi, Destructive is OGN-036 + VEN-167; Ahri, Inquisitive is OGN-119 +
@@ -239,6 +260,7 @@ const isMain = import.meta.url === `file://${process.argv[1]}`;
 if (isMain) {
   const { items, updatedAt } = await fetchAll();
   const cards = items.map(normalize);
+  const signatureIds = new Set(items.filter(isSignature).map((i) => i.id));
 
   const ids = new Set(cards.map((c) => c.id));
   if (ids.size !== cards.length) throw new Error("duplicate ids in gallery payload");
@@ -250,7 +272,10 @@ if (isMain) {
   const legality = resolveLegality(cards, legalitySrc);
 
   const signatureSrc = JSON.parse(readFileSync(join(DATA, "signature.src.json"), "utf8"));
-  const signatureBases = resolveSignature(cards, signatureSrc);
+  const mirrorBases = resolveSignature(cards, signatureSrc);
+  const signatureBases = new Set(cards.filter((c) => signatureIds.has(c.id)).map((c) => c.base));
+  const unmarked = [...mirrorBases].filter((b) => !signatureBases.has(b));
+  if (unmarked.length > 0) throw new Error(`signature: the gallery does not mark ${unmarked.join(", ")} as Signature`);
   for (const c of cards) c.signature = signatureBases.has(c.base);
 
   cards.sort((a, b) => (a.set + a.code).localeCompare(b.set + b.code));

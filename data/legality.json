@@ -35,8 +35,8 @@
    "entity": "unit",
    "name": "Draven, Vanquisher",
    "codes": [
-    "SFD-020",
-    "SFD-020a"
+    "SFD-020a",
+    "SFD-020"
    ],
    "bases": [
     "SFD-020"
@@ -190,8 +190,8 @@
    "entity": "unit",
    "name": "Draven, Vanquisher",
    "codes": [
-    "SFD-020",
-    "SFD-020a"
+    "SFD-020a",
+    "SFD-020"
    ],
    "bases": [
     "SFD-020"
