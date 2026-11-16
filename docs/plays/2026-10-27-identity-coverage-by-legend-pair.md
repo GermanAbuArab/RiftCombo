@@ -51,20 +51,20 @@ finishers of all four classes, then alphabetically.
 ## 2. The table
 
 One current table (#537 collapsed the five that slices 1 to 5 appended here). It is the command of §7
-run on this PR's tree: master `aec0933` (`scripts/` byte-identical to it) plus slice 6's entry in
-`data/combos.json`. 91 finishers.
+run on this PR's tree: master `9c11e01` (`scripts/` byte-identical to it) plus slice 7's entry in
+`data/combos.json`. 92 finishers.
 
 | pair | Hold baseline | INFINITE | BURST | CHAIN | clocked, pay by T4 | ALT_WIN | ALT_WIN, pay by T4 | all four |
 |---|---|---|---|---|---|---|---|---|
-| body/calm | T5 | 0 | 2 | 0 | 0 | 3 | 2 | 5 |
+| body/calm | T5 | 0 | 2 | 1 | 1 (ahri-alluring-power-nexus-hold-curve-turn-four T4) | 3 | 2 | 6 |
 | body/chaos | T5 | 0 | 0 | 3 | 0 | 4 | 2 | 7 |
 | body/fury | T5 | 1 | 3 | 2 | 0 | 2 | 1 | 8 |
 | body/mind | T5 | 2 | 2 | 6 | 0 | 5 | 2 | 15 |
 | body/order | T5 | 0 | 1 | 0 | 0 | 7 | 3 | 8 |
-| calm/chaos | T5 | 0 | 2 | 3 | 1 (yasuo-windrider-ride-the-wind-chain T4) | 4 | 3 | 9 |
-| calm/fury | T5 | 2 | 6 | 0 | 2 (threshold-reveler-infinite-energy T4, reveler-loop-nasus-brambleback-conquer T4) | 3 | 2 | 11 |
-| calm/mind | T5 | 2 | 5 | 6 | 0 | 9 | 6 | 22 |
-| calm/order | T5 | 0 | 3 | 0 | 0 | 9 | 5 | 12 |
+| calm/chaos | T5 | 0 | 2 | 4 | 2 (yasuo-windrider-ride-the-wind-chain T4, ahri-alluring-power-nexus-hold-curve-turn-four T4) | 4 | 3 | 10 |
+| calm/fury | T5 | 2 | 6 | 1 | 3 (threshold-reveler-infinite-energy T4, reveler-loop-nasus-brambleback-conquer T4, ahri-alluring-power-nexus-hold-curve-turn-four T4) | 3 | 2 | 12 |
+| calm/mind | T5 | 2 | 5 | 7 | 1 (ahri-alluring-power-nexus-hold-curve-turn-four T4) | 9 | 6 | 23 |
+| calm/order | T5 | 0 | 3 | 1 | 1 (ahri-alluring-power-nexus-hold-curve-turn-four T4) | 9 | 5 | 13 |
 | chaos/fury | T6 | 0 | 1 | 1 | 0 | 2 | 1 | 4 |
 | chaos/mind | T6 | 2 | 0 | 6 | 0 | 8 | 4 | 16 |
 | chaos/order | T6 | 1 | 0 | 3 | 0 | 7 | 4 | 11 (pursuer-herald-recruits banned) |
@@ -72,12 +72,13 @@ run on this PR's tree: master `aec0933` (`scripts/` byte-identical to it) plus s
 | fury/order | T6 | 2 | 2 | 0 | 1 (jhin-fiora-facebreaker-recall T4) | 5 | 2 | 9 |
 | mind/order | T6 | 7 | 2 | 10 | 2 (time-warp-hold-burst T4, bottled-constellation-time-warp T4) | 12 | 6 | 31 |
 
-The order, (clocked by T4, all four): chaos/fury (0, 4), body/calm (0, 5), body/chaos (0, 7),
-body/fury (0, 8), body/order (0, 8), chaos/order (0, 11), calm/order (0, 12), body/mind (0, 15),
-fury/mind (0, 15), chaos/mind (0, 16), calm/mind (0, 22), calm/chaos (1, 9), fury/order (1, 9),
-calm/fury (2, 11), mind/order (2, 31). The first six are worked (slices 1 to 6), so the first pair not
-yet worked is **Calm/Order** (0, 12), baseline T5. §4 lists the entries whose priced set is wider than
-their own cards, now five of 91.
+The order, (clocked by T4, all four): chaos/fury (0, 4), body/chaos (0, 7), body/fury (0, 8),
+body/order (0, 8), chaos/order (0, 11), body/mind (0, 15), fury/mind (0, 15), chaos/mind (0, 16),
+body/calm (1, 6), fury/order (1, 9), calm/order (1, 13), calm/mind (1, 23), calm/chaos (2, 10),
+mind/order (2, 31), calm/fury (3, 12). Slices 1 to 7 worked Chaos/Fury, Body/Calm, Body/Chaos,
+Body/Fury, Body/Order, Chaos/Order and Calm/Order, so the first pair not yet worked is **Body/Mind**
+(0, 15), baseline T5, ahead of Fury/Mind at the same count alphabetically. §4 lists the entries whose
+priced set is wider than their own cards, now five of 92.
 
 **Changelog, one line per slice.** Each line is the same command at the sha named, before that slice
 added anything, and what moved since the line above. The earlier tables are in git history
@@ -88,7 +89,8 @@ added anything, and what moved since the line above. The earlier tables are in g
 - 2026-10-27, `c200d59`, #512 (slice 3): slice 2's frisky-hunter-grand-plaza (mono-Calm ALT_WIN, T4) does the same in every Calm pair; the readying (#509) and [Accelerate] (#518) models move no row across T4; 87 finishers; Body/Chaos (0, 5) worked.
 - 2026-10-27, `2fbe030`, #524 (slice 4): slice 3's towering-combatant-up-from-the-deep-grand-plaza (Body/Chaos ALT_WIN, T4) gives Body/Chaos (0, 6); 88 finishers; Body/Fury (0, 7) worked, ahead of Body/Order at the same count alphabetically.
 - 2026-10-31, `07a93ad`, #529 (slice 5): slice 4's towering-combatant-hidden-marai-grand-plaza (Body/Fury ALT_WIN, T4) gives Body/Fury (0, 8); dragonstorm-confront-grand-plaza clocks T7, not T12; 89 finishers; Body/Order (0, 7) worked.
-- 2026-10-31, `aec0933`, #537 (slice 6): slice 5's galio-vanguard-captain-grand-plaza (Body/Order ALT_WIN, T4) gives Body/Order 7 ALT_WINs; #528 (`18374ab`) prices ready-recruits-grand-plaza by Order alone at T4, so it now pays by T4 in every Order pair (ALT_WIN, pay by T4: body/order 1 to 3 with Galio, calm/order 4 to 5, chaos/order 3 to 4, fury/order 1 to 2) and leaves §4; #532 and #544 move dragonstorm-confront-grand-plaza T7 to T6 to T5; #530 and #540 move no row; no clocked count moved; 90 finishers; Chaos/Order (0, 10) worked. Then slice 6's own entry, yasuo-ride-the-wind-hold-curve-turn-five (mono-Chaos CHAIN, T5), adds one CHAIN and one to "all four" in every Chaos pair and moves no clocked count, because it pays on T5: the table above, 91 finishers.
+- 2026-10-31, `aec0933`, #537 (slice 6): slice 5's galio-vanguard-captain-grand-plaza (Body/Order ALT_WIN, T4) gives Body/Order 7 ALT_WINs; #528 (`18374ab`) prices ready-recruits-grand-plaza by Order alone at T4, so it now pays by T4 in every Order pair (ALT_WIN, pay by T4: body/order 1 to 3 with Galio, calm/order 4 to 5, chaos/order 3 to 4, fury/order 1 to 2) and leaves §4; #532 and #544 move dragonstorm-confront-grand-plaza T7 to T6 to T5; #530 and #540 move no row; no clocked count moved; 90 finishers; Chaos/Order (0, 10) worked. Then slice 6's own entry, yasuo-ride-the-wind-hold-curve-turn-five (mono-Chaos CHAIN, T5), adds one CHAIN and one to "all four" in every Chaos pair and moves no clocked count, because it pays on T5: 91 finishers.
+- 2026-11-16, `9c11e01`, #553 (slice 7): no row moved from `aec0933` to `9c11e01` (the table at `9c11e01` is byte-identical to the one above it); 91 finishers; Calm/Order (0, 12) worked. Then slice 7's own entry, ahri-alluring-power-nexus-hold-curve-turn-four (mono-Calm plus a colourless battlefield, CHAIN, T4), adds one CHAIN, one clocked by T4 and one to "all four" in every Calm pair (body/calm, calm/chaos, calm/fury, calm/mind, calm/order): the table above, 92 finishers.
 
 ### Why each slice took its pair
 
@@ -131,6 +133,12 @@ ivern-arena-draven-chaos-order-chain T7; and seven ALT_WINs, four of them paying
 (ready-recruits-grand-plaza, zed-clone-eye-recruits, vanguard-captain-manufactor-plaza and
 up-from-the-deep-flow-grand-plaza). No legal INFINITE, BURST or CHAIN of the pair paid by T4, which is why the issue asked for a BURST or CHAIN shape
 (§5).
+
+**Slice 7 (#553, at `9c11e01`): Calm/Order,** at (0, 12), the first pair not yet worked: the six
+worked before it are the first six in the order at `9c11e01`. Its twelve: three BURSTs, all on Svellsongur (shen-kinkou-svellsongur-hold T6,
+nasus-svellsongur-conquer-burst T6, ivern-svellsongur-four-tags-hold T8), no INFINITE, no CHAIN, and
+nine ALT_WINs, five of them paying by T4, all on The Grand Plaza. No INFINITE, BURST or CHAIN of the
+pair paid by T4, so the issue asked for a BURST or CHAIN shape (§5).
 
 ## 3. The two Chaos/Fury lines
 
@@ -194,13 +202,15 @@ beats its baseline.
 | #524 | Body/Fury | yes: towering-combatant-hidden-marai-grand-plaza, T4 against T5 on the clock | 0 |
 | #529 | Body/Order | yes: galio-vanguard-captain-grand-plaza, T4 against T5 on the clock | 0 |
 | #537 | Chaos/Order | yes: yasuo-ride-the-wind-hold-curve-turn-five, T5 against T6 on the clock (walked: T6) | 0 |
+| #553 | Calm/Order | yes: ahri-alluring-power-nexus-hold-curve-turn-four, T4 against T5 on the clock (walked: T5) | 0 |
 
 The next pair in the order is **Body/Calm** (baseline T5). [2026-10-27, #496: Body/Calm was slice 2;
 the next pair not yet worked is **Body/Chaos** (baseline T5), §2.] [2026-10-27, #512: Body/Chaos was slice 3; the next
 pair not yet worked is **Body/Fury** (baseline T5), §2.] [2026-10-27, #524: Body/Fury was slice 4; the next pair
 not yet worked is **Body/Order** (baseline T5), §2.] [2026-10-31, #529: Body/Order was slice 5; the next
 pair not yet worked is **Chaos/Order** (baseline T6), §2.] [2026-10-31, #537: Chaos/Order was slice 6; the next pair not
-yet worked is **Calm/Order** (baseline T5), §2.]
+yet worked is **Calm/Order** (baseline T5), §2.] [2026-11-16, #553: Calm/Order was slice 7; the next
+pair not yet worked is **Body/Mind** (baseline T5), §2.]
 
 **Slice 2, Body/Calm (#496).** One line was walked:
 [two Frisky Hunters on the Plaza](2026-10-27-two-frisky-hunters-put-seven-on-the-plaza-by-turn-three-a-tank-raises-the-free-answer-to-three-might-and-their-six-still-kill-four.md).
@@ -284,6 +294,26 @@ their own identity: hidden for one Power, played for no Energy. On curve it happ
 with nine Energy-2 bodies. Its entry is mono-Chaos and adds a CHAIN to every Chaos pair, but it pays
 on T5, so the pair's clocked count stays at **0**.
 
+**Slice 7, Calm/Order (#553).** One line was walked:
+[Ahri lands on turn three and a Power Nexus pays the eighth point](2026-11-16-ahri-lands-on-turn-three-and-a-power-nexus-pays-the-eighth-point-so-calm-order-wins-turn-four-unopposed-and-turn-five-when-they-take-b.md).
+The slice had to search a BURST or CHAIN shape. **No BURST in the pair reaches 8 by T4:** all three
+run through Svellsongur, and Ahri, Alluring with an equipped Svellsongur costs E9 + 3 Power, so it
+fires on T5 at the earliest. The pair had no CHAIN, and one pays by T4. Two Steel Paws on T1 give
+Calm its T5 Hold curve, which stands at 4 after T3. Ahri, Alluring is played onto battlefield A on T3
+for E5 and one recycled Calm rune. A is Power Nexus, and the T4 Beginning Phase comes before the
+Channel Phase. So T4 Holds both battlefields (6), fires Ahri's hold trigger (7, a 194.1.c gain that
+470 does not cap) and the Nexus (8, its four rainbow paid by recycling the four runes left on the
+board). That is T4 on the clock against the Calm/Order Hold baseline of T5, so it enters as a
+candidate CHAIN. Shen, Leader of the Kinkou Order on T3 leaves the same four runes and is the same
+T4; it is a Lead of the play, not an entry. In the walk, against the same deck and draws as the
+slice-6 Yasuo walk, their T3 attack (nine Might) takes B, so T4 is 7, and **it wins on T5**. On the
+same board the free curve wins on T7. Had they attacked A, a hidden Block kills all three attackers
+and the line wins on T4. The cheapest break is Charm, in their own identity: one Energy and one Power
+move Ahri off A before her trigger. With the Nexus chosen (one game in three) it happens in 0.47% of
+games. The clock prices deployment and not the point sum: it prints T4 for the entry with the Nexus
+removed, which the hand count makes T5. Its entry adds a CHAIN, and one clocked by T4, to every Calm
+pair, so **Calm/Order's clocked count goes from 0 to 1**.
+
 ## 6. Not verified
 
 The table counts entries, not decks. An entry fits a pair if its cards do; whether a real list in that
@@ -297,7 +327,9 @@ ALT_WIN turns are reported, not ranked.
 Run from the repository root of a checkout of `e3101e5`, with `coverage.mjs` saved anywhere. On a
 later checkout the table moves: this slice's own entry, up-from-the-deep-flow-grand-plaza, is a
 mono-Chaos ALT_WIN and adds one to the ALT_WIN and "all four" columns of every Chaos pair. [2026-10-31, #537: §2 now holds one table, this command on `aec0933` plus slice 6's entry, and its
-changelog names the sha and the movers of each earlier measurement.]
+changelog names the sha and the movers of each earlier measurement.] [2026-11-16, #553: the same
+command on `9c11e01` printed the §2 table of #537 byte for byte; the table now in §2 is that command
+on `9c11e01` plus slice 7's entry.]
 
 ```
 npm run -s adversarial -- --turns | node coverage.mjs

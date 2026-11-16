@@ -58795,18 +58795,43 @@
         "ability-points"
       ],
       "prerequisites": {
-        "easy": [],
-        "notable": []
+        "easy": [
+          "Legend's Domain Identity includes Calm (103.1.b.3): Steel Paws and Ahri, Alluring are mono-Calm and the Power Nexus is colourless. Synthesized for Calm/Order (#553), the next legend pair of the identity-first pass (Hold baseline T5, because VEN-043 Steel Paws is one of the pool's two Energy-1 units), and walked with VEN-147 Eye of Twilight, VEN-138 Shen, Leader of the Kinkou Order as Chosen Champion (never played), and two SFD-159 Trusty Ramhound, OGN-057 Block and OGN-052 Stalwart Poro beside the line.",
+          "SFD-214 Power Nexus as your battlefield, and both battlefields yours at the T4 Beginning Phase with Ahri at the Nexus when it starts (383.4.d.2.a). The Nexus is in play in one game in three (485.5).",
+          "A Calm rune among the six on the board by T3 for Ahri's Power (164.2.b.1), and four runes still on the board at the T4 Beginning Phase, which comes before the Channel Phase (315.2.b.2 before 315.3.b): six on T3, minus Ahri's one recycle, minus at most one more."
+        ],
+        "notable": [
+          "THE ARITHMETIC: 2 (T2 Conquers, 469.1) + 2 (T3 Holds, 469.2) + 2 (T4 Holds) + 1 (Ahri's hold trigger, a 194.1.c gain, so 470 does not cap it) + 1 (the Nexus, its four rainbow a base cost of the trigger, 383.3.b, paid by recycling runes at payment, 444.2.c, 135.2.e.5.a) = 8 at the T4 Beginning Phase. 471.1.a.1 frees non-Conquer points from the Final Point rule; you win at the Cleanup (472). Without the Nexus it is 7 on T4 and the baseline T5.",
+          "WALKED: against the Calm/Order Radiant Dawn deck of the slice-6 Yasuo walk, going first, it wins on T5. Their T3 attack (Daring Poro, Trusty Ramhound and Sunlit Guardian, nine) goes into B, which holds Ramhound and Paws, and takes it, so T4 is 7. Had they attacked A, the hidden Block on the Ramhound (Shield 3 and Tank, 815.1.b) kills all three and the line wins on T4. On the board the walk produced, the free Hold curve with the same cards keeps one battlefield and wins on T7, so the line saves two turns there and one unopposed.",
+          "BREAKS TO, priced against the target (Ahri has no [Deflect], so no surcharge; Steel Paws has [Deflect] 1, 809.1.b.3, any domain, 809.1.c.1): OGN-043 Charm (Calm, E1 P1, in their identity) moves Ahri off A on their T3 and her T4 point is gone (UNL-038 Skyward Strike, E2 P1, the same); OGN-213 Hidden Blade cannot be hidden before their T3 (811.1.b: a battlefield you control) and as a plain spell (E2 + 1) kills her; OGN-229 Vengeance (E4 P2) kills her; SFD-060 Tianna Crownguard (Calm, E7 P2) onto B after their T3 Conquer stops every point ('opponents can't gain points'). Not breaks: OGN-045 Defy counters spells and Ahri is a unit; SFD-045 Not So Fast answers only what chooses its caster's own unit or gear; UNL-159 Soul Harvest (3 or less) and SFD-162 Blood Money (2 or less) cannot reach M4.",
+          "TURN CLOCK: npm run adversarial -- --turns prints T4 against the Calm/Order Hold baseline of T5. The clock prices deployment, not the point sum: it also prints T4 with SFD-214 removed from uses, and with VEN-043 removed, so the T4 rests on the arithmetic above. None of the open clock gaps touches the entry: no [Hidden] card in its uses (#541; Block is walk-only), no effect-only anchor (#548), no targeted spell (#552); no [Repeat] (#187), Quick-Draw (#487) or 709 effect (#539); both T2 Conquers are on battlefields not yet scored that turn (#551).",
+          "HOW OFTEN: going first with no mulligan, two Steel Paws among the first 5 cards and Ahri among the first 7, three of each in a 39-card draw pile, in 1.40% of 2,000,000 simulated deals; with the Nexus chosen in one game in three, 0.47%.",
+          "SHAPES SEARCHED, BURST AND CHAIN: Calm/Order's three BURSTs all run through SFD-059 Svellsongur and clock T6 (shen-kinkou-svellsongur-hold, nasus-svellsongur-conquer-burst) and T8 (ivern-svellsongur-four-tags-hold). No cheaper BURST exists: Ahri plus an equipped Svellsongur costs E9 + 3 Power, so it fires on T5 at the earliest. The pair had no CHAIN; this is one. VEN-138 Shen on T3 (E6 + 2 Order Power, exactly one other unit at A) leaves the same four runes for the Nexus and is the same T4: a lead, not an entry. Two hold triggers by T3 (Ahri and Shen, E11 + 3) do not fit."
+        ]
       },
       "steps": [
         "T1: both Steel Paws to base (E1 + E1). T2: each walks onto an empty battlefield, A and B, and Conquers it (144.4.a, 469.1): 2 points.",
-        "T3: Hold A and B (469.2): 4. Ahri, Alluring (E5 + 1 Calm Power, a recycled rune) is played onto A (355.2.a); five runes stay on the board.",
+        "T3: Hold A and B (469.2): 4. Ahri, Alluring (E5 + 1 Calm Power, a recycled rune) is played onto A (355.2.a); five runes stay on the board, and at most one more may be recycled (the walk hides OGN-057 Block at A with it), so four are left for the Nexus.",
         "T4 Beginning Phase, before the Channel Phase: Hold A and B: 6. Ahri's hold trigger: 7. Power Nexus, paid by recycling four runes: 8, and you win at the Cleanup (472)."
       ],
       "terminatesIn": "8 points in the T4 Beginning Phase unopposed",
-      "sources": [],
+      "sources": [
+        {
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "kind": "riot",
+          "date": "2026-07-16",
+          "accessed": "2026-11-16",
+          "quote": "383.4.d.2.a: 'The Hold Abilities of Units are put on the Chain as Pending Items after the Unit these effects correspond to are present at a Battlefield when a player maintains control of it and Gains 1 Victory Point during their Beginning Phase from Holding.' 383.3.b: 'If a Triggered Ability contains a cost within instructions at the beginning of the effect or immediately following the “you may” or “they may” that appears as the first part of the effect, that cost is treated as the base cost of the Triggered Ability.' 444.2.c: 'Players may activate abilities that Add resources with the Reaction keyword at any time that they are instructed to Pay resources. Those abilities finalize and resolve immediately, ignoring normal restrictions.' 194.1.c: 'Spells, Triggered Abilities and Activated Abilities that instruct them to gain one or more points.' 471.1.a.1: 'Notably, points Gained from sources that are not Conquer are not beholden to these restrictions.'"
+        },
+        {
+          "title": "Play 2026-11-16 (docs/plays/2026-11-16-ahri-lands-on-turn-three-and-a-power-nexus-pays-the-eighth-point-so-calm-order-wins-turn-four-unopposed-and-turn-five-when-they-take-b.md), issue #553",
+          "kind": "manual-walk",
+          "date": "2026-11-16",
+          "quote": ""
+        }
+      ],
       "rulesVersion": "2026-07-16",
-      "notes": "draft"
+      "notes": "SYNTHESIZED 2026-11-16 for #553, the seventh slice of shape 2 (identity-first) of #200: Calm/Order had twelve finishers (nine ALT_WINs, five of them Plaza lines by T4, and three BURSTs at T6/T6/T8) and no CHAIN, and the slice asked for a BURST or CHAIN shape. This CHAIN is the pair's first, and the first Calm/Order finisher by T4 outside The Grand Plaza. CANDIDATE, not verified: walked once as a game, going first, against Calm/Order Radiant Dawn, where it wins on T5 (the baseline turn) against the free curve's T7 on the same board, and on T4 when their T3 attack goes into the hidden Block. Mono-Calm plus a colourless battlefield, so it is legal in all five Calm legend pairs, each with a T5 baseline, and it beats the clock in all five."
     }
   ]
 }

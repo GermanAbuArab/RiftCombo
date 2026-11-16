@@ -247,6 +247,9 @@ describe("which entry a play is about", () => {
     // The subject of the #537 Chaos/Order play, which names its own entry first and the earlier
     // Yasuo and Ivern lines after it.
     "yasuo-ride-the-wind-hold-curve-turn-five",
+    // The subject of the #553 Calm/Order play, which names its own entry first and the Svellsongur
+    // BURSTs after it.
+    "ahri-alluring-power-nexus-hold-curve-turn-four",
   ];
 
   it("points each play at the one line it is about, and half of them at none", async () => {
@@ -291,6 +294,9 @@ describe("which entry a play is about", () => {
     ]);
     expect(at("yasuo-ride-the-wind-hold-curve-turn-five")).toEqual([
       "2026-10-31-yasuo-fires-on-turn-four-off-the-hold-curve-so-chaos-order-wins-turn-five-unopposed-and-their-free-turn-three-attack-makes-it-six",
+    ]);
+    expect(at("ahri-alluring-power-nexus-hold-curve-turn-four")).toEqual([
+      "2026-11-16-ahri-lands-on-turn-three-and-a-power-nexus-pays-the-eighth-point-so-calm-order-wins-turn-four-unopposed-and-turn-five-when-they-take-b",
     ]);
     expect(at("bottled-constellation-time-warp")).toEqual(["2026-09-13-the-setup-nobody-prices"]);
     expect(at("shen-sentinel-time-warp-chain")).toEqual(["2026-09-13-the-elegance-is-the-slowness"]);
