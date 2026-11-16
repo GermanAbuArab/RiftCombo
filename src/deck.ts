@@ -186,8 +186,8 @@ export function deckRestrictions(deck: Deck, cards: CardIndex, format: Format): 
  */
 export function deckUpcomingBans(deck: Deck, cards: CardIndex, format: Format): DeckRestriction[] {
   const found = holding(deck, (base) => {
-    const e = cards.upcoming(base, format);
-    return e?.status === "banned" && cards.legality(base, format)?.status !== "banned" ? e : undefined;
+    if (cards.legality(base, format)?.status === "banned") return undefined;
+    return cards.upcoming(base, format).find((e) => e.status === "banned");
   });
   return found.sort((a, b) => a.entry.name.localeCompare(b.entry.name));
 }

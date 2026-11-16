@@ -129,8 +129,17 @@ describe("an announced ban is exposed with its date before it is in force (#670)
   });
 
   it("the index answers upcoming() only for rows not yet in force", () => {
-    expect(on("2026-11-22").upcoming("OGN-160", "constructed")?.since).toBe("2026-11-23");
-    expect(on("2026-11-23").upcoming("OGN-160", "constructed")).toBeUndefined();
-    expect(on("2026-11-22").upcoming("OGN-110", "constructed")).toBeUndefined();
+    expect(on("2026-11-22").upcoming("OGN-160", "constructed").map((e) => e.since)).toEqual(["2026-11-23"]);
+    expect(on("2026-11-23").upcoming("OGN-160", "constructed")).toEqual([]);
+    expect(on("2026-11-22").upcoming("OGN-110", "constructed")).toEqual([]);
+  });
+
+  it("an announced ban still shows when an earlier restriction is announced for the same card", () => {
+    const row = (status: "banned" | "restricted", since: string): LegalityEntry => ({
+      format: "constructed", entity: "gear", name: "Zhonya's Hourglass", codes: ["OGN-077"], bases: ["OGN-077"], status, since, source: "test",
+    });
+    const index = new CardIndex(pool, [row("banned", "2026-12-10"), row("restricted", "2026-12-01")], "2026-11-22");
+    const deck = loadDeck(list, index);
+    expect(deckUpcomingBans(deck, index, "constructed").map((r) => [r.base, r.entry.status, r.entry.since])).toEqual([["OGN-077", "banned", "2026-12-10"]]);
   });
 });
