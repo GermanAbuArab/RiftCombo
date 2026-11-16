@@ -379,13 +379,25 @@ Body/Order legends (Leads).
   (Play any time, even before spells and abilities resolve, including to a battlefield you control.)
   [Shield 2] (+2 :rb_might: while I'm a defender.) [Tank] (I must be assigned combat damage first.)"*
   Played in their showdown, it is a second Tank they had not counted. It costs a third Power.
+  2026-11-16 (#538): OGN-241 Shen, what the third Power costs the clock. The clocked line spends every rune on T3
+  (Pit Rookie E2 + Vanguard Captain E3 against five runes, "None left") and holds Order Power from two
+  runes only, so Shen in their T3 showdown (E3 + 1 Power) has no rune to pay with. Paying for it means
+  leaving the Captain unplayed, and then seven units stand at A on T4, not eight: the Plaza does not
+  trigger. So with Shen inside their attack the line does not pay by T4; it is a T5 follow-up at best
+  (reading from the table above, not walked as a game).
 - **Sett, Kingpin is a Tank that grows with buffs**: *"[Tank] (I must be assigned combat damage first.)
   I get +1 :rb_might: for each buffed friendly unit at my battlefield."* At E4 + 1 Power it is a T4
   card here, after the Hold that wins.
+  2026-11-16 (#538): Sett, Kingpin is post-Hold insurance, not part of the clocked line. The T4 Hold wins the game
+  before a T4 Sett matters, so it only matters if the Hold is denied (their Charm, say) and the game
+  runs on: a Tank at M5 plus one per buffed friendly unit at A, played after the Hold.
 - **The Faithful Manufactor shape.** The catalogued vanguard-captain-manufactor-plaza is mono-Order:
   two Vanguard Captains and a Faithful Manufactor make eight units in one Main Phase, with no Tank, so
   two kills cost 1 + 1 = 2. It clocks T4 too. This line spends the second Captain and the Manufactor on
   Galio and three Sentries, and the price of two kills goes from 2 to 8. The two are the only Body/Order
   ALT_WINs that pay by T4.
+  2026-11-16 (#538): the other entry is `galio-vanguard-captain-grand-plaza` (this play's subject); its
+  twin is `vanguard-captain-manufactor-plaza` (mono-Order, eight units, two kills cost 2). The price
+  difference is 8 Might against 2 Might for the two kills, bought with Body/Order identity for Galio.
 - **The stop rule's pair search is ALT_WIN only so far.** No BURST or CHAIN was searched for Body/Order,
   so its clocked count stays 0.
