@@ -353,6 +353,11 @@ cost one Energy or less.
   their T5, until their Rune Deck runs dry (161.2.a); a card that channels more (430.2) brings it back
   sooner. The walk ends after their T4, so the count stands for every turn it covers. The wording above is
   kept as history.]
+  [2026-11-16, #677: Whirlwind is E4 + 1 Chaos Power now, not "three and one". Defy's limit is *"no more
+  than :rb_energy_4:"*, so E4 is still inside it and Defy still counters Whirlwind, for the same one ready
+  rune and one Calm Power. Whirlwind now takes four of your seven T4 runes, not three (#662 above), so the
+  "your four runes" in the bullet, the runes left after Whirlwind, is three at E4; the score below is
+  unchanged.]
   The score is still 3
   to 3.
 
@@ -453,6 +458,9 @@ the cards named.
 - *"a repeatable recursion outlet at 3 Energy + 1 Power a cycle"*: a cycle is Whirlwind and the
   Attendant replayed, E3 + 1 Chaos Power each. That is six Energy and two Power, two runes recycled for
   good, for one card back.
+  [2026-11-16, #677: at E4 the cycle is seven Energy and two Power (#662, in section 2 above), not six
+  and two, and the "3 Energy + 1 Power" quoted is 4 Energy + 1 Power for Whirlwind. The two runes
+  recycled per cycle are unchanged. This is the quoted claim as written, kept as history.]
 - *"the exchange is card-neutral before the fetch and card-positive after it"*: off by one. Whirlwind
   is a card. Counting hand and board, a cycle is one card down before the fetch and even after it.
 - The fetch needs a unit of yours in your trash when the Attendant is played. In the walk there was one
