@@ -384,16 +384,18 @@ export interface SynergyPartner {
  * through a door it cannot watch.
  *
  * Built from a census of the keys actually in use plus these interfaces, never from memory: 10 rule
- * keys all universal, 8 partner keys, 3 basis keys, 2 exclude keys.
+ * keys all universal, 8 partner keys, 3 basis keys, 2 exclude keys. Plus `retired` (#667), an 11th
+ * rule key carried only by a rule whose anchor a dated ban retires, and its 2 keys.
  */
 export const SYNERGY_KEYS = [
-  "id", "name", "anchor", "partner", "why", "basis", "status", "reviewed", "reviewedCount", "reviewedSet",
+  "id", "name", "anchor", "partner", "why", "basis", "status", "reviewed", "reviewedCount", "reviewedSet", "retired",
 ] as const;
 export const SYNERGY_PARTNER_KEYS = [
   "textMatches", "textExcludes", "types", "tags", "minMightBonus", "minEnergy", "minPower", "excludes",
 ] as const;
 export const SYNERGY_BASIS_KEYS = ["readings", "rules", "combos"] as const;
 export const SYNERGY_EXCLUDE_KEYS = ["card", "why"] as const;
+export const SYNERGY_RETIRED_KEYS = ["since", "why"] as const;
 
 export interface SynergyBasis {
   /** Rules readings from issue #11 this rule leans on, e.g. "R1". */
@@ -459,4 +461,13 @@ export interface Synergy {
    * storing 5,475 base codes in the file.
    */
   reviewedSet: string;
+  /**
+   * The day this rule stops being shown, and why (#667). A rule whose anchor is banned in every
+   * format can never fire, and `validateSynergies` holds that to be an error, so a ban retires the
+   * rule ON ITS DATE instead of deleting it: the rule stays in the file, readable, with its reason.
+   * `validateSynergies` holds `since` to the ban list on whatever day the index reads it for — the
+   * rule is retired on that day if and only if its anchor is banned in every format on that day —
+   * so the date cannot drift from `data/legality.json` in either direction.
+   */
+  retired?: { since: string; why: string };
 }
