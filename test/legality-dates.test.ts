@@ -44,8 +44,7 @@ describe("a ban is in force from its effective date, not before (#647)", () => {
   });
 
   it("with no date given, the index answers for today", () => {
-    const d = new Date();
-    const today = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`;
+    const today = new Date().toISOString().slice(0, 10); // the UTC day, #671
     expect(!!new CardIndex(pool, built.entries).legality("OGN-160", "constructed")).toBe(today >= "2026-11-23");
   });
 });

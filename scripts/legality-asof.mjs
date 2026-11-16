@@ -1,7 +1,7 @@
 // The one dated read of data/legality.json for scripts (#668). It is the rule `CardIndex` applies in
 // src/cards.ts: a row whose `since` is later than the day being read is announced, not in force.
-export const localDate = (d = new Date()) =>
-  `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`;
+// Today is the UTC calendar day, as `banDay` in src/cards.ts: Riot names a date and no hour (#671).
+export const localDate = (d = new Date()) => d.toISOString().slice(0, 10);
 
 /** `--as-of YYYY-MM-DD` (or `--as-of=YYYY-MM-DD`) from an argv list; default today. Returns `{asOf, rest}`. */
 export function parseAsOf(argv) {

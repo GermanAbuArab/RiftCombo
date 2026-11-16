@@ -40,8 +40,12 @@ const RUNE_ALIAS: Record<string, string> = {
   "UNL-R04": "OGN-126", "UNL-R05": "OGN-166", "UNL-R06": "OGN-214",
 };
 
-const localDate = (d: Date): string =>
-  `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`;
+/**
+ * The day the ban list is read for: the calendar day in UTC, the same for every viewer (#671). Riot's
+ * announcement of the 2026-11-23 bans names a date ("effective on Monday, November 23") and no hour or
+ * timezone, so no local midnight is more right than another; UTC is the one stated choice.
+ */
+export const banDay = (d: Date = new Date()): string => d.toISOString().slice(0, 10);
 
 export class CardIndex {
   readonly cards: Card[];
@@ -57,14 +61,16 @@ export class CardIndex {
   private readonly announced = new Map<Format, Map<string, LegalityEntry[]>>();
   /** The day the ban list was read for, `YYYY-MM-DD` (see the constructor). */
   readonly asOf: string;
+  private readonly rows: LegalityEntry[];
 
   /**
-   * `asOf` is the day the ban list is read for, `YYYY-MM-DD`, default the viewer's local date. An
+   * `asOf` is the day the ban list is read for, `YYYY-MM-DD`, default today in UTC (`banDay`). An
    * entry whose `since` is later is not in force yet (#647: the Radiance bans were announced
    * 2026-11-13 effective 2026-11-23), so every reader of `legality` sees the list of that day.
    */
-  constructor(cards: Card[], legality: LegalityEntry[], asOf: string = localDate(new Date())) {
+  constructor(cards: Card[], legality: LegalityEntry[], asOf: string = banDay()) {
     this.cards = cards;
+    this.rows = legality;
     this.asOf = asOf;
     for (const c of cards) {
       this.byCode.set(c.code, c);
@@ -93,6 +99,16 @@ export class CardIndex {
       if (!this.banned.has(e.format)) this.banned.set(e.format, new Map());
       for (const b of e.bases) this.banned.get(e.format)!.set(b, e);
     }
+  }
+
+  /**
+   * This index read for the day of `now` (default the real clock): `this` while the day has not moved,
+   * a fresh index over the same pool and rows once it has (#671). A long-lived caller asks this each
+   * time it evaluates, so a tab left open across midnight UTC picks up the new list without a reload.
+   */
+  current(now: Date = new Date()): CardIndex {
+    const day = banDay(now);
+    return day === this.asOf ? this : new CardIndex(this.cards, this.rows, day);
   }
 
   get(code: string): Card | undefined {
