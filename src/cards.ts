@@ -40,6 +40,9 @@ const RUNE_ALIAS: Record<string, string> = {
   "UNL-R04": "OGN-126", "UNL-R05": "OGN-166", "UNL-R06": "OGN-214",
 };
 
+const localDate = (d: Date): string =>
+  `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`;
+
 export class CardIndex {
   readonly cards: Card[];
   private readonly byCode = new Map<string, Card>();
@@ -51,7 +54,12 @@ export class CardIndex {
   private readonly longTags = new Map<string, Set<string>>();
   private readonly banned = new Map<Format, Map<string, LegalityEntry>>();
 
-  constructor(cards: Card[], legality: LegalityEntry[]) {
+  /**
+   * `asOf` is the day the ban list is read for, `YYYY-MM-DD`, default the viewer's local date. An
+   * entry whose `since` is later is not in force yet (#647: the Radiance bans were announced
+   * 2026-11-13 effective 2026-11-23), so every reader of `legality` sees the list of that day.
+   */
+  constructor(cards: Card[], legality: LegalityEntry[], asOf: string = localDate(new Date())) {
     this.cards = cards;
     for (const c of cards) {
       this.byCode.set(c.code, c);
@@ -71,6 +79,7 @@ export class CardIndex {
       }
     }
     for (const e of legality) {
+      if (e.since > asOf) continue;
       if (!this.banned.has(e.format)) this.banned.set(e.format, new Map());
       for (const b of e.bases) this.banned.get(e.format)!.set(b, e);
     }

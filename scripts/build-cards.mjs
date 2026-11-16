@@ -191,7 +191,10 @@ export function applyErrata(cards, errata) {
 
 const normName = (s) => s.replace(/[’‘']/g, "'").replace(/\s+/g, " ").trim().toLowerCase();
 
-function resolveLegality(cards, src) {
+// `notInPool` (#647) records a ban on a card Riot has announced but our pool does not hold yet: the
+// entry carries the code Riot's gallery gives it and skips the lookup. It fails the build the moment
+// the pool does hold the name, so the field is removed by whoever ingests the set (#664, #665).
+export function resolveLegality(cards, src) {
   const byName = new Map();
   for (const c of cards) {
     const k = normName(c.name);
@@ -201,7 +204,11 @@ function resolveLegality(cards, src) {
   const out = { source: src.source, retrieved: src.retrieved, entries: [] };
   for (const fmt of src.formats) {
     for (const ban of fmt.banned) {
-      const matches = (byName.get(normName(ban.name)) ?? []).filter((c) => c.type.includes(ban.entity));
+      const found = (byName.get(normName(ban.name)) ?? []).filter((c) => c.type.includes(ban.entity));
+      if (ban.notInPool && found.length) {
+        throw new Error(`legality: ${ban.entity} ${JSON.stringify(ban.name)} is in the pool now; remove its notInPool`);
+      }
+      const matches = ban.notInPool ? [{ name: ban.name, code: ban.notInPool, base: ban.notInPool }] : found;
       if (matches.length === 0) throw new Error(`legality: ${ban.entity} ${JSON.stringify(ban.name)} not found`);
       out.entries.push({
         format: fmt.id,
@@ -275,7 +282,14 @@ function resolveSignature(cards, src) {
 const HELD_SETS = new Set(["RAD"]);
 
 const isMain = import.meta.url === `file://${process.argv[1]}`;
-if (isMain) {
+// `--legality-only` (#647) re-resolves data/legality.src.json over the COMMITTED pool and writes only
+// data/legality.json, for a ban-list update that must not wait on a gallery rebuild.
+if (isMain && args.includes("--legality-only")) {
+  const { cards } = JSON.parse(readFileSync(join(DATA, "cards.json"), "utf8"));
+  const legality = resolveLegality(cards, JSON.parse(readFileSync(join(DATA, "legality.src.json"), "utf8")));
+  writeFileSync(join(DATA, "legality.json"), JSON.stringify(legality, null, 1));
+  console.log(`legality entries: ${legality.entries.length} (resolved over the committed data/cards.json, ${cards.length} printings)`);
+} else if (isMain) {
   const { items: all, updatedAt } = await fetchAll();
   const items = all.filter((i) => !HELD_SETS.has(i.set.value.id));
   const cards = items.map(normalize);

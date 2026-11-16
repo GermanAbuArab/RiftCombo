@@ -6,6 +6,7 @@
   "type": "module",
   "scripts": {
     "build:data": "node scripts/build-cards.mjs && node scripts/build-corpus.mjs",
+    "build:legality": "node scripts/build-cards.mjs --legality-only && node scripts/build-corpus.mjs",
     "test": "vitest run",
     "typecheck": "tsc --noEmit",
     "find": "tsx src/cli.ts",
