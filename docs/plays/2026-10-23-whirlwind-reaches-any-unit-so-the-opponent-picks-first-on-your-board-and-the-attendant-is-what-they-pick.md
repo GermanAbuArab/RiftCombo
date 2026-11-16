@@ -29,6 +29,11 @@ If their Keeper goes to base instead of the battlefield, it ends **4 to
 leaves the Keeper's discount intact: **1 to 2** after their T3. The cheapest answer is `OGN-045 Defy`,
 one ready rune and one Calm Power: it counters Whirlwind. Nothing in their 254 cards counters the
 Attendant's trigger.
+[2026-11-16, #662: Riot's gallery now prints Whirlwind at Energy 4, E4 + 1 Chaos Power, with the text
+unchanged (impl-660's read on #660, 2026-11-16 ~19:58Z; `data/cards.json` since a550d3f, #666). Re-walked
+at E4, every score above stands: 3 to 3, 4 to 3 with the Keeper in base, and 1 to 2 for the T3 Whirlwind.
+On T4 the extra Energy costs one body at A, and on T3 the Attendant no longer fits after Whirlwind.
+Defy still counters it: 4 is no more than :rb_energy_4:. The E3 wording in this play is kept as history.]
 
 **Why this line.** `scripts/sequence-pick.mjs --unplayed`, re-run on 2026-10-23 at `3d68575`, reads
 773 entries, 262 with forced-ordering language, **99 in the queue and 11 of them with no play**. The
@@ -127,6 +132,9 @@ channelled again when the deck reaches it (430.1). Going first, with only the Ch
 count stands for every turn it covers. The wording above is kept as history.]
 Counting your cards in hand and on the board: Whirlwind spent, the Attendant from the board to your
 hand, and the fetched unit into your hand. That is one card down before the fetch and even after it.
+[2026-11-16, #662: Whirlwind is E4 + 1 Chaos Power now, so a cycle is seven Energy and two Power: seven
+runes exhausted, two of them recycled. A full cycle in one turn takes seven runes, T4 at the earliest
+going first (2, 4, 6, 8), where six runes made it T3.]
 
 **The runes, going first.** You have 2, 4, 6 and 8 runes channelled on T1 to T4, less one recycled on
 T3: 7 on T4. A unit enters exhausted, 143.4: *"Units enter the Board exhausted."* Units move from base
@@ -196,6 +204,9 @@ the Hopeful; 6 after the T4 draw, 5 after Whirlwind, 6 with the Attendant back, 
 and the Poro (Dangerous Duo, Mystic Poro, Flame Chompers, Cemetery Attendant). Theirs: 5 after the T1
 draw, 4 after the Poro; 5, then 4 after the Guard; 5 after the T3 draw, 3 after the Keeper and the
 Guardian; 4 after the T4 draw, 1 after the three bodies (Soaring Scout).
+[2026-11-16, #662, at Whirlwind E4: your T4 row reads "Whirlwind (E4 + 1 Chaos Power) ... Rearguard (E2) to A.
+Seven runes, one recycled; one left." Pouty Poro stays in hand, so your hand after T4 is 5, not 4.
+The points are unchanged.]
 
 **Their T2: the attack that fills your trash.** The Poro attacks as 3, 2 and its [Assault], and the
 damage is summed and assigned, 465.2.c: *"Starting with the Attacker, each player assigns an amount of
@@ -236,6 +247,9 @@ the opponent chooses first among the Saboteur at A and the Attendant and the Hop
 You choose second. **The Sand Soldier**, which ceases to exist (186.1). It is the one object on their
 side that their first choice could not have saved, and it is half the card that made the Keeper cheap.
 B is now 11. The four runes left put the Rearguard and Pouty Poro on A. **3 to 2.**
+[2026-11-16, #662: at E4, Whirlwind takes four of the seven runes, one of them recycled, so three are left,
+and they pay for the Rearguard (E2) alone, with one rune spare. A holds the Saboteur and the Rearguard.
+Nothing of theirs reaches A (144.4.b), so it is still **3 to 2**, and **3 to 3** after their T4.]
 
 **Their T4.** Nothing of theirs can reach A: everything they have is at B, and from a battlefield a
 unit goes only to base (144.4.b). They Hold B and play three bodies there. **3 to 3.**
@@ -244,6 +258,8 @@ unit goes only to base (144.4.b). They Hold B and play three bodies there. **3 t
 Guard, the Soldier and the Guardian, three, so the Keeper would cost full price. They walk the Guardian
 home, which makes B exactly two again, and the Keeper comes back for three runes and no Power. A body
 that only has to be cheap is cheap again after one move. **3 to 3**, and the Soldier is still there.
+[2026-11-16, #662: at E4 this line has the same one-body shortfall at A, which no unit of theirs reaches:
+**3 to 3** stands.]
 
 **The control: Whirlwind kept in hand.** The same hand on T4 plays Pouty Poro, Dangerous Duo (its
 [Legion] +2 has nothing to do) and the Rearguard to A for seven runes, with none recycled. B is 13,
@@ -260,6 +276,8 @@ they take the Duo. You return the Sand Soldier as before, and the four runes lef
 Mystic Poro (E2 each) on A instead of the Rearguard and Pouty Poro. Nothing of theirs can reach A
 (144.4.b), they Hold B and play the same three bodies there: **3 to 3**, with seven runes on the board
 against the main line's six. The Attendant bought back one card for one rune.
+[2026-11-16, #662: at E3, "takes four of them" was one rune off: three were taken and five left. At E4 the
+count is exact, four taken and four left, and the line stands as written: **3 to 3**.]
 
 **Their other T3: the Keeper to base.** If the Keeper goes to base, B is 2 + 2 + 3 + 1 = **8**, and on
 your T4 your base holds the Attendant's 3 and the Hopeful's 4.
@@ -273,6 +291,8 @@ your T4 your base holds the Attendant's 3 and the Hopeful's 4.
   and the Soldier and survives their 4. If they return the Hopeful, the Attendant at 5 does the same. If
   they return nothing or the Saboteur, both of yours attack. Conquer and a draw: **4 to 2**. Their best
   pick leaves you one attacker, and the Keeper takes B back from it on their T4: **4 to 3**.
+[2026-11-16, #662: at E4, Whirlwind and then the Duo take 4 + 3 = 7 runes, all seven, where E3 left one. The
+combat is the same: **4 to 2**, then **4 to 3**.]
 
 Where the Keeper stands decides 3 to 3 or 4 to 3. Whirlwind decides neither.
 
@@ -283,6 +303,10 @@ Attendant. On their T3 they Hold A, and the Guard walks to A beside the Poro. A 
 then has exactly two, and the Keeper costs three anyway. If you return the Poro instead, A is empty, and
 their pair walks into either battlefield as two. **1 to 2** after their T3. Whirlwind first costs the
 Conquer the Saboteur was ready for, and it cannot stop a discount that any two bodies make.
+[2026-11-16, #662: at E4, Whirlwind takes four of the six runes, one of them recycled, so two are left, and
+the Attendant (three runes) no longer fits after it this turn. The two pay for Noxus Hopeful under its
+[Legion] (E2, Whirlwind being another card played this turn). The fetch slips to a later turn; it scored
+nothing here, so it is still **1 to 2** after their T3.]
 
 **How often this happens.** The draw pile is **39** cards, the 40 of Tournament Rules 402.1 less the
 Chosen Champion. Tournament Rules 402.1: *"In a constructed event, players must register a Main Deck of
