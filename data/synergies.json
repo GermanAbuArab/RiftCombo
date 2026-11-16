@@ -1264,9 +1264,9 @@
         ]
       },
       "status": "rule-verified",
-      "reviewed": "2026-09-06",
-      "reviewedCount": 29,
-      "reviewedSet": "f3c2090b"
+      "reviewed": "2026-11-16",
+      "reviewedCount": 30,
+      "reviewedSet": "aeb64fd6"
     },
     {
       "id": "defender-of-tomorrow-readies-gear",
@@ -2066,7 +2066,7 @@
       "name": "Rhasa the Sunderer gets cheaper for everything you throw away",
       "anchor": "OGN-195",
       "partner": {
-        "textMatches": "\\[Burn \\d\\]|[Dd]iscard \\d|into your trash",
+        "textMatches": "\\[Burn \\d\\]|[Dd]iscard (?:\\d|a card)|into your trash",
         "excludes": [
           {
             "card": "VEN-114",
@@ -7189,9 +7189,9 @@
         "combos": []
       },
       "status": "rule-verified",
-      "reviewed": "2026-09-13",
-      "reviewedCount": 20,
-      "reviewedSet": "1db5da50"
+      "reviewed": "2026-11-16",
+      "reviewedCount": 21,
+      "reviewedSet": "eaf5b141"
     },
     {
       "id": "bullet-time-pays-on-resolution",
