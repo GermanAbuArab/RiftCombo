@@ -86,6 +86,20 @@ cost** (`lux-infinite-power`, `renata-mastermind-points`, `renata-bubble-bot-rea
 `jhin-fiora-facebreaker-recall` and `twilight-reveler-eye-facebreaker-recruits` at T5, with
 `garen-fiora-malzahar-facebreaker-recruits` tying at T6.
 
+[2026-11-16, #638: the CHAIN row beat its baseline on the clock only. #551 (PR #637) corrected
+`yasuo-windrider-ride-the-wind-chain`. Its old steps Conquered the battlefield the Beginning Phase had
+already Held, and 469.1 refuses that: *"Conquer: A player gains Control of a Battlefield they did not yet
+Score this turn."* So does 470: *"A player may only Score, from either method, once per Battlefield per
+turn."* It now reaches 8 by a Hold, a Conquer and Yasuo's ability point, from 5 points at the start of
+the turn. Walked on the Calm/Chaos Hold curve, it never opens a turn at exactly 5. T1 plays two
+`VEN-043 Steel Paws` (Calm, E1, M0; two copies cost 2 Energy). T2 conquers both battlefields: 2. T3
+Holds both: 4, and Yasuo is played (E5 + 1 Chaos Power on 6 runes). T4 opens at 4 and Holds both: 6.
+No Conquer is open, because both battlefields were just Scored, so Yasuo's third move makes 7. The T5
+Hold makes 8, which is the baseline's own turn: **T5, a tie, not a win.** `npm run adversarial --
+--turns` at `dde81ed` still prints this row at T4 against the T5 baseline, because the clock prices
+the card set and models no points at the start of the turn. That gap was reported to the orchestrator
+as a new issue. The count of three honest rows does not move, because the CHAIN was never one of them.]
+
 **Re-measured that evening, once ALT_WIN was in the clock and `needs` was folded upward: 21 rows beat
 their baseline and FOUR of them carry the empty-deck cost** — the same four minus
 `jayce-mesmerize-renata`, which the fold moved to T6 and out of the set. Twelve of the twenty-one are

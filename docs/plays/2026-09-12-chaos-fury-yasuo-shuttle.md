@@ -10,6 +10,9 @@ under a Calm/Chaos legend. No catalogued entry uses that pair alone,
 so the Chaos/Fury version below is not catalogued; it is written here as a play rather than as
 an entry because what is new about it is the TURN COUNT and the contested-board case, not the card
 set.
+[2026-11-16, #638: #551 (PR #637) corrected that entry. It now reaches 8 by one Hold, one Conquer and
+Yasuo's ability point, from 5 points at the START of the turn. Where that corrected line lands in this
+play's two columns is walked in "The catalogued line after #551" below.]
 
 ---
 
@@ -114,6 +117,39 @@ The Yasuos are ready on the turn after they are played (143.4 enters them exhaus
 them), which is why Yasuo 3, played on T5, first fires on T6. That single fact sets the whole clock:
 **the package cannot come online before turn 6 no matter how the mana falls**, because 15 Energy and
 3 Chaos Power cannot be paid before turn 5 on a curve that starts at 2.
+
+### The catalogued line after #551 (added 2026-11-16, #638)
+
+`yasuo-windrider-ride-the-wind-chain` used to count two Conquers in one turn, and the second was of the
+battlefield the Beginning Phase had already Held. Two rules refuse that point. 469.1: *"Conquer: A player
+gains Control of a Battlefield they did not yet Score this turn."* 470: *"A player may only Score, from
+either method, once per Battlefield per turn."* The corrected entry is a Hold, a Conquer and the ability
+point, and it needs 5 points when the turn starts. No step of this play Conquers a battlefield it
+already Scored that turn: the Conquers on T2 and T3 are of battlefields nobody controlled, and the
+shuttle's moves into A, which is already yours, apply no Contested. 190.3.a.1: *"Units moving to or being
+played to a battlefield apply Contested status if that battlefield is not already Contested and that
+Unit’s controller does not already control that battlefield."* The play's own columns stand. What
+changes is the turn the corrected line, with ONE Yasuo, can pay in them:
+
+- **Unopposed: T5.** T4 ends at 5, so T5 opens at 5, holding A and B. 315.2.b.2: *"1. The Turn Player
+  Holds all Battlefields they Control."* Both Holds: 7. No Conquer is open, because both battlefields
+  were just Scored (469.1, 470), so the second Hold takes the place of the entry's Conquer. Yasuo 1 was
+  played on T3 and sits ready at base. Standard Move base to A (144.4.a), Ride the Wind A to base and
+  ready (E2 + 1 Chaos Power on R=8), Standard Move base to A. The third move scores, 194.1.c: *"Spells,
+  Triggered Abilities and Activated Abilities that instruct them to gain one or more points."* 8, and
+  472 wins at the Cleanup. That is a turn ahead of the column's T6, if Ride the Wind is in hand by T5.
+  So "Unopposed the Yasuos never fire" is true of the play as written, which waits for three Yasuos. It
+  is not true of the package: one Yasuo fired the turn after he could first move wins on T5. The
+  Chaos/Order play
+  [Yasuo fires on turn four](2026-10-31-yasuo-fires-on-turn-four-off-the-hold-curve-so-chaos-order-wins-turn-five-unopposed-and-their-free-turn-three-attack-makes-it-six.md)
+  makes the same finding with the same two cards.
+- **Contested, B theirs from T4: T7.** T5 ends at 5, so T6 opens at 5, holding A. Hold A: 6. The
+  entry's Conquer needs the other battlefield empty of enemy units, and B is not. A move into B applies
+  Contested (190.3.a.1), and with their units there 323.9 stages a combat: *"7. Mark a Combat as Staged
+  at each Battlefield that Contested was applied to that have Units present controlled by opposing
+  players."* After that 144.1.c stops the Standard Moves: *"This action cannot be performed during a
+  Showdown or Combat."* So one Yasuo shuttles inside A for 7 on T6, and the T7 Hold of A makes 8. The
+  three-Yasuo shuttle above (+3 on T6) is what wins T6. The corrected catalogued line alone does not.
 
 ---
 
