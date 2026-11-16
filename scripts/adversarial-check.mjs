@@ -473,10 +473,11 @@ function typesOf(costs) {
     // `red` and `drg` (#532): a Herald and an unrelated E4 unit are not, nor a Dragon and another E5.
     // `hen` (#544): an Ancient Henge and an unrelated E2/1-Power gear are not.
     // `tgt` (#552): a spell that waits for one copy of its target and an [Equip] that waits for one each.
+    // And `after`: two aimed spells of one price share an empty `link`, so only their target tells them apart.
     const k = `${c.e}|${c.p}|${c.unit ? 1 : 0}|${c.gated ? 1 : 0}|${c.rain || 0}|${c.holdx || 0}|` +
               `${c.turn ? 1 : 0}|${c.pow || 0}|${c.ready ? 1 : 0}|${c.rdy || 0}|${c.rune || 0}|${c.share ? 1 : 0}|` +
               `${accKey(c.acc)}|${c.big || 0}|${c.att || 0}|${c.aph || 0}|${c.kin || 0}|${c.kinR || 0}|${c.strict ? 1 : 0}|${c.la ? 1 : 0}|` +
-              `${c.red || 0}/${c.redMin || 0}|${c.drg || 0}|${c.hen ? 1 : 0}|${c.tgt ? 1 : 0}|${c.link || ""}`;
+              `${c.red || 0}/${c.redMin || 0}|${c.drg || 0}|${c.hen ? 1 : 0}|${c.tgt ? 1 : 0}|${c.link || ""}|${c.after || ""}`;
     if (!byType.has(k))
       byType.set(k, { e: c.e, p: c.p, unit: !!c.unit, gated: !!c.gated, rain: c.rain || 0,
                       holdx: c.holdx || 0, turn: !!c.turn, pow: c.pow || 0, ready: !!c.ready,
@@ -2466,8 +2467,14 @@ const bodyLabel = (b) => `${b.base} ${b.name} E${b.e}${b.p ? `/${b.p}` : ""}${b.
  */
 function bodiesOf(ids, engineIds = []) {
   const max = (xs) => xs.reduce((a, id) => Math.max(a, byId.get(id)?.anyBodies?.count ?? 0), 0);
-  const aims = new Map();
-  for (const id of ids) for (const [s, u] of aimsOf(byId.get(id))) aims.set(s, u);
+  // A spell two folded entries aim at different units is left unordered, as `aimsOf` leaves one it
+  // reads aimed at two: one `after` cannot say "either", and no order errs early.
+  const aims = new Map(), split = new Set();
+  for (const id of ids) for (const [s, u] of aimsOf(byId.get(id))) {
+    if (aims.has(s) && aims.get(s) !== u) split.add(s);
+    aims.set(s, u);
+  }
+  for (const s of split) aims.delete(s);
   return { n: max(ids), engine: max(engineIds), aims };
 }
 
