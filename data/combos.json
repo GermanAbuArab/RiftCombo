@@ -12882,6 +12882,7 @@
       ],
       "netPerIteration": "+3 points in one turn: one Hold, one Conquer and one ability point",
       "terminatesIn": "wins the game from 5 points in a single turn, with no opponent turn in between",
+      "pointsAtStart": 5,
       "rulesVersion": "2026-07-16",
       "sources": [
         {

@@ -256,6 +256,7 @@ export interface BodyRequirement {
 export const COMBO_KEYS = [
   "id", "name", "class", "status", "uses", "needs", "produces", "removes", "legends", "anyBodies",
   "prerequisites", "steps", "netPerIteration", "terminatesIn", "sources", "rulesVersion", "notes",
+  "pointsAtStart",
 ] as const;
 
 /** AUTHORED. One entry per reviewed combo. Combos compose through needs/produces into a DAG. */
@@ -277,6 +278,13 @@ export interface Combo {
   steps: string[];
   netPerIteration?: string;
   terminatesIn: string;
+  /**
+   * Optional (#639): the score the line needs at the START of the turn it runs, before the Beginning
+   * Phase Hold - a finisher "from five" rather than a combo from zero. Absent means 0. The turn clock
+   * (`scripts/adversarial-check.mjs --turns`) holds the row to the first turn the unopposed Hold curve
+   * reaches this score at turn start.
+   */
+  pointsAtStart?: number;
   sources: Source[];
   rulesVersion: string;
   notes?: string;
