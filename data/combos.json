@@ -58760,6 +58760,53 @@
       ],
       "rulesVersion": "2026-07-16",
       "notes": "SYNTHESIZED 2026-10-31 for #537, the sixth slice of shape 2 (identity-first) of #200: Chaos/Order had ten finishers and none clocked by T4, and the slice asked for a BURST or CHAIN shape. None reaches T4 (see the last notable); this is the T5 one. CANDIDATE, not verified: walked once as a game, going first, against Calm/Order Radiant Dawn, where it wins on T6 against the free curve's T8 on the same board; like the slice-4 entry, the walk loses to the clock. Mono-Chaos cards, so it is legal in all five Chaos legend pairs; it beats the Hold baseline only where that baseline is T6 (Chaos/Fury, Chaos/Mind, Chaos/Order)."
+    },
+    {
+      "id": "ahri-alluring-power-nexus-hold-curve-turn-four",
+      "name": "Ahri, Alluring played on turn three onto the Calm Hold curve, with a Power Nexus paid from four runes, for eight at the turn-four Beginning Phase",
+      "class": "CHAIN",
+      "status": "candidate",
+      "uses": [
+        {
+          "card": "VEN-043",
+          "quantity": 2,
+          "role": "enabler",
+          "zone": "BATTLEFIELD",
+          "note": "Calm unit, E1, M0. '[Deflect] (Opponents must pay :rb_rune_rainbow: to choose me with a spell or ability.) [Empower] :rb_energy_7: (:rb_energy_7:: Empower me. Use only if not Empowered.) [Empowered][>] I have +7 :rb_might:.' One of the pool's two units at Energy 1, and the only one in Calm: both are played on T1 for the two runes, enter exhausted (143.4), and walk onto the two empty battlefields on T2 for two Conquers (469.1)."
+        },
+        {
+          "card": "OGN-066",
+          "quantity": 1,
+          "role": "payoff",
+          "zone": "BATTLEFIELD",
+          "state": "at battlefield A, the Power Nexus, when your T4 Beginning Phase Holds it",
+          "note": "Calm unit, E5, 1 Calm Power, M4. 'When I hold, you score 1 point.' Played on T3 straight onto A, a battlefield you control (355.2.a); its Power is a rune already exhausted for Energy, recycled (164.2.b, 164.2.b.1). A Hold Effect of a unit present at the held battlefield (383.4.d, 383.4.d.2.a). The point is a 194.1.c gain, not a 469 Score (R2 = A), so 470 does not cap it."
+        },
+        {
+          "card": "SFD-214",
+          "quantity": 1,
+          "role": "battlefield",
+          "zone": "BATTLEFIELD",
+          "note": "Colourless battlefield: 'When you hold here, you may pay :rb_rune_rainbow::rb_rune_rainbow::rb_rune_rainbow::rb_rune_rainbow: to score 1 point.' Battlefield A, your own (485.4.a), in play in one game in three (485.5). Paid on T4 by recycling four runes at finalization (383.3.b, 444.2.c, 164.2.b, 135.2.e.5.a), the four that stay on the board after T3."
+        }
+      ],
+      "needs": [],
+      "produces": [
+        "ability-points"
+      ],
+      "prerequisites": {
+        "easy": [],
+        "notable": []
+      },
+      "steps": [
+        "T1: both Steel Paws to base (E1 + E1). T2: each walks onto an empty battlefield, A and B, and Conquers it (144.4.a, 469.1): 2 points.",
+        "T3: Hold A and B (469.2): 4. Ahri, Alluring (E5 + 1 Calm Power, a recycled rune) is played onto A (355.2.a); five runes stay on the board.",
+        "T4 Beginning Phase, before the Channel Phase: Hold A and B: 6. Ahri's hold trigger: 7. Power Nexus, paid by recycling four runes: 8, and you win at the Cleanup (472)."
+      ],
+      "terminatesIn": "8 points in the T4 Beginning Phase unopposed",
+      "sources": [],
+      "rulesVersion": "2026-07-16",
+      "notes": "draft"
     }
   ]
 }
