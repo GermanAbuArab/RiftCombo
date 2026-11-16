@@ -9,7 +9,7 @@ import { beforeAll, describe, expect, it, vi } from "vitest";
 
 // The account layer needs a network and a project; an "open" build has neither and behaves as the
 // app did before #31, which is all this view needs.
-vi.mock("../../web/supabase.js", () => ({
+vi.mock("../../web/neon.js", () => ({
   accountsEnabled: false,
   onAccount: () => {},
   signIn: async () => {},

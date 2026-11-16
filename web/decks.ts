@@ -15,7 +15,7 @@ import type { CardIndex } from "../src/cards.js";
 import { matchDeck } from "../src/matcher.js";
 import type { Deck, Domain, Format, Variant } from "../src/types.js";
 import { esc } from "../src/html.js";
-import { accountsEnabled, createDeck, deleteDeck, listDecks, onAccount, updateDeck, type Account } from "./supabase.js";
+import { accountsEnabled, createDeck, deleteDeck, listDecks, onAccount, updateDeck, type Account } from "./neon.js";
 import { builderHtml, initBuilder, openImport, openList, refreshBuilder } from "./builder.js";
 import { thumb } from "./graph.js";
 import { go, onLeave, onRoute, type Route } from "./router.js";
@@ -56,7 +56,7 @@ const HANDOFF = "riftcombo:draft";
 
 export function initDecks(h: DeckHooks): void {
   if (!accountsEnabled) {
-    // A build with no account layer (SUPABASE_URL unset) still routes /decks and still shows the
+    // A build with no account layer (NEON_AUTH_URL unset) still routes /decks and still shows the
     // link, and until 2026-09-20 the view was a blank page: nothing said why (design review,
     // FINDING-008). One sentence, written once, since nothing else here runs without an account.
     $<HTMLElement>("#decks-host").innerHTML = `<h2 class="decks-title">My decks</h2><p class="decks-sub">This build runs without accounts, so there is nowhere to save a list. Paste one on the Combos tab instead.</p>`;
@@ -90,7 +90,7 @@ export function initDecks(h: DeckHooks): void {
   // Resetting on those threw `draft` away with no warning, because `guardUnsaved` only covers route
   // changes — so an unsaved list died on a rename, or on its own after ~an hour of an open tab. Key
   // the reset on the identity actually changing rather than on an allowlist of event names, which
-  // the next supabase-js can outgrow silently. The initial state below already equals the reset, so
+  // the next Neon SDK can outgrow silently. The initial state below already equals the reset, so
   // a first event while signed out needs no special case.
   onAccount((next) => {
     const switched = account?.id !== next?.id;

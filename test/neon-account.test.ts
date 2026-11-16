@@ -1,8 +1,8 @@
 import { describe, expect, it } from "vitest";
-import { accountOf, type AuthSession } from "../web/supabase.js";
+import { accountOf, type AuthSession } from "../web/neon.js";
 
 /**
- * The one function in web/supabase.ts that needs no network (#138): what to call the player in the
+ * The one function in web/neon.ts that needs no network (#138): what to call the player in the
  * header. Google gives a `full_name` most of the time and a `name` sometimes, an email always, and
  * the fallback exists so the header never reads "undefined" for an account that has none of them.
  */

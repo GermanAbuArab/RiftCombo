@@ -14,7 +14,7 @@ import { gate, initAccount } from "./account.js";
 import { initDecks } from "./decks.js";
 import { loadPlays, playsAbout } from "./plays.js";
 import { comboSections } from "../src/render/combo.js";
-import { accountsEnabled } from "./supabase.js";
+import { accountsEnabled } from "./neon.js";
 import type { SavedDeck } from "../src/saved.js";
 import { esc } from "../src/html.js";
 import { safeHref } from "../src/markdown.js";

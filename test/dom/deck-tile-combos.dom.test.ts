@@ -52,7 +52,7 @@ const row = (over: Partial<SavedDeck> = {}): SavedDeck => ({
 });
 
 const api = vi.hoisted(() => ({ listeners: [] as ((a: { id: string; label: string } | null) => void)[], decks: [] as SavedDeck[] }));
-vi.mock("../../web/supabase.js", () => ({
+vi.mock("../../web/neon.js", () => ({
   accountsEnabled: true,
   onAccount: (cb: (a: { id: string; label: string } | null) => void) => { api.listeners.push(cb); },
   listDecks: async () => api.decks,

@@ -6,7 +6,7 @@ import { esc } from "../src/html.js";
  * The guard rail behind every `innerHTML` in `web/` (#130).
  *
  * Nothing was broken when this was written: every call site was traced by hand and every string a
- * player controls — a deck name from Supabase, the title a Piltover import carries, the name in the
+ * player controls — a deck name from the database, the title a Piltover import carries, the name in the
  * editor — already went through `esc()`, and the one raw pasted line (`unresolved.raw`) only ever
  * reaches `textContent`. What was missing was anything that would notice if that stopped being true.
  * Three copies of the escape lived in three files, so a fix to one would have left two behind, and

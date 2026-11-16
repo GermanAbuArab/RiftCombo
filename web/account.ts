@@ -1,11 +1,11 @@
 // The account layer (#31, #39): sign in with Google, and say who is signed in. Since #43 the saved lists
 // live in their own view (web/decks.ts) rather than in a panel under the deck input, so this file is only
 // the session: `gate()` marks <body data-auth> as soon as the session is known and the stylesheet shows
-// either the entrance or the app; the header shows the name and the way out. A build with no Supabase
+// either the entrance or the app; the header shows the name and the way out. A build with no Neon
 // project configured has no gate to open, so it marks the body "open" and behaves as before.
 
 import { esc } from "../src/html.js";
-import { accountsEnabled, deleteAccount, onAccount, signIn, signOut, updateDisplayName, type Account } from "./supabase.js";
+import { accountsEnabled, deleteAccount, onAccount, signIn, signOut, updateDisplayName, type Account } from "./neon.js";
 
 const $ = <T extends Element>(sel: string) => document.querySelector<T>(sel)!;
 const maybe = <T extends Element>(sel: string) => document.querySelector<T>(sel);
@@ -32,7 +32,7 @@ export function normalizeDisplayName(raw: string): string {
 /**
  * Decide what the visitor sees, before anything else loads. "pending" (the HTML default) shows
  * neither the app nor the entrance, so the page never flashes one and then swaps to the other;
- * supabase-js reports the initial session — including the one it just exchanged a `?code=` for —
+ * the Neon SDK reports the initial session — including the one it just exchanged a `?code=` for —
  * through the same listener as later changes.
  */
 export function gate(): void {
@@ -74,7 +74,7 @@ function onPanelClick(ev: Event): void {
  * Save the new name. The field is a boundary — it is typed by a person — so the value is normalised
  * here and an empty one is written as `null`, which removes the override rather than blanking the
  * header. The account is set from what the call returns, so the panel and the header are right
- * whether or not supabase-js also reports the change through the session listener.
+ * whether or not the Neon SDK also reports the change through the session listener.
  */
 function onRename(ev: Event): void {
   ev.preventDefault();

@@ -10,7 +10,7 @@
 import { readFileSync } from "node:fs";
 import { beforeAll, describe, expect, it, vi } from "vitest";
 
-vi.mock("../../web/supabase.js", () => ({
+vi.mock("../../web/neon.js", () => ({
   accountsEnabled: false,
   onAccount: () => {},
   signIn: async () => {},

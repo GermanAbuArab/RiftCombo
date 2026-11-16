@@ -8,11 +8,11 @@
 import { beforeEach, describe, expect, it, vi } from "vitest";
 
 /**
- * `web/supabase.ts` is the network, and `accountsEnabled` is a build-time constant inside it, so the
+ * `web/neon.ts` is the network, and `accountsEnabled` is a build-time constant inside it, so the
  * gate can only be exercised by replacing that module. The handle lets each test decide what the
  * build knows and when the session arrives.
  */
-const supabase = vi.hoisted(() => ({
+const neon = vi.hoisted(() => ({
   accountsEnabled: true,
   listeners: [] as ((a: { id: string; label: string } | null) => void)[],
   signIn: vi.fn(async () => {}),
@@ -21,13 +21,13 @@ const supabase = vi.hoisted(() => ({
   updateDisplayName: vi.fn(async (name: string | null) => ({ id: "u1", label: name ?? "german abu arab", displayName: name ?? "" })),
 }));
 
-vi.mock("../../web/supabase.js", () => ({
-  get accountsEnabled() { return supabase.accountsEnabled; },
-  onAccount: (cb: (a: { id: string; label: string } | null) => void) => { supabase.listeners.push(cb); },
-  signIn: supabase.signIn,
-  signOut: supabase.signOut,
-  deleteAccount: supabase.deleteAccount,
-  updateDisplayName: supabase.updateDisplayName,
+vi.mock("../../web/neon.js", () => ({
+  get accountsEnabled() { return neon.accountsEnabled; },
+  onAccount: (cb: (a: { id: string; label: string } | null) => void) => { neon.listeners.push(cb); },
+  signIn: neon.signIn,
+  signOut: neon.signOut,
+  deleteAccount: neon.deleteAccount,
+  updateDisplayName: neon.updateDisplayName,
 }));
 
 const GATE_HTML = `
@@ -38,10 +38,10 @@ const GATE_HTML = `
 
 beforeEach(() => {
   vi.resetModules();
-  supabase.accountsEnabled = true;
-  supabase.listeners.length = 0;
-  supabase.signIn.mockClear();
-  supabase.updateDisplayName.mockClear();
+  neon.accountsEnabled = true;
+  neon.listeners.length = 0;
+  neon.signIn.mockClear();
+  neon.updateDisplayName.mockClear();
   document.body.innerHTML = GATE_HTML;
   // The HTML ships this default so the page shows neither side until the session is known.
   document.body.dataset["auth"] = "pending";
@@ -55,26 +55,26 @@ describe("the gate (#39)", () => {
     gate();
     // gate() only registers the listener; nothing has answered yet.
     expect(document.body.dataset["auth"]).toBe("pending");
-    expect(supabase.listeners).toHaveLength(1);
+    expect(neon.listeners).toHaveLength(1);
   });
 
-  it("opens outright for a build with no Supabase project", async () => {
-    supabase.accountsEnabled = false;
+  it("opens outright for a build with no Neon project", async () => {
+    neon.accountsEnabled = false;
     const { gate } = await load();
     gate();
     expect(document.body.dataset["auth"]).toBe("open");
     // No listener is registered either: there is no session to wait for.
-    expect(supabase.listeners).toHaveLength(0);
+    expect(neon.listeners).toHaveLength(0);
   });
 
   it("shows the entrance with no session and the app with one", async () => {
     const { gate } = await load();
     gate();
-    supabase.listeners[0]!(null);
+    neon.listeners[0]!(null);
     expect(document.body.dataset["auth"]).toBe("out");
-    supabase.listeners[0]!({ id: "u1", label: "german abu arab" });
+    neon.listeners[0]!({ id: "u1", label: "german abu arab" });
     expect(document.body.dataset["auth"]).toBe("in");
-    supabase.listeners[0]!(null);
+    neon.listeners[0]!(null);
     expect(document.body.dataset["auth"]).toBe("out");
   });
 
@@ -82,7 +82,7 @@ describe("the gate (#39)", () => {
     const { gate } = await load();
     gate();
     document.querySelector<HTMLButtonElement>("#gate-signin")!.click();
-    expect(supabase.signIn).toHaveBeenCalledTimes(1);
+    expect(neon.signIn).toHaveBeenCalledTimes(1);
   });
 });
 
@@ -91,7 +91,7 @@ describe("the account panel", () => {
     const { gate, initAccount } = await load();
     gate();
     initAccount();
-    supabase.listeners.forEach((cb) => cb({ id: "u1", label: "german abu arab" }));
+    neon.listeners.forEach((cb) => cb({ id: "u1", label: "german abu arab" }));
 
     expect(document.querySelector<HTMLElement>("#account-top")!.hidden).toBe(false);
     expect(document.querySelector("#acct-label")!.textContent).toBe("german abu arab");
@@ -101,7 +101,7 @@ describe("the account panel", () => {
     expect(document.querySelector("#account-body")!.textContent).toContain("Delete account");
     document.querySelector<HTMLButtonElement>('[data-act="close"]')!.click();
     expect(document.querySelector("#account-body")!.textContent).toContain("Delete for good");
-    expect(supabase.deleteAccount).not.toHaveBeenCalled();
+    expect(neon.deleteAccount).not.toHaveBeenCalled();
     document.querySelector<HTMLButtonElement>('[data-act="close-cancel"]')!.click();
     expect(document.querySelector("#account-body")!.textContent).toContain("Delete account");
   });
@@ -110,7 +110,7 @@ describe("the account panel", () => {
     const { gate, initAccount } = await load();
     gate();
     initAccount();
-    supabase.listeners.forEach((cb) => cb(null));
+    neon.listeners.forEach((cb) => cb(null));
     expect(document.querySelector<HTMLElement>("#acct-who")!.hidden).toBe(true);
     expect(document.querySelector<HTMLElement>("#account")!.hidden).toBe(true);
     expect(document.querySelector("#account-body")!.innerHTML).toBe("");
@@ -127,7 +127,7 @@ describe("the display name", () => {
     const mod = await import("../../web/account.js");
     mod.gate();
     mod.initAccount();
-    supabase.listeners.forEach((cb) => cb(who));
+    neon.listeners.forEach((cb) => cb(who));
     return mod;
   };
   const body = () => document.querySelector<HTMLElement>("#account-body")!;
@@ -142,7 +142,7 @@ describe("the display name", () => {
     expect(body().querySelector<HTMLInputElement>("#acct-name")).not.toBeNull();
     press('[data-act="rename-cancel"]');
     expect(body().querySelector("#acct-name")).toBeNull();
-    expect(supabase.updateDisplayName).not.toHaveBeenCalled();
+    expect(neon.updateDisplayName).not.toHaveBeenCalled();
   });
 
   it("prefills only the name the player chose, and shows the current one as the placeholder", async () => {
@@ -161,7 +161,7 @@ describe("the display name", () => {
     field.value = "  Germán   Abu Arab  ";
     field.closest("form")!.dispatchEvent(new Event("submit", { bubbles: true, cancelable: true }));
     await settle();
-    expect(supabase.updateDisplayName).toHaveBeenCalledWith("Germán Abu Arab");
+    expect(neon.updateDisplayName).toHaveBeenCalledWith("Germán Abu Arab");
     expect(document.querySelector("#acct-label")!.textContent).toBe("Germán Abu Arab");
     expect(document.querySelector("#account-msg")!.textContent).toContain("Germán Abu Arab");
     // The field closes on success, so the panel goes back to naming the two account actions.
@@ -176,14 +176,14 @@ describe("the display name", () => {
     field.value = "   ";
     field.closest("form")!.dispatchEvent(new Event("submit", { bubbles: true, cancelable: true }));
     await settle();
-    expect(supabase.updateDisplayName).toHaveBeenCalledWith(null);
+    expect(neon.updateDisplayName).toHaveBeenCalledWith(null);
     expect(document.querySelector("#acct-label")!.textContent).toBe("german abu arab");
     expect(document.querySelector("#account-msg")!.textContent).toMatch(/Google/);
   });
 
   it("says so in the panel when the write fails, and keeps the field open", async () => {
     await boot();
-    supabase.updateDisplayName.mockRejectedValueOnce(new Error("Network is down"));
+    neon.updateDisplayName.mockRejectedValueOnce(new Error("Network is down"));
     press('[data-act="rename"]');
     const field = body().querySelector<HTMLInputElement>("#acct-name")!;
     field.value = "Germán";

@@ -1,6 +1,6 @@
 // @vitest-environment happy-dom
 //
-// #591: `web/supabase.ts` installs the better-auth.message scrub BEFORE it creates the SDK client, so
+// #591: `web/neon.ts` installs the better-auth.message scrub BEFORE it creates the SDK client, so
 // the client's very first write is covered, and it still creates the client where the browser blocks
 // storage. The SDK is replaced by one whose `createClient` makes the write the real one would and
 // records what survived it; `test/dom/auth-broadcast.dom.test.ts` drives the real SDK.
@@ -25,12 +25,12 @@ vi.mock("@neondatabase/neon-js", () => ({
 
 const nativeSetItem = Storage.prototype.setItem;
 
-/** A fresh `web/supabase.ts` (and scrub), as a build with accounts has it, subscribed the way the shell boots. */
+/** A fresh `web/neon.ts` (and scrub), as a build with accounts has it, subscribed the way the shell boots. */
 async function boot() {
   vi.resetModules();
   vi.stubGlobal("__NEON_AUTH_URL__", "https://ep-test591.neonauth.example.test/neondb/auth");
   vi.stubGlobal("__NEON_DATA_API_URL__", "https://ep-test591.apirest.example.test/neondb/rest/v1");
-  const account = await import("../../web/supabase.js");
+  const account = await import("../../web/neon.js");
   account.onAccount(() => {});
 }
 
@@ -44,7 +44,7 @@ afterEach(() => {
   Storage.prototype.setItem = nativeSetItem;
 });
 
-describe("web/supabase.ts installs the scrub (#591)", () => {
+describe("web/neon.ts installs the scrub (#591)", () => {
   it("before it creates the SDK client, so the client's first write does not survive", async () => {
     // Node 25 and later shadow happy-dom's localStorage with an undefined one (see the other file).
     vi.stubGlobal("localStorage", new Storage());
