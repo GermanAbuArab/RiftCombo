@@ -316,7 +316,13 @@ turn"* played on their turn expires before yours. What is left splits by where i
   Poro, and play the Duo with their last three runes: B is 10, and their 10 kill both attackers while
   your 9 leave one of theirs standing. Whirlwind does not break it: you return
   first, and you return Jinx. B is then 5, the Duo makes it 8, and your 9 kill all three, 3 + 2 + 3,
-  while their 8 kill the Jaull-Fish and leave the Ramhound. Star-Crossed breaks it for three runes and
+  while their 8 kill the Jaull-Fish and leave the Ramhound.
+  [2026-11-16, #677: Whirlwind is E4 + 1 Chaos Power now, not E3: four runes, one recycled, not three. Of
+  their six runes on T3 that leaves two, not three, so the Duo (E3) is not played and the Legion Rearguard
+  (E2) is: B is 5 + 2 = **7**, not 8. Your 9 still kill all three, 3 + 2 + 2, and their 7 still kill the
+  Jaull-Fish and leave the Ramhound, so Whirlwind still does not break it. The Jaull-Fish and the 9 are as
+  written above; the 8 is the old number.]
+  Star-Crossed breaks it for three runes and
   one Chaos Power, and it costs them most of their T3.
 - **Into your base, where the Ramhound is: the cheapest break.** `VEN-107 Decree of Discord` (Chaos, E1
   + 1 Chaos Power; *"Return any number of enemy Order (:rb_rune_order:) units with total Might 5 or less

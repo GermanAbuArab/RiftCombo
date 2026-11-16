@@ -379,6 +379,10 @@ these cards.
 - `OGN-187 Whirlwind` (Chaos, E3 + 1 Chaos Power): *"Starting with the next player, each player may
   return a unit to its owner's hand."* You return first, then they return a Karthus. **Three runes: two
   bodies.**
+  [2026-11-16, #677: Whirlwind is E4 + 1 Chaos Power now, so it is **four runes: two bodies**, one of them
+  recycled. Their T4 Main Phase has nine runes and the walked hand holds none of these cards, so it still fits, it
+  is still a dearer answer on this board, and the cheapest card stays `VEN-107 Decree of Discord`. The
+  verdict is unchanged.]
 - `UNL-128 Star-Crossed` (Chaos, E3 + 1 Chaos Power): *"[Reaction] (Play any time, even before spells
   and abilities resolve.) Return a friendly unit and an enemy unit to their owners' hands."* A Karthus and one of their own. **Three runes: two bodies.** It is the
   one answer that also works on your T5, while the Blade or the Mixologist is on the chain, if they

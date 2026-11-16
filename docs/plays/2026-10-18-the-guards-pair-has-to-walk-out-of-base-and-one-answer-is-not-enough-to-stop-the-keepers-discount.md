@@ -317,7 +317,10 @@ bodies:**
 
 Six take or move one, and the Guardian repairs the count: `UNL-020 Dancing Grenade` (Fury, E2 + 1
 Fury Power, *"Deal 2 to a unit."*), `OGN-187 Whirlwind` (Chaos, E3 + 1 Chaos Power, *"Starting with
-the next player, each player may return a unit to its owner's hand."*), `VEN-107 Decree of Discord`
+the next player, each player may return a unit to its owner's hand."*)
+[2026-11-16, #677: Whirlwind is E4 + 1 Chaos Power now, not E3. It still takes one body, so the sentence it
+sits in, six cards that take or move one, holds. The line states no rune count for it, and four runes fit in
+the five a Chaos-or-Fury deck has by their T2. Nothing below changes.], `VEN-107 Decree of Discord`
 (Chaos, E1 + 1 Chaos Power, *"Return any number of enemy Order (:rb_rune_order:) units with total
 Might 5 or less to their owners' hands."*), which takes the Guard and leaves the Soldier, `VEN-105
 Twilight Step` (Chaos, E2 + 1 Chaos Power, *"Move a unit with 3 :rb_might: or less."*), `UNL-133
