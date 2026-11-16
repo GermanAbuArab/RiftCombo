@@ -1,5 +1,7 @@
 import { readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
+// @ts-expect-error plain .mjs shared with scripts/remap-rules.mjs, which cannot import TypeScript.
+import { EDITIONS } from "../scripts/rules-editions.mjs";
 
 /**
  * A `sources[].quote` is defined by CLAUDE.md as "the verbatim passage the entry stands on". When the
@@ -60,6 +62,22 @@ export const normalise = (s: string): string =>
 const TEXT = Object.fromEntries(
   Object.entries(FILES).map(([k, f]) => [k, normalise(readFileSync(new URL(f, root), "utf8"))]),
 ) as Record<FileKey, string>;
+
+/**
+ * Since #645 an entry's `rulesVersion` names which edition its rule numbers and rule quotations belong
+ * to, and a source title that names an edition date wins over it: a hand walk "against Core Rules
+ * 2026-07-16" quoted the 07-16 text even in an entry that moved to 10-09. The card corpus has one edition.
+ */
+/** A compound hyphenated across a line is one word (scripts/rules-editions.mjs: six lines in 10-09, none in 07-16). */
+const rules = (f: string) => normalise(readFileSync(new URL(f, root), "utf8").replace(/([A-Za-z])-\n\s*(?=[A-Za-z])/g, "$1-"));
+const EDITION_TEXT: Record<string, Record<FileKey, string>> = Object.fromEntries(
+  Object.entries(EDITIONS as Record<string, { core: string; tournament: string }>).map(([v, f]) => [
+    v,
+    { ...TEXT, core: rules(f.core), tournament: rules(f.tournament) },
+  ]),
+);
+const editionOf = (title: string, rulesVersion: string): string =>
+  Object.keys(EDITION_TEXT).find((v) => title.includes(v)) ?? rulesVersion;
 
 /** Which shipped file a source title claims. A title may name more than one. */
 const CLAIMS: [RegExp, FileKey][] = [
@@ -122,7 +140,9 @@ export function verifiableUnits(quote: string): string[] {
 }
 
 /** An ellipsis is the only licensed elision: every part either side of one must appear. */
-export function appearsIn(text: string, keys: FileKey[]): boolean {
+export function appearsIn(text: string, keys: FileKey[], edition = "2026-07-16"): boolean {
+  const T = EDITION_TEXT[edition];
+  if (!T) throw new Error(`no rules text for edition ${edition}`);
   const parts = normalise(text)
     .split(/\s*(?:…|\.\.\.)\s*/)
     .map((p) => p.trim())
@@ -133,16 +153,16 @@ export function appearsIn(text: string, keys: FileKey[]): boolean {
   // so the test matches its own stated policy. Only the FIRST letter, so `their DECK` still fails.
   const forms = (p: string) => [p, p.charAt(0).toUpperCase() + p.slice(1)];
   return parts.every((p) =>
-    keys.some((k) => forms(p).some((f) => TEXT[k].includes(f) || TEXT[k].includes(f.replace(RULE_LABEL, "")))),
+    keys.some((k) => forms(p).some((f) => T[k].includes(f) || T[k].includes(f.replace(RULE_LABEL, "")))),
   );
 }
 
-type Combo = { id: string; sources?: { title?: string; quote?: string }[] };
+type Combo = { id: string; rulesVersion: string; sources?: { title?: string; quote?: string }[] };
 const combos = (
   JSON.parse(readFileSync(new URL("data/combos.json", root), "utf8")) as { combos: Combo[] }
 ).combos;
 
-const checks: { id: string; keys: FileKey[]; text: string }[] = [];
+const checks: { id: string; keys: FileKey[]; text: string; edition: string }[] = [];
 let inScope = 0;
 for (const e of combos)
   for (const s of e.sources ?? []) {
@@ -150,7 +170,8 @@ for (const e of combos)
     const keys = CLAIMS.filter(([re]) => re.test(s.title ?? "")).map(([, k]) => k);
     if (!keys.length) continue;
     inScope++;
-    for (const text of verifiableUnits(s.quote)) checks.push({ id: e.id, keys, text });
+    const edition = editionOf(s.title ?? "", e.rulesVersion);
+    for (const text of verifiableUnits(s.quote)) checks.push({ id: e.id, keys, text, edition });
   }
 
 /**
@@ -172,9 +193,8 @@ for (const e of combos)
  * 46 are in scope and all 46 are verbatim.
  */
 type Syn = { id: string; why?: string };
-const synergies = (
-  JSON.parse(readFileSync(new URL("data/synergies.json", root), "utf8")) as { synergies: Syn[] }
-).synergies;
+const synergyFile = JSON.parse(readFileSync(new URL("data/synergies.json", root), "utf8")) as { rulesVersion: string; synergies: Syn[] };
+const synergies = synergyFile.synergies;
 
 /** `702.2.a — "..."`, `(422.1, "...")`: a rule number with only punctuation between it and the quote. */
 const RULE_LED = /\d{3}(?:\.[0-9a-z]+)*[^0-9a-z]*$/;
@@ -197,7 +217,7 @@ describe("every synergy quotation attributed to a rule appears in the rulebooks"
   });
 
   it("resolves every rule-led passage", () => {
-    const unresolved = synChecks.filter((c) => !appearsIn(c.text, ["core", "tournament"]));
+    const unresolved = synChecks.filter((c) => !appearsIn(c.text, ["core", "tournament"], synergyFile.rulesVersion));
     expect(
       unresolved.map((c) => `${c.id}: ${JSON.stringify(c.text.slice(0, 120))}`),
       "synergy quotations that do not appear in the rulebooks they cite",
@@ -221,7 +241,7 @@ describe("every quote attributed to a file we ship appears in that file", () => 
   });
 
   it("resolves every verifiable passage", () => {
-    const unresolved = checks.filter((c) => !appearsIn(c.text, c.keys));
+    const unresolved = checks.filter((c) => !appearsIn(c.text, c.keys, c.edition));
     expect(
       unresolved.map((c) => `${c.id}: ${JSON.stringify(c.text.slice(0, 120))}`),
       "quotes that do not appear in the file their source names",

@@ -1,7 +1,12 @@
 // Paragraph diff between two editions of the Riftbound rules, with every repo citer of each
 // paragraph that moved, changed or went away (#645).
 //
-//   node scripts/rules-diff.mjs <old-core.txt> <new-core.txt> <old-tournament.txt> <new-tournament.txt> <out.md> <out.json>
+//   node scripts/rules-diff.mjs <old-core.txt> <new-core.txt> <old-tournament.txt> <new-tournament.txt> <out.md> <out.json> [<rev>]
+//
+// The citers are read from the working tree, or from commit <rev> when one is given. The committed
+// 2026-07-16-to-2026-10-09 diff reads them at 6256d09, the last commit before #645 rewrote any
+// citation: after the remap, an entry moved to 10-09 cites 10-09 numbers, and listing it under the
+// 07-16 paragraph of the same number would name the wrong citer.
 //
 // Inputs are `pdftotext -layout` extractions (the method the 2026-07-16 files were made with: the
 // 10-09 extraction reproduces their title and date-line indentation byte for byte). A paragraph is a
@@ -12,78 +17,19 @@
 // Every old paragraph gets one fate in the new edition:
 //   same        same number, same text
 //   renumbered  same text, found under another number
-//   xref        best fuzzy match differs only in rule numbers or punctuation (a cross-reference moved)
+//   xref        best fuzzy match differs only in rule numbers, quote characters, dashes or spacing
 //   reworded    best fuzzy match (token Jaccard >= 0.5) differs in words
 //   deleted     no new paragraph matches at >= 0.5
 // The fuzzy pairing is a heuristic: `sim` is printed so a low pairing can be read by hand.
 import fs from "node:fs";
 import { execFileSync } from "node:child_process";
+import { fates, parseText } from "./rules-editions.mjs";
 
-const [ocP, ncP, otP, ntP, outMd, outJson] = process.argv.slice(2);
+const [ocP, ncP, otP, ntP, outMd, outJson, rev] = process.argv.slice(2);
 if (!outJson) throw new Error("usage: rules-diff.mjs OLD_CORE NEW_CORE OLD_TOURN NEW_TOURN OUT.md OUT.json");
 
-const ID = String.raw`\d{3}(?:\.(?:\d+[a-z]?|[a-z]))*`;
-const HEAD = new RegExp(String.raw`^\s*(${ID})\.?(?=\s|$)`);
 const REF = /\b\d{3}\.(?:\d+[a-z]?|[a-z])(?:\.(?:\d+[a-z]?|[a-z]))*\b/g; // same tokenizer as test/rule-refs.test.ts
-
-function parse(p) {
-  const paras = [];
-  let cur = null;
-  for (const raw of fs.readFileSync(p, "utf8").split("\n")) {
-    const l = raw.replace(/[\f​]/g, "");
-    const m = HEAD.exec(l);
-    if (m) paras.push((cur = { id: m[1], text: l.trim() }));
-    else if (cur) cur.text += " " + l.trim();
-  }
-  for (const q of paras) {
-    q.norm = q.text.replace(/\s+/g, " ").trim().replace(new RegExp(String.raw`^${ID}\.?\s*`), "");
-    q.toks = new Set(q.norm.toLowerCase().match(/[a-z0-9']+/g) || []);
-  }
-  return paras;
-}
-
-const jac = (x, y) => {
-  let i = 0;
-  for (const t of x) if (y.has(t)) i++;
-  return i / (x.size + y.size - i || 1);
-};
-const skeleton = (s) => s.replace(new RegExp(String.raw`\b${ID}\b`, "g"), "#").replace(/[^a-zA-Z0-9#]/g, "").toLowerCase();
-
-function fates(A, B) {
-  const bById = new Map(B.map((p) => [p.id, p]));
-  const bByText = new Map();
-  for (const p of B) (bByText.get(p.norm) || bByText.set(p.norm, []).get(p.norm)).push(p.id);
-  const used = new Set();
-  const out = [];
-  for (const p of A) {
-    const same = bById.get(p.id);
-    if (same && same.norm === p.norm) {
-      used.add(p.id);
-      out.push({ id: p.id, fate: "same", to: p.id });
-      continue;
-    }
-    const exact = bByText.get(p.norm);
-    if (exact) {
-      exact.forEach((x) => used.add(x));
-      out.push({ id: p.id, fate: "renumbered", to: exact.join(" | "), old: p.norm });
-      continue;
-    }
-    let best = null;
-    let bs = 0;
-    for (const q of B) {
-      if (Math.abs(q.toks.size - p.toks.size) > Math.max(p.toks.size, q.toks.size) * 0.6) continue;
-      const s = jac(p.toks, q.toks);
-      if (s > bs) [bs, best] = [s, q];
-    }
-    const sim = +bs.toFixed(2);
-    if (best && bs >= 0.5) {
-      used.add(best.id);
-      out.push({ id: p.id, fate: skeleton(p.norm) === skeleton(best.norm) ? "xref" : "reworded", to: best.id, sim, old: p.norm, new: best.norm });
-    } else out.push({ id: p.id, fate: "deleted", to: null, sim, nearest: best?.id ?? null, old: p.norm });
-  }
-  const added = B.filter((q) => !used.has(q.id)).map((q) => ({ id: q.id, new: q.norm }));
-  return { rows: out, added, newIds: new Set(B.map((q) => q.id)), newText: new Map(B.map((q) => [q.id, q.norm])) };
-}
+const parse = (p) => parseText(fs.readFileSync(p, "utf8"));
 
 // Word-level diff, [-removed-] {+added+}.
 function wdiff(a, b) {
@@ -114,14 +60,15 @@ function wdiff(a, b) {
 
 // Citers: every git-tracked text file except the rules texts and the card data, and inside
 // data/combos.json and data/synergies.json the entry id (with its status) instead of the file.
-const files = execFileSync("git", ["ls-files", "-z"], { encoding: "utf8" })
+const git = (...a) => execFileSync("git", a, { encoding: "utf8", maxBuffer: 1 << 28 });
+const files = (rev ? git("ls-tree", "-r", "-z", "--name-only", rev) : git("ls-files", "-z"))
   .split("\0")
   .filter((f) => f && /\.(md|json|ts|mjs|js|txt|html)$/.test(f))
   .filter((f) => !/^data\/(Riftbound-.*\.txt|cards.*\.json|corpus.*|extract\/)/.test(f) && !f.startsWith("public/") && !f.startsWith("docs/rules-diff/"));
 const cites = new Map();
 const add = (id, who) => (cites.get(id) || cites.set(id, new Set()).get(id)).add(who);
 for (const f of files) {
-  const txt = fs.readFileSync(f, "utf8");
+  const txt = rev ? git("show", `${rev}:${f}`) : fs.readFileSync(f, "utf8");
   if (f === "data/combos.json" || f === "data/synergies.json") {
     const d = JSON.parse(txt);
     const key = f === "data/combos.json" ? "combos" : "synergies";
@@ -173,15 +120,15 @@ const groupCiters = (cs) => {
 };
 const DISPOSITION = {
   renumbered: "mechanical: renumber the citation (step 2)",
-  xref: "mechanical: only a cross-reference number or punctuation changed (step 2)",
+  xref: "mechanical: only a cross-reference number, a quote character, a dash or spacing changed (step 2)",
   reworded: "meaning check (step 2): mechanical fix if the meaning held, else a finding or a new issue per verified entry",
   deleted: "meaning check (step 2): finding or new issue per verified entry",
 };
 
 const md = [];
 md.push("# Rules paragraph diff, 2026-07-16 to 2026-10-09 (#645)", "");
-md.push("Generated, never hand-edited:", "", "```", `node scripts/rules-diff.mjs ${ocP} ${ncP} ${otP} ${ntP} ${outMd} ${outJson}`, "```", "");
-md.push("Fates: `renumbered` (same text, new number), `xref` (only a rule number or punctuation inside the text changed), `reworded` (words changed; paired by token Jaccard, `sim` printed), `deleted` (no new paragraph at sim >= 0.5). `number reused` marks an old number that still exists in the new edition holding other text, so an un-updated citation keeps resolving and cites the wrong rule. A citer is a token match of the paragraph number (the tokenizer of `test/rule-refs.test.ts`); `also a <other book> number` marks a number that exists in both books, where the token alone cannot say which book is meant.", "");
+md.push("Generated, never hand-edited:", "", "```", `node scripts/rules-diff.mjs ${ocP} ${ncP} ${otP} ${ntP} ${outMd} ${outJson}${rev ? ` ${rev}` : ""}`, "```", "");
+md.push("Fates: `renumbered` (same text, new number), `xref` (only a rule number, a quote character, a dash or spacing inside the text changed; case and brackets count as words), `reworded` (words changed; paired by token Jaccard, `sim` printed), `deleted` (no new paragraph at sim >= 0.5). `number reused` marks an old number that still exists in the new edition holding other text, so an un-updated citation keeps resolving and cites the wrong rule. A citer is a token match of the paragraph number (the tokenizer of `test/rule-refs.test.ts`); `also a <other book> number` marks a number that exists in both books, where the token alone cannot say which book is meant.", "");
 for (const [k, r] of Object.entries(report)) {
   const s = summarize(r.rows);
   md.push(`## ${r.label}`, "");

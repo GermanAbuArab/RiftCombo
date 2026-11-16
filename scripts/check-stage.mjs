@@ -1,6 +1,8 @@
 // Validate EVERY staged row: refs resolve, produces valid, identity <=2, legality, copies, not live.
 import fs from "fs";
-const RULES=fs.readFileSync("data/Riftbound-Core-Rules-2026-07-16.txt","utf8");
+import { EDITIONS } from "./rules-editions.mjs";
+// A row's refs resolve in the Core Rules of the edition its rulesVersion names (#645: two are live).
+const RULES=Object.fromEntries(Object.entries(EDITIONS).map(([v,f])=>[v,fs.readFileSync(f.core,"utf8")]));
 const db=JSON.parse(fs.readFileSync("data/combos.json","utf8"));
 const C=JSON.parse(fs.readFileSync("data/cards.json","utf8")).cards;
 const leg=JSON.parse(fs.readFileSync("data/legality.json","utf8"));
@@ -14,7 +16,9 @@ console.log(`staged rows: ${rows.length}; catalogue ${db.combos.length}\n`);
 for(const e of rows){
   console.log(`=== ${e.id} [${e.class}, ${e.status}]`);
   const refs=[...new Set((JSON.stringify(e).match(/\b\d{3}(?:\.[0-9a-z]+)*\b/g)||[]).filter(r=>r.includes(".")))];
-  const miss=refs.filter(r=>!new RegExp("(^|[\\s\\f])"+r.replace(/\./g,"\\.")+"\\.[\\s\\f]").test(RULES));
+  const text=RULES[e.rulesVersion];
+  if(!text){console.log(`  rulesVersion ${e.rulesVersion} names no shipped edition (${Object.keys(RULES).join(", ")})`);fail++;continue;}
+  const miss=refs.filter(r=>!new RegExp("(^|[\\s\\f])"+r.replace(/\./g,"\\.")+"\\.[\\s\\f]").test(text));
   console.log(`  rule refs ${refs.length}, unresolved ${miss.length} ${miss.join(",")}`); if(miss.length) fail++;
   for(const p of e.produces) if(!P.has(p)){console.log("  INVALID produces:",p);fail++;}
   const ds=new Set(); for(const u of e.uses) for(const d of (dom[u.card]||[])) ds.add(d);
