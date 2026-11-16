@@ -13,7 +13,7 @@ import { resolveLegality } from "../scripts/build-cards.mjs";
 const root = new URL("..", import.meta.url);
 const read = <T>(p: string): T => JSON.parse(readFileSync(new URL(p, root), "utf8")) as T;
 const pool = read<{ cards: Card[] }>("data/cards.json").cards;
-const built = read<{ entries: LegalityEntry[] }>("data/legality.json");
+const built = read<{ retrieved: string; entries: LegalityEntry[] }>("data/legality.json");
 const src = read<{ formats: { banned: Record<string, unknown>[] }[] }>("data/legality.src.json");
 
 const on = (date: string) => new CardIndex(pool, built.entries, date);
@@ -75,9 +75,13 @@ describe("the text corpus names the date an announced ban starts (#647)", () => 
   const corpus = readFileSync(new URL("data/corpus_flat.txt", root), "utf8").split("\n");
   const row = (code: string) => corpus.find((l) => l.startsWith(`${code} | `)) ?? "";
 
-  it("OGN-160 Dazzling Aurora is marked banned from 2026-11-23; OGN-110 Ekko, Recurrent is banned now", () => {
-    expect(row("OGN-160")).toContain("[BANNED constructed:banned from 2026-11-23, 2v2:banned from 2026-11-23]");
-    expect(row("OGN-110")).toContain("[BANNED constructed:banned, 2v2:banned]");
+  // "from <date>" is printed only for a ban dated after the day the list was read, so the expected
+  // row follows the committed `retrieved` and does not go stale when the list is re-read.
+  const tag = (since: string) => (since > built.retrieved ? ` from ${since}` : "");
+
+  it("OGN-160 Dazzling Aurora carries its 2026-11-23 start while the list was read before it; OGN-110 Ekko, Recurrent is banned now", () => {
+    expect(row("OGN-160")).toContain(`[BANNED constructed:banned${tag("2026-11-23")}, 2v2:banned${tag("2026-11-23")}]`);
+    expect(row("OGN-110")).toContain(`[BANNED constructed:banned${tag("2026-09-18")}, 2v2:banned${tag("2026-09-18")}]`);
   });
 });
 
