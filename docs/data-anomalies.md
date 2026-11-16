@@ -24,8 +24,8 @@ code is the stable key.
 | `SFD-138` Windsinger | `Hidden` with no brackets; the rest writes `[Hidden]`. | Corpus L466. |
 | `VEN-103` Shadows of the Past | Carries an `effect` field containing the single character `1`, on a **spell**. `effect` is the Equipment-only field holding the text granted to the equipped unit, so the corpus renders a dangling `[Effect] 1`. | API body: `"effect": {"richText": {"body": "<p>1</p>"}}`. Corpus L878. |
 | `OGN-235` Karma, Channeler | Tagged `[Tags: Vi, Ionia]`. Should be Karma; Vi is a different champion. | Corpus L241. |
-| `SFD-217` Seat of Power | Sentence ends in a double period: `…you or allies control..` | API body ends `control..</p>`. Corpus L544. |
-| `UNL-160` Ultrasoft Poro, `VEN-109` Illaoi | Token Might printed as `:rb_energy_1: :rb_might:` — Riot uses the *Energy* glyph for the numeral `1` in front of the Might icon. Reads as "1 Energy of Might" if taken literally; it means a 1 Might token. Rule 187.7 is the authority for the Bird token, 187 for the shape. | Corpus L709, L884. |
+| `SFD-217` Seat of Power | Sentence ended in a double period: `…you or allies control..`. **Gone upstream**: the gallery read 2026-11-16 (#660) ends `…you or allies control.`, so the row stays as history. | API body ended `control..</p>` on 2026-09-04. |
+| `VEN-109` Illaoi (and `UNL-160` Ultrasoft Poro until 2026-11) | Token Might printed as `:rb_energy_1: :rb_might:` — Riot uses the *Energy* glyph for the numeral `1` in front of the Might icon. Reads as "1 Energy of Might" if taken literally; it means a 1 Might token. Rule 187.7 is the authority for the Bird token, 187 for the shape. `UNL-160` reads `Play two 1 :rb_might: Bird unit` in the gallery read 2026-11-16 (#660); `VEN-109` still carries the Energy glyph. | Corpus L709, L884 as of the audit. |
 
 None of these change what a card does, so none of them blocks a rules walk. The three
 bracket-less keywords are the ones with teeth: any parser that finds keywords by `[…]` misses
