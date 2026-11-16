@@ -2,6 +2,7 @@ import { readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
 import { CardIndex } from "../src/cards.js";
 import type { Card, LegalityEntry } from "../src/types.js";
+// @ts-expect-error — untyped .mjs import, see test/errata.test.ts
 import { resolveLegality } from "../scripts/build-cards.mjs";
 
 /**
