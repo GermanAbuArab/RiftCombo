@@ -22,6 +22,7 @@ const tz = process.env.TZ;
 afterEach(() => { if (tz === undefined) delete process.env.TZ; else process.env.TZ = tz; });
 
 describe("the ban day is the UTC day, whatever the viewer's timezone (#671)", () => {
+  // `banDay` reads toISOString, which ignores TZ by construction; the loop pins that it stays so.
   // Kiritimati is UTC+14 (already 2026-11-23 at `before`); Pago Pago is UTC-11 (still 2026-11-22 at `after`).
   for (const zone of ["Pacific/Kiritimati", "Pacific/Pago_Pago", "America/Los_Angeles", "UTC"]) {
     it(`from ${zone} the ban switches at 00:00:00 UTC`, () => {

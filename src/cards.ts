@@ -105,6 +105,8 @@ export class CardIndex {
    * This index read for the day of `now` (default the real clock): `this` while the day has not moved,
    * a fresh index over the same pool and rows once it has (#671). A long-lived caller asks this each
    * time it evaluates, so a tab left open across midnight UTC picks up the new list without a reload.
+   * It always answers for the real day, so an index pinned to another day (`--as-of`, a dated test)
+   * is not meant to be passed through it.
    */
   current(now: Date = new Date()): CardIndex {
     const day = banDay(now);

@@ -132,9 +132,12 @@ let analyzing: SavedDeck | null = null;
  * open past midnight UTC picks up a ban that has come into force without a reload (#671). `variants`
  * is rebuilt with the index because it was generated from it.
  */
-const syncDay = () => {
+const syncDay = (): boolean => {
   const now = cards.current();
-  if (now !== cards) { cards = now; variants = generateVariants(combos, cards); }
+  if (now === cards) return false;
+  cards = now;
+  variants = generateVariants(combos, cards);
+  return true;
 };
 
 const name = (base: string) => cards.get(base)?.name ?? base;
@@ -737,6 +740,8 @@ function synergyRow(h: SynergyHit): string {
 
 function render() {
   if (!deck || !result) return;
+  // The day moved since `result` was computed: match again so the page never shows yesterday's list.
+  if (syncDay()) result = matchDeck(deck, variants, cards, { format: fmt(), maxMissing: maxMissing() });
   showStatus();
   // `all` is what the deck HOLDS and is what the counts speak for; `hits` is what fits on screen.
   const all = shownHits();
