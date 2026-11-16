@@ -1,15 +1,17 @@
 // Validate EVERY staged row: refs resolve, produces valid, identity <=2, legality, copies, not live.
 import fs from "fs";
 import { EDITIONS } from "./rules-editions.mjs";
+import { parseAsOf, inForce } from "./legality-asof.mjs";
+const { asOf, rest: argv } = parseAsOf(process.argv.slice(2));
 // A row's refs resolve in the Core Rules of the edition its rulesVersion names (#645: two are live).
 const RULES=Object.fromEntries(Object.entries(EDITIONS).map(([v,f])=>[v,fs.readFileSync(f.core,"utf8")]));
 const db=JSON.parse(fs.readFileSync("data/combos.json","utf8"));
 const C=JSON.parse(fs.readFileSync("data/cards.json","utf8")).cards;
-const leg=JSON.parse(fs.readFileSync("data/legality.json","utf8"));
+const leg={entries:inForce(JSON.parse(fs.readFileSync("data/legality.json","utf8")).entries,asOf)}; // as of --as-of, default today (#668)
 const dom={},nm={},sig={}; for(const c of C){dom[c.base]=c.domains||[];nm[c.base]=c.name;sig[c.base]=c.signature;}
 const P=new Set(); for(const c of db.combos)(c.produces||[]).forEach(x=>P.add(x));
 const live=new Set(db.combos.map(c=>c.id));
-const STAGE=process.argv[2] || "/tmp/rc-walks/rc-synth.json";
+const STAGE=argv[0] || "/tmp/rc-walks/rc-synth.json";
 const rows=JSON.parse(fs.readFileSync(STAGE,"utf8"));
 let fail=0;
 console.log(`staged rows: ${rows.length}; catalogue ${db.combos.length}\n`);
