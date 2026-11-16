@@ -12864,8 +12864,8 @@
           "Legend domains are Calm and Chaos: OGN-259 Unforgiven IS the legend, and both other cards are Chaos."
         ],
         "notable": [
-          "IT IS A FINISHER FROM FIVE, NOT A COMBO FROM ZERO, and the source says so in those words. Three points in one turn: Conquer, Conquer, and Yasuo's ability. Below five it is three points and nothing else.",
-          "THE THIRD POINT IS BY ABILITY, WHICH IS WHY IT ADDS TO THE TWO CONQUERS. 194.1.c lists an ability that instructs you to gain points as a way to gain points distinct from the 469 Score, so 470's once-per-Battlefield cap does not touch it (R2 = A). Without R2 this line stops at seven.",
+          "IT IS A FINISHER FROM FIVE, NOT A COMBO FROM ZERO, and the source says so in those words. Three points in one turn: the Hold of the battlefield you already hold, one Conquer of the other, and Yasuo's ability. The five is the score at the START of the turn, before the Beginning Phase Hold. Below five it is three points and nothing else.",
+          "THE THIRD POINT IS BY ABILITY, WHICH IS WHY IT ADDS TO THE HOLD AND THE CONQUER. 194.1.c lists an ability that instructs you to gain points as a way to gain points distinct from the 469 Score, so 470's once-per-Battlefield cap does not touch it (R2 = A). Without R2 this line stops at seven. (Corrected 2026-11-16, #551: the entry used to count a SECOND Conquer, of the battlefield already held, and that point does not exist: *\"469.1. Conquer: A player gains Control of a Battlefield they did not yet Score this turn.\"* and *\"470. A player may only Score, from either method, once per Battlefield per turn.\"* A battlefield held through the Beginning Phase is Scored by Hold (469.2) that turn, so moving onto it later scores nothing. The Hold takes that point's place.)",
           "'The third time I move in a turn', NOT 'EVERY THIRD TIME'. A fourth and fifth move pay nothing. That is the same reading yasuo-syren-unforgiven-point already carries, and a source in that entry's own citations asks about it out loud without answering it.",
           "ALL THREE MOVES ARE LEGAL IN ONE MAIN PHASE: 381 for the legend's Activated Ability, 144.1.a for the Standard Move, and Ride the Wind is an [Action] spell. 446.1 makes each of them a Move and 456 never applies, since none is a recall.",
           "IT COSTS THE BOARD. Ride the Wind is played 'at the end to move yourself back to the base', so the two battlefields you just conquered are left empty and 323.6 strips your Control at the next Cleanup - which does not refund the points (471.1 already gained them) but does hand the board over. The source flags the same downside as the deck's general problem.",
@@ -12874,13 +12874,13 @@
         ]
       },
       "steps": [
-        "Sit at 5 points holding one battlefield, with Yasuo ready in base and Ride the Wind in hand.",
-        "Legend ability (2 Energy, exhaust): move Yasuo from his base to a battlefield. MOVE ONE. Conquer it - 6 points.",
-        "Standard Move with [Ganking] (144.4.c.1) to the other battlefield, exhausting him. MOVE TWO. Conquer it - 7 points.",
+        "Start the turn at 5 points holding one battlefield (H), with the other battlefield (O) empty of enemy units, Yasuo ready in base and Ride the Wind in hand. Beginning Phase: *\"469.2. Hold: A player maintains Control of a Battlefield they did not yet Score this turn during their Beginning Phase.\"* H is Scored by Hold - 6 points.",
+        "Legend ability (2 Energy, exhaust): move Yasuo from his base to O. MOVE ONE. Conquer it - 7 points (*\"469.1. Conquer: A player gains Control of a Battlefield they did not yet Score this turn.\"*; O was not Scored this turn).",
+        "Standard Move with [Ganking] (144.4.c.1) from O to H, exhausting him. MOVE TWO. No point: H was already Scored by the Hold, and *\"470. A player may only Score, from either method, once per Battlefield per turn.\"* (469.1 excludes it as a Conquer in any case).",
         "Play Ride the Wind (2 Energy + 1 Power): move Yasuo back to base and ready him. MOVE THREE.",
         "'The third time I move in a turn, you score 1 point' - 8 points, and 472 wins the game at the next Cleanup."
       ],
-      "netPerIteration": "+3 points in one turn: two Conquers and one ability point",
+      "netPerIteration": "+3 points in one turn: one Hold, one Conquer and one ability point",
       "terminatesIn": "wins the game from 5 points in a single turn, with no opponent turn in between",
       "rulesVersion": "2026-07-16",
       "sources": [
@@ -12918,7 +12918,7 @@
           "accessed": "2026-09-06"
         }
       ],
-      "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-issue62-section3.md), issue #62 section 3. CLASS IS CHAIN AND IT WAS CHECKED AGAINST THE DEFINITION RATHER THAN ASSUMED: CHAIN is 'reaches 8 across several scoring events, without the opponent taking a turn in between', which is exactly this - two Conquers and an ability point, one turn, from five. It is not a BURST, since no single scoring event reaches 8. It is the fourth CHAIN in the catalogue and the first that does not use Time Warp or a double Conquer alone. Card text verbatim from data/corpus_flat.txt. Trap check: no attack designation is needed anywhere, so 383.4.e and 461 cannot bite; no [Repeat]; no [Temporary]; no token; Ride the Wind is a Move and not a Recall (446.1, 456); the Energy is all Main Phase, so 167 never applies. Depends on R2 (ruled A)."
+      "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-issue62-section3.md), issue #62 section 3. CLASS IS CHAIN AND IT WAS CHECKED AGAINST THE DEFINITION RATHER THAN ASSUMED: CHAIN is 'reaches 8 across several scoring events, without the opponent taking a turn in between', which is exactly this - a Hold, a Conquer and an ability point, one turn, from five at the start of the turn. It is not a BURST, since no single scoring event reaches 8. It is the fourth CHAIN in the catalogue and the first that does not use Time Warp or a double Conquer alone. Card text verbatim from data/corpus_flat.txt. Trap check: no attack designation is needed anywhere, so 383.4.e and 461 cannot bite; no [Repeat]; no [Temporary]; no token; Ride the Wind is a Move and not a Recall (446.1, 456); the Energy is all Main Phase, so 167 never applies. Depends on R2 (ruled A). CORRECTED 2026-11-16 (#551): the 2026-09-06 walk counted two Conquers, but the second lands on the battlefield the player already holds, which the Beginning Phase Hold Scored that turn, so 469.1 and 470 refuse it and the line read 7. ORDERINGS TRIED: (1) legend Yasuo to O, Ganking to H, Ride the Wind - Conquer O, nothing on H: 7 from a 5 taken after the Hold; (2) Ganking Standard Move first (base to O), Ride the Wind as move two, Ganking back to H as move three, legend unused: the same one Conquer, the same 7, and move three pays on H where no point exists; (3) Hold of H at the Beginning Phase, Conquer O, third move anywhere: 5 at turn start to 8; (4) no battlefield held at the Beginning Phase, Conquer both: 8, but that is a different precondition from the source's 'hold one battlefield'. Ordering 3 is the entry; the source's five is read as the score at the start of the turn. The legend ability is not needed for the three moves (ordering 2 reaches the same count without it): it saves one exhaust on Yasuo, nothing in the count; the identity still needs a legend whose domains cover Chaos."
     },
     {
       "id": "keeper-of-masks-flurry-plaza-window",
