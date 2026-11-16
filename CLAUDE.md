@@ -103,7 +103,7 @@
 - **The whole app sits behind sign-in (#39, user decision 2026-09-05, reversing #31's "anonymous stays
   identical").** `<body data-auth>` carries the state — `pending` (HTML default, shows neither side so
   nothing flashes), `out` (the entrance only), `in` (the app), `open` (any build missing `NEON_AUTH_URL` or
-  `NEON_DATA_API_URL`, i.e. `accountsEnabled` false in `web/supabase.ts`, which has no gate to open and
+  `NEON_DATA_API_URL`, i.e. `accountsEnabled` false in `web/neon.ts`, which has no gate to open and
   behaves as before). `gate()` in `web/account.ts` sets it from the
   same auth listener that reports the exchanged session, and `web/styles.css` does the
   showing. The entrance carries the ONE sign-in button; the header shows only name + Sign out.

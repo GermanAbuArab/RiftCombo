@@ -22,9 +22,9 @@ the "anonymous is identical" posture #31 was built with). `<body data-auth>` car
 `pending` (the HTML default, which shows neither side so nothing flashes), `out` (the entrance only),
 `in` (the application) and `open` (any build missing `NEON_AUTH_URL` or `NEON_DATA_API_URL`, which has no gate to open). The CSS
 decides what is visible; `web/account.ts` sets the attribute. `test/headers.test.ts` fails if
-`DATABASE_URL`, `NEON_API_KEY`, `DB_PASSWORD`, `service_role` or a postgres URL appears in the seven
-`web/` files it names (`main.ts`, `account.ts`, `decks.ts`, `router.ts`, `supabase.ts`, `graph.ts`,
-`index.html`).
+`DATABASE_URL`, `NEON_API_KEY`, `DB_PASSWORD`, `service_role` or a postgres URL appears in any
+git-tracked file under `web/` whose name matches `/\.(ts|html|css|svg|webmanifest|txt|json|js)$/`
+(`test/headers.test.ts:179`).
 
 **Five views**, routed by hash (`web/router.ts`, `VIEWS = ["combos","decks","plays","guide","sources"]`):
 
@@ -102,7 +102,7 @@ the deckbuilder is in `builder.ts`; a session brief once had these swapped**), `
 the SVG diagram by hand (two layouts, closed-form trigonometry, no force simulation and no library);
 `decks.ts` is all of My decks; `plays.ts` renders the run plays; `router.ts` is the hash routing and
 the five views — **it is the only file that knows the view names, and `test/a11y.test.ts` imports
-`VIEWS` from it rather than repeating the list**; `account.ts` and `supabase.ts` are the Google login
+`VIEWS` from it rather than repeating the list**; `account.ts` and `neon.ts` are the Google login
 and the gate; `index.html`, `styles.css`, `privacy.html`, `terms.html`. **`public/` is a build
 artifact of `web/`** — never edited by hand.
 
