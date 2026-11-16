@@ -222,15 +222,17 @@ async function createUser(tag) {
   });
   require(login.ok, `could not sign in ${tag}: ${login.status}`);
 
+  // A plain header read folds several Set-Cookie headers into one comma-joined string, which is not a valid Cookie header.
+  const cookie = login.headers.getSetCookie().map((line) => line.split(";", 1)[0]).join("; ");
   const session = await fetch(`${NEON_AUTH_URL}/get-session`, {
-    headers: { Cookie: login.headers.get("set-cookie") ?? "" },
+    headers: { Cookie: cookie },
   });
   // The JWT rides in a RESPONSE HEADER, not in the body. Reading the body here would yield a session
   // object with no token and the failure would look like a permissions problem three checks later.
   const jwt = session.headers.get("Set-Auth-Jwt");
   require(jwt, `${tag} has no JWT: get-session returned no Set-Auth-Jwt`);
 
-  return { id: sub(jwt), jwt, email, password, cookie: login.headers.get("set-cookie") ?? "" };
+  return { id: sub(jwt), jwt, email, password, cookie };
 }
 
 const deleteUser = async (id) => { neonctl(["neon-auth", "user", "delete", id]); };
