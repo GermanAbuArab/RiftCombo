@@ -1,6 +1,7 @@
 // Adversarial check over every finisher in the catalogue (issue #200, lane rc-synth).
 //
 //   node scripts/adversarial-check.mjs            report everything
+//   ... --as-of YYYY-MM-DD                        read data/legality.json as of that day, default today (#668)
 //   node scripts/adversarial-check.mjs --strict   exit 1 if any finisher has an unanswered hole
 //   node scripts/adversarial-check.mjs --turns    only the turn-clock section
 //   node scripts/adversarial-check.mjs --engines  when the ENGINE class is deployable, and only that
@@ -171,8 +172,9 @@
 //      the dearer units that can land ready) by `priceSet`, every mix of them, and it moved no row.
 import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { dirname, resolve, sep } from "node:path";
+import { parseAsOf, inForce } from "./legality-asof.mjs";
 
-const args = process.argv.slice(2);
+const { asOf: LEGALITY_AS_OF, rest: args } = parseAsOf(process.argv.slice(2));
 const strict = args.includes("--strict");
 const onlyTurns = args.includes("--turns");
 const emit = args.includes("--emit-notables");
@@ -219,7 +221,8 @@ for (const c of cards) if (!byBase.has(c.base)) byBase.set(c.base, c);
 // `entries[].bases` is an ARRAY - a scalar read of it matched nothing once and reported a clean.
 // Constructed only: the clock's baseline is the Duel Hold curve, which is a Constructed board.
 const BANNED = new Set();
-for (const r of JSON.parse(readFileSync("data/legality.json", "utf8")).entries)
+// Read as of `--as-of` (default today), so an announced ban is not counted before its date (#668).
+for (const r of inForce(JSON.parse(readFileSync("data/legality.json", "utf8")).entries, LEGALITY_AS_OF))
   if (r.status === "banned" && r.format === "constructed") for (const b of r.bases || []) BANNED.add(b);
 const usesBanned = (e) => (e.uses || []).some((u) => BANNED.has(u.card));
 
