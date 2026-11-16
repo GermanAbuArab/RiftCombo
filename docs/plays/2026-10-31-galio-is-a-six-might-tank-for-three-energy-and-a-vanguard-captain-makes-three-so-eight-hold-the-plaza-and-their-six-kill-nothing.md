@@ -375,6 +375,10 @@ Body/Order legends (Leads).
   Mighty is the question, 709: *"A Unit "becomes Mighty" at the moment its Might changes from being
   less than 5 to being 5 or greater."* A card in hand has no Might on the board, so it is not settled
   here. If it does, the channelled rune replaces the one Galio's Power recycled.
+  2026-11-16 (#539): open, R35. Rules 708-711 and 124 do not say whether a unit entering the board at 5+
+  Might "becomes" Mighty (709 is written for a Might change on a unit already evaluated; 710/711 split
+  board and non-board evaluation, and 124 makes the entering unit a new object). Until R35 is ruled the
+  line does not count Grand Duelist's rune, so Galio's Power stays recycled as in the tables above.
 - **A Tank played inside their attack.** `OGN-241 Shen, Kinkou` (Order, E3 + 1 Power): *"[Reaction]
   (Play any time, even before spells and abilities resolve, including to a battlefield you control.)
   [Shield 2] (+2 :rb_might: while I'm a defender.) [Tank] (I must be assigned combat damage first.)"*
