@@ -1,4 +1,7 @@
+import { execFileSync } from "node:child_process";
 import { readFileSync } from "node:fs";
+import { join } from "node:path";
+import { fileURLToPath } from "node:url";
 import { describe, expect, it } from "vitest";
 import { deckCountLine } from "../src/deck.js";
 // @ts-expect-error -- plain .mjs script, no types
@@ -167,8 +170,18 @@ describe("the order of the deck panel", () => {
 
 describe("what the browser bundle is allowed to know", () => {
   it("never mentions a server key, a connection string or a database password in web/", () => {
-    for (const f of ["main.ts", "account.ts", "decks.ts", "router.ts", "supabase.ts", "graph.ts", "index.html"]) {
-      const src = readFileSync(new URL(`../web/${f}`, import.meta.url), "utf8");
+    // Every git-tracked file under web/ with a listed text extension (an untracked file or another
+    // extension is not scanned; a new .ts/.html/.css/... file is covered once it is tracked). An empty
+    // list (wrong cwd) must fail loudly rather than pass vacuously.
+    const root = fileURLToPath(new URL("..", import.meta.url));
+    const files = execFileSync("git", ["ls-files", "-z", "web"], { cwd: root, encoding: "utf8" })
+      .split("\0")
+      .filter((f) => /\.(ts|html|css|svg|webmanifest|txt|json|js)$/.test(f));
+    expect(files.length).toBeGreaterThan(0);
+    expect(files).toContain("web/main.ts");
+    expect(files).toContain("web/index.html");
+    for (const f of files) {
+      const src = readFileSync(join(root, f), "utf8");
       expect(src, f).not.toMatch(/service_role|SERVICE_ROLE|DB_PASSWORD|DATABASE_URL|NEON_API_KEY|postgres(ql)?:\/\//);
     }
   });
