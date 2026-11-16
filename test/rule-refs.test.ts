@@ -1,5 +1,7 @@
 import { readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
+// @ts-expect-error plain .mjs shared with scripts/remap-rules.mjs, which cannot import TypeScript.
+import { BOOKS, EDITIONS, citations, hash, paragraphs } from "../scripts/rules-editions.mjs";
 
 /**
  * Every rule paragraph this catalogue cites has to exist in a rules document we ship.
@@ -25,10 +27,24 @@ import { describe, expect, it } from "vitest";
  *    real paragraph number is a run of digits or a SINGLE letter — verified against all 2,381 distinct
  *    headings in the Core Rules, none of which has a multi-letter sub-part — so `.md` cannot match.
  *    An exclusion would have hidden the whole class; this drops exactly the artifact.
+ *
+ * Since #645 two editions are live and an entry's `rulesVersion` says which one its numbers name.
+ * Existence is not enough for an entry moved to 2026-10-09: 260 Core numbers that changed paragraph
+ * between the editions still exist in 10-09 holding other text, so a 07-16 number left behind would
+ * resolve and cite the wrong rule. Those entries are checked against the committed ledger
+ * (data/rules-remap-2026-10-09.json) by the TEXT each number meant; see the last describe block.
  */
 const root = new URL("..", import.meta.url);
-const core = readFileSync(new URL("data/Riftbound-Core-Rules-2026-07-16.txt", root), "utf8");
-const tournament = readFileSync(new URL("data/Riftbound-Tournament-Rules-2026-07-16.txt", root), "utf8");
+type Edition = { core: string; tournament: string };
+const TEXTS: Record<string, Edition> = Object.fromEntries(
+  Object.entries(EDITIONS as Record<string, Edition>).map(([v, f]) => [
+    v,
+    { core: readFileSync(new URL(f.core, root), "utf8"), tournament: readFileSync(new URL(f.tournament, root), "utf8") },
+  ]),
+);
+const OLD = "2026-07-16";
+const NEW = "2026-10-09";
+const { core, tournament } = TEXTS[OLD]!;
 
 /**
  * A paragraph number: three digits, then sub-parts that are a run of digits with an optional single
@@ -50,11 +66,14 @@ const anchored = (ref: string) => new RegExp("^\\s*" + ref.replace(/\./g, "\\.")
  * thousand mentions. Resolving per mention instead of per paragraph times the suite out.
  */
 const cache = new Map<string, boolean>();
-const resolves = (ref: string): boolean => {
-  let hit = cache.get(ref);
+const resolves = (ref: string, edition = OLD): boolean => {
+  const key = edition + " " + ref;
+  let hit = cache.get(key);
   if (hit === undefined) {
-    hit = anchored(ref).test(core) || anchored(ref).test(tournament);
-    cache.set(ref, hit);
+    const t = TEXTS[edition];
+    if (!t) throw new Error(`no rules text for edition ${edition}`);
+    hit = anchored(ref).test(t.core) || anchored(ref).test(t.tournament);
+    cache.set(key, hit);
   }
   return hit;
 };
@@ -73,28 +92,32 @@ const BLOCK_WILDCARD = /^\d{3}(\.[0-9a-z]+)*\.x$/;
 // rule number: if anyone writes 444.1.a.2 anywhere else, this test must still fire.
 const OLD_NUMBERING_ENTRY = "jhin-fiora-facebreaker-recall";
 
-type Hit = { ref: string; id: string; path: string };
+type Hit = { ref: string; id: string; path: string; edition: string };
+type Entry = { id: string; rulesVersion?: string };
 
-function collect(file: string, entries: { id: string }[]): Hit[] {
+function collect(file: string, entries: Entry[], fileEdition?: string): Hit[] {
   const hits: Hit[] = [];
-  const walk = (node: unknown, id: string, path: string) => {
+  const walk = (node: unknown, id: string, path: string, edition: string) => {
     if (typeof node === "string") {
-      for (const ref of node.match(REF) ?? []) hits.push({ ref, id, path });
-    } else if (Array.isArray(node)) node.forEach((v, i) => walk(v, id, `${path}[${i}]`));
+      for (const ref of node.match(REF) ?? []) hits.push({ ref, id, path, edition });
+    } else if (Array.isArray(node)) node.forEach((v, i) => walk(v, id, `${path}[${i}]`, edition));
     else if (node && typeof node === "object")
-      for (const [k, v] of Object.entries(node)) walk(v, id, `${path}.${k}`);
+      for (const [k, v] of Object.entries(node)) walk(v, id, `${path}.${k}`, edition);
   };
-  for (const e of entries) walk(e, e.id, file);
+  for (const e of entries) walk(e, e.id, file, (fileEdition ?? e.rulesVersion) as string);
   return hits;
 }
 
-const combos = JSON.parse(readFileSync(new URL("data/combos.json", root), "utf8")) as { combos: { id: string }[] };
-const synergies = JSON.parse(readFileSync(new URL("data/synergies.json", root), "utf8")) as
-  | { synergies: { id: string }[] }
-  | { id: string }[];
-const synList = Array.isArray(synergies) ? synergies : synergies.synergies;
+const combos = JSON.parse(readFileSync(new URL("data/combos.json", root), "utf8")) as { combos: Entry[] };
+const synergies = JSON.parse(readFileSync(new URL("data/synergies.json", root), "utf8")) as {
+  rulesVersion: string;
+  synergies: Entry[];
+};
 
-const hits = [...collect("combos.json", combos.combos), ...collect("synergies.json", synList)];
+const hits = [
+  ...collect("combos.json", combos.combos),
+  ...collect("synergies.json", synergies.synergies, synergies.rulesVersion),
+];
 
 describe("every rule paragraph the catalogue cites exists in a rules document we ship", () => {
   it("resolves every reference, and checks enough of them to be meaningful", () => {
@@ -104,13 +127,18 @@ describe("every rule paragraph the catalogue cites exists in a rules document we
     expect(distinct.length).toBeGreaterThan(800);
 
     const unresolved = hits.filter(
-      (h) => !BLOCK_WILDCARD.test(h.ref) && h.id !== OLD_NUMBERING_ENTRY && !resolves(h.ref),
+      (h) => !BLOCK_WILDCARD.test(h.ref) && h.id !== OLD_NUMBERING_ENTRY && !resolves(h.ref, h.edition),
     );
     // Name the offenders in the failure message: "3 unresolved" sends the next reader hunting.
     expect(
       unresolved.map((h) => `${h.ref} in ${h.id} at ${h.path}`),
-      "rule references that resolve in neither rules document",
+      "rule references that resolve in neither rules document of the entry's edition",
     ).toEqual([]);
+  });
+
+  it("names a shipped edition on every entry", () => {
+    expect(combos.combos.filter((e) => !(e.rulesVersion! in TEXTS)).map((e) => e.id)).toEqual([]);
+    expect(synergies.rulesVersion).toBe(OLD);
   });
 
   it("uses an anchor that can see the headings after a form-feed page break", () => {
@@ -140,5 +168,83 @@ describe("every rule paragraph the catalogue cites exists in a rules document we
     expect("opened 485.4a and read it".match(REF)).toEqual(["485.4a"]);
     expect(resolves("485.4a")).toBe(false);
     expect(resolves("485.4.a")).toBe(true);
+  });
+});
+
+/**
+ * The #645 ledger. Per entry moved to 2026-10-09: the 07-16 numbers the move rewrote (`moved`) and,
+ * per number the entry cites after it, [book, occurrences, hash of the 07-16 text it meant].
+ */
+type Ledger = { from: string; to: string; entries: Record<string, { moved: string[]; refs: Record<string, [string, number, string]> }> };
+const ledger = JSON.parse(readFileSync(new URL("data/rules-remap-2026-10-09.json", root), "utf8")) as Ledger;
+
+/** Everything wrong with one moved entry against its ledger row; [] when it holds. */
+function ledgerFaults(entry: Entry, row: Ledger["entries"][string]): string[] {
+  const faults: string[] = [];
+  const moved = new Set(row.moved);
+  const seen = new Map<string, number>();
+  for (const c of citations(entry) as { kind: string; tok: string; path: string }[]) {
+    if (c.kind === "wild") continue;
+    const r = row.refs[c.tok];
+    if (r) seen.set(c.tok, (seen.get(c.tok) ?? 0) + 1);
+    else if (moved.has(c.tok)) faults.push(`${c.tok} at ${c.path} is a 07-16 number the move rewrote`);
+  }
+  for (const [num, [book, count, h]] of Object.entries(row.refs)) {
+    const text = (paragraphs(NEW, book) as Map<string, string>).get(num);
+    if (text === undefined) faults.push(`${num} is not a ${NEW} ${book} paragraph`);
+    else if (hash(text) !== h) faults.push(`${num} in the ${NEW} ${book} rules is not the paragraph the entry meant`);
+    if ((seen.get(num) ?? 0) < count) faults.push(`${num} cited ${seen.get(num) ?? 0} times, the ledger counts ${count}`);
+  }
+  return faults;
+}
+
+describe("entries moved to the 2026-10-09 rules cite the paragraphs they meant (#645 ledger)", () => {
+  const byId = new Map(combos.combos.map((e) => [e.id, e]));
+  const onNew = combos.combos.filter((e) => e.rulesVersion === NEW).map((e) => e.id);
+
+  it("covers exactly the entries on 2026-10-09", () => {
+    expect([ledger.from, ledger.to]).toEqual([OLD, NEW]);
+    expect(onNew.length).toBeGreaterThan(100);
+    expect(Object.keys(ledger.entries).sort()).toEqual([...onNew].sort());
+    for (const b of BOOKS) expect((paragraphs(NEW, b) as Map<string, string>).size).toBeGreaterThan(900);
+  });
+
+  it("finds every ledger number in the 10-09 book holding the text it meant, as often as the ledger counts", () => {
+    const faults = onNew.flatMap((id) => ledgerFaults(byId.get(id)!, ledger.entries[id]!).map((f) => `${id}: ${f}`));
+    expect(faults).toEqual([]);
+  });
+
+  it("goes red when a moved number is put back, whether or not 10-09 reused it", () => {
+    // Two injections, each into a copy of a real moved entry: one 07-16 number that 10-09 gave to
+    // another paragraph (resolves, so only the ledger can catch it), one that 10-09 no longer has.
+    const oldIds = new Set([...BOOKS].flatMap((b) => [...(paragraphs(OLD, b) as Map<string, string>).keys()]));
+    const newIds = new Set([...BOOKS].flatMap((b) => [...(paragraphs(NEW, b) as Map<string, string>).keys()]));
+    const kinds = { reused: (n: string) => newIds.has(n), gone: (n: string) => !newIds.has(n) };
+    for (const [kind, test] of Object.entries(kinds)) {
+      const hit = onNew
+        .flatMap((id) => ledger.entries[id]!.moved.filter((n) => n.includes(".") && oldIds.has(n) && test(n)).map((n) => ({ id, n })))
+        .find(({ id, n }) => {
+          // The number it became, so the revert can be written into the entry.
+          const to = Object.keys(ledger.entries[id]!.refs).find((k) => k !== n && JSON.stringify(byId.get(id)).includes(k));
+          return to !== undefined;
+        });
+      expect(hit, `a moved entry with a ${kind} old number`).toBeDefined();
+      const { id, n } = hit!;
+      const row = ledger.entries[id]!;
+      const entry = byId.get(id)!;
+      expect(ledgerFaults(entry, row)).toEqual([]);
+      // Revert one occurrence of each number the old one could have become.
+      const json = JSON.stringify(entry);
+      const reverted = Object.keys(row.refs).some((to) => {
+        const at = json.search(new RegExp(`(?<![0-9.])${to.replace(/\./g, "\\.")}(?![0-9a-z]|\\.[0-9a-z])`));
+        if (at < 0) return false;
+        const bad = JSON.parse(json.slice(0, at) + n + json.slice(at + to.length)) as Entry;
+        // The rewrite check itself, not the occurrence floor the revert also lowers.
+        return ledgerFaults(bad, row).some((f) => f.startsWith(`${n} at `) && f.endsWith("the move rewrote"));
+      });
+      expect(reverted, `${kind}: putting ${n} back into ${id} is caught`).toBe(true);
+      if (kind === "reused") expect(resolves(n, NEW)).toBe(true);
+      else expect(resolves(n, NEW)).toBe(false);
+    }
   });
 });

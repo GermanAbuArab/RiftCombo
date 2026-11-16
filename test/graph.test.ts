@@ -161,6 +161,7 @@ describe("the circular layout's outcome ring", () => {
     terminatesIn: "",
     sources: [],
     rulesVersion: "",
+    walkedVersion: "",
   });
 
   /** A model over `n` pieces, from a list of "this combo uses these piece indexes" groups. */

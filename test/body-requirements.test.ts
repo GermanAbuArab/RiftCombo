@@ -21,7 +21,7 @@ const deck = (o: Partial<Deck>): Deck =>
 const combo = (o: Partial<Combo>): Combo => ({
   id: "synthetic", name: "Synthetic", class: "ENGINE", status: "verified",
   uses: [], needs: [], produces: [], prerequisites: { easy: [], notable: [] },
-  steps: [], terminatesIn: "n/a", sources: [], rulesVersion: "2026-07-16", ...o,
+  steps: [], terminatesIn: "n/a", sources: [], rulesVersion: "2026-07-16", walkedVersion: "2026-07-16", ...o,
 });
 
 describe("bodies a line needs that no card supplies (Combo.anyBodies)", () => {

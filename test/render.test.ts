@@ -2,7 +2,7 @@ import { existsSync, mkdtempSync, readdirSync, readFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { describe, expect, it } from "vitest";
-import { authoredWords, comboPage, THIN_WORDS, type ComboContext } from "../src/render/combo.js";
+import { authoredWords, comboPage, rulesLine, THIN_WORDS, type ComboContext } from "../src/render/combo.js";
 import { clip, DISCLAIMER, ORIGIN } from "../src/render/layout.js";
 import { guideBody, sourcesBody } from "../src/render/pages.js";
 import { playArticle, type Play } from "../src/render/play.js";
@@ -158,6 +158,26 @@ describe("the thin-content line (#272 §2)", () => {
   it("binds on no entry of today's catalogue (the shortest measured 287 words on 2026-10-07)", () => {
     const short = combos.filter((c) => authoredWords(c) < THIN_WORDS).map((c) => c.id);
     expect(short).toEqual([]);
+  });
+});
+
+describe("the walked-against line (#645)", () => {
+  const ctx: ComboContext = { card: () => undefined, feature: () => undefined, playsAbout: () => [] };
+
+  it("keeps the walk date apart from the numbering, which a renumbering alone moves", () => {
+    expect(rulesLine({ rulesVersion: "2026-07-16", walkedVersion: "2026-07-16" })).toBe("Walked against Core Rules 2026-07-16");
+    expect(rulesLine({ rulesVersion: "2026-10-09", walkedVersion: "2026-07-16" })).toBe(
+      "Walked against Core Rules 2026-07-16; rule numbers follow 2026-10-09, where every cited paragraph reads the same.",
+    );
+  });
+
+  it("prints on every page the walk date its entry records, never the numbering edition", () => {
+    const moved = combos.filter((c) => c.rulesVersion !== c.walkedVersion);
+    expect(moved.length).toBeGreaterThan(0);
+    for (const c of combos) {
+      expect(c.walkedVersion, c.id).toBe("2026-07-16");
+      expect(comboPage(c, ctx), c.id).toContain(`<p class="rules-version">${rulesLine(c)}</p>`);
+    }
   });
 });
 

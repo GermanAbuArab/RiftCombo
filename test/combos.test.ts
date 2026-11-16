@@ -38,7 +38,7 @@ const combo = (over: Partial<Combo> & { id: string }): Combo => ({
   // Every fixture says "repeat" so an INFINITE one passes validateCombos without extra setup;
   // the rule itself is pinned by its own test below.
   steps: ["repeat as needed"],
-  terminatesIn: "one turn", sources: [], rulesVersion: "2026-07-16", ...over,
+  terminatesIn: "one turn", sources: [], rulesVersion: "2026-07-16", walkedVersion: "2026-07-16", ...over,
 });
 
 const variantsOf = (list: Combo[], maxDepth?: number) => generateVariants(list, cards, maxDepth);
@@ -489,6 +489,7 @@ describe("an authored card set a legal deck could not hold (#216)", () => {
     id: "probe", name: "Probe", class: "ENGINE", status: "verified", uses, needs: [], produces: [],
     prerequisites: { easy: [], notable: [] }, steps: [], terminatesIn: "n/a", sources: [],
     rulesVersion: "2026-07-16",
+    walkedVersion: "2026-07-16",
   });
   const errorsFor = (uses: Ingredient[]) => validateCombos([entry(uses)], features, real);
   const use = (card: string, quantity: number): Ingredient => ({ card, quantity, role: "engine" });

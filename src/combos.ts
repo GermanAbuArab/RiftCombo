@@ -85,6 +85,11 @@ export function validateCombos(combos: Combo[], features: Feature[], cards: Card
     for (const k of Object.keys(c)) {
       if (!(COMBO_KEYS as readonly string[]).includes(k)) errors.push(`${c.id}: unknown field ${k}`);
     }
+    // The page prints both (#645): a missing walk date read "Walked against Core Rules undefined" and,
+    // unequal to the numbering, claimed a renumbering that never happened.
+    for (const k of ["rulesVersion", "walkedVersion"] as const) {
+      if (!/^\d{4}-\d{2}-\d{2}$/.test(c[k] ?? "")) errors.push(`${c.id}: ${k} must be a rules edition date`);
+    }
     errors.push(...copyCapErrors(c, cards));
     if (c.class === "INFINITE" && !c.steps.some((s) => /repeat/i.test(s))) {
       errors.push(`${c.id}: INFINITE combos must have a step that says "repeat"`);
