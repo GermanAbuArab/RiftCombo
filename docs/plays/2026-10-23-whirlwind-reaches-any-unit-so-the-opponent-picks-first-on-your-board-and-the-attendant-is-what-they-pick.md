@@ -355,8 +355,8 @@ cost one Energy or less.
   kept as history.]
   [2026-11-16, #677: Whirlwind is E4 + 1 Chaos Power now, not "three and one". Defy's limit is *"no more
   than :rb_energy_4:"*, so E4 is still inside it and Defy still counters Whirlwind, for the same one ready
-  rune and one Calm Power. The runes your own side spends on the countered Whirlwind are one more than the
-  count written above, at four of the seven T4 runes instead of three (#662 above); the score below is
+  rune and one Calm Power. Whirlwind now takes four of your seven T4 runes, not three (#662 above), so the
+  "your four runes" in the bullet, the runes left after Whirlwind, is three at E4; the score below is
   unchanged.]
   The score is still 3
   to 3.
