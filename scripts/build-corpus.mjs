@@ -33,7 +33,9 @@ const banned = new Map();
 for (const e of legality.entries) {
   for (const code of e.codes) {
     if (!banned.has(code)) banned.set(code, []);
-    banned.get(code).push(`${e.format}:${e.status}`);
+    // A ban dated after the day the list was read is announced, not in force yet (#647: the
+    // Radiance bans read 2026-11-16, effective 2026-11-23), so the row names the date it starts.
+    banned.get(code).push(`${e.format}:${e.status}${e.since > legality.retrieved ? ` from ${e.since}` : ""}`);
   }
 }
 
@@ -53,7 +55,7 @@ const lines = [
   `# Columns: code | name | type | domains | cost | text   (cost: E=Energy, P=Power, M=Might, M+=Equipment Might bonus)`,
   `# Icons: :rb_energy_N: = N Energy; :rb_rune_<domain>: = 1 Power of that domain; :rb_rune_rainbow: = 1 Power of any domain; :rb_exhaust: = exhaust; :rb_might: = Might.`,
   `# Equipment: the [Effect] clause is the text granted to the unit it is attached to ("I" = that unit).`,
-  `# [BANNED format:status] marks cards on Riot's current ban list (Rules Hub).`,
+  `# [BANNED format:status] marks cards on Riot's current ban list (Rules Hub); "from <date>" marks an announced ban that starts on that date.`,
   `# Tokens (SET-T0n), runes (SET-R0n) and the two score-tracking helpers are included on purpose:`,
   `#   card text names tokens by their stats ("play a 1 :rb_might: Tentacle unit token") and rule 187`,
   `#   defines them, so a rules walk has to be able to look one up here. A type of "-" means Riot`,

@@ -1,6 +1,6 @@
 {
  "source": "https://playriftbound.com/en-us/rules-hub/",
- "retrieved": "2026-09-02",
+ "retrieved": "2026-11-16",
  "entries": [
   {
    "format": "constructed",
@@ -35,8 +35,8 @@
    "entity": "unit",
    "name": "Draven, Vanquisher",
    "codes": [
-    "SFD-020a",
-    "SFD-020"
+    "SFD-020",
+    "SFD-020a"
    ],
    "bases": [
     "SFD-020"
@@ -142,6 +142,174 @@
    "status": "banned",
    "since": "2026-07-16",
    "source": "https://playriftbound.com/en-us/rules-hub/"
+  },
+  {
+   "format": "constructed",
+   "entity": "unit",
+   "name": "Ekko, Recurrent",
+   "codes": [
+    "OGN-110"
+   ],
+   "bases": [
+    "OGN-110"
+   ],
+   "status": "banned",
+   "since": "2026-09-18",
+   "source": "https://playriftbound.com/en-us/rules-hub/"
+  },
+  {
+   "format": "constructed",
+   "entity": "spell",
+   "name": "Stacked Deck",
+   "codes": [
+    "OGN-183"
+   ],
+   "bases": [
+    "OGN-183"
+   ],
+   "status": "banned",
+   "since": "2026-09-18",
+   "source": "https://playriftbound.com/en-us/rules-hub/"
+  },
+  {
+   "format": "constructed",
+   "entity": "unit",
+   "name": "Riven, Broken Blade",
+   "codes": [
+    "RAD-043"
+   ],
+   "bases": [
+    "RAD-043"
+   ],
+   "status": "banned",
+   "since": "2026-11-23",
+   "source": "https://playriftbound.com/en-us/news/announcements/radiance-ban-list-updates-effective-november-23-2026"
+  },
+  {
+   "format": "constructed",
+   "entity": "gear",
+   "name": "Zhonya's Hourglass",
+   "codes": [
+    "OGN-077"
+   ],
+   "bases": [
+    "OGN-077"
+   ],
+   "status": "banned",
+   "since": "2026-11-23",
+   "source": "https://playriftbound.com/en-us/news/announcements/radiance-ban-list-updates-effective-november-23-2026"
+  },
+  {
+   "format": "constructed",
+   "entity": "unit",
+   "name": "Stellacorn Herder",
+   "codes": [
+    "SFD-048"
+   ],
+   "bases": [
+    "SFD-048"
+   ],
+   "status": "banned",
+   "since": "2026-11-23",
+   "source": "https://playriftbound.com/en-us/news/announcements/radiance-ban-list-updates-effective-november-23-2026"
+  },
+  {
+   "format": "constructed",
+   "entity": "unit",
+   "name": "Nocturne, Horrifying",
+   "codes": [
+    "OGN-194"
+   ],
+   "bases": [
+    "OGN-194"
+   ],
+   "status": "banned",
+   "since": "2026-11-23",
+   "source": "https://playriftbound.com/en-us/news/announcements/radiance-ban-list-updates-effective-november-23-2026"
+  },
+  {
+   "format": "constructed",
+   "entity": "unit",
+   "name": "Rhasa the Sunderer",
+   "codes": [
+    "OGN-195"
+   ],
+   "bases": [
+    "OGN-195"
+   ],
+   "status": "banned",
+   "since": "2026-11-23",
+   "source": "https://playriftbound.com/en-us/news/announcements/radiance-ban-list-updates-effective-november-23-2026"
+  },
+  {
+   "format": "constructed",
+   "entity": "unit",
+   "name": "Brynhir Thundersong",
+   "codes": [
+    "OGN-026"
+   ],
+   "bases": [
+    "OGN-026"
+   ],
+   "status": "banned",
+   "since": "2026-11-23",
+   "source": "https://playriftbound.com/en-us/news/announcements/radiance-ban-list-updates-effective-november-23-2026"
+  },
+  {
+   "format": "constructed",
+   "entity": "gear",
+   "name": "Dazzling Aurora",
+   "codes": [
+    "OGN-160"
+   ],
+   "bases": [
+    "OGN-160"
+   ],
+   "status": "banned",
+   "since": "2026-11-23",
+   "source": "https://playriftbound.com/en-us/news/announcements/radiance-ban-list-updates-effective-november-23-2026"
+  },
+  {
+   "format": "constructed",
+   "entity": "gear",
+   "name": "Baited Hook",
+   "codes": [
+    "OGN-242"
+   ],
+   "bases": [
+    "OGN-242"
+   ],
+   "status": "banned",
+   "since": "2026-11-23",
+   "source": "https://playriftbound.com/en-us/news/announcements/radiance-ban-list-updates-effective-november-23-2026"
+  },
+  {
+   "format": "constructed",
+   "entity": "battlefield",
+   "name": "Emperor's Dais",
+   "codes": [
+    "SFD-207"
+   ],
+   "bases": [
+    "SFD-207"
+   ],
+   "status": "banned",
+   "since": "2026-11-23",
+   "source": "https://playriftbound.com/en-us/news/announcements/radiance-ban-list-updates-effective-november-23-2026"
+  },
+  {
+   "format": "constructed",
+   "entity": "battlefield",
+   "name": "Star Spring",
+   "codes": [
+    "UNL-215"
+   ],
+   "bases": [
+    "UNL-215"
+   ],
+   "status": "banned",
+   "since": "2026-11-23",
+   "source": "https://playriftbound.com/en-us/news/announcements/radiance-ban-list-updates-effective-november-23-2026"
   },
   {
    "format": "2v2",
@@ -190,8 +358,8 @@
    "entity": "unit",
    "name": "Draven, Vanquisher",
    "codes": [
-    "SFD-020a",
-    "SFD-020"
+    "SFD-020",
+    "SFD-020a"
    ],
    "bases": [
     "SFD-020"
@@ -297,6 +465,174 @@
    "status": "banned",
    "since": "2026-07-16",
    "source": "https://playriftbound.com/en-us/rules-hub/"
+  },
+  {
+   "format": "2v2",
+   "entity": "unit",
+   "name": "Ekko, Recurrent",
+   "codes": [
+    "OGN-110"
+   ],
+   "bases": [
+    "OGN-110"
+   ],
+   "status": "banned",
+   "since": "2026-09-18",
+   "source": "https://playriftbound.com/en-us/rules-hub/"
+  },
+  {
+   "format": "2v2",
+   "entity": "spell",
+   "name": "Stacked Deck",
+   "codes": [
+    "OGN-183"
+   ],
+   "bases": [
+    "OGN-183"
+   ],
+   "status": "banned",
+   "since": "2026-09-18",
+   "source": "https://playriftbound.com/en-us/rules-hub/"
+  },
+  {
+   "format": "2v2",
+   "entity": "unit",
+   "name": "Riven, Broken Blade",
+   "codes": [
+    "RAD-043"
+   ],
+   "bases": [
+    "RAD-043"
+   ],
+   "status": "banned",
+   "since": "2026-11-23",
+   "source": "https://playriftbound.com/en-us/news/announcements/radiance-ban-list-updates-effective-november-23-2026"
+  },
+  {
+   "format": "2v2",
+   "entity": "gear",
+   "name": "Zhonya's Hourglass",
+   "codes": [
+    "OGN-077"
+   ],
+   "bases": [
+    "OGN-077"
+   ],
+   "status": "banned",
+   "since": "2026-11-23",
+   "source": "https://playriftbound.com/en-us/news/announcements/radiance-ban-list-updates-effective-november-23-2026"
+  },
+  {
+   "format": "2v2",
+   "entity": "unit",
+   "name": "Stellacorn Herder",
+   "codes": [
+    "SFD-048"
+   ],
+   "bases": [
+    "SFD-048"
+   ],
+   "status": "banned",
+   "since": "2026-11-23",
+   "source": "https://playriftbound.com/en-us/news/announcements/radiance-ban-list-updates-effective-november-23-2026"
+  },
+  {
+   "format": "2v2",
+   "entity": "unit",
+   "name": "Nocturne, Horrifying",
+   "codes": [
+    "OGN-194"
+   ],
+   "bases": [
+    "OGN-194"
+   ],
+   "status": "banned",
+   "since": "2026-11-23",
+   "source": "https://playriftbound.com/en-us/news/announcements/radiance-ban-list-updates-effective-november-23-2026"
+  },
+  {
+   "format": "2v2",
+   "entity": "unit",
+   "name": "Rhasa the Sunderer",
+   "codes": [
+    "OGN-195"
+   ],
+   "bases": [
+    "OGN-195"
+   ],
+   "status": "banned",
+   "since": "2026-11-23",
+   "source": "https://playriftbound.com/en-us/news/announcements/radiance-ban-list-updates-effective-november-23-2026"
+  },
+  {
+   "format": "2v2",
+   "entity": "unit",
+   "name": "Brynhir Thundersong",
+   "codes": [
+    "OGN-026"
+   ],
+   "bases": [
+    "OGN-026"
+   ],
+   "status": "banned",
+   "since": "2026-11-23",
+   "source": "https://playriftbound.com/en-us/news/announcements/radiance-ban-list-updates-effective-november-23-2026"
+  },
+  {
+   "format": "2v2",
+   "entity": "gear",
+   "name": "Dazzling Aurora",
+   "codes": [
+    "OGN-160"
+   ],
+   "bases": [
+    "OGN-160"
+   ],
+   "status": "banned",
+   "since": "2026-11-23",
+   "source": "https://playriftbound.com/en-us/news/announcements/radiance-ban-list-updates-effective-november-23-2026"
+  },
+  {
+   "format": "2v2",
+   "entity": "gear",
+   "name": "Baited Hook",
+   "codes": [
+    "OGN-242"
+   ],
+   "bases": [
+    "OGN-242"
+   ],
+   "status": "banned",
+   "since": "2026-11-23",
+   "source": "https://playriftbound.com/en-us/news/announcements/radiance-ban-list-updates-effective-november-23-2026"
+  },
+  {
+   "format": "2v2",
+   "entity": "battlefield",
+   "name": "Emperor's Dais",
+   "codes": [
+    "SFD-207"
+   ],
+   "bases": [
+    "SFD-207"
+   ],
+   "status": "banned",
+   "since": "2026-11-23",
+   "source": "https://playriftbound.com/en-us/news/announcements/radiance-ban-list-updates-effective-november-23-2026"
+  },
+  {
+   "format": "2v2",
+   "entity": "battlefield",
+   "name": "Star Spring",
+   "codes": [
+    "UNL-215"
+   ],
+   "bases": [
+    "UNL-215"
+   ],
+   "status": "banned",
+   "since": "2026-11-23",
+   "source": "https://playriftbound.com/en-us/news/announcements/radiance-ban-list-updates-effective-november-23-2026"
   }
  ]
 }

@@ -214,8 +214,10 @@ export function resolveLegality(cards, src) {
         format: fmt.id,
         entity: ban.entity,
         name: matches[0].name,
-        codes: matches.map((c) => c.code),
-        bases: [...new Set(matches.map((c) => c.base))],
+        // Sorted so the result does not depend on the pool's order: the live build resolves before it
+        // sorts cards.json, and --legality-only reads the sorted file (#647).
+        codes: matches.map((c) => c.code).sort(),
+        bases: [...new Set(matches.map((c) => c.base))].sort(),
         status: ban.status ?? "banned",
         since: ban.since ?? fmt.lastUpdated,
         source: ban.source ?? fmt.source,

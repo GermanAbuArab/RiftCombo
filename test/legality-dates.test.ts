@@ -71,6 +71,16 @@ describe("data/legality.json is what the build makes of legality.src.json over t
   });
 });
 
+describe("the text corpus names the date an announced ban starts (#647)", () => {
+  const corpus = readFileSync(new URL("data/corpus_flat.txt", root), "utf8").split("\n");
+  const row = (code: string) => corpus.find((l) => l.startsWith(`${code} | `)) ?? "";
+
+  it("OGN-160 Dazzling Aurora is marked banned from 2026-11-23; OGN-110 Ekko, Recurrent is banned now", () => {
+    expect(row("OGN-160")).toContain("[BANNED constructed:banned from 2026-11-23, 2v2:banned from 2026-11-23]");
+    expect(row("OGN-110")).toContain("[BANNED constructed:banned, 2v2:banned]");
+  });
+});
+
 describe("notInPool records a ban on a card the pool does not hold yet", () => {
   const one = (ban: Record<string, unknown>) => ({
     source: "https://example.test/", retrieved: "2026-11-16",
