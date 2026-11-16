@@ -145,7 +145,7 @@ joins the catalogue's rule citations against `CLAUDE.md`.
 
 **`test/` — 710 tests in 52 files** with vitest (the 525/40 figure dated 2026-09-13). `headers.test.ts` is the one that watches the posture:
 it fails if `DATABASE_URL`, `NEON_API_KEY`,
-`DB_PASSWORD`, `service_role` or a postgres URL appears in one of the seven `web/` files it names, if there
+`DB_PASSWORD`, `service_role` or a postgres URL appears in any git-tracked `web/` file with a `ts`, `html`, `css`, `svg`, `webmanifest`, `txt`, `json` or `js` extension, if there
 is more than one sign-in button, or if the `data-auth` default stops being `pending`.
 **#138 (HIGH, ultrareview 2026-09-06)** found that day's whole DOM layer untested — no DOM environment
 was installed at all, so nothing could mount `web/builder.ts`, the router, the gate or `web/decks.ts`.
