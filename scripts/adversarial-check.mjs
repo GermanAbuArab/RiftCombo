@@ -2953,9 +2953,9 @@ for (const { e, domains: ownDomains, cards: ownCards } of entries) {
   // is the closure, and 103.1.b is what caps it at two domains. `ownDomains` is kept only as the
   // fallback for a row that folds nothing.
   const merged = [...domainsOfSet(cards)];
-  // The precondition is read where `gated` is (#639): on the entry and on the payoff it folds, never
-  // on the fuel, since a score to start from is a property of the turn the finisher runs.
-  const atStart = Math.max(e.pointsAtStart ?? 0, consumer?.pointsAtStart ?? 0);
+  // The precondition is read over EVERY entry the row folds (#639) - the entry, its fuel and its
+  // payoff - since each of them runs in the turn the row is clocked on, so any one's start score binds.
+  const atStart = Math.max(0, ...rowIds.map((id) => byId.get(id)?.pointsAtStart ?? 0));
   const startTurn = pointsStartTurn(atStart, merged);
   if (atStart) startRows.push({ id: e.id, n: atStart, from: pays, to: Math.max(pays, startTurn) });
   clock.push({ id: e.id, cls: e.class, pays: Math.max(pays, startTurn), base: baselineTurn(merged), via: note || null,
