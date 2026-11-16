@@ -120,7 +120,7 @@ const EXCLUDED = new Map<string, string>([
   // Not prose: identifiers, enums, dates, URLs, base codes and regular expressions. A quote
   // character in a regex would also confuse the span scanner rather than mean anything.
   ["combos[].id", "identifier"], ["combos[].class", "enum"], ["combos[].status", "enum"],
-  ["combos[].rulesVersion", "date"], ["combos[].produces[]", "feature id"],
+  ["combos[].rulesVersion", "date"], ["combos[].walkedVersion", "date"], ["combos[].produces[]", "feature id"],
   ["combos[].needs[]", "feature id"], ["combos[].legends[]", "base code"],
   ["combos[].uses[].card", "base code"], ["combos[].uses[].zone", "enum"],
   ["combos[].uses[].role", "enum"], ["combos[].sources[].kind", "enum"],

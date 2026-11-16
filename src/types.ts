@@ -255,7 +255,7 @@ export interface BodyRequirement {
  */
 export const COMBO_KEYS = [
   "id", "name", "class", "status", "uses", "needs", "produces", "removes", "legends", "anyBodies",
-  "prerequisites", "steps", "netPerIteration", "terminatesIn", "sources", "rulesVersion", "notes",
+  "prerequisites", "steps", "netPerIteration", "terminatesIn", "sources", "rulesVersion", "walkedVersion", "notes",
   "pointsAtStart",
 ] as const;
 
@@ -286,7 +286,17 @@ export interface Combo {
    */
   pointsAtStart?: number;
   sources: Source[];
+  /**
+   * The rules edition the entry's rule NUMBERS follow (#645). An entry whose every cited paragraph
+   * kept its text in 2026-10-09 was renumbered to it; test/rule-refs.test.ts checks its numbers
+   * against the ledger in data/rules-remap-2026-10-09.json.
+   */
   rulesVersion: string;
+  /**
+   * The rules edition the entry was hand-walked against, kept apart from `rulesVersion` because a
+   * renumbering is not a walk: every entry today says 2026-07-16. The page prints both when they differ.
+   */
+  walkedVersion: string;
   notes?: string;
 }
 
@@ -388,7 +398,7 @@ export const SYNERGY_EXCLUDE_KEYS = ["card", "why"] as const;
 export interface SynergyBasis {
   /** Rules readings from issue #11 this rule leans on, e.g. "R1". */
   readings?: string[];
-  /** Core Rules paragraph numbers, checked against data/Riftbound-Core-Rules-2026-07-16.txt. */
+  /** Core Rules paragraph numbers, in the edition synergies.json's `rulesVersion` names (2026-07-16). */
   rules: string[];
   /** Ids in combos.json this pattern was extracted from. Empty means it stands on the rules alone. */
   combos: string[];

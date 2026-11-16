@@ -17,8 +17,8 @@ for(const e of rows){
   console.log(`=== ${e.id} [${e.class}, ${e.status}]`);
   const refs=[...new Set((JSON.stringify(e).match(/\b\d{3}(?:\.[0-9a-z]+)*\b/g)||[]).filter(r=>r.includes(".")))];
   const text=RULES[e.rulesVersion];
-  if(!text){console.log(`  rulesVersion ${e.rulesVersion} names no shipped edition (${Object.keys(RULES).join(", ")})`);fail++;continue;}
-  const miss=refs.filter(r=>!new RegExp("(^|[\\s\\f])"+r.replace(/\./g,"\\.")+"\\.[\\s\\f]").test(text));
+  if(!text){console.log(`  rulesVersion ${e.rulesVersion} names no shipped edition (${Object.keys(RULES).join(", ")})`);fail++;}
+  const miss=text?refs.filter(r=>!new RegExp("(^|[\\s\\f])"+r.replace(/\./g,"\\.")+"\\.[\\s\\f]").test(text)):[];
   console.log(`  rule refs ${refs.length}, unresolved ${miss.length} ${miss.join(",")}`); if(miss.length) fail++;
   for(const p of e.produces) if(!P.has(p)){console.log("  INVALID produces:",p);fail++;}
   const ds=new Set(); for(const u of e.uses) for(const d of (dom[u.card]||[])) ds.add(d);

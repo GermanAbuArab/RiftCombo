@@ -73,7 +73,18 @@ export function comboSections(c: Combo, h: "h2" | "h3" = "h3"): string {
     ${sourcesOf(c, h)}
     ${c.notes ? `<details class="audit"><summary>How this entry was audited</summary>
       <p class="audit-key">${AUDIT_KEY}</p><p>${esc(c.notes)}</p></details>` : ""}
-    <p class="rules-version">Walked against Core Rules ${esc(c.rulesVersion)}</p>`;
+    <p class="rules-version">${esc(rulesLine(c))}</p>`;
+}
+
+/**
+ * Which rules the entry was walked against and, when they differ (#645), which edition its rule numbers
+ * follow. A renumbering by text identity is not a walk, so the walk date never moves with it.
+ */
+export function rulesLine(c: Pick<Combo, "rulesVersion" | "walkedVersion">): string {
+  const walked = `Walked against Core Rules ${c.walkedVersion}`;
+  return c.rulesVersion === c.walkedVersion
+    ? walked
+    : `${walked}; rule numbers follow ${c.rulesVersion}, where every cited paragraph reads the same.`;
 }
 
 /**
