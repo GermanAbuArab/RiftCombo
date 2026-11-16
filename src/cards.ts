@@ -53,6 +53,8 @@ export class CardIndex {
   /** Multi-word tags keyed by their normalised last word ("yi" -> "Master Yi"). Read by `resolveName`. */
   private readonly longTags = new Map<string, Set<string>>();
   private readonly banned = new Map<Format, Map<string, LegalityEntry>>();
+  /** Rows announced but not in force on `asOf`, every one per card and format, by date (#670). */
+  private readonly announced = new Map<Format, Map<string, LegalityEntry[]>>();
   /** The day the ban list was read for, `YYYY-MM-DD` (see the constructor). */
   readonly asOf: string;
 
@@ -82,7 +84,12 @@ export class CardIndex {
       }
     }
     for (const e of legality) {
-      if (e.since > asOf) continue;
+      if (e.since > asOf) {
+        if (!this.announced.has(e.format)) this.announced.set(e.format, new Map());
+        const rows = this.announced.get(e.format)!;
+        for (const b of e.bases) rows.set(b, [...(rows.get(b) ?? []), e].sort((x, y) => x.since.localeCompare(y.since)));
+        continue;
+      }
       if (!this.banned.has(e.format)) this.banned.set(e.format, new Map());
       for (const b of e.bases) this.banned.get(e.format)!.set(b, e);
     }
@@ -165,6 +172,11 @@ export class CardIndex {
 
   legality(base: string, format: Format): LegalityEntry | undefined {
     return this.banned.get(format)?.get(base);
+  }
+
+  /** The rows announced for this card and format whose `since` is still after `asOf`, earliest first (#670). */
+  upcoming(base: string, format: Format): LegalityEntry[] {
+    return this.announced.get(format)?.get(base) ?? [];
   }
 }
 

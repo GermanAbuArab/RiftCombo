@@ -5,7 +5,7 @@ import synergiesJson from "../data/synergies.json" with { type: "json" };
 import { CardIndex, readableCardText } from "../src/cards.js";
 import { generateVariants } from "../src/combos.js";
 import { checkBuild, LEGALITY_RULE } from "../src/build.js";
-import { deckCountLine, deckRestrictions, deckToText, isDeckCode, loadDeck, normalizeDeck, type DeckEntry, type DeckRestriction } from "../src/deck.js";
+import { deckCountLine, deckRestrictions, deckToText, deckUpcomingBans, isDeckCode, loadDeck, normalizeDeck, type DeckEntry, type DeckRestriction } from "../src/deck.js";
 import { matchDeck, type Hit, type MatchResult } from "../src/matcher.js";
 import { planDeck, type Route } from "../src/plan.js";
 import { matchSynergies, planSynergies, type SynergyGap, type SynergyHit } from "../src/synergies.js";
@@ -521,11 +521,21 @@ function renderBans() {
     <p class="ban-name">${esc(r.label)}</p>
     <p class="ban-meta">${esc(r.detail)} · <span class="mono">${esc(r.rule)}</span></p>
   </div>`).join("");
-  banBody.innerHTML = sizeRow + found.map(banRow).join("");
-  banFoot.textContent = found.length
+  // #670: a ban announced but not in force yet is a third state, one plain line under the rows in
+  // force, so it reads as neither a banned row nor a restricted one.
+  const upcoming = deckUpcomingBans(deck, cards, fmt());
+  banBody.innerHTML = sizeRow + found.map(banRow).join("") + upcoming.map(upcomingRow).join("");
+  banFoot.textContent = found.length || upcoming.length
     ? `Riot's ban list for ${FORMAT_LABEL[fmt()]}, transcribed from the Rules Hub on ${legalityRetrieved.slice(0, 10)}. Switch format above to check the other one.`
     : "";
-  banPanel.hidden = found.length === 0 && !sizeRow;
+  banPanel.hidden = found.length === 0 && upcoming.length === 0 && !sizeRow;
+}
+
+function upcomingRow(r: DeckRestriction): string {
+  const copies = `${r.count} ${r.count === 1 ? "copy" : "copies"}`;
+  const href = safeHref(r.entry.source);
+  const notice = href ? `<a href="${esc(href)}" target="_blank" rel="noopener noreferrer">Riot's notice</a>` : `<span>Riot's notice</span>`;
+  return `<p class="ban-meta ban-upcoming"><strong>${esc(r.entry.name)}</strong> · Banned from ${esc(r.entry.since)} · ${copies} in your list · ${notice}</p>`;
 }
 
 function banRow(r: DeckRestriction): string {

@@ -174,9 +174,29 @@ export interface DeckRestriction {
  * Banned first, then restricted, each group by name.
  */
 export function deckRestrictions(deck: Deck, cards: CardIndex, format: Format): DeckRestriction[] {
+  const found = holding(deck, (base) => cards.legality(base, format));
+  const rank = (r: DeckRestriction) => (r.entry.status === "banned" ? 0 : 1);
+  return found.sort((a, b) => rank(a) - rank(b) || a.entry.name.localeCompare(b.entry.name));
+}
+
+/**
+ * The cards a parsed list holds whose ban is announced for `format` but not in force on the day
+ * `cards` reads the list for (`cards.asOf`), each with the row and so its date (#670). A card already
+ * banned today is left to `deckRestrictions`. By name.
+ */
+export function deckUpcomingBans(deck: Deck, cards: CardIndex, format: Format): DeckRestriction[] {
+  const found = holding(deck, (base) => {
+    if (cards.legality(base, format)?.status === "banned") return undefined;
+    return cards.upcoming(base, format).find((e) => e.status === "banned");
+  });
+  return found.sort((a, b) => a.entry.name.localeCompare(b.entry.name));
+}
+
+/** Every card of the list `lookup` answers for, with its copies across every zone. */
+function holding(deck: Deck, lookup: (base: string) => LegalityEntry | undefined): DeckRestriction[] {
   const found = new Map<string, DeckRestriction>();
   const seen = (base: string, count: number) => {
-    const entry = cards.legality(base, format);
+    const entry = lookup(base);
     if (!entry) return;
     const prev = found.get(base);
     if (prev) prev.count += count;
@@ -187,8 +207,7 @@ export function deckRestrictions(deck: Deck, cards: CardIndex, format: Format): 
   for (const bag of [deck.main, deck.battlefields, deck.runes, deck.sideboard]) {
     for (const [base, n] of Object.entries(bag)) seen(base, n);
   }
-  const rank = (r: DeckRestriction) => (r.entry.status === "banned" ? 0 : 1);
-  return [...found.values()].sort((a, b) => rank(a) - rank(b) || a.entry.name.localeCompare(b.entry.name));
+  return [...found.values()];
 }
 
 /**
