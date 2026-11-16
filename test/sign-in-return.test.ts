@@ -11,7 +11,7 @@ vi.mock("@neondatabase/neon-js", () => ({
   SupabaseAuthAdapter: () => ({}),
 }));
 
-const { signIn } = await import("../web/supabase.js");
+const { signIn } = await import("../web/neon.js");
 
 const from = (href: string) => {
   const u = new URL(href);

@@ -120,7 +120,7 @@ describe("sign-out still clears the session (#591)", () => {
     // Stubbed for the rest of the file: the client keeps refetching the session after this test.
     globalThis.fetch = vi.fn(async () => Response.json(null));
     const { createClient, SupabaseAuthAdapter } = await import("@neondatabase/neon-js");
-    // The app's exact construction (web/supabase.ts), on hosts that are never reached.
+    // The app's exact construction (web/neon.ts), on hosts that are never reached.
     const client = createClient({
       auth: { adapter: SupabaseAuthAdapter(), url: "https://ep-test591.neonauth.example.test/neondb/auth" },
       dataApi: { url: "https://ep-test591.apirest.example.test/neondb/rest/v1" },

@@ -1,6 +1,6 @@
 // Saved decks (#31): everything about a stored list that can be decided without a network call.
 //
-// The client of the database lives in `web/supabase.ts`; this file holds the part that has an
+// The client of the database lives in `web/neon.ts`; this file holds the part that has an
 // answer on its own — what a name may be, what a row means, and which order a list comes back in —
 // so it can be tested the way `planDeck` is, instead of only against a live project.
 

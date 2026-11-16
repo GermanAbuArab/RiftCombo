@@ -2,7 +2,7 @@
 //
 // Check 3 of #585, a suite check the security scan's auth role runs (personal-claude-issues#808):
 // SIGNED OUT, THE APP TOUCHES NO DATA. The whole shell boots from `web/index.html` with the REAL
-// `web/supabase.ts`; only the Neon SDK under it is replaced, by a client whose Data API entry points
+// `web/neon.ts`; only the Neon SDK under it is replaced, by a client whose Data API entry points
 // (`from`, `rpc`) record the call and throw a marker, and `fetch` throws the same marker for any
 // Neon host. Nothing here reaches a server. Each app path is opened with the auth state `out` (the
 // SDK reports no session) and `pending` (it never answers), then the shell is walked through the

@@ -33,7 +33,7 @@ const api = vi.hoisted(() => ({
   deleteDeck: vi.fn(async () => {}),
 }));
 
-vi.mock("../../web/supabase.js", () => ({
+vi.mock("../../web/neon.js", () => ({
   accountsEnabled: true,
   onAccount: (cb: (a: { id: string; label: string } | null) => void) => { api.listeners.push(cb); },
   listDecks: async () => api.decks,

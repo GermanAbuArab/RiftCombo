@@ -65,7 +65,7 @@ export interface Account {
 /**
  * What to call the player. `chosen` is the override from `public.profiles` (#178); when the caller
  * has none to pass, a legacy `display_name` in the metadata is honoured, which is the shape the
- * Supabase sessions had and the shape `test/supabase-account.test.ts` builds.
+ * Supabase sessions had and the shape `test/neon-account.test.ts` builds.
  *
  * The provider's name arrives as `full_name` or `name` from Supabase and as `displayName` from Neon
  * Auth's adapter (Better Auth's flat `user.name`), so the fallback chain reads all three.
