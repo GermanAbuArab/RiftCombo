@@ -411,10 +411,10 @@ refined. Yasuo is Chaos, and he needs one battlefield that is yours, not a board
   step of this play Conquers a battlefield it Scored that turn. Every shuttle move goes into A, which is
   already yours, or into base, and the alternative T4 route's Conquer is of B, which is theirs. Where
   the corrected line would land here: on the walked board, T4 ends at 5, so T5 opens at 5 holding A.
-  B is theirs and defends with 12, so it is not the empty battlefield the entry's Conquer needs. A move
+  B is theirs and defends with 12 (their T4 in §4), so it is not the empty battlefield the entry's Conquer needs. A move
   into it is a combat (190.3.a.1, 323.9), and 144.1.c then stops the Standard Moves. Hold A (6) and the
   shuttle (7) are exactly the walked T5, and the T6 Hold of A makes 8: **T6**, the walk's own turn. On
-  the unopposed board of §2, T4 opens at 3 and T5 at 6, so the line never opens a turn at 5. The T5
+  the unopposed board of §2 (3 after T3, then Hold both and the shuttle on T4), T4 opens at 3 and T5 at 6, so the line never opens a turn at 5. The T5
   Hold of A and B makes 8 without it: **T5**, the walk's unopposed turn.]
 - The turn clock places Ride the Wind before the Yasuo it moves (no spell-after-unit sequencing), so a
   one-Ride-the-Wind Yasuo line prints a turn early. Reported to the orchestrator as a new issue.

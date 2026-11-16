@@ -131,11 +131,13 @@ played to a battlefield apply Contested status if that battlefield is not alread
 Unit’s controller does not already control that battlefield."* The play's own columns stand. What
 changes is the turn the corrected line, with ONE Yasuo, can pay in them:
 
-- **Unopposed: T5.** T4 ends at 5, so T5 opens at 5, holding A and B. 315.2.b.2: *"1. The Turn Player
+- **Unopposed: T5.** T4 ends at 5 (the column's T4 row, +2 = 5), so T5 opens at 5, holding A and B. 315.2.b.2: *"1. The Turn Player
   Holds all Battlefields they Control."* Both Holds: 7. No Conquer is open, because both battlefields
   were just Scored (469.1, 470), so the second Hold takes the place of the entry's Conquer. Yasuo 1 was
-  played on T3 and sits ready at base. Standard Move base to A (144.4.a), Ride the Wind A to base and
-  ready (E2 + 1 Chaos Power on R=8), Standard Move base to A. The third move scores, 194.1.c: *"Spells,
+  played on T3, readied by the T4 Awaken (315.1.b), and has not moved since, so he is ready at base.
+  Move one, a Standard Move base to A (144.4.a). Move two, Ride the Wind A to base and ready (E2 + 1
+  Chaos Power on R=8). It is an effect Move (449), as in the shuttle above. Move three, a Standard
+  Move base to A. The third move scores, 194.1.c: *"Spells,
   Triggered Abilities and Activated Abilities that instruct them to gain one or more points."* 8, and
   472 wins at the Cleanup. That is a turn ahead of the column's T6, if Ride the Wind is in hand by T5.
   So "Unopposed the Yasuos never fire" is true of the play as written, which waits for three Yasuos. It
@@ -148,7 +150,9 @@ changes is the turn the corrected line, with ONE Yasuo, can pay in them:
   Contested (190.3.a.1), and with their units there 323.9 stages a combat: *"7. Mark a Combat as Staged
   at each Battlefield that Contested was applied to that have Units present controlled by opposing
   players."* After that 144.1.c stops the Standard Moves: *"This action cannot be performed during a
-  Showdown or Combat."* So one Yasuo shuttles inside A for 7 on T6, and the T7 Hold of A makes 8. The
+  Showdown or Combat."* A, which is yours, is the only place the shuttle can go. Standard Move base to A, Ride the Wind A to
+  base, Standard Move base to A: no move enters B, and moves into a battlefield you already control
+  apply no Contested (190.3.a.1). That gives 7 on T6, and the T7 Hold of A makes 8. The
   three-Yasuo shuttle above (+3 on T6) is what wins T6. The corrected catalogued line alone does not.
 
 ---
