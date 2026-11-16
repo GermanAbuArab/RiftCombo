@@ -239,7 +239,8 @@ describe("entries moved to the 2026-10-09 rules cite the paragraphs they meant (
         const at = json.search(new RegExp(`(?<![0-9.])${to.replace(/\./g, "\\.")}(?![0-9a-z]|\\.[0-9a-z])`));
         if (at < 0) return false;
         const bad = JSON.parse(json.slice(0, at) + n + json.slice(at + to.length)) as Entry;
-        return ledgerFaults(bad, row).length > 0;
+        // The rewrite check itself, not the occurrence floor the revert also lowers.
+        return ledgerFaults(bad, row).some((f) => f.startsWith(`${n} at `) && f.endsWith("the move rewrote"));
       });
       expect(reverted, `${kind}: putting ${n} back into ${id} is caught`).toBe(true);
       if (kind === "reused") expect(resolves(n, NEW)).toBe(true);

@@ -196,7 +196,7 @@ export function catalogueText() {
   const TOKEN = /(?<![-#=_0-9.A-Za-z$])\d{3}(?:\.(?:\d+[a-z]?|[a-z]))*(?![0-9a-z])/g;
   const back = (node, map, key) =>
     typeof node === "string"
-      ? NOT_PROSE.has(key) ? node : node.replace(TOKEN, (t) => map.get(t) ?? t)
+      ? NOT_PROSE.has(key) ? node : node.replace(TOKEN, (t, at, s) => (NOT_A_RULE(s, at, t.length) ? t : map.get(t) ?? t))
       : Array.isArray(node) ? node.map((v) => back(v, map, key))
       : node && typeof node === "object" ? Object.fromEntries(Object.entries(node).map(([k, v]) => [k, back(v, map, k)]))
       : node;
@@ -216,5 +216,7 @@ export function catalogueText() {
     }
     return back(e, map, "");
   });
-  return JSON.stringify(db, null, 2) + "\n" + read("data/synergies.json");
+  const synergies = read("data/synergies.json");
+  if (JSON.parse(synergies).rulesVersion !== OLD) throw new Error(`data/synergies.json names ${JSON.parse(synergies).rulesVersion}: translate it too`);
+  return JSON.stringify(db, null, 2) + "\n" + synergies;
 }
