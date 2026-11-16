@@ -12,7 +12,7 @@
     "repository": {
       "url": "https://github.com/GermanAbuArab/RiftCombo",
       "provider": "github",
-      "revision": "d16d2e4b3f7b2ce88764755107dbffb64a6f8753"
+      "revision": "8d29b824663508ce807b1a7928047b79363dec0b"
     },
     "views": [
       {
@@ -358,10 +358,10 @@
       ]
     },
     {
-      "id": "supabase",
+      "id": "neon",
       "type": "database",
-      "label": "Supabase",
-      "sublabel": "Google auth · saved decks",
+      "label": "Neon",
+      "sublabel": "Neon Auth · Data API · decks",
       "tag": "RLS",
       "pos": [
         720,
@@ -374,17 +374,21 @@
       "sources": [
         {
           "path": "web/neon.ts",
+          "line": 38,
+          "end_line": 45,
+          "label": "one client: Neon Auth + Data API"
+        },
+        {
+          "path": "neon/migrations/0001_decks.sql",
+          "line": 75,
+          "end_line": 87,
+          "label": "decks table RLS policies"
+        },
+        {
+          "path": "scripts/check-rls-neon.mjs",
           "line": 1,
-          "end_line": 24,
-          "label": "the only file that calls Supabase"
-        },
-        {
-          "path": "supabase/migrations/20260905120000_decks.sql",
-          "label": "decks table + policies"
-        },
-        {
-          "path": "supabase/config.toml",
-          "label": "auth source of truth"
+          "end_line": 7,
+          "label": "RLS proved with two real users"
         }
       ]
     },
@@ -439,7 +443,7 @@
       "wraps": [
         "vercel",
         "edge-proxy",
-        "supabase"
+        "neon"
       ]
     }
   ],
@@ -522,9 +526,9 @@
       "label": "import a deck URL"
     },
     {
-      "id": "ui-to-supabase",
+      "id": "ui-to-neon",
       "from": "web-ui",
-      "to": "supabase",
+      "to": "neon",
       "label": "sign-in, saved decks",
       "labelAt": [
         835,
