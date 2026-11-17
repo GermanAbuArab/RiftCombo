@@ -206,12 +206,10 @@ describe("the rules-version notice (#649)", () => {
 
   it("is not shown on a candidate: it was never verified against any text (#682)", () => {
     expect(rulesNotice({ rulesVersion: "2026-07-16", status: "candidate" })).toBeNull();
-    const cand = combos.find((c) => c.status !== "verified" && c.rulesVersion === "2026-07-16");
-    const ver = combos.find((c) => c.status === "verified" && c.rulesVersion === "2026-07-16");
-    expect(cand).toBeDefined();
+    const ver = combos.find((c) => c.status === "verified" && c.rulesVersion === "2026-07-16")!;
     expect(ver).toBeDefined();
-    expect(comboPage(cand!, ctx)).not.toContain("rules-notice");
-    expect(comboPage(ver!, ctx)).toContain('class="rules-notice"');
+    expect(comboPage({ ...ver, status: "candidate" }, ctx)).not.toContain("rules-notice");
+    expect(comboPage(ver, ctx)).toContain('class="rules-notice"');
   });
 
   it("keeps the current edition pinned to the newest one the data carries", () => {
