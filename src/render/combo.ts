@@ -82,14 +82,16 @@ export const CURRENT_RULES_VERSION = "2026-10-09";
 /**
  * The notice for an entry still pinned to the older rules text (#649, 648 panel option B). Driven by
  * `rulesVersion` alone: it says which text the entry was checked against and nothing about whether the
- * entry is right, and it lifts when a re-read repoints the entry to the current text.
+ * entry is right, and it lifts when a re-read repoints the entry to the current text. Only a verified
+ * entry gets it: a candidate was never verified against any text, so it claims nothing (#682).
  */
-export function rulesNotice(c: Pick<Combo, "rulesVersion">): string | null {
+export function rulesNotice(c: Pick<Combo, "rulesVersion" | "status">): string | null {
+  if (c.status !== "verified") return null;
   if (c.rulesVersion >= CURRENT_RULES_VERSION) return null; // ISO dates, validated in src/combos.ts
   return `Verified against the ${c.rulesVersion} rules; re-check against the ${CURRENT_RULES_VERSION} text in progress.`;
 }
 
-const rulesNoticeHtml = (c: Pick<Combo, "rulesVersion">): string => {
+const rulesNoticeHtml = (c: Pick<Combo, "rulesVersion" | "status">): string => {
   const n = rulesNotice(c);
   return n ? `<p class="rules-notice">${esc(n)}</p>` : "";
 };
