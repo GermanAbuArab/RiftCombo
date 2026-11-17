@@ -8383,7 +8383,7 @@
       ],
       "terminatesIn": "win the game",
       "rulesVersion": "2026-07-16",
-      "walkedVersion": "2026-07-16",
+      "walkedVersion": "",
       "sources": [
         {
           "title": "YouTube — AkeenaTV, \"Lillia Aggro Riftbound Deck\" — el mismo creador de la línea vieja, corrigiéndose en video",
@@ -22998,7 +22998,7 @@
         }
       ],
       "rulesVersion": "2026-07-16",
-      "walkedVersion": "2026-07-16",
+      "walkedVersion": "",
       "notes": "CANDIDATE 2026-10-13 (#335), walked in docs/phase0/walks/2026-10-13-b3-renata-time-warp-anomaly.md and confirmed by scripts/b3-ledger-search.mjs, whose R1 control reproduces the hand result 5 for the one-Warp bare line before it prints anything else. Card text verbatim from data/corpus_flat.txt; 103.2.b, 135.2.e.5.a, 135.2.e.5.b, 149.1, 161.2.a, 161.2.b, 164.2.a, 164.2.b, 167, 194.1.c, 315.1.b, 315.3.b, 316.2/316.3/316.4, 359.3.c, 383.3.b.1, 430.2.a, 444.2.c, 469.2, 471.1, 471.1.a.1, 472, 735, 737 opened and read. Ban check: none of SFD-214, UNL-087, SFD-088, OGN-122 or SFD-083 is banned, restricted or Signature. Trap check: no attack; no [Temporary]; no token; no recall; no Energy made before 316.3's sweep is ever spent; every point is a Hold or an ability Gain, so 470's per-battlefield cap touches only the Hold. Depends on R1 = A and R2 = A."
     },
     {
@@ -23080,7 +23080,7 @@
         }
       ],
       "rulesVersion": "2026-07-16",
-      "walkedVersion": "2026-07-16",
+      "walkedVersion": "",
       "notes": "CANDIDATE 2026-10-13 (#338), walked in docs/phase0/walks/2026-10-13-bare-nexus-three-time-warps.md and confirmed by scripts/b3-ledger-search.mjs, whose plan for this line is the walk's ledger turn for turn. Card text verbatim from data/corpus_flat.txt; 103.2.b, 135.2.e.5.a, 135.2.e.5.b, 161.2.a, 161.2.b, 164.2.a, 164.2.b, 167, 194.1.c, 194.3, 204.3.a, 315.1.b, 315.3.b, 315.3.b.1, 316.3/316.4, 359.3.c, 383.3.b.1, 425.1.c, 430.2.a, 444.2.c, 469.2, 470, 471.1, 471.1.a.1, 471.2.b, 472, 485.5, 485.7, 735, 737 opened and read. Ban check: none of SFD-214, UNL-087 or OGN-122 is banned, restricted or Signature. Trap check: no attack; no [Temporary]; no token; no recall; no Energy made before 316.3's sweep is ever spent; every point is a Hold or an ability Gain, so 470's per-battlefield cap touches only the Hold. Depends on R1 = A and R2 = A."
     },
     {
@@ -32927,7 +32927,7 @@
         }
       ],
       "rulesVersion": "2026-07-16",
-      "walkedVersion": "2026-07-16",
+      "walkedVersion": "",
       "notes": "HAND-WALKED 2026-09-07 (issue #170), from the orphan synergy rule jae-medarda-chosen-by-spell (34 partners, 34 uncovered). SFD-151 Bonds of Strength was in zero entries. The entry exists for the trap — a spell that chooses TWO friendly units still chooses Jae only once, because the two are distinct Game Objects — and for the consequence: the only cards in his whole partner list that pay him twice from one copy are the two [Repeat] spells, SFD-151 (Order) and SFD-034 (Calm), and they send the deck to different legend fields. Counted over the rule's own printed match list as of 2026-09-07. The legend line was computed from cards.json: filtering the 94 legend base codes for order + chaos returns only VEN-155 and VEN-197 Heart of the Tempest. Card text verbatim from data/corpus_flat.txt. Citations opened and read: 103.1.b.2, 103.2.b, 103.2.d.2, 143.4, 164.2.b, 203.3, 312.2.c, 315.3.b, 355.7, 355.8, 477.3.e.1, 702.3, 813.1.c.1, 820.1.b, 820.1.c.1, 820.2.a. Ban check: SFD-142 and SFD-151 carry no [BANNED marker. Arithmetic against its own declared quantities: one copy with its Repeat paid is 4 Energy for 2 cards; three copies is 6 cards a game. Trap check: [Repeat] gives exactly one extra execution and is not an engine (820.1.b); the +1 Might is a modifier and not a 702 buff; the spell needs a second friendly body or 203.3 makes it uncastable; no token, no [Temporary]. Depends on no unruled reading. DOWNGRADED TO CANDIDATE 2026-10-16 (#379, from the run play docs/plays/2026-10-14-the-second-bonds-is-the-plus-one-jae-lives-on-and-falling-star-kills-him-first.md). \"Depends on no unruled reading\" does not hold: the second draw from one Bonds rests on a [Repeat] spell's two choice-sets each firing a trigger on being chosen, which the #187 bullet in docs/rules-notes/rules-findings.md records as unruled (820.3.a against 820.2). 383.4.b.3 and 809.1.c point to two draws, and the play reads it that way; read once, it is one draw. The catalogue keeps verified entries off this reading on purpose (prodigal-explorer-two-choices-draw, ezreal-marai-spire-free-repeat), and the draw is this entry's content, so it is a candidate until a paragraph or a ruling settles it. The same reading carries jae-medarda-marching-orders-repeat-two-draws, which is outside #379. The name said \"from one card\", which VEN-116 Dragon Form's [Flow] also does with two plays; it now says \"from one casting\". Also corrected: 203.3 is a Costs paragraph and the gate on the second unit is 355.8; the partner count of [Repeat] spells that choose a friendly unit is three (SFD-114 Marching Orders was missed), Bonds being the only one in Order/Chaos; the Stupefy comparison crossed identities; WHAT REFUTES IT named no answer (OGN-029 Falling Star); and the steps left out that the +1s, not the draws, paid in the walk. Citations added and read: 103.1.b.1, 340.1, 383.4.b.3, 809.1.c, 820.2, 820.3.a. Card text verbatim from data/corpus_flat.txt."
     },
     {
@@ -33131,7 +33131,7 @@
         }
       ],
       "rulesVersion": "2026-07-16",
-      "walkedVersion": "2026-07-16",
+      "walkedVersion": "",
       "notes": "AUTHORED 2026-09-07, issue #169, second pass over matrix row 13. SFD-114 Marching Orders was in ZERO entries. Card text verbatim from data/corpus_flat.txt; 103.1.b.2, 103.2.b, 143.2.a, 144.2, 206, 383.4.e, 461, 465, 806.1.b, 807.1.d, 820.1.b, 820.1.c.1, 820.2.a opened in the Core Rules file. Both cards legal in both formats; neither is Signature. Card set SFD-142 + SFD-114 is not an existing uses[] set. The third notable is the entry's own shortfall stated at the top of the arithmetic rather than buried: two draws can kill the payoff. DOWNGRADED TO CANDIDATE 2026-10-18 (#387, the reading #379 downgraded jae-medarda-repeat-double-choose on). The sentence \"No unruled reading.\" is removed: the entry's content is the second draw from one [Repeat] cast, and that rests on a [Repeat] spell's two choice-sets each firing a trigger on being chosen, which the #187 bullet in docs/rules-notes/rules-findings.md records as unruled (820.3.a against 820.2). Another legal ordering does not avoid it: two separate casts of Marching Orders choose Jae twice with no reading, but that is two cards for two draws, which is any spell that chooses him and not this entry. 383.4.b.3 and 809.1.c point to two draws; read once, it is one. So it is a candidate until a paragraph or a ruling settles it, the standard prodigal-explorer-two-choices-draw and ezreal-marai-spire-free-repeat already keep by staying off the reading. Also applied, from the run play docs/plays/2026-10-05-jae-draws-before-anything-fights.md (#262): both choice-sets are made at casting (820.2); the draws resolve before either trade (383.4.b.2, 340.1) and survive a counter on the spell (425.1.c); Jae deals his 5 in the second execution even when the first is lethal (321, 323.5), so the closing arithmetic decides survival only; and a new last notable names the answers, OGN-045 Defy, OGN-169 Gust (359.3.e.5) and OGN-229 Vengeance. Citations added and read: 206, 321, 323.5, 340.1, 359.3.e.5, 383.4.b.2, 383.4.b.3, 425.1.c, 809.1.c, 820.2, 820.3.a. Card text verbatim from data/corpus_flat.txt."
     },
     {
@@ -59137,7 +59137,7 @@
         }
       ],
       "rulesVersion": "2026-07-16",
-      "walkedVersion": "2026-07-16",
+      "walkedVersion": "",
       "notes": "SYNTHESIZED 2026-10-27 for #491, the first slice of shape 2 (identity-first) of #200: Chaos/Fury had two finishers and none paying by T4. CANDIDATE, not verified: walked once as a game, going first, and in that walk it did not win on T4, because the opponent had ready bodies in base. Card text verbatim from data/corpus_flat.txt. It and trifarian-war-camp-illaoi-tentacles cannot share a board (485.4.a, 103.4.c), and the War Camp's +1 Might is the one Colorless fix for 1-Might Tentacles. REVISED 2026-10-27 (#495): the play's Leads checked. Added the notable on the Might lifts this line cannot have (the War Camp shares no board with the Plaza, 485.4.a, and the Rage Amplifier does not fit the T3 Energy). The free answer and the board it wins on were already notables; the T4 pay turn is already stated against the clock's T3, which #494 fixes. Stays candidate."
     },
     {
@@ -59209,7 +59209,7 @@
         }
       ],
       "rulesVersion": "2026-07-16",
-      "walkedVersion": "2026-07-16",
+      "walkedVersion": "",
       "notes": "SYNTHESIZED 2026-10-27 for #496, the second slice of shape 2 (identity-first) of #200: Body/Calm had four finishers and none clocked by T4. CANDIDATE, not verified: walked once as a game, going first, and in that walk it did not win on T4, because the opponent had ready bodies in base. Card text verbatim from data/corpus_flat.txt."
     },
     {
@@ -59295,7 +59295,7 @@
         }
       ],
       "rulesVersion": "2026-07-16",
-      "walkedVersion": "2026-07-16",
+      "walkedVersion": "",
       "notes": "SYNTHESIZED 2026-10-27 for #512, the third slice of shape 2 (identity-first) of #200: Body/Chaos had five finishers and none clocked by T4. CANDIDATE, not verified: walked once as a game, going first, and in that walk it did not win on T4, because the opponent had 6 Might ready in base; it won at the T5 Hold. Card text verbatim from data/corpus_flat.txt."
     },
     {
@@ -59381,7 +59381,7 @@
         }
       ],
       "rulesVersion": "2026-07-16",
-      "walkedVersion": "2026-07-16",
+      "walkedVersion": "",
       "notes": "SYNTHESIZED 2026-10-27 for #524, the fourth slice of shape 2 (identity-first) of #200: Body/Fury had seven finishers and none clocked by T4. CANDIDATE, not verified: walked once as a game, going first, and in that walk it did not win on T4, because the opponent had 6 Might ready in base in two 3-Might attackers; it did not win by T5 either. Card text verbatim from data/corpus_flat.txt."
     },
     {
@@ -59466,7 +59466,7 @@
         }
       ],
       "rulesVersion": "2026-07-16",
-      "walkedVersion": "2026-07-16",
+      "walkedVersion": "",
       "notes": "SYNTHESIZED 2026-10-31 for #529, the fifth slice of shape 2 (identity-first) of #200: Body/Order had seven finishers and none clocked by T4 (its one T4 ALT_WIN, vanguard-captain-manufactor-plaza, is mono-Order with no Tank, so two kills cost 2 Might). CANDIDATE, not verified: walked once as a game, going first, and in that walk it won on T4, because the opponent's 6 Might ready in base could not finish Galio. Card text verbatim from data/corpus_flat.txt. 2026-11-16 (#538): the other Body/Order ALT_WIN that pays by T4 is vanguard-captain-manufactor-plaza (mono-Order, eight units, two kills cost 2 Might; this entry's two kills cost 8); the clock assumes no Shen in their showdown; see the play doc's Leads, where a Shen costs it the T4 win."
     },
     {
@@ -59538,7 +59538,7 @@
         }
       ],
       "rulesVersion": "2026-07-16",
-      "walkedVersion": "2026-07-16",
+      "walkedVersion": "",
       "notes": "SYNTHESIZED 2026-10-31 for #537, the sixth slice of shape 2 (identity-first) of #200: Chaos/Order had ten finishers and none clocked by T4, and the slice asked for a BURST or CHAIN shape. None reaches T4 (see the last notable); this is the T5 one. CANDIDATE, not verified: walked once as a game, going first, against Calm/Order Radiant Dawn, where it wins on T6 against the free curve's T8 on the same board; like the slice-4 entry, the walk loses to the clock. Mono-Chaos cards, so it is legal in all five Chaos legend pairs; it beats the Hold baseline only where that baseline is T6 (Chaos/Fury, Chaos/Mind, Chaos/Order)."
     },
     {
@@ -59611,7 +59611,7 @@
         }
       ],
       "rulesVersion": "2026-07-16",
-      "walkedVersion": "2026-07-16",
+      "walkedVersion": "",
       "notes": "SYNTHESIZED 2026-11-16 for #553, the seventh slice of shape 2 (identity-first) of #200: Calm/Order had twelve finishers (nine ALT_WINs, five of them Plaza lines by T4, and three BURSTs at T6/T6/T8) and no CHAIN, and the slice asked for a BURST or CHAIN shape. This CHAIN is the pair's first, and the first Calm/Order finisher by T4 outside The Grand Plaza. CANDIDATE, not verified: walked once as a game, going first, against Calm/Order Radiant Dawn, where it wins on T5 (the baseline turn) against the free curve's T7 on the same board, and on T4 when their T3 attack goes into the hidden Block. Mono-Calm plus a colourless battlefield, so it is legal in all five Calm legend pairs, each with a T5 baseline, and it beats the clock in all five."
     }
   ]

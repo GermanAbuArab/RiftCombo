@@ -294,7 +294,8 @@ export interface Combo {
   rulesVersion: string;
   /**
    * The rules edition the entry was hand-walked against, kept apart from `rulesVersion` because a
-   * renumbering is not a walk: every entry today says 2026-07-16. The page prints both when they differ.
+   * renumbering is not a walk. Empty on every non-verified entry (#650: no hand walk, no claim); the
+   * page prints the walked-against line for a verified entry only, and both editions when they differ.
    */
   walkedVersion: string;
   notes?: string;
