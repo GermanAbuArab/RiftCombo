@@ -197,28 +197,37 @@ describe("the rules-version notice (#649)", () => {
   const ctx: ComboContext = { card: () => undefined, feature: () => undefined, playsAbout: () => [] };
 
   it("names the text an entry carries and lifts when it moves to the current one", () => {
-    expect(rulesNotice({ rulesVersion: "2026-07-16" })).toBe(
+    expect(rulesNotice({ rulesVersion: "2026-07-16", status: "verified" })).toBe(
       "Verified against the 2026-07-16 rules; re-check against the 2026-10-09 text in progress.",
     );
-    expect(rulesNotice({ rulesVersion: "2026-10-09" })).toBeNull();
-    expect(rulesNotice({ rulesVersion: "2027-01-01" })).toBeNull();
+    expect(rulesNotice({ rulesVersion: "2026-10-09", status: "verified" })).toBeNull();
+    expect(rulesNotice({ rulesVersion: "2027-01-01", status: "verified" })).toBeNull();
+  });
+
+  it("is not shown on a candidate: it was never verified against any text (#682)", () => {
+    expect(rulesNotice({ rulesVersion: "2026-07-16", status: "candidate" })).toBeNull();
+    const ver = combos.find((c) => c.status === "verified" && c.rulesVersion === "2026-07-16")!;
+    expect(ver).toBeDefined();
+    expect(comboPage({ ...ver, status: "candidate" }, ctx)).not.toContain("rules-notice");
+    expect(comboPage(ver, ctx)).toContain('class="rules-notice"');
   });
 
   it("keeps the current edition pinned to the newest one the data carries", () => {
     expect(CURRENT_RULES_VERSION).toBe(combos.map((c) => c.rulesVersion).sort().at(-1));
   });
 
-  it("is driven by rulesVersion alone, on every page, and says nothing about right or wrong", () => {
+  it("is driven by status and rulesVersion, on every page, and says nothing about right or wrong", () => {
     for (const c of combos) {
       const n = `Verified against the ${c.rulesVersion} rules; re-check against the 2026-10-09 text in progress.`;
       const html = comboPage(c, ctx);
-      if (c.rulesVersion === "2026-10-09") expect(html, c.id).not.toContain("rules-notice");
+      if (c.status !== "verified") expect(html, c.id).not.toContain("rules-notice");
+      else if (c.rulesVersion === "2026-10-09") expect(html, c.id).not.toContain("rules-notice");
       else {
         expect(rulesNotice(c), c.id).toBe(n);
         expect(html, c.id).toContain(`<p class="rules-notice">${n}</p>`);
       }
     }
-    expect(rulesNotice({ rulesVersion: "2026-07-16" })).not.toMatch(/wrong|incorrect|error|invalid|outdated/i);
+    expect(rulesNotice({ rulesVersion: "2026-07-16", status: "verified" })).not.toMatch(/wrong|incorrect|error|invalid|outdated/i);
   });
 });
 
