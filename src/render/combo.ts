@@ -85,7 +85,7 @@ export const CURRENT_RULES_VERSION = "2026-10-09";
  * entry is right, and it lifts when a re-read repoints the entry to the current text.
  */
 export function rulesNotice(c: Pick<Combo, "rulesVersion">): string | null {
-  if (c.rulesVersion === CURRENT_RULES_VERSION) return null;
+  if (c.rulesVersion >= CURRENT_RULES_VERSION) return null; // ISO dates, validated in src/combos.ts
   return `Verified against the ${c.rulesVersion} rules; re-check against the ${CURRENT_RULES_VERSION} text in progress.`;
 }
 
