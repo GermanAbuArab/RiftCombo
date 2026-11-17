@@ -73,7 +73,7 @@ export function comboSections(c: Combo, h: "h2" | "h3" = "h3"): string {
     ${sourcesOf(c, h)}
     ${c.notes ? `<details class="audit"><summary>How this entry was audited</summary>
       <p class="audit-key">${AUDIT_KEY}</p><p>${esc(c.notes)}</p></details>` : ""}
-    <p class="rules-version">${esc(rulesLine(c))}</p>${rulesNoticeHtml(c)}`;
+    ${c.status === "verified" ? `<p class="rules-version">${esc(rulesLine(c))}</p>` : ""}${rulesNoticeHtml(c)}`;
 }
 
 /** The Core Rules text the project is moving its entries to (#649). */
