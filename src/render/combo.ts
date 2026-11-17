@@ -73,8 +73,26 @@ export function comboSections(c: Combo, h: "h2" | "h3" = "h3"): string {
     ${sourcesOf(c, h)}
     ${c.notes ? `<details class="audit"><summary>How this entry was audited</summary>
       <p class="audit-key">${AUDIT_KEY}</p><p>${esc(c.notes)}</p></details>` : ""}
-    <p class="rules-version">${esc(rulesLine(c))}</p>`;
+    <p class="rules-version">${esc(rulesLine(c))}</p>${rulesNoticeHtml(c)}`;
 }
+
+/** The Core Rules text the project is moving its entries to (#649). */
+export const CURRENT_RULES_VERSION = "2026-10-09";
+
+/**
+ * The notice for an entry still pinned to the older rules text (#649, 648 panel option B). Driven by
+ * `rulesVersion` alone: it says which text the entry was checked against and nothing about whether the
+ * entry is right, and it lifts when a re-read repoints the entry to the current text.
+ */
+export function rulesNotice(c: Pick<Combo, "rulesVersion">): string | null {
+  if (c.rulesVersion >= CURRENT_RULES_VERSION) return null; // ISO dates, validated in src/combos.ts
+  return `Verified against the ${c.rulesVersion} rules; re-check against the ${CURRENT_RULES_VERSION} text in progress.`;
+}
+
+const rulesNoticeHtml = (c: Pick<Combo, "rulesVersion">): string => {
+  const n = rulesNotice(c);
+  return n ? `<p class="rules-notice">${esc(n)}</p>` : "";
+};
 
 /**
  * Which rules the entry was walked against and, when they differ (#645), which edition its rule numbers
