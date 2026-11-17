@@ -2,7 +2,7 @@ import { existsSync, mkdtempSync, readdirSync, readFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { describe, expect, it } from "vitest";
-import { authoredWords, comboPage, rulesLine, THIN_WORDS, type ComboContext } from "../src/render/combo.js";
+import { authoredWords, comboPage, rulesLine, rulesNotice, THIN_WORDS, type ComboContext } from "../src/render/combo.js";
 import { clip, DISCLAIMER, ORIGIN } from "../src/render/layout.js";
 import { guideBody, sourcesBody } from "../src/render/pages.js";
 import { playArticle, type Play } from "../src/render/play.js";
@@ -178,6 +178,30 @@ describe("the walked-against line (#645)", () => {
       expect(c.walkedVersion, c.id).toBe("2026-07-16");
       expect(comboPage(c, ctx), c.id).toContain(`<p class="rules-version">${rulesLine(c)}</p>`);
     }
+  });
+});
+
+describe("the rules-version notice (#649)", () => {
+  const ctx: ComboContext = { card: () => undefined, feature: () => undefined, playsAbout: () => [] };
+
+  it("names the text an entry carries and lifts when it moves to the current one", () => {
+    expect(rulesNotice({ rulesVersion: "2026-07-16" })).toBe(
+      "Verified against the 2026-07-16 rules; re-check against the 2026-10-09 text in progress.",
+    );
+    expect(rulesNotice({ rulesVersion: "2026-10-09" })).toBeNull();
+  });
+
+  it("is driven by rulesVersion alone, on every page, and says nothing about right or wrong", () => {
+    for (const c of combos) {
+      const n = rulesNotice(c);
+      const html = comboPage(c, ctx);
+      if (c.rulesVersion === "2026-10-09") expect(html, c.id).not.toContain("rules-notice");
+      else {
+        expect(n, c.id).toContain(c.rulesVersion);
+        expect(html, c.id).toContain(`<p class="rules-notice">${n}</p>`);
+      }
+    }
+    expect(rulesNotice({ rulesVersion: "2026-07-16" })).not.toMatch(/wrong|incorrect|error|invalid|outdated/i);
   });
 });
 

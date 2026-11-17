@@ -358,6 +358,7 @@ textarea::placeholder, input::placeholder { color: var(--faint); }
    the whole route, and it is an internal address, so it takes the same accent link as a source does. */
 .drawer .play-refs a { color: var(--accent); text-decoration: underline; text-underline-offset: 2px; }
 .drawer .rules-version { margin-top: 16px; font: 500 0.6875rem var(--mono); color: var(--faint); }
+.drawer .rules-notice { margin-top: 4px; font: 500 0.6875rem var(--mono); color: var(--faint); }
 
 /* Card preview — click a thumbnail (or double-click a node) to read the card */
 .card-preview { position: fixed; inset: 0; z-index: 50; display: grid; place-items: center; padding: 24px; background: var(--scrim); }
@@ -485,6 +486,7 @@ textarea::placeholder, input::placeholder { color: var(--faint); }
 .page .sources.own { color: var(--faint); font-size: 0.8125rem; }
 .page .sources.own .record { margin-left: 6px; font: 500 0.6875rem var(--mono); color: var(--muted); }
 .page .rules-version { margin-top: 16px; font: 500 0.6875rem var(--mono); color: var(--faint); }
+.page .rules-notice { margin-top: 4px; font: 500 0.6875rem var(--mono); color: var(--faint); }
 .page .audit { margin: 18px 0 0; }
 .page .audit summary { cursor: pointer; color: var(--text); font-weight: 500; }
 .page .audit-key { font-size: 0.8125rem; color: var(--faint); }
