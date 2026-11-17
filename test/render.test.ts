@@ -172,7 +172,7 @@ describe("the walked-against line (#645)", () => {
   });
 
   it("prints on every page the walk date its entry records, never the numbering edition", () => {
-    const moved = combos.filter((c) => c.rulesVersion !== c.walkedVersion);
+    const moved = combos.filter((c) => c.status === "verified" && c.rulesVersion !== c.walkedVersion);
     expect(moved.length).toBeGreaterThan(0);
     for (const c of combos.filter((e) => e.status === "verified")) {
       expect(c.walkedVersion, c.id).toBe("2026-07-16");
@@ -185,11 +185,11 @@ describe("the walked-against line (#645)", () => {
     expect(rest.length).toBeGreaterThan(0);
     for (const c of rest) {
       expect(c.walkedVersion, c.id).toBe("");
-      expect(comboPage(c, ctx), c.id).not.toContain("Walked against");
+      expect(comboPage(c, ctx), c.id).not.toContain('class="rules-version"');
     }
     const verified = combos.find((c) => c.status === "verified")!;
-    expect(comboPage({ ...verified, status: "candidate", walkedVersion: "" }, ctx)).not.toContain("Walked against");
-    expect(comboPage(verified, ctx)).toContain("Walked against");
+    expect(comboPage({ ...verified, status: "candidate", walkedVersion: "" }, ctx)).not.toContain('class="rules-version"');
+    expect(comboPage(verified, ctx)).toContain('class="rules-version">Walked against');
   });
 });
 
