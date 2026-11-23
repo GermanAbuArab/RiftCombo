@@ -97,6 +97,18 @@ export const REREAD = {
     // Deleted. 430.2 says it of every triggered and activated Add ability, an Add Reaction activated as
     // 430.3 (07-16 429.3) allows among them, "even ... during the resolution of spells and abilities" (#653).
     "429.3.a": { to: "430.2", from: "434246588b574852", as: "608d155a83574bb9", by: "#653", was: String.raw`immediately finali[sz]es and resolves` },
+    // 479.1.b keeps the worked example word for word; "by default, those are the printed traits" and
+    // "its copyable traits are updated" are 479.1.b.1's "printed—or if a copy effect is applied,
+    // copied—traits". WHICH traits are copyable is deleted 477.1.b.1.a, which changed (#654).
+    "477.1.b.1.b": { to: "479.1.b", from: "8b271bae920b0b09", as: "a5c785d16ceb6342", by: "#654", was: String.raw`printed traits|are updated` },
+    // The Ability-Altering layer, third since 10-09 gave Copy effects a layer of their own before
+    // Trait-Altering; it still comes after Trait-Altering and before Arithmetic. The diff pairs it with
+    // 479.2 "2. Trait-Altering Effects" on the shared ordinal; 477.2.b and 477.2.c are 479.3.b and
+    // 479.3.c word for word. `was` keeps on 07-16 an entry that calls it the second layer (#654).
+    "477.2": { to: "479.3", from: "f53ee650d27bda68", as: "a99bb3f08efe1b23", by: "#654", was: String.raw`[Ll]ayer 2\b|second layer` },
+    // Deleted. The Arithmetic layer is 479.4, still the last: 477.3.a to 477.3.e.2.a are 479.4.a to
+    // 479.4.e.2.a word for word (#654).
+    "477.3": { to: "479.4", from: "b11e21babd6976bb", as: "23f4dadadb38c8e1", by: "#654", was: String.raw`[Ll]ayer 3\b|third layer` },
   },
   tournament: {},
 };
