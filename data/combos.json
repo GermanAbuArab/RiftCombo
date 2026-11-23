@@ -4841,22 +4841,22 @@
           "Legend domains cover Chaos — both cards are mono-Chaos, so any Chaos legend runs it."
         ],
         "notable": [
-          "Tornado Warrior is [Hidden], and the 2026-09-04 walk found the entry had understated its price by two whole costs. 811.1.b: 'you may pay [A] to hide this facedown at a battlefield you control that doesn't already have a facedown card hidden there … Beginning on the next turn, this gains [Reaction] and you may play this, ignoring its base cost.' So each cycle costs (a) 1 Power to hide, which by 164.2.b normally recycles a rune off your board for good, (b) a full turn of delay, and (c) a battlefield you control with no other facedown card on it. 811.1.d.1 — 'A hidden permanent must be played to that battlefield' — pins where he lands, and the Matriarch has to be standing there for 'empower something here' to reach her. CORRECTED 2026-10-24 (#452): not for good. 416.1.b: 'Runes are Recycled to the Rune Deck.' 430.1 channels it again when the deck reaches it, so a recycled rune is off the board on every turn until the Rune Deck runs dry, which once a rune is recycled is T7 at the earliest going first and T6 at the earliest going second with only the Channel Phase's two a turn (161.2.a, 315.3.b, 485.7); each two more runes recycled push it a turn later, and a card that channels more (430.2) brings it back sooner. The cycle's price is unchanged for those turns.",
+          "Tornado Warrior is [Hidden], and the 2026-09-04 walk found the entry had understated its price by two whole costs. 811.1.b: 'you may pay [A] to hide this facedown at a battlefield you control that doesn't already have a facedown card hidden there … Beginning on the next turn, this gains [Reaction] and you may play this, ignoring its base cost.' So each cycle costs (a) 1 Power to hide, which by 164.2.b normally recycles a rune off your board for good, (b) a full turn of delay, and (c) a battlefield you control with no other facedown card on it. 811.1.d.1 — 'A hidden permanent must be played to that battlefield' — pins where he lands, and the Matriarch has to be standing there for 'empower something here' to reach her. CORRECTED 2026-10-24 (#452): not for good. 417.1.b: 'Runes are Recycled to the Rune Deck.' 431.1 channels it again when the deck reaches it, so a recycled rune is off the board on every turn until the Rune Deck runs dry, which once a rune is recycled is T7 at the earliest going first and T6 at the earliest going second with only the Channel Phase's two a turn (161.2.a, 315.3.b, 487.7); each two more runes recycled push it a turn later, and a card that channels more (431.2) brings it back sooner. The cycle's price is unchanged for those turns.",
           "The Matriarch's payoff has a hard ceiling: a unit in your trash with Energy cost no more than 3 AND Power cost no more than 1, and it arrives at your BASE, entering exhausted (143.4). If the trash holds no such unit the trigger resolves into nothing — declare the trash contents, do not assume them.",
           "One Tornado Warrior per empower, so this costs a card per cycle. The no-card version is paying the Matriarch's own [Empower] cost (2 Energy + 1 Chaos Power), and that is a single use: 827.1.c.1 makes Empower short for '[Cost]: Empower this. Play only if not Empowered.'",
           "Two alternatives outside mono-Chaos, both checked in the walk. VEN-035 Sanction (Calm, E3 P1, Reaction) has the same self-cleanup with no hide tax and no delay, but costs a card AND 1 Power, and moves the line to calm+chaos where kharox-sanction-burn already runs this exact trick. VEN-082 Profiteer (Body, E4, NO Power) spends no rune and has no delay, but CORRECTION to the L7 note that first proposed it: Profiteer is a TRANSFER, not a source — 'you may disempower something you control to empower a legend, unit, or gear' needs something already Empowered, so it cannot start the first cycle by itself. Sanction is already the anchor of the sanction-empower-unit pattern and already has kharox-sanction-burn, so a Sanction version would be the same trick with a different payoff.",
           "(Original wording, kept for the record: Tornado Warrior must arrive at the Matriarch's location — 'empower something HERE'.)",
-          "323.7 — EACH CYCLE'S CARD IS AT RISK BETWEEN THE HIDE AND THE FLIP. Tornado Warrior sits facedown for a whole turn (811.1.b), and 323.7 removes Hidden cards from battlefields \"not controlled by the same player\" and places them \"in their owner's Trash\" — 466.5.c the moment Control is established. Losing that battlefield in the window costs the card as well as the empower."
+          "323.6.a — EACH CYCLE'S CARD IS AT RISK BETWEEN THE HIDE AND THE FLIP. Tornado Warrior sits facedown for a whole turn (811.1.b), and 323.6.a removes Hidden cards from battlefields \"not controlled by the same player\" and places them \"in their owner's Trash\" — 468.5.c the moment Control is established. Losing that battlefield in the window costs the card as well as the empower."
         ]
       },
       "steps": [
         "Tail-Cloaked Matriarch on the board, not Empowered.",
-        "Play Tornado Warrior from face down at that battlefield (811.1.d.1), having hidden him there on an earlier turn for 1 Power (811.1.b): 'you may empower something here' — empower the Matriarch for free. 441.3.a lets any Game Effect empower, and 441.2.a is the moment she BECOMES Empowered, which is what her trigger reads.",
+        "Play Tornado Warrior from face down at that battlefield (811.1.d.1), having hidden him there on an earlier turn for 1 Power (811.1.b): 'you may empower something here' — empower the Matriarch for free. 442.3.a lets any Game Effect empower, and 442.2.a is the moment she BECOMES Empowered, which is what her trigger reads.",
         "Her trigger fires: play a unit from your trash with Energy cost 3 or less and Power cost 1 or less to your base, ignoring its cost.",
-        "At end of turn Tornado Warrior's own delayed clause disempowers her, so 441.1.b ('An Empowered Game Object can not be Empowered') stops blocking and the next Tornado Warrior can do it again."
+        "At end of turn Tornado Warrior's own delayed clause disempowers her, so 442.1.b ('An Empowered Game Object can not be Empowered') stops blocking and the next Tornado Warrior can do it again."
       ],
-      "terminatesIn": "engine — one free unit out of the trash per empower; the real price per cycle is one card, 1 Power to hide (a rune off the board for good) and a turn of delay, and the self-cleanup is what makes it repeatable at all; CORRECTED 2026-10-24 (#452): the rune is off the board until the Rune Deck runs dry (416.1.b, 430.1), not for good",
-      "rulesVersion": "2026-07-16",
+      "terminatesIn": "engine — one free unit out of the trash per empower; the real price per cycle is one card, 1 Power to hide (a rune off the board for good) and a turn of delay, and the self-cleanup is what makes it repeatable at all; CORRECTED 2026-10-24 (#452): the rune is off the board until the Rune Deck runs dry (417.1.b, 431.1), not for good",
+      "rulesVersion": "2026-10-09",
       "walkedVersion": "2026-07-16",
       "sources": [
         {
@@ -4870,7 +4870,7 @@
           "date": "2026-09-04"
         }
       ],
-      "notes": "HAND-WALKED 2026-09-04 (docs/phase0/walks/2026-09-04-nine-domain-lens-candidates.md), issue #29. Both texts verified verbatim against data/corpus_flat.txt on 2026-09-04. The point of the line is that Tornado Warrior is not just a free empowerer, it is a free empowerer that CLEANS UP AFTER ITSELF: 441.1.b would otherwise lock the Matriarch out after the first empower, and her own [Empower] ability is single-use by 827.1.c.1. PRODUCES IS EMPTY ON PURPOSE — data/features.json has no outcome for 'free replay out of the trash', and features.json is capped at ~20 entries by design, so nothing was invented. Trap check: no [Temporary]; units enter exhausted (143.4) and the entry says the revived body lands at your base; no attack trigger; no rune recycled; no Awaken Energy. WALK: holds after a rewrite that triples the stated price. The mechanism is sound — 441.3.a, 441.2.a, 441.1.b and 827.1.c.1 all check out, and Tornado Warrior's end-of-turn disempower is what clears 441.1.b for the next cycle. But [Hidden] is not free: 811.1.b charges 1 Power to hide, delays the play to the following turn, and requires a battlefield you control with no other facedown card, while 811.1.d.1 pins where he lands. Two cheaper orderings were tried before accepting the price, per the project rule; neither is free, and the Profiteer claim from the L7 document was wrong and is corrected in prerequisites. [2026-09-06, #157: tagged card-advantage-engine after all — by then the catalogue had been using that value for free replays out of the trash (last-rites-lunar-boon-trash-recursion, kennen-stargazer-arena-flow), so the precedent in the file beat this note.]"
+      "notes": "HAND-WALKED 2026-09-04 (docs/phase0/walks/2026-09-04-nine-domain-lens-candidates.md), issue #29. Both texts verified verbatim against data/corpus_flat.txt on 2026-09-04. The point of the line is that Tornado Warrior is not just a free empowerer, it is a free empowerer that CLEANS UP AFTER ITSELF: 442.1.b would otherwise lock the Matriarch out after the first empower, and her own [Empower] ability is single-use by 827.1.c.1. PRODUCES IS EMPTY ON PURPOSE — data/features.json has no outcome for 'free replay out of the trash', and features.json is capped at ~20 entries by design, so nothing was invented. Trap check: no [Temporary]; units enter exhausted (143.4) and the entry says the revived body lands at your base; no attack trigger; no rune recycled; no Awaken Energy. WALK: holds after a rewrite that triples the stated price. The mechanism is sound — 442.3.a, 442.2.a, 442.1.b and 827.1.c.1 all check out, and Tornado Warrior's end-of-turn disempower is what clears 442.1.b for the next cycle. But [Hidden] is not free: 811.1.b charges 1 Power to hide, delays the play to the following turn, and requires a battlefield you control with no other facedown card, while 811.1.d.1 pins where he lands. Two cheaper orderings were tried before accepting the price, per the project rule; neither is free, and the Profiteer claim from the L7 document was wrong and is corrected in prerequisites. [2026-09-06, #157: tagged card-advantage-engine after all — by then the catalogue had been using that value for free replays out of the trash (last-rites-lunar-boon-trash-recursion, kennen-stargazer-arena-flow), so the precedent in the file beat this note.]"
     },
     {
       "id": "kennen-stargazer-arena-flow",
@@ -7068,7 +7068,7 @@
           "quantity": 3,
           "role": "engine",
           "zone": "HAND",
-          "note": "Order spell, E3, [Hidden]. 'Play a 2 Might Sand Soldier unit token. Then do this: You may pay 1 Order Power to ready it.' Flipped from hidden it costs 0 (811.1.b) and 811.1.d.3 puts the token at the battlefield it was hidden at."
+          "note": "Order spell, E3, [Hidden]. 'Play a 2 Might Sand Soldier unit token. Then do this: You may pay 1 Order Power to ready it.' Flipped from hidden it costs 0 (811.1.b) and 811.1.d.5 puts the token at the battlefield it was hidden at."
         },
         {
           "card": "SFD-171",
@@ -7084,13 +7084,13 @@
       ],
       "prerequisites": {
         "easy": [
-          "Legend's Domain Identity includes Order (103.1.b.3). Mono-Order works, which is the whole point of this entry.",
+          "Legend's Domain Identity includes Order (103.2.b.3). Mono-Order works, which is the whole point of this entry.",
           "A battlefield you control to hide at, and Renata on the board when the flip resolves."
         ],
         "notable": [
-          "THREE PER GAME. 103.2.b caps Guards! at 3 copies and mono-Order has NO recursion of hidden cards — OGN-264 Guerilla Warfare is Mind/Chaos and 103.1.b.4 keeps it out. Order's five [Hidden] names are OGN-213, OGN-220, SFD-154, VEN-117 and VEN-135, and only Guards! makes a token.",
+          "THREE PER GAME. 103.3.b caps Guards! at 3 copies and mono-Order has NO recursion of hidden cards — OGN-264 Guerilla Warfare is Mind/Chaos and 103.2.b.4 keeps it out. Order's five [Hidden] names are OGN-213, OGN-220, SFD-154, VEN-117 and VEN-135, and only Guards! makes a token.",
           "This is deliberately the mono-Order floor of black-market-broker-bandle-tree-gold: same payload half, no Black Market Broker, no Chaos requirement, so it fits decks that entry cannot.",
-          "323.7 IS THE REAL PRICE OF HIDING. A Cleanup step 5 reads \"Remove all Hidden cards from all Battlefields that are not controlled by the same player and place them in their owner's Trash\", and 466.5.c repeats it the instant somebody establishes Control. Losing the battlefield does not put the hidden card on hold — it TRASHES it.",
+          "323.6.a IS THE REAL PRICE OF HIDING. A Cleanup step 5 reads \"Remove all Hidden cards from all Battlefields that are not controlled by the same player and place them in their owner's Trash\", and 468.5.c repeats it the instant somebody establishes Control. Losing the battlefield does not put the hidden card on hold — it TRASHES it.",
           "The Sand Soldier is not [Temporary], so it stays; 2 Might is still 2 Might, and the value here is that it arrives READY at a battlefield for a rainbow Power paid a turn earlier, against E3 + 1 Order Power from hand.",
           "811.1.b's window is the catch: the flip is free only from the turn AFTER you hid it, and it is the BASE cost that is ignored, not additional costs."
         ]
@@ -7099,11 +7099,11 @@
         "Renata Glasc, Industrialist on the board.",
         "In an Open State on your turn, hide Guards! at a battlefield you control for 1 rainbow Power (811.1.b).",
         "From the next turn on, play it from facedown for 0, ignoring its base cost.",
-        "811.1.d.3 puts the 2 Might Sand Soldier token at that same battlefield.",
+        "811.1.d.5 puts the 2 Might Sand Soldier token at that same battlefield.",
         "Renata makes the token enter ready (R25 = A), so the 'You may pay 1 Order Power to ready it' clause is skipped: a ready body for a Power paid last turn."
       ],
       "netPerIteration": "one ready 2 Might Sand Soldier at a battlefield per hidden Guards!, for 1 rainbow Power paid the turn before",
-      "terminatesIn": "engine only — three copies of Guards! (103.2.b) with no mono-Order recursion of hidden cards, so three ready bodies a game",
+      "terminatesIn": "engine only — three copies of Guards! (103.3.b) with no mono-Order recursion of hidden cards, so three ready bodies a game",
       "sources": [
         {
           "title": "Hunt lens [Hidden]/[Ambush] — issue #40 (GitHub)",
@@ -7113,9 +7113,9 @@
           "accessed": "2026-09-09"
         },
         {
-          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "title": "Riftbound Core Rules, Last Updated 2026-10-09 (data/Riftbound-Core-Rules-2026-10-09.txt)",
           "kind": "riot",
-          "date": "2026-07-16"
+          "date": "2026-10-09"
         },
         {
           "title": "Hand walk 2026-09-05 (docs/phase0/walks/2026-09-05-hidden-ambush-candidates.md)",
@@ -7124,7 +7124,7 @@
           "quote": "Guards! prints no entry state, so this is the cleanest R25 case left in the pool: the default is 143.4, 'Units enter the Board exhausted', and Renata overrides the default rather than a printed 'exhausted'."
         }
       ],
-      "rulesVersion": "2026-07-16",
+      "rulesVersion": "2026-10-09",
       "walkedVersion": "2026-07-16",
       "notes": "HAND-WALKED 2026-09-05 (docs/phase0/walks/2026-09-05-hidden-ambush-candidates.md), issue #40 candidate 6. Card text verbatim from data/corpus_flat.txt. Kept as a separate entry from black-market-broker-bandle-tree-gold because it needs no Chaos and therefore runs under legends that entry cannot, but the ceiling is stated plainly: three uses a game. Stands on R25 = A only, and on the weakest form of it — there is no printed 'exhausted' to override, only 143.4's default."
     },
@@ -7882,7 +7882,7 @@
           "quantity": 1,
           "role": "engine",
           "zone": "BATTLEFIELD",
-          "note": "Exhaust: play two 1-Might Bird tokens with [Deflect]. Only while at a battlefield, and once per turn because the cost is his own exhaust, which only the Awakening ready pays back (315.1.b; 415.3.a describes that ready, it does not cap the ability). CORRECTED 2026-10-14 (#357)."
+          "note": "Exhaust: play two 1-Might Bird tokens with [Deflect]. Only while at a battlefield, and once per turn because the cost is his own exhaust, which only the Awakening ready pays back (315.1.b; 416.3.a describes that ready, it does not cap the ability). CORRECTED 2026-10-14 (#357)."
         },
         {
           "card": "UNL-153",
@@ -7903,12 +7903,12 @@
         ],
         "notable": [
           "The kill is an OPTIONAL additional cost - 356.2.b.1, the phrase is \"you may ... as an additional cost\" - and 356.6 caps what it buys: \"Energy and Power costs can't be reduced below 0\", so the discount stops at the printed 4 Power and a fifth body is wasted.",
-          "The Poro is a turn slower than it looks. He enters exhausted (143.4), so the first two Birds arrive the turn AFTER he is played, and his ability costs his own exhaust, so he activates once per turn. Four Birds is two turns of Poro, or one turn of Poro plus the two Carrion Dredgers. CORRECTED 2026-10-14 (#357, from the run play docs/plays/2026-10-14-the-poro-dies-where-he-must-stand-and-the-dredgers-alone-cast-ledros-a-turn-sooner.md): this notable cited 415.3.a for the one activation per turn, and 415.3.a is the Awakening ready ('A player Readies all non-spell Game Objects they Control during the Awakening Phase on their turn.'); the cap is the exhaust in the cost, which only that ready (315.1.b) pays back in this line. And it counted the turn but not the EXPOSURE: he has to stand at a battlefield you control (355.2.a), he enters exhausted (143.4), and he stands there through the opponent's whole next turn before his first Birds. In the play OGN-130 Crackshot Corsair (Body, E3, M3, 'When I attack, deal 1 to an enemy unit here.') and UNL-092 Demacian Diplomat (Body, E2, M2), bodies played on their T2, walked in on their T3: the Corsair's 1 plus 4 of their 5 is exactly lethal on a 5 (142.4.b), and the Poro died before making a Bird.",
-          "Sacrificing Dredgers refunds Birds. 428.1.a.1 makes a kill paid as a cost an Active Kill and 428.1.a.1.b puts the Deathknell on the chain as a Pending Item before the kill completes, so 2 Dredgers + 2 Birds is four deaths and leaves two new Birds in base.",
+          "The Poro is a turn slower than it looks. He enters exhausted (143.4), so the first two Birds arrive the turn AFTER he is played, and his ability costs his own exhaust, so he activates once per turn. Four Birds is two turns of Poro, or one turn of Poro plus the two Carrion Dredgers. CORRECTED 2026-10-14 (#357, from the run play docs/plays/2026-10-14-the-poro-dies-where-he-must-stand-and-the-dredgers-alone-cast-ledros-a-turn-sooner.md): this notable cited 416.3.a for the one activation per turn, and 416.3.a is the Awakening ready ('A player Readies all non-spell Game Objects they Control during the Awakening Phase on their turn.'); the cap is the exhaust in the cost, which only that ready (315.1.b) pays back in this line. And it counted the turn but not the EXPOSURE: he has to stand at a battlefield you control (355.2.a), he enters exhausted (143.4), and he stands there through the opponent's whole next turn before his first Birds. In the play OGN-130 Crackshot Corsair (Body, E3, M3, 'When I attack, deal 1 to an enemy unit here.') and UNL-092 Demacian Diplomat (Body, E2, M2), bodies played on their T2, walked in on their T3: the Corsair's 1 plus 4 of their 5 is exactly lethal on a 5 (142.4.b), and the Poro died before making a Bird.",
+          "Sacrificing Dredgers refunds Birds. 429.1.a.1 makes a kill paid as a cost an Active Kill and 429.1.a.1.b puts the Deathknell on the chain as a Pending Item before the kill completes, so 2 Dredgers + 2 Birds is four deaths and leaves two new Birds in base.",
           "THE DREDGERS ALONE CAST LEDROS A TURN SOONER - ADDED 2026-10-14 (#357, from the run play docs/plays/2026-10-14-the-poro-dies-where-he-must-stand-and-the-dredgers-alone-cast-ledros-a-turn-sooner.md). Ledros's cost kills 'any number of friendly units', not Birds. Two Dredgers and the Bird the first one leaves put him down on T3 at E6 + 2 Order Power: six runes exhausted for the Energy and two of them recycled for the Power (164.2.a, 164.2.b). The Poro's earliest zero-Power Ledros is T4, since the Poro played on T3 makes his first Birds on T4. Ledros can even be played to the battlefield the killed Dredger held: 355.2 ('For Units, choose a valid Location where that Unit will enter upon being Played.') is step 2, when the Dredger still holds it, and the kill is paid in step 4 (357.2); none of the checks in 358 re-tests the location, and 359.2.c reads 'If it is a Unit, it enters the Board exhausted at the Location that was chosen.' Control is not lost mid-play either: 190.4.c takes it only in an Open state, at the following cleanup, and 354.1 'Closes the State' as Ledros goes to the chain. Both lines have six runes on the board on T4 if the Poro dies; if he lives, his line has eight. So the Poro buys two runes and costs a turn, and only if he survives the opponent's turn the previous notable describes.",
-          "What 4 Power is worth, priced honestly against the rune economy rather than against a cap that does not exist: every deck can recycle two exhausted runes a turn for 2 Power and get them back at the next Channel Phase (164.2.b, 161.2.b, 315.3.b), so 4 Power is two turns of that free rate, or four recycles in one turn of which only two are refilled. Real, and smaller than \"four runes gone forever\". CORRECTED 2026-10-24 (#456): not at the next Channel Phase. 416.1 puts a recycled rune on the bottom of the Rune Deck (416.1.b) and 430.1 channels from the top, so 315.3.b's two a turn are the runes above it, which the board gets whether or not anything was recycled. With only those two a turn (161.2.a, 315.3.b, 485.7), a rune recycled on any of T1 to T6 is back on T7 going first; going second the first one recycled by T5 is back on T6 and the second on T7; each two more recycled push it a turn later, and a card that channels more (430.2) brings it back sooner. Only once the Rune Deck is empty (all twelve out, T6 at the earliest from either seat) does the next Channel Phase give a recycled rune back; before that a recycle is a rune short on every turn until the deck runs dry, and two recycled every turn hold the board flat at two going first. So the saved 4 Power is worth more than 'two turns of that free rate' before the deck runs dry: four runes recycled on one of T2 to T6 going first are back on T7, T7, T8 and T8, so the board is four short on every turn through T6 and reaches twelve on T8 instead of T6. 'Smaller than four runes gone forever' still holds, and the discount is worth more than this caveat said, not less. Status unchanged.",
+          "What 4 Power is worth, priced honestly against the rune economy rather than against a cap that does not exist: every deck can recycle two exhausted runes a turn for 2 Power and get them back at the next Channel Phase (164.2.b, 161.2.b, 315.3.b), so 4 Power is two turns of that free rate, or four recycles in one turn of which only two are refilled. Real, and smaller than \"four runes gone forever\". CORRECTED 2026-10-24 (#456): not at the next Channel Phase. 417.1 puts a recycled rune on the bottom of the Rune Deck (417.1.b) and 431.1 channels from the top, so 315.3.b's two a turn are the runes above it, which the board gets whether or not anything was recycled. With only those two a turn (161.2.a, 315.3.b, 487.7), a rune recycled on any of T1 to T6 is back on T7 going first; going second the first one recycled by T5 is back on T6 and the second on T7; each two more recycled push it a turn later, and a card that channels more (431.2) brings it back sooner. Only once the Rune Deck is empty (all twelve out, T6 at the earliest from either seat) does the next Channel Phase give a recycled rune back; before that a recycle is a rune short on every turn until the deck runs dry, and two recycled every turn hold the board flat at two going first. So the saved 4 Power is worth more than 'two turns of that free rate' before the deck runs dry: four runes recycled on one of T2 to T6 going first are back on T7, T7, T8 and T8, so the board is four short on every turn through T6 and reaches twelve on T8 instead of T6. 'Smaller than four runes gone forever' still holds, and the discount is worth more than this caveat said, not less. Status unchanged.",
           "The tokens have nowhere illegal to go: the ability names no location, so 355.2.a sends each to your base or a battlefield you control, and 143.4 enters them exhausted, which does not matter for fodder.",
-          "What refutes it. The Birds are 1 Might and OGN-133 Flurry of Blades (Body, 1 Energy, [Reaction], \"Deal 1 to all units at battlefields\") is lethal to every one of them standing at a battlefield under 142.4.b, without paying Deflect, because it chooses nothing. The discount is on Power only, so the 6 Energy is always paid. And OGN-113 Malzahar, Fanatic converts a body into 2 Power at any time rather than only while playing a card, which is a better rate - but it is [Action], it is Mind, and it is already catalogued. CORRECTED 2026-10-14 (#357, from the run play docs/plays/2026-10-14-the-poro-dies-where-he-must-stand-and-the-dredgers-alone-cast-ledros-a-turn-sooner.md): the Flurry sentence is true of a Bird standing at a battlefield, but this line has no Bird there. The Dredger's Bird goes 'to your base' by its own text, and the Poro's Birds go wherever their controller picks under 355.2.a, which includes base. A Dredger the Flurry kills at a battlefield hands back a Bird in base (323.4), and the Poro, a 5, takes 1 and lives, so the Flurry removes no fodder. Re-counted here: the Body and Chaos cards in data/corpus_flat.txt whose text reaches 'all units', 'all enemy units', 'each unit', 'all other units' or 'all friendly units' are ten, and two of them reach a base. UNL-132 Angler Beast (Chaos, E5 + 1 Power, M5): 'When you play me, return all units with 2 :rb_might: or less to their owners' hands.' Every Bird is a 1, and 186.1: 'If a token is put into any Non-Board Zone besides the chain, it ceases to exist immediately after moving to its new zone.' The Dredgers go back to hand without dying, so no Deathknell fires; the Poro stays. SFD-147 Downwell (Chaos, E8 + 2 Power, 'Return all units and gear to their owners' hands.') reaches it too, at eight runes and at the price of the opponent's own board. Angler Beast is the answer to this line, not the Flurry."
+          "What refutes it. The Birds are 1 Might and OGN-133 Flurry of Blades (Body, 1 Energy, [Reaction], \"Deal 1 to all units at battlefields\") is lethal to every one of them standing at a battlefield under 142.4.b, without paying Deflect, because it chooses nothing. The discount is on Power only, so the 6 Energy is always paid. And OGN-113 Malzahar, Fanatic converts a body into 2 Power at any time rather than only while playing a card, which is a better rate - but it is [Action], it is Mind, and it is already catalogued. CORRECTED 2026-10-14 (#357, from the run play docs/plays/2026-10-14-the-poro-dies-where-he-must-stand-and-the-dredgers-alone-cast-ledros-a-turn-sooner.md): the Flurry sentence is true of a Bird standing at a battlefield, but this line has no Bird there. The Dredger's Bird goes 'to your base' by its own text, and the Poro's Birds go wherever their controller picks under 355.2.a, which includes base. A Dredger the Flurry kills at a battlefield hands back a Bird in base (383.2.c.3), and the Poro, a 5, takes 1 and lives, so the Flurry removes no fodder. Re-counted here: the Body and Chaos cards in data/corpus_flat.txt whose text reaches 'all units', 'all enemy units', 'each unit', 'all other units' or 'all friendly units' are ten, and two of them reach a base. UNL-132 Angler Beast (Chaos, E5 + 1 Power, M5): 'When you play me, return all units with 2 :rb_might: or less to their owners' hands.' Every Bird is a 1, and 186.1: 'If a token is put into any Non-Board Zone besides the chain, it ceases to exist immediately after moving to its new zone.' The Dredgers go back to hand without dying, so no Deathknell fires; the Poro stays. SFD-147 Downwell (Chaos, E8 + 2 Power, 'Return all units and gear to their owners' hands.') reaches it too, at eight runes and at the price of the opponent's own board. Angler Beast is the answer to this line, not the Flurry."
         ]
       },
       "steps": [
@@ -7916,7 +7916,7 @@
         "Next turn he readies (315.1.b): exhaust him for two 1-Might Bird tokens with [Deflect].",
         "Either wait one more turn for two more Birds, or put the two Carrion Dredgers on the board for 2 Energy each.",
         "Play Commander Ledros, killing four friendly bodies as the optional additional cost: the printed 6 Energy + 4 Order Power becomes 6 Energy + 0 Power (356.6 stops it there).",
-        "If the four were 2 Dredgers + 2 Birds, both Deathknells resolve first (428.1.a.1.b) and two fresh Birds land in your base, ready for the next Ledros or for Stalking Wolf."
+        "If the four were 2 Dredgers + 2 Birds, both Deathknells resolve first (429.1.a.1.b) and two fresh Birds land in your base, ready for the next Ledros or for Stalking Wolf."
       ],
       "terminatesIn": "an 8-Might [Deflect] [Ganking] body on the board for 6 Energy and no Power, plus two Birds back if Dredgers paid for it",
       "sources": [
@@ -7931,9 +7931,9 @@
           "date": "2026-09-06"
         }
       ],
-      "rulesVersion": "2026-07-16",
+      "rulesVersion": "2026-10-09",
       "walkedVersion": "2026-07-16",
-      "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-reaction-deflect-candidates.md), issue #44 candidate 4. Two corrections to the hunt's arithmetic, neither of which breaks it: the sequence skipped the turn Ultrasoft Poro spends entering exhausted, so four Birds is the third turn and not the second; and the value of the saved 4 Power was written as \"4 runes that do not leave the board\", which overstates it - 161.2.b returns a recycled rune to the Rune Deck and 315.3.b channels two back every turn, so 4 Power is two turns of the free rate. Verified against the corpus that UNL-153 Carrion Dredger is [Mech, Zaun] and its token is the Bird. CORRECTED 2026-10-14 (#357), from the run play docs/plays/2026-10-14-the-poro-dies-where-he-must-stand-and-the-dredgers-alone-cast-ledros-a-turn-sooner.md (#354). Its four leads were re-read against the card text and the Core Rules and all four applied: the refutation names the wrong card (the Birds stand in base, Angler Beast reaches them); the Poro's turn is also an exposure (he died in the play to two bodies on their T3); two Dredgers alone cast Ledros on T3 at 2 Order Power, a turn before the Poro's zero-Power Ledros; and 415.3.a was cited for a cap that comes from the exhaust in the cost. Status stays verified: the play cast Ledros with the kill as an additional cost, the discount reduced Power only (356.6), and the Dredgers' Deathknell handed Birds back, which is the mechanism the entry claims. The zero-Power end state needs the Poro to survive one opponent turn, which the entry now says. CORRECTED 2026-10-24 (#456): not at the next Channel Phase. A recycled rune goes to the bottom of the Rune Deck (416.1, 416.1.b) and 430.1 channels from the top, so it is back on T7 at the earliest going first and T6 at the earliest going second with only the Channel Phase's two a turn (161.2.a, 315.3.b, 485.7); each two more recycled push it a turn later, a card that channels more (430.2) brings it back sooner, and the next Channel Phase gives it back only once the Rune Deck is empty. So '4 Power is two turns of the free rate' holds only once the Rune Deck is empty; before it the four recycled runes are short on every turn until T7 and T8 going first (see the corrected caveat), so the saved Power is worth more, not less. Status unchanged."
+      "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-reaction-deflect-candidates.md), issue #44 candidate 4. Two corrections to the hunt's arithmetic, neither of which breaks it: the sequence skipped the turn Ultrasoft Poro spends entering exhausted, so four Birds is the third turn and not the second; and the value of the saved 4 Power was written as \"4 runes that do not leave the board\", which overstates it - 161.2.b returns a recycled rune to the Rune Deck and 315.3.b channels two back every turn, so 4 Power is two turns of the free rate. Verified against the corpus that UNL-153 Carrion Dredger is [Mech, Zaun] and its token is the Bird. CORRECTED 2026-10-14 (#357), from the run play docs/plays/2026-10-14-the-poro-dies-where-he-must-stand-and-the-dredgers-alone-cast-ledros-a-turn-sooner.md (#354). Its four leads were re-read against the card text and the Core Rules and all four applied: the refutation names the wrong card (the Birds stand in base, Angler Beast reaches them); the Poro's turn is also an exposure (he died in the play to two bodies on their T3); two Dredgers alone cast Ledros on T3 at 2 Order Power, a turn before the Poro's zero-Power Ledros; and 416.3.a was cited for a cap that comes from the exhaust in the cost. Status stays verified: the play cast Ledros with the kill as an additional cost, the discount reduced Power only (356.6), and the Dredgers' Deathknell handed Birds back, which is the mechanism the entry claims. The zero-Power end state needs the Poro to survive one opponent turn, which the entry now says. CORRECTED 2026-10-24 (#456): not at the next Channel Phase. A recycled rune goes to the bottom of the Rune Deck (417.1, 417.1.b) and 431.1 channels from the top, so it is back on T7 at the earliest going first and T6 at the earliest going second with only the Channel Phase's two a turn (161.2.a, 315.3.b, 487.7); each two more recycled push it a turn later, a card that channels more (431.2) brings it back sooner, and the next Channel Phase gives it back only once the Rune Deck is empty. So '4 Power is two turns of the free rate' holds only once the Rune Deck is empty; before it the four recycled runes are short on every turn until T7 and T8 going first (see the corrected caveat), so the saved Power is worth more, not less. Status unchanged."
     },
     {
       "id": "downstage-dramatics-lux-draws",
@@ -11939,7 +11939,7 @@
           "quantity": 1,
           "role": "engine",
           "zone": "BOARD",
-          "note": "Body Equipment, E4 M+2, [Equip] 1 Body. '[Effect] When I hold, score 1 point.' 434.1.c appends that to the Dunebreaker, and 053.1 reads the 'I' as him, so it is HIS hold that pays."
+          "note": "Body Equipment, E4 M+2, [Equip] 1 Body. '[Effect] When I hold, score 1 point.' 435.1.c appends that to the Dunebreaker, and 053.1 reads the 'I' as him, so it is HIS hold that pays."
         }
       ],
       "needs": [],
@@ -11952,23 +11952,23 @@
           "Legend domains are Fury and Body: SFD-183 Purifier (Lucian), whose 'Your Equipment each give [Assault]' also puts the Dunebreaker at 10 on the attack."
         ],
         "notable": [
-          "THE SECOND POINT IS BY ABILITY, NOT BY SCORE, WHICH IS THE ONLY REASON IT STACKS. 469.2 Scores the Hold once and 470 caps Scoring at once per Battlefield per turn; Trinity Force says 'score 1 point', which 194.1.c makes a point gain by ability. Without R2 (= A) this entry is worth one point, not two.",
+          "THE SECOND POINT IS BY ABILITY, NOT BY SCORE, WHICH IS THE ONLY REASON IT STACKS. 471.2 Scores the Hold once and 472 caps Scoring at once per Battlefield per turn; Trinity Force says 'score 1 point', which 194.1.c makes a point gain by ability. Without R2 (= A) this entry is worth one point, not two.",
           "THE DUNEBREAKER'S TWO CLAUSES FIGHT EACH OTHER, and the entry says so rather than selling both. 'If you have two or fewer cards in your hand, I enter ready' wants an empty hand; 'When I hold, draw 2' fills it. The free ready is a one-off on the turn he lands, and every Hold after that makes it less likely for the next copy.",
-          "The Equipment has to be ON him. 434.1.c appends Effect Text to the Top-Most Card only, so a Trinity Force sitting unattached does nothing, and 323.7 recalls unattached gear off battlefields at every Cleanup.",
+          "The Equipment has to be ON him. 435.1.c appends Effect Text to the Top-Most Card only, so a Trinity Force sitting unattached does nothing, and 323.6 recalls unattached gear off battlefields at every Cleanup.",
           "At 7 Might, 9 with the Trinity Force's +2, he is the garrison as well as the payoff - which matters because the Hold has to survive the opponent's whole turn."
         ]
       },
       "steps": [
         "Equip Trinity Force to the Dunebreaker (1 Body Power) and walk him to a battlefield; he enters exhausted (143.4) unless your hand is down to two cards.",
-        "Take the battlefield: Establishing Control is a Conquer (466.5.d) and Scores.",
+        "Take the battlefield: Establishing Control is a Conquer (468.5.d) and Scores.",
         "Survive the opponent's turn.",
-        "Your Beginning Phase: 315.2.b.2 Holds it. The Hold Scores 1 point (469.2, 471.1).",
+        "Your Beginning Phase: 315.2.b.2 Holds it. The Hold Scores 1 point (471.2, 473.1).",
         "Both hold effects fire: Trinity Force pays a second point by ability (194.1.c, R2 = A) and the Dunebreaker draws 2.",
         "Repeat every turn he holds."
       ],
       "netPerIteration": "+2 points and +2 cards per turn from one battlefield; 0 Energy and 0 Power spent after setup",
       "terminatesIn": "engine only - 2 points and 2 cards a turn for as long as he holds",
-      "rulesVersion": "2026-07-16",
+      "rulesVersion": "2026-10-09",
       "walkedVersion": "2026-07-16",
       "sources": [
         {
@@ -11980,9 +11980,9 @@
           "accessed": "2026-09-06"
         },
         {
-          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "title": "Riftbound Core Rules, Last Updated 2026-10-09 (data/Riftbound-Core-Rules-2026-10-09.txt)",
           "kind": "riot",
-          "date": "2026-07-16"
+          "date": "2026-10-09"
         },
         {
           "title": "Minería por leyenda — issue #62 (GitHub)",
@@ -12371,10 +12371,10 @@
           "Legend domains are Fury and Body: OGN-249 Relentless Storm (Volibear), whose 'When you play a [Mighty] unit, you may exhaust me to channel 1 rune exhausted' fires off the pumped Vi."
         ],
         "notable": [
-          "THE WIPE IS WHAT MAKES THE CONQUER FREE, AND #58's FINDING IS EXACTLY THIS SHAPE. Stormbringer kills the garrison BEFORE it moves Vi in, so when she arrives there are no opposing units: 323.9 stages no Combat, a Showdown opens instead (323.8, 323.12) and 348.2.a establishes Control with 348.2.a.1 calling it a Conquer. No attack designation, no damage step, no risk.",
+          "THE WIPE IS WHAT MAKES THE CONQUER FREE, AND #58's FINDING IS EXACTLY THIS SHAPE. Stormbringer kills the garrison BEFORE it moves Vi in, so when she arrives there are no opposing units: 323.8 stages no Combat, a Showdown opens instead (323.7, 323.11) and 348.2.a establishes Control with 348.2.a.1 calling it a Conquer. No attack designation, no damage step, no risk.",
           "VI HAS TO BE IN YOUR BASE WHEN STORMBRINGER IS CAST. 'Choose a friendly unit in your base' - so Confront first, Vi second, pump third, Stormbringer fourth. Move her early and the spell has nothing to choose.",
-          "SHE ARRIVES READY. Stormbringer's 'move your unit there' is an effect move and 420.3.a puts the exhaust cost only on the Standard Move, so she keeps her ready state and can [Ganking] to the second battlefield for a second point (470 caps per battlefield, not per turn).",
-          "THE MIGHT IS THE TRASH AND IT EXPIRES. 'Give me +1 Might this turn' - so the damage Stormbringer throws is however much trash you spend, and 416.3 stops when the trash is empty. 185 rules out spending a token.",
+          "SHE ARRIVES READY. Stormbringer's 'move your unit there' is an effect move and 421.3.a puts the exhaust cost only on the Standard Move, so she keeps her ready state and can [Ganking] to the second battlefield for a second point (472 caps per battlefield, not per turn).",
+          "THE MIGHT IS THE TRASH AND IT EXPIRES. 'Give me +1 Might this turn' - so the damage Stormbringer throws is however much trash you spend, and 417.3 stops when the trash is empty. 185 rules out spending a token.",
           "Bill: 2 + 2 + 6 Energy and 3 Power in one turn, which is a full late-game turn and not a curve play."
         ]
       },
@@ -12388,7 +12388,7 @@
       ],
       "netPerIteration": "one battlefield wiped and two points, for 10 Energy and 3 Power plus one card of trash per point of damage",
       "terminatesIn": "a single very large turn - a wipe plus two points; not a loop",
-      "rulesVersion": "2026-07-16",
+      "rulesVersion": "2026-10-09",
       "walkedVersion": "2026-07-16",
       "sources": [
         {
@@ -12400,9 +12400,9 @@
           "accessed": "2026-09-06"
         },
         {
-          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "title": "Riftbound Core Rules, Last Updated 2026-10-09 (data/Riftbound-Core-Rules-2026-10-09.txt)",
           "kind": "riot",
-          "date": "2026-07-16"
+          "date": "2026-10-09"
         },
         {
           "title": "Minería por leyenda — issue #62 (GitHub)",
@@ -12417,7 +12417,7 @@
           "date": "2026-09-06"
         }
       ],
-      "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-issue62-table-of-fourteen.md), issue #62 section 2.6. OGN-249 Relentless Storm had no entry. #62's table describes this row as a 'three-card combo, double conquer win'; the source it cites talks about a board WIPE and never mentions two battlefields, so the second conquer is the walk's, and it is legal for a reason the catalogue already established in #58 - a battlefield whose garrison is gone is taken with no Combat and no Attacker designation. The order is the part that is easy to get wrong and it is written into the steps: Stormbringer chooses a unit IN YOUR BASE. Card text verbatim from data/corpus_flat.txt. Trap check: no attack trigger is used, so 383.4.e/461 cannot bite; no [Repeat]; no [Temporary]; no token recycled (185); no recall. Depends on no unruled reading."
+      "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-issue62-table-of-fourteen.md), issue #62 section 2.6. OGN-249 Relentless Storm had no entry. #62's table describes this row as a 'three-card combo, double conquer win'; the source it cites talks about a board WIPE and never mentions two battlefields, so the second conquer is the walk's, and it is legal for a reason the catalogue already established in #58 - a battlefield whose garrison is gone is taken with no Combat and no Attacker designation. The order is the part that is easy to get wrong and it is written into the steps: Stormbringer chooses a unit IN YOUR BASE. Card text verbatim from data/corpus_flat.txt. Trap check: no attack trigger is used, so 383.4.e/463 cannot bite; no [Repeat]; no [Temporary]; no token recycled (185); no recall. Depends on no unruled reading."
     },
     {
       "id": "annie-stubborn-star-crossed-lock",
@@ -13935,7 +13935,7 @@
           "IT IS ONE CYCLE A TURN. Pack of Wonders carries an exhaust in its cost, so 315.1.b readies it in your next Awaken and no amount of Energy buys a second bounce. The source is explicit and correct: 'not infinite, but it is an engine that continuously bring back units and grind the opponent out'.",
           "THE RUNE ARRIVES EXHAUSTED, so the cycle is 2 Energy now for a card plus next turn's Energy, not a refund.",
           "'Another friendly gear, unit, or facedown card' - the Pack cannot bounce itself, and the facedown clause is what makes it a Hidden-deck card as well; the catalogue already has two other Pack of Wonders entries, on Bewitching Spirit and on Fizz, and none of the three share a second card.",
-          "323.7 recalls unattached non-unit gear at battlefields at every Cleanup, so both of these live at your base and never travel."
+          "323.6 recalls unattached non-unit gear at battlefields at every Cleanup, so both of these live at your base and never travel."
         ]
       },
       "steps": [
@@ -13947,7 +13947,7 @@
       ],
       "netPerIteration": "+1 card and +1 rune channelled exhausted per turn, for 2 Energy and one exhaust",
       "terminatesIn": "engine only - one bounce a turn, capped by Pack of Wonders' own exhaust",
-      "rulesVersion": "2026-07-16",
+      "rulesVersion": "2026-10-09",
       "walkedVersion": "2026-07-16",
       "sources": [
         {
@@ -13959,9 +13959,9 @@
           "accessed": "2026-09-06"
         },
         {
-          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "title": "Riftbound Core Rules, Last Updated 2026-10-09 (data/Riftbound-Core-Rules-2026-10-09.txt)",
           "kind": "riot",
-          "date": "2026-07-16"
+          "date": "2026-10-09"
         },
         {
           "title": "Minería por leyenda — issue #62 (GitHub)",
@@ -13976,7 +13976,7 @@
           "date": "2026-09-06"
         }
       ],
-      "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-issue62-section3.md), issue #62 section 3. OGN-186 Treasure Trove appeared in no entry before this. The source draws its own boundary - 'not infinite, but it is an engine' - and the walk agrees for a reason it does not give: Pack of Wonders carries an exhaust in its cost, so it is one bounce per turn no matter how much Energy is available. That is the same test that keeps several other entries out of INFINITE. Card text verbatim from data/corpus_flat.txt. Trap check: no attack designation; no [Repeat]; no [Temporary]; no token; a return to hand is not a Recall (455); the channelled rune is exhausted, so 167 never applies. Depends on no unruled reading."
+      "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-issue62-section3.md), issue #62 section 3. OGN-186 Treasure Trove appeared in no entry before this. The source draws its own boundary - 'not infinite, but it is an engine' - and the walk agrees for a reason it does not give: Pack of Wonders carries an exhaust in its cost, so it is one bounce per turn no matter how much Energy is available. That is the same test that keeps several other entries out of INFINITE. Card text verbatim from data/corpus_flat.txt. Trap check: no attack designation; no [Repeat]; no [Temporary]; no token; a return to hand is not a Recall (457); the channelled rune is exhausted, so 167 never applies. Depends on no unruled reading."
     },
     {
       "id": "jax-grandmaster-warmogs-buff",
@@ -14179,7 +14179,7 @@
         "notable": [
           "THE SOURCE NAMES THE PROBLEM AND THIS ENTRY IS THE ANSWER. It says 'you can do this over and over again. But you would have to do that with further copies of Tornado Warrior' - three copies, three Empowers, and then it stops. Pack of Wonders returns 'another friendly gear, unit, or facedown card to its owner's hand', so one copy can be hidden, flipped, and bought back, turn after turn.",
           "THE DISEMPOWER IS NOT A DRAWBACK HERE, IT IS THE RESET. 'Disempower it at end of turn' means Kharox is not Empowered when your next turn starts, so 'Use only if not Empowered' is satisfied again and 'When I become [Empowered]' can fire again. A permanent Empower would end the engine after one use.",
-          "HIDING COSTS A RAINBOW AND A TURN. 811.1.b: you pay 1 Power to hide a card facedown at a battlefield you control, and 'Beginning on the next turn' it gains [Reaction] and can be played ignoring its base cost. So the cycle is at least two turns per Empower, and 323.7 trashes hidden cards at battlefields whose controller changes - losing the battlefield loses the card.",
+          "HIDING COSTS A RAINBOW AND A TURN. 811.1.b: you pay 1 Power to hide a card facedown at a battlefield you control, and 'Beginning on the next turn' it gains [Reaction] and can be played ignoring its base cost. So the cycle is at least two turns per Empower, and 323.6.a trashes hidden cards at battlefields whose controller changes - losing the battlefield loses the card.",
           "'EMPOWER SOMETHING HERE' MEANS AT THAT BATTLEFIELD, and 811.1.d.1 forces the hidden Tornado Warrior to be played to the battlefield it was hidden at - so Kharox has to be standing there.",
           "The catalogue already has kharox-sanction-burn on VEN-114 and tornado-warrior-matriarch-recursion on VEN-099; this is the pairing of the two, and Pack of Wonders is the piece neither of them has."
         ]
@@ -14193,7 +14193,7 @@
       ],
       "netPerIteration": "one free Empower of Kharox per cycle: 3 milled off the opponent and a unit stolen from their trash, for 1 Power to hide",
       "terminatesIn": "engine only - roughly one Empower every two turns, throttled by the hide-then-flip timing and by Pack of Wonders' exhaust",
-      "rulesVersion": "2026-07-16",
+      "rulesVersion": "2026-10-09",
       "walkedVersion": "2026-07-16",
       "sources": [
         {
@@ -14205,9 +14205,9 @@
           "accessed": "2026-09-06"
         },
         {
-          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "title": "Riftbound Core Rules, Last Updated 2026-10-09 (data/Riftbound-Core-Rules-2026-10-09.txt)",
           "kind": "riot",
-          "date": "2026-07-16"
+          "date": "2026-10-09"
         },
         {
           "title": "Minería por leyenda — issue #62 (GitHub)",
@@ -14222,7 +14222,7 @@
           "date": "2026-09-06"
         }
       ],
-      "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-issue62-section3.md), issue #62 section 3. The source states the limitation itself - it needs further copies of Tornado Warrior - and the entry exists because Pack of Wonders answers exactly that, through the 'facedown card' clause that neither of the catalogue's two existing Pack of Wonders entries uses. Card text verbatim from data/corpus_flat.txt. Trap check: 323.7 is the live risk and it is stated (a hidden card at a battlefield you stop controlling goes to the trash); no [Repeat]; no [Temporary]; no token; a return to hand is not a Recall (455); 811.1.b's 'beginning on the next turn' is why the cycle is two turns and not one. Depends on no unruled reading."
+      "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-issue62-section3.md), issue #62 section 3. The source states the limitation itself - it needs further copies of Tornado Warrior - and the entry exists because Pack of Wonders answers exactly that, through the 'facedown card' clause that neither of the catalogue's two existing Pack of Wonders entries uses. Card text verbatim from data/corpus_flat.txt. Trap check: 323.6.a is the live risk and it is stated (a hidden card at a battlefield you stop controlling goes to the trash); no [Repeat]; no [Temporary]; no token; a return to hand is not a Recall (457); 811.1.b's 'beginning on the next turn' is why the cycle is two turns and not one. Depends on no unruled reading."
     },
     {
       "id": "tideturner-mega-mech-swap",
@@ -15582,12 +15582,12 @@
           "356.6 IS THE FLOOR AND IT IS THE ONLY REASON THIS IS NOT NEGATIVE: 'Energy and Power costs can't be reduced below 0.' With a 9 Might unit on the board, Sky Splitter's E8 is reduced by 9 and lands at 0. THE POWER IS UNTOUCHED: the reduction says 'this spell's ENERGY cost', so the 1 Power is still paid every time. A repeatable 5 damage for one Power.",
           "THE REDUCTION IS READ WHEN THE SPELL IS PLAYED, WHICH IS THE RISK THE HUNT NAMED AND IT IS REAL. 'The highest Might among units you control' is a cost calculation, so it happens at the moment of playing; if the 9 Might body dies first, the next Sky Splitter costs 8 Energy again. The entry's price of 0 Energy is conditional on the body being alive, and that is stated rather than assumed.",
           "IT KILLS EXACTLY WHAT IT SAYS. 'Deal 5 to a unit at a battlefield' — 710 evaluates units on the board by their CURRENT Might, so this kills anything at 5 Might or less standing at a battlefield, and nothing at the base.",
-          "RELENTLESS STORM CHANNELS EXHAUSTED, WHICH IS NEXT TURN'S POWER, NOT THIS TURN'S ENERGY. 'You may exhaust me to channel 1 rune exhausted' — the rune arrives already exhausted, so it adds nothing to the current Main Phase; what it adds is a permanent rune on the board. The exhaust is in the cost, so it is one rune per turn, and 415.3.a gives the legend back at the Awakening Phase.",
-          "MEASURE IT AGAINST THE FREE FLOOR, NOT AGAINST ZERO. Every deck already gets 2 Power a turn for nothing (164.2.b's 'Recycle this: [Reaction] — Add [C]' has no exhaust in its cost, 161.2.b sends the rune to the Rune Deck, and 315.3.b / 430.4.a channel 2 back each Channel Phase). So a Sky Splitter a turn is inside the floor: the line costs no Energy and no card the deck was not going to have. CORRECTED 2026-10-24 (#456): not at the next Channel Phase. 416.1 puts a recycled rune on the bottom of the Rune Deck (416.1.b) and 430.1 channels from the top, so 315.3.b's two a turn are the runes above it, which the board gets whether or not anything was recycled. With only those two a turn (161.2.a, 315.3.b, 485.7), a rune recycled on any of T1 to T6 is back on T7 going first; going second the first one recycled by T5 is back on T6 and the second on T7; each two more recycled push it a turn later, and a card that channels more (430.2) brings it back sooner. Only once the Rune Deck is empty (all twelve out, T6 at the earliest from either seat) does the next Channel Phase give a recycled rune back; before that a recycle is a rune short on every turn until the deck runs dry, and two recycled every turn hold the board flat at two going first. So a Sky Splitter a turn is inside the rate that keeps the board flat, but it is not free before the Rune Deck is empty: each Power it costs is a rune short on every turn until the deck runs dry. The card cost is still zero; the Energy is not, from the next turn on. Status unchanged: the 356.6 floor this entry is about does not move.",
+          "RELENTLESS STORM CHANNELS EXHAUSTED, WHICH IS NEXT TURN'S POWER, NOT THIS TURN'S ENERGY. 'You may exhaust me to channel 1 rune exhausted' — the rune arrives already exhausted, so it adds nothing to the current Main Phase; what it adds is a permanent rune on the board. The exhaust is in the cost, so it is one rune per turn, and 416.3.a gives the legend back at the Awakening Phase.",
+          "MEASURE IT AGAINST THE FREE FLOOR, NOT AGAINST ZERO. Every deck already gets 2 Power a turn for nothing (164.2.b's '[Reaction][>] Recycle this: Add [C]' has no exhaust in its cost, 161.2.b sends the rune to the Rune Deck, and 315.3.b / 431.4.a channel 2 back each Channel Phase). So a Sky Splitter a turn is inside the floor: the line costs no Energy and no card the deck was not going to have. CORRECTED 2026-10-24 (#456): not at the next Channel Phase. 417.1 puts a recycled rune on the bottom of the Rune Deck (417.1.b) and 431.1 channels from the top, so 315.3.b's two a turn are the runes above it, which the board gets whether or not anything was recycled. With only those two a turn (161.2.a, 315.3.b, 487.7), a rune recycled on any of T1 to T6 is back on T7 going first; going second the first one recycled by T5 is back on T6 and the second on T7; each two more recycled push it a turn later, and a card that channels more (431.2) brings it back sooner. Only once the Rune Deck is empty (all twelve out, T6 at the earliest from either seat) does the next Channel Phase give a recycled rune back; before that a recycle is a rune short on every turn until the deck runs dry, and two recycled every turn hold the board flat at two going first. So a Sky Splitter a turn is inside the rate that keeps the board flat, but it is not free before the Rune Deck is empty: each Power it costs is a rune short on every turn until the deck runs dry. The card cost is still zero; the Energy is not, from the next turn on. Status unchanged: the 356.6 floor this entry is about does not move.",
           "KADREGRIN IS THE SAME BODY WITH A CARD RIDER. Both are M9; Kadregrin costs 1 Energy less and draws 1 for each of your [Mighty] units on the play, Volibear brings [Deflect 2] and a 5 damage split on the attack. Kadregrin is already in gemdragon-henge-vi-blind-fury and pridestalker-mighty-draw; Volibear, Sky Splitter and Relentless Storm are in no entry at all, which is why they are the named ingredients.",
-          "OGN-250 STORMBRINGER IS THE OTHER HALF OF THIS BOARD AND IT BELONGS TO ANOTHER ENTRY. 'Choose a friendly unit in your base. Deal damage equal to its Might to all enemy units at a battlefield, then move your unit there' — with a 9 Might body that is a wipe followed by a landing, and because both happen inside ONE resolution the enemies are gone before your unit arrives, so 323.9 ('Mark a Combat as Staged at each Battlefield … that have Units present controlled by OPPOSING players') never stages a Combat and 466.5.d / 348.2.a.1 give the Conquer with no damage step. That is #58's axis reached from the damage side. confront-vi-stormbringer already runs the spell, so this entry names it here instead of claiming it.",
-          "THE CEILING IS THREE SPELLS. 103.2.b caps Sky Splitter at 3 and each copy is consumed; nothing in the line returns a spell from the trash.",
-          "A SPLIT IS N CHOICES, SO IT PAYS THE [DEFLECT] TAX ONCE PER BODY — AND THIS ENTRY IS PRICED WITHOUT IT (upgrade 2026-09-12, #187 batch 28). **355.14.a** — *\"If a card specifies that an amount of damage may be split among some number of Units, then each Unit chosen is Targeted\"* — with **355.14.d**, *\"Each Target is valid, and contributes to Targeting Effects individually\"*, cited once and zero against 355.14.h`s sixteen. Read with 809.1.c, which charges Power equal to the Deflect Value *\"for each time they choose\"*: **47 printings carry Deflect, and 187.7 gives it to a Bird token BY RULE**, so `UNL-044 Flurry of Feathers` — four Birds at [Reaction] speed — taxes an incoming split **four rainbow**. 355.14.c caps targets at the damage available and permits taking fewer, so the mitigation is to spread LESS: Deflect converts a split from a free spread into a rainbow per body. **It reaches the trigger and not only the spell** (809.1.c and 809.1.d both say *\"spells and abilities\"*), and batch 21`s asymmetry then bites: the tax is paid at step 404, where 404.2 lets you DECLINE — and declining removes the whole trigger, so against a Bird garrison it is pay-per-body or nothing."
+          "OGN-250 STORMBRINGER IS THE OTHER HALF OF THIS BOARD AND IT BELONGS TO ANOTHER ENTRY. 'Choose a friendly unit in your base. Deal damage equal to its Might to all enemy units at a battlefield, then move your unit there' — with a 9 Might body that is a wipe followed by a landing, and because both happen inside ONE resolution the enemies are gone before your unit arrives, so 323.8 ('Mark a Combat as Staged at each Battlefield … that have Units present controlled by OPPOSING players') never stages a Combat and 468.5.d / 348.2.a.1 give the Conquer with no damage step. That is #58's axis reached from the damage side. confront-vi-stormbringer already runs the spell, so this entry names it here instead of claiming it.",
+          "THE CEILING IS THREE SPELLS. 103.3.b caps Sky Splitter at 3 and each copy is consumed; nothing in the line returns a spell from the trash.",
+          "A SPLIT IS N CHOICES, SO IT PAYS THE [DEFLECT] TAX ONCE PER BODY — AND THIS ENTRY IS PRICED WITHOUT IT (upgrade 2026-09-12, #187 batch 28). **355.14.a** — *\"If a card specifies that an amount of damage may be split among some number of Units, then each Unit chosen is Targeted\"* — with **355.14.d**, *\"Each Target is valid, and contributes to Targeting Effects individually\"*, cited once and zero against 355.14.h`s sixteen. Read with 809.1.c, which charges Power equal to the Deflect Value *\"for each time they choose\"*: **47 printings carry Deflect, and 187.7 gives it to a Bird token BY RULE**, so `UNL-044 Flurry of Feathers` — four Birds at [Reaction] speed — taxes an incoming split **four rainbow**. 355.14.c caps targets at the damage available and permits taking fewer, so the mitigation is to spread LESS: Deflect converts a split from a free spread into a rainbow per body. **It reaches the trigger and not only the spell** (809.1.c and 809.1.d both say *\"spells and abilities\"*), and batch 21`s asymmetry then bites: the tax is paid at step 405, where 405.2 lets you DECLINE — and declining removes the whole trigger, so against a Bird garrison it is pay-per-body or nothing."
         ]
       },
       "steps": [
@@ -15599,13 +15599,13 @@
       ],
       "netPerIteration": "5 damage to a unit at a battlefield for 0 Energy and 1 Power, once per copy, for as long as a 9 Might unit is on the board",
       "terminatesIn": "engine only — three Sky Splitters, each consumed, and the discount dies with the body that grants it",
-      "rulesVersion": "2026-07-16",
+      "rulesVersion": "2026-10-09",
       "walkedVersion": "2026-07-16",
       "sources": [
         {
-          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "title": "Riftbound Core Rules, Last Updated 2026-10-09 (data/Riftbound-Core-Rules-2026-10-09.txt)",
           "kind": "riot",
-          "date": "2026-07-16"
+          "date": "2026-10-09"
         },
         {
           "title": "Corpus de 8.307 listas de torneo — issue #89 (GitHub)",
@@ -15620,7 +15620,7 @@
           "date": "2026-09-06"
         }
       ],
-      "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-issue89-tournament-corpus.md), issue #89 candidate 5 (84-93 registered lists). OGN-014 Sky Splitter, OGN-041 Volibear, Furious and OGN-249 Relentless Storm appeared in NO entry before this; OGN-038 Kadregrin is in two and OGN-250 Stormbringer in confront-vi-stormbringer, and both overlaps are declared. THE WALK'S ADDITIONS: 356.6 caps the reduction at 0 but says nothing about Power, so the 1 Power is paid on every copy and the entry prices it; the reduction is a cost calculation read at the moment of playing, so the '0 Energy' is conditional on the body surviving, which the entry states instead of assuming; and the Stormbringer question the hunt left open is answered — the wipe and the move are one resolution, so no units of two opposing players are ever present and 323.9 stages no Combat, which is why that half belongs to a Conquer entry and not to this one. The rate is also measured against the free floor of 2 Power a turn (164.2.b, 161.2.b, 315.3.b, 430.4.a) rather than against zero. Card text verbatim from data/corpus_flat.txt. Citations opened: 103.2.b, 161.2.b, 164.2.b, 315.3.b, 323.9, 348.2.a.1, 356.6, 415.3.a, 430.4.a, 466.5.d, 710. Ban check: none of the five carries a [BANNED marker. Trap check: no attack designation is claimed for Sky Splitter (Volibear's own 'when I attack' is named but not counted); no [Repeat]; no [Temporary]; no token; no recall; no Gold; no battlefield of its own. Depends on no unruled reading."
+      "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-issue89-tournament-corpus.md), issue #89 candidate 5 (84-93 registered lists). OGN-014 Sky Splitter, OGN-041 Volibear, Furious and OGN-249 Relentless Storm appeared in NO entry before this; OGN-038 Kadregrin is in two and OGN-250 Stormbringer in confront-vi-stormbringer, and both overlaps are declared. THE WALK'S ADDITIONS: 356.6 caps the reduction at 0 but says nothing about Power, so the 1 Power is paid on every copy and the entry prices it; the reduction is a cost calculation read at the moment of playing, so the '0 Energy' is conditional on the body surviving, which the entry states instead of assuming; and the Stormbringer question the hunt left open is answered — the wipe and the move are one resolution, so no units of two opposing players are ever present and 323.8 stages no Combat, which is why that half belongs to a Conquer entry and not to this one. The rate is also measured against the free floor of 2 Power a turn (164.2.b, 161.2.b, 315.3.b, 431.4.a) rather than against zero. Card text verbatim from data/corpus_flat.txt. Citations opened: 103.3.b, 161.2.b, 164.2.b, 315.3.b, 323.8, 348.2.a.1, 356.6, 416.3.a, 431.4.a, 468.5.d, 710. Ban check: none of the five carries a [BANNED marker. Trap check: no attack designation is claimed for Sky Splitter (Volibear's own 'when I attack' is named but not counted); no [Repeat]; no [Temporary]; no token; no recall; no Gold; no battlefield of its own. Depends on no unruled reading."
     },
     {
       "id": "grand-duelist-fiora-mighty-crossings",
@@ -31455,9 +31455,9 @@
       ],
       "prerequisites": {
         "easy": [
-          "Any Mind legend: both cards are mono-Mind (103.1.b.3) and neither is a Signature card, so 103.2.d.2 forces nothing.",
+          "Any Mind legend: both cards are mono-Mind (103.2.b.3) and neither is a Signature card, so 103.3.d.2 forces nothing.",
           "Neither card is banned or restricted in either format.",
-          "You must control a facedown card at a battlefield for the Pouch to pay — the [Hidden] package (811.1.b hides 'at a battlefield you control'). One hidden card that you never intend to play is enough, and 323.7 only removes hidden cards from battlefields you do NOT control."
+          "You must control a facedown card at a battlefield for the Pouch to pay — the [Hidden] package (811.1.b hides 'at a battlefield you control'). One hidden card that you never intend to play is enough, and 323.6.a only removes hidden cards from battlefields you do NOT control."
         ],
         "notable": [
           "THE PHASE ORDER IS THE ENTRY. 315 puts the phases in this order: 315.1 Awaken, 315.2 Beginning Phase, 315.3 Channel, 315.4 Draw Phase ('1. The Turn Player draws 1'). The Pouch draws 'At the start of your Beginning Phase', i.e. in 315.2.a — so it is the FIRST card of your turn, and the card the game hands you in 315.4.b is the SECOND. Frigid Jewel therefore fires every single turn on a draw you were taking anyway, for zero Energy and zero cards.",
@@ -31465,7 +31465,7 @@
           "IT NEVER FIRES ON THE OPPONENT'S TURN, AND SAYING SO IS THE POINT. 'Each turn' includes theirs, but you draw nothing in their Draw Phase, so reaching a second card on their turn would take TWO draws at Reaction speed — a real cost for a +2 that the Cleanup takes back (317.2.c). Treat the Jewel as a your-turn-only effect.",
           "ARITHMETIC WITH THE QUANTITIES DECLARED. Setup is 4 Energy for the two gears plus whatever the hidden card cost to hide (811.1.b: one rainbow Power). Per turn thereafter: one extra card into hand AND +2 Might on a friendly unit of your choice, for nothing. The +2 is a plain modifier, not a Buff, so 702.3 does not touch it and it stacks with anything else — and it may be aimed at a different unit each turn, since the Jewel says 'a friendly unit' rather than naming one.",
           "AND IT CROSSES THE MIGHTY LINE FOR FREE. +2 on a Might-3 or Might-4 body takes it to 5 or 6, which is 709's crossing event — so in a Body/Order or Fury/Body shell the Jewel is a free 'becomes Mighty' trigger every turn. It cannot be run under Grand Duelist or Relentless Storm themselves (Mind is outside both identities), but SFD-180 Fiora, Worthy is Order and OGN-232 Fiora, Victorious is Order, and neither pairs with Mind either — the honest statement is that the crossing is available only to a Mind legend's own Mighty payoffs.",
-          "THE EXTRA CARD IS REAL, AND SO IS ITS CEILING. 431.1.a makes drawing past the last card of the Main Deck a Burn Out and a point for the opponent (194.1.d). Two cards a turn through a 39-card deck (103.2.a.1) is roughly twenty turns; the Pouch's draw is not a 'you may', so once the deck is thin the Pouch is a liability and the honest play is to let the hidden card leave the battlefield."
+          "THE EXTRA CARD IS REAL, AND SO IS ITS CEILING. 432.1.a makes drawing past the last card of the Main Deck a Burn Out and a point for the opponent (194.1.d). Two cards a turn through a 39-card deck (103.3.a.1) is roughly twenty turns; the Pouch's draw is not a 'you may', so once the deck is thin the Pouch is a liability and the honest play is to let the hidden card leave the battlefield."
         ]
       },
       "steps": [
@@ -31477,14 +31477,14 @@
         "Repeat every turn for nothing; the +2 expires at the end-of-turn Cleanup (317.2.c) and may be aimed at a different unit next time."
       ],
       "netPerIteration": "one extra card and +2 Might on any friendly unit, every turn, for zero Energy and zero cards after setup",
-      "terminatesIn": "engine only — one extra card and one +2 a turn, unbounded in turns until Burn Out (431.1.a) at roughly twenty turns; nothing here scores",
-      "rulesVersion": "2026-07-16",
+      "terminatesIn": "engine only — one extra card and one +2 a turn, unbounded in turns until Burn Out (432.1.a) at roughly twenty turns; nothing here scores",
+      "rulesVersion": "2026-10-09",
       "walkedVersion": "2026-07-16",
       "sources": [
         {
-          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "title": "Riftbound Core Rules, Last Updated 2026-10-09 (data/Riftbound-Core-Rules-2026-10-09.txt)",
           "kind": "riot",
-          "date": "2026-07-16"
+          "date": "2026-10-09"
         },
         {
           "title": "Hand walk 2026-09-07 (docs/phase0/walks/2026-09-07-families-rows-19-47.md)",
@@ -31492,7 +31492,7 @@
           "date": "2026-09-07"
         }
       ],
-      "notes": "HAND-WALKED 2026-09-07 (issue #168, matrix group 44, draw-second x UNL-074). UNL-074 Frigid Jewel was in NO entry before this; the first matrix pass refused the whole row as a bare-regex artifact, which is right about the 100 partners and wrong about the card — the fix is a partner whose draw lands BEFORE the Draw Phase, and the pool has exactly one. Card text verbatim from data/corpus_flat.txt. Citations opened: 103.1.b.3, 103.2.a.1, 103.2.d.2, 194.1.d, 315.1, 315.2.a, 315.3, 315.4.b, 317.2.c, 323.7, 431.1.a, 702.3, 709, 811.1.b. Ban check: neither card is banned or restricted. Trap check: the Jewel pays once per turn on the SECOND card and every further draw is wasted, stated first; it never fires on the opponent's turn; the +2 is a modifier and not a Buff; the Pouch's draw is mandatory, so 431.1.a is a liability and the entry says how to switch it off; no unruled reading.",
+      "notes": "HAND-WALKED 2026-09-07 (issue #168, matrix group 44, draw-second x UNL-074). UNL-074 Frigid Jewel was in NO entry before this; the first matrix pass refused the whole row as a bare-regex artifact, which is right about the 100 partners and wrong about the card — the fix is a partner whose draw lands BEFORE the Draw Phase, and the pool has exactly one. Card text verbatim from data/corpus_flat.txt. Citations opened: 103.2.b.3, 103.3.a.1, 103.3.d.2, 194.1.d, 315.1, 315.2.a, 315.3, 315.4.b, 317.2.c, 323.6.a, 432.1.a, 702.3, 709, 811.1.b. Ban check: neither card is banned or restricted. Trap check: the Jewel pays once per turn on the SECOND card and every further draw is wasted, stated first; it never fires on the opponent's turn; the +2 is a modifier and not a Buff; the Pouch's draw is mandatory, so 432.1.a is a liability and the entry says how to switch it off; no unruled reading.",
       "anyBodies": {
         "count": 1,
         "note": "Frigid Jewel triggers on that second card: give a friendly unit +2 Might this turn"
@@ -36809,7 +36809,7 @@
           "quantity": 6,
           "role": "payoff",
           "zone": "HAND",
-          "note": "Chaos unit, E3 M1. '[Hidden] (Hide now for one rainbow to react with later for 0 Energy.) I have +1 Might for each other unit you control here with my name. Your deck can have ANY NUMBER of cards named Spiderling.' Rule 002 makes that last sentence beat 103.2.b — the quantity here is a deckbuilding choice, not a cap."
+          "note": "Chaos unit, E3 M1. '[Hidden] (Hide now for one rainbow to react with later for 0 Energy.) I have +1 Might for each other unit you control here with my name. Your deck can have ANY NUMBER of cards named Spiderling.' Rule 002 makes that last sentence beat 103.3.b — the quantity here is a deckbuilding choice, not a cap."
         }
       ],
       "needs": [],
@@ -36819,16 +36819,16 @@
       ],
       "prerequisites": {
         "easy": [
-          "Both cards are mono-Chaos, so ANY legend whose two domains include Chaos runs the line (103.1.b.1). Nothing here is Signature (103.2.d.2).",
+          "Both cards are mono-Chaos, so ANY legend whose two domains include Chaos runs the line (103.2.b.1). Nothing here is Signature (103.3.d.2).",
           "A battlefield you control to hide at, and it must not already have a facedown card on it — that clause is the entire rate limit and it is quoted in the notables."
         ],
         "notable": [
-          "THE RATE LIMIT IS ONE HIDE PER BATTLEFIELD, AND IT IS THE FIRST THING TO SAY BECAUSE THE CARD INVITES THE OPPOSITE ASSUMPTION. 811.1.b in full: '[Hidden] is functionally short for \"While this card is in your hand or in your Champion Zone on your turn during an Open State, you may pay [rainbow] to hide this facedown at a battlefield you control THAT DOESN'T ALREADY HAVE A FACEDOWN CARD HIDDEN THERE for as long as you control that battlefield. Beginning on the next turn, this gains [Reaction] and you may play this, ignoring its base cost.\"' One facedown per battlefield at a time, and a Duel puts two battlefields on the table (485.4) of which you control what you have taken. Any number of Spiderlings in the deck does NOT become any number of hides a turn.",
+          "THE RATE LIMIT IS ONE HIDE PER BATTLEFIELD, AND IT IS THE FIRST THING TO SAY BECAUSE THE CARD INVITES THE OPPOSITE ASSUMPTION. 811.1.b in full: '[Hidden] is functionally short for \"While this card is in your hand or in your Champion Zone on your turn during an Open State, you may pay [rainbow] to hide this facedown at a battlefield you control THAT DOESN'T ALREADY HAVE A FACEDOWN CARD HIDDEN THERE for as long as you control that battlefield. Beginning on the next turn, this gains [Reaction] and you may play this, ignoring its base cost.\"' One facedown per battlefield at a time, and a Duel puts two battlefields on the table (487.4) of which you control what you have taken. Any number of Spiderlings in the deck does NOT become any number of hides a turn.",
           "AND THE HIDE AND THE PLAY ARE A TURN APART. 'Beginning on the next turn' — so the rainbow is paid now and the body and the Gold arrive at the earliest next turn. 811.1.c.1 is the companion: 'Hide is not a subset of Play', so hiding fires nothing, and only the later play is the event the Broker watches (811.1.c.3).",
           "THE PAYMENT IS A LOAN, NOT A COST, AND THAT IS THE ENTRY. Hiding costs one rainbow Power. Playing from Hidden costs ZERO Energy (811.1.b, 'ignoring its base cost'), and the Broker mints a Gold gear token — 187.5: 'A Gold gear token is a domainless gear token with \"[Reaction][>] Kill this, [exhaust]: [Add] [rainbow]\"'. That Gold is exactly one rainbow Power. So a Spiderling that would have cost 3 Energy costs one rainbow, hands the rainbow back, and arrives as a free body. Every other card in the Broker's [Hidden] list pays its own rainbow the same way; what makes Spiderling the one to build on is that rule 002 lets you run any number of them.",
-          "THE GOLD IS NEXT TURN'S POWER, NOT THIS TURN'S. Every producer prints it exhausted and 187.5's ability costs its own exhaust, so an exhausted Gold cannot pay for itself; 315.1.b readies it in your following Awakening. SFD-171 Renata Glasc, Industrialist ('Your tokens enter ready') is the fix and is mono-Order, which 103.1.b puts outside a mono-Chaos shell unless the legend is Order/Chaos — VEN-155 / VEN-197 Heart of the Tempest, the only such pair in the census. The entry is priced WITHOUT her.",
-          "WHAT THE SWARM IS WORTH, WITH THE QUANTITIES DECLARED. 'I have +1 Might for each other unit you control HERE with my name' — the count is per battlefield, so five Spiderlings standing together are M5 each and 465.2.c sums them to 25. Two of them are already M2 apiece, which is the step 143.2.a needs to put them outside the range of OGN-133 Flurry of Blades ('Deal 1 to all units at battlefields'). The swarm protects itself as it grows, with no Soul Shepherd and no Brush.",
-          "AND IT IS SLOW, WHICH IS THE PRICE OF BEING FREE. One hide per controlled battlefield per turn, played a turn later, and a body that enters exhausted (143.4) and is readied only in your next Awakening (315.1.b). Getting five Spiderlings onto one battlefield is several turns of hiding, and 811.1.b keeps the facedown card there only 'for as long as you control that battlefield' — lose it and the hidden card is removed (323.7 puts Hidden cards not sharing a controller with the battlefield into their owner's trash).",
+          "THE GOLD IS NEXT TURN'S POWER, NOT THIS TURN'S. Every producer prints it exhausted and 187.5's ability costs its own exhaust, so an exhausted Gold cannot pay for itself; 315.1.b readies it in your following Awakening. SFD-171 Renata Glasc, Industrialist ('Your tokens enter ready') is the fix and is mono-Order, which 103.2.b puts outside a mono-Chaos shell unless the legend is Order/Chaos — VEN-155 / VEN-197 Heart of the Tempest, the only such pair in the census. The entry is priced WITHOUT her.",
+          "WHAT THE SWARM IS WORTH, WITH THE QUANTITIES DECLARED. 'I have +1 Might for each other unit you control HERE with my name' — the count is per battlefield, so five Spiderlings standing together are M5 each and 467.2.c sums them to 25. Two of them are already M2 apiece, which is the step 143.2.b needs to put them outside the range of OGN-133 Flurry of Blades ('Deal 1 to all units at battlefields'). The swarm protects itself as it grows, with no Soul Shepherd and no Brush.",
+          "AND IT IS SLOW, WHICH IS THE PRICE OF BEING FREE. One hide per controlled battlefield per turn, played a turn later, and a body that enters exhausted (143.4) and is readied only in your next Awakening (315.1.b). Getting five Spiderlings onto one battlefield is several turns of hiding, and 811.1.b keeps the facedown card there only 'for as long as you control that battlefield' — lose it and the hidden card is removed (323.6.a puts Hidden cards not sharing a controller with the battlefield into their owner's trash).",
           "WHAT REFUTES IT. (a) The Broker is a M3 body with no protection and every Gold in the line depends on him being alive when the flip happens. (b) 185 and 186.1 keep the Gold tokens out of every recycle and reanimation line, and they are gear an opponent can kill. (c) Spiderling is M1 alone: the first one hidden at a fresh battlefield is the most fragile card in the deck."
         ]
       },
@@ -36844,9 +36844,9 @@
       "terminatesIn": "engine only — 811.1.b allows one facedown per battlefield at a time, so the rate is the number of battlefields you control and nothing here scores",
       "sources": [
         {
-          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "title": "Riftbound Core Rules, Last Updated 2026-10-09 (data/Riftbound-Core-Rules-2026-10-09.txt)",
           "kind": "riot",
-          "date": "2026-07-16"
+          "date": "2026-10-09"
         },
         {
           "title": "Synergy rule black-market-broker-hidden-family (data/synergies.json)",
@@ -36859,9 +36859,9 @@
           "date": "2026-09-07"
         }
       ],
-      "rulesVersion": "2026-07-16",
+      "rulesVersion": "2026-10-09",
       "walkedVersion": "2026-07-16",
-      "notes": "HAND-WALKED 2026-09-07 (issue #170), from the proven rule black-market-broker-hidden-family (39 partners, 36 uncovered, six entries). The pairing is chosen for a property no other row of the [Hidden] list has: VEN-097 Spiderling prints 'Your deck can have any number of cards named Spiderling', and rule 002 makes card text beat 103.2.b, so the engine's size is a deckbuilding choice. The entry LEADS with the rate limit rather than the payoff, because the card invites the opposite assumption: 811.1.b hides 'at a battlefield you control that doesn't already have a facedown card hidden there', so any number in the deck is still one hide per battlefield per turn. It is kept separate from black-market-broker-bandle-tree-gold, which buys extra FLIPS with a battlefield and Renata Glasc, and from spiderling-swarm-grand-plaza, which spends the swarm on a win condition; this one is the cost accounting — one rainbow out, one rainbow back, a free body. Card text verbatim from data/corpus_flat.txt. Citations opened and read: 002, 103.1.b, 103.1.b.1, 103.2.b, 103.2.d.2, 143.2.a, 143.4, 185, 186.1, 187.5, 315.1.b, 323.7, 465.2.c, 485.4, 811.1.b, 811.1.c.1, 811.1.c.3. Ban check: SFD-121 and VEN-097 carry no [BANNED marker. Arithmetic against its own declared quantities: five Spiderlings at one battlefield are M5 each, 25 summed; each hide costs 1 rainbow and returns 1 rainbow as a Gold. Trap check: the Gold enters exhausted and its own ability costs an exhaust, so it is next turn's Power (187.5, 315.1.b) and the fix (SFD-171) is Order and priced out here; the hide and the play are a turn apart (811.1.b); a hidden card is lost with the battlefield (811.1.b, 323.7); tokens never reach the trash (185, 186.1). Depends on no unruled reading."
+      "notes": "HAND-WALKED 2026-09-07 (issue #170), from the proven rule black-market-broker-hidden-family (39 partners, 36 uncovered, six entries). The pairing is chosen for a property no other row of the [Hidden] list has: VEN-097 Spiderling prints 'Your deck can have any number of cards named Spiderling', and rule 002 makes card text beat 103.3.b, so the engine's size is a deckbuilding choice. The entry LEADS with the rate limit rather than the payoff, because the card invites the opposite assumption: 811.1.b hides 'at a battlefield you control that doesn't already have a facedown card hidden there', so any number in the deck is still one hide per battlefield per turn. It is kept separate from black-market-broker-bandle-tree-gold, which buys extra FLIPS with a battlefield and Renata Glasc, and from spiderling-swarm-grand-plaza, which spends the swarm on a win condition; this one is the cost accounting — one rainbow out, one rainbow back, a free body. Card text verbatim from data/corpus_flat.txt. Citations opened and read: 002, 103.2.b, 103.2.b.1, 103.3.b, 103.3.d.2, 143.2.b, 143.4, 185, 186.1, 187.5, 315.1.b, 323.6.a, 467.2.c, 487.4, 811.1.b, 811.1.c.1, 811.1.c.3. Ban check: SFD-121 and VEN-097 carry no [BANNED marker. Arithmetic against its own declared quantities: five Spiderlings at one battlefield are M5 each, 25 summed; each hide costs 1 rainbow and returns 1 rainbow as a Gold. Trap check: the Gold enters exhausted and its own ability costs an exhaust, so it is next turn's Power (187.5, 315.1.b) and the fix (SFD-171) is Order and priced out here; the hide and the play are a turn apart (811.1.b); a hidden card is lost with the battlefield (811.1.b, 323.6.a); tokens never reach the trash (185, 186.1). Depends on no unruled reading."
     },
     {
       "id": "abandoned-hall-stupefy-swing",
@@ -47681,37 +47681,37 @@
       ],
       "prerequisites": {
         "easy": [
-          "Both cards are mono-Mind, so 103.1.b.3 admits any legend with Mind in its pair.",
+          "Both cards are mono-Mind, so 103.2.b.3 admits any legend with Mind in its pair.",
           "Neither card is banned or restricted in either format, and neither is a Signature card.",
-          "The Archer must be ATTACKING for its trigger, which 807.1.d ties to the Attacker designation and 323.9 stages only where opposing units are present - it does nothing on a walk into an empty battlefield."
+          "The Archer must be ATTACKING for its trigger, which 807.1.d ties to the Attacker designation and 323.8 stages only where opposing units are present - it does nothing on a walk into an empty battlefield."
         ],
         "notable": [
-          "THE POOL'S REDUCTIONS SPLIT BY SET, AND THIS ONE IS ON THE UNFLOORED SIDE. The nine Origins reductions carry a 'to a minimum of 1' floor and the fourteen from Spiritforged, Unleashed and Vendetta do not. That distinction is worth 1 Might exactly where it matters: a floored reducer can never take a body below 1, so it can never turn a 4 Might body into a legal target for 'Deal 3'. The Archer has no floor, so 4 becomes 3 and Deadly Flourish kills it - 143.2.a needs marked damage at or above Might, and 3 damage on a 3 Might body is lethal.",
-          "AND THE ORDER IS FIXED BY RULE, NOT BY CHOICE. 477.3.e.2.a: 'Negative values, or decreases, to Might are applied last.' So the Archer's -1 is measured after every increase in the same evaluation, and the target cannot pump out of it within one resolution. 477.3.b's snapshotting does not bite here at all, since it applies only to an effect 'that has a LIMITATION' - an unfloored reduction has none, which is the second reason to prefer it.",
-          "143.2.b IS WHY A REDUCTION IS NOT DAMAGE. Negative Might READS as 0 for spells, abilities and combat damage but IS NOT 0, so nothing the Archer does generates a kill event on its own - the Flourish has to finish it, and that is the whole division of labour in the entry.",
-          "THE RIDER IS WHY THE FLOURISH IS NOT JUST A BURN SPELL. 'When it dies this turn, play a Gold gear token exhausted' - and 187.5 makes a Gold 'a domainless GEAR token', which 185.2.d puts inside the rules for its type. So a successful Flourish also advances every 'control N or more gear' threshold in the deck, which is the axis plundering-poro-patched-porobot-gold-gear-count and pickpocket-seal-of-focus-cheap-gear-kill are built on. The Gold arrives EXHAUSTED, so it is Power only from your next Awakening (415.3.a).",
+          "THE POOL'S REDUCTIONS SPLIT BY SET, AND THIS ONE IS ON THE UNFLOORED SIDE. The nine Origins reductions carry a 'to a minimum of 1' floor and the fourteen from Spiritforged, Unleashed and Vendetta do not. That distinction is worth 1 Might exactly where it matters: a floored reducer can never take a body below 1, so it can never turn a 4 Might body into a legal target for 'Deal 3'. The Archer has no floor, so 4 becomes 3 and Deadly Flourish kills it - 143.2.b needs marked damage at or above Might, and 3 damage on a 3 Might body is lethal.",
+          "AND THE ORDER IS FIXED BY RULE, NOT BY CHOICE. 479.4.e.2.a: 'Negative values, or decreases, to Might are applied last.' So the Archer's -1 is measured after every increase in the same evaluation, and the target cannot pump out of it within one resolution. 479.4.b's snapshotting does not bite here at all, since it applies only to an effect 'that has a LIMITATION' - an unfloored reduction has none, which is the second reason to prefer it.",
+          "143.2.c IS WHY A REDUCTION IS NOT DAMAGE. Negative Might READS as 0 for spells, abilities and combat damage but IS NOT 0, so nothing the Archer does generates a kill event on its own - the Flourish has to finish it, and that is the whole division of labour in the entry.",
+          "THE RIDER IS WHY THE FLOURISH IS NOT JUST A BURN SPELL. 'When it dies this turn, play a Gold gear token exhausted' - and 187.5 makes a Gold 'a domainless GEAR token', which 185.2.d puts inside the rules for its type. So a successful Flourish also advances every 'control N or more gear' threshold in the deck, which is the axis plundering-poro-patched-porobot-gold-gear-count and pickpocket-seal-of-focus-cheap-gear-kill are built on. The Gold arrives EXHAUSTED, so it is Power only from your next Awakening (416.3.a).",
           "AND THE RIDER IS CONDITIONAL ON THE KILL, WHICH IS WHY THE ARCHER IS IN uses[]. 'When it dies THIS TURN' - so a Flourish that leaves a 4 Might body on 3 damage pays nothing, and the -1 is not a nicety but the difference between a card that trades and a card that trades and profits.",
-          "THE ARCHER'S COST IS THE OTHER HALF OF ITS PRICE. 'You may pay 1 Energy' inside a triggered ability's effect is a game action taken at resolution, not a base cost, and the trigger fires on the attack - so the Energy has to be available in your own Main Phase with the combat already staged. One Energy per attack per Archer, three by 103.2.b.",
-          "WHAT IT IS NOT. Nothing here scores; 469 defines Scoring as Conquer or Hold. And the pair kills a 4 Might body, not a large one - the ceiling is 3 + one Archer per attack."
+          "THE ARCHER'S COST IS THE OTHER HALF OF ITS PRICE. 'You may pay 1 Energy' inside a triggered ability's effect is a game action taken at resolution, not a base cost, and the trigger fires on the attack - so the Energy has to be available in your own Main Phase with the combat already staged. One Energy per attack per Archer, three by 103.3.b.",
+          "WHAT IT IS NOT. Nothing here scores; 471 defines Scoring as Conquer or Hold. And the pair kills a 4 Might body, not a large one - the ceiling is 3 + one Archer per attack."
         ]
       },
       "steps": [
-        "Attack with Icevale Archer. 464.2.c.3 hands out the Attacker designation and the trigger fires.",
+        "Attack with Icevale Archer. 466.2.c.3 hands out the Attacker designation and the trigger fires.",
         "Pay 1 Energy and give the intended target -1 Might this turn. It has no floor, so a 4 becomes a 3.",
-        "477.3.e.2.a applies decreases last, so a pump resolving in the same evaluation does not undo it.",
-        "Play Deadly Flourish (4 Energy) and deal 3 to that unit. 143.2.a makes 3 damage lethal on a 3 Might body.",
+        "479.4.e.2.a applies decreases last, so a pump resolving in the same evaluation does not undo it.",
+        "Play Deadly Flourish (4 Energy) and deal 3 to that unit. 143.2.b makes 3 damage lethal on a 3 Might body.",
         "It dies, and the rider plays a Gold gear token exhausted - a gear for every threshold now (187.5, 185.2.d) and 1 Power from your next Awakening.",
         "With a second Archer attacking the same battlefield, the reach is 5 Might for two Energy more."
       ],
       "netPerIteration": "one enemy unit of up to 4 Might removed (5 with a second Archer) and a Gold gear token, for 4 Energy and 1 per Archer",
-      "terminatesIn": "engine only - three Flourishes by 103.2.b and one Energy per Archer per attack, with a ceiling of 3 damage plus the reductions bought that turn; nothing here scores",
-      "rulesVersion": "2026-07-16",
+      "terminatesIn": "engine only - three Flourishes by 103.3.b and one Energy per Archer per attack, with a ceiling of 3 damage plus the reductions bought that turn; nothing here scores",
+      "rulesVersion": "2026-10-09",
       "walkedVersion": "2026-07-16",
       "sources": [
         {
-          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "title": "Riftbound Core Rules, Last Updated 2026-10-09 (data/Riftbound-Core-Rules-2026-10-09.txt)",
           "kind": "riot",
-          "date": "2026-07-16"
+          "date": "2026-10-09"
         },
         {
           "title": "Card text verbatim from data/corpus_flat.txt (built from Riot's gallery content API)",
@@ -47724,7 +47724,7 @@
           "date": "2026-09-07"
         }
       ],
-      "notes": "HAND-WALKED 2026-09-07 (issue #188). The first entry to use UNL-065 Icevale Archer or UNL-073 Deadly Flourish. Card text verbatim from data/corpus_flat.txt. Citations opened and quoted: 103.1.b.3, 103.2.b, 143.2.a, 143.2.b, 185.2.d, 187.5, 323.9, 415.3.a, 464.2.c.3, 469, 477.3.b, 477.3.e.2.a, 807.1.d. Deliberate contrast with orb-of-regret-smoke-screen-floored-reduction from batch 4: that pair is floored and can only move a target under someone else's threshold, this one is unfloored and can complete a kill by itself; the two entries name each other. Ban check: neither card is banned or restricted; neither is a Signature card. No unruled reading."
+      "notes": "HAND-WALKED 2026-09-07 (issue #188). The first entry to use UNL-065 Icevale Archer or UNL-073 Deadly Flourish. Card text verbatim from data/corpus_flat.txt. Citations opened and quoted: 103.2.b.3, 103.3.b, 143.2.b, 143.2.c, 185.2.d, 187.5, 323.8, 416.3.a, 466.2.c.3, 471, 479.4.b, 479.4.e.2.a, 807.1.d. Deliberate contrast with orb-of-regret-smoke-screen-floored-reduction from batch 4: that pair is floored and can only move a target under someone else's threshold, this one is unfloored and can complete a kill by itself; the two entries name each other. Ban check: neither card is banned or restricted; neither is a Signature card. No unruled reading."
     },
     {
       "id": "sandstone-chimera-yi-meditative-rune-prison",
@@ -48680,37 +48680,37 @@
       ],
       "prerequisites": {
         "easy": [
-          "SFD-190 Forgefire Cape is a SIGNATURE card tagged Ornn, so 103.2.d.2 forces an Ornn legend whose two domains cover calm + mind - and the census prints exactly one such name: SFD-189 / SFD-244 Fire Below the Mountain. No other legend can hold this list.",
-          "Neither card is banned or restricted in either format. The Cape spends one of the three Signature slots 103.2.d.1 allows, and 825.3.a caps it at one copy by its own [Unique] keyword.",
+          "SFD-190 Forgefire Cape is a SIGNATURE card tagged Ornn, so 103.3.d.2 forces an Ornn legend whose two domains cover calm + mind - and the census prints exactly one such name: SFD-189 / SFD-244 Fire Below the Mountain. No other legend can hold this list.",
+          "Neither card is banned or restricted in either format. The Cape spends one of the three Signature slots 103.3.d.1 allows, and 825.3.a caps it at one copy by its own [Unique] keyword.",
           "The Cape on the board before Riven is played, since [Weaponmaster] is a play trigger that chooses an Equipment you ALREADY control."
         ],
         "notable": [
           "THE EQUIP COST IS EXACTLY WHAT THE KEYWORD REFUNDS. 821.1.c reads Weaponmaster as 'choose a Card you control with the Equipment tag ... Pay the cost of its Equip ability, REDUCED BY [A], to attach it to this unit', and 821.1.c.2 determines that cost as though the ability were being activated choosing the Weaponmaster unit. The Cape's [Equip] is one rainbow and nothing else, so the reduction takes it to zero - and 821.1.c.3 is the case that does not apply here ('If the chosen card's Equip cost does not contain [A], it can still be paid, but will not be reduced').",
-          "AND THE ATTACH FIRES NOTHING, WHICH IS WORTH KNOWING BEFORE BUILDING AROUND IT. 821.1.c.6: 'The Equip ability is not activated this way, and the unit with the Weaponmaster ability is not chosen.' So no 'when you use an activated ability of a gear' payoff and no 'when you choose me' payoff triggers off it, where a paid [Equip] would - 818.1.b.1 makes that choice a Target. 821.1.c also says the necessary portions of the Equipment's Rules Text 'are no longer Inactive if they are currently Inactive', which is what lets the keyword take the Cape off another of your bodies (434.1.f detaches it; 434.1.g makes re-attaching to the current host a no-op).",
+          "AND THE ATTACH FIRES NOTHING, WHICH IS WORTH KNOWING BEFORE BUILDING AROUND IT. 821.1.c.6: 'The Equip ability is not activated this way, and the unit with the Weaponmaster ability is not chosen.' So no 'when you use an activated ability of a gear' payoff and no 'when you choose me' payoff triggers off it, where a paid [Equip] would - 818.1.b.1 makes that choice a Target. 821.1.c also says the necessary portions of the Equipment's Rules Text 'are no longer Inactive if they are currently Inactive', which is what lets the keyword take the Cape off another of your bodies (435.1.f detaches it; 435.1.g makes re-attaching to the current host a no-op).",
           "THE CAPE'S 'I' IS RIVEN, NOT THE CAPE. 136.2.b makes Effect Text Inactive unless attached, 136.2.c appends it to the Top-Most Card's Rules Text, and 053.1 with 136.2.d fix the referent: 'I' and 'me' in appended Effect Text are the CARRIER, while 'this' and the gear's own name stay with the gear - Riot's worked examples are Guardian Angel and Brutalizer. So 'When I attack or defend, deal 2 to all enemy units here' is RIVEN attacking or defending.",
           "WHICH MAKES ONE ATTACK TWO SEPARATE DEALS. Riven's own clause is 'Deal 2 to it for each Equipment attached to me' - one Equipment, so 2 to a single chosen unit - and the Cape's appended clause is 2 to ALL enemy units there. Both fire on the same attack: a single body dies to 4 and the rest of the garrison takes 2. And because the Cape's half also reads 'or DEFEND', it pays on the opponent's turn as well, which Riven's half does not.",
-          "AND 434.1.d IS THE THIRD THing THE CAPE IS WORTH. 'The Top-Most Card has its Might modulated by the Might Bonus of all cards Attached to it', so Riven is a 6 Might body for 3 Energy + 1 Power once the free attach has happened.",
-          "[UNIQUE] IS WHY THIS IS A ONE-OF AND THE BODY IS NOT. 825.3.a caps the Cape at a single copy in the deck; 103.2.b allows three Rivens, and each of them can take the same Cape off the previous carrier for free (434.1.f). The Cape is the scarce half and the Weaponmaster bodies are the redundant one.",
-          "WHAT IT IS NOT. Nothing here scores; 469 defines Scoring as Conquer or Hold. And 807.1.d ties 'attacking' to the Attacker designation, which 323.9 stages only where opposing units are present - neither clause fires on a walk into an empty battlefield."
+          "AND 435.1.d IS THE THIRD THing THE CAPE IS WORTH. 'The Top-Most Card has its Might modulated by the Might Bonus of all cards Attached to it', so Riven is a 6 Might body for 3 Energy + 1 Power once the free attach has happened.",
+          "[UNIQUE] IS WHY THIS IS A ONE-OF AND THE BODY IS NOT. 825.3.a caps the Cape at a single copy in the deck; 103.3.b allows three Rivens, and each of them can take the same Cape off the previous carrier for free (435.1.f). The Cape is the scarce half and the Weaponmaster bodies are the redundant one.",
+          "WHAT IT IS NOT. Nothing here scores; 471 defines Scoring as Conquer or Hold. And 807.1.d ties 'attacking' to the Attacker designation, which 323.8 stages only where opposing units are present - neither clause fires on a walk into an empty battlefield."
         ]
       },
       "steps": [
         "Play Forgefire Cape (4 Energy + 2 Power). It is [Unique], so this is the only copy the deck may hold (825.3.a).",
         "Play Riven, Shattered (3 Energy + 1 Power). Her [Weaponmaster] trigger chooses the Cape and pays its Equip cost 'reduced by [A]' - one rainbow less than one rainbow is nothing (821.1.c, 821.1.c.2).",
-        "434.1.d gives her the Cape's +3, so she is a 6 Might body; 136.2.c appends its Effect Text to her Rules Text.",
+        "435.1.d gives her the Cape's +3, so she is a 6 Might body; 136.2.c appends its Effect Text to her Rules Text.",
         "Attack. Riven's own clause deals 2 to one chosen enemy unit there, and the Cape's appended clause deals 2 to ALL enemy units there - 4 on the chosen one, 2 on the rest.",
         "On the opponent's turn the Cape's half still fires when Riven DEFENDS; her own clause does not.",
-        "A second or third Riven can take the same Cape for free later - 434.1.f detaches it from the previous carrier, and 434.1.g is why you never point it at the body already wearing it."
+        "A second or third Riven can take the same Cape for free later - 435.1.f detaches it from the previous carrier, and 435.1.g is why you never point it at the body already wearing it."
       ],
       "netPerIteration": "4 damage to one enemy unit and 2 to every other at that battlefield, per Riven attack, with the Equipment attached for nothing",
-      "terminatesIn": "engine only - one Cape by [Unique] (825.3.a) and three Rivens by 103.2.b, and neither clause fires on an unoccupied battlefield (323.9 + 807.1.d); nothing here scores",
-      "rulesVersion": "2026-07-16",
+      "terminatesIn": "engine only - one Cape by [Unique] (825.3.a) and three Rivens by 103.3.b, and neither clause fires on an unoccupied battlefield (323.8 + 807.1.d); nothing here scores",
+      "rulesVersion": "2026-10-09",
       "walkedVersion": "2026-07-16",
       "sources": [
         {
-          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "title": "Riftbound Core Rules, Last Updated 2026-10-09 (data/Riftbound-Core-Rules-2026-10-09.txt)",
           "kind": "riot",
-          "date": "2026-07-16"
+          "date": "2026-10-09"
         },
         {
           "title": "Card text verbatim from data/corpus_flat.txt (built from Riot's gallery content API)",
@@ -48723,7 +48723,7 @@
           "date": "2026-09-07"
         }
       ],
-      "notes": "HAND-WALKED 2026-09-07 (issue #188). The first entry to use SFD-190 Forgefire Cape or VEN-041 Riven, Shattered. Card text verbatim from data/corpus_flat.txt. Citations opened and quoted: 053.1, 103.2.b, 103.2.d.1, 103.2.d.2, 136.2.b, 136.2.c, 136.2.d, 323.9, 434.1.d, 434.1.f, 434.1.g, 469, 807.1.d, 818.1.b.1, 821.1.c, 821.1.c.2, 821.1.c.3, 821.1.c.6, 825.3.a. VEN-041 has a second printing, VEN-171, whose corpus row omits the [Weaponmaster] reminder text but is otherwise identical; CardIndex.equivalents folds them and there is no text difference to worry about - checked, because a multi-base name with different text would be a real matching hazard. The Signature card makes the legend line ONE name, which is the shape test/legend-lines.test.ts is safest with. Ban check: neither card is banned or restricted. No unruled reading."
+      "notes": "HAND-WALKED 2026-09-07 (issue #188). The first entry to use SFD-190 Forgefire Cape or VEN-041 Riven, Shattered. Card text verbatim from data/corpus_flat.txt. Citations opened and quoted: 053.1, 103.3.b, 103.3.d.1, 103.3.d.2, 136.2.b, 136.2.c, 136.2.d, 323.8, 435.1.d, 435.1.f, 435.1.g, 471, 807.1.d, 818.1.b.1, 821.1.c, 821.1.c.2, 821.1.c.3, 821.1.c.6, 825.3.a. VEN-041 has a second printing, VEN-171, whose corpus row omits the [Weaponmaster] reminder text but is otherwise identical; CardIndex.equivalents folds them and there is no text difference to worry about - checked, because a multi-base name with different text would be a real matching hazard. The Signature card makes the legend line ONE name, which is the shape test/legend-lines.test.ts is safest with. Ban check: neither card is banned or restricted. No unruled reading."
     },
     {
       "id": "mirror-image-reflection-atakhan-printed-cost",
@@ -58666,7 +58666,7 @@
           "quantity": 1,
           "role": "enabler",
           "zone": "HAND",
-          "note": "Chaos spell, E2, no Power. 'Move an enemy unit from a battlefield to its base. Then, if there's an enemy unit alone at that battlefield, draw 1.' One per attack; 103.2.b caps the deck at 3 copies."
+          "note": "Chaos spell, E2, no Power. 'Move an enemy unit from a battlefield to its base. Then, if there's an enemy unit alone at that battlefield, draw 1.' One per attack; 103.3.b caps the deck at 3 copies."
         }
       ],
       "needs": [],
@@ -58675,38 +58675,38 @@
       ],
       "prerequisites": {
         "easy": [
-          "Any Fury/Chaos legend. The pool prints FIVE names across twelve printings, measured against data/cards.json rather than typed: Loose Cannon (OGN-251 / OGN-301), Dark Child - Starter (OGS-017), Glorious Executioner (SFD-185 / SFD-242), Bloodharbor Ripper (UNL-185 / UNL-228), Master of Shadows (VEN-143 / VEN-191). OGN-034 is mono-Fury and UNL-124 is mono-Chaos, so the union is exactly {fury, chaos} under 103.1.b and every one of the five is legal.",
-          "Neither card appears in data/legality.json, whose 21 rows were checked on 2026-09-14; neither carries the Signature supertype, so 103.2.d.2 imposes no legend of its own."
+          "Any Fury/Chaos legend. The pool prints FIVE names across twelve printings, measured against data/cards.json rather than typed: Loose Cannon (OGN-251 / OGN-301), Dark Child - Starter (OGS-017), Glorious Executioner (SFD-185 / SFD-242), Bloodharbor Ripper (UNL-185 / UNL-228), Master of Shadows (VEN-143 / VEN-191). OGN-034 is mono-Fury and UNL-124 is mono-Chaos, so the union is exactly {fury, chaos} under 103.2.b and every one of the five is legal.",
+          "Neither card appears in data/legality.json, whose 21 rows were checked on 2026-09-14; neither carries the Signature supertype, so 103.3.d.2 imposes no legend of its own."
         ],
         "notable": [
-          "THE THRESHOLD IS THE GARRISON'S SUMMED MIGHT, NOT ITS SIZE, AND THAT IS WHY A CHEAP MOVER IS THE LEVER. R28 = A defines excess damage as attacking Might that never got assigned, and 465.2.c.4 is the paragraph that leaves any: 'Units cannot have more damage assigned to them than the minimum required to constitute lethal damage unless no further units remain to have damage assigned to them', with 142.4.b making Lethal Damage 'a non-zero amount greater than or equal to that Unit's Might'. So a lone Tryndamere assigns exactly the defenders' summed Might and keeps the rest.",
-          "REMOVING A BODY IS STRICTLY CHEAPER THAN KILLING IT, FOR THIS THRESHOLD AND ONLY FOR THIS ONE. A defender you kill still eats its whole Might out of your assignment under 465.2.c.4; a defender you MOVE eats nothing, because 465.2.b sums 'the Might of all Defending Units' and it is no longer one. Every catalogued excess-damage lever until now either shrank the defender or enlarged the attacker; this one deletes a term from the sum.",
-          "THE ORDER IS FORCED BY THE ABSENCE OF A KEYWORD, NOT CHOSEN. UNL-124 carries neither [Action] nor [Reaction], so 155 confines it — 'A spell can be played during an Open State outside of Showdowns on its controller's turn.' After Tryndamere moves in there is no such window: 323.9 marks the Combat Staged at the very next Cleanup and 323.13 opens it, 'If the current state is a Neutral Open State and one or more Combats are Staged at Battlefields, the Turn Player chooses one of those Battlefields. Combat begins there.' Cast it before the move or not at all. This is the #58 evacuation sequencing rule arriving on a line that is not an evacuation.",
-          "THE LEVER HAS A FLOOR AND THE FLOOR BITES TWICE, WHICH IS THE WHOLE REASON THIS IS NOT 'REMOVE THE GARRISON'. 465.1: 'If both Attacking and Defending units remain at this battlefield, the following Tasks become Outstanding' — empty the garrison and no damage is ever assigned, so excess is ZERO and the clause cannot be met. And independently, 323.6 strips their Control the instant their last body leaves ('Players lose control of any controlled Battlefields without their Units occupying them if the turn is in an Open State and there is no Showdown or Combat ongoing there'), after which 344.2 opens a Showdown rather than a Combat and 323.9 stages no Combat at all — so Tryndamere never gains the Attacker designation (464.2.c.3) and his 'when I conquer after an attack' has nothing to read — THE ATTACK IS THE HALF THAT GOES MISSING, not the conquer. Leave exactly one defender, and its Might must be 3 or less.",
+          "THE THRESHOLD IS THE GARRISON'S SUMMED MIGHT, NOT ITS SIZE, AND THAT IS WHY A CHEAP MOVER IS THE LEVER. R28 = A defines excess damage as attacking Might that never got assigned, and 467.2.c.4 is the paragraph that leaves any: 'Units cannot have more damage assigned to them than the minimum required to constitute lethal damage unless no further units remain to have damage assigned to them', with 142.4.b making Lethal Damage 'a non-zero amount greater than or equal to that Unit's Might'. So a lone Tryndamere assigns exactly the defenders' summed Might and keeps the rest.",
+          "REMOVING A BODY IS STRICTLY CHEAPER THAN KILLING IT, FOR THIS THRESHOLD AND ONLY FOR THIS ONE. A defender you kill still eats its whole Might out of your assignment under 467.2.c.4; a defender you MOVE eats nothing, because 467.2.b sums 'the Might of all Defending Units' and it is no longer one. Every catalogued excess-damage lever until now either shrank the defender or enlarged the attacker; this one deletes a term from the sum.",
+          "THE ORDER IS FORCED BY THE ABSENCE OF A KEYWORD, NOT CHOSEN. UNL-124 carries neither [Action] nor [Reaction], so 155 confines it — 'A spell can be played during an Open State outside of Showdowns on its controller's turn.' After Tryndamere moves in there is no such window: 323.8 marks the Combat Staged at the very next Cleanup and 323.12 opens it, 'If the current state is a Neutral Open State and one or more Combats are Staged at Battlefields, the Turn Player chooses one of those Battlefields. Combat begins there.' Cast it before the move or not at all. This is the #58 evacuation sequencing rule arriving on a line that is not an evacuation.",
+          "THE LEVER HAS A FLOOR AND THE FLOOR BITES TWICE, WHICH IS THE WHOLE REASON THIS IS NOT 'REMOVE THE GARRISON'. 467.1: 'If both Attacking and Defending units remain at this battlefield, the following Tasks become Outstanding' — empty the garrison and no damage is ever assigned, so excess is ZERO and the clause cannot be met. And independently, 323.5 strips their Control the instant their last body leaves ('Players lose control of any controlled Battlefields without their Units occupying them if the turn is in an Open State and there is no Showdown or Combat ongoing there'), after which 344.2 opens a Showdown rather than a Combat and 323.8 stages no Combat at all — so Tryndamere never gains the Attacker designation (466.2.c.3) and his 'when I conquer after an attack' has nothing to read — THE ATTACK IS THE HALF THAT GOES MISSING, not the conquer. Leave exactly one defender, and its Might must be 3 or less.",
           "THE CARD REPLACES ITSELF PRECISELY WHEN IT IS PLAYED CORRECTLY, WHICH IS AN ACCIDENT WORTH STATING. Isolate's rider is 'if there's an enemy unit alone at that battlefield, draw 1', and 740.2.a defines it as 'A unit is alone when there are no other friendly units at the same location' — friendly to the unit, i.e. the opponent's own bodies. The floor above requires exactly one defender left standing, which is the same board state the rider asks for. The draw is not a bonus you sometimes get; it is guaranteed by the constraint the line already obeys.",
-          "THE FURY/MIND TWIN, AND THE TWO ARE NOT INTERCHANGEABLE. tryndamere-thousand-tailed-watcher-shrink does the same job with OGN-116 Thousand-Tailed Watcher, which is MIND at E7 + 1 Mind Power and therefore illegal under every Fury/Chaos legend by 103.1.b. The difference is not only price. The Watcher gives every enemy unit -3 Might to a MINIMUM OF 1, and 477.3.b snapshots that limit when it applies, so against a single Might-8 defender it leaves a summed Might of 1 and Tryndamere keeps 7 — while Isolate on that same board empties the battlefield and the floor above refuses it. Against a big body standing beside a small one, Isolate leaves a summed Might of 3 for two Energy and the Watcher costs seven and a Power. The Watcher is the one-body answer; this is the two-body answer.",
+          "THE FURY/MIND TWIN, AND THE TWO ARE NOT INTERCHANGEABLE. tryndamere-thousand-tailed-watcher-shrink does the same job with OGN-116 Thousand-Tailed Watcher, which is MIND at E7 + 1 Mind Power and therefore illegal under every Fury/Chaos legend by 103.2.b. The difference is not only price. The Watcher gives every enemy unit -3 Might to a MINIMUM OF 1, and 479.4.b snapshots that limit when it applies, so against a single Might-8 defender it leaves a summed Might of 1 and Tryndamere keeps 7 — while Isolate on that same board empties the battlefield and the floor above refuses it. Against a big body standing beside a small one, Isolate leaves a summed Might of 3 for two Energy and the Watcher costs seven and a Power. The Watcher is the one-body answer; this is the two-body answer.",
           "SFD-129 Temptation IS NOT A SECOND COPY OF THIS. Chaos, E2, with [Repeat] E2, and 820.2.a lets the extra execution choose a different target — so E4 moves two enemy bodies where Isolate moves one. But its destination clause is 'Move an enemy unit to a location where there's a unit with the same controller', so it can only put a body somewhere the opponent ALREADY has one; against a garrison with an empty base and an empty second battlefield it has no legal destination. Isolate names the base unconditionally. Run Temptation as a second lever only where the opponent's board is spread.",
-          "THE LEVER IS FOR THE SMALL BOARD AND SAYS SO. 465.2.a sums the Might of ALL attacking units, so every extra attacker widens the window by its own printed Might at no thinking cost: tryndamere-brambleback-conquer attacks at Might 28 across five bodies and needs no Isolate until the garrison passes summed Might 23. This entry deliberately prices ONE Tryndamere, where the window is five Might wide and a single oversized defender closes it.",
-          "CEILING. 470 caps Scoring 'from either method, once per Battlefield per turn' and 485.4 puts two battlefields on a Duel table, so two Conquers a turn bounds the Score half however many Isolates you hold; the ability half is bounded separately by 103.2.b's three copies, since Isolate is a spell and does not come back. Three extra points a game, and never a finisher on its own — which is why this is an ENGINE and not a BURST."
+          "THE LEVER IS FOR THE SMALL BOARD AND SAYS SO. 467.2.a sums the Might of ALL attacking units, so every extra attacker widens the window by its own printed Might at no thinking cost: tryndamere-brambleback-conquer attacks at Might 28 across five bodies and needs no Isolate until the garrison passes summed Might 23. This entry deliberately prices ONE Tryndamere, where the window is five Might wide and a single oversized defender closes it.",
+          "CEILING. 472 caps Scoring 'from either method, once per Battlefield per turn' and 487.4 puts two battlefields on a Duel table, so two Conquers a turn bounds the Score half however many Isolates you hold; the ability half is bounded separately by 103.3.b's three copies, since Isolate is a spell and does not come back. Three extra points a game, and never a finisher on its own — which is why this is an ENGINE and not a BURST."
         ]
       },
       "steps": [
         "The board this is for: the opponent controls a battlefield and garrisons it with TWO OR MORE units, of which at least one is Might 3 or less. Tryndamere, Barbarian is on your board and ready — 143.4, 'Units enter the Board exhausted', and 315.1.b readies him in your Awakening.",
-        "Count the garrison before doing anything. 465.2.b sums the Might of all Defending Units, 465.2.c.4 caps each defender's assignment at the minimum lethal for it, and 142.4.b makes that minimum its Might. So a lone Tryndamere at Might 8 will keep 8 minus the garrison's summed Might, and his clause wants 5 or more of it: the garrison has to come down to summed Might 3.",
-        "Main Phase, BEFORE any move: cast UNL-124 Isolate (E2) on the biggest defender — 'Move an enemy unit from a battlefield to its base.' 155 is why this is not optional sequencing: Isolate carries no [Action] or [Reaction], so it is playable only 'during an Open State outside of Showdowns on its controller's turn', and after the move 323.9 stages the Combat at the next Cleanup and 323.13 opens it with no window in between.",
-        "LEAVE A DEFENDER STANDING. If Isolate takes the last one, 465.1 never makes the damage tasks Outstanding ('If both Attacking and Defending units remain at this battlefield'), so there is no assignment and no excess; and 323.6 hands their Control back at the same Cleanup, after which 344.2 opens a Showdown instead of a Combat and there is no Attacker designation for his 'after an attack' to read.",
+        "Count the garrison before doing anything. 467.2.b sums the Might of all Defending Units, 467.2.c.4 caps each defender's assignment at the minimum lethal for it, and 142.4.b makes that minimum its Might. So a lone Tryndamere at Might 8 will keep 8 minus the garrison's summed Might, and his clause wants 5 or more of it: the garrison has to come down to summed Might 3.",
+        "Main Phase, BEFORE any move: cast UNL-124 Isolate (E2) on the biggest defender — 'Move an enemy unit from a battlefield to its base.' 155 is why this is not optional sequencing: Isolate carries no [Action] or [Reaction], so it is playable only 'during an Open State outside of Showdowns on its controller's turn', and after the move 323.8 stages the Combat at the next Cleanup and 323.12 opens it with no window in between.",
+        "LEAVE A DEFENDER STANDING. If Isolate takes the last one, 467.1 never makes the damage tasks Outstanding ('If both Attacking and Defending units remain at this battlefield'), so there is no assignment and no excess; and 323.5 hands their Control back at the same Cleanup, after which 344.2 opens a Showdown instead of a Combat and there is no Attacker designation for his 'after an attack' to read.",
         "Isolate's own rider now pays, and it pays by construction rather than by luck: 'if there's an enemy unit alone at that battlefield, draw 1', with 740.2.a reading alone as 'no other friendly units at the same location' — friendly to the remaining defender, which is the exact board the previous step requires. Draw 1.",
-        "Standard-Move Tryndamere in: 144.4.a from his Base to that Battlefield, paying his exhaust (144.2; 420.3.a, 'The Cost is Exhausting one or more Units'). 450 applies Contested to the destination, 464.2.c.1 makes you the Attacker as 'the player whose unit(s) applied the Contested status', and 464.2.c.3 designates him an Attacking Unit.",
-        "The damage step. 465.2.a sums your Might at 8, 465.2.b sums theirs at 3 or less, 465.2.c assigns 'starting with the Attacker'. The defender takes its minimum lethal and no more (465.2.c.4), and what is left over is the excess R28 = A names.",
-        "466.3.a: 'A Player has won a combat if they received either the attacker or defender designation and are the only Player that has units remaining at this battlefield during this step.' 466.5 establishes Control, 466.5.d makes that a Conquer, and 471.1 gains the Score's own point. Tryndamere's trigger then checks 5 or more excess, finds it, and 194.1.c gains a second point by ability.",
+        "Standard-Move Tryndamere in: 144.4.a from his Base to that Battlefield, paying his exhaust (144.2; 421.3.a, 'The Cost is Exhausting one or more Units'). 452 applies Contested to the destination, 466.2.c.1 makes you the Attacker as 'the player whose unit(s) applied the Contested status', and 466.2.c.3 designates him an Attacking Unit.",
+        "The damage step. 467.2.a sums your Might at 8, 467.2.b sums theirs at 3 or less, 467.2.c assigns 'starting with the Attacker'. The defender takes its minimum lethal and no more (467.2.c.4), and what is left over is the excess R28 = A names.",
+        "468.3.a: 'A Player has won a combat if they received either the attacker or defender designation and are the only Player that has units remaining at this battlefield during this step.' 468.5 establishes Control, 468.5.d makes that a Conquer, and 473.1 gains the Score's own point. Tryndamere's trigger then checks 5 or more excess, finds it, and 194.1.c gains a second point by ability.",
         "THE NUMBER, so a reader can refute it in one line. A garrison of one Might-5 and one Might-3 is summed Might 8. Tryndamere alone assigns all eight, kills both, wins the combat and Conquers for ONE point with excess zero. Isolate the Might-5 first and the sum is 3: he assigns three, keeps five, and the identical attack pays TWO. Two Energy and no Power bought the second point, and the rider drew the card back."
       ],
-      "terminatesIn": "engine — one extra point per Isolate on a garrison of two or more whose smallest body is Might 3 or less; 103.2.b caps the deck at three copies of a spell that does not return, so three extra points a game, while 470 and 485.4 bound the Score half at two Conquers a turn independently",
+      "terminatesIn": "engine — one extra point per Isolate on a garrison of two or more whose smallest body is Might 3 or less; 103.3.b caps the deck at three copies of a spell that does not return, so three extra points a game, while 472 and 487.4 bound the Score half at two Conquers a turn independently",
       "sources": [
         {
-          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
+          "title": "Riftbound Core Rules, Last Updated 2026-10-09 (data/Riftbound-Core-Rules-2026-10-09.txt)",
           "kind": "riot",
-          "date": "2026-07-16"
+          "date": "2026-10-09"
         },
         {
           "title": "Card text verbatim from data/corpus_flat.txt (OGN-034, UNL-124, SFD-129, OGN-116)",
@@ -58726,7 +58726,7 @@
           "date": "2026-09-14"
         }
       ],
-      "rulesVersion": "2026-07-16",
+      "rulesVersion": "2026-10-09",
       "walkedVersion": "2026-07-16",
       "notes": "SYNTHESIZED, not extracted (#200): the target was chosen first — fury/chaos is the one legend pair with ZERO spanning finishers, measured over all 766 entries on 2026-09-14 — and the pool was asked afterwards whether it could supply one. It cannot supply a FINISHER, and the walk document records that refusal with its arithmetic; what it does supply is this lever, which is the Chaos member of a family the catalogue held only in fury/mind. Hand-walked against card text and the Core Rules with every cited paragraph opened and pasted, so the status is verified rather than candidate; the provenance is recorded here because it is the first entry in this catalogue designed from a target rather than from a card."
     },
