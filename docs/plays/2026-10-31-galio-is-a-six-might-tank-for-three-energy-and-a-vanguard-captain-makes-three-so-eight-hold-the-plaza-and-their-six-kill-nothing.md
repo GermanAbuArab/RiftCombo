@@ -375,13 +375,19 @@ Body/Order legends (Leads).
   Mighty is the question, 709: *"A Unit "becomes Mighty" at the moment its Might changes from being
   less than 5 to being 5 or greater."* A card in hand has no Might on the board, so it is not settled
   here. If it does, the channelled rune replaces the one Galio's Power recycled.
-  2026-11-16 (#539): open, R35 (https://github.com/GermanAbuArab/RiftCombo/issues/11#issuecomment-6923916103).
+  2026-11-16 (#539): no trigger (R35, reading c, project reading; question
+  https://github.com/GermanAbuArab/RiftCombo/issues/11#issuecomment-6923916103, record
+  https://github.com/GermanAbuArab/RiftCombo/issues/11#issuecomment-6928291464).
   The rules do not say whether a unit entering the board at 5+ Might "becomes" Mighty. 710: *"Units on
   the board are evaluated according to their current Might."* 711: *"Units in Non-Board Zones are
   evaluated according to their printed Might."* 124: *"A Game Object that changes zones to or from a
   Non-Board Zone becomes a new object for the purposes of tracking that object."* 709 is quoted above.
   Every table in this play uses the "no rune back" reading: Galio's Power stays recycled. If R35 is
   ruled yes, redo the rune totals on the rows where Galio enters.
+  2026-11-23 (#644): R35 was settled on 2026-11-16 as reading c, a project reading and not an official
+  ruling: entering the board is never becoming Mighty, at any Might, so Galio entering at 6 does not
+  trigger Grand Duelist in any ordering. The "no rune back" tables stand. They are redone only if official
+  text or an official ruling reopens R35.
 - **A Tank played inside their attack.** `OGN-241 Shen, Kinkou` (Order, E3 + 1 Power): *"[Reaction]
   (Play any time, even before spells and abilities resolve, including to a battlefield you control.)
   [Shield 2] (+2 :rb_might: while I'm a defender.) [Tank] (I must be assigned combat damage first.)"*
