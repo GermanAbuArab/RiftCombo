@@ -9,7 +9,7 @@
 // (xref) are remapped, and never by number. A cluster follow-up of #645 that re-reads a reworded
 // paragraph and finds its meaning held, or finds a deleted paragraph's rule at another 10-09 number,
 // adds it to `REREAD` (scripts/rules-editions.mjs), and its citations then move the same way (#652:
-// 164.2.a and 164.2.b; #653: 429.2.a to 430.2.a, 429.3.a to 430.2). The data marks the edition per ENTRY (`rulesVersion`), so
+// 164.2.a and 164.2.b; #653: 429.2 and 429.3.a to 430.2, 429.2.a to 430.2.a). The data marks the edition per ENTRY (`rulesVersion`), so
 // the pin is per entry: an entry that cites any paragraph Riot reworded or deleted keeps every number
 // and `rulesVersion: "2026-07-16"`, and an entry whose every citation kept its text moves whole.
 // data/synergies.json carries one `rulesVersion` for the file and stays on 07-16.

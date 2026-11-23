@@ -76,17 +76,23 @@ export const hash = (s) => crypto.createHash("sha256").update(skeleton(s)).diges
  * `as`; a changed extraction voids the verdict), and the issue that quotes both texts and gives the
  * reasoning (`by`). scripts/remap-rules.mjs moves a citation of one as it moves a renumbered paragraph
  * and rewrites the 07-16 words where a moved entry prints them; `was`, a regex, is the 07-16 form a
- * paraphrase can keep, which pins an entry that prints it next to the number. test/rule-refs.test.ts
- * accepts the 10-09 text at `to` for the 07-16 hash the ledger keeps.
+ * paraphrase can keep, which pins an entry that prints it next to the number. Two rows may share a `to`
+ * (429.2 and 429.3.a both read into 430.2): `from` tells them apart, and an entry that cites both stays
+ * pinned. test/rule-refs.test.ts accepts the 10-09 text at `to` for the 07-16 hash the ledger keeps.
  */
 export const REREAD = {
   core: {
     // [Reaction] moved to the front of the ability, in the form 813.1.d gives both editions (#652).
     "164.2.a": { to: "164.2.a", from: "235d4a668bfa2e1a", as: "4bf343f510935ab9", by: "#652", was: String.raw`\[Reaction\]\s*[‐-―−-]` },
     "164.2.b": { to: "164.2.b", from: "01d1e19c9c5002c4", as: "6a98a4ecf757a69c", by: "#652", was: String.raw`\[Reaction\]\s*[‐-―−-]` },
-    // Deleted. 430.2.a keeps its first sentence word for word; "will resolve before any other outstanding
-    // items on the chain are finalized" is now 430.2's "finalize immediately when they are played" with
-    // 430.2.a's pause of any ongoing Task or FEPR step (#653).
+    // 430.2 keeps this sentence as its last clause; what it adds, "finalize immediately when they are
+    // played, even when handling tasks or during the resolution of spells and abilities", is what deleted
+    // 429.2.a and 429.3.a said, not a new effect (#653).
+    "429.2": { to: "430.2", from: "65bd79ec84bdc03b", as: "608d155a83574bb9", by: "#653", was: String.raw`resources resolve` },
+    // Deleted. 430.2.a keeps its first sentence word for word, and its second, which pauses any ongoing
+    // Task or FEPR step (Finalize among them) while an Add ability is finalized and resolving, is "will
+    // resolve before any other outstanding items on the chain are finalized". `was` keeps on 07-16 an
+    // entry that prints that clause next to the number (#653).
     "429.2.a": { to: "430.2.a", from: "9feee30e35744870", as: "249531eace34e7a0", by: "#653", was: String.raw`before any other outstanding` },
     // Deleted. 430.2 says it of every triggered and activated Add ability, an Add Reaction activated as
     // 430.3 (07-16 429.3) allows among them, "even ... during the resolution of spells and abilities" (#653).

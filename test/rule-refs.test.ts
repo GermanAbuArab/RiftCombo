@@ -287,7 +287,8 @@ describe("reworded paragraphs re-read and held let their citations move (REREAD)
 
   it("moves a deleted paragraph's citation to the 10-09 paragraph that now says what it said (#653)", () => {
     // 07-16 429.3.a was deleted; 10-09 430.2 holds its rule. 07-16 430.2 is a Channel rule and 10-09
-    // 429.3.a a Kill rule, so only the row says which text a moved entry's 430.2 stands for.
+    // 429.3.a a Kill rule, so only the row says which text a moved entry's 430.2 stands for. 429.2's
+    // row reads into 430.2 too, from another text, and does not clear a citation of 429.3.a.
     const r = REREADS.core!["429.3.a"]!;
     expect(r.to).toBe("430.2");
     const citer = onNew.find((e) => ledger.entries[e.id]!.refs[r.to]?.[2] === r.from);
