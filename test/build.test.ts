@@ -295,7 +295,7 @@ describe("103.1.b — Domain Identity", () => {
   });
 
   it("does not blame a battlefield for having no domain at all", () => {
-    // All 66 battlefield printings carry no domain; 103.1.b.3 and b.4 speak of the domains a card
+    // All 77 battlefield printings carry no domain; 103.1.b.3 and b.4 speak of the domains a card
     // indicates, and there are none to fail.
     expect(row(rows(LEGAL), "103.1.b").detail).not.toContain("Grand Plaza");
   });
@@ -400,10 +400,10 @@ describe("103.2.a.2 — the Chosen Champion is a unit, not a legend", () => {
 });
 
 describe("103.2.d — the Signature cap, now computed (#103)", () => {
-  it("carries exactly 51 Signature base cards, each with exactly one champion tag", () => {
+  it("carries exactly 60 Signature base cards (51, plus the nine Radiance added in #664), each with exactly one champion tag", () => {
     const signature = cards.cards.filter((c) => c.signature);
     const bases = new Set(signature.map((c) => c.base));
-    expect(bases.size).toBe(51);
+    expect(bases.size).toBe(60);
     const withoutTag = signature.filter((c) => championTagOf(c.base, cards) === null);
     expect(withoutTag.map((c) => `${c.code} ${c.name}`)).toEqual([]);
   });

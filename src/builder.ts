@@ -166,7 +166,7 @@ export function zoneOf(card: Card): DeckZone {
  * 103.1.b.3 and 103.1.b.4 are the TEST this implements: a single-domain card is permitted in the
  * matching identity, and one with more than one domain "is permitted only in a Domain Identity that
  * contains all of the indicated Domains on that card", which is the `every`. A card indicating NO
- * domain therefore passes every identity, vacuously — all 66 battlefield printings are in that case.
+ * domain therefore passes every identity, vacuously — all 77 battlefield printings are in that case.
  */
 export const inIdentity = (card: Card, identity: readonly Domain[]): boolean =>
   card.domains.every((d) => identity.includes(d));
@@ -214,7 +214,7 @@ export function filterPool(cards: CardIndex, filters: Partial<PoolFilters> = {})
     // 601.1.c.2: "A sideboard can consist only of valid Main Deck cards."
     if (zone === "sideboard" && zoneOf(card) !== "main") return false;
     if (zone === "champion" && !(card.type.includes("unit") && card.tags.includes(tag!))) return false;
-    // A card that indicates NO domain passes every domain filter (#112). All 66 battlefields are
+    // A card that indicates NO domain passes every domain filter (#112). All 76 battlefields are
     // domainless, so a `some` test dropped the whole zone the moment a legend preselected its two
     // chips — and `inIdentity`, three lines up in this same file, already calls a battlefield legal
     // under any identity (`every` over an empty list). The filter may not hide what the cell would

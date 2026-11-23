@@ -1,7 +1,8 @@
 {
  "notes": [
   "Riot announces errata as prose; printed cards and the gallery API keep the old text. scripts/build-cards.mjs applies these as exact-substring replacements (in the gallery's :rb_*: icon dialect) and fails if a find-string does not match exactly once per printing.",
-  "Source for all 2026-07-23 entries: https://playriftbound.com/en-us/news/announcements/vendetta-errata-updates (fetched 2026-09-02). Riot's [C]/[1]/[M] shorthand was translated to the icon tokens the gallery uses."
+  "Source for all 2026-07-23 entries: https://playriftbound.com/en-us/news/announcements/vendetta-errata-updates (fetched 2026-09-02). Riot's [C]/[1]/[M] shorthand was translated to the icon tokens the gallery uses.",
+  "Source for all 2026-10-09 entries: https://playriftbound.com/en-us/news/announcements/radiance-errata-updates (published 2026-10-09T16:00Z, read 2026-11-23T15:55Z, #664). The gallery read the same day (resultsUpdatedAt 2026-11-23T15:55:01Z) still carried the OLD text on all four printings (RAD-081, RAD-154, RAD-010, RAD-167). Riot's NEW TEXT, verbatim: Elnuk Herd 'When you play me, give a friendly unit +3 [M] this turn, then recycle me if I was played from face down.'; Last Caress 'The next unit you play this turn, even from face down, can be played to any battlefield.'; Forbidden Technique 'When you play a card with Energy cost [7] or more, you may play this from your trash for [1][C][C]. Then banish this.' (RAD-010 is Fury, so [C] is :rb_rune_fury:); Neeko, Blending In 'If Neeko is in your deck, choose up to 3 different legends in addition to your starting legend. (Different means none match names.)'"
  ],
  "entries": [
   {
@@ -312,7 +313,8 @@
    "effective": "2026-01-14",
    "source": "https://playriftbound.com/en-us/news/rules-and-releases/riftbound-spiritforged-errata",
    "find": "When I conquer an open battlefield,",
-   "replace": "When I conquer a battlefield that was uncontrolled,"
+   "replace": "When I conquer a battlefield that was uncontrolled,",
+   "alreadyReprinted": ["RAD-181"]
   },
   {
    "name": "Bone Skewer",
@@ -369,6 +371,34 @@
    "source": "https://playriftbound.com/en-us/news/rules-and-releases/unleashed-errata-updates",
    "find": "I can be played to a battlefield where there are enemy units",
    "replace": "I can [Ambush] to a battlefield where there are enemy units"
+  },
+  {
+   "name": "Elnuk Herd",
+   "effective": "2026-10-09",
+   "source": "https://playriftbound.com/en-us/news/announcements/radiance-errata-updates",
+   "find": "give another friendly unit +3 :rb_might: this turn",
+   "replace": "give a friendly unit +3 :rb_might: this turn"
+  },
+  {
+   "name": "Last Caress",
+   "effective": "2026-10-09",
+   "source": "https://playriftbound.com/en-us/news/announcements/radiance-errata-updates",
+   "find": "The next unit you play this turn (even from face down) can be played to any battlefield.",
+   "replace": "The next unit you play this turn, even from face down, can be played to any battlefield."
+  },
+  {
+   "name": "Forbidden Technique",
+   "effective": "2026-10-09",
+   "source": "https://playriftbound.com/en-us/news/announcements/radiance-errata-updates",
+   "find": "you may play this from your trash for :rb_energy_1::rb_rune_fury::rb_rune_fury:. Banish this.",
+   "replace": "you may play this from your trash for :rb_energy_1::rb_rune_fury::rb_rune_fury:. Then banish this."
+  },
+  {
+   "name": "Neeko, Blending In",
+   "effective": "2026-10-09",
+   "source": "https://playriftbound.com/en-us/news/announcements/radiance-errata-updates",
+   "find": "choose 3 different legends in addition to your starting legend.",
+   "replace": "choose up to 3 different legends in addition to your starting legend."
   }
  ]
 }

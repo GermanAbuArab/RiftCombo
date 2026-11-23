@@ -176,7 +176,8 @@
    "entity": "unit",
    "name": "Riven, Broken Blade",
    "codes": [
-    "RAD-043"
+    "RAD-043",
+    "RAD-043a"
    ],
    "bases": [
     "RAD-043"
@@ -499,7 +500,8 @@
    "entity": "unit",
    "name": "Riven, Broken Blade",
    "codes": [
-    "RAD-043"
+    "RAD-043",
+    "RAD-043a"
    ],
    "bases": [
     "RAD-043"

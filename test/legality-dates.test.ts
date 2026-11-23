@@ -92,9 +92,10 @@ describe("notInPool records a ban on a card the pool does not hold yet", () => {
     formats: [{ id: "constructed", lastUpdated: "2026-11-16", source: "https://example.test/", banned: [ban] }],
   });
 
+  // A made-up card: Riven, Broken Blade (RAD-043) was the real case until #664 put Radiance in the pool.
   it("records it under the declared code, without a pool lookup", () => {
-    const out = resolveLegality(pool, one({ entity: "unit", name: "Riven, Broken Blade", notInPool: "RAD-043" }));
-    expect(out.entries[0]).toMatchObject({ name: "Riven, Broken Blade", codes: ["RAD-043"], bases: ["RAD-043"] });
+    const out = resolveLegality(pool, one({ entity: "unit", name: "Nobody, Unprinted", notInPool: "TST-001" }));
+    expect(out.entries[0]).toMatchObject({ name: "Nobody, Unprinted", codes: ["TST-001"], bases: ["TST-001"] });
   });
 
   it("fails the build once the pool holds the card, so the field cannot outlive the ingestion", () => {
@@ -103,7 +104,7 @@ describe("notInPool records a ban on a card the pool does not hold yet", () => {
   });
 
   it("an ordinary name that does not resolve still fails", () => {
-    expect(() => resolveLegality(pool, one({ entity: "unit", name: "Riven, Broken Blade" }))).toThrow(/not found/);
+    expect(() => resolveLegality(pool, one({ entity: "unit", name: "Nobody, Unprinted" }))).toThrow(/not found/);
   });
 });
 

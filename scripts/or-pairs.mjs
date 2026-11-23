@@ -36,6 +36,20 @@
 //   - regex artifacts spanning a clause boundary (OGN-202, SFD-058, UNL-051).
 //   - OGN-182 Scrapheap is banned in both formats.
 //
+// RADIANCE, read 2026-11-23 (#664): six new rows, and no catalogue entry or synergy rule names a RAD
+// card yet, so none can price one at half rate today; the reason each is safe is recorded for the
+// entry that first uses it.
+//   - `attack OR defend` +RAD-045 K'Sante, Dauntless, +RAD-085 Graves, Blasting Through: both
+//     windows, no cost per use, so an ENGINE using either prices two triggers per turn cycle.
+//     RAD-180 is Ezreal, Dashing's reprint and replaces SFD-082 as the corpus row (equal text).
+//   - three NEW PAIRS and two new members of old ones, all "when you play me (or this) or when X":
+//     `play OR conquer` RAD-073 Pillaged Armory, RAD-116 Concert Poster (both "when you conquer
+//     here"); `play OR move` RAD-146 The Ball; `play OR exhaust` RAD-138 Seraphine, Not Alone;
+//     `play OR attack` RAD-137 Mordekaiser, Dominating; `play OR predict` RAD-067 Clocktower
+//     Guardian is a regex artifact: the card says "when you play me or when I hold, [Predict 3]", so
+//     its real pair is play OR hold. The play window fires once per copy played, so an ENGINE priced
+//     on the second window alone is the risk to check.
+//
 // WHAT TO DO WITH A HIT - the follow-up question, measured 2026-09-14 and worth more than the hit:
 // A VERB-PAIR CARD IS ONLY AT RISK OF HALF-RATE PRICING WHEN BOTH WINDOWS ARE INDEPENDENTLY PAYABLE.
 //   - If the trigger costs its own EXHAUST, 315.1.b readies it once at your Awakening, so the pair
