@@ -261,7 +261,7 @@
           "card": "SFD-166",
           "quantity": 1,
           "role": "enabler",
-          "note": "Buffs each unit played this turn so Renata (4 Might) enters at 5 and becomes Mighty."
+          "note": "Buffs each unit played this turn so Renata (4 Might) enters at 5 and becomes Mighty. CORRECTED 2026-11-23 (#644): she enters at 4, not 5. Rally's buff is a Delayed Trigger (390.2) that goes on the Chain once she has been played, so once she is on the board (350.1, 359.2.c, 383.2.c, 383.3); it buffs her from 4 to 5 there (426.1.b, 703), and that is becoming Mighty (709). Entering the board is never becoming Mighty under R35 reading c, a project reading (https://github.com/GermanAbuArab/RiftCombo/issues/11#issuecomment-6928291464). Walk: docs/phase0/walks/2026-11-23-issue644-renata-mighty-on-entry-r35.md."
         }
       ],
       "needs": [
@@ -275,7 +275,7 @@
       "prerequisites": {
         "easy": [
           "Legend domains cover Mind and Order.",
-          "You control a battlefield to play Renata to."
+          "You control a battlefield to play Renata to. CORRECTED 2026-11-23 (#644): one where nothing lifts her Might as she lands. OGN-294 Trifarian War Camp ('Units here have +1 :rb_might:.') lands her at 5, which under R35 reading c (a project reading) is not becoming Mighty, and Rally's buff then takes her from 5 to 6, which 709's second example says is not becoming Mighty either: Fiora never readies her, and the line scores 0 there."
         ],
         "notable": [
           "Infinite Energy and Power established.",
@@ -289,10 +289,10 @@
         ]
       },
       "steps": [
-        "Play Renata Glasc, Mastermind to a battlefield you control. Rally the Troops buffs her to 5 Might: she becomes Mighty.",
+        "Play Renata Glasc, Mastermind to a battlefield you control. Rally the Troops buffs her to 5 Might: she becomes Mighty. CORRECTED 2026-11-23 (#644): in that order. She enters exhausted at her printed 4 (359.2.c); Rally's trigger then resolves and buffs her to 5 on the board, which is becoming Mighty (709). Entering is not (R35 reading c, a project reading), so she must land below 5: see the battlefield prerequisite.",
         "Fiora, Worthy triggers: pay 1 Order Power to ready Renata.",
         "Pay 4 Energy + 4 Mind Power and exhaust Renata: score 1 point (ability-granted, not capped by rule 470).",
-        "Play Retreat on Renata: she returns to hand (a new object — rule 124 — so she becomes Mighty again on re-entry).",
+        "Play Retreat on Renata: she returns to hand (a new object — rule 124 — so she becomes Mighty again on re-entry). CORRECTED 2026-11-23 (#644): re-entry does not make her Mighty (R35 reading c, a project reading). Rule 124 matters because the new object has no buff (705, 124.1), so Rally's trigger buffs her again when she is replayed (426.1.b), and that buff, 4 to 5 on the board, makes her Mighty (709).",
         "Repeat until you pass the Victory Score."
       ],
       "netPerIteration": "1 point per ~10 Energy + 5 Power. Bounded only by the infinite engines feeding it.",
@@ -333,7 +333,7 @@
       ],
       "rulesVersion": "2026-07-16",
       "walkedVersion": "2026-07-16",
-      "notes": "Any other repeatable ready would replace Fiora + Rally the Troops; this is the line the tournament deck used. SOURCE READ IN FULL 2026-09-04 (docs/phase0/walks/2026-09-04-source-verification-tcgplayer.md): the same author's Hartford report calls this the previous plan — 'Previously, this was done by making Renata Glasc - Mastermind mighty with Rally the Troops, then readying it repeatedly with a combination of Fiora - Worthy and Retreat. Funnily enough, this combo still exists in the sideboard of Relivia's list' — with Time Warp taking over the main deck. The line still closes; it is simply no longer the deck's primary finisher."
+      "notes": "Any other repeatable ready would replace Fiora + Rally the Troops; this is the line the tournament deck used. SOURCE READ IN FULL 2026-09-04 (docs/phase0/walks/2026-09-04-source-verification-tcgplayer.md): the same author's Hartford report calls this the previous plan — 'Previously, this was done by making Renata Glasc - Mastermind mighty with Rally the Troops, then readying it repeatedly with a combination of Fiora - Worthy and Retreat. Funnily enough, this combo still exists in the sideboard of Relivia's list' — with Time Warp taking over the main deck. The line still closes; it is simply no longer the deck's primary finisher. REVISED 2026-11-23 (#644): re-walked against R35, settled 2026-11-16 as reading c, a PROJECT READING and not an official ruling (https://github.com/GermanAbuArab/RiftCombo/issues/11#issuecomment-6928291464): entering the board is never becoming Mighty. The entry stays verified and INFINITE. Rally the Troops' buff is a Delayed Trigger (390.2) that resolves after Renata is on the board (350.1, 383.2.c, 383.3), so every pass takes her from 4 to 5 on the board, which is 709's own first example and counts under every reading R35 weighed. Corrected: the SFD-166 note (\"enters at 5\"), steps 1 and 4, and the battlefield prerequisite (a static lift where she lands, such as OGN-294 Trifarian War Camp, stops the line under reading c). Walked against the 2026-07-16 paragraphs the entry pins: 124, 124.1, 143.4, 350.1, 359.2, 359.2.c, 383.2.c, 383.3, 383.4.a.2, 383.4.a.4, 390.2, 391, 426.1.b, 426.1.b.1, 703, 705, 708, 709, 710, 711. Walk: docs/phase0/walks/2026-11-23-issue644-renata-mighty-on-entry-r35.md."
     },
     {
       "id": "pursuer-herald-recruits",
