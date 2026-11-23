@@ -1,7 +1,7 @@
 import { readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
 // @ts-expect-error plain .mjs shared with scripts/remap-rules.mjs, which cannot import TypeScript.
-import { BOOKS, EDITIONS, REREAD, catalogueText, citations, hash, paragraphs } from "../scripts/rules-editions.mjs";
+import { BOOKS, EDITIONS, REREAD, catalogueText, citations, hash, legs, paragraphs } from "../scripts/rules-editions.mjs";
 
 /**
  * Every rule paragraph this catalogue cites has to exist in a rules document we ship.
@@ -178,12 +178,19 @@ describe("every rule paragraph the catalogue cites exists in a rules document we
 type Ledger = { from: string; to: string; entries: Record<string, { moved: string[]; refs: Record<string, [string, number, string]> }> };
 const ledger = JSON.parse(readFileSync(new URL("data/rules-remap-2026-10-09.json", root), "utf8")) as Ledger;
 
-/** Reworded paragraphs a re-read found to mean the same: per book and 07-16 number, the 10-09 number and the hashes of both texts. */
-type Rereads = Record<string, Record<string, { to: string; from: string; as: string; by: string }>>;
+/**
+ * Reworded paragraphs a re-read found to mean the same: per book and 07-16 number, the 10-09 number and
+ * the hashes of both texts, or, for a paragraph Riot split, per 10-09 half its hash and the entries it holds (`into`).
+ */
+type Half = { as: string; ids: string[] };
+type Row = { to?: string; from: string; as?: string; by: string; into?: Record<string, Half> };
+type Rereads = Record<string, Record<string, Row>>;
+type Leg = { id: string; to: string; from: string; as: string; by: string; ids?: string[] };
 const REREADS = REREAD as Rereads;
-/** Whether a re-read reads the 07-16 text hashed `meant` as the 10-09 text hashed `now` at `num`. */
-const heldAs = (rereads: Rereads, book: string, num: string, meant: string, now: string) =>
-  Object.values(rereads[book] ?? {}).some((r) => r.to === num && r.from === meant && r.as === now);
+const legsOf = legs as (rows: Record<string, Row>) => Leg[];
+/** Whether a re-read reads the 07-16 text hashed `meant` as the 10-09 text hashed `now` at `num`, for the entry `who`. */
+const heldAs = (rereads: Rereads, book: string, num: string, meant: string, now: string, who: string) =>
+  legsOf(rereads[book] ?? {}).some((r) => r.to === num && r.from === meant && r.as === now && (!r.ids || r.ids.includes(who)));
 
 /** Everything wrong with one moved entry against its ledger row; [] when it holds. */
 function ledgerFaults(entry: Entry, row: Ledger["entries"][string], rereads: Rereads = REREADS): string[] {
@@ -202,7 +209,7 @@ function ledgerFaults(entry: Entry, row: Ledger["entries"][string], rereads: Rer
   for (const [num, [book, count, h]] of Object.entries(row.refs)) {
     const text = (paragraphs(NEW, book) as Map<string, string>).get(num);
     if (text === undefined) faults.push(`${num} is not a ${NEW} ${book} paragraph`);
-    else if (hash(text) !== h && !heldAs(rereads, book, num, h, hash(text))) faults.push(`${num} in the ${NEW} ${book} rules is not the paragraph the entry meant`);
+    else if (hash(text) !== h && !heldAs(rereads, book, num, h, hash(text), entry.id)) faults.push(`${num} in the ${NEW} ${book} rules is not the paragraph the entry meant`);
     if ((seen.get(num) ?? 0) < count) faults.push(`${num} cited ${seen.get(num) ?? 0} times, the ledger counts ${count}`);
   }
   return faults;
@@ -263,7 +270,7 @@ describe("reworded paragraphs re-read and held let their citations move (REREAD)
   const onNew = combos.combos.filter((e) => e.rulesVersion === NEW);
 
   it("names the two shipped texts each verdict was read on, and an issue that holds it", () => {
-    const rows = [...BOOKS].flatMap((b: string) => Object.entries(REREADS[b] ?? {}).map(([id, r]) => ({ b, id, ...r })));
+    const rows = [...BOOKS].flatMap((b: string) => legsOf(REREADS[b] ?? {}).map((r) => ({ b, ...r })));
     expect(rows.length).toBeGreaterThan(0);
     for (const r of rows) {
       const was = (paragraphs(OLD, r.b) as Map<string, string>).get(r.id);
@@ -275,7 +282,7 @@ describe("reworded paragraphs re-read and held let their citations move (REREAD)
   });
 
   it("is what clears an entry that cites one, and only for the texts it was read on", () => {
-    const [id, r] = Object.entries(REREADS.core!)[0]!;
+    const [id, r] = Object.entries(REREADS.core!)[0]! as [string, Leg];
     const citer = onNew.find((e) => ledger.entries[e.id]!.refs[r.to]?.[2] === r.from);
     expect(citer, `a moved entry citing core ${id}`).toBeDefined();
     const row = ledger.entries[citer!.id]!;
@@ -289,7 +296,7 @@ describe("reworded paragraphs re-read and held let their citations move (REREAD)
     // 07-16 429.3.a was deleted; 10-09 430.2 holds its rule. 07-16 430.2 is a Channel rule and 10-09
     // 429.3.a a Kill rule, so only the row says which text a moved entry's 430.2 stands for. 429.2's
     // row reads into 430.2 too, from another text, and does not clear a citation of 429.3.a.
-    const r = REREADS.core!["429.3.a"]!;
+    const r = REREADS.core!["429.3.a"]! as Leg;
     expect(r.to).toBe("430.2");
     const citer = onNew.find((e) => ledger.entries[e.id]!.refs[r.to]?.[2] === r.from);
     expect(citer, "a moved entry citing core 429.3.a").toBeDefined();
@@ -304,14 +311,14 @@ describe("reworded paragraphs re-read and held let their citations move (REREAD)
     const record = readFileSync(new URL("docs/rules-diff/remap-2026-10-09.md", root), "utf8");
     const table = record.split("\n## Reworded or deleted paragraphs re-read and held\n")[1]!.split("\n## ")[0]!;
     const listed = [...table.matchAll(/^\| (\w+) (\S+) \| (\S+) \| (#\d+) \|$/gm)].map((m) => m.slice(1).join(" "));
-    const rows = [...BOOKS].flatMap((b: string) => Object.entries(REREADS[b] ?? {}).map(([id, r]) => `${b} ${id} ${r.to} ${r.by}`));
+    const rows = [...BOOKS].flatMap((b: string) => legsOf(REREADS[b] ?? {}).map((r) => `${b} ${r.id} ${r.to} ${r.by}`));
     expect(listed.sort()).toEqual(rows.sort());
   });
 
   it("leaves no re-read paragraph's 07-16 words in an entry on 10-09, which prints none of them (#655)", () => {
     // 07-16 464.2.d "3. The Attacker gains Focus." went: 466.2.c.1.a, 07-16 464.2.c.1.a word for word,
     // gives the Attacker Focus. The one entry it moved quoted the task, and now quotes 466.2.c.1.a.
-    const r = REREADS.core!["464.2.d"]!;
+    const r = REREADS.core!["464.2.d"]! as Leg;
     expect([r.to, hash((paragraphs(OLD, "core") as Map<string, string>).get("464.2.c.1.a")!)]).toEqual(["466.2.c.1.a", r.as]);
     const citer = onNew.find((e) => e.id === "en-garde-hand-hammer-alone-versus-pair")!;
     expect(ledger.entries[citer.id]!.refs[r.to]?.[2]).toBe(r.from);
@@ -323,6 +330,44 @@ describe("reworded paragraphs re-read and held let their citations move (REREAD)
         const re = new RegExp(was.replace(/[.*+?^${}()|[\]\\]/g, "\\$&").replace(/[‐-―−-]/g, "[‐-―−-]").replace(/ /g, "\\s+"));
         expect(onNew.filter((e) => strings(e).some((s) => re.test(s))).map((e) => e.id), `${b} ${id} in its ${OLD} words`).toEqual([]);
       }
+  });
+  it("moves a deleted 07-16 323.4 citation to 383.2.c.3, which takes a death trigger before the zone change (#656)", () => {
+    // 07-16 323.4, Cleanup step 3a, triggered Deathknell from units with lethal damage before 3b killed
+    // them. 10-09 has no such step: a trigger on leaving the board is processed just before the zone
+    // change (383.2.c.3, new in 10-09), Deathknell its first example.
+    const r = REREADS.core!["323.4"]! as Leg;
+    expect(r.to).toBe("383.2.c.3");
+    expect((paragraphs(OLD, "core") as Map<string, string>).has("383.2.c.3")).toBe(false);
+    const citer = onNew.find((e) => e.id === "ledros-bird-power-discount")!;
+    const row = ledger.entries[citer.id]!;
+    expect([row.moved.includes("323.4"), row.refs["383.2.c.3"]?.[2]]).toEqual([true, r.from]);
+    expect(ledgerFaults(citer, row)).toEqual([]);
+    const { "323.4": _, ...rest } = REREADS.core!;
+    expect(ledgerFaults(citer, row, { core: rest, tournament: {} })).toContain(`383.2.c.3 in the ${NEW} core rules is not the paragraph the entry meant`);
+  });
+
+  it("moves a 07-16 323.7 citation to the 10-09 half its sentence became, per citer (#656)", () => {
+    // 07-16 323.7, Cleanup step 5, recalled stray gear, runes and permanents and trashed hidden cards
+    // in one paragraph. 10-09 323.6 keeps the recall and 323.6.a the hidden-card sentence word for word.
+    const r = REREADS.core!["323.7"]!;
+    const halves = legsOf({ "323.7": r });
+    expect(halves.map((l) => l.to)).toEqual(["323.6", "323.6.a"]);
+    const [recall, hidden] = halves as [Leg & Half, Leg & Half];
+    expect(recall.ids.filter((id) => hidden.ids.includes(id))).toEqual([]);
+    const citers = onNew.filter((e) => Object.values(ledger.entries[e.id]!.refs).some(([b, , h]) => b === "core" && h === r.from));
+    for (const e of citers) {
+      const nums = Object.entries(ledger.entries[e.id]!.refs).filter(([, [b, , h]]) => b === "core" && h === r.from).map(([n]) => n);
+      expect(nums, e.id).toEqual([recall.ids.includes(e.id) ? "323.6" : hidden.ids.includes(e.id) ? "323.6.a" : "neither"]);
+    }
+    for (const half of halves) {
+      const e = citers.find((x) => half.ids!.includes(x.id));
+      expect(e, `a moved entry citing the ${half.to} half`).toBeDefined();
+      const row = ledger.entries[e!.id]!;
+      expect(ledgerFaults(e!, row)).toEqual([]);
+      // Listed under neither half, the entry's citation names a text no re-read was made for.
+      const into = Object.fromEntries(Object.entries(r.into!).map(([to, l]) => [to, { ...l, ids: l.ids.filter((id) => id !== e!.id) }]));
+      expect(ledgerFaults(e!, row, { core: { ...REREADS.core!, "323.7": { ...r, into } }, tournament: {} })).toContain(`${half.to} in the ${NEW} core rules is not the paragraph the entry meant`);
+    }
   });
 });
 

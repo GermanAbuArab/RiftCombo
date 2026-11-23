@@ -11,7 +11,8 @@
 // adds it to `REREAD` (scripts/rules-editions.mjs), and its citations then move the same way (#652:
 // 164.2.a and 164.2.b; #653: 429.2 and 429.3.a to 430.2, 429.2.a to 430.2.a; #654: 477.1.b.1.b to
 // 479.1.b, 477.2 to 479.3, 477.3 to 479.4; #655: 464.2.b to 466.2.b, 464.2.d to 466.2.c.1.a,
-// 464.2.e to 466.2.d). The data marks the edition per ENTRY (`rulesVersion`), so
+// 464.2.e to 466.2.d; #656: 323.4 to 383.2.c.3, 323.5 to 323.4, 323.8 to 323.7, 323.9 to 323.8, and
+// 323.7 split, per citer, into 323.6 and 323.6.a). The data marks the edition per ENTRY (`rulesVersion`), so
 // the pin is per entry: an entry that cites any paragraph Riot reworded or deleted keeps every number
 // and `rulesVersion: "2026-07-16"`, and an entry whose every citation kept its text moves whole.
 // data/synergies.json carries one `rulesVersion` for the file and stays on 07-16.
@@ -30,7 +31,7 @@
 // the old numbers it moved and, per cited number, the book and a hash of the 07-16 text it meant), and
 // docs/rules-diff/remap-2026-10-09.md, the record of every entry moved or pinned and why.
 import fs from "node:fs";
-import { citations, fates, hash, parseText, EDITIONS, BOOKS, REREAD } from "./rules-editions.mjs";
+import { citations, fates, hash, legs, parseText, EDITIONS, BOOKS, REREAD } from "./rules-editions.mjs";
 
 const FROM = "2026-07-16";
 const TO = "2026-10-09";
@@ -51,8 +52,8 @@ for (const b of BOOKS) {
   for (const r of fates(A, B).rows) if (!F[b].has(r.id)) F[b].set(r.id, r);
 }
 
-/** Where an old number goes in one book: { to } or { pin: reason }. */
-function target(book, id) {
+/** Where an old number goes in one book, cited by the entry `who`: { to } or { pin: reason }. */
+function target(book, id, who) {
   const r = F[book].get(id);
   if (!r) return { pin: `${id} is not a ${book} paragraph` };
   if (r.fate === "same") return { to: id };
@@ -60,7 +61,7 @@ function target(book, id) {
     // Riot prints the same sentence under several numbers (each Mode of Play's "Battlefield Count").
     // The one that sits under where the old parent went is the same paragraph; anything else is a guess.
     const parent = id.replace(/\.[^.]+$/, "");
-    const pt = parent !== id ? target(book, parent) : {};
+    const pt = parent !== id ? target(book, parent, who) : {};
     const under = pt.to ? r.to.split(" | ").filter((x) => x.replace(/\.[^.]+$/, "") === pt.to) : [];
     if (under.length === 1) return { to: under[0] };
     return { pin: `${book} ${id}: its text sits at ${r.to} in ${TO}` };
@@ -69,12 +70,17 @@ function target(book, id) {
   // A deleted paragraph has no 10-09 counterpart of its own: its row names the paragraph that now
   // says what it said (#653: 429.3.a is 430.2). A reworded one's row may name another number than
   // the diff's nearest match, which pairs 07-16 477.2 "2. Ability-Altering Effects" with 10-09 479.2
-  // "2. Trait-Altering Effects" on the shared ordinal (#654: the layer is 479.3).
-  const held = REREAD[book][id];
-  if ((r.fate === "reworded" || r.fate === "deleted") && held) {
-    const as = newText[book].get(held.to);
-    if (held.from !== hash(r.old) || as === undefined || held.as !== hash(as)) throw new Error(`REREAD ${book} ${id} (${held.by}) was read on other texts than ${FROM} ${id} and ${TO} ${held.to}`);
-    return { to: held.to, reread: `${book} ${id}` };
+  // "2. Trait-Altering Effects" on the shared ordinal (#654: the layer is 479.3). A split one's row
+  // names the half each citer's sentence went to (#656: 323.7 is 323.6 and 323.6.a).
+  const held = legs(REREAD[book]).filter((l) => l.id === id);
+  if ((r.fate === "reworded" || r.fate === "deleted") && held.length) {
+    for (const l of held) {
+      const as = newText[book].get(l.to);
+      if (l.from !== hash(r.old) || as === undefined || l.as !== hash(as)) throw new Error(`REREAD ${book} ${id} (${l.by}) was read on other texts than ${FROM} ${id} and ${TO} ${l.to}`);
+    }
+    const leg = held.find((l) => !l.ids || l.ids.includes(who));
+    if (!leg) return { pin: `${book} ${id} split in ${TO} into ${held.map((l) => l.to).join(" and ")}, and its row lists ${who} under neither` };
+    return { to: leg.to, reread: `${book} ${id}` };
   }
   return { pin: `${book} ${id} ${r.fate} in ${TO}` };
 }
@@ -97,7 +103,7 @@ function bookOf(c, entry) {
   // within 300 characters and the other 9 sit in entries that name the Tournament Rules elsewhere. An
   // entry that never names them cites the Core Rules.
   if (!/Tournament|\bTR\b/.test(JSON.stringify(entry))) return { book: "core" };
-  const [a, b] = [target("core", c.tok), target("tournament", c.tok)];
+  const [a, b] = [target("core", c.tok, entry.id), target("tournament", c.tok, entry.id)];
   if (a.to !== undefined && a.to === b.to) return { book: "core", guessed: true };
   return { book: "core", pin: `${c.tok} is in both books, its sentence names neither, and the two readings move differently` };
 }
@@ -107,8 +113,12 @@ const RIOT_TITLE = {
   tournament: [`(data/Riftbound-Tournament-Rules-${FROM}.txt)`, `(data/Riftbound-Tournament-Rules-${TO}.txt)`],
 };
 
-/** A re-read paragraph's 07-16 words, as a quote may print them (any dash, any spacing, no final period), and the 10-09 words at its `to`. */
+/**
+ * A re-read paragraph's 07-16 words, as a quote may print them (any dash, any spacing, no final period),
+ * and the 10-09 words at its `to`; null for a split one, whose whole words no one 10-09 paragraph holds.
+ */
 const wording = (book, id) => {
+  if (!REREAD[book][id].to) return null;
   const r = F[book].get(id);
   const bare = (t) => t.replace(/\.$/, "");
   const re = bare(r.old).replace(/[.*+?^${}()|[\]\\]/g, "\\$&").replace(/[‐-―−-]/g, "[‐-―−-]").replace(/ /g, "\\s+");
@@ -128,9 +138,9 @@ const ownWords = (entry, path, book) => {
 const reword = (entry, path, s, rereads) => {
   for (const rr of rereads) {
     const [book, id] = rr.split(" ");
-    if (!ownWords(entry, path, book)) continue;
-    const [from, to] = wording(book, id);
-    s = s.replace(from, () => to);
+    const w = wording(book, id);
+    if (!w || !ownWords(entry, path, book)) continue;
+    s = s.replace(w[0], () => w[1]);
   }
   return s;
 };
@@ -150,9 +160,9 @@ function plan(entry) {
       // reworded in 10-09, and moving an entry that cites 190.x would claim otherwise. Wildcards name
       // Core blocks; one that is also a Tournament section in an entry that names the Tournament
       // Rules cannot say which.
-      const sec = target("core", c.tok);
+      const sec = target("core", c.tok, entry.id);
       const block = [...oldText.core.keys()].filter((id) => id === c.tok || id.startsWith(c.tok + "."));
-      const bad = block.filter((id) => target("core", id).pin);
+      const bad = block.filter((id) => target("core", id, entry.id).pin);
       if (oldText.tournament.has(c.tok) && /Tournament|\bTR\b/.test(JSON.stringify(entry))) pins.add(`${c.tok}.x names a block in both books`);
       if (bad.length) pins.add(`${c.tok}.x: core ${bad[0]} ${F.core.get(bad[0])?.fate ?? "is not a paragraph"} in ${TO}`);
       else if (sec.pin) pins.add(`${c.tok}.x: ${sec.pin}`);
@@ -165,7 +175,7 @@ function plan(entry) {
       if (c.kind === "ref") pins.add(`${c.tok} resolves in neither ${FROM} book`);
       continue;
     }
-    const t = target(book, c.tok);
+    const t = target(book, c.tok, entry.id);
     if (t.pin) {
       pins.add(t.pin);
       continue;
@@ -177,7 +187,7 @@ function plan(entry) {
       if (c.sib) {
         // A shorthand member prints only its last segment, so it can follow only to a number under the
         // prefix its head moves to: 434.1.f/g/h becomes 435.1.f/g/i.
-        const head = target(book, c.sib.head).to;
+        const head = target(book, c.sib.head, entry.id).to;
         const under = (n) => n.replace(/\.[^.]+$/, "");
         if (head === undefined || under(to) !== under(head)) {
           pins.add(`${c.tok}, in the shorthand after ${c.sib.head}, moves to ${to} and leaves it`);
@@ -284,7 +294,7 @@ db.combos = db.combos.map((e0) => {
 const pinned = rows.filter((r) => r.pins.length);
 const reasons = new Map();
 for (const r of pinned) for (const x of r.pins) {
-  const k = x.replace(/^(core|tournament) \S+ (reworded|deleted).*/, "$1 paragraph $2 in " + TO).replace(/^\S+ is in both books.*/, "number in both books, sentence names neither, readings differ").replace(/^\S+ names .* a number that .*/, "a string names 07-16 next to a changing number").replace(/^\S+ names .* a quote that .*/, "a string names 07-16 next to a re-read quote").replace(/^\S+ prints .* form$/, "a string prints a re-read paragraph in its 07-16 form").replace(/^\S+ quotes a non-Riot source.*/, "a non-Riot quotation carries a number that would change").replace(/^\S+\.x: core \S+ (reworded|deleted).*/, "a block citation (NNN.x) covers a paragraph $1 in " + TO).replace(/^(core|tournament) \S+: its text sits at.*/, "text at several numbers in " + TO).replace(/^\S+, in the shorthand after .* and leaves it$/, "a slash shorthand member moves away from its head");
+  const k = x.replace(/^(core|tournament) \S+ (reworded|deleted).*/, "$1 paragraph $2 in " + TO).replace(/^\S+ is in both books.*/, "number in both books, sentence names neither, readings differ").replace(/^\S+ names .* a number that .*/, "a string names 07-16 next to a changing number").replace(/^\S+ names .* a quote that .*/, "a string names 07-16 next to a re-read quote").replace(/^\S+ prints .* form$/, "a string prints a re-read paragraph in its 07-16 form").replace(/^\S+ quotes a non-Riot source.*/, "a non-Riot quotation carries a number that would change").replace(/^\S+\.x: core \S+ (reworded|deleted).*/, "a block citation (NNN.x) covers a paragraph $1 in " + TO).replace(/^(core|tournament) \S+: its text sits at.*/, "text at several numbers in " + TO).replace(/^\S+, in the shorthand after .* and leaves it$/, "a slash shorthand member moves away from its head").replace(/^(core|tournament) \S+ split in .*/, "$1 paragraph split in " + TO + ", the entry listed under neither half");
   reasons.set(k, (reasons.get(k) || new Set()).add(r.id));
 }
 for (const [k, ids] of reasons) reasons.set(k, ids.size);
@@ -332,7 +342,7 @@ const movedNow = rows.filter((r) => !r.pins.length);
 const verified = (ids) => ids.filter((id) => db.combos.find((e) => e.id === id)?.status === "verified").length;
 const onTo = Object.keys(LEDGER.entries);
 const runRow = `| ${label} | ${rows.length} | ${movedN} (${movedNow.filter((r) => r.status === "verified").length} verified) | ${pinned.length} (${pinned.filter((r) => r.status === "verified").length} verified) |`;
-const rereadRows = BOOKS.flatMap((b) => Object.entries(REREAD[b]).map(([id, r]) => `| ${b} ${id} | ${r.to} | ${r.by} |`));
+const rereadRows = BOOKS.flatMap((b) => legs(REREAD[b]).map((r) => `| ${b} ${r.id} | ${r.to} | ${r.by} |`));
 
 const md = [
   `# Catalogue entries moved to the ${TO} rules, and the ones pinned to ${FROM}`,

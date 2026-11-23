@@ -78,8 +78,14 @@ export const hash = (s) => crypto.createHash("sha256").update(skeleton(s)).diges
  * and rewrites the 07-16 words where a moved entry prints them; `was`, a regex, is the 07-16 form a
  * paraphrase can keep, which pins an entry that prints it next to the number. Two rows may share a `to`
  * (429.2 and 429.3.a both read into 430.2): `from` tells them apart, and an entry that cites both stays
- * pinned. test/rule-refs.test.ts accepts the 10-09 text at `to` for the 07-16 hash the ledger keeps.
+ * pinned. A paragraph Riot split in two has `into` in place of `to` and `as`: per 10-09 half, its hash
+ * and the entries whose citation that half holds (`ids`); an entry neither lists stays pinned (#656).
+ * test/rule-refs.test.ts accepts the 10-09 text at `to` for the 07-16 hash the ledger keeps.
  */
+// The 34 entries that cite 07-16 323.7, by the sentence they cite: its recall of stray gear, runes and
+// permanents, or its trashing of hidden cards at a battlefield another player controls (#656).
+const RECALL = ["charm-evacuate-conquer", "dauntless-vanguard-repair-specialist-gear-assault", "draven-svellsongur-bloodless-combat-burst", "dunebreaker-trinity-force-hold", "legion-quartermaster-cloth-armor-bounce-value", "pack-of-wonders-treasure-trove", "pakaa-cub-determined-sentry-hidden-anchor", "rell-magnetic-recurve-bow-per-attack"];
+const HIDDEN = ["ahri-foxfire-might-threshold", "black-market-broker-bandle-tree-gold", "black-market-broker-spiderling-hidden-gold", "chemtech-cask-broker-double-gold", "frigid-jewel-mushroom-pouch-second-card", "guards-industrialist-ready-soldiers", "gutter-palace-keeper-time-warp", "hwei-move-draw-ready-runes", "jhin-emperors-divide-hidden", "katarina-reckless-hidden-burn", "kharox-tornado-warrior-pack", "leblanc-temporary-plaza", "leona-zealot-stun-lethal-spread", "lillia-smoke-mirrors-sprite-relay", "petal-pixie-keeper-of-masks-might-wall", "radiant-dawn-stun-buff-free-glory", "renata-time-warp-ekko-refresh", "solari-chief-facebreaker-shrine-kill", "sona-viktor-opponent-turn", "spiderling-swarm-grand-plaza", "swift-scout-guerilla-hide-cycle", "teemo-strategist-rabadons-deathcrown-bonus-kill", "teemo-strategist-swift-scout-hidden-flood", "teemo-strategist-undertitan-mind-order-reveal", "tideturner-mega-mech-swap", "tornado-warrior-matriarch-recursion"];
 export const REREAD = {
   core: {
     // [Reaction] moved to the front of the ability, in the form 813.1.d gives both editions (#652).
@@ -120,9 +126,44 @@ export const REREAD = {
     "464.2.d": { to: "466.2.c.1.a", from: "fd19557c12a93933", as: "7acbba31d76b8627", by: "#655", was: String.raw`Attacker gains Focus|[Tt]ask 3\b` },
     // Task 4 is task 3 now that the Focus task is gone; 464.2.e.1 is 466.2.d.1 word for word (#655).
     "464.2.e": { to: "466.2.d", from: "45b0e1f6115b8f83", as: "7d97365bcf4781a6", by: "#655", was: String.raw`[Tt]ask 4\b|4\. Add items` },
+    // Deleted. Cleanup step 3a took the Deathknell of a unit with lethal damage before 3b killed it;
+    // 383.2.c.3 processes a trigger on leaving the board just before the zone change, Deathknell its
+    // first example, and 383.2.c.3.b notes what the trigger needs about its source then. `was` keeps
+    // on 07-16 an entry that prints the old step next to the number (#656).
+    "323.4": { to: "383.2.c.3", from: "3fd1ef95af7398b3", as: "fc4d3b72066b9674", by: "#656", was: String.raw`making note|that have Deathknell|[Ss]tep 3a\b` },
+    // Step 3b is 3a now that the trigger step is gone, and the 07-16 run-together words are spaced.
+    // `was` keeps on 07-16 an entry that quotes them or names step 3b (#656).
+    "323.5": { to: "323.4", from: "cdf4e511df7700db", as: "9397bffe9f11fe82", by: "#656", was: String.raw`LethalDamage|themare|[Ss]tep 3b\b` },
+    // Split. 323.6 keeps the recall, "unless an effect would indicate otherwise" being the new Deploy
+    // keyword's exception (830.1.b; 002 already put card text over the rules), "Unattached" now said
+    // of permanents in another base too; 323.6.a keeps the hidden-card sentence word for word. `was`
+    // keeps on 07-16 an entry that quotes the 07-16 recall list (#656).
+    "323.7": {
+      from: "8799bb4ab45a34a4",
+      by: "#656",
+      was: String.raw`non-Unit Gear and non-Unit Runes|all Permanents and Runes in Bases`,
+      into: {
+        "323.6": { as: "925d69b9a0aa7ca4", ids: RECALL },
+        "323.6.a": { as: "a960195e64f8937f", ids: HIDDEN },
+      },
+    },
+    // "and that has no ongoing Combat" stages nothing at a battlefield in combat. Unchanged 316.8.b
+    // stages a showdown in the cleanup after Contested is applied, and a battlefield in combat is not
+    // Contested anew (190.3.a.1, 190.3.b.1) until its combat clears the status (468.5.a), so the clause
+    // settles the state reading of 07-16 323.8, a showdown staged at every cleanup of a combat, which
+    // would keep 468.5 from ever establishing control. `was` keeps on 07-16 an entry that quotes the
+    // 07-16 sentence whole (#656).
+    "323.8": { to: "323.7", from: "50b626f83ce25c72", as: "b5b84b03192f548d", by: "#656", was: String.raw`no state condition|Contested was applied to\.` },
+    // The same clause, for combat. Deleted 323.9.a, a combat staged while two opposing players have
+    // units there, is still 463 and 323.9 (07-16 461 and 323.10, same text) (#656).
+    "323.9": { to: "323.8", from: "be0d0289b407bb01", as: "0a13fedb0f3bf61b", by: "#656", was: String.raw`controlled by opposing players\.|remains [Ss]taged` },
   },
   tournament: {},
 };
+
+/** One book's REREAD rows as the 10-09 paragraphs they read into: a row, or each half of a split row with the entries it holds (`ids`). */
+export const legs = (rows) =>
+  Object.entries(rows).flatMap(([id, { into, ...r }]) => (into ? Object.entries(into).map(([to, half]) => ({ id, ...r, to, ...half })) : [{ id, ...r }]));
 
 const root = new URL("../", import.meta.url);
 const cache = new Map();
