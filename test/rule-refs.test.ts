@@ -1,7 +1,7 @@
 import { readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
 // @ts-expect-error plain .mjs shared with scripts/remap-rules.mjs, which cannot import TypeScript.
-import { BOOKS, EDITIONS, citations, hash, paragraphs } from "../scripts/rules-editions.mjs";
+import { BOOKS, EDITIONS, REREAD, citations, hash, paragraphs } from "../scripts/rules-editions.mjs";
 
 /**
  * Every rule paragraph this catalogue cites has to exist in a rules document we ship.
@@ -178,8 +178,15 @@ describe("every rule paragraph the catalogue cites exists in a rules document we
 type Ledger = { from: string; to: string; entries: Record<string, { moved: string[]; refs: Record<string, [string, number, string]> }> };
 const ledger = JSON.parse(readFileSync(new URL("data/rules-remap-2026-10-09.json", root), "utf8")) as Ledger;
 
+/** Reworded paragraphs a re-read found to mean the same: per book and 07-16 number, the 10-09 number and the hashes of both texts. */
+type Rereads = Record<string, Record<string, { to: string; from: string; as: string; by: string }>>;
+const REREADS = REREAD as Rereads;
+/** Whether a re-read reads the 07-16 text hashed `meant` as the 10-09 text hashed `now` at `num`. */
+const heldAs = (rereads: Rereads, book: string, num: string, meant: string, now: string) =>
+  Object.values(rereads[book] ?? {}).some((r) => r.to === num && r.from === meant && r.as === now);
+
 /** Everything wrong with one moved entry against its ledger row; [] when it holds. */
-function ledgerFaults(entry: Entry, row: Ledger["entries"][string]): string[] {
+function ledgerFaults(entry: Entry, row: Ledger["entries"][string], rereads: Rereads = REREADS): string[] {
   const faults: string[] = [];
   const moved = new Set(row.moved);
   const seen = new Map<string, number>();
@@ -192,7 +199,7 @@ function ledgerFaults(entry: Entry, row: Ledger["entries"][string]): string[] {
   for (const [num, [book, count, h]] of Object.entries(row.refs)) {
     const text = (paragraphs(NEW, book) as Map<string, string>).get(num);
     if (text === undefined) faults.push(`${num} is not a ${NEW} ${book} paragraph`);
-    else if (hash(text) !== h) faults.push(`${num} in the ${NEW} ${book} rules is not the paragraph the entry meant`);
+    else if (hash(text) !== h && !heldAs(rereads, book, num, h, hash(text))) faults.push(`${num} in the ${NEW} ${book} rules is not the paragraph the entry meant`);
     if ((seen.get(num) ?? 0) < count) faults.push(`${num} cited ${seen.get(num) ?? 0} times, the ledger counts ${count}`);
   }
   return faults;
@@ -246,5 +253,32 @@ describe("entries moved to the 2026-10-09 rules cite the paragraphs they meant (
       if (kind === "reused") expect(resolves(n, NEW)).toBe(true);
       else expect(resolves(n, NEW)).toBe(false);
     }
+  });
+});
+
+describe("reworded paragraphs re-read and held let their citations move (REREAD)", () => {
+  const onNew = combos.combos.filter((e) => e.rulesVersion === NEW);
+
+  it("names the two shipped texts each verdict was read on, and an issue that holds it", () => {
+    const rows = [...BOOKS].flatMap((b: string) => Object.entries(REREADS[b] ?? {}).map(([id, r]) => ({ b, id, ...r })));
+    expect(rows.length).toBeGreaterThan(0);
+    for (const r of rows) {
+      const was = (paragraphs(OLD, r.b) as Map<string, string>).get(r.id);
+      const now = (paragraphs(NEW, r.b) as Map<string, string>).get(r.to);
+      expect([was && hash(was), now && hash(now)], `${r.b} ${r.id} (${r.by})`).toEqual([r.from, r.as]);
+      expect(r.from, `${r.b} ${r.id} kept its text and needs no re-read`).not.toBe(r.as);
+      expect(r.by).toMatch(/^#\d+$/);
+    }
+  });
+
+  it("is what clears an entry that cites one, and only for the texts it was read on", () => {
+    const [id, r] = Object.entries(REREADS.core!)[0]!;
+    const citer = onNew.find((e) => ledger.entries[e.id]!.refs[r.to]?.[2] === r.from);
+    expect(citer, `a moved entry citing core ${id}`).toBeDefined();
+    const row = ledger.entries[citer!.id]!;
+    expect(ledgerFaults(citer!, row)).toEqual([]);
+    const meant = `${r.to} in the ${NEW} core rules is not the paragraph the entry meant`;
+    expect(ledgerFaults(citer!, row, { core: {}, tournament: {} })).toContain(meant);
+    expect(ledgerFaults(citer!, row, { core: { [id]: { ...r, as: "0".repeat(16) } }, tournament: {} })).toContain(meant);
   });
 });

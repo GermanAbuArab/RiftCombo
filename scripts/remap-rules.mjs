@@ -2,10 +2,13 @@
 //
 //   node scripts/remap-rules.mjs --dry     print what would move and why the rest stays, write nothing
 //   node scripts/remap-rules.mjs           rewrite data/combos.json, write the ledger and the record
+//   node scripts/remap-rules.mjs --run '#<issue>'   the same on top of earlier runs, named in the record
 //
 // The ruling on #645 (orch-meta-34, comment 6925629383, narrowed on 6925697815): only citations whose
 // paragraph text is identical in both editions (renumbered) or differs only in a moved cross-reference
-// (xref) are remapped, and never by number. The data marks the edition per ENTRY (`rulesVersion`), so
+// (xref) are remapped, and never by number. A cluster follow-up of #645 that re-reads a reworded
+// paragraph and finds its meaning held adds it to `REREAD` (scripts/rules-editions.mjs), and its
+// citations then move the same way (#652: 164.2.a and 164.2.b). The data marks the edition per ENTRY (`rulesVersion`), so
 // the pin is per entry: an entry that cites any paragraph Riot reworded or deleted keeps every number
 // and `rulesVersion: "2026-07-16"`, and an entry whose every citation kept its text moves whole.
 // data/synergies.json carries one `rulesVersion` for the file and stays on 07-16.
@@ -24,7 +27,7 @@
 // the old numbers it moved and, per cited number, the book and a hash of the 07-16 text it meant), and
 // docs/rules-diff/remap-2026-10-09.md, the record of every entry moved or pinned and why.
 import fs from "node:fs";
-import { citations, fates, hash, parseText, EDITIONS, BOOKS } from "./rules-editions.mjs";
+import { citations, fates, hash, parseText, EDITIONS, BOOKS, REREAD } from "./rules-editions.mjs";
 
 const FROM = "2026-07-16";
 const TO = "2026-10-09";
@@ -56,6 +59,11 @@ function target(book, id) {
     return { pin: `${book} ${id}: its text sits at ${r.to} in ${TO}` };
   }
   if (r.fate === "renumbered" || r.fate === "xref") return { to: r.to };
+  const held = REREAD[book][id];
+  if (r.fate === "reworded" && held) {
+    if (held.to !== r.to || held.from !== hash(r.old) || held.as !== hash(r.new)) throw new Error(`REREAD ${book} ${id} (${held.by}) was read on other texts than ${FROM} ${id} and ${TO} ${r.to}`);
+    return { to: held.to, reread: `${book} ${id}` };
+  }
   return { pin: `${book} ${id} ${r.fate} in ${TO}` };
 }
 
@@ -87,12 +95,41 @@ const RIOT_TITLE = {
   tournament: [`(data/Riftbound-Tournament-Rules-${FROM}.txt)`, `(data/Riftbound-Tournament-Rules-${TO}.txt)`],
 };
 
+/** A re-read paragraph's 07-16 words, as a quote may print them (any dash, any spacing, no final period), and its 10-09 words. */
+const wording = (book, id) => {
+  const r = F[book].get(id);
+  const bare = (t) => t.replace(/\.$/, "");
+  const re = bare(r.old).replace(/[.*+?^${}()|[\]\\]/g, "\\$&").replace(/[‐-―−-]/g, "[‐-―−-]").replace(/ /g, "\\s+");
+  return [new RegExp(re, "g"), bare(r.new)];
+};
+/**
+ * Whether the string at `path` speaks for itself about the `book` rules: the entry's own prose, or a
+ * Riot quote whose title moves to 10-09 with the entry. A hand walk or a post is quoted as written.
+ */
+const ownWords = (entry, path, book) => {
+  const src = /^\.sources\[(\d+)\]\.(\w+)/.exec(path);
+  if (!src) return true;
+  const s = entry.sources[+src[1]];
+  return src[2] === "quote" && s?.kind === "riot" && typeof s.title === "string" && s.title.includes(RIOT_TITLE[book][0]);
+};
+/** `s` with each re-read paragraph's 07-16 words in its 10-09 words, where `path` speaks for itself. */
+const reword = (entry, path, s, rereads) => {
+  for (const rr of rereads) {
+    const [book, id] = rr.split(" ");
+    if (!ownWords(entry, path, book)) continue;
+    const [from, to] = wording(book, id);
+    s = s.replace(from, () => to);
+  }
+  return s;
+};
+
 function plan(entry) {
   const pins = new Set();
   if (OLD_NUMBERING.has(entry.id)) pins.add("quotes a commenter citing an older numbering verbatim");
   const edits = []; // { path, at, len, from, to }
   const ledger = new Map(); // new number -> [book, count, hash]
   const moved = new Set();
+  const rereads = new Set(); // the REREAD paragraphs this entry cites
   for (const c of citations(entry)) {
     if (c.kind === "bare" && !BOOKS.some((b) => oldText[b].has(c.tok))) continue; // not a heading: not a citation
     let book, guessed, pin, to;
@@ -121,6 +158,7 @@ function plan(entry) {
       pins.add(t.pin);
       continue;
     }
+    if (t.reread) rereads.add(t.reread);
     to = t.to;
     if (to !== c.tok) {
       moved.add(c.tok);
@@ -133,9 +171,27 @@ function plan(entry) {
       ledger.set(to, row);
     }
   }
+  const walkPaths = (node, path) =>
+    typeof node === "string" ? [[path, node]] : Array.isArray(node) ? node.flatMap((v, i) => walkPaths(v, `${path}[${i}]`)) : node && typeof node === "object" ? Object.entries(node).flatMap(([k, v]) => walkPaths(v, `${path}.${k}`)) : [];
+  // A re-read paragraph keeps its number and changes its words, so where the entry prints its 07-16
+  // words they become its 10-09 words (reword). A paraphrase that keeps the 07-16 form next to the
+  // number cannot be rewritten by text, and would misquote the paragraph the number then names.
+  const reworded = new Set();
+  for (const [path, s] of walkPaths(entry, "")) {
+    const t = reword(entry, path, s, rereads);
+    if (t !== s) reworded.add(path);
+    for (const rr of rereads) {
+      const [book, id] = rr.split(" ");
+      const was = REREAD[book][id].was;
+      if (!was || !ownWords(entry, path, book)) continue;
+      const near = new RegExp(String.raw`(?<![0-9.])${id.replace(/\./g, "\\.")}(?![0-9a-z]|\.[0-9a-z])[^]{0,120}?(?:${was})`);
+      if (near.test(t)) pins.add(`${path} prints ${book} ${id} in its ${FROM} form`);
+    }
+  }
   // A string that names the 07-16 edition next to a number that changes would then read wrong. The
   // standard Riot source title is the one exception: it is rewritten with the numbers.
-  const changedPaths = new Set(edits.map((e) => e.path));
+  const numbered = new Set(edits.map((e) => e.path));
+  const changedPaths = new Set([...numbered, ...reworded]);
   // A quote is verbatim. Inside a Riot quote the number moves with the text it quotes, which
   // test/source-quotes.test.ts checks against the 10-09 file; a hand walk or a post still prints the
   // 07-16 number, so rewriting it there would misquote the file (7 quotes in 5 entries at #645).
@@ -143,24 +199,23 @@ function plan(entry) {
     const q = /^\.sources\[(\d+)\]\.quote$/.exec(path);
     if (q && entry.sources[+q[1]]?.kind !== "riot") pins.add(`${path} quotes a non-Riot source verbatim and carries a number that would change`);
   }
-  const walkPaths = (node, path) =>
-    typeof node === "string" ? [[path, node]] : Array.isArray(node) ? node.flatMap((v, i) => walkPaths(v, `${path}[${i}]`)) : node && typeof node === "object" ? Object.entries(node).flatMap(([k, v]) => walkPaths(v, `${path}.${k}`)) : [];
   for (const [path, s] of walkPaths(entry, "")) {
     if (!changedPaths.has(path)) continue;
     const rest = s.replace(RIOT_TITLE.core[0], "").replace(RIOT_TITLE.tournament[0], "");
-    if (rest.includes(FROM) || /July 16/.test(rest)) pins.add(`${path} names ${FROM} next to a number that would change`);
+    if (rest.includes(FROM) || /July 16/.test(rest)) pins.add(`${path} names ${FROM} next to ${numbered.has(path) ? "a number" : "a quote"} that would change`);
   }
-  return { pins: [...pins], edits, ledger, moved };
+  return { pins: [...pins], edits, ledger, moved, rereads };
 }
 
-function apply(entry, edits) {
+
+function apply(entry, { edits, rereads }) {
   const byPath = new Map();
   for (const e of edits) (byPath.get(e.path) || byPath.set(e.path, []).get(e.path)).push(e);
   const walk = (node, path) => {
     if (typeof node === "string") {
       let s = node;
       for (const e of (byPath.get(path) || []).sort((a, b) => b.at - a.at)) s = s.slice(0, e.at) + e.to + s.slice(e.at + e.len);
-      return s;
+      return reword(entry, path, s, rereads);
     }
     if (Array.isArray(node)) return node.map((v, i) => walk(v, `${path}[${i}]`));
     if (node && typeof node === "object") return Object.fromEntries(Object.entries(node).map(([k, v]) => [k, walk(v, `${path}.${k}`)]));
@@ -201,15 +256,16 @@ db.combos = db.combos.map((e0) => {
     moved: [...p.moved].sort(),
     refs: Object.fromEntries([...p.ledger].sort(([a], [b]) => a.localeCompare(b, "en", { numeric: true }))),
   };
-  return apply(e, p.edits);
+  return apply(e, p);
 });
 
 const pinned = rows.filter((r) => r.pins.length);
 const reasons = new Map();
 for (const r of pinned) for (const x of r.pins) {
-  const k = x.replace(/^(core|tournament) \S+ (reworded|deleted).*/, "$1 paragraph $2 in " + TO).replace(/^\S+ is in both books.*/, "number in both books, sentence names neither, readings differ").replace(/^\S+ names .*/, "a string names 07-16 next to a changing number").replace(/^\S+ quotes a non-Riot source.*/, "a non-Riot quotation carries a number that would change").replace(/^\S+\.x: core \S+ (reworded|deleted).*/, "a block citation (NNN.x) covers a paragraph $1 in " + TO).replace(/^(core|tournament) \S+: its text sits at.*/, "text at several numbers in " + TO);
-  reasons.set(k, (reasons.get(k) || 0) + 1);
+  const k = x.replace(/^(core|tournament) \S+ (reworded|deleted).*/, "$1 paragraph $2 in " + TO).replace(/^\S+ is in both books.*/, "number in both books, sentence names neither, readings differ").replace(/^\S+ names .* a number that .*/, "a string names 07-16 next to a changing number").replace(/^\S+ names .* a quote that .*/, "a string names 07-16 next to a re-read quote").replace(/^\S+ prints .* form$/, "a string prints a re-read paragraph in its 07-16 form").replace(/^\S+ quotes a non-Riot source.*/, "a non-Riot quotation carries a number that would change").replace(/^\S+\.x: core \S+ (reworded|deleted).*/, "a block citation (NNN.x) covers a paragraph $1 in " + TO).replace(/^(core|tournament) \S+: its text sits at.*/, "text at several numbers in " + TO);
+  reasons.set(k, (reasons.get(k) || new Set()).add(r.id));
 }
+for (const [k, ids] of reasons) reasons.set(k, ids.size);
 const guessed = rows.filter((r) => !r.pins.length).flatMap((r) => r.edits.filter((e) => e.guessed).map((e) => `${r.id}: ${e.from} -> ${e.to}`));
 const bare = rows.filter((r) => !r.pins.length).flatMap((r) => r.edits.filter((e) => /^\d{3}$/.test(e.from)).map((e) => ({ id: r.id, ...e })));
 console.log(JSON.stringify({ considered: rows.length, moved: movedN, movedVerified: rows.filter((r) => !r.pins.length && r.status === "verified").length, pinned: pinned.length, pinnedVerified: pinned.filter((r) => r.status === "verified").length, edits: rows.filter((r) => !r.pins.length).reduce((n, r) => n + r.edits.length, 0), bareEdits: bare.length, guessedCore: guessed.length }));
@@ -229,27 +285,50 @@ if (DRY) {
 }
 
 LEDGER.note =
-  "Generated by scripts/remap-rules.mjs (#645). One key per catalogue entry moved from the 2026-07-16 rules to the 2026-10-09 rules by text identity. `moved`: the 07-16 numbers the move rewrote. `refs`: per number the entry cites after the move, [book, occurrences, hash of the 07-16 paragraph text it meant (`hash` in scripts/rules-editions.mjs: rule numbers replaced, quote characters, dashes and spacing folded)]. test/rule-refs.test.ts re-hashes each number in the 10-09 book and fails on a mismatch, fails when the entry cites a number fewer times than `occurrences` (a floor: an edit may add citations, and one that drops a citation lowers its count here), and fails on a `moved` number with no row, so a 07-16 number left in a moved entry goes red even where 10-09 reused it for other text. Rerunning the script considers only entries still on 2026-07-16, keeps these rows, and leaves the report in docs/rules-diff/ as the run that moved them wrote it.";
-// The report lists each move's from -> to pairs, which only the run that made the move knows. A rerun
-// that moves nothing leaves it as written; one that would move more on top of earlier moves would
-// split the record, so it is refused: regenerate from the pre-#645 catalogue instead.
-const rerun = Object.keys(LEDGER.entries).length > movedN;
-if (rerun && movedN) throw new Error(`${movedN} more entries would move on top of ${Object.keys(LEDGER.entries).length - movedN} earlier moves: rerun on \`git show 6256d09:data/combos.json > data/combos.json\` with ${LEDGER_PATH} removed`);
+  "Generated by scripts/remap-rules.mjs (#645). One key per catalogue entry moved from the 2026-07-16 rules to the 2026-10-09 rules by text identity, or across a reworded paragraph a re-read found to mean the same (`REREAD` in scripts/rules-editions.mjs). `moved`: the 07-16 numbers the move rewrote. `refs`: per number the entry cites after the move, [book, occurrences, hash of the 07-16 paragraph text it meant (`hash` in scripts/rules-editions.mjs: rule numbers replaced, quote characters, dashes and spacing folded)]. test/rule-refs.test.ts re-hashes each number in the 10-09 book and fails on a mismatch that no REREAD row reads from this hash to that text, fails when the entry cites a number fewer times than `occurrences` (a floor: an edit may add citations, and one that drops a citation lowers its count here), and fails on a `moved` number with no row, so a 07-16 number left in a moved entry goes red even where 10-09 reused it for other text. Rerunning the script considers only entries still on 2026-07-16 and keeps these rows; docs/rules-diff/remap-2026-10-09.md keeps each earlier move as the run that made it wrote it.";
+// The record lists each move's from -> to pairs, which only the run that made the move knows, so a
+// rerun carries the earlier runs' lines over from the record and adds its own under the run's name
+// (`--run '#<issue>'`, the cluster follow-up whose REREAD rows it applies).
+const RECORD = "docs/rules-diff/remap-2026-10-09.md";
+const earlier = Object.keys(LEDGER.entries).length - movedN;
+const RUN = process.argv.includes("--run") ? process.argv[process.argv.indexOf("--run") + 1] : null;
+if (earlier && movedN && !/^#\d+$/.test(RUN ?? "")) throw new Error(`${movedN} more entries would move on top of ${earlier} earlier moves: name the run, --run '#<issue>'`);
 fs.writeFileSync("data/combos.json", JSON.stringify(db, null, 2) + "\n");
 fs.writeFileSync(LEDGER_PATH, JSON.stringify(LEDGER, null, 1) + "\n");
-if (rerun) {
-  console.log(`rerun: nothing moved; docs/rules-diff/remap-2026-10-09.md still records the run that moved ${Object.keys(LEDGER.entries).length}`);
+if (earlier && !movedN) {
+  console.log(`rerun: nothing moved; ${RECORD} still records the ${earlier} moved by earlier runs`);
   process.exit(0);
 }
+const section = (md, head) => (md.split(/^## /m).find((x) => x.startsWith(head)) ?? "").split("\n").slice(1);
+const old = earlier ? fs.readFileSync(RECORD, "utf8") : "";
+const carried = section(old, "Moved entries").filter((l) => LEDGER.entries[/^- `([^`]+)`/.exec(l)?.[1]]);
+const label = RUN ?? "#645";
+const movedNow = rows.filter((r) => !r.pins.length);
+const verified = (ids) => ids.filter((id) => db.combos.find((e) => e.id === id)?.status === "verified").length;
+const onTo = Object.keys(LEDGER.entries);
+const runRow = `| ${label} | ${rows.length} | ${movedN} (${movedNow.filter((r) => r.status === "verified").length} verified) | ${pinned.length} (${pinned.filter((r) => r.status === "verified").length} verified) |`;
+const rereadRows = BOOKS.flatMap((b) => Object.entries(REREAD[b]).map(([id, r]) => `| ${b} ${id} | ${r.to} | ${r.by} |`));
 
 const md = [
   `# Catalogue entries moved to the ${TO} rules, and the ones pinned to ${FROM}`,
   "",
   `Generated by \`node scripts/remap-rules.mjs\` (#645). Paragraph fates: [2026-07-16-to-2026-10-09.md](2026-07-16-to-2026-10-09.md).`,
   "",
-  `- Entries considered (rulesVersion ${FROM}): ${rows.length}`,
-  `- Moved to ${TO} by text identity: ${movedN} (${rows.filter((r) => !r.pins.length && r.status === "verified").length} verified); their numbers now name ${TO} paragraphs with the same text`,
+  `- On ${TO}: ${onTo.length} (${verified(onTo)} verified); their numbers name ${TO} paragraphs with the same text, or with a reworded text a re-read found to mean the same`,
   `- Pinned to ${FROM}: ${pinned.length} (${pinned.filter((r) => r.status === "verified").length} verified); their numbers still name ${FROM} paragraphs, and the site shows them as written`,
+  "",
+  "## Runs",
+  "",
+  "| run | considered (on " + FROM + ") | moved | pinned after |",
+  "|---|---:|---:|---:|",
+  ...section(old, "Runs").filter((l) => /^\| #/.test(l)),
+  runRow,
+  "",
+  "## Reworded paragraphs re-read and held",
+  "",
+  `A citation of one moves as a renumbered paragraph does. The issue holds both texts and the reasoning.`,
+  "",
+  ...(rereadRows.length ? ["| " + FROM + " | " + TO + " | read on |", "|---|---|---|", ...rereadRows] : ["none"]),
   "",
   "## Why entries stay pinned (an entry can have several reasons)",
   "",
@@ -261,11 +340,15 @@ const md = [
   "",
   "These numbers exist in both books, their sentence names neither, and both readings move to the same number, so the reading does not change the result.",
   "",
-  ...(guessed.length ? guessed.map((g) => `- ${g}`) : ["none"]),
+  ...(() => {
+    const all = [...section(old, "Numbers read as Core Rules").filter((l) => /^- /.test(l)), ...guessed.map((g) => `- ${g}`)];
+    return all.length ? all : ["none"];
+  })(),
   "",
-  `## Moved entries (${movedN})`,
+  `## Moved entries (${carried.length + movedN})`,
   "",
-  ...rows.filter((r) => !r.pins.length).map((r) => `- \`${r.id}\` [${r.status}]: ${r.edits.length ? [...new Map(r.edits.map((e) => [e.from, e.to]))].map(([a, b]) => `${a} -> ${b}`).join(", ") : "no number changes"}`),
+  ...carried,
+  ...movedNow.map((r) => `- \`${r.id}\` [${r.status}]: ${r.edits.length ? [...new Map(r.edits.map((e) => [e.from, e.to]))].map(([a, b]) => `${a} -> ${b}`).join(", ") : "no number changes"}${r.rereads.size ? `; re-read: ${[...r.rereads].join(", ")} (${label})` : ""}`),
   "",
   `## Pinned entries (${pinned.length})`,
   "",

@@ -98,13 +98,14 @@ const rulesNoticeHtml = (c: Pick<Combo, "rulesVersion" | "status">): string => {
 
 /**
  * Which rules the entry was walked against and, when they differ (#645), which edition its rule numbers
- * follow. A renumbering by text identity is not a walk, so the walk date never moves with it.
+ * follow. A renumbering by text identity, or a re-read of a reworded paragraph (#652), is not a walk, so the
+ * walk date never moves with it.
  */
 export function rulesLine(c: Pick<Combo, "rulesVersion" | "walkedVersion">): string {
   const walked = `Walked against Core Rules ${c.walkedVersion}`;
   return c.rulesVersion === c.walkedVersion
     ? walked
-    : `${walked}; rule numbers follow ${c.rulesVersion}, where every cited paragraph reads the same.`;
+    : `${walked}; rule numbers follow ${c.rulesVersion}, where every cited paragraph reads the same or was re-read to mean the same.`;
 }
 
 /**

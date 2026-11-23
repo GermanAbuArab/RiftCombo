@@ -3,7 +3,8 @@
 // A combo entry names the edition its rule numbers belong to in `rulesVersion`; synergies.json names
 // one for the whole file. Since #645 two editions are live: 2026-07-16 (every entry that cites a
 // paragraph Riot reworded or deleted in 10-09, kept pinned to the text it was walked against) and
-// 2026-10-09 (entries whose every cited paragraph kept its text, remapped by text identity).
+// 2026-10-09 (entries whose every cited paragraph kept its text, remapped by text identity, or was
+// reworded and re-read to mean the same, `REREAD` below).
 //
 // A paragraph is a line whose first token is a paragraph number, plus every following line up to the
 // next one. The anchor is `^\s*` after stripping `\f`, for the reason test/rule-refs.test.ts gives
@@ -65,6 +66,24 @@ export const skeleton = (s) =>
 
 /** What the #645 ledger (data/rules-remap-2026-10-09.json) stores per cited paragraph: 16 hex of sha256 of its skeleton. */
 export const hash = (s) => crypto.createHash("sha256").update(skeleton(s)).digest("hex").slice(0, 16);
+
+/**
+ * Paragraphs Riot reworded in 2026-10-09 that a re-read found to mean what they meant in 2026-07-16,
+ * one cluster follow-up of #645 at a time. Per book and 07-16 number: the 10-09 number (`to`), the hash
+ * of each text the verdict was read on (`from`, `as`; a changed extraction voids the verdict), and the
+ * issue that quotes both texts and gives the reasoning (`by`). scripts/remap-rules.mjs moves a citation
+ * of one as it moves a renumbered paragraph and rewrites the 07-16 words where a moved entry prints them;
+ * `was`, a regex, is the 07-16 form a paraphrase can keep, which pins an entry that prints it next to
+ * the number. test/rule-refs.test.ts accepts the 10-09 text at `to` for the 07-16 hash the ledger keeps.
+ */
+export const REREAD = {
+  core: {
+    // [Reaction] moved to the front of the ability, in the form 813.1.d gives both editions (#652).
+    "164.2.a": { to: "164.2.a", from: "235d4a668bfa2e1a", as: "4bf343f510935ab9", by: "#652", was: String.raw`\[Reaction\]\s*[‐-―−-]` },
+    "164.2.b": { to: "164.2.b", from: "01d1e19c9c5002c4", as: "6a98a4ecf757a69c", by: "#652", was: String.raw`\[Reaction\]\s*[‐-―−-]` },
+  },
+  tournament: {},
+};
 
 const root = new URL("../", import.meta.url);
 const cache = new Map();
