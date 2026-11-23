@@ -881,6 +881,8 @@ body[data-auth="out"] .gate { display: flex; align-items: center; justify-conten
 .pool-name { display: flex; align-items: center; gap: 2px; min-width: 0; margin: 0; font-size: 0.71875rem; color: var(--muted); }
 .pool-name-txt { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .pool-name .sig-tag, .pool-name .ban-tag { flex: 0 0 auto; }
+/* #672: an announced ban, in text and weight only: neither the banned tag's red nor restricted's accent. */
+.pool-soon { margin: 0; font-size: 0.65625rem; font-weight: 600; color: var(--muted); }
 /* Measured at 390px: 25x17, under WCAG 2.2 2.5.8's 24x24 floor, and it repeats for every card in
    the pool — 48 failures on one screen. The 2.5.8 "equivalent control" exception does NOT cover it:
    the cell's other button is .pool-add at 106x76, but that ADDS the card, a different function, so
