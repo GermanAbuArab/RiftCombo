@@ -2202,7 +2202,7 @@ function curveOf(c) {
     ...triggersOf(c, t),
     ...reducerOf(c, t),
     hen: HENGE.test(t) ? 1 : 0,
-    selfReady: c.type.includes("unit") && /(?:^|[.)]\s*)I enter ready\./.test(t),
+    selfReady: c.type.includes("unit") && /(?:^|[.)])\s*I enter ready\./.test(t),
     // Each field on its own: `t` joins them with a space, which the line anchor would not see.
     acc: c.type.includes("unit") && (ACCELERATE.test(c.text || "") || ACCELERATE.test(c.effect || "")),
     hidden: !c.type.includes("legend") && !c.type.includes("battlefield") &&

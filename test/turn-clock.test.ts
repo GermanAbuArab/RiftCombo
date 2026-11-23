@@ -1307,7 +1307,9 @@ describe("a spell aimed at a unit the row plays (#552)", () => {
  * AN ABILITY THAT LIVES ONLY IN `effect` (#548). The script joins a card as `text + " " + effect`, so a
  * card with an empty `text` starts with a space, and eight regexes anchored with `(?:^|[.)\]]\s*)` (the
  * whitespace INSIDE the alternation, so it follows a sentence end but never the start) matched none of
- * them: the clock priced such a card as if it had no ability. Nothing is mis-priced today, the data pin
+ * them, and so did `selfReady`'s `(?:^|[.)]\s*)`, the same defect without the `\]` that the issue's grep
+ * did not match (found by the review of the PR): the clock priced such a card as if it had no ability.
+ * Nothing is mis-priced today, the data pin
  * below measures 0 such cards of 1189, so these pins build the card: each takes a real card, moves its
  * whole text into `effect`, leaves `text` empty, and prices a hand-walked set from a copy of the data in
  * a temporary directory. The script reads `data/` from its working directory, which is what lets a test
@@ -1324,6 +1326,7 @@ describe("a spell aimed at a unit the row plays (#552)", () => {
  *   VEN-012 Perfect Execution  readiesOf's "Ready a unit", which opens its text. Upstage Comedy's follows a
  *                              [Repeat] reminder's ")" and matches with or without the start anchor
  *   UNL-104 Gentle Gemdragon   runesOf's "When you play me" and KIN_READY
+ *   OGN-159 Warwick            selfReady's "I enter ready."
  * A control blanks the Seal's text instead of moving it, so the equality cannot pass by the script reading
  * the real `data/` and ignoring the copy.
  */
@@ -1331,7 +1334,7 @@ describe("an ability that lives only in effect (#548)", () => {
   type Card = { base: string; text?: string | null; effect?: string | null };
   const data = JSON.parse(readFileSync("data/cards.json", "utf8")) as { cards: Card[] };
   const script = resolve("scripts/adversarial-check.mjs");
-  const tmp = mkdtempSync(join(tmpdir(), "rc-548-"));
+  let tmp = ""; // made in beforeAll, so a run whose filter skips this block leaves no directory behind
   /** One working directory per card: that card's text moved to `effect`, everything else as shipped. */
   const dirOf = (base: string) => join(tmp, base);
 
@@ -1345,7 +1348,8 @@ describe("an ability that lives only in effect (#548)", () => {
   const moveToEffect = (c: Card): Card => ({ ...c, text: "", effect: [c.text, c.effect].filter(Boolean).join(" ") });
 
   beforeAll(() => {
-    for (const base of ["OGN-040", "OGN-140", "SFD-117", "VEN-150", "VEN-012", "UNL-104"]) {
+    tmp = mkdtempSync(join(tmpdir(), "rc-548-"));
+    for (const base of ["OGN-040", "OGN-140", "SFD-117", "VEN-150", "VEN-012", "UNL-104", "OGN-159"]) {
       expect(data.cards.filter((c) => c.base === base && (c.text ?? "").trim()), base).not.toHaveLength(0);
       copyWith(dirOf(base), base, moveToEffect);
     }
@@ -1369,6 +1373,7 @@ describe("an ability that lives only in effect (#548)", () => {
     ["Acceleration Gate + Mountain Drake", "VEN-150", "VEN-150:1,OGN-142:1", /all T4,.*pays T5,/],
     ["Perfect Execution + two Dune Drakes", "VEN-012", "VEN-012:1,OGN-131:2", /all T4,.*pays T4,/],
     ["two Gemdragons + two Dune Drakes", "UNL-104", "UNL-104:2,OGN-131:2", /all T5,/],
+    ["Warwick alone, whose 'I enter ready.' makes it no last unit", "OGN-159", "OGN-159:1", /last unit T0, unitLast false, pays T3/],
   ];
   for (const [name, moved, set, line] of pins) {
     it(`prices ${name} the same with ${moved}'s text in effect`, () => {
@@ -1394,12 +1399,13 @@ describe("an ability that lives only in effect (#548)", () => {
     expect(loose).toEqual([]);
   });
 
-  // The same for the icon-stripped form `runesOf` and KIN_READY read: taking `:rb_*:` out of a text that
-  // opens with an icon leaves a leading space, which the old `^` refused and the new `^\s*` takes. Measured
-  // 2026-11-23 over the 1189 cards, joined and stripped: the eight regexes answer the same old and new.
-  it("holds no card whose text or effect opens with whitespace once its icons are stripped", () => {
-    const strip = (s?: string | null) => (s ?? "").replace(/:rb_[a-z_0-9]+:/g, "");
-    const lead = data.cards.filter((c) => /^\s/.test(strip(c.text)) || /^\s/.test(strip(c.effect))).map((c) => c.base);
+  // The same for the string the regexes read: `text + " " + effect`, which `runesOf` and KIN_READY read with
+  // the `:rb_*:` icons taken out. A text that opens with an icon, or an empty text, leaves a leading space,
+  // which the old `^` refused and the new `^\s*` takes. Measured 2026-11-23 over the 1189 cards: the nine
+  // regexes answer the same old and new. A card with neither field (27 of them) is blank, not leading.
+  it("holds no card whose joined text and effect opens with whitespace once its icons are stripped", () => {
+    const seen = (c: Card) => `${c.text || ""} ${c.effect || ""}`.replace(/:rb_[a-z_0-9]+:/g, "");
+    const lead = data.cards.filter((c) => seen(c).trim() && /^\s/.test(seen(c))).map((c) => c.base);
     expect(lead).toEqual([]);
   });
 });
