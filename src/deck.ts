@@ -185,10 +185,7 @@ export function deckRestrictions(deck: Deck, cards: CardIndex, format: Format): 
  * banned today is left to `deckRestrictions`. By name.
  */
 export function deckUpcomingBans(deck: Deck, cards: CardIndex, format: Format): DeckRestriction[] {
-  const found = holding(deck, (base) => {
-    if (cards.legality(base, format)?.status === "banned") return undefined;
-    return cards.upcoming(base, format).find((e) => e.status === "banned");
-  });
+  const found = holding(deck, (base) => cards.upcomingBan(base, format));
   return found.sort((a, b) => a.entry.name.localeCompare(b.entry.name));
 }
 

@@ -144,3 +144,41 @@ describe("deck plan", () => {
     expect(seen(new CardIndex(cards.cards, [entry("banned")]))).toBe(false);
   });
 });
+
+/**
+ * #672: What to add never builds toward a line whose card has an announced ban (#670's rows not in
+ * force yet). Stellacorn Herder (SFD-048) is banned from 2026-11-23 in both formats, and
+ * `azir-ascendant-stellacorn-draw` is Azir, Ascendant plus the Herder: a Calm + Order list holding
+ * Azir is one Herder away from it. The day is read in UTC (`banDay`), so the boundary is pinned to
+ * the millisecond.
+ */
+describe("an announced ban (#672)", () => {
+  const target = "azir-ascendant-stellacorn-draw";
+  const ids = (plan: ReturnType<typeof planDeck>) => [...plan.have, ...plan.routes].map((r) => r.variant.comboIds[0]);
+  const eve = cards.current(new Date("2026-11-22T23:59:59.999Z"));
+  const day = cards.current(new Date("2026-11-23T00:00:00Z"));
+
+  for (const format of ["constructed", "2v2"] as const) {
+    it(`never suggests a card whose ban is announced, and still not once it is in force (${format})`, () => {
+      const deck = loadDeck("Legend\n1 Emperor of the Sands\nMain\n3 Azir, Ascendant", cards);
+      // The control: read with no ban list at all, the line is one Herder away.
+      const open = planDeck(deck, variants, new CardIndex(cards.cards, [], "2026-11-22"), { format });
+      expect(open.routes.find((r) => r.variant.comboIds[0] === target)?.add).toEqual([{ card: "SFD-048", quantity: 1 }]);
+
+      expect(eve.asOf).toBe("2026-11-22");
+      expect(eve.upcomingBan("SFD-048", format)?.since).toBe("2026-11-23");
+      const before = planDeck(deck, variants, eve, { format });
+      expect(ids(before)).not.toContain(target);
+      for (const r of before.routes) expect(r.add.map((a) => a.card)).not.toContain("SFD-048");
+
+      expect(day.legality("SFD-048", format)?.status).toBe("banned");
+      expect(ids(planDeck(deck, variants, day, { format }))).not.toContain(target);
+    });
+  }
+
+  it("still says a list completes such a line, because the line is legal until the date", () => {
+    const deck = loadDeck("Legend\n1 Emperor of the Sands\nMain\n3 Azir, Ascendant\n3 Stellacorn Herder", cards);
+    expect(planDeck(deck, variants, eve, constructed).have.map((r) => r.variant.comboIds[0])).toContain(target);
+    expect(ids(planDeck(deck, variants, day, constructed))).not.toContain(target);
+  });
+});

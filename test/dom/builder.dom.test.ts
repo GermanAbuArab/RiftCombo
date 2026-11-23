@@ -20,6 +20,8 @@ let edits: string[] = [];
 const shown: string[] = [];
 /** The format the harness reports, so a test can flip it the way the Decks page's radio does. */
 let fmt: "constructed" | "2v2" = "constructed";
+/** The index the harness hands the editor, so a test can move the day the way `syncDay` does in the app. */
+let index = cards;
 /** The mounted module, kept module-level so a test can call `refreshBuilder` as `web/decks.ts` does. */
 let mod: typeof import("../../web/builder.js");
 
@@ -29,11 +31,12 @@ async function mount(list: string) {
   edits = [];
   shown.length = 0;
   fmt = "constructed";
+  index = cards;
   document.body.innerHTML = `<div id="host"></div>`;
   const host = document.querySelector<HTMLElement>("#host")!;
   mod = await import("../../web/builder.js");
   mod.initBuilder(host, {
-    cards: () => cards,
+    cards: () => index,
     format: () => fmt,
     showCard: (base) => shown.push(base),
     onEdit: (text) => edits.push(text),
@@ -547,6 +550,45 @@ describe("103.2.e — marked, never blocked, and the mark follows the format (#2
     expect(edits).toHaveLength(1);
     // And the checklist is the authority that still reports it, which is what makes the tier safe.
     expect(document.querySelector(".bld-check-n")!.textContent).not.toBe("Legal");
+  });
+});
+
+/**
+ * #672: a ban announced and not in force is a third state, so the cell says it in words ("Banned from
+ * <date>") and paints neither the banned nor the restricted tag. Stellacorn Herder (SFD-048) is banned
+ * from 2026-11-23 in both formats. The day is UTC (`banDay`): one millisecond before midnight the cell
+ * still says the date, and at midnight it says banned. `index` stands in for the app's `syncDay`.
+ */
+describe("an announced ban is marked in the pool until its date (#672)", () => {
+  for (const format of ["constructed", "2v2"] as const) {
+    it(`says the date before it and banned on it (${format})`, async () => {
+      await mount("");
+      fmt = format;
+      allDomains();
+      await search("Stellacorn");
+      const cell = () => cellNamed("Stellacorn Herder")!;
+
+      index = cards.current(new Date("2026-11-22T23:59:59.999Z"));
+      mod.refreshBuilder();
+      expect(cell().querySelector(".pool-soon")?.textContent).toBe("Banned from 2026-11-23");
+      expect(cell().querySelector(".ban-tag"), "not banned yet").toBeNull();
+      expect(cell().querySelector(".pool-add")!.getAttribute("aria-disabled")).toBe("false");
+
+      index = cards.current(new Date("2026-11-23T00:00:00Z"));
+      mod.refreshBuilder();
+      expect(cell().querySelector(".pool-soon"), "the date has come").toBeNull();
+      expect(cell().querySelector(".ban-tag")!.textContent).toBe("banned");
+    });
+  }
+
+  it("marks nothing on a card with no announced row", async () => {
+    await mount("");
+    allDomains();
+    await search("Azir");
+    index = cards.current(new Date("2026-11-22T12:00:00Z"));
+    mod.refreshBuilder();
+    expect(cellNamed("Azir, Ascendant"), "the subject is drawn at all").toBeTruthy();
+    expect(cellNamed("Azir, Ascendant")!.querySelector(".pool-soon")).toBeNull();
   });
 });
 
