@@ -27,8 +27,10 @@ code is the stable key.
 | `OGN-235` Karma, Channeler | Tagged `[Tags: Vi, Ionia]`. Should be Karma; Vi is a different champion. | Corpus L241. |
 | `SFD-217` Seat of Power | Sentence ended in a double period: `…you or allies control..`. **Gone upstream**: the gallery read 2026-11-16 (#660) ends `…you or allies control.`, so the row stays as history. | API body ended `control..</p>` on 2026-09-04. |
 | `VEN-109` Illaoi (and `UNL-160` Ultrasoft Poro until 2026-11) | Token Might printed as `:rb_energy_1: :rb_might:` — Riot uses the *Energy* glyph for the numeral `1` in front of the Might icon. Reads as "1 Energy of Might" if taken literally; it means a 1 Might token. Rule 187.7 is the authority for the Bird token, 187 for the shape. `UNL-160` reads `Play two 1 :rb_might: Bird unit` in the gallery read 2026-11-16 (#660); `VEN-109` still carries the Energy glyph. | Corpus L709, L884 as of the audit. |
+| `RAD-012` Runeblade Anvil | The kill cost names a Chaos rune, `:rb_energy_2::rb_rune_chaos:, :rb_exhaust:: Kill this.`, where the card prints a Fury rune. The gallery also ships the card as Chaos, and `data/gallery-fixes.json` corrects its domain to the printed Fury, but that overlay never touches text. Only the colour is wrong: the turn clock counts Power glyphs without reading their domain (`scripts/adversarial-check.mjs:1972`), and four synergy excludes quote the text as shipped. The only RAD card whose text names a rune outside its own domains (measured 2026-11-23, #664). | API text read 2026-11-23. The card image, the `source` of its `data/gallery-fixes.json` entry, read 2026-11-23: `2`, a Fury rune, exhaust: Kill this. |
 
-None of these change what a card does, so none of them blocks a rules walk. The
+Except `RAD-012`, whose walk pays its kill cost with the Fury rune the card prints, none of these
+change what a card does, so none of them blocks a rules walk. The
 bracket-less keywords are the ones with teeth: any parser that finds keywords by `[…]` misses
 `Equip` on `VEN-073` and `RAD-071`, `Ganking` on `SFD-096` and `Hidden` on `SFD-138`. Five synergy
 predicates do find `[Equip]` that way (`fiora-equipment-ready`, `aphelios-equipment-attach`,
