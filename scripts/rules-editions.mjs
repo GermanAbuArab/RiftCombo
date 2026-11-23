@@ -3,7 +3,8 @@
 // A combo entry names the edition its rule numbers belong to in `rulesVersion`; synergies.json names
 // one for the whole file. Since #645 two editions are live: 2026-07-16 (every entry that cites a
 // paragraph Riot reworded or deleted in 10-09, kept pinned to the text it was walked against) and
-// 2026-10-09 (entries whose every cited paragraph kept its text, remapped by text identity).
+// 2026-10-09 (entries whose every cited paragraph kept its text, remapped by text identity, or was
+// reworded and re-read to mean the same, `REREAD` below).
 //
 // A paragraph is a line whose first token is a paragraph number, plus every following line up to the
 // next one. The anchor is `^\s*` after stripping `\f`, for the reason test/rule-refs.test.ts gives
@@ -65,6 +66,24 @@ export const skeleton = (s) =>
 
 /** What the #645 ledger (data/rules-remap-2026-10-09.json) stores per cited paragraph: 16 hex of sha256 of its skeleton. */
 export const hash = (s) => crypto.createHash("sha256").update(skeleton(s)).digest("hex").slice(0, 16);
+
+/**
+ * Paragraphs Riot reworded in 2026-10-09 that a re-read found to mean what they meant in 2026-07-16,
+ * one cluster follow-up of #645 at a time. Per book and 07-16 number: the 10-09 number (`to`), the hash
+ * of each text the verdict was read on (`from`, `as`; a changed extraction voids the verdict), and the
+ * issue that quotes both texts and gives the reasoning (`by`). scripts/remap-rules.mjs moves a citation
+ * of one as it moves a renumbered paragraph and rewrites the 07-16 words where a moved entry prints them;
+ * `was`, a regex, is the 07-16 form a paraphrase can keep, which pins an entry that prints it next to
+ * the number. test/rule-refs.test.ts accepts the 10-09 text at `to` for the 07-16 hash the ledger keeps.
+ */
+export const REREAD = {
+  core: {
+    // [Reaction] moved to the front of the ability, in the form 813.1.d gives both editions (#652).
+    "164.2.a": { to: "164.2.a", from: "235d4a668bfa2e1a", as: "4bf343f510935ab9", by: "#652", was: String.raw`\[Reaction\]\s*[‐-―−-]` },
+    "164.2.b": { to: "164.2.b", from: "01d1e19c9c5002c4", as: "6a98a4ecf757a69c", by: "#652", was: String.raw`\[Reaction\]\s*[‐-―−-]` },
+  },
+  tournament: {},
+};
 
 const root = new URL("../", import.meta.url);
 const cache = new Map();
@@ -149,8 +168,24 @@ const NOT_A_RULE = (s, at, len) => /HTTP/.test(s.slice(Math.max(0, at - 40), at)
 const WILD = /\b(\d{3})((?:\.(?:\d+[a-z]?|[a-z]))*)\.x\b/g;
 
 /**
+ * The members a slash shorthand adds after a dotted number, as { seg, at }: `435.1.f/g/h` cites 435.1.g
+ * and 435.1.h too, which REF does not see. A member has the shape of the number's last segment, so
+ * `369.3/370` stays two numbers and `164.2.a/or` is not a shorthand.
+ */
+const shorthand = (s, head, end) => {
+  const seg = /\.[a-z]$/.test(head) ? "[a-z]" : String.raw`\d{1,2}[a-z]?`;
+  const re = new RegExp(String.raw`\/(${seg})(?![0-9a-z])`, "y");
+  const out = [];
+  re.lastIndex = end;
+  for (let m; (m = re.exec(s)); ) out.push({ seg: m[1], at: m.index + 1 });
+  return out;
+};
+
+/**
  * Every rule-number token in one catalogue entry: { kind: "ref" | "bare" | "wild", tok, path, str, at }.
- * `ref` is the dotted tokenizer above; `wild` is `NNN.x`; `bare` is a three-digit section number.
+ * `ref` is the dotted tokenizer above, and each member of a slash shorthand after one, which carries
+ * `sib: { head, seg }` and prints only `seg` at `at` (#652: 07-16 434.1.f/g/h is 10-09 435.1.f/g/i);
+ * `wild` is `NNN.x`; `bare` is a three-digit section number.
  */
 export function citations(entry) {
   const out = [];
@@ -162,7 +197,11 @@ export function citations(entry) {
         out.push({ kind: "wild", tok: m[1] + m[2], path, str: node, at: m.index });
         wild.add(m.index);
       }
-      for (const m of node.matchAll(REF)) if (!wild.has(m.index) && !/\.x$/.test(m[0])) out.push({ kind: "ref", tok: m[0], path, str: node, at: m.index });
+      for (const m of node.matchAll(REF)) {
+        if (wild.has(m.index) || /\.x$/.test(m[0])) continue;
+        out.push({ kind: "ref", tok: m[0], path, str: node, at: m.index });
+        for (const x of shorthand(node, m[0], m.index + m[0].length)) out.push({ kind: "ref", tok: m[0].replace(/[^.]+$/, x.seg), path, str: node, at: x.at, sib: { head: m[0], seg: x.seg } });
+      }
       for (const m of node.matchAll(BARE)) {
         if (wild.has(m.index) || NOT_A_RULE(node, m.index, m[0].length)) continue;
         out.push({ kind: "bare", tok: m[0], path, str: node, at: m.index });
@@ -194,9 +233,24 @@ export function catalogueText() {
     for (const [id, t] of paragraphs(OLD, b)) (byHash[b].get(hash(t)) || byHash[b].set(hash(t), []).get(hash(t))).push(id);
   }
   const TOKEN = /(?<![-#=_0-9.A-Za-z$])\d{3}(?:\.(?:\d+[a-z]?|[a-z]))*(?![0-9a-z])/g;
+  // A shorthand member goes back with its head: 435.1.f/g/i is 434.1.f/g/h.
+  const backStr = (s, map) => {
+    let out = "", last = 0;
+    for (const { 0: t, index: at } of s.matchAll(TOKEN)) {
+      if (NOT_A_RULE(s, at, t.length)) continue;
+      out += s.slice(last, at) + (map.get(t) ?? t);
+      last = at + t.length;
+      for (const x of shorthand(s, t, last)) {
+        const n = t.replace(/[^.]+$/, x.seg), was = map.get(n) ?? n;
+        out += s.slice(last, x.at) + was.slice(was.lastIndexOf(".") + 1);
+        last = x.at + x.seg.length;
+      }
+    }
+    return out + s.slice(last);
+  };
   const back = (node, map, key) =>
     typeof node === "string"
-      ? NOT_PROSE.has(key) ? node : node.replace(TOKEN, (t, at, s) => (NOT_A_RULE(s, at, t.length) ? t : map.get(t) ?? t))
+      ? NOT_PROSE.has(key) ? node : backStr(node, map)
       : Array.isArray(node) ? node.map((v) => back(v, map, key))
       : node && typeof node === "object" ? Object.fromEntries(Object.entries(node).map(([k, v]) => [k, back(v, map, k)]))
       : node;

@@ -167,7 +167,7 @@ describe("the walked-against line (#645)", () => {
   it("keeps the walk date apart from the numbering, which a renumbering alone moves", () => {
     expect(rulesLine({ rulesVersion: "2026-07-16", walkedVersion: "2026-07-16" })).toBe("Walked against Core Rules 2026-07-16");
     expect(rulesLine({ rulesVersion: "2026-10-09", walkedVersion: "2026-07-16" })).toBe(
-      "Walked against Core Rules 2026-07-16; rule numbers follow 2026-10-09, where every cited paragraph reads the same.",
+      "Walked against Core Rules 2026-07-16; rule numbers follow 2026-10-09, where every cited paragraph reads the same or was re-read to mean the same.",
     );
   });
 

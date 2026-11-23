@@ -1,7 +1,7 @@
 import { readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
 // @ts-expect-error plain .mjs shared with scripts/remap-rules.mjs, which cannot import TypeScript.
-import { BOOKS, EDITIONS, citations, hash, paragraphs } from "../scripts/rules-editions.mjs";
+import { BOOKS, EDITIONS, REREAD, catalogueText, citations, hash, paragraphs } from "../scripts/rules-editions.mjs";
 
 /**
  * Every rule paragraph this catalogue cites has to exist in a rules document we ship.
@@ -178,8 +178,15 @@ describe("every rule paragraph the catalogue cites exists in a rules document we
 type Ledger = { from: string; to: string; entries: Record<string, { moved: string[]; refs: Record<string, [string, number, string]> }> };
 const ledger = JSON.parse(readFileSync(new URL("data/rules-remap-2026-10-09.json", root), "utf8")) as Ledger;
 
+/** Reworded paragraphs a re-read found to mean the same: per book and 07-16 number, the 10-09 number and the hashes of both texts. */
+type Rereads = Record<string, Record<string, { to: string; from: string; as: string; by: string }>>;
+const REREADS = REREAD as Rereads;
+/** Whether a re-read reads the 07-16 text hashed `meant` as the 10-09 text hashed `now` at `num`. */
+const heldAs = (rereads: Rereads, book: string, num: string, meant: string, now: string) =>
+  Object.values(rereads[book] ?? {}).some((r) => r.to === num && r.from === meant && r.as === now);
+
 /** Everything wrong with one moved entry against its ledger row; [] when it holds. */
-function ledgerFaults(entry: Entry, row: Ledger["entries"][string]): string[] {
+function ledgerFaults(entry: Entry, row: Ledger["entries"][string], rereads: Rereads = REREADS): string[] {
   const faults: string[] = [];
   const moved = new Set(row.moved);
   const seen = new Map<string, number>();
@@ -188,11 +195,14 @@ function ledgerFaults(entry: Entry, row: Ledger["entries"][string]): string[] {
     const r = row.refs[c.tok];
     if (r) seen.set(c.tok, (seen.get(c.tok) ?? 0) + 1);
     else if (moved.has(c.tok)) faults.push(`${c.tok} at ${c.path} is a 07-16 number the move rewrote`);
+    // A dotted number with no row was never checked against the text it meant: the /h that #645 left
+    // in 435.1.g/h, a shorthand member its reader did not see, names a new 10-09 paragraph (#698).
+    else if (c.kind === "ref") faults.push(`${c.tok} at ${c.path} has no ledger row`);
   }
   for (const [num, [book, count, h]] of Object.entries(row.refs)) {
     const text = (paragraphs(NEW, book) as Map<string, string>).get(num);
     if (text === undefined) faults.push(`${num} is not a ${NEW} ${book} paragraph`);
-    else if (hash(text) !== h) faults.push(`${num} in the ${NEW} ${book} rules is not the paragraph the entry meant`);
+    else if (hash(text) !== h && !heldAs(rereads, book, num, h, hash(text))) faults.push(`${num} in the ${NEW} ${book} rules is not the paragraph the entry meant`);
     if ((seen.get(num) ?? 0) < count) faults.push(`${num} cited ${seen.get(num) ?? 0} times, the ledger counts ${count}`);
   }
   return faults;
@@ -246,5 +256,71 @@ describe("entries moved to the 2026-10-09 rules cite the paragraphs they meant (
       if (kind === "reused") expect(resolves(n, NEW)).toBe(true);
       else expect(resolves(n, NEW)).toBe(false);
     }
+  });
+});
+
+describe("reworded paragraphs re-read and held let their citations move (REREAD)", () => {
+  const onNew = combos.combos.filter((e) => e.rulesVersion === NEW);
+
+  it("names the two shipped texts each verdict was read on, and an issue that holds it", () => {
+    const rows = [...BOOKS].flatMap((b: string) => Object.entries(REREADS[b] ?? {}).map(([id, r]) => ({ b, id, ...r })));
+    expect(rows.length).toBeGreaterThan(0);
+    for (const r of rows) {
+      const was = (paragraphs(OLD, r.b) as Map<string, string>).get(r.id);
+      const now = (paragraphs(NEW, r.b) as Map<string, string>).get(r.to);
+      expect([was && hash(was), now && hash(now)], `${r.b} ${r.id} (${r.by})`).toEqual([r.from, r.as]);
+      expect(r.from, `${r.b} ${r.id} kept its text and needs no re-read`).not.toBe(r.as);
+      expect(r.by).toMatch(/^#\d+$/);
+    }
+  });
+
+  it("is what clears an entry that cites one, and only for the texts it was read on", () => {
+    const [id, r] = Object.entries(REREADS.core!)[0]!;
+    const citer = onNew.find((e) => ledger.entries[e.id]!.refs[r.to]?.[2] === r.from);
+    expect(citer, `a moved entry citing core ${id}`).toBeDefined();
+    const row = ledger.entries[citer!.id]!;
+    expect(ledgerFaults(citer!, row)).toEqual([]);
+    const meant = `${r.to} in the ${NEW} core rules is not the paragraph the entry meant`;
+    expect(ledgerFaults(citer!, row, { core: {}, tournament: {} })).toContain(meant);
+    expect(ledgerFaults(citer!, row, { core: { [id]: { ...r, as: "0".repeat(16) } }, tournament: {} })).toContain(meant);
+  });
+});
+
+describe("a slash shorthand cites its members too (#652)", () => {
+  const toks = (notes: string) => (citations({ id: "x", notes } as Entry) as { kind: string; tok: string }[]).filter((c) => c.kind === "ref").map((c) => c.tok);
+
+  it("reads the members after a dotted number, and nothing that only looks like one", () => {
+    expect(toks("435.1.f/g/h")).toEqual(["435.1.f", "435.1.g", "435.1.h"]);
+    expect(toks("369.3/370")).toEqual(["369.3"]);
+    expect(toks("164.2.a/or 164.2.b")).toEqual(["164.2.a", "164.2.b"]);
+  });
+
+  it("moves a member with its head: 07-16 434.1.h is 10-09 435.1.i, printed as 435.1.f/g/i", () => {
+    const id = "unsung-hero-sacrifice-double-draw";
+    const entry = combos.combos.find((e) => e.id === id)!;
+    const row = ledger.entries[id]!;
+    expect(JSON.stringify(entry)).toContain("435.1.f/g/i");
+    expect(row.refs["435.1.i"]).toEqual(["core", expect.any(Number), hash((paragraphs(OLD, "core") as Map<string, string>).get("434.1.h")!)]);
+    expect(row.refs["435.1.h"]).toBeUndefined();
+    expect(ledgerFaults(entry, row)).toEqual([]);
+  });
+
+  it("goes red on a member left behind its head, as #645 left 435.1.g/h (#698)", () => {
+    const id = "azir-aphelios-attach";
+    const entry = combos.combos.find((e) => e.id === id)!;
+    const row = ledger.entries[id]!;
+    expect(ledgerFaults(entry, row)).toEqual([]);
+    const json = JSON.stringify(entry);
+    expect(json).toContain("435.1.g/i");
+    const bad = JSON.parse(json.replace("435.1.g/i", "435.1.g/h")) as Entry;
+    expect(ledgerFaults(bad, row)).toContain("435.1.h at .notes has no ledger row");
+  });
+
+  it("goes back to 07-16 with its head in the catalogue text the notes readers count", () => {
+    const text = catalogueText();
+    // 07-16 has no 434.1.i, so a member still printed in its 10-09 form shows up as one.
+    expect(text).not.toMatch(/434\.1\.[a-z](\/[a-z])*\/i(?![0-9a-z])/);
+    expect(text).toContain("434.1.f/g/h");
+    expect(text).toContain("434.1.c/d/f/g/h");
   });
 });
