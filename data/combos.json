@@ -31886,7 +31886,7 @@
           "Wuju Bladesman - Starter IS the legend, OGS-019 (Calm/Body), so this is a one-legend line and not a domain line. Flurry of Blades is mono-Body and the Waste is Colorless, so 103.1.b.3 is satisfied. NOTE THE FORMAT: OGS-019 is RESTRICTED in 2v2 and legal in constructed — restricted is a cap, not a ban, and the entry is written for constructed."
         ],
         "notable": [
-          "THE -2 ONLY EXISTS INSIDE A COMBAT. 'Defending' is the Defender designation of 464.2.e, so the Waste does nothing to a body merely standing there; the line is an attack on their garrison, not a passive kill. Which is also why it never touches your own units on your own turn — they are attacking.",
+          "THE -2 ONLY EXISTS INSIDE A COMBAT. 'Defending' is the Defender designation of 464.2.c.3, so the Waste does nothing to a body merely standing there; the line is an attack on their garrison, not a passive kill. Which is also why it never touches your own units on your own turn — they are attacking.",
           "AND IT ONLY BITES A GARRISON OF ONE. The reminder is explicit — 'no other friendly units here' — so the moment they add a second body the -2 is gone. That is the honest ceiling: this clears a one-body garrison, cheaply and repeatedly, and does nothing against two.",
           "THE ARITHMETIC, WITH THE QUANTITIES THIS ENTRY DECLARES: their lone defender at Might 2 goes to 0 and dies to Flurry of Blades' single point of damage; at Might 3 it goes to 1 and also dies; at Might 4 it goes to 2 and survives. So the reach is a lone defender of 3 Might or less, for 1 Energy, three times a game (103.2.b). Your own attackers take the same 1 damage and need 2 Might to survive it — Flurry of Blades says 'all units at battlefields', not 'enemy units'.",
           "AN EMPTIED GARRISON IS A CONQUER WITH NO DAMAGE STEP. 465.1 needs both Attacking and Defending units for the damage tasks and 466.3.a resolves the combat with the attacker alone remaining, so 466.5 establishes Control and 466.5.d makes it a Conquer if you have not yet Scored that battlefield this turn.",
@@ -31897,7 +31897,7 @@
       "steps": [
         "Bring Forbidding Waste as one of your three battlefields under a Wuju Bladesman - Starter legend. Neither needs any set-up: the Waste has no 'you' for 190.6.d to blank and the legend's clause is a static.",
         "Wait for the opponent to garrison the Waste with a single body — or attack their lone garrison at it after they conquer it.",
-        "Attack with a unit of 2 Might or more. 190.3.a.1 applies Contested, 323.9 stages the Combat, and 464.2.c.1 makes you the Attacker; their body takes the Defender designation (464.2.e) and the Waste's -2 applies to it at that moment.",
+        "Attack with a unit of 2 Might or more. 190.3.a.1 applies Contested, 323.9 stages the Combat, and 464.2.c.1 makes you the Attacker; their body takes the Defender designation (464.2.c.3) and the Waste's -2 applies to it at that moment.",
         "Inside the Combat's Closed State, play Flurry of Blades (E1, [Reaction], 813.1.c.1): 1 damage to all units at battlefields. Their reduced defender dies (143.2.a with 143.2.b's floor at 0); your 2-Might-or-more attacker survives.",
         "With no defending units left, 465.1 assigns no damage and 466.3.a resolves the combat; 466.5 establishes your Control and 466.5.d makes it a Conquer.",
         "143.3.b.1 heals the marked damage at the end of the turn, so nothing carries over and the next copy of Flurry of Blades does the same job."
@@ -34946,7 +34946,7 @@
       },
       "steps": [
         "Deck-build under an Eye of Twilight legend (VEN-147 or VEN-193) and garrison a battlefield with Zephyr Sage alongside whatever the deck actually wants to keep alive there.",
-        "The opponent attacks. 190.3.a.1 applies Contested, 323.9 stages the Combat, 464.2.c.3 designates the attackers and 464.2.e gives your bodies the Defender designation.",
+        "The opponent attacks. 190.3.a.1 applies Contested, 323.9 stages the Combat, 464.2.c.3 designates the attackers and gives your bodies the Defender designation.",
         "In the Combat's Closed State, where 312.2.c gives you priority, activate the legend: exhaust it and give Zephyr Sage [Tank] this turn. 806.1.c.2 is the permission to do it on the opponent's turn.",
         "814.1.c reads the Sage at Might 7 as a defender. 815.1.c.2 now makes every other unit you control in this Combat an invalid damage assignment until she has lethal damage.",
         "465.2.c.3 and 465.2.c.4 make the attacker spend exactly 7 of their summed Might on her before anything else of yours can be assigned a point.",
@@ -36905,7 +36905,7 @@
       },
       "steps": [
         "Bring Abandoned Hall as one of your three battlefields and garrison it. It needs no Control for its own text, but you want a unit standing there to be the target of its own clause.",
-        "The opponent attacks. 190.3.a.1 applies Contested, 323.9 stages the Combat, 464.2.c.3 designates the attackers and 464.2.e gives your body the Defender designation.",
+        "The opponent attacks. 190.3.a.1 applies Contested, 323.9 stages the Combat, 464.2.c.3 designates the attackers and gives your body the Defender designation.",
         "Inside the Combat's Closed State, where 312.2.c gives you priority and 813.1.c.1 admits a [Reaction] card, play Stupefy (E1) choosing the biggest attacker: it takes -1 Might this turn.",
         "The Hall triggers on that play and offers +1 Might this turn to a unit you control here — take it on your defender. 702.3 is not engaged because this is a modifier and not a buff counter.",
         "Draw the card Stupefy gives you and repeat with the second and third copies. Each casting is another point off theirs and another onto yours.",
