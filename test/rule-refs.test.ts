@@ -282,3 +282,23 @@ describe("reworded paragraphs re-read and held let their citations move (REREAD)
     expect(ledgerFaults(citer!, row, { core: { [id]: { ...r, as: "0".repeat(16) } }, tournament: {} })).toContain(meant);
   });
 });
+
+describe("a slash shorthand cites its members too (#652)", () => {
+  const toks = (notes: string) => (citations({ id: "x", notes } as Entry) as { kind: string; tok: string }[]).filter((c) => c.kind === "ref").map((c) => c.tok);
+
+  it("reads the members after a dotted number, and nothing that only looks like one", () => {
+    expect(toks("435.1.f/g/h")).toEqual(["435.1.f", "435.1.g", "435.1.h"]);
+    expect(toks("369.3/370")).toEqual(["369.3"]);
+    expect(toks("164.2.a/or 164.2.b")).toEqual(["164.2.a", "164.2.b"]);
+  });
+
+  it("moves a member with its head: 07-16 434.1.h is 10-09 435.1.i, printed as 435.1.f/g/i", () => {
+    const id = "unsung-hero-sacrifice-double-draw";
+    const entry = combos.combos.find((e) => e.id === id)!;
+    const row = ledger.entries[id]!;
+    expect(JSON.stringify(entry)).toContain("435.1.f/g/i");
+    expect(row.refs["435.1.i"]).toEqual(["core", expect.any(Number), hash((paragraphs(OLD, "core") as Map<string, string>).get("434.1.h")!)]);
+    expect(row.refs["435.1.h"]).toBeUndefined();
+    expect(ledgerFaults(entry, row)).toEqual([]);
+  });
+});

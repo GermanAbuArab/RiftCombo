@@ -168,8 +168,24 @@ const NOT_A_RULE = (s, at, len) => /HTTP/.test(s.slice(Math.max(0, at - 40), at)
 const WILD = /\b(\d{3})((?:\.(?:\d+[a-z]?|[a-z]))*)\.x\b/g;
 
 /**
+ * The members a slash shorthand adds after a dotted number, as { seg, at }: `435.1.f/g/h` cites 435.1.g
+ * and 435.1.h too, which REF does not see. A member has the shape of the number's last segment, so
+ * `369.3/370` stays two numbers and `164.2.a/or` is not a shorthand.
+ */
+const shorthand = (s, head, end) => {
+  const seg = /\.[a-z]$/.test(head) ? "[a-z]" : String.raw`\d{1,2}[a-z]?`;
+  const re = new RegExp(String.raw`\/(${seg})(?![0-9a-z])`, "y");
+  const out = [];
+  re.lastIndex = end;
+  for (let m; (m = re.exec(s)); ) out.push({ seg: m[1], at: m.index + 1 });
+  return out;
+};
+
+/**
  * Every rule-number token in one catalogue entry: { kind: "ref" | "bare" | "wild", tok, path, str, at }.
- * `ref` is the dotted tokenizer above; `wild` is `NNN.x`; `bare` is a three-digit section number.
+ * `ref` is the dotted tokenizer above, and each member of a slash shorthand after one, which carries
+ * `sib: { head, seg }` and prints only `seg` at `at` (#652: 07-16 434.1.f/g/h is 10-09 435.1.f/g/i);
+ * `wild` is `NNN.x`; `bare` is a three-digit section number.
  */
 export function citations(entry) {
   const out = [];
@@ -181,7 +197,11 @@ export function citations(entry) {
         out.push({ kind: "wild", tok: m[1] + m[2], path, str: node, at: m.index });
         wild.add(m.index);
       }
-      for (const m of node.matchAll(REF)) if (!wild.has(m.index) && !/\.x$/.test(m[0])) out.push({ kind: "ref", tok: m[0], path, str: node, at: m.index });
+      for (const m of node.matchAll(REF)) {
+        if (wild.has(m.index) || /\.x$/.test(m[0])) continue;
+        out.push({ kind: "ref", tok: m[0], path, str: node, at: m.index });
+        for (const x of shorthand(node, m[0], m.index + m[0].length)) out.push({ kind: "ref", tok: m[0].replace(/[^.]+$/, x.seg), path, str: node, at: x.at, sib: { head: m[0], seg: x.seg } });
+      }
       for (const m of node.matchAll(BARE)) {
         if (wild.has(m.index) || NOT_A_RULE(node, m.index, m[0].length)) continue;
         out.push({ kind: "bare", tok: m[0], path, str: node, at: m.index });

@@ -126,7 +126,7 @@ const reword = (entry, path, s, rereads) => {
 function plan(entry) {
   const pins = new Set();
   if (OLD_NUMBERING.has(entry.id)) pins.add("quotes a commenter citing an older numbering verbatim");
-  const edits = []; // { path, at, len, from, to }
+  const edits = []; // { path, at, len, from, to, put? (what is printed, when not `to`) }
   const ledger = new Map(); // new number -> [book, count, hash]
   const moved = new Set();
   const rereads = new Set(); // the REREAD paragraphs this entry cites
@@ -162,7 +162,17 @@ function plan(entry) {
     to = t.to;
     if (to !== c.tok) {
       moved.add(c.tok);
-      edits.push({ path: c.path, at: c.at, len: c.tok.length, from: c.tok, to, guessed });
+      if (c.sib) {
+        // A shorthand member prints only its last segment, so it can follow only to a number under the
+        // prefix its head moves to: 434.1.f/g/h becomes 435.1.f/g/i.
+        const head = target(book, c.sib.head).to;
+        const under = (n) => n.replace(/\.[^.]+$/, "");
+        if (head === undefined || under(to) !== under(head)) {
+          pins.add(`${c.tok}, in the shorthand after ${c.sib.head}, moves to ${to} and leaves it`);
+          continue;
+        }
+        edits.push({ path: c.path, at: c.at, len: c.sib.seg.length, from: c.tok, to, put: to.slice(under(to).length + 1), guessed });
+      } else edits.push({ path: c.path, at: c.at, len: c.tok.length, from: c.tok, to, guessed });
     }
     if (c.kind === "ref" || to !== c.tok) {
       const row = ledger.get(to) ?? [book, 0, hash(oldText[book].get(c.tok))];
@@ -214,7 +224,7 @@ function apply(entry, { edits, rereads }) {
   const walk = (node, path) => {
     if (typeof node === "string") {
       let s = node;
-      for (const e of (byPath.get(path) || []).sort((a, b) => b.at - a.at)) s = s.slice(0, e.at) + e.to + s.slice(e.at + e.len);
+      for (const e of (byPath.get(path) || []).sort((a, b) => b.at - a.at)) s = s.slice(0, e.at) + (e.put ?? e.to) + s.slice(e.at + e.len);
       return reword(entry, path, s, rereads);
     }
     if (Array.isArray(node)) return node.map((v, i) => walk(v, `${path}[${i}]`));
@@ -262,7 +272,7 @@ db.combos = db.combos.map((e0) => {
 const pinned = rows.filter((r) => r.pins.length);
 const reasons = new Map();
 for (const r of pinned) for (const x of r.pins) {
-  const k = x.replace(/^(core|tournament) \S+ (reworded|deleted).*/, "$1 paragraph $2 in " + TO).replace(/^\S+ is in both books.*/, "number in both books, sentence names neither, readings differ").replace(/^\S+ names .* a number that .*/, "a string names 07-16 next to a changing number").replace(/^\S+ names .* a quote that .*/, "a string names 07-16 next to a re-read quote").replace(/^\S+ prints .* form$/, "a string prints a re-read paragraph in its 07-16 form").replace(/^\S+ quotes a non-Riot source.*/, "a non-Riot quotation carries a number that would change").replace(/^\S+\.x: core \S+ (reworded|deleted).*/, "a block citation (NNN.x) covers a paragraph $1 in " + TO).replace(/^(core|tournament) \S+: its text sits at.*/, "text at several numbers in " + TO);
+  const k = x.replace(/^(core|tournament) \S+ (reworded|deleted).*/, "$1 paragraph $2 in " + TO).replace(/^\S+ is in both books.*/, "number in both books, sentence names neither, readings differ").replace(/^\S+ names .* a number that .*/, "a string names 07-16 next to a changing number").replace(/^\S+ names .* a quote that .*/, "a string names 07-16 next to a re-read quote").replace(/^\S+ prints .* form$/, "a string prints a re-read paragraph in its 07-16 form").replace(/^\S+ quotes a non-Riot source.*/, "a non-Riot quotation carries a number that would change").replace(/^\S+\.x: core \S+ (reworded|deleted).*/, "a block citation (NNN.x) covers a paragraph $1 in " + TO).replace(/^(core|tournament) \S+: its text sits at.*/, "text at several numbers in " + TO).replace(/^\S+, in the shorthand after .* and leaves it$/, "a slash shorthand member moves away from its head");
   reasons.set(k, (reasons.get(k) || new Set()).add(r.id));
 }
 for (const [k, ids] of reasons) reasons.set(k, ids.size);
