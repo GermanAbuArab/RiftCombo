@@ -10,7 +10,8 @@
 // paragraph and finds its meaning held, or finds a deleted paragraph's rule at another 10-09 number,
 // adds it to `REREAD` (scripts/rules-editions.mjs), and its citations then move the same way (#652:
 // 164.2.a and 164.2.b; #653: 429.2 and 429.3.a to 430.2, 429.2.a to 430.2.a; #654: 477.1.b.1.b to
-// 479.1.b, 477.2 to 479.3, 477.3 to 479.4). The data marks the edition per ENTRY (`rulesVersion`), so
+// 479.1.b, 477.2 to 479.3, 477.3 to 479.4; #655: 464.2.b to 466.2.b, 464.2.d to 466.2.c.1.a,
+// 464.2.e to 466.2.d). The data marks the edition per ENTRY (`rulesVersion`), so
 // the pin is per entry: an entry that cites any paragraph Riot reworded or deleted keeps every number
 // and `rulesVersion: "2026-07-16"`, and an entry whose every citation kept its text moves whole.
 // data/synergies.json carries one `rulesVersion` for the file and stays on 07-16.

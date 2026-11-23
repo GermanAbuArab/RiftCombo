@@ -307,6 +307,23 @@ describe("reworded paragraphs re-read and held let their citations move (REREAD)
     const rows = [...BOOKS].flatMap((b: string) => Object.entries(REREADS[b] ?? {}).map(([id, r]) => `${b} ${id} ${r.to} ${r.by}`));
     expect(listed.sort()).toEqual(rows.sort());
   });
+
+  it("leaves no re-read paragraph's 07-16 words in an entry on 10-09, which prints none of them (#655)", () => {
+    // 07-16 464.2.d "3. The Attacker gains Focus." went: 466.2.c.1.a, 07-16 464.2.c.1.a word for word,
+    // gives the Attacker Focus. The one entry it moved quoted the task, and now quotes 466.2.c.1.a.
+    const r = REREADS.core!["464.2.d"]!;
+    expect([r.to, hash((paragraphs(OLD, "core") as Map<string, string>).get("464.2.c.1.a")!)]).toEqual(["466.2.c.1.a", r.as]);
+    const citer = onNew.find((e) => e.id === "en-garde-hand-hammer-alone-versus-pair")!;
+    expect(ledger.entries[citer.id]!.refs[r.to]?.[2]).toBe(r.from);
+    expect(JSON.stringify(citer)).toContain(String.raw`466.2.c.1.a: \"If a showdown opens as part of combat, this player gains Focus as the showdown begins.\"`);
+    const strings = (n: unknown): string[] => (typeof n === "string" ? [n] : n && typeof n === "object" ? Object.values(n).flatMap(strings) : []);
+    for (const b of BOOKS)
+      for (const id of Object.keys(REREADS[b] ?? {})) {
+        const was = (paragraphs(OLD, b) as Map<string, string>).get(id)!.replace(/\.$/, "");
+        const re = new RegExp(was.replace(/[.*+?^${}()|[\]\\]/g, "\\$&").replace(/[‐-―−-]/g, "[‐-―−-]").replace(/ /g, "\\s+"));
+        expect(onNew.filter((e) => strings(e).some((s) => re.test(s))).map((e) => e.id), `${b} ${id} in its ${OLD} words`).toEqual([]);
+      }
+  });
 });
 
 describe("a slash shorthand cites its members too (#652)", () => {
