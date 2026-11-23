@@ -299,6 +299,14 @@ describe("reworded paragraphs re-read and held let their citations move (REREAD)
     const { "429.3.a": _, ...rest } = REREADS.core!;
     expect(ledgerFaults(citer!, row, { core: rest, tournament: {} })).toContain(`430.2 in the ${NEW} core rules is not the paragraph the entry meant`);
   });
+
+  it("is in the remap record row for row, a re-read that moved nothing too (#654)", () => {
+    const record = readFileSync(new URL("docs/rules-diff/remap-2026-10-09.md", root), "utf8");
+    const table = record.split("\n## Reworded or deleted paragraphs re-read and held\n")[1]!.split("\n## ")[0]!;
+    const listed = [...table.matchAll(/^\| (\w+) (\S+) \| (\S+) \| (#\d+) \|$/gm)].map((m) => m.slice(1).join(" "));
+    const rows = [...BOOKS].flatMap((b: string) => Object.entries(REREADS[b] ?? {}).map(([id, r]) => `${b} ${id} ${r.to} ${r.by}`));
+    expect(listed.sort()).toEqual(rows.sort());
+  });
 });
 
 describe("a slash shorthand cites its members too (#652)", () => {
