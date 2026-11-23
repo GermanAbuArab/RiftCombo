@@ -233,9 +233,24 @@ export function catalogueText() {
     for (const [id, t] of paragraphs(OLD, b)) (byHash[b].get(hash(t)) || byHash[b].set(hash(t), []).get(hash(t))).push(id);
   }
   const TOKEN = /(?<![-#=_0-9.A-Za-z$])\d{3}(?:\.(?:\d+[a-z]?|[a-z]))*(?![0-9a-z])/g;
+  // A shorthand member goes back with its head: 435.1.f/g/i is 434.1.f/g/h.
+  const backStr = (s, map) => {
+    let out = "", last = 0;
+    for (const { 0: t, index: at } of s.matchAll(TOKEN)) {
+      if (NOT_A_RULE(s, at, t.length)) continue;
+      out += s.slice(last, at) + (map.get(t) ?? t);
+      last = at + t.length;
+      for (const x of shorthand(s, t, last)) {
+        const n = t.replace(/[^.]+$/, x.seg), was = map.get(n) ?? n;
+        out += s.slice(last, x.at) + was.slice(was.lastIndexOf(".") + 1);
+        last = x.at + x.seg.length;
+      }
+    }
+    return out + s.slice(last);
+  };
   const back = (node, map, key) =>
     typeof node === "string"
-      ? NOT_PROSE.has(key) ? node : node.replace(TOKEN, (t, at, s) => (NOT_A_RULE(s, at, t.length) ? t : map.get(t) ?? t))
+      ? NOT_PROSE.has(key) ? node : backStr(node, map)
       : Array.isArray(node) ? node.map((v) => back(v, map, key))
       : node && typeof node === "object" ? Object.fromEntries(Object.entries(node).map(([k, v]) => [k, back(v, map, k)]))
       : node;

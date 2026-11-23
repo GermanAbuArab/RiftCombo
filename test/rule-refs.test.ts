@@ -1,7 +1,7 @@
 import { readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
 // @ts-expect-error plain .mjs shared with scripts/remap-rules.mjs, which cannot import TypeScript.
-import { BOOKS, EDITIONS, REREAD, citations, hash, paragraphs } from "../scripts/rules-editions.mjs";
+import { BOOKS, EDITIONS, REREAD, catalogueText, citations, hash, paragraphs } from "../scripts/rules-editions.mjs";
 
 /**
  * Every rule paragraph this catalogue cites has to exist in a rules document we ship.
@@ -195,6 +195,9 @@ function ledgerFaults(entry: Entry, row: Ledger["entries"][string], rereads: Rer
     const r = row.refs[c.tok];
     if (r) seen.set(c.tok, (seen.get(c.tok) ?? 0) + 1);
     else if (moved.has(c.tok)) faults.push(`${c.tok} at ${c.path} is a 07-16 number the move rewrote`);
+    // A dotted number with no row was never checked against the text it meant: the /h that #645 left
+    // in 435.1.g/h, a shorthand member its reader did not see, names a new 10-09 paragraph (#698).
+    else if (c.kind === "ref") faults.push(`${c.tok} at ${c.path} has no ledger row`);
   }
   for (const [num, [book, count, h]] of Object.entries(row.refs)) {
     const text = (paragraphs(NEW, book) as Map<string, string>).get(num);
@@ -300,5 +303,24 @@ describe("a slash shorthand cites its members too (#652)", () => {
     expect(row.refs["435.1.i"]).toEqual(["core", expect.any(Number), hash((paragraphs(OLD, "core") as Map<string, string>).get("434.1.h")!)]);
     expect(row.refs["435.1.h"]).toBeUndefined();
     expect(ledgerFaults(entry, row)).toEqual([]);
+  });
+
+  it("goes red on a member left behind its head, as #645 left 435.1.g/h (#698)", () => {
+    const id = "azir-aphelios-attach";
+    const entry = combos.combos.find((e) => e.id === id)!;
+    const row = ledger.entries[id]!;
+    expect(ledgerFaults(entry, row)).toEqual([]);
+    const json = JSON.stringify(entry);
+    expect(json).toContain("435.1.g/i");
+    const bad = JSON.parse(json.replace("435.1.g/i", "435.1.g/h")) as Entry;
+    expect(ledgerFaults(bad, row)).toContain("435.1.h at .notes has no ledger row");
+  });
+
+  it("goes back to 07-16 with its head in the catalogue text the notes readers count", () => {
+    const text = catalogueText();
+    // 07-16 has no 434.1.i, so a member still printed in its 10-09 form shows up as one.
+    expect(text).not.toMatch(/434\.1\.[a-z](\/[a-z])*\/i(?![0-9a-z])/);
+    expect(text).toContain("434.1.f/g/h");
+    expect(text).toContain("434.1.c/d/f/g/h");
   });
 });
