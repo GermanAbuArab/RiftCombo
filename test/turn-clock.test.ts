@@ -1,6 +1,8 @@
 import { execFileSync, spawnSync } from "node:child_process";
-import { readFileSync } from "node:fs";
-import { describe, expect, it } from "vitest";
+import { mkdirSync, mkdtempSync, readFileSync, rmSync, symlinkSync, writeFileSync } from "node:fs";
+import { tmpdir } from "node:os";
+import { join, resolve } from "node:path";
+import { afterAll, beforeAll, describe, expect, it } from "vitest";
 
 /**
  * The turn clock has no other test, and that is exactly how a defect shipped.
@@ -1298,5 +1300,106 @@ describe("a spell aimed at a unit the row plays (#552)", () => {
       expect(m![2]).toContain("OGN-173>OGN-205 (yasuo-ride-the-wind-hold-curve-turn-five)");
       expect(m![2]).toContain("OGN-173>UNL-177 (ivern-ride-the-wind-double-conquer)");
     }
+  });
+});
+
+/**
+ * AN ABILITY THAT LIVES ONLY IN `effect` (#548). The script joins a card as `text + " " + effect`, so a
+ * card with an empty `text` starts with a space, and eight regexes anchored with `(?:^|[.)\]]\s*)` (the
+ * whitespace INSIDE the alternation, so it follows a sentence end but never the start) matched none of
+ * them: the clock priced such a card as if it had no ability. Nothing is mis-priced today, the data pin
+ * below measures 0 such cards of 1189, so these pins build the card: each takes a real card, moves its
+ * whole text into `effect`, leaves `text` empty, and prices a hand-walked set from a copy of the data in
+ * a temporary directory. The script reads `data/` from its working directory, which is what lets a test
+ * swap one card without a flag the script would carry only for it. Each card is the one whose regex the
+ * walk exercises:
+ *   OGN-040 Seal of Rage       POWER_ADD
+ *   OGN-140 Herald of Scales   REDUCER
+ *   SFD-117 Ancient Henge      HENGE
+ *   VEN-150 Acceleration Gate  runesOf's "units, gear, and/or runes". readiesOf's "Ready up to N units"
+ *                              matches it too, but a `share` readier's `rdy` is not read by the allocator,
+ *                              so that one regex alone moves no price on any set (the only card it matches):
+ *                              its only trace is the `# readying` count of `--engines` rows (2026-11-23: 52 of 688 with
+ *                              the regex, 21 without), which its own pin reads
+ *   VEN-012 Perfect Execution  readiesOf's "Ready a unit", which opens its text. Upstage Comedy's follows a
+ *                              [Repeat] reminder's ")" and matches with or without the start anchor
+ *   UNL-104 Gentle Gemdragon   runesOf's "When you play me" and KIN_READY
+ * A control blanks the Seal's text instead of moving it, so the equality cannot pass by the script reading
+ * the real `data/` and ignoring the copy.
+ */
+describe("an ability that lives only in effect (#548)", () => {
+  type Card = { base: string; text?: string | null; effect?: string | null };
+  const data = JSON.parse(readFileSync("data/cards.json", "utf8")) as { cards: Card[] };
+  const script = resolve("scripts/adversarial-check.mjs");
+  const tmp = mkdtempSync(join(tmpdir(), "rc-548-"));
+  /** One working directory per card: that card's text moved to `effect`, everything else as shipped. */
+  const dirOf = (base: string) => join(tmp, base);
+
+  /** A working directory whose `data/cards.json` is the shipped one with `base` rewritten by `rewrite`. */
+  const copyWith = (dir: string, base: string, rewrite: (c: Card) => Card) => {
+    const cards = data.cards.map((c) => (c.base === base ? rewrite(c) : c));
+    mkdirSync(join(dir, "data"), { recursive: true });
+    writeFileSync(join(dir, "data", "cards.json"), JSON.stringify({ ...data, cards }));
+    for (const f of ["combos.json", "legality.json"]) symlinkSync(resolve("data", f), join(dir, "data", f));
+  };
+  const moveToEffect = (c: Card): Card => ({ ...c, text: "", effect: [c.text, c.effect].filter(Boolean).join(" ") });
+
+  beforeAll(() => {
+    for (const base of ["OGN-040", "OGN-140", "SFD-117", "VEN-150", "VEN-012", "UNL-104"]) {
+      expect(data.cards.filter((c) => c.base === base && (c.text ?? "").trim()), base).not.toHaveLength(0);
+      copyWith(dirOf(base), base, moveToEffect);
+    }
+    copyWith(dirOf("blank"), "OGN-040", (c) => ({ ...c, text: "", effect: null }));
+  });
+  afterAll(() => rmSync(tmp, { recursive: true }));
+
+  const price = (set: string, cwd?: string) => execFileSync("node", [script, "--price", set], { encoding: "utf8", cwd });
+  const SEAL = "OGN-040:1,UNL-029:3,OGN-034:2,SFD-004:1";
+
+  it("reads the data/ of its working directory: a Seal with no text at all pays T7, not T6", () => {
+    expect(price(SEAL)).toMatch(/all T6,/);
+    expect(price(SEAL, dirOf("blank"))).toMatch(/all T7,/);
+  });
+
+  const pins: [string, string, string, RegExp][] = [
+    ["Seal of Rage + Bushwhack Tryndamere", "OGN-040", SEAL, /all T6,/],
+    ["Herald of Scales + Mountain Drake", "OGN-140", "OGN-140:1,OGN-142:1", /all T4,/],
+    ["Henge + two Acceleration Gates + two Commander Ledros", "SFD-117", "SFD-117:1,VEN-150:2,OGN-231:2", /all T5,/],
+    ["Acceleration Gate + Moonlight Affliction", "VEN-150", "VEN-150:1,UNL-066:1", /all T3,/],
+    ["Acceleration Gate + Mountain Drake", "VEN-150", "VEN-150:1,OGN-142:1", /all T4,.*pays T5,/],
+    ["Perfect Execution + two Dune Drakes", "VEN-012", "VEN-012:1,OGN-131:2", /all T4,.*pays T4,/],
+    ["two Gemdragons + two Dune Drakes", "UNL-104", "UNL-104:2,OGN-131:2", /all T5,/],
+  ];
+  for (const [name, moved, set, line] of pins) {
+    it(`prices ${name} the same with ${moved}'s text in effect`, () => {
+      const inText = price(set);
+      expect(inText).toMatch(line);
+      expect(price(set, dirOf(moved))).toBe(inText);
+    });
+  }
+
+  it("counts the same rows that hold a readier with the Acceleration Gate's text in effect", () => {
+    const readying = (s: string) => s.match(/^# readying .*$/m)?.[0];
+    const real = readying(engines());
+    expect(real).toMatch(/^# readying .*: \d+ of \d+ rows hold a readier$/);
+    const moved = execFileSync("node", [script, "--engines"], { encoding: "utf8", maxBuffer: 1 << 24, cwd: dirOf("VEN-150") });
+    expect(readying(moved)).toBe(real);
+  }, 60_000); // two --engines runs, ~6s each alone
+
+  // The latent half: a card with an empty `text` is priced now, but one the clock was never walked
+  // against is worth a look. Measured 2026-10-31 (#544) and again 2026-11-23 (#548): 0 of 1189.
+  it("holds no card with an empty text and a non-empty effect, so a new one is noticed", () => {
+    const loose = data.cards.filter((c) => !(c.text ?? "").trim() && (c.effect ?? "").trim()).map((c) => c.base);
+    expect(data.cards.length).toBeGreaterThan(1000);
+    expect(loose).toEqual([]);
+  });
+
+  // The same for the icon-stripped form `runesOf` and KIN_READY read: taking `:rb_*:` out of a text that
+  // opens with an icon leaves a leading space, which the old `^` refused and the new `^\s*` takes. Measured
+  // 2026-11-23 over the 1189 cards, joined and stripped: the eight regexes answer the same old and new.
+  it("holds no card whose text or effect opens with whitespace once its icons are stripped", () => {
+    const strip = (s?: string | null) => (s ?? "").replace(/:rb_[a-z_0-9]+:/g, "");
+    const lead = data.cards.filter((c) => /^\s/.test(strip(c.text)) || /^\s/.test(strip(c.effect))).map((c) => c.base);
+    expect(lead).toEqual([]);
   });
 });
