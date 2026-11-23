@@ -4,7 +4,8 @@
 // one for the whole file. Since #645 two editions are live: 2026-07-16 (every entry that cites a
 // paragraph Riot reworded or deleted in 10-09, kept pinned to the text it was walked against) and
 // 2026-10-09 (entries whose every cited paragraph kept its text, remapped by text identity, or was
-// reworded and re-read to mean the same, `REREAD` below).
+// reworded and re-read to mean the same, or deleted and re-read at the 10-09 paragraph that now says
+// what it said, `REREAD` below).
 //
 // A paragraph is a line whose first token is a paragraph number, plus every following line up to the
 // next one. The anchor is `^\s*` after stripping `\f`, for the reason test/rule-refs.test.ts gives
@@ -69,18 +70,27 @@ export const hash = (s) => crypto.createHash("sha256").update(skeleton(s)).diges
 
 /**
  * Paragraphs Riot reworded in 2026-10-09 that a re-read found to mean what they meant in 2026-07-16,
- * one cluster follow-up of #645 at a time. Per book and 07-16 number: the 10-09 number (`to`), the hash
- * of each text the verdict was read on (`from`, `as`; a changed extraction voids the verdict), and the
- * issue that quotes both texts and gives the reasoning (`by`). scripts/remap-rules.mjs moves a citation
- * of one as it moves a renumbered paragraph and rewrites the 07-16 words where a moved entry prints them;
- * `was`, a regex, is the 07-16 form a paraphrase can keep, which pins an entry that prints it next to
- * the number. test/rule-refs.test.ts accepts the 10-09 text at `to` for the 07-16 hash the ledger keeps.
+ * and paragraphs it deleted whose rule a re-read found at another 10-09 number, one cluster follow-up
+ * of #645 at a time. Per book and 07-16 number: the 10-09 number (`to`: the reworded paragraph, or the
+ * one that now says what the deleted one said), the hash of each text the verdict was read on (`from`,
+ * `as`; a changed extraction voids the verdict), and the issue that quotes both texts and gives the
+ * reasoning (`by`). scripts/remap-rules.mjs moves a citation of one as it moves a renumbered paragraph
+ * and rewrites the 07-16 words where a moved entry prints them; `was`, a regex, is the 07-16 form a
+ * paraphrase can keep, which pins an entry that prints it next to the number. test/rule-refs.test.ts
+ * accepts the 10-09 text at `to` for the 07-16 hash the ledger keeps.
  */
 export const REREAD = {
   core: {
     // [Reaction] moved to the front of the ability, in the form 813.1.d gives both editions (#652).
     "164.2.a": { to: "164.2.a", from: "235d4a668bfa2e1a", as: "4bf343f510935ab9", by: "#652", was: String.raw`\[Reaction\]\s*[‐-―−-]` },
     "164.2.b": { to: "164.2.b", from: "01d1e19c9c5002c4", as: "6a98a4ecf757a69c", by: "#652", was: String.raw`\[Reaction\]\s*[‐-―−-]` },
+    // Deleted. 430.2.a keeps its first sentence word for word; "will resolve before any other outstanding
+    // items on the chain are finalized" is now 430.2's "finalize immediately when they are played" with
+    // 430.2.a's pause of any ongoing Task or FEPR step (#653).
+    "429.2.a": { to: "430.2.a", from: "9feee30e35744870", as: "249531eace34e7a0", by: "#653", was: String.raw`before any other outstanding` },
+    // Deleted. 430.2 says it of every triggered and activated Add ability, an Add Reaction activated as
+    // 430.3 (07-16 429.3) allows among them, "even ... during the resolution of spells and abilities" (#653).
+    "429.3.a": { to: "430.2", from: "434246588b574852", as: "608d155a83574bb9", by: "#653", was: String.raw`immediately finali[sz]es and resolves` },
   },
   tournament: {},
 };

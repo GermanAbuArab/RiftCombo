@@ -284,6 +284,20 @@ describe("reworded paragraphs re-read and held let their citations move (REREAD)
     expect(ledgerFaults(citer!, row, { core: {}, tournament: {} })).toContain(meant);
     expect(ledgerFaults(citer!, row, { core: { [id]: { ...r, as: "0".repeat(16) } }, tournament: {} })).toContain(meant);
   });
+
+  it("moves a deleted paragraph's citation to the 10-09 paragraph that now says what it said (#653)", () => {
+    // 07-16 429.3.a was deleted; 10-09 430.2 holds its rule. 07-16 430.2 is a Channel rule and 10-09
+    // 429.3.a a Kill rule, so only the row says which text a moved entry's 430.2 stands for.
+    const r = REREADS.core!["429.3.a"]!;
+    expect(r.to).toBe("430.2");
+    const citer = onNew.find((e) => ledger.entries[e.id]!.refs[r.to]?.[2] === r.from);
+    expect(citer, "a moved entry citing core 429.3.a").toBeDefined();
+    const row = ledger.entries[citer!.id]!;
+    expect(row.moved).toContain("429.3.a");
+    expect(ledgerFaults(citer!, row)).toEqual([]);
+    const { "429.3.a": _, ...rest } = REREADS.core!;
+    expect(ledgerFaults(citer!, row, { core: rest, tournament: {} })).toContain(`430.2 in the ${NEW} core rules is not the paragraph the entry meant`);
+  });
 });
 
 describe("a slash shorthand cites its members too (#652)", () => {
