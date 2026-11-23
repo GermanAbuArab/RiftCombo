@@ -2007,7 +2007,7 @@ function equipCost(c) {
  * says so itself, so theirs starts the turn after. Honeyfruit's [Level 6] line also Adds Energy and
  * is not priced, which can only make a row later.
  */
-const POWER_ADD = /(?:^|[.)\]]\s*)(?:\[Reaction\](?:\[>\])?\s*)?:rb_exhaust::\s*(?:\[Reaction\]\s*—\s*)?\[Add\]((?:\s*:rb_rune_[a-z]+:)+)(?!\s*:rb_(?:rune|energy))(?![^.]*\.\s*(?:Use|Spend)\b[^.]*\bonly)/i;
+const POWER_ADD = /(?:^|[.)\]])\s*(?:\[Reaction\](?:\[>\])?\s*)?:rb_exhaust::\s*(?:\[Reaction\]\s*—\s*)?\[Add\]((?:\s*:rb_rune_[a-z]+:)+)(?!\s*:rb_(?:rune|energy))(?![^.]*\.\s*(?:Use|Spend)\b[^.]*\bonly)/i;
 /**
  * [ACCELERATE] (#510). 805.1.a: "Accelerate is functionally short for "As you play me, you may pay
  * [1][C] as an additional cost. If you do, I enter ready."" 805.2: "Accelerate is an Optional
@@ -2110,7 +2110,7 @@ const LEGEND_LEGION = /^:rb_exhaust:: \[Reaction\], \[Legion\] — \[Add\] :rb_e
  * A Herald bought in the same sub-turn discounts only the Dragons played after it: when no readier is
  * owed the Heralds simply go first, and when one is they are sequenced with the readiers in `order`.
  */
-const REDUCER = /(?:^|[.)\]]\s*)Your ([A-Z][a-z]+)s' Energy costs are reduced by :rb_energy_(\d+):, to a minimum of :rb_energy_(\d+):\./;
+const REDUCER = /(?:^|[.)\]])\s*Your ([A-Z][a-z]+)s' Energy costs are reduced by :rb_energy_(\d+):, to a minimum of :rb_energy_(\d+):\./;
 function reducerOf(c, t) {
   const m = (c.type.includes("unit") || c.type.includes("gear")) && t.match(REDUCER);
   return m ? { redTag: m[1], red: Number(m[2]), redMin: Number(m[3]) } : { redTag: "", red: 0, redMin: 0 };
@@ -2148,7 +2148,7 @@ function reducerOf(c, t) {
  * resolved was already in the pool (EARLY). A rainbow paid for the first Seal-like income card bought
  * the same sub-turn is still charged to the other sources (LATE).
  */
-const HENGE = /(?:^|[.)\]]\s*):rb_exhaust::\s*\[Reaction\]\s*—\s*Pay any amount of Energy to \[Add\] that much :rb_rune_rainbow:\./;
+const HENGE = /(?:^|[.)\]])\s*:rb_exhaust::\s*\[Reaction\]\s*—\s*Pay any amount of Energy to \[Add\] that much :rb_rune_rainbow:\./;
 {
   const bad = [...byBase.values()].filter((c) => HENGE.test(`${c.text || ""} ${c.effect || ""}`) &&
                                                  (!c.type.includes("gear") || c.type.includes("unit")));
@@ -2202,7 +2202,7 @@ function curveOf(c) {
     ...triggersOf(c, t),
     ...reducerOf(c, t),
     hen: HENGE.test(t) ? 1 : 0,
-    selfReady: c.type.includes("unit") && /(?:^|[.)]\s*)I enter ready\./.test(t),
+    selfReady: c.type.includes("unit") && /(?:^|[.)])\s*I enter ready\./.test(t),
     // Each field on its own: `t` joins them with a space, which the line anchor would not see.
     acc: c.type.includes("unit") && (ACCELERATE.test(c.text || "") || ACCELERATE.test(c.effect || "")),
     hidden: !c.type.includes("legend") && !c.type.includes("battlefield") &&
@@ -2257,9 +2257,9 @@ function readiesOf(c, t) {
   if (c.type.includes("unit") || c.type.includes("legend")) return 0;
   if (/\b(?:Friendly units enter ready this turn|Units you play this turn enter ready)\b/i.test(t) ||
       /\bready your units\b/i.test(t)) return READY_ALL;
-  const upTo = t.match(/(?:^|[.)\]]\s*)Ready up to (\d+) units\b/);
+  const upTo = t.match(/(?:^|[.)\]])\s*Ready up to (\d+) units\b/);
   if (upTo) return Number(upTo[1]);
-  if (/(?:^|[.)\]]\s*)(?:Ready (?:a|a friendly) unit|Move a friendly unit and ready it)\b/.test(t))
+  if (/(?:^|[.)\]])\s*(?:Ready (?:a|a friendly) unit|Move a friendly unit and ready it)\b/.test(t))
     return /\[Repeat\]/.test(t) ? 2 : 1;
   return 0;
 }
@@ -2291,9 +2291,9 @@ const stripIcons = (t) => t.replace(/:rb_[a-z_0-9]+:/g, "");
 function runesOf(c, t) {
   if (c.type.includes("legend") || c.type.includes("battlefield")) return { rune: 0, share: false };
   const s = stripIcons(t);
-  const gate = !c.type.includes("unit") && s.match(/(?:^|[.)\]]\s*)Ready up to (\d+) units, gear, and\/or runes\./);
+  const gate = !c.type.includes("unit") && s.match(/(?:^|[.)\]])\s*Ready up to (\d+) units, gear, and\/or runes\./);
   if (gate) return { rune: Number(gate[1]), share: true };
-  const play = c.type.includes("unit") && s.match(/(?:^|[.)\]]\s*)When you play me(?: or another [A-Z][a-z]+)?, ready up to (\d+) runes\./);
+  const play = c.type.includes("unit") && s.match(/(?:^|[.)\]])\s*When you play me(?: or another [A-Z][a-z]+)?, ready up to (\d+) runes\./);
   if (play) return { rune: Number(play[1]), share: false };
   return { rune: 0, share: false };
 }
@@ -2321,7 +2321,7 @@ function runesOf(c, t) {
  */
 const ATTACH_READY = /When you attach an Equipment to me, choose one that hasn't been chosen this turn —\s*• Ready (\d+) runes\./;
 const BIG_READY = /When you play a unit, gear, or activated ability with Energy cost :rb_energy_(\d+): or more, you may exhaust me to ready up to (\d+) runes\./;
-const KIN_READY = /(?:^|[.)\]]\s*)When you play me or another ([A-Z][a-z]+), ready up to (\d+) runes\./;
+const KIN_READY = /(?:^|[.)\]])\s*When you play me or another ([A-Z][a-z]+), ready up to (\d+) runes\./;
 function triggersOf(c, t) {
   const att = c.type.includes("unit") && t.match(ATTACH_READY);
   const big = c.type.includes("legend") && t.match(BIG_READY);
