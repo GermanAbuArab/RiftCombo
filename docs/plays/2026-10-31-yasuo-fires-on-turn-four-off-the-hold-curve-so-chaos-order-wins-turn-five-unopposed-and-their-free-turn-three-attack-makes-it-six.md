@@ -360,9 +360,10 @@ to Chaos, Order or colourless). The T4 ceiling of the pair is the Hold curve's 5
   T3 cost E10 + 2, which six runes cannot pay, so it is one Yasuo on T4. This line.
 - `VEN-138 Shen, Leader of the Kinkou Order` (E6 P2): T3 at the earliest, with nothing else on T3, and
   his point needs a Hold with exactly one other unit. A T5 shape, not walked (a lead).
+  [2026-11-23, #554: walked in §9. T5 unopposed, 6 on T4.]
 - `SFD-214 Power Nexus` (colourless): four rainbow Power at a Hold for a point. It is one of your three
   battlefields, and only one is in play, chosen at random (485.5), so one game in three. A T5 shape on
-  top of the curve, not walked.
+  top of the curve, not walked. [2026-11-23, #554: walked in §9. T5 unopposed, 6 on T4.]
 - `SFD-148 Draven, Audacious` (Chaos): a point per combat won. The opponent decides whether there is a
   combat, so it is not a curve.
 - `UNL-177 Ivern, Friend to All`: the catalogued CHAINs of the pair, T6 and T7 on the clock (the Ivern play).
@@ -396,6 +397,170 @@ refined. Yasuo is Chaos, and he needs one battlefield that is yours, not a board
 - **The rune order.** Two Chaos runes are needed among the first seven, as in §1, and no rune deck was
   dealt.
 
+## 9. The four variants of the Leads, priced, and the two that print earlier walked
+
+Issue #554, 2026-11-23. Each variant in the Leads below is priced on the turn clock with its own
+quantities, `node scripts/adversarial-check.mjs --price <codes> --bodies 2`, and again with
+`--aim OGN-173@OGN-205`, which orders Ride the Wind after the Yasuo it moves (#552). The `--aim` run
+prints the same line for every set below that holds a Ride the Wind. `--price` prints `all`, the turn
+the last card lands, and `pays`, which is `all` plus one when that last card is a unit. A catalogue
+row adds that turn also when the payoff waits for a Beginning Phase Hold, which is why this entry's two
+cards print `pays T4` under `--price` and T5 in `--turns`. Every variant here scores at a Hold or after
+one, so the "as a row" column is `all` plus one. **The clock counts no points.** It says when the last
+card lands, not when the eighth point does, and it prices no activation (the Syren's E1) and no
+battlefield (the Hillock, the Nexus and its four rainbow).
+
+| variant | set priced | `--price` | as a row | the clock gap it rests on | outcome |
+|---|---|---|---|---|---|
+| the entry | `OGN-205:1,OGN-173:2` | all T4, pays T4 | T5 | | |
+| 1. Windswept Hillock as A | `OGN-205:1,OGN-173:2,OGN-297:1` | all T4, pays T4 | T5 | a battlefield is priced as a free card, and no move is modelled, so the garrison's [Ganking] is not seen | negative: the same turn |
+| 2. a second Yasuo on T4 | `OGN-205:2,OGN-173:3` | all T5, pays T5 | T6 | no points counted: it prices the turn the third Ride the Wind lands | negative: a turn later |
+| 3. the Syren and Flash | `OGN-205:1,OGN-184:1,OGS-011:1,OGN-173:1` | all T4, pays T4 | T5 | no activation priced, so the Syren's E1 is free | negative: the same turn |
+| 4. Shen | `VEN-138:1` | all T3, pays T4 | T4 | no points counted, so a line whose points come before its last turn prints early | walked below: T5 |
+| 4. Power Nexus | `SFD-214:1` | all T2, pays T3 | T3 | the same, and the four rainbow is not priced | walked below: T5 |
+
+Shen and the Nexus priced together with this entry's cards print later, not earlier:
+`VEN-138:1,OGN-205:1,OGN-173:2` prints `all T5, pays T5` (T6 as a row), because Shen and Yasuo cost
+E11 + 3 between them and six runes on T3 pay one of the two, and `SFD-214:1,OGN-205:1,OGN-173:2`
+prints `all T4, pays T4` (T5 as a row), this entry's own turn. So the two shapes that print earlier
+are Shen and the Nexus each on the Hold curve with no Yasuo, walked here.
+
+### Shen on the Hold curve
+
+**Needs.** `VEN-138 Shen, Leader of the Kinkou Order` (Order unit, E6 P2, M7): *"[Shield] (+1
+:rb_might: while I'm a defender.) When I hold, if there is exactly one other unit you control here, you
+score 1 point."* Shen among the first seven cards, as Yasuo is in §8, and two Order runes among the six
+on the board by T3 for his two Power, 163.2: *"Power is used to pay Domain-associated Power Costs."*
+Two Energy-2 bodies by T2, as in §1. Shen is mono-Order, so the Heart of the Tempest deck admits him
+(103.1.b.3); `signature` is false for him in `data/cards.json`, and `VEN-138` is not in any of the 45
+rows of `data/legality.json`. No Yasuo and no Ride the Wind.
+
+```
+turn   runes   play                                                       points
+T1     2       body 1 (E2) to base.                                       0
+T2     4       Body 1 walks to empty A, Conquer: +1. Body 2 (E2) to       1
+               base.
+T3     6       Hold A: +1. Body 2 walks to empty B, Conquer: +1. Shen     3
+               (E6, two Order runes recycled for his Power) onto A,
+               next to body 1. Four runes stay.
+T4     6       Hold A and B: +2. Shen's hold trigger: +1.                 6
+T5     8       Hold A and B: +2. Shen: +1.                                9, win
+```
+
+**T3.** Shen goes straight onto A, 355.2.a: *"By default, Valid locations include the controller’s
+Base or a Battlefield the controller controls."* He enters exhausted, 143.4: *"Units enter the Board
+exhausted."* That costs nothing, because his point needs him at A, not ready. A holds body 1 and Shen
+and nothing else, since body 2 went to B. That count is part of the trigger's condition, 383.2.a.1:
+*"Any additional conditional statement immediately after the Condition must be true in order for the
+Condition to be fulfilled. Such a conditional statement is part of the Trigger Condition and not the
+Effect."* So no later body may be played onto A: new bodies go to B or to base.
+
+**T4.** The Beginning Phase Holds both battlefields, 315.2.b.2: *"1. The Turn Player Holds all
+Battlefields they Control."* Shen's trigger is a Hold Effect, 383.4.d.2.a: *"The Hold Abilities of
+Units are put on the Chain as Pending Items after the Unit these effects correspond to are present at a
+Battlefield when a player maintains control of it and Gains 1 Victory Point during their Beginning
+Phase from Holding."* Its point is a gain by ability (194.1.c), not a second Score of A, so 470 does
+not cap it, as in `shen-duo-mutual-hold`: 6. The Main Phase spends nothing, so six runes are free for
+bodies to base or to B.
+
+**T5.** Hold A and B (8) and Shen (9). **T5**, with 6 on T4: the same two numbers as this entry
+unopposed, for no Energy after T3.
+
+### Power Nexus on the Hold curve
+
+**Needs.** `SFD-214 Power Nexus` (colourless battlefield): *"When you hold here, you may pay
+:rb_rune_rainbow::rb_rune_rainbow::rb_rune_rainbow::rb_rune_rainbow: to score 1 point."* It has to be
+the battlefield in play, which is one game in three, 485.5: *"Setup: Each player randomly selects one
+(1) of their three (3) Battlefields. The other two are removed and will not be used for this game. The
+selected Battlefields are placed simultaneously in the Battlefield Zone."* Four runes on the board at
+the Beginning Phase of the turn it pays, of any domain, 135.2.e.5.a: *"When required as a cost, [A] can
+be paid by Power of any Domain."* Two Energy-2 bodies by T2. `signature` is false for it and `SFD-214`
+is not in `data/legality.json`. Nothing else.
+
+```
+turn   runes   play                                                       points
+T1     2       body 1 (E2) to base.                                       0
+T2     4       Body 1 walks to empty A, the Nexus, Conquer: +1. Body 2    1
+               (E2) to base.
+T3     6       Hold A: +1. Body 2 walks to empty B, Conquer: +1.          3
+T4     6, 4    Hold A and B: +2. The Nexus, paid by recycling four of     6
+               the six runes: +1. Two stay, and the Channel Phase
+               makes four.
+T5     6       Hold A and B: +2.                                          8, win
+```
+
+**T4.** The four rainbow are the trigger's base cost, 383.3.b: *"If a Triggered Ability contains a
+cost within instructions at the beginning of the effect or immediately following the “you may” or
+“they may” that appears as the first part of the effect, that cost is treated as the base cost of the
+Triggered Ability."* They are paid to put it on the chain, 383.3.b.1: *"The cost must be paid in order
+to finalize the Triggered Ability to the Chain."* Four runes are recycled for them, 444.2.c: *"Players
+may activate abilities that Add resources with the Reaction keyword at any time that they are
+instructed to Pay resources. Those abilities finalize and resolve immediately, ignoring normal
+restrictions."*, with each rune's own 164.2.b: *"Recycle this: [Reaction] — Add [C]."* The Hold comes
+before the Channel Phase (315.2.b.2, then 315.3.b: *"1. The Turn Player channels 2 runes from their
+Rune Deck."*), so the Nexus is paid from the six runes already on the board, and the two channelled
+come after. The recycled runes go to the Rune Deck, 416.1.b: *"Runes are Recycled to the Rune Deck."*
+
+The Nexus can pay on T3 instead, from the four runes on the board then: 4 after T3, but then only two
+runes are on the board at the T4 Hold, so it cannot pay again, and T4 still ends at 6. Either way it is
+**T5**, with 6 on T4, the same two numbers as this entry unopposed.
+
+### Against the free Hold curve
+
+| board | free Hold curve | this entry | Shen | Power Nexus |
+|---|---|---|---|---|
+| unopposed | T6 (5 on T4) | T5 (6 on T4) | T5 (6 on T4, 9 on T5) | T5 (6 on T4, 8 on T5) |
+| the shape of the walk: they take B on their T3 and keep it | T8 | T6 (walked) | T6 (A and Shen: 5, 7, 9) | T6 (A and the Nexus: 5, 7, 8) |
+
+The second row is a hand count on the shape of §4, not a walk. On the board of §4 A holds both
+Ramhounds from T2, so one of them would have to leave A for Shen's count to hold, and that is another
+game. The Nexus pays at most twice by T5 on that row (on T4 and T5 from six and four runes, or on T3
+and T5), so A with the Nexus is 3 after T3, 5 on T4, 7 on T5 and 8 on T6. Nothing here reaches 8 by
+T4, and the T4 ceiling stays the 7 of §6. Shen and the Nexus together reach it: 3 after T3, then on T4
+Hold A and B (5), Shen (6) and the Nexus paid from the four runes Shen left (7).
+
+### Breaks to
+
+Priced against the target, in the Calm/Order identity of §3. Shen has no [Deflect], so no surcharge.
+
+- **The other unit at A.** `SFD-162 Blood Money` (Order, E2, no Power): *"Kill a unit at a battlefield
+  with 2 :rb_might: or less."* reaches a printed Might-2 body; a Ramhound next to Shen is 3 (`SFD-159`:
+  *"While you have another unit here, I have +1 :rb_might:."*), and `UNL-159 Soul Harvest` (Order,
+  E2 P1, *"Kill a unit at a battlefield with 3 :rb_might: or less."*) reaches that. With Shen alone at
+  A the count is zero and the trigger never goes on the chain (383.2.a.1): a point lost for two
+  Energy, until a body is played onto A in your Main Phase for the next Hold. **The cheapest break of
+  the Shen shape.**
+- **Shen himself.** `OGN-213 Hidden Blade` (Order, E2 P1): *"Kill a unit at a battlefield. Its
+  controller draws 2."* Shen stands at A from T3, so on their T3 the plain spell kills him before his
+  first Hold, and you draw 2. `OGN-229 Vengeance` (Order, E4 P2, *"Kill a unit."*) kills him anywhere.
+- **No counter.** The Shen shape casts no spell, so `OGN-045 Defy` and `VEN-045 Helm of Suppression`
+  have nothing to work on. A sweep of the Calm, Order and colourless lines of `data/corpus_flat.txt`
+  for "counter" and "abilit" finds one card that counters an ability, `SFD-045 Not So Fast`, and it
+  needs *"an enemy spell or ability that chooses a friendly unit or gear"*. Neither Shen's trigger nor
+  the Nexus's chooses anything (a reading of their text, not a ruling). The other mono-domain hits
+  (`OGN-064 Wind Wall`, `UNL-044 Flurry of Feathers`, `VEN-039 Crumbling Sands`) counter spells only,
+  and the rest (`SFD-194 Counter Strike`, `SFD-206 Riposte`, `UNL-190 Lilting Lullaby`) are dual-domain
+  cards outside Calm/Order.
+- **The Nexus is not in play two games in three** (485.5), and nothing kills a battlefield. Taking A
+  before your Beginning Phase switches it off, since its point needs your Hold of A. What it costs you
+  is four runes each time it pays, so the turn it pays has four fewer for its Main Phase.
+- **Taking A.** Shen defends with 8 (M7 and [Shield]) beside the other unit. On the board of §4 their
+  movable Might on T3 is 6.
+
+### Where they go in the catalogue
+
+Both shapes beat the T6 baseline unopposed and tie this entry there, and on the shape of the walk they
+tie it again at T6. **They are recorded as a dated block in `yasuo-ride-the-wind-hold-curve-turn-five`,
+not as entries of their own.** As entries, the clock would print them at T4 and T3, one and two turns
+ahead of their hand counts, because it counts no points (#696). The one score model it has, `pointsAtStart`,
+is declared per entry, and for a Chaos/Order T6 baseline it reads the curve a point low: 2 at the start
+of T4 and 4 at the start of T5, where [the unopposed clock](2026-09-12-the-unopposed-clock.md) gives 3
+and 5 (#694). And the Nexus point is already the verified
+any-identity ENGINE `power-nexus-rune-recycle-any-identity`.
+
+**Not verified.** How often Shen is in the first seven cards was not simulated. The second row of the
+table is not walked turn by turn. No rune deck was dealt for Shen's two Order runes.
+
 ## Leads
 
 - `yasuo-windrider-ride-the-wind-chain` (verified, Calm/Chaos) reads, as its steps: sit at 5 holding one
@@ -420,12 +585,42 @@ refined. Yasuo is Chaos, and he needs one battlefield that is yours, not a board
   one-Ride-the-Wind Yasuo line prints a turn early. Reported to the orchestrator as a new issue.
 - `OGN-297 Windswept Hillock` (*"Units here have [Ganking]"*) as battlefield A would let the A garrison
   reach B on T4. Not walked.
+  [2026-11-23, #554: priced in §9. `--price OGN-205:1,OGN-173:2,OGN-297:1 --bodies 2` prints `all T4,
+  last unit T4, unitLast false, pays T4`, this entry's own line, so T5 as a row; the clock prices a
+  battlefield as a free card and models no move, and `--aim` changes nothing. Unopposed the hand count
+  is this entry's T5 as well (6 on T4, 8 on T5): a garrison that can reach B adds nothing while B is
+  already yours. **Negative: it does not print earlier, and it gets no entry.** What it would buy is on
+  the contested board, and it cuts both ways: the card says *"Units here"*, not friendly units, so
+  their units at A would have [Ganking] too. Not walked.]
 - A second Yasuo played on T4 next to the shuttle: E5 + 1 plus Ride the Wind's E2 + 1 is E7 + 2 Power,
   which seven runes pay (all seven exhausted, two of them recycled). With two Ride the Winds on T5 (E4 +
   2 on eight runes, E6 + 2 under the Helm) that is two points on T5 instead of one, which is slack on
   the contested board. Not walked.
+  [2026-11-23, #554: priced in §9. `--price OGN-205:2,OGN-173:3 --bodies 2` prints `all T5, last unit
+  T5, unitLast false, pays T5`, so T6 as a row, a turn after this entry: the clock counts no points and
+  prices the turn the third Ride the Wind lands. `OGN-205:2,OGN-173:2` prints `pays T5` too, and `--aim`
+  changes neither. **Negative on the clock, and no entry.** Unopposed it adds nothing, since this entry
+  already has 8 on T5. One correction to the line above: the T4 spend of E7 + 2 leaves five runes, so T5
+  has seven, not eight. Seven still pay the two Ride the Winds under the Helm (E6 + 2). The hand count on
+  the board of §4, with the T3 and T4 draws replaced by the second Yasuo and a third Ride the Wind: A
+  defends their T4 with 10 (the two Ramhounds, 3 + 3, and Yasuo, 4) against at most the 7 at their base
+  (§4), so they do not attack. T5 is Hold A (6), the first Yasuo's mirror shuttle (7) and the second Yasuo's
+  shuttle from base (8): **T5 on that board instead of the walk's T6.** It needs five Chaos runes among
+  the ten channelled by T5 (one by T3, three by T4), each recycled once. Not walked turn by turn.]
 - The Syren and Flash: a Yasuo played straight onto A on T3 (355.2.a) starts T4 at A. Then the Syren
   (A to base, E1), a Standard Move (base to A) and Flash (A to base, E2) are three moves with no Power
   and no Ride the Wind. He ends at base, so the next turn needs Ride the Wind again. The Syren costs E2
   to put down first. Not walked, and not priced on the clock.
+  [2026-11-23, #554: priced in §9. `--price OGN-205:1,OGN-184:1,OGS-011:1,OGN-173:1 --bodies 2` prints
+  `all T4, last unit T4, unitLast false, pays T4`, so T5 as a row, this entry's own turn, and without
+  Ride the Wind it prints `pays T4` as well. The clock prices no activation, so the Syren's E1 is free
+  on it, and `--aim` changes nothing. **Negative: it does not print earlier, and it gets no entry.** By
+  hand it is this entry's T5 too: the Syren goes down on T2 beside the second body (four runes), Yasuo
+  onto A on T3, and the T4 moves cost E3 and no Power, one Energy more than Ride the Wind and one Power
+  less. His T5 point needs Ride the Wind again. And from T3 he stands at A, open to their T3 attack and
+  to `OGN-213 Hidden Blade` a turn earlier than in §5.]
 - The Shen and Power Nexus T5 shapes of §6, not walked.
+  [2026-11-23, #554: walked in §9. On the clock they print earlier than this entry (Shen `pays T4`, the
+  Nexus `pays T3`), only because it counts no points (#696). By hand each is T5 unopposed with 6 on T4, and T6
+  on the shape of the walked board: this entry's own turns, against the T6 baseline. Recorded as a dated
+  block in this entry, not as entries of their own; §9 says why.]
