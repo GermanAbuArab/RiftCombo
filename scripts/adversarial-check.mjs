@@ -13,6 +13,7 @@
 //   node scripts/adversarial-check.mjs --recheck-garrison  garrison notables that no longer match their board
 //   node scripts/adversarial-check.mjs --price B:Q,B:Q      the turn clock on a card set that is not an entry
 //                                       [--bodies N]       ... plus N anyBodies bodies in the set's identity (#517)
+//                                       [--battlefields N] ... with N battlefields held, 0 to 2, default 2 (#541)
 //
 // It asks two questions of every INFINITE / BURST / CHAIN / ALT_WIN entry:
 //
@@ -184,6 +185,12 @@ const holds = args.includes("--holds");
 const holdNotables = args.includes("--holds-notables");
 const engines = args.includes("--engines");
 const strictOrdering = args.includes("--strict-ordering");
+// --battlefields N (#541): the battlefields the player holds, which cap the [Hidden] copies waiting
+// facedown at once (HIDDEN). 2 is Duel's board (487.4, "Battlefield Count: 2") and the default; 1 is
+// the contested board, where the opponent holds the other.
+const battlefieldsArg = args.includes("--battlefields") ? args[args.indexOf("--battlefields") + 1] || "" : "2";
+if (!/^[0-2]$/.test(battlefieldsArg)) { console.error(`# bad --battlefields ${JSON.stringify(battlefieldsArg)}, want 0, 1 or 2`); process.exit(2); }
+const BATTLEFIELDS = Number(battlefieldsArg);
 // --ignition prices an Energy (or Power) engine's own output: once a loop declaring
 // `produces: ["infinite-energy"]` is assembled, everything bought afterwards costs no Energy, so
 // charging the payoff against the rune curve is the known OVER-estimate in this file's header.
@@ -523,22 +530,23 @@ function typesOf(costs) {
 }
 
 const deployMemo = new Map();
-function deployTurn(costs, ladd = null, limit = 40) {
+function deployTurn(costs, ladd = null, limit = 40, faceCap = BATTLEFIELDS) {
   if (!costs.length) return { all: 0, unit: 0 };
   // Memoized on the canonical cost SIGNATURE, not on the entry: closuresOf and the consumer search
   // both price many candidate card sets and the same multiset recurs constantly.
   const { types, sig: bare } = typesOf(costs);
-  const sig = ladd ? `${bare}|L${ladd.kind}${ladd.e}/${ladd.r}/${ladd.p}` : bare;
+  // `faceCap` (#541) is the facedown cards the set may hold at once, so it keys the memo as the legend does.
+  const sig = `${ladd ? `${bare}|L${ladd.kind}${ladd.e}/${ladd.r}/${ladd.p}` : bare}|F${faceCap}`;
   // `limit` stops the search past a turn the caller cannot use (#528, priceSet's incumbent). A set
   // that is not done by then is Infinity with `cut`, which answers a later call only up to the same
   // turn: past it the set is searched again.
   const hit = deployMemo.get(sig);
   if (hit && (!hit.cut || hit.cut >= limit)) return hit;
-  const r = deployTurnUncached(types, costs, ladd, limit);
+  const r = deployTurnUncached(types, costs, ladd, limit, faceCap);
   deployMemo.set(sig, r.all === Infinity && limit < 40 && !r.greedy ? { ...r, cut: limit } : r);
   return r;
 }
-function deployTurnUncached(types, costs, ladd, limit = 40) {
+function deployTurnUncached(types, costs, ladd, limit = 40, faceCap = BATTLEFIELDS) {
   const dim = types.length;
   // The legend's [Add] (#528, #540): `LE` Energy or `LR` rainbow for `LP` Power, paying only the costs
   // flagged `la`. `LG`, a [Legion] one, opens only once a card was played in the sub-turn.
@@ -617,6 +625,24 @@ function deployTurnUncached(types, costs, ladd, limit = 40) {
         income += h * types[i].pow;
       }
       rainAt[k] = rain * times + income;
+    }
+  }
+  // ONE FACEDOWN CARD PER BATTLEFIELD (#541, HIDDEN). A `strict` type is a play from [Hidden] and
+  // nothing else, and its root is its own hide, so the copies hidden and not yet played in a state are
+  // the roots' counts less the plays'. `walk` refuses a sub-turn that ends with more of them than
+  // `faceCap`; one that starts within it stays within it all turn, because a play from facedown needs
+  // no battlefield and so goes before the turn's hides, freeing its own for one of them.
+  const strictTypes = [];
+  for (let i = 0; i < dim; i++) if (types[i].strict) strictTypes.push(i);
+  const faceAt = strictTypes.length ? new Int16Array(space) : null;
+  if (faceAt) {
+    for (let k = 0; k < space; k++) {
+      let f = 0;
+      for (const i of strictTypes) {
+        const d = types[i].dep;
+        f += ((k / stride[d]) | 0) % (types[d].n + 1) - ((k / stride[i]) | 0) % (types[i].n + 1);
+      }
+      faceAt[k] = f;
     }
   }
   // READYING RUNES (#513). 164.2.a makes a rune's Energy its EXHAUST and 164.2.b its Power its RECYCLE,
@@ -957,6 +983,7 @@ function deployTurnUncached(types, costs, ladd, limit = 40) {
     if (over) return;
     if (i === dim) {
       if (++leaves > LEAF_CAP) { over = true; return; }
+      if (faceAt && faceAt[idx + delta] > faceCap) return;
       pay(e, p, delta, un, rd, cast, nf, fp);
       // THE LEGEND'S [Add] (#528, #540), once a sub-turn since it exhausts and the legend readies at
       // every Awaken. `ue` is what the `la` costs this sub-turn bought owe it: their Energy for an
@@ -2013,10 +2040,24 @@ const ACCELERATE = /(?:^|\n)\[Accelerate\]/;
  * Swept 2026-10-31, 45 cards say "[Hidden]" and 39 carry it; the anchor keeps out the six that only
  * name it (OGN-018 Noxus Saboteur, OGN-107 Ava Achiever, OGN-167 Ember Monk, the Swift Scout legend
  * OGN-263/OGN-307, OGN-264 Guerilla Warfare), and none of the 39 carries [Accelerate].
- * THE LOOSENESS, which errs EARLY and so stays a lower bound: the clock does not ask that you control
- * a battlefield when you hide, nor that each battlefield hold one facedown card, so it never stops a
- * third copy hiding while two wait. The play waits only for the next turn of your own: the
- * unopposed clock casts nothing on the opponent's turn, where the [Reaction] would need their chain.
+ * ONE FACEDOWN CARD PER BATTLEFIELD (#541). Each battlefield has one Facedown Zone (107.3.a), 107.3.b:
+ * "Each Facedown Zone has a maximum occupancy of one card.", and 107.3.c lets a card occupy one only
+ * while its controller controls that battlefield. So the copies hidden and not yet played never
+ * outnumber the battlefields the player holds, BATTLEFIELDS (2, Duel's board, 487.4; `--price
+ * --battlefields 1` is the contested one), plus one when the set brings OGN-278 Bandle Tree, "You may
+ * hide an additional card here." (107.3.b.1: "The maximum occupancy of a Facedown Zone can increase or
+ * decrease."), taken as one of the battlefields held (`facedownSlots`). A row that does not name it is
+ * priced without it, as it is without any other card it does not name.
+ * A battlefield frees when its card is played, and a play from facedown goes first in the turn, so
+ * three copies on two battlefields hide two on T1, play them on T2 and hide the third (SFD-202:3 is
+ * T3 on two and T4 on one, pinned). A copy the cap leaves no room for is a split that hides fewer:
+ * `priceSet` tries every split, so it is played at its printed cost.
+ * THE LOOSENESS, which errs EARLY and so stays a lower bound: every battlefield is held from turn 1,
+ * because the Hold curve of 2026-09-12-the-unopposed-clock.md is not a bound on control (OGN-270
+ * Showstopper moves a UNL-111 Determined Sentry in on T1 for two Energy and one Power) and no sweep
+ * here proves when a second battlefield can be taken. The split guard's bound and the greedy fallback
+ * apply no cap. The play waits only for the next turn of your own: the unopposed clock casts nothing
+ * on the opponent's turn, where the [Reaction] would need their chain.
  */
 const HIDDEN = /(?:^|\n)\[Hidden\]/;
 /**
@@ -2741,7 +2782,7 @@ function priceSet(set, ign, bodies, gated = false) {
 }
 function priceSplits(set, ign, bodies, gated, mixes) {
   let best = null;
-  const ladd = legendAddOf(set), nSplits = splitCount(set);
+  const ladd = legendAddOf(set), nSplits = splitCount(set), faceCap = facedownSlots(set);
   // THE SPLIT GUARD (#528's security scan). The splits are the product of (copies + 1) over the set's
   // [Hidden] cards, so a legal --price set of five Mind/Chaos ones at 3 copies took 20s and six would
   // take minutes. The catalogue's largest split-by-mix product is 256 (measured 2026-10-31 over
@@ -2769,7 +2810,7 @@ function priceSplits(set, ign, bodies, gated, mixes) {
     for (const pick of mixes) {
       const costs = costsOfSet(set, ign, bodies, pick, hide);
       // An undeployable incumbent (pays Infinity) cuts nothing: the search keeps its 40-turn horizon.
-      const d = deployTurn(costs, ladd, hide !== splits[0] && best && best.pays !== Infinity ? best.pays - 1 : 40);
+      const d = deployTurn(costs, ladd, hide !== splits[0] && best && best.pays !== Infinity ? best.pays - 1 : 40, faceCap);
       const pays = d.all === Infinity ? Infinity : d.all + (!d.extra && (d.unitLast || gated) ? 1 : 0);
       if (!best || pays < best.pays || (pays === best.pays && d.all < best.d.all)) best = { d, costs, pays, pick, hide, ladd };
     }
@@ -2783,6 +2824,13 @@ function priceSplits(set, ign, bodies, gated, mixes) {
 function isHiddenBase(b) {
   const c = byBase.get(b);
   return !!c && !!curveOf(c).hidden;
+}
+// #541: the facedown cards a set may hold at once, one per battlefield held (107.3.b) and one more when
+// it brings OGN-278 Bandle Tree, "You may hide an additional card here." (107.3.b.1), as one of them.
+const EXTRA_HIDE = /You may hide an additional card here/;
+function facedownSlots(set) {
+  const extra = Object.keys(set).some((b) => { const c = byBase.get(b); return !!c && c.type.includes("battlefield") && EXTRA_HIDE.test(c.text || ""); });
+  return BATTLEFIELDS + (extra && BATTLEFIELDS ? 1 : 0);
 }
 function splitCount(set) {
   return Object.entries(set).reduce((n, [b, q]) => (isHiddenBase(b) ? n * (q + 1) : n), 1);
@@ -3100,6 +3148,11 @@ function hiddenLine(rows) {
          `split guard (${SPLIT_CAP}): ${bounded.length} rows priced at the free-copy bound${bounded.length ? `: ${bounded.map((c) => c.id).join(", ")}` : ""}` +
          (hiddenBounds > bounded.length ? `, and ${hiddenBounds - bounded.length} candidate closures` : "");
 }
+// #541: a row past the split guard, by name, since its printed turn is only a lower bound. None today.
+function splitGuardLines(rows) {
+  return rows.filter((c) => c.hbound).map((c) => `# split guard (${SPLIT_CAP}): ${c.id} T${c.pays} is a lower bound, ` +
+    `every hidden copy priced free with no hide, no wait and no battlefield`);
+}
 // #528: every legend that prints [Add], and what became of each.
 function legendLine(rows) {
   const say = [...byBase.values()].filter((c) => c.type.includes("legend") && /\[Add\]/.test(`${c.text || ""} ${c.effect || ""}`));
@@ -3159,6 +3212,7 @@ if (engines) {
   console.log(aimLine(eng));
   for (const l of bodyLines(eng)) console.log(l);
   console.log(hiddenLine(eng));
+  for (const l of splitGuardLines(eng)) console.log(l);
   console.log(legendLine(eng));
   console.log(runeLine(eng));
   const hist = new Map();
@@ -3206,6 +3260,7 @@ console.log(exchangeLine(clock));
 for (const l of bodyLines(clock)) console.log(l);
 // And [Hidden] and the legends' [Add] (#528).
 console.log(hiddenLine(clock));
+for (const l of splitGuardLines(clock)) console.log(l);
 console.log(legendLine(clock));
 // And for readying runes (#513).
 console.log(runeLine(clock));

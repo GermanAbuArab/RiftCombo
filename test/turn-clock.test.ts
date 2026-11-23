@@ -886,6 +886,92 @@ describe("[Hidden], the copy limit and a legend's [Add] (#528)", () => {
 });
 
 /**
+ * #541, one facedown card per battlefield held. 107.3.b: "Each Facedown Zone has a maximum occupancy of
+ * one card.", 107.3.c: "Cards can only be placed in or occupy the Facedown Zone if the controller of the
+ * card also controls the associated Battlefield.", and Duel has two (487.4). Hand walks, runes 2/4/6 on
+ * T1..T3; R runes pay R Energy and R Power, a recycled rune leaving the board (164.2.a/b, 161.2.b).
+ *
+ * CONSULT THE PAST x2 (OGN-083, an E4 Mind spell with [Hidden]). Two battlefields, T2: T1's 2 runes hide
+ * both (two Power, both runes recycled), T2's 2 runes play both free. One battlefield, T3: T1 hides one
+ * (1 rune left), T2's 3 runes play it free but cannot pay the other's E4, so it is hidden on T2 and
+ * played on T3, or paid on T3. Before #541 the clock hid both on one battlefield and read T2.
+ * No battlefield, T3 (the control): printed cost, E4 on T2's 4 runes and E4 on T3's.
+ *
+ * HOSTILE TAKEOVER x3 (SFD-202, E5 + 2 Power). Two battlefields, T3: T1 hides two (0 runes), T2 plays
+ * both, which frees both battlefields, and hides the third (1 rune left), T3 plays it. One battlefield,
+ * T4: one copy waits at a time, T1, T2, T3 hide and T2, T3, T4 play. A cap that never freed a
+ * battlefield would read T4 on two: the third would cost E5 + 2 out of T3's 4 runes.
+ *
+ * BANDLE TREE (OGN-278, a battlefield): "You may hide an additional card here." 107.3.b.1: "The maximum
+ * occupancy of a Facedown Zone can increase or decrease." With it, one battlefield holds both Consults.
+ */
+describe("one facedown card per battlefield held (#541)", () => {
+  const price = (set: string, ...rest: string[]) => {
+    const s = execFileSync("node", ["scripts/adversarial-check.mjs", "--price", set, ...rest], { encoding: "utf8" });
+    const m = s.match(/all T(\d+|Infinity), .*pays T(\d+|Infinity)/);
+    expect(m, s).toBeTruthy();
+    return { all: Number(m![1]), pays: Number(m![2]), line: s.split("\n")[0]! };
+  };
+
+  it("hides two Consult the Past on T1 with two battlefields and plays both free on T2", () => {
+    const r = price("OGN-083:2");
+    expect(r.all).toBe(2);
+    expect(r.line).toContain("hidden OGN-083x2");
+  });
+
+  it("reads two Consult the Past LATER with one battlefield held: T3, the second copy waits for the first", () => {
+    const one = price("OGN-083:2", "--battlefields", "1");
+    expect(one.all).toBeGreaterThan(price("OGN-083:2", "--battlefields", "2").all);
+    expect(one.all).toBe(3);
+  });
+
+  it("hides nothing with no battlefield held: both Consults at printed cost, T3 (the control)", () => {
+    const r = price("OGN-083:2", "--battlefields", "0");
+    expect(r.all).toBe(3);
+    expect(r.line).not.toContain("hidden");
+  });
+
+  it("frees a battlefield when its card is played: three Hostile Takeovers T3 on two battlefields, T4 on one", () => {
+    expect(price("SFD-202:3").all).toBe(3);
+    expect(price("SFD-202:3", "--battlefields", "1").all).toBe(4);
+  });
+
+  it("holds a second facedown card at Bandle Tree: two Consults T2 on one battlefield", () => {
+    const r = price("OGN-278:1,OGN-083:2", "--battlefields", "1");
+    expect(r.all).toBe(2);
+    expect(r.line).toContain("hidden OGN-083x2");
+  });
+
+  it.each(["3", "-1", "x", ""])("refuses --battlefields %j", (n) => {
+    const r = spawnSync("node", ["scripts/adversarial-check.mjs", "--price", "OGN-083:2", "--battlefields", n], { encoding: "utf8" });
+    expect(r.status).toBe(2);
+    expect(r.stderr).toContain("bad --battlefields");
+  });
+
+  // Guard 2: past the split guard a row is priced with every hidden copy free, so its turn is only a
+  // lower bound. No catalogue row rests on it, and the day one does this fails.
+  it("prices no --turns or --engines row at the split guard's free-copy bound", () => {
+    for (const [name, text] of [["--turns", out], ["--engines", engines()]] as const) {
+      const m = text.match(/split guard \((\d+)\): (\d+) rows priced at the free-copy bound/);
+      expect(m, `the split guard count is missing from ${name}`).toBeTruthy();
+      expect(Number(m![2]), name).toBe(0);
+      expect(text, name).not.toMatch(/^# split guard/m);
+    }
+  }, 60_000);
+
+  it("names each row past the split guard on a # split guard line in --turns, as a lower bound", () => {
+    const r = spawnSync("node", ["scripts/adversarial-check.mjs", "--turns"],
+      { encoding: "utf8", timeout: 60_000, maxBuffer: 1 << 24, env: { ...process.env, RC_SPLITS: "0" } });
+    expect(r.status, r.stderr).toBe(0);
+    const n = Number(r.stdout.match(/split guard \(0\): (\d+) rows priced at the free-copy bound/)![1]);
+    const named = [...r.stdout.matchAll(/^# split guard \(0\): (\S+) T(\d+) is a lower bound/gm)];
+    expect(n).toBeGreaterThan(0);
+    expect(named).toHaveLength(n);
+    for (const [, id, t] of named) expect(r.stdout, id).toMatch(new RegExp(`^  T\\s*${t} vs T\\d+ baseline .* ${id}(\\s|$)`, "m"));
+  }, 60_000);
+});
+
+/**
  * #540, the three legend [Add]s #528 refused, each paying only a cost of its own kind, once a turn.
  * Hand walks, runes 2/4/6/8 on T1..T4 (161.2.a); R runes pay R Energy and R Power, a recycled rune
  * leaving the board (164.2.a/b, 161.2.b).
