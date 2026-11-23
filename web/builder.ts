@@ -323,6 +323,9 @@ function cellHtml(card: Card): string {
   // "it is this tier on purpose" would have closed it in a minute. The Construction checklist reports
   // 103.2.e whatever this cell does — the checklist is the authority and the block is a convenience.
   const legality = cards().legality(card.base, env.format());
+  // #672: a ban announced and not in force yet is neither tag. It is said in words under the name,
+  // same tier as the tags (marked, never blocked), and it gives way to the `banned` tag on its date.
+  const soon = cards().upcomingBan(card.base, env.format());
   const stats = [
     card.energy !== null ? `${card.energy} Energy` : "",
     card.power ? `${card.power} Power` : "",
@@ -346,6 +349,7 @@ function cellHtml(card: Card): string {
       ${blocked && !off && cap.badge ? `<span class="pool-full">${esc(cap.badge)}</span>` : ""}
     </button>
     <p class="pool-name"><span class="pool-name-txt">${esc(card.name)}</span>${card.signature ? `<span class="sig-tag" title="Signature card">S</span>` : ""}${legality ? `<span class="ban-tag${legality.status === "restricted" ? " restricted" : ""}">${legality.status}</span>` : ""}</p>
+    ${soon ? `<p class="pool-soon">Banned from ${esc(soon.since)}</p>` : ""}
     <button type="button" class="linklike pool-view" data-b="view" data-base="${esc(card.base)}">View<span class="sr-only"> ${esc(card.name)}</span></button>
   </div>`;
 }

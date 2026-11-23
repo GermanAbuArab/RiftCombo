@@ -86,8 +86,6 @@ export function planDeck(deck: Deck, variants: Variant[], cards: CardIndex, opts
     // `legalityRule`, than `matchDeck`, and than what CLAUDE.md says this panel does.
     if (bases.some((b) => cards.legality(b, opts.format)?.status === "banned")) continue;
 
-    for (const b of bases) if ((owned.get(b) ?? 0) > 0) pieces.add(b);
-
     const add: Addition[] = [];
     for (const [card, need] of Object.entries(v.cards)) {
       const have = owned.get(card) ?? 0;
@@ -96,15 +94,23 @@ export function planDeck(deck: Deck, variants: Variant[], cards: CardIndex, opts
     add.sort((a, b) => b.quantity - a.quantity || (cards.get(a.card)?.name ?? a.card).localeCompare(cards.get(b.card)?.name ?? b.card));
     const short = bodies(v);
     const addBodies = short && short.count > 0 ? short : undefined;
+    // Bodies count toward the price because they are cards the list has to find room for, and
+    // because `have` below is the `cost === 0` bucket: without this a line the deck cannot run
+    // would still be reported as one it already has, which is the defect in the panel built to
+    // name what is missing.
+    const cost = add.reduce((n, a) => n + a.quantity, 0) + (addBodies?.count ?? 0);
+    // #672: a line holding a card whose ban is announced is never a route to build toward, nor are
+    // its pieces a road. A list that already completes it still says so: the line is legal until the
+    // date, and the Banned and restricted panel above names the card and the day.
+    if (cost > 0 && bases.some((b) => cards.upcomingBan(b, opts.format))) continue;
+
+    for (const b of bases) if ((owned.get(b) ?? 0) > 0) pieces.add(b);
+
     priced.push({
       variant: v,
       add,
       addBodies,
-      // Bodies count toward the price because they are cards the list has to find room for, and
-      // because `have` below is the `cost === 0` bucket: without this a line the deck cannot run
-      // would still be reported as one it already has, which is the defect in the panel built to
-      // name what is missing.
-      cost: add.reduce((n, a) => n + a.quantity, 0) + (addBodies?.count ?? 0),
+      cost,
       havePieces: bases.length - add.length,
       totalPieces: bases.length,
       battlefieldCopies: add.reduce((n, a) => n + (cards.get(a.card)?.type.includes("battlefield") ? a.quantity : 0), 0),

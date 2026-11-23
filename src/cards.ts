@@ -196,6 +196,16 @@ export class CardIndex {
   upcoming(base: string, format: Format): LegalityEntry[] {
     return this.announced.get(format)?.get(base) ?? [];
   }
+
+  /**
+   * The earliest ban announced for this card and format and not in force on `asOf`, or
+   * `undefined` when there is none or the card is banned already (#672). An earlier announced
+   * restriction does not hide it. The one lookup the deck panel, the pool and What to add share.
+   */
+  upcomingBan(base: string, format: Format): LegalityEntry | undefined {
+    if (this.legality(base, format)?.status === "banned") return undefined;
+    return this.upcoming(base, format).find((e) => e.status === "banned");
+  }
 }
 
 // --- card text for humans ---------------------------------------------------------------
