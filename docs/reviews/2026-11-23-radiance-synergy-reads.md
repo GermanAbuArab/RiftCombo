@@ -65,7 +65,7 @@ is its fingerprint. Checked per rule: new count = old count + added - excluded, 
 ## Same shape, older card, left alone
 
 Some older cards have the shape of an excluded RAD row and still sit in the same list without an
-exclude. That defect predates this ingest, so those cards are not touched here and go to a new issue.
+exclude. That defect predates this ingest, so those cards are not touched here: they are #697.
 
 How the table was built: `partnersOf` was run on this branch for each rule. A card is listed when its
 code is named in an excluded row's packet reason and the card is still in that rule's list. Cards
