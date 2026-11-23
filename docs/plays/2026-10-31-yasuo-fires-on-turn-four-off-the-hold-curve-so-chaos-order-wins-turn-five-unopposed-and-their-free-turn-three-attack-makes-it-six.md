@@ -552,10 +552,10 @@ Priced against the target, in the Calm/Order identity of §3. Shen has no [Defle
 Both shapes beat the T6 baseline unopposed and tie this entry there, and on the shape of the walk they
 tie it again at T6. **They are recorded as a dated block in `yasuo-ride-the-wind-hold-curve-turn-five`,
 not as entries of their own.** As entries, the clock would print them at T4 and T3, one and two turns
-ahead of their hand counts, because it counts no points. The one score model it has, `pointsAtStart`,
+ahead of their hand counts, because it counts no points (#696). The one score model it has, `pointsAtStart`,
 is declared per entry, and for a Chaos/Order T6 baseline it reads the curve a point low: 2 at the start
 of T4 and 4 at the start of T5, where [the unopposed clock](2026-09-12-the-unopposed-clock.md) gives 3
-and 5. That was reported to the orchestrator as a new issue. And the Nexus point is already the verified
+and 5 (#694). And the Nexus point is already the verified
 any-identity ENGINE `power-nexus-rune-recycle-any-identity`.
 
 **Not verified.** How often Shen is in the first seven cards was not simulated. The second row of the
@@ -621,6 +621,6 @@ table is not walked turn by turn. No rune deck was dealt for Shen's two Order ru
   to `OGN-213 Hidden Blade` a turn earlier than in §5.]
 - The Shen and Power Nexus T5 shapes of §6, not walked.
   [2026-11-23, #554: walked in §9. On the clock they print earlier than this entry (Shen `pays T4`, the
-  Nexus `pays T3`), only because it counts no points. By hand each is T5 unopposed with 6 on T4, and T6
+  Nexus `pays T3`), only because it counts no points (#696). By hand each is T5 unopposed with 6 on T4, and T6
   on the shape of the walked board: this entry's own turns, against the T6 baseline. Recorded as a dated
   block in this entry, not as entries of their own; §9 says why.]
