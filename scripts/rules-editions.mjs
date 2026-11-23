@@ -109,6 +109,17 @@ export const REREAD = {
     // Deleted. The Arithmetic layer is 479.4, still the last: 477.3.a to 477.3.e.2.a are 479.4.a to
     // 479.4.e.2.a word for word (#654).
     "477.3": { to: "479.4", from: "b11e21babd6976bb", as: "23f4dadadb38c8e1", by: "#654", was: String.raw`[Ll]ayer 3\b|third layer` },
+    // Start of combat effects still happen at task 1. Start of showdown effects happen there only when
+    // the Combat opened with a Combat Showdown, so a showdown already ongoing does not start again.
+    // `was` keeps on 07-16 an entry that prints "combat or showdown" next to the number (#655).
+    "464.2.b": { to: "466.2.b", from: "c59037f9bea97d1d", as: "048c04ca0397ed51", by: "#655", was: String.raw`combat or showdown` },
+    // Deleted. The Attacker gains Focus at 466.2.c.1.a (07-16 464.2.c.1.a, same text), as the
+    // showdown the combat opens begins, and keeps no task of its own. No one acts in between: 335.1
+    // gives the Focus player priority only once no Task is Outstanding. A showdown already ongoing
+    // keeps its Focus (466.2.c.1.b). `was` keeps on 07-16 an entry that prints the old task (#655).
+    "464.2.d": { to: "466.2.c.1.a", from: "fd19557c12a93933", as: "7acbba31d76b8627", by: "#655", was: String.raw`Attacker gains Focus|[Tt]ask 3\b` },
+    // Task 4 is task 3 now that the Focus task is gone; 464.2.e.1 is 466.2.d.1 word for word (#655).
+    "464.2.e": { to: "466.2.d", from: "45b0e1f6115b8f83", as: "7d97365bcf4781a6", by: "#655", was: String.raw`[Tt]ask 4\b|4\. Add items` },
   },
   tournament: {},
 };
