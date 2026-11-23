@@ -631,7 +631,7 @@ function deployTurnUncached(types, costs, ladd, limit = 40, faceCap = BATTLEFIEL
   // nothing else, and its root is its own hide, so the copies hidden and not yet played in a state are
   // the roots' counts less the plays'. `walk` refuses a sub-turn that ends with more of them than
   // `faceCap`; one that starts within it stays within it all turn, because a play from facedown needs
-  // no battlefield and so goes before the turn's hides, freeing its own for one of them.
+  // no free Facedown Zone and so goes before the turn's hides, freeing its own for one of them.
   const strictTypes = [];
   for (let i = 0; i < dim; i++) if (types[i].strict) strictTypes.push(i);
   const faceAt = strictTypes.length ? new Int16Array(space) : null;
@@ -3151,7 +3151,7 @@ function hiddenLine(rows) {
 // #541: a row past the split guard, by name, since its printed turn is only a lower bound. None today.
 function splitGuardLines(rows) {
   return rows.filter((c) => c.hbound).map((c) => `# split guard (${SPLIT_CAP}): ${c.id} T${c.pays} is a lower bound, ` +
-    `every hidden copy priced free with no hide, no wait and no battlefield`);
+    `every hidden copy priced free with no hide, no wait and no facedown cap`);
 }
 // #528: every legend that prints [Add], and what became of each.
 function legendLine(rows) {
