@@ -162,7 +162,7 @@
           },
           {
             "card": "RAD-SP3",
-            "why": "Read as a conquer effect, \"if you control a facedown card here\" cannot be met: a facedown card needs control of the battlefield (107.3.c), and a conquer gains a control you did not have (471.1), the SFD-116 line."
+            "why": "Read as a conquer effect, \"if you control a facedown card here\" cannot be met: a facedown card needs control of the battlefield (107.3.c), and a conquer gains a control you did not have (469.1), the SFD-116 line."
           }
         ]
       },
@@ -316,27 +316,27 @@
         "excludes": [
           {
             "card": "RAD-001",
-            "why": "A Bomb is a gear token (187.12), and 149.1 already has gear enter play ready, so \"Your tokens enter ready\" changes nothing for it."
+            "why": "Its token is a gear (it prints \"Bomb gear token\"), and 149.1 already has gear enter play ready, so \"Your tokens enter ready\" changes nothing for it."
           },
           {
             "card": "RAD-023",
-            "why": "A Bomb is a gear token (187.12), and 149.1 already has gear enter play ready, so \"Your tokens enter ready\" changes nothing for it."
+            "why": "Its token is a gear (it prints \"Bomb gear token\"), and 149.1 already has gear enter play ready, so \"Your tokens enter ready\" changes nothing for it."
           },
           {
             "card": "RAD-094",
-            "why": "A Bomb is a gear token (187.12), and 149.1 already has gear enter play ready, so \"Your tokens enter ready\" changes nothing for it."
+            "why": "Its token is a gear (it prints \"Bomb gear token\"), and 149.1 already has gear enter play ready, so \"Your tokens enter ready\" changes nothing for it."
           },
           {
             "card": "RAD-096",
-            "why": "A Bomb is a gear token (187.12), and 149.1 already has gear enter play ready, so \"Your tokens enter ready\" changes nothing for it."
+            "why": "Its token is a gear (it prints \"Bomb gear token\"), and 149.1 already has gear enter play ready, so \"Your tokens enter ready\" changes nothing for it."
           },
           {
             "card": "RAD-112",
-            "why": "A Bomb is a gear token (187.12), and 149.1 already has gear enter play ready, so \"Your tokens enter ready\" changes nothing for it."
+            "why": "Its token is a gear (it prints \"Bomb gear token\"), and 149.1 already has gear enter play ready, so \"Your tokens enter ready\" changes nothing for it."
           },
           {
             "card": "RAD-141",
-            "why": "A Bomb is a gear token (187.12), and 149.1 already has gear enter play ready, so \"Your tokens enter ready\" changes nothing for it."
+            "why": "Its token is a gear (it prints \"Bomb gear token\"), and 149.1 already has gear enter play ready, so \"Your tokens enter ready\" changes nothing for it."
           },
           {
             "card": "RAD-009",
@@ -4273,7 +4273,7 @@
           },
           {
             "card": "RAD-143",
-            "why": "Iron Revenant is a legend and so is Master of Shadows: a deck has one Champion Legend (103.2), and a legend an effect adds is not one (107.4.d.1), so the two never share a board."
+            "why": "Iron Revenant is a legend and so is Master of Shadows: a deck has one Champion Legend (103.1), and a legend an effect adds is not one (107.4.d.1), so the two never share a board."
           }
         ]
       },
@@ -4357,11 +4357,11 @@
           },
           {
             "card": "RAD-016",
-            "why": "\"recycle all your runes\" sends runes to the RUNE Deck (417.1.b in the 2026-10-09 rules), never the Main Deck Karma's trigger names, as with OGN-200."
+            "why": "\"recycle all your runes\" sends runes to the RUNE Deck (416.1.b), never the Main Deck Karma's trigger names, as with OGN-200."
           },
           {
             "card": "RAD-018",
-            "why": "\"reveal the top card of each opponent's Main Deck ... Recycle the rest\" recycles the opponents' own reveals to their own decks (417.1.c in the 2026-10-09 rules), never Karma's controller's, as with OGN-025."
+            "why": "\"reveal the top card of each opponent's Main Deck ... Recycle the rest\" recycles the opponents' own reveals to their own decks (416.1.c), never Karma's controller's, as with OGN-025."
           }
         ]
       },
@@ -4467,7 +4467,7 @@
           },
           {
             "card": "RAD-142",
-            "why": "\"Kill any number of friendly Bomb tokens\" kills gear: 187.12 makes a Bomb \"a domainless gear token\", so no friendly unit dies."
+            "why": "\"Kill any number of friendly Bomb tokens\" kills gear: every card that names a Bomb's type prints \"Bomb gear token\" (RAD-001 Amateur Demolitionist, RAD-094 Explosimian), so no friendly unit dies."
           }
         ]
       },
@@ -4505,7 +4505,7 @@
           },
           {
             "card": "RAD-142",
-            "why": "\"Kill any number of friendly Bomb tokens\" kills gear: 187.12 makes a Bomb \"a domainless gear token\", so no friendly unit dies."
+            "why": "\"Kill any number of friendly Bomb tokens\" kills gear: every card that names a Bomb's type prints \"Bomb gear token\" (RAD-001 Amateur Demolitionist, RAD-094 Explosimian), so no friendly unit dies."
           }
         ]
       },
@@ -4543,7 +4543,7 @@
           },
           {
             "card": "RAD-142",
-            "why": "\"Kill any number of friendly Bomb tokens\" kills gear: 187.12 makes a Bomb \"a domainless gear token\", so no friendly unit dies and the Helm never triggers."
+            "why": "\"Kill any number of friendly Bomb tokens\" kills gear: every card that names a Bomb's type prints \"Bomb gear token\" (RAD-001 Amateur Demolitionist, RAD-094 Explosimian), so no friendly unit dies and the Helm never triggers."
           }
         ]
       },
@@ -4581,7 +4581,7 @@
           },
           {
             "card": "RAD-142",
-            "why": "\"Kill any number of friendly Bomb tokens\" kills gear: 187.12 makes a Bomb \"a domainless gear token\", so no friendly unit dies."
+            "why": "\"Kill any number of friendly Bomb tokens\" kills gear: every card that names a Bomb's type prints \"Bomb gear token\" (RAD-001 Amateur Demolitionist, RAD-094 Explosimian), so no friendly unit dies."
           }
         ]
       },
@@ -4621,7 +4621,7 @@
           },
           {
             "card": "RAD-142",
-            "why": "\"Kill any number of friendly Bomb tokens\" kills gear: 187.12 makes a Bomb \"a domainless gear token\", so no friendly unit dies."
+            "why": "\"Kill any number of friendly Bomb tokens\" kills gear: every card that names a Bomb's type prints \"Bomb gear token\" (RAD-001 Amateur Demolitionist, RAD-094 Explosimian), so no friendly unit dies."
           }
         ]
       },
@@ -5020,7 +5020,7 @@
           },
           {
             "card": "RAD-139",
-            "why": "a legend: 103.2 gives a deck one Champion Legend, which here is Soul's Reflection, and the only way a second legend reaches the Legend Zone (107.4.d.1) is Neeko, Blending In (RAD-167), which the pool leaves out (#695). Its Fury/Mind domains are outside her Mind/Chaos identity as well."
+            "why": "a legend: 103.1 gives a deck one Champion Legend, which here is Soul's Reflection, and the only way a second legend reaches the Legend Zone (107.4.d.1) is Neeko, Blending In (RAD-167), which the pool leaves out (#695). Its Fury/Mind domains are outside her Mind/Chaos identity as well."
           }
         ]
       },
@@ -5057,7 +5057,7 @@
           },
           {
             "card": "RAD-139",
-            "why": "a legend: 103.2 gives a deck one Champion Legend, which here is Matriarch of War, and the only way a second legend reaches the Legend Zone (107.4.d.1) is Neeko, Blending In (RAD-167), which the pool leaves out (#695). Its Fury/Mind domains are outside her Body/Order identity as well."
+            "why": "a legend: 103.1 gives a deck one Champion Legend, which here is Matriarch of War, and the only way a second legend reaches the Legend Zone (107.4.d.1) is Neeko, Blending In (RAD-167), which the pool leaves out (#695). Its Fury/Mind domains are outside her Body/Order identity as well."
           }
         ]
       },
@@ -5380,7 +5380,7 @@
           },
           {
             "card": "RAD-142",
-            "why": "\"Kill any number of friendly Bomb tokens\" kills gear: 187.12 makes a Bomb \"a domainless gear token\", so no friendly unit dies."
+            "why": "\"Kill any number of friendly Bomb tokens\" kills gear: every card that names a Bomb's type prints \"Bomb gear token\" (RAD-001 Amateur Demolitionist, RAD-094 Explosimian), so no friendly unit dies."
           }
         ]
       },
@@ -5756,7 +5756,7 @@
         "excludes": [
           {
             "card": "RAD-102",
-            "why": "Demon Shade prints no Power, and 356.4.c.2 and 356.6 keep a discount from taking a cost component below 0, so the Tomb takes nothing off."
+            "why": "Demon Shade prints no Power, and 356.6 (\"Energy and Power costs can't be reduced below 0\") keeps the discount from taking its Power below 0, so the Tomb takes nothing off."
           }
         ]
       },

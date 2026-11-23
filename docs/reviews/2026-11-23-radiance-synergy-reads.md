@@ -7,6 +7,13 @@ of **183 of the 222 rules** in `data/synergies.json`: 179 live rules and the 4 r
 were removed, and every added card is a RAD base.** Every one of the 1008 was read before its stamp
 moved, and the stamps were not re-stamped in bulk. This file is that read, one table per rule.
 
+**Two rules editions meet in these tables.** The reads used the Core Rules 2026-10-09, because
+Radiance's keywords (Disarm 831, the Bomb token) exist only there, so every number in this file is a
+2026-10-09 number with one exception. The `Why` of an excluded row is the `why` committed to
+`data/synergies.json`, and that file names its numbers in 2026-07-16 for every rule (`rulesVersion`),
+so those rows use 07-16 numbers. Example: one Champion Legend is 103.1 there and 103.2 here.
+`test/rule-refs.test.ts` holds the committed text to that edition.
+
 ## How the lists were read
 
 1. **Drift.** `partnersOf` runs on master's `cards.json` and `legality.json` and on this branch's, and the
@@ -42,7 +49,7 @@ moved, and the stamps were not re-stamped in bulk. This file is that read, one t
 ## Two list policies these reads apply, and did not invent
 
 - **A pair the two cards' domains cannot share stays in the list.** The deck-time Domain Identity
-  check (103.1.b) decides whether the anchor and the partner can sit in one deck, as it does for every
+  check (103.2.b) decides whether the anchor and the partner can sit in one deck, as it does for every
   pair in these lists, and `blade-dancer-buff-is-choosing`'s own `why` concedes it. `RAD-146` The Ball
   on the two Ganking rules is the case in point.
 - **Where a rule's `why` already concedes a limit, a card past that limit stays as a fit with a note.**
@@ -122,7 +129,7 @@ Anchor `SFD-030` Skyfall of Areion. Matched 29 -> 35 (+6, -0); 2 excluded; stamp
 | Card | Read | Fragment that matches | Why |
 |---|---|---|---|
 | `RAD-067` Clocktower Guardian | fits | When you play me or when I hold, [Predict 3]. | 'When you play me or when I hold, [Predict 3]' has no condition, so Skyfall fires it on conquer too (same shape as SFD-058 Ornn, Blacksmith, already in the list). |
-| `RAD-SP3` Evelynn, In Control | excluded | When I hold, if you control a facedown card here, score 1 point. | Read as a conquer effect, "if you control a facedown card here" cannot be met: a facedown card needs control of the battlefield (107.3.c), and a conquer gains a control you did not have (471.1), the SFD-116 line. |
+| `RAD-SP3` Evelynn, In Control | excluded | When I hold, if you control a facedown card here, score 1 point. | Read as a conquer effect, "if you control a facedown card here" cannot be met: a facedown card needs control of the battlefield (107.3.c), and a conquer gains a control you did not have (469.1), the SFD-116 line. |
 | `RAD-094` Explosimian | fits | When I hold, play three Bomb gear tokens to a single battlefield. | 'When I hold, play three Bomb gear tokens to a single battlefield' has no condition, so Skyfall pays it on conquer as well. |
 | `RAD-091` Jarvan IV, Martial Paragon | fits | When I conquer, if there is a friendly gear with [Deploy] here, channel 1 rune exhausted. | Conquer effect whose condition (a friendly [Deploy] gear here) can also be true at a battlefield you hold, so Skyfall pays the channel on hold too. |
 | `RAD-086` K'Sante, Courageous | fits | When I hold, channel 1 rune. | 'When I hold, channel 1 rune' has no condition, so Skyfall pays it on conquer too. |
@@ -171,27 +178,27 @@ Anchor `SFD-171` Renata Glasc, Industrialist. Matched 73 -> 94 (+21, -0); 7 excl
 
 | Card | Read | Fragment that matches | Why |
 |---|---|---|---|
-| `RAD-001` Amateur Demolitionist | excluded | When you play me, play a Bomb gear token to a battlefield. | A Bomb is a gear token (187.12), and 149.1 already has gear enter play ready, so "Your tokens enter ready" changes nothing for it. |
+| `RAD-001` Amateur Demolitionist | excluded | When you play me, play a Bomb gear token to a battlefield. | Its token is a gear (it prints "Bomb gear token"), and 149.1 already has gear enter play ready, so "Your tokens enter ready" changes nothing for it. |
 | `RAD-009` Antagonistic Apparatus | excluded | When you play me, play a ready 3 :rb_might: Mech unit token here. | "play a ready 3 Might Mech unit token": the token already enters ready. |
 | `RAD-157` Bandle Scouts' Academy | fits | When you hide a card here, play a Gold gear token exhausted. | Plays a Gold gear token exhausted; Renata's replacement beats the printed 'exhausted' (R25), so the Gold can be killed for Power the turn it is made. |
 | `RAD-159` Black Rose Sanctum | fits | For each player, the first time each turn a non-token unit they control dies here, they play a 1 :rb_might: Recruit unit token to their base. | Each player plays their own Recruit token to their base, so Renata's controller's token enters ready; the opponent's token on the same card is not covered, but the controller's half is a genuine instance (same two-sided shape as SFD-081 Card Sharp). |
 | `RAD-116` Concert Poster | fits | When you play this or when you conquer here, you may pay :rb_energy_1: to play a 1 :rb_might: Recruit unit token to your base. | May pay 1 Energy to play a 1 Might Recruit unit token to your base; a unit token enters exhausted by default, ready under Renata. |
 | `RAD-152` Encore | fits | • Play two 1 :rb_might: Recruit unit tokens. | The second mode plays two Recruit unit tokens, which enter ready under Renata. |
-| `RAD-094` Explosimian | excluded | When I hold, play three Bomb gear tokens to a single battlefield. | A Bomb is a gear token (187.12), and 149.1 already has gear enter play ready, so "Your tokens enter ready" changes nothing for it. |
+| `RAD-094` Explosimian | excluded | When I hold, play three Bomb gear tokens to a single battlefield. | Its token is a gear (it prints "Bomb gear token"), and 149.1 already has gear enter play ready, so "Your tokens enter ready" changes nothing for it. |
 | `RAD-132` Heimerdinger, Academy Instructor | fits | If you would play a unit token to a location while I'm at a battlefield, you may play a 3 :rb_might: Mech unit token to that same location instead. | Replacement that makes a 3 Might Mech unit token instead of another token; the Mech is a token entering the board, so Renata readies it (same standing as the replacement UNL-086 Zilean, Time Mage, which sits unexcluded in this list). |
-| `RAD-141` Hexplosives Expert | excluded | :rb_energy_1::rb_rune_rainbow:, :rb_exhaust:: Play a Bomb gear token to a battlefield. | A Bomb is a gear token (187.12), and 149.1 already has gear enter play ready, so "Your tokens enter ready" changes nothing for it. |
+| `RAD-141` Hexplosives Expert | excluded | :rb_energy_1::rb_rune_rainbow:, :rb_exhaust:: Play a Bomb gear token to a battlefield. | Its token is a gear (it prints "Bomb gear token"), and 149.1 already has gear enter play ready, so "Your tokens enter ready" changes nothing for it. |
 | `RAD-119` Hunting Dog | fits | [Deathknell][>] Play a 1 :rb_might: Bird unit token with [Deflect] to your base. | Deathknell plays a 1 Might Bird unit token to your base; it enters ready under Renata. |
 | `RAD-049` Industrious Mechsmith | fits | When you play me, play a 3 :rb_might: Mech unit token here. | Plays a 3 Might Mech unit token on play; ready under Renata it can block or move at once. |
 | `RAD-007` Rally for War | fits | Play three 1 :rb_might: Recruit unit tokens there. | Plays three 1 Might Recruit unit tokens at an enemy battlefield; ready under Renata they can fight or move at once. |
 | `RAD-105` Reckless Innovator | fits | • Play a Gold gear token exhausted. | One mode plays a Gold gear token exhausted, which Renata makes ready (the other mode is a draw). |
 | `RAD-052` Resource Extractor | fits | At the end of your turn, if you control this battlefield, play a Gold gear token exhausted. | Plays a Gold gear token exhausted at the end of your turn; Renata makes it ready. |
 | `RAD-127` Rousing Display | fits | Play two 1 :rb_might: Recruit unit tokens to your base. | Plays two (or four) 1 Might Recruit unit tokens to your base; they enter ready under Renata. |
-| `RAD-096` Satchel Charge | excluded | Move a friendly unit, then play a Bomb gear token to a battlefield. | A Bomb is a gear token (187.12), and 149.1 already has gear enter play ready, so "Your tokens enter ready" changes nothing for it. |
+| `RAD-096` Satchel Charge | excluded | Move a friendly unit, then play a Bomb gear token to a battlefield. | Its token is a gear (it prints "Bomb gear token"), and 149.1 already has gear enter play ready, so "Your tokens enter ready" changes nothing for it. |
 | `RAD-SP5` Seraphine, Not Alone | fits | When you play me or when I become exhausted, play a 1 :rb_might: Recruit unit token to your base. | Plays a Recruit unit token on play and each time she becomes exhausted; each enters ready under Renata. |
 | `RAD-100` The Waters' Wage | fits | Play a Gold gear token exhausted. | The base branch plays a Gold gear token exhausted, which Renata makes ready (the 'three ready Gold' branch is already ready, but the base branch is a real instance). |
 | `RAD-022` Whirling Twirligig | fits | :rb_exhaust:: Play a Gold gear token exhausted. | Three token makers (Gold exhausted, Recruit, Mech); all enter ready under Renata. |
-| `RAD-112` Ziggs, Explosive | excluded | :rb_energy_1:, :rb_exhaust:: Play a Bomb gear token to a battlefield. | A Bomb is a gear token (187.12), and 149.1 already has gear enter play ready, so "Your tokens enter ready" changes nothing for it. |
-| `RAD-023` Ziggs, Short-Fused | excluded | When you play me, play a Bomb gear token to a battlefield. | A Bomb is a gear token (187.12), and 149.1 already has gear enter play ready, so "Your tokens enter ready" changes nothing for it. |
+| `RAD-112` Ziggs, Explosive | excluded | :rb_energy_1:, :rb_exhaust:: Play a Bomb gear token to a battlefield. | Its token is a gear (it prints "Bomb gear token"), and 149.1 already has gear enter play ready, so "Your tokens enter ready" changes nothing for it. |
+| `RAD-023` Ziggs, Short-Fused | excluded | When you play me, play a Bomb gear token to a battlefield. | Its token is a gear (it prints "Bomb gear token"), and 149.1 already has gear enter play ready, so "Your tokens enter ready" changes nothing for it. |
 
 ### `grand-plaza-unit-tokens`
 
@@ -631,7 +638,7 @@ Anchor `VEN-020` Twilight Reveler. Matched 37 -> 43 (+6, -0); 0 excluded; stamp 
 | `RAD-061` Ekko, Ingenious | fits | [Ganking] (I can move from battlefield to battlefield.) | Printed [Ganking] body: a Reveler ready buys it the second Standard Move. |
 | `RAD-087` Portable Portal | fits | Friendly units here have [Ganking]. (They can move from battlefield to battlefield.) | Grants [Ganking] to friendly units here, the same 'here only' caveat the why already names for OGN-297 Windswept Hillock (pays for the move out, not the trip back); its own "ready a unit here" is a second ready on top. |
 | `RAD-097` Siren of the Shallows | fits | [Ganking] (I can move from battlefield to battlefield.) | Printed [Ganking] body; the Disarm line is irrelevant here. |
-| `RAD-146` The Ball | fits, with a limit (packet: false-positive) | [Ganking] (While this is a unit, it can move from battlefield to battlefield.) | [Ganking] works only while it is a unit, and the one card that makes a gear a unit is Lady of Clockwork (RAD-145), a Calm/Mind legend. Kept: the deck-time Domain Identity check (103.1.b) decides whether the anchor can share that deck, as for every pair in these lists. |
+| `RAD-146` The Ball | fits, with a limit (packet: false-positive) | [Ganking] (While this is a unit, it can move from battlefield to battlefield.) | [Ganking] works only while it is a unit, and the one card that makes a gear a unit is Lady of Clockwork (RAD-145), a Calm/Mind legend. Kept: the deck-time Domain Identity check (103.2.b) decides whether the anchor can share that deck, as for every pair in these lists. |
 
 ### `on-the-hunt-ganking-second-move`
 
@@ -644,7 +651,7 @@ Anchor `SFD-204` On the Hunt. Matched 37 -> 43 (+6, -0); 0 excluded; stamp 37 ->
 | `RAD-061` Ekko, Ingenious | fits | [Ganking] (I can move from battlefield to battlefield.) | Printed [Ganking] unit. |
 | `RAD-087` Portable Portal | fits | Friendly units here have [Ganking]. | 'Friendly units here have [Ganking]' (the OGN-297 Windswept Hillock shape), and it readies a unit itself. |
 | `RAD-097` Siren of the Shallows | fits | [Ganking] (I can move from battlefield to battlefield.) | Printed [Ganking] unit. |
-| `RAD-146` The Ball | fits, with a limit (packet: false-positive) | [Ganking] (While this is a unit, it can move from battlefield to battlefield.) | [Ganking] works only while it is a unit, and the one card that makes a gear a unit is Lady of Clockwork (RAD-145), a Calm/Mind legend. Kept: the deck-time Domain Identity check (103.1.b) decides whether the anchor can share that deck, as for every pair in these lists. |
+| `RAD-146` The Ball | fits, with a limit (packet: false-positive) | [Ganking] (While this is a unit, it can move from battlefield to battlefield.) | [Ganking] works only while it is a unit, and the one card that makes a gear a unit is Lady of Clockwork (RAD-145), a Calm/Mind legend. Kept: the deck-time Domain Identity check (103.2.b) decides whether the anchor can share that deck, as for every pair in these lists. |
 
 ### `acceleration-gate-ganking-second-move`
 
@@ -657,7 +664,7 @@ Anchor `VEN-150` Acceleration Gate. Matched 37 -> 43 (+6, -0); 0 excluded; stamp
 | `RAD-061` Ekko, Ingenious | fits | [Ganking] (I can move from battlefield to battlefield.) | Has or grants [Ganking], so each unit Acceleration Gate readies can make another battlefield-to-battlefield move. |
 | `RAD-087` Portable Portal | fits | Friendly units here have [Ganking]. | Friendly units here have [Ganking], a standing grant that every unit readied at this battlefield uses. |
 | `RAD-097` Siren of the Shallows | fits | [Ganking] (I can move from battlefield to battlefield.) | Has or grants [Ganking], so each unit Acceleration Gate readies can make another battlefield-to-battlefield move. |
-| `RAD-146` The Ball | fits, with a limit (packet: unsure) | [Ganking] (While this is a unit, it can move from battlefield to battlefield.) | [Ganking] works only while it is a unit, and the one card that makes a gear a unit is Lady of Clockwork (RAD-145), a Calm/Mind legend. Kept: the deck-time Domain Identity check (103.1.b) decides whether the anchor can share that deck, as for every pair in these lists. |
+| `RAD-146` The Ball | fits, with a limit (packet: unsure) | [Ganking] (While this is a unit, it can move from battlefield to battlefield.) | [Ganking] works only while it is a unit, and the one card that makes a gear a unit is Lady of Clockwork (RAD-145), a Calm/Mind legend. Kept: the deck-time Domain Identity check (103.2.b) decides whether the anchor can share that deck, as for every pair in these lists. |
 
 ### `ancient-henge-energy-surplus`
 
@@ -783,7 +790,7 @@ Anchor `SFD-192` Shurelya's Requiem. Matched 36 -> 42 (+6, -0); 0 excluded; stam
 | `RAD-061` Ekko, Ingenious | fits | [Ganking] (I can move from battlefield to battlefield.) | Prints [Ganking] on a unit, so Requiem's ready lets it move a second time. |
 | `RAD-087` Portable Portal | fits | Friendly units here have [Ganking]. (They can move from battlefield to battlefield.) | Gives friendly units here [Ganking] and can ready a unit on play, like OGN-297 Windswept Hillock (Units here have [Ganking]) already in this list plus a ready. |
 | `RAD-097` Siren of the Shallows | fits | [Ganking] (I can move from battlefield to battlefield.) | Prints [Ganking] on a unit, so Requiem's ready lets it move a second time. |
-| `RAD-146` The Ball | fits, with a limit (packet: unsure) | [Ganking] (While this is a unit, it can move from battlefield to battlefield.) | [Ganking] works only while it is a unit, and the one card that makes a gear a unit is Lady of Clockwork (RAD-145), a Calm/Mind legend. Kept: the deck-time Domain Identity check (103.1.b) decides whether the anchor can share that deck, as for every pair in these lists. |
+| `RAD-146` The Ball | fits, with a limit (packet: unsure) | [Ganking] (While this is a unit, it can move from battlefield to battlefield.) | [Ganking] works only while it is a unit, and the one card that makes a gear a unit is Lady of Clockwork (RAD-145), a Calm/Mind legend. Kept: the deck-time Domain Identity check (103.2.b) decides whether the anchor can share that deck, as for every pair in these lists. |
 
 ### `yordle-explorer-power-two`
 
@@ -1376,7 +1383,7 @@ Anchor `VEN-143` Master of Shadows. Matched 31 -> 36 (+5, -0); 2 excluded; stamp
 | `RAD-136` Dockside Lock-Up | fits | When you play this, banish a unit here. | Play trigger banishes a unit here and the hold trigger replays it, a banish-and-replay like Portal Rescue (aimed at your own unit it is a blink). |
 | `RAD-021` Ekko, Revolutionary | fits | [Action][>] Discard 1, :rb_energy_1::rb_rune_fury:: Banish me, then play me to your base, ignoring my cost. | Banishes itself ('Banish me, then play me to your base'), a self-banish of a card you own. |
 | `RAD-010` Forbidden Technique | fits | Then banish this. | Its own 'Then banish this' after the trash replay is a self-banish, the same trigger a [Flow] spell gives. |
-| `RAD-143` Iron Revenant | excluded | [Reaction][>] Banish a unit or gear from your trash, :rb_exhaust:: [Add] :rb_rune_rainbow:. | Iron Revenant is a legend and so is Master of Shadows: a deck has one Champion Legend (103.2), and a legend an effect adds is not one (107.4.d.1), so the two never share a board. |
+| `RAD-143` Iron Revenant | excluded | [Reaction][>] Banish a unit or gear from your trash, :rb_exhaust:: [Add] :rb_rune_rainbow:. | Iron Revenant is a legend and so is Master of Shadows: a deck has one Champion Legend (103.1), and a legend an effect adds is not one (107.4.d.1), so the two never share a board. |
 
 ### `undertitan-reveal-payoff`
 
@@ -1393,10 +1400,10 @@ Anchor `OGN-235` Karma, Channeler. Matched 46 -> 60 (+14, -0); 2 excluded; stamp
 
 | Card | Read | Fragment that matches | Why |
 |---|---|---|---|
-| `RAD-016` Coalesced Energy | excluded | At the end of your turn, recycle all your runes, then channel 4 runes exhausted. | "recycle all your runes" sends runes to the RUNE Deck (417.1.b in the 2026-10-09 rules), never the Main Deck Karma's trigger names, as with OGN-200. |
+| `RAD-016` Coalesced Energy | excluded | At the end of your turn, recycle all your runes, then channel 4 runes exhausted. | "recycle all your runes" sends runes to the RUNE Deck (416.1.b), never the Main Deck Karma's trigger names, as with OGN-200. |
 | `RAD-033` Command: Attack | fits | Look at the top 5 cards of your Main Deck. You may reveal a gear from among them and draw it. Recycle the rest. | Second mode recycles the unchosen Main Deck cards to your own Main Deck, which fires Karma (417.1.a); first mode does not, but the mode is chosen at play. |
 | `RAD-025` Consult the Heavens | fits | [Predict]. (Look at the top card of your Main Deck. You may recycle it.) | Matches only through the Predict reminder, but 437.1 defines Predict as look and choose whether to Recycle, so it is a real optional Main Deck recycle; same as the [Vision] cards (817.1.b) already in the list unexcluded. |
-| `RAD-018` Drakehound Packmaster | excluded | Recycle the rest. | "reveal the top card of each opponent's Main Deck ... Recycle the rest" recycles the opponents' own reveals to their own decks (417.1.c in the 2026-10-09 rules), never Karma's controller's, as with OGN-025. |
+| `RAD-018` Drakehound Packmaster | excluded | Recycle the rest. | "reveal the top card of each opponent's Main Deck ... Recycle the rest" recycles the opponents' own reveals to their own decks (416.1.c), never Karma's controller's, as with OGN-025. |
 | `RAD-081` Elnuk Herd | fits | When you play me, give a friendly unit +3 :rb_might: this turn, then recycle me if I was played from face down. | Recycles itself to its owner's Main Deck when played from face down, a real recycle to your Main Deck that fires Karma; the condition is reachable because Elnuk carries [Hidden]. |
 | `RAD-152` Encore | fits | Look at the top 2 cards of your Main Deck, draw 1 and recycle the other. | Mode 4 recycles one card to your own Main Deck; Choose two lets you take it. |
 | `RAD-111` Mechanical Bandit | fits | At the start of your Beginning Phase, each player reveals the top card of their Main Deck. If you revealed a card with the lowest Energy cost, draw it. Recycle the rest. | When your revealed card is not the lowest it is part of 'the rest' and is recycled to your own Main Deck (417.1.c) and fires Karma; when it is the lowest only the opponent's card recycles (to their deck), so it fires on one branch only, but that branch is reachable. |
@@ -1451,7 +1458,7 @@ Anchor `OGN-246` Viktor, Leader. Matched 14 -> 20 (+6, -0); 1 excluded; stamp 14
 | `RAD-139` Boy Who Shattered Time | fits | Reduce the cost of the next unit you play this turn by :rb_energy_2::rb_rune_rainbow: and give it "Kill me at end of turn." | Quoted grant, but it is the legend's own effect and it really kills a friendly non-Recruit unit (the one you just played) at end of turn, which is the Active Kill Viktor wants. |
 | `RAD-017` Detonation Amplifier | fits | When you play this, you may kill another friendly unit or gear to draw 1. | Optional active kill of a friendly unit (you pick which, so a non-Recruit). |
 | `RAD-125` Dune Devourer | fits | You may kill a friendly unit as an additional cost to play me. | Optional additional-cost kill of a friendly unit, same as Atakhan. |
-| `RAD-142` Hexplosive Minefield | excluded | Kill any number of friendly Bomb tokens. | "Kill any number of friendly Bomb tokens" kills gear: 187.12 makes a Bomb "a domainless gear token", so no friendly unit dies. |
+| `RAD-142` Hexplosive Minefield | excluded | Kill any number of friendly Bomb tokens. | "Kill any number of friendly Bomb tokens" kills gear: every card that names a Bomb's type prints "Bomb gear token" (RAD-001 Amateur Demolitionist, RAD-094 Explosimian), so no friendly unit dies. |
 | `RAD-020` Mordekaiser, Twice Slain | fits | Once each turn, if I would die, you may kill a friendly unit to heal me, exhaust me, and recall me instead. | Kills a friendly unit of your choice each turn as the price of saving himself. |
 | `RAD-014` Shimmering Swimmer | fits | You may kill a friendly unit or gear as an additional cost to play me. | Optional additional-cost kill of a friendly unit, same as Atakhan. |
 
@@ -1464,7 +1471,7 @@ Anchor `OGN-118` Wraith of Echoes. Matched 14 -> 20 (+6, -0); 1 excluded; stamp 
 | `RAD-139` Boy Who Shattered Time | fits | Disempower me, :rb_exhaust:: Reduce the cost of the next unit you play this turn by :rb_energy_2::rb_rune_rainbow: and give it "Kill me at end of turn." | Gives the next unit you play 'Kill me at end of turn', a real kill of a friendly unit (a delayed one that needs a unit played after the Disempower); it draws a card unless another unit died first. |
 | `RAD-017` Detonation Amplifier | fits | When you play this, you may kill another friendly unit or gear to draw 1. | 'You may kill another friendly unit or gear to draw 1' on play; the unit option is a friendly kill and Wraith adds a second card (first death each turn). |
 | `RAD-125` Dune Devourer | fits | You may kill a friendly unit as an additional cost to play me. If you do, I cost :rb_energy_2: less. | 'You may kill a friendly unit as an additional cost to play me' is a friendly kill at will. |
-| `RAD-142` Hexplosive Minefield | excluded | Kill any number of friendly Bomb tokens. At end of turn, play that many Bomb tokens to a single battlefield. | "Kill any number of friendly Bomb tokens" kills gear: 187.12 makes a Bomb "a domainless gear token", so no friendly unit dies. |
+| `RAD-142` Hexplosive Minefield | excluded | Kill any number of friendly Bomb tokens. At end of turn, play that many Bomb tokens to a single battlefield. | "Kill any number of friendly Bomb tokens" kills gear: every card that names a Bomb's type prints "Bomb gear token" (RAD-001 Amateur Demolitionist, RAD-094 Explosimian), so no friendly unit dies. |
 | `RAD-020` Mordekaiser, Twice Slain | fits | Once each turn, if I would die, you may kill a friendly unit to heal me, exhaust me, and recall me instead. | Marginal fit: 'if I would die, you may kill a friendly unit to heal me, exhaust me, and recall me' kills ANOTHER friendly unit each turn (it, not Mordekaiser, dies), so Wraith draws once. |
 | `RAD-014` Shimmering Swimmer | fits | You may kill a friendly unit or gear as an additional cost to play me. | 'You may kill a friendly unit or gear as an additional cost to play me' is a friendly kill at will (unit option). |
 
@@ -1477,7 +1484,7 @@ Anchor `OGN-228` Vanguard Helm. Matched 14 -> 20 (+6, -0); 1 excluded; stamp 14 
 | `RAD-139` Boy Who Shattered Time | fits | Disempower me, :rb_exhaust:: Reduce the cost of the next unit you play this turn by :rb_energy_2::rb_rune_rainbow: and give it "Kill me at end of turn." | The match is a quote granted to the NEXT unit ('Kill me at end of turn'), which looks like the nested-quote shape, but the result is a guaranteed end-of-turn kill of a friendly unit you control, which is exactly what the Helm reads (the Shard of Undoing rule likewise accepts grants of a scheduled friendly death). The recipient needs a buff from elsewhere like every member. |
 | `RAD-017` Detonation Amplifier | fits | When you play this, you may kill another friendly unit or gear to draw 1. | Optional kill of another friendly unit or gear to draw 1; the unit option is a real friendly kill (the 'friendly gear' textExcludes does not trip because the phrase reads 'friendly unit or gear'). |
 | `RAD-125` Dune Devourer | fits | You may kill a friendly unit as an additional cost to play me. If you do, I cost :rb_energy_2: less. | Optional additional-cost kill of a friendly unit (same shape as Atakhan and Commander Ledros). |
-| `RAD-142` Hexplosive Minefield | excluded | Kill any number of friendly Bomb tokens. At end of turn, play that many Bomb tokens to a single battlefield. | "Kill any number of friendly Bomb tokens" kills gear: 187.12 makes a Bomb "a domainless gear token", so no friendly unit dies and the Helm never triggers. |
+| `RAD-142` Hexplosive Minefield | excluded | Kill any number of friendly Bomb tokens. At end of turn, play that many Bomb tokens to a single battlefield. | "Kill any number of friendly Bomb tokens" kills gear: every card that names a Bomb's type prints "Bomb gear token" (RAD-001 Amateur Demolitionist, RAD-094 Explosimian), so no friendly unit dies and the Helm never triggers. |
 | `RAD-020` Mordekaiser, Twice Slain | fits | Once each turn, if I would die, you may kill a friendly unit to heal me, exhaust me, and recall me instead. | 'You may kill a friendly unit' (a real friendly kill, possibly a buffed one) to save itself from dying. The cost is another unit, same as the pay-a-permanent replacements already in the sibling rules; the condition (this unit would die) is meetable. |
 | `RAD-014` Shimmering Swimmer | fits | You may kill a friendly unit or gear as an additional cost to play me. | Optional additional-cost kill of a friendly unit or gear; the unit option is a real friendly kill. |
 
@@ -1490,7 +1497,7 @@ Anchor `SFD-169` Altar of Memories. Matched 14 -> 20 (+6, -0); 1 excluded; stamp
 | `RAD-139` Boy Who Shattered Time | fits | Reduce the cost of the next unit you play this turn by :rb_energy_2::rb_rune_rainbow: and give it "Kill me at end of turn." | The match sits inside a quote granted to the next unit you play, but the grantee is always your own unit and the clause is a kill, so a friendly unit does die at end of turn and Altar pays; unlike the Zed / Relentless Pursuit nested quotes, the quoted effect is the thing the pairing needs. |
 | `RAD-017` Detonation Amplifier | fits | When you play this, you may kill another friendly unit or gear to draw 1. | Optional kill of another friendly unit on play (a unit is a legal pick, so "friendly gear" in textExcludes does not apply); a one-shot outlet like the other listed play-time kill costs. |
 | `RAD-125` Dune Devourer | fits | You may kill a friendly unit as an additional cost to play me. | Optional additional-cost kill of a friendly unit, same family as listed OGN-231 Commander Ledros and UNL-170 Atakhan. |
-| `RAD-142` Hexplosive Minefield | excluded | Kill any number of friendly Bomb tokens. | "Kill any number of friendly Bomb tokens" kills gear: 187.12 makes a Bomb "a domainless gear token", so no friendly unit dies. |
+| `RAD-142` Hexplosive Minefield | excluded | Kill any number of friendly Bomb tokens. | "Kill any number of friendly Bomb tokens" kills gear: every card that names a Bomb's type prints "Bomb gear token" (RAD-001 Amateur Demolitionist, RAD-094 Explosimian), so no friendly unit dies. |
 | `RAD-020` Mordekaiser, Twice Slain | fits | Once each turn, if I would die, you may kill a friendly unit to heal me, exhaust me, and recall me instead. | A real friendly-unit kill as the cost of his replacement, so a friendly unit dies and Altar pays; it is reactive (only when he would die) rather than on demand, like listed SFD-128 Overzealous Fan. |
 | `RAD-014` Shimmering Swimmer | fits | You may kill a friendly unit or gear as an additional cost to play me. | Optional additional-cost kill that may be a unit; same family as Dune Devourer / Atakhan. |
 
@@ -1503,7 +1510,7 @@ Anchor `UNL-068` Spectral Centaur. Matched 14 -> 20 (+6, -0); 2 excluded; stamp 
 | `RAD-139` Boy Who Shattered Time | excluded | Disempower me, :rb_exhaust:: Reduce the cost of the next unit you play this turn by :rb_energy_2::rb_rune_rainbow: and give it "Kill me at end of turn." | The kill it grants is "Kill me at end of turn", so the death lands at the end of the turn, when the Centaur's "+2 Might this turn" has nothing left to do. |
 | `RAD-017` Detonation Amplifier | fits | When you play this, you may kill another friendly unit or gear to draw 1. | May kill another friendly unit or gear on play to draw 1; choosing a unit is an active friendly kill (like OGN-113 Malzahar's 'unit or gear'). |
 | `RAD-125` Dune Devourer | fits | You may kill a friendly unit as an additional cost to play me. | Kills a friendly unit as an additional cost to play it, like OGN-208 Cruel Patron. |
-| `RAD-142` Hexplosive Minefield | excluded | Kill any number of friendly Bomb tokens. | "Kill any number of friendly Bomb tokens" kills gear: 187.12 makes a Bomb "a domainless gear token", so no friendly unit dies. |
+| `RAD-142` Hexplosive Minefield | excluded | Kill any number of friendly Bomb tokens. | "Kill any number of friendly Bomb tokens" kills gear: every card that names a Bomb's type prints "Bomb gear token" (RAD-001 Amateur Demolitionist, RAD-094 Explosimian), so no friendly unit dies. |
 | `RAD-020` Mordekaiser, Twice Slain | fits | Once each turn, if I would die, you may kill a friendly unit to heal me, exhaust me, and recall me instead. | Replacement ability: 'you may kill a friendly unit to heal me, exhaust me, and recall me instead' is an active friendly-unit kill, once each turn. |
 | `RAD-014` Shimmering Swimmer | fits | You may kill a friendly unit or gear as an additional cost to play me. | May kill a friendly unit or gear as an additional cost to play it; choosing a unit is an active friendly kill. |
 
@@ -1613,7 +1620,7 @@ Anchor `VEN-151` Soul's Reflection. Matched 38 -> 39 (+1, -0); 1 excluded; stamp
 
 | Card | Read | Fragment that matches | Why |
 |---|---|---|---|
-| `RAD-139` Boy Who Shattered Time | excluded | [Empower] — :rb_energy_1:, :rb_exhaust: (Use only if not Empowered.) | a legend: 103.2 gives a deck one Champion Legend, which here is Soul's Reflection, and the only way a second legend reaches the Legend Zone (107.4.d.1) is Neeko, Blending In (RAD-167), which the pool leaves out (#695). Its Fury/Mind domains are outside her Mind/Chaos identity as well. |
+| `RAD-139` Boy Who Shattered Time | excluded | [Empower] — :rb_energy_1:, :rb_exhaust: (Use only if not Empowered.) | a legend: 103.1 gives a deck one Champion Legend, which here is Soul's Reflection, and the only way a second legend reaches the Legend Zone (107.4.d.1) is Neeko, Blending In (RAD-167), which the pool leaves out (#695). Its Fury/Mind domains are outside her Mind/Chaos identity as well. |
 
 ### `matriarch-of-war-empower-relay`
 
@@ -1621,7 +1628,7 @@ Anchor `VEN-153` Matriarch of War. Matched 38 -> 39 (+1, -0); 1 excluded; stamp 
 
 | Card | Read | Fragment that matches | Why |
 |---|---|---|---|
-| `RAD-139` Boy Who Shattered Time | excluded | [Empower] — :rb_energy_1:, :rb_exhaust: (Use only if not Empowered.) | a legend: 103.2 gives a deck one Champion Legend, which here is Matriarch of War, and the only way a second legend reaches the Legend Zone (107.4.d.1) is Neeko, Blending In (RAD-167), which the pool leaves out (#695). Its Fury/Mind domains are outside her Body/Order identity as well. |
+| `RAD-139` Boy Who Shattered Time | excluded | [Empower] — :rb_energy_1:, :rb_exhaust: (Use only if not Empowered.) | a legend: 103.1 gives a deck one Champion Legend, which here is Matriarch of War, and the only way a second legend reaches the Legend Zone (107.4.d.1) is Neeko, Blending In (RAD-167), which the pool leaves out (#695). Its Fury/Mind domains are outside her Body/Order identity as well. |
 
 ### `rippers-bay-bounce-channel`
 
@@ -1726,7 +1733,7 @@ Anchor `UNL-129` Vicious Snapjaws. Matched 14 -> 20 (+6, -0); 1 excluded; stamp 
 | `RAD-139` Boy Who Shattered Time | fits | Reduce the cost of the next unit you play this turn by :rb_energy_2::rb_rune_rainbow: and give it "Kill me at end of turn." | Quoted grant, but it is the legend's own effect and it really kills a friendly unit at end of turn, which is another friendly unit dying for Snapjaws. |
 | `RAD-017` Detonation Amplifier | fits | When you play this, you may kill another friendly unit or gear to draw 1. | Optional active kill of a friendly unit. |
 | `RAD-125` Dune Devourer | fits | You may kill a friendly unit as an additional cost to play me. | Optional additional-cost kill of a friendly unit. |
-| `RAD-142` Hexplosive Minefield | excluded | Kill any number of friendly Bomb tokens. | "Kill any number of friendly Bomb tokens" kills gear: 187.12 makes a Bomb "a domainless gear token", so no friendly unit dies. |
+| `RAD-142` Hexplosive Minefield | excluded | Kill any number of friendly Bomb tokens. | "Kill any number of friendly Bomb tokens" kills gear: every card that names a Bomb's type prints "Bomb gear token" (RAD-001 Amateur Demolitionist, RAD-094 Explosimian), so no friendly unit dies. |
 | `RAD-020` Mordekaiser, Twice Slain | fits | Once each turn, if I would die, you may kill a friendly unit to heal me, exhaust me, and recall me instead. | Kills a friendly unit of your choice as a cost, feeding Snapjaws 1 XP. |
 | `RAD-014` Shimmering Swimmer | fits | You may kill a friendly unit or gear as an additional cost to play me. | Optional additional-cost kill of a friendly unit. |
 
@@ -1815,7 +1822,7 @@ Anchor `VEN-164` Sandswept Tomb. Matched 14 -> 15 (+1, -0); 1 excluded; stamp 14
 
 | Card | Read | Fragment that matches | Why |
 |---|---|---|---|
-| `RAD-102` Demon Shade | excluded | Choose a friendly unit, then choose one — | Demon Shade prints no Power, and 356.4.c.2 and 356.6 keep a discount from taking a cost component below 0, so the Tomb takes nothing off. |
+| `RAD-102` Demon Shade | excluded | Choose a friendly unit, then choose one — | Demon Shade prints no Power, and 356.6 ("Energy and Power costs can't be reduced below 0") keeps the discount from taking its Power below 0, so the Tomb takes nothing off. |
 
 ### `frozen-fortress-token-toughness`
 
