@@ -106,10 +106,11 @@ export function displayName(item) {
 // then). A gear has no Might of its own, and `might` is what the corpus prints as `M` and the web
 // shows as a unit's Might, so a gear keeps `might: null` and the bonus stays in `mightBonus`. A gear
 // whose two numbers differ would be a new shape, so it fails the build instead of being guessed.
-export function gearMight(item) {
-  const might = num(item.might);
-  if (might === null || !item.cardType.type.some((t) => t.id === "gear")) return might;
-  if (might !== num(item.mightBonus)) throw new Error(`${item.publicCode}: gear might ${might} differs from mightBonus ${num(item.mightBonus)}`);
+// It reads the normalized card after applyGalleryFixes (#664), because the gallery types some
+// Radiance units as gear (RAD-120 Meticulous Restorationist: gear with Might 2 and no bonus).
+export function gearMight(card) {
+  if (card.might === null || !card.type.includes("gear")) return card.might;
+  if (card.might !== card.mightBonus) throw new Error(`${card.publicCode}: gear might ${card.might} differs from mightBonus ${card.mightBonus}`);
   return null;
 }
 
@@ -132,7 +133,7 @@ function normalize(item) {
     domains: (item.domain?.values ?? []).map((d) => d.id).filter((d) => d !== "colorless"),
     energy: num(item.energy),
     power: num(item.power),
-    might: gearMight(item),
+    might: num(item.might),
     mightBonus: num(item.mightBonus),
     text: rich(item.text),
     effect: rich(item.effect),
@@ -141,6 +142,45 @@ function normalize(item) {
     artist: (item.illustrator?.values ?? []).map((a) => a.label).join(", ") || null,
     image: item.cardImage?.url ?? null,
   };
+}
+
+// --- gallery fixes (#664) ----------------------------------------------------
+//
+// Riot's gallery ships Radiance with the wrong type, domain or tags on most of its printings, while
+// its text, cost, Might and name are right: read 2026-11-23, 111 of its 189 base cards disagree with
+// Riot's own printed card image (Bushwhack Trap RAD-108 is a Chaos gear on the card and a Fury unit
+// in the gallery). data/gallery-fixes.json names, per base, the value the gallery ships and the value
+// the card prints, with the image it was read from. Like the errata overlay it only replaces what it
+// names, and it fails the build the moment the gallery ships anything else, so an entry is deleted
+// when Riot corrects the data instead of silently overriding a newer value. Card text is never
+// touched here: that is the errata overlay's, with Riot's own announcement as the source.
+
+const FIXABLE = new Set(["type", "domains", "tags"]);
+
+export function applyGalleryFixes(cards, fixes) {
+  const seen = new Set();
+  for (const e of fixes) {
+    if (seen.has(e.base)) throw new Error(`gallery-fixes: ${e.base} is listed twice`);
+    seen.add(e.base);
+    const fields = Object.keys(e.printed);
+    if (fields.join() !== Object.keys(e.gallery).join()) throw new Error(`gallery-fixes: ${e.base} gallery and printed must name the same fields`);
+    for (const f of fields) if (!FIXABLE.has(f)) throw new Error(`gallery-fixes: ${e.base} names field ${f}; only ${[...FIXABLE].join(", ")} are fixed here`);
+    const targets = cards.filter((c) => c.base === e.base);
+    if (targets.length === 0) throw new Error(`gallery-fixes: no printing of ${e.base}`);
+    for (const c of targets) {
+      for (const f of fields) {
+        const now = JSON.stringify(c[f]);
+        if (now === JSON.stringify(e.printed[f])) {
+          throw new Error(`gallery-fixes: ${c.code} ${f}: the gallery now ships the printed value; delete the entry's ${f}`);
+        }
+        if (now !== JSON.stringify(e.gallery[f])) {
+          throw new Error(`gallery-fixes: ${c.code} ${f} is ${now}, the entry expects ${JSON.stringify(e.gallery[f])}`);
+        }
+        c[f] = e.printed[f];
+      }
+      c.galleryFix = { fields, read: e.read, source: e.source };
+    }
+  }
 }
 
 // --- errata overlay ---------------------------------------------------------
@@ -234,9 +274,10 @@ export function resolveLegality(cards, src) {
 // 51 names became data/signature.src.json, and this resolves each to exactly one base code — zero or
 // two-or-more is a build failure. The gallery now ships `cardType.superType` "signature" (#660), and
 // that is the source `Card.signature` is read from: read 2026-11-16 it marks exactly those 51 bases
-// in the sets built here (and nine Radiance cards, held below). The mirrors' list stays as a
-// cross-check in both directions: the build fails if the gallery stops marking one of the 51, or
-// marks a base the mirrors do not list, so a new Signature card needs a second source too.
+// in the sets built then, plus nine Radiance bases that #664 added to the list once both mirrors
+// named them (60 in all). The mirrors' list stays as a cross-check in both directions: the build
+// fails if the gallery stops marking one of the 60, or marks a base the mirrors do not list, so a
+// new Signature card needs a second source too.
 //
 // resolveLegality does NOT apply that discipline, and must not: 104 names in this pool already span
 // two or more base codes (Vi, Destructive is OGN-036 + VEN-167; Ahri, Inquisitive is OGN-119 +
@@ -247,7 +288,7 @@ export function resolveLegality(cards, src) {
 //
 // The asymmetry is a live risk in the other direction: the day a Signature card is reprinted under a
 // second base, this throws and the build stops until someone decides whether Signature is a property
-// of the card (widen to a set, like legality) or of the printing (list both names). None of the 51
+// of the card (widen to a set, like legality) or of the printing (list both names). None of the 60
 // spans two bases today.
 
 function resolveSignature(cards, src) {
@@ -278,11 +319,6 @@ function resolveSignature(cards, src) {
 // Gated on direct execution (never on import) so test/errata.test.ts can import applyErrata above
 // without triggering a live fetch of Riot's gallery as a side effect of loading the module.
 
-// Sets the gallery publishes that are not built yet. Radiance (RAD, 219 printings read 2026-11-16)
-// is held until #664 ingests it: it brings new pins to read (synergy lists, or-pairs, the turn
-// clock) and 20 printings whose type or domain contradicts their own text.
-const HELD_SETS = new Set(["RAD"]);
-
 const isMain = import.meta.url === `file://${process.argv[1]}`;
 // `--legality-only` (#647) re-resolves data/legality.src.json over the COMMITTED pool and writes only
 // data/legality.json, for a ban-list update that must not wait on a gallery rebuild.
@@ -292,9 +328,10 @@ if (isMain && args.includes("--legality-only")) {
   writeFileSync(join(DATA, "legality.json"), JSON.stringify(legality, null, 1));
   console.log(`legality entries: ${legality.entries.length} (resolved over the committed data/cards.json, ${cards.length} printings)`);
 } else if (isMain) {
-  const { items: all, updatedAt } = await fetchAll();
-  const items = all.filter((i) => !HELD_SETS.has(i.set.value.id));
+  const { items, updatedAt } = await fetchAll();
   const cards = items.map(normalize);
+  applyGalleryFixes(cards, JSON.parse(readFileSync(join(DATA, "gallery-fixes.json"), "utf8")).entries);
+  for (const c of cards) c.might = gearMight(c);
   const signatureIds = new Set(items.filter(isSignature).map((i) => i.id));
 
   const ids = new Set(cards.map((c) => c.id));
@@ -325,7 +362,6 @@ if (isMain && args.includes("--legality-only")) {
 
   const withEffect = cards.filter((c) => c.effect).length;
   const errataApplied = cards.filter((c) => c.errata).length;
-  console.log(`held: ${all.length - items.length} printings of ${[...HELD_SETS].join(", ")} not built`);
   console.log(`cards: ${cards.length} (${new Set(cards.map((c) => c.base)).size} unique printings ignoring alt-art)`);
   console.log(`equipment effects: ${withEffect}; errata applied to ${errataApplied} printings; legality entries: ${legality.entries.length}`);
   console.log(`signature: ${signatureBases.size} base cards`);

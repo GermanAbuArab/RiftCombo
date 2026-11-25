@@ -48,8 +48,8 @@ describe("the card payload the browser downloads", () => {
       expect(WEB_CARD_FIELDS, `${f} is read by src/build.ts or src/builder.ts`).toContain(f);
     }
     const withSig = cards.cards.filter((c: { signature?: boolean }) => c.signature);
-    expect(withSig.length).toBe(51);
-    expect(withSig.filter((c: unknown) => (slimCard(c) as { signature?: boolean }).signature).length).toBe(51);
+    expect(withSig.length).toBe(60);
+    expect(withSig.filter((c: unknown) => (slimCard(c) as { signature?: boolean }).signature).length).toBe(60);
   });
 });
 

@@ -166,7 +166,8 @@ describe("checkBuild over the lists that parse clean", () => {
     expect(changed).toBeGreaterThan(0);
     for (const n of named) expect(after.has(n) || n === "Aspirant's Climb" || n === "The Arena's Greatest").toBe(true);
     // And every one of them fires: each card of both updates that the pool holds is in some list
-    // (Riven, Broken Blade is RAD-043, not in the pool until #664).
+    // (Riven, Broken Blade is RAD-043, in the pool since #664, but the lists are from events of
+    // 2026-04-22 to 2026-08-26, before Radiance, and none of the 222 holds it).
     expect([...after].filter((n) => n !== "Riven, Broken Blade" && !named.has(n))).toEqual([]);
   });
 });

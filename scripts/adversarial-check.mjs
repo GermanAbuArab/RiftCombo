@@ -2159,6 +2159,8 @@ const LEGEND_REFUSED = {
   "UNL-185": "Bloodharbor Ripper: the [Add] is a Gold token's, which the legend plays for E1 and a returned unit",
   "UNL-197": "Scorn of the Moon: Energy only during showdowns, and the unopposed clock fights none",
   "UNL-234": "Scorn of the Moon's reprint: the same",
+  "RAD-143": "Iron Revenant: its cost banishes a unit or gear from your trash, and the clock schedules no unit or gear reaching the trash",
+  "RAD-170": "Iron Revenant's reprint: the same",
 };
 /**
  * A legend's modelled [Add], or null: `kind` is the cost it may pay (`unit`, `spell`, `gear`, or
@@ -2345,6 +2347,8 @@ const RUNE_REFUSED = {
   "OGN-110": "Ekko: [Deathknell], when he dies, and the clock schedules no death",
   "SFD-049": "Aphelios: a row that declares no Equipment, so nothing says an attach to him happens, and his Channel mode, a second attach the same turn",
   "SFD-224": "Aphelios's reprint: the same",
+  "RAD-179": "Aphelios's reprint: the same",
+  "RAD-032": "Battle Preparations: a spell that readies only if you showed off a gear as you played it, a [Show Off] the clock does not schedule",
   "UNL-080": "Hwei: when he moves and the card he discards is a gear, a move and a discard the clock does not schedule",
   "VEN-145": "Curator of the Sands: a row with no unit, gear or [Equip] cost printed at Energy 7 or more, such as an [Empower] the clock does not price, and a second play of 7+ the same turn, since she exhausts",
   "VEN-192": "Curator of the Sands's reprint: the same",

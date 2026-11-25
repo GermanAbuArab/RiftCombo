@@ -61,7 +61,8 @@ const lines = [
   `#   defines them, so a rules walk has to be able to look one up here. A type of "-" means Riot`,
   `#   ships the card with no card type at all (UNL-T04 Buff, UNL-T08 XP Tracker).`,
   `# Known upstream anomalies in Riot's own text (missing brackets, stray fields, wrong tags) are`,
-  `#   registered in docs/data-anomalies.md and are NOT corrected here.`,
+  `#   registered in docs/data-anomalies.md and are NOT corrected here. A type, domain or tag the`,
+  `#   gallery ships against Riot's own printed card is overlaid from data/gallery-fixes.json (#664).`,
   `code | name | type | domains | cost | text`,
 ];
 for (const c of rows) {

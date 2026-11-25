@@ -463,9 +463,12 @@ describe("[Accelerate] (#510)", () => {
     }[];
     const said = new Map<string, string[]>();
     for (const c of all) if (/accelerate/i.test(`${c.text || ""} ${c.effect || ""}`)) said.set(c.base, c.type);
-    expect([...said.values()].every((t) => t.includes("unit"))).toBe(true);
-    expect(Number(m![2])).toBe(said.size);
-    expect(said.size).toBe(28);
+    // Radiance (#664) brought the one non-unit: RAD-162 Firelights' Hideout, a battlefield whose
+    // conquer gives the next unit played [Accelerate]. The clock does not price that grant.
+    const nonUnits = [...said].filter(([, t]) => !t.includes("unit")).map(([b]) => b);
+    expect(nonUnits).toEqual(["RAD-162"]);
+    expect(Number(m![2])).toBe(said.size - nonUnits.length);
+    expect(said.size - nonUnits.length).toBe(34);
     expect(Number(m![3])).toBeGreaterThan(0);
   });
 });
@@ -558,7 +561,7 @@ describe("readying runes (#513)", () => {
       const t = `${c.text || ""} ${c.effect || ""}`.replace(/:rb_[a-z_0-9]+:/g, "");
       if (t.split(/[.\n]/).some((s) => /\bready\b/i.test(s) && /\brunes?\b/i.test(s))) said.add(c.base);
     }
-    expect(said.size).toBe(12);
+    expect(said.size).toBe(14);
     expect(Number(m![2])).toBe(said.size);
     expect(Number(m![3]) + Number(m![5])).toBe(said.size);
     expect(Number(m![7])).toBe(0);
@@ -570,6 +573,10 @@ describe("readying runes (#513)", () => {
       expect(m![4], b).toContain(b);
       expect(m![6], b).not.toContain(b);
     }
+    // #664: Radiance's Aphelios reprint is modelled like the other two; Battle Preparations readies
+    // only after a [Show Off], which the clock does not schedule.
+    expect(m![4]).toContain("RAD-179 Aphelios, Exalted (2 on an attach to it, once a turn, NOT Aphelios's reprint: the same)");
+    expect(m![6]).toContain("RAD-032 (Battle Preparations:");
     expect(Number(m![8])).toBeGreaterThan(0);
   });
 });
@@ -832,12 +839,14 @@ describe("[Hidden], the copy limit and a legend's [Add] (#528)", () => {
 
   // The same scan: the copy limit's layered fronts gave this legal set 8,451 capped mixes at 8 bodies,
   // 11s (0.1s before #528). Past the mix guard the bodies come from one front with no copy limit.
+  // 17,205 since Radiance put RAD-086 K'Sante, Courageous and RAD-077 Wrath of the Freljord on the
+  // Body/Calm front (#664); the price, T4 paying T5, did not move.
   it("prices eight bodies past the mix guard on the uncapped front, says so, and no catalogue row needs it", () => {
     const r = spawnSync("node", ["scripts/adversarial-check.mjs", "--price", "OGN-136:3,VEN-043:3", "--bodies", "8"],
       { encoding: "utf8", timeout: 60_000, env: { ...process.env, RC_FB: "1", RC_MIXES: "" } });
     expect(r.status, r.stderr).toBe(0);
     expect(r.stdout).toContain("COPY BOUND");
-    expect(r.stderr).toMatch(/FALLBACK copies mixes=8451/);
+    expect(r.stderr).toMatch(/FALLBACK copies mixes=17205/);
     expect(out).toMatch(/mix guard \(256\): 0 rows priced uncapped\n/);
   }, 60_000);
 

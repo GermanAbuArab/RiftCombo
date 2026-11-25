@@ -20,17 +20,42 @@ code is the stable key.
 | Card | Anomaly | Evidence |
 |---|---|---|
 | `VEN-073` Jagged Cutlass | Keyword written `Equip` with no brackets, unlike the other 39 Equipment printings, which write `[Equip]`. | API body: `<p>Equip :rb_rune_body: (…)</p>`. Corpus L848. |
+| `RAD-071` Nazuman Ntofo | `Equip` with no brackets, the same as `VEN-073`; the other two Radiance Equipment (`RAD-123`, `RAD-150`) write `[Equip]`. Five synergy predicates match `\[Equip\]` and miss both cards (#664 read, 2026-11-23). | API body read 2026-11-23: `<p>Equip :rb_energy_1: (:rb_energy_1:: Attach this to a unit you control.)</p>`. |
 | `SFD-096` Laurent Bladekeeper | `Ganking` with no brackets; the rest of the pool writes `[Ganking]`. | API body: `<p>Ganking (I can move from battlefield to battlefield.)</p>`. Corpus L424. |
 | `SFD-138` Windsinger | `Hidden` with no brackets; the rest writes `[Hidden]`. | Corpus L466. |
 | `VEN-103` Shadows of the Past | Carries an `effect` field containing the single character `1`, on a **spell**. `effect` is the Equipment-only field holding the text granted to the equipped unit, so the corpus renders a dangling `[Effect] 1`. | API body: `"effect": {"richText": {"body": "<p>1</p>"}}`. Corpus L878. |
 | `OGN-235` Karma, Channeler | Tagged `[Tags: Vi, Ionia]`. Should be Karma; Vi is a different champion. | Corpus L241. |
 | `SFD-217` Seat of Power | Sentence ended in a double period: `…you or allies control..`. **Gone upstream**: the gallery read 2026-11-16 (#660) ends `…you or allies control.`, so the row stays as history. | API body ended `control..</p>` on 2026-09-04. |
 | `VEN-109` Illaoi (and `UNL-160` Ultrasoft Poro until 2026-11) | Token Might printed as `:rb_energy_1: :rb_might:` — Riot uses the *Energy* glyph for the numeral `1` in front of the Might icon. Reads as "1 Energy of Might" if taken literally; it means a 1 Might token. Rule 187.7 is the authority for the Bird token, 187 for the shape. `UNL-160` reads `Play two 1 :rb_might: Bird unit` in the gallery read 2026-11-16 (#660); `VEN-109` still carries the Energy glyph. | Corpus L709, L884 as of the audit. |
+| `RAD-012` Runeblade Anvil | The kill cost names a Chaos rune, `:rb_energy_2::rb_rune_chaos:, :rb_exhaust:: Kill this.`, where the card prints a Fury rune. The gallery also ships the card as Chaos, and `data/gallery-fixes.json` corrects its domain to the printed Fury, but that overlay never touches text. Only the colour is wrong, and no script prices this cost: the turn clock reads rune glyphs only in an `[Equip]` cost (`equipCost`, `scripts/adversarial-check.mjs:1962`) or an `[Add]` (`POWER_ADD`, `LEGEND_ADD`, `HENGE`), and the card has neither. The site shows the text as shipped, `2 Energy + 1 Chaos Power, Exhaust: Kill this.` (`readableCardText` in `src/cards.ts`, also the deckbuilder's search text), and four synergy excludes quote it. The only RAD card whose text names a rune outside its own domains (measured 2026-11-23, #664). | API text read 2026-11-23. The card image, the `source` of its `data/gallery-fixes.json` entry, read 2026-11-23: `2`, a Fury rune, exhaust: Kill this. |
 
-None of these change what a card does, so none of them blocks a rules walk. The three
+Except `RAD-012`, whose walk pays its kill cost with the Fury rune the card prints, none of these
+change what a card does, so none of them blocks a rules walk. The
 bracket-less keywords are the ones with teeth: any parser that finds keywords by `[…]` misses
-`Equip` on `VEN-073`, `Ganking` on `SFD-096` and `Hidden` on `SFD-138`. Nothing in the repo
-parses keywords that way today.
+`Equip` on `VEN-073` and `RAD-071`, `Ganking` on `SFD-096` and `Hidden` on `SFD-138`. Five synergy
+predicates do find `[Equip]` that way (`fiora-equipment-ready`, `aphelios-equipment-attach`,
+`weaponmaster-equip-discount`, `rell-magnetic-free-equip-attach`, `jax-unrelenting-attach-draw`), and
+all five leave out `VEN-073` and `RAD-071` (measured 2026-11-23).
+
+## Gallery metadata against the printed card — overlaid, not registered (#664)
+
+Riot's gallery shipped Radiance (read 2026-11-23) with the wrong type, domain or tags on 111 of its
+bases: `RAD-108` Bushwhack Trap prints as a Chaos gear and the gallery calls it a Fury unit with a
+`Device` tag, and `RAD-049` ships with no type and no domain at all. That is not cosmetic: type and
+domain decide Domain Identity (103.1.b), the deckbuilder's pool and every synergy predicate, so a
+register row would have left 111 cards playable in the wrong decks. Text still follows the rule
+above; only `type`, `domains` and `tags` may be corrected, and only from Riot's own card image.
+
+`data/gallery-fixes.json` holds one entry per base: the value the gallery ships, the value the
+card prints, the `cmsassets.rgpub.io` image it was read from and the read date. Its notes give the
+method (a blind transcription of every image, cross-checked). `applyGalleryFixes` in
+`scripts/build-cards.mjs` applies it to every printing of the base and records `galleryFix` on the
+card, and like the errata overlay it fails the build when the gallery stops shipping the named value,
+so an entry retires itself when Riot corrects the data. `test/gallery-fixes.test.ts` pins both.
+
+The same class of error in the older sets (`VEN-058` Patched Porobot typed `unit` against a printed
+`UNIT GEAR`, the `Yordle` tag on `VEN-155` and `VEN-197`, and `OGN-235` above) is not overlaid yet:
+it is #692.
 
 ## Not anomalies — checked and explained
 

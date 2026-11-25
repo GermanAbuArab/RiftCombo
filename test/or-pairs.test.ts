@@ -29,9 +29,13 @@ const READ_2026_09_14 = [
   "play OR exhaust", "play OR look at", "play OR ready",
 ].sort();
 
+// Radiance (#664) added three pairs, each from a "when you play me or when X" trigger; read in
+// scripts/or-pairs.mjs's docblock.
+const READ_2026_11_23 = ["play OR conquer", "play OR move", "play OR predict"];
+
 describe("or-pairs: cards worded to satisfy both halves of a distinction", () => {
-  it("has exactly the fifteen pairs read on 2026-09-14", () => {
-    expect([...orPairs(corpus).keys()].sort()).toEqual(READ_2026_09_14);
+  it("has exactly the fifteen pairs read on 2026-09-14 and the three Radiance added", () => {
+    expect([...orPairs(corpus).keys()].sort()).toEqual([...READ_2026_09_14, ...READ_2026_11_23].sort());
   });
 
   it("finds the control, or the sweep is not reading the pool it thinks it is", () => {
@@ -54,8 +58,12 @@ describe("or-pairs: cards worded to satisfy both halves of a distinction", () =>
     // No collision was DEMONSTRATED for this claim: varying the match window 12/18/25/40 gives
     // 11/11/10/10 and the shorter sets are strict SUBSETS. Pinned anyway, because pinning a clean
     // state costs nothing and can only be paid for once.
+    //
+    // Radiance (#664) adds RAD-045 K'Sante, Dauntless and RAD-085 Graves, Blasting Through, and moves
+    // Ezreal, Dashing from SFD-082 to its RAD-180 reprint: same text, and build-corpus.mjs keeps the
+    // first printing it meets of equal text, which is now the RAD one.
     expect(orPairs(corpus).get("attack OR defend")).toEqual([
-      "OGN-055", "OGN-060", "OGN-119", "SFD-016", "SFD-020", "SFD-082",
+      "OGN-055", "OGN-060", "OGN-119", "RAD-045", "RAD-085", "RAD-180", "SFD-016", "SFD-020",
       "SFD-110", "SFD-190", "UNL-056", "UNL-143", "VEN-079",
     ]);
   });

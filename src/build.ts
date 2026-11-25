@@ -203,7 +203,7 @@ function uniqueRule(deck: Deck, cards: CardIndex): BuildRule {
 
 /**
  * 103.1.b.3 and 103.1.b.4 both speak of the domains a card indicates, so a card indicating none — every
- * one of the 66 battlefield printings in the pool — is inside every identity. With no legend there is no
+ * one of the 77 battlefield printings in the pool — is inside every identity. With no legend there is no
  * identity to break, which is a different answer from "it is broken".
  */
 function identityOf(deck: Deck, cards: CardIndex): ((base: string) => boolean) | null {

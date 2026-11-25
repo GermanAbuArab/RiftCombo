@@ -82,16 +82,20 @@ describe("the pool the builder draws from", () => {
    * offering an illegal card. Same filter the synergy lists use: no domain and not a battlefield.
    */
   it("leaves out the tokens and the two typeless helpers", () => {
-    expect(pool.length).toBe(926);
+    // 926 before Radiance; #664 added 166: its 178 names, less the 11 it reprints and Neeko, Blending In,
+    // the first Neutral card, which the gallery ships as "colorless" and the build reads as no domain.
+    // 103.2.b.5 (Core Rules 2026-10-09) permits a card with no Domain in any deck, so leaving it out
+    // is a known gap: telling it from a token needs its own card field (#695).
+    expect(pool.length).toBe(1092);
     for (const c of pool) expect(c.domains.length > 0 || c.type.includes("battlefield"), c.base).toBe(true);
     expect(pool.find((c) => c.base === "UNL-T05")).toBeUndefined();  // Gold
     expect(pool.find((c) => c.base === "UNL-T08")).toBeUndefined();  // XP Tracker, no type at all
   });
 
-  // 94 legend bases are only 49 names — 45 of them print a main-set base AND a starter reissue.
-  it("carries 49 legend names and all 66 battlefields", () => {
-    expect(pool.filter((c) => c.type.includes("legend")).length).toBe(49);
-    expect(pool.filter((c) => c.type.includes("battlefield")).length).toBe(66);
+  // 112 legend bases are only 58 names — 54 of them print a main-set base AND a starter reissue.
+  it("carries 58 legend names and all 76 battlefield names", () => {
+    expect(pool.filter((c) => c.type.includes("legend")).length).toBe(58);
+    expect(pool.filter((c) => c.type.includes("battlefield")).length).toBe(76);
   });
 
   it("shows exactly one cell for Vi, Destructive: the canonical, earlier OGN-036", () => {
@@ -162,15 +166,15 @@ describe("filtering the pool", () => {
   });
 
   /**
-   * #112: picking a legend preselects its two domains, and every one of the 66 battlefields
+   * #112: picking a legend preselects its two domains, and every one of the 76 battlefields
    * indicates none, so a `some` test emptied the Battlefields zone the moment a list had a legend.
    * A card that indicates no domain is inside every identity — which is what `inIdentity` says with
    * its `every` over an empty list — so it passes every domain filter too.
    */
-  it("keeps the domainless cards under a domain filter, which is all 66 battlefields", () => {
+  it("keeps the domainless cards under a domain filter, which is all 76 battlefields", () => {
     const fields = filterPool(cards, { zone: "battlefields", domains: ["calm", "mind"] });
     expect(fields.length).toBe(filterPool(cards, { zone: "battlefields" }).length);
-    expect(fields.length).toBe(66);
+    expect(fields.length).toBe(76);
     for (const c of fields) expect(c.domains, c.base).toEqual([]);
     // A card that DOES indicate a domain is still filtered on it.
     for (const c of filterPool(cards, { domains: ["calm"] })) {
@@ -215,7 +219,7 @@ describe("filtering the pool", () => {
 
   it("tells Equipment apart from the rest of the gear, since Equipment is not a type", () => {
     const equip = filterPool(cards, { type: "equipment" });
-    expect(equip.length).toBe(40);
+    expect(equip.length).toBe(43);
     for (const c of equip) {
       expect(c.type, c.base).toContain("gear");
       expect(c.tags, c.base).toContain("Equipment");
@@ -583,8 +587,9 @@ describe("103.1.b — Domain Identity at click time (#212)", () => {
   it("has no battlefield that Domain Identity could reach (103.4.b, 'if applicable')", () => {
     const fields = cards.cards.filter((c) => c.type.includes("battlefield"));
     expect(cards.cards.length).toBeGreaterThan(1000);       // non-vacuity: the sweep has a haystack
-    expect(fields.length).toBe(66);
-    expect(new Set(fields.map((c) => c.name)).size).toBe(66);
+    // 77 printings, 76 names: Radiance prints Packed Amphitheater twice, as RAD-164 and RAD-184.
+    expect(fields.length).toBe(77);
+    expect(new Set(fields.map((c) => c.name)).size).toBe(76);
     expect(fields.filter((c) => c.domains.length > 0)).toEqual([]);
     // And the gate agrees: a battlefield is never refused, whatever the legend's domains are.
     for (const f of fields.slice(0, 12)) expect(capOf(ornn(), f.base, cards).offIdentity, f.base).toBe(false);

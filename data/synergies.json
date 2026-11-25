@@ -24,6 +24,18 @@
           {
             "card": "UNL-043",
             "why": "\"When I hold, [Buff] all units here\" — the second trigger buffs the same fixed group a second time, and 702.3 (\"There can only be one Buff on a Unit at a time\") means none of them receives a second buff; it is a no-op, not a bigger one."
+          },
+          {
+            "card": "RAD-106",
+            "why": "\"When you hold here, return this to its owner's hand\", the OGN-067 shape: the second trigger finds it already in hand and does nothing."
+          },
+          {
+            "card": "RAD-136",
+            "why": "\"kill this to play the banished card\" is a Cost linked to an Effect: the first trigger kills it, and 203.3 leaves the second unable to pay, so it plays nothing (the OGN-110 line on karthus-deathknell-double)."
+          },
+          {
+            "card": "RAD-156",
+            "why": "Its only hold effect is \"you may return this to its owner's hand\", the OGN-067 shape: the second trigger finds it in hand."
           }
         ]
       },
@@ -61,9 +73,9 @@
         ]
       },
       "status": "rule-verified",
-      "reviewed": "2026-09-06",
-      "reviewedCount": 46,
-      "reviewedSet": "cf13ec6f"
+      "reviewed": "2026-11-23",
+      "reviewedCount": 51,
+      "reviewedSet": "0ed8f180"
     },
     {
       "id": "red-brambleback-conquer",
@@ -87,6 +99,10 @@
           {
             "card": "OGN-164",
             "why": "\"When I'm played and when I conquer, buff me\" — a fixed self-target, and 702.3 (\"There can only be one Buff on a Unit at a time\") means the second execution of the same conquer finds him already buffed and does nothing."
+          },
+          {
+            "card": "RAD-162",
+            "why": "Both firings give [Accelerate] to the same next unit, and 805.4 makes a second instance redundant."
           }
         ]
       },
@@ -113,9 +129,9 @@
         ]
       },
       "status": "rule-verified",
-      "reviewed": "2026-09-04",
-      "reviewedCount": 57,
-      "reviewedSet": "15c65369"
+      "reviewed": "2026-11-23",
+      "reviewedCount": 62,
+      "reviewedSet": "548e4ec9"
     },
     {
       "id": "skyfall-hold-conquer-bridge",
@@ -139,6 +155,14 @@
           {
             "card": "VEN-065",
             "why": "his conquer effect needs a unit, a gear and a spell played this turn, and a hold resolves in your Beginning Phase before you have played anything."
+          },
+          {
+            "card": "RAD-076",
+            "why": "Read as a hold effect its [Add] fires in the Beginning Phase, and 167 empties the Rune Pool at the start of the Main Phase, so the Power is lost unless a Reaction spends it first."
+          },
+          {
+            "card": "RAD-SP3",
+            "why": "Read as a conquer effect, \"if you control a facedown card here\" cannot be met: a facedown card needs control of the battlefield (107.3.c), and a conquer gains a control you did not have (469.1), the SFD-116 line."
           }
         ]
       },
@@ -159,9 +183,9 @@
         ]
       },
       "status": "rule-verified",
-      "reviewed": "2026-09-06",
-      "reviewedCount": 29,
-      "reviewedSet": "992c44a8"
+      "reviewed": "2026-11-23",
+      "reviewedCount": 33,
+      "reviewedSet": "b84a5a9a"
     },
     {
       "id": "reckoners-arena-conquer-on-hold",
@@ -181,6 +205,10 @@
           {
             "card": "VEN-065",
             "why": "needs a unit, a gear and a spell played this turn; a hold resolves in your Beginning Phase, before you have played anything."
+          },
+          {
+            "card": "RAD-076",
+            "why": "Its [Add] fires on a Beginning Phase hold, and 167 empties the Rune Pool at the start of the Main Phase, so the Power is lost unless a Reaction spends it first."
           }
         ]
       },
@@ -202,9 +230,9 @@
         ]
       },
       "status": "rule-verified",
-      "reviewed": "2026-09-06",
-      "reviewedCount": 27,
-      "reviewedSet": "d58f06af"
+      "reviewed": "2026-11-23",
+      "reviewedCount": 28,
+      "reviewedSet": "e9c18d9f"
     },
     {
       "id": "svellsongur-copy",
@@ -275,16 +303,46 @@
         ]
       },
       "status": "rule-verified",
-      "reviewed": "2026-09-14",
-      "reviewedCount": 107,
-      "reviewedSet": "2ceca66b"
+      "reviewed": "2026-11-23",
+      "reviewedCount": 128,
+      "reviewedSet": "b3f4cb79"
     },
     {
       "id": "renata-industrialist-tokens",
       "name": "Renata Glasc, Industrialist makes your tokens usable the turn they appear",
       "anchor": "SFD-171",
       "partner": {
-        "textMatches": "[Pp]lay (a|an|two|three|four|up to \\w+)\\b[^.]{0,90}?(unit|gear) tokens?\\b|[Pp]lay that token"
+        "textMatches": "[Pp]lay (a|an|two|three|four|up to \\w+)\\b[^.]{0,90}?(unit|gear) tokens?\\b|[Pp]lay that token",
+        "excludes": [
+          {
+            "card": "RAD-001",
+            "why": "Its token is a gear (it prints \"Bomb gear token\"), and 149.1 already has gear enter play ready, so \"Your tokens enter ready\" changes nothing for it."
+          },
+          {
+            "card": "RAD-023",
+            "why": "Its token is a gear (it prints \"Bomb gear token\"), and 149.1 already has gear enter play ready, so \"Your tokens enter ready\" changes nothing for it."
+          },
+          {
+            "card": "RAD-094",
+            "why": "Its token is a gear (it prints \"Bomb gear token\"), and 149.1 already has gear enter play ready, so \"Your tokens enter ready\" changes nothing for it."
+          },
+          {
+            "card": "RAD-096",
+            "why": "Its token is a gear (it prints \"Bomb gear token\"), and 149.1 already has gear enter play ready, so \"Your tokens enter ready\" changes nothing for it."
+          },
+          {
+            "card": "RAD-112",
+            "why": "Its token is a gear (it prints \"Bomb gear token\"), and 149.1 already has gear enter play ready, so \"Your tokens enter ready\" changes nothing for it."
+          },
+          {
+            "card": "RAD-141",
+            "why": "Its token is a gear (it prints \"Bomb gear token\"), and 149.1 already has gear enter play ready, so \"Your tokens enter ready\" changes nothing for it."
+          },
+          {
+            "card": "RAD-009",
+            "why": "\"play a ready 3 Might Mech unit token\": the token already enters ready."
+          }
+        ]
       },
       "why": "Units enter exhausted and Gold gear tokens are printed \"exhausted\"; Renata rewrites how both enter, so the token blocks, moves or pays Power the turn it is made. R25 = A: her replacement beats the card's own \"exhausted\".",
       "basis": {
@@ -315,16 +373,22 @@
         ]
       },
       "status": "rule-verified",
-      "reviewed": "2026-09-04",
-      "reviewedCount": 73,
-      "reviewedSet": "1e8d9374"
+      "reviewed": "2026-11-23",
+      "reviewedCount": 87,
+      "reviewedSet": "983c297d"
     },
     {
       "id": "grand-plaza-unit-tokens",
       "name": "The Grand Plaza turns unit tokens into a win condition",
       "anchor": "OGN-293",
       "partner": {
-        "textMatches": "[Pp]lay (a|an|two|three|four|up to \\w+)\\b[^.]{0,90}?unit tokens?\\b|[Pp]lay that token"
+        "textMatches": "[Pp]lay (a|an|two|three|four|up to \\w+)\\b[^.]{0,90}?unit tokens?\\b|[Pp]lay that token",
+        "excludes": [
+          {
+            "card": "RAD-132",
+            "why": "\"If you would play a unit token ... you may play a 3 Might Mech unit token to that same location instead\" replaces a token rather than adding one, so it never adds a body toward the seven. Zilean, Time Mage plays an additional copy, which is why he is in the list and this is not."
+          }
+        ]
       },
       "why": "Holding the Plaza with seven units there wins outright, and only token makers put that many bodies on one battlefield. Tokens made at your base still have to walk over, so a card that plays them at the battlefield is worth more than one that does not.",
       "basis": {
@@ -347,9 +411,9 @@
         ]
       },
       "status": "rule-verified",
-      "reviewed": "2026-09-05",
-      "reviewedCount": 47,
-      "reviewedSet": "a2e04356"
+      "reviewed": "2026-11-23",
+      "reviewedCount": 56,
+      "reviewedSet": "abedea7e"
     },
     {
       "id": "leblanc-temporary",
@@ -428,9 +492,9 @@
         ]
       },
       "status": "rule-verified",
-      "reviewed": "2026-09-14",
-      "reviewedCount": 99,
-      "reviewedSet": "20d306da"
+      "reviewed": "2026-11-23",
+      "reviewedCount": 116,
+      "reviewedSet": "67cad031"
     },
     {
       "id": "fiora-equipment-ready",
@@ -457,9 +521,9 @@
         ]
       },
       "status": "rule-verified",
-      "reviewed": "2026-09-04",
-      "reviewedCount": 21,
-      "reviewedSet": "2ca93a97"
+      "reviewed": "2026-11-23",
+      "reviewedCount": 22,
+      "reviewedSet": "bf48339b"
     },
     {
       "id": "jayce-readies-exhaust-abilities",
@@ -475,6 +539,30 @@
           {
             "card": "SFD-083",
             "why": "\"exhaust: Pay any amount of rainbow to Add that much Energy\" has no cap per activation, so a second simultaneous activation converts nothing a bigger single payment couldn't already."
+          },
+          {
+            "card": "RAD-012",
+            "why": "Its only exhaust ability is \":rb_energy_2::rb_rune_chaos:, :rb_exhaust:: Kill this\", the OGN-186 shape: it kills its own source, so a ready finds nothing left to use."
+          },
+          {
+            "card": "RAD-052",
+            "why": "No exhaust ability of its own: the only :rb_exhaust:: in its text is inside the quoted reminder of the Gold gear token it plays, and that token's \"Kill this\" leaves nothing to run a second time."
+          },
+          {
+            "card": "RAD-100",
+            "why": "No exhaust ability of its own: the only :rb_exhaust:: in its text is inside the quoted reminder of the Gold gear token it plays, and that token's \"Kill this\" leaves nothing to run a second time."
+          },
+          {
+            "card": "RAD-101",
+            "why": "No exhaust ability of its own: the only :rb_exhaust:: in its text is inside the quoted reminder of the Gold gear token it plays, and that token's \"Kill this\" leaves nothing to run a second time."
+          },
+          {
+            "card": "RAD-105",
+            "why": "No exhaust ability of its own: the only :rb_exhaust:: in its text is inside the quoted reminder of the Gold gear token it plays, and that token's \"Kill this\" leaves nothing to run a second time."
+          },
+          {
+            "card": "RAD-157",
+            "why": "No exhaust ability of its own: the only :rb_exhaust:: in its text is inside the quoted reminder of the Gold gear token it plays, and that token's \"Kill this\" leaves nothing to run a second time."
           }
         ]
       },
@@ -492,9 +580,9 @@
         ]
       },
       "status": "rule-verified",
-      "reviewed": "2026-09-06",
-      "reviewedCount": 76,
-      "reviewedSet": "69bb0797"
+      "reviewed": "2026-11-23",
+      "reviewedCount": 90,
+      "reviewedSet": "d65ad84a"
     },
     {
       "id": "ride-the-wind-move-triggers",
@@ -516,9 +604,9 @@
         ]
       },
       "status": "rule-verified",
-      "reviewed": "2026-09-14",
-      "reviewedCount": 31,
-      "reviewedSet": "19986c78"
+      "reviewed": "2026-11-23",
+      "reviewedCount": 35,
+      "reviewedSet": "9169e385"
     },
     {
       "id": "relentless-pursuit-move-triggers",
@@ -540,9 +628,9 @@
         ]
       },
       "status": "rule-verified",
-      "reviewed": "2026-09-14",
-      "reviewedCount": 31,
-      "reviewedSet": "19986c78"
+      "reviewed": "2026-11-23",
+      "reviewedCount": 35,
+      "reviewedSet": "9169e385"
     },
     {
       "id": "windswept-hillock-move-triggers",
@@ -563,9 +651,9 @@
         "combos": []
       },
       "status": "rule-verified",
-      "reviewed": "2026-09-14",
-      "reviewedCount": 31,
-      "reviewedSet": "19986c78"
+      "reviewed": "2026-11-23",
+      "reviewedCount": 35,
+      "reviewedSet": "9169e385"
     },
     {
       "id": "retreat-replays-a-body",
@@ -595,9 +683,9 @@
         ]
       },
       "status": "rule-verified",
-      "reviewed": "2026-09-04",
-      "reviewedCount": 14,
-      "reviewedSet": "d24177cb"
+      "reviewed": "2026-11-23",
+      "reviewedCount": 19,
+      "reviewedSet": "4e914ee3"
     },
     {
       "id": "pack-of-wonders-replays-a-body",
@@ -627,9 +715,9 @@
         ]
       },
       "status": "rule-verified",
-      "reviewed": "2026-09-04",
-      "reviewedCount": 16,
-      "reviewedSet": "c965a660"
+      "reviewed": "2026-11-23",
+      "reviewedCount": 22,
+      "reviewedSet": "eac7a32a"
     },
     {
       "id": "aphelios-equipment-attach",
@@ -654,9 +742,9 @@
         ]
       },
       "status": "rule-verified",
-      "reviewed": "2026-09-04",
-      "reviewedCount": 39,
-      "reviewedSet": "5bbe8f55"
+      "reviewed": "2026-11-23",
+      "reviewedCount": 41,
+      "reviewedSet": "861ce1b3"
     },
     {
       "id": "ekko-deathknell-runes",
@@ -678,9 +766,9 @@
         ]
       },
       "status": "rule-verified",
-      "reviewed": "2026-11-16",
-      "reviewedCount": 10,
-      "reviewedSet": "e78f47a5",
+      "reviewed": "2026-11-23",
+      "reviewedCount": 14,
+      "reviewedSet": "61dd6364",
       "retired": {
         "since": "2026-09-18",
         "why": "Anchor OGN-110 Ekko, Recurrent is banned in Constructed and 2v2 from 2026-09-18 (data/legality.json), so the rule can never fire in a legal deck. Kept, not deleted, so the walked rule and its reading stay on record (#667)."
@@ -691,7 +779,13 @@
       "name": "Malzahar, Fanatic eats tokens for two Power of any domain",
       "anchor": "OGN-113",
       "partner": {
-        "textMatches": "[Pp]lay (a|an|two|three|four|up to \\w+)\\b[^.]{0,90}?(unit|gear) tokens?\\b|[Pp]lay that token"
+        "textMatches": "[Pp]lay (a|an|two|three|four|up to \\w+)\\b[^.]{0,90}?(unit|gear) tokens?\\b|[Pp]lay that token",
+        "excludes": [
+          {
+            "card": "RAD-132",
+            "why": "\"If you would play a unit token ..., you may play a 3 Might Mech unit token ... instead\" replaces a token another card was already making and plays none of its own, so the anchor gains no body (the RAD-132 exclude on grand-plaza-unit-tokens)."
+          }
+        ]
       },
       "why": "Malzahar's cost is killing a friendly unit or gear, and a token is the cheapest thing you own to feed him — so every token a card makes is two rainbow Power once he is on the board.",
       "basis": {
@@ -708,9 +802,9 @@
         ]
       },
       "status": "rule-verified",
-      "reviewed": "2026-09-04",
-      "reviewedCount": 73,
-      "reviewedSet": "1e8d9374"
+      "reviewed": "2026-11-23",
+      "reviewedCount": 93,
+      "reviewedSet": "0eac7312"
     },
     {
       "id": "wallop-buff-spend",
@@ -744,16 +838,22 @@
         ]
       },
       "status": "rule-verified",
-      "reviewed": "2026-09-14",
-      "reviewedCount": 34,
-      "reviewedSet": "76dd79a2"
+      "reviewed": "2026-11-23",
+      "reviewedCount": 40,
+      "reviewedSet": "020aff65"
     },
     {
       "id": "time-warp-once-per-turn",
       "name": "Time Warp runs every once-a-turn trigger a second time",
       "anchor": "OGN-122",
       "partner": {
-        "textMatches": "[Aa]t the (start of (your|my) (Beginning|Main) Phase|end of your turn)"
+        "textMatches": "[Aa]t the (start of (your|my) (Beginning|Main) Phase|end of your turn)",
+        "excludes": [
+          {
+            "card": "RAD-145",
+            "why": "The chosen gear stays a unit until you choose another, so a second firing only moves the effect to a different gear and never adds a body."
+          }
+        ]
       },
       "why": "The extra turn brings a whole Beginning Phase, a whole MAIN Phase and a whole end of turn with it, so anything keyed to any of the three fires again — and you score your held battlefields again on the way in. 735: an effect that says \"take a turn after this\" creates a temporary Additional Turn inserted into the turn queue, which is a FULL turn and not a fragment, so 316 Main Phase arrives with 315 Beginning Phase and 317 Ending Phase. The Main Phase half was missing from this predicate until 2026-09-14 and the rule's own basis entry was the proof: `bottled-constellation-time-warp` exists BECAUSE Time Warp runs `VEN-067 Bottled Constellation`'s \"At the start of your Main Phase\" a second time, and this rule could not see the card.",
       "basis": {
@@ -770,9 +870,9 @@
         ]
       },
       "status": "rule-verified",
-      "reviewed": "2026-09-14",
-      "reviewedCount": 14,
-      "reviewedSet": "64d47399"
+      "reviewed": "2026-11-23",
+      "reviewedCount": 17,
+      "reviewedSet": "98a69e3e"
     },
     {
       "id": "gardens-of-becoming-xp",
@@ -941,9 +1041,9 @@
         ]
       },
       "status": "rule-verified",
-      "reviewed": "2026-09-04",
-      "reviewedCount": 15,
-      "reviewedSet": "13573854"
+      "reviewed": "2026-11-23",
+      "reviewedCount": 19,
+      "reviewedSet": "12aaa083"
     },
     {
       "id": "rumble-hotheaded-mech",
@@ -971,9 +1071,9 @@
         ]
       },
       "status": "rule-verified",
-      "reviewed": "2026-09-04",
-      "reviewedCount": 15,
-      "reviewedSet": "749b6fa3"
+      "reviewed": "2026-11-23",
+      "reviewedCount": 19,
+      "reviewedSet": "0fb4a940"
     },
     {
       "id": "karthus-deathknell-double",
@@ -989,6 +1089,10 @@
           {
             "card": "SFD-090",
             "why": "The Zero Drive's granted \"[Deathknell] — Banish me\" moves the dead unit out of the trash once. The second instance finds nothing left to banish, so it is a no-op — and The Zero Drive's payoff counts units banished with it, not times it tried."
+          },
+          {
+            "card": "RAD-017",
+            "why": "It names [Deathknell] without carrying one: \"Friendly [Deathknell] effects here trigger an additional time\" is a second multiplier, so there is no Deathknell on it for Karthus to double."
           }
         ]
       },
@@ -1015,9 +1119,9 @@
         ]
       },
       "status": "rule-verified",
-      "reviewed": "2026-09-04",
-      "reviewedCount": 23,
-      "reviewedSet": "402a449c"
+      "reviewed": "2026-11-23",
+      "reviewedCount": 27,
+      "reviewedSet": "8314c111"
     },
     {
       "id": "bandle-tree-hidden",
@@ -1045,9 +1149,9 @@
         ]
       },
       "status": "rule-verified",
-      "reviewed": "2026-09-04",
-      "reviewedCount": 39,
-      "reviewedSet": "13c73347"
+      "reviewed": "2026-11-23",
+      "reviewedCount": 45,
+      "reviewedSet": "230921cc"
     },
     {
       "id": "trapping-grounds-excess-damage",
@@ -1077,9 +1181,9 @@
         ]
       },
       "status": "rule-verified",
-      "reviewed": "2026-09-04",
-      "reviewedCount": 41,
-      "reviewedSet": "6fe158b8"
+      "reviewed": "2026-11-23",
+      "reviewedCount": 48,
+      "reviewedSet": "2dc9d650"
     },
     {
       "id": "shadow-temple-trash-fuel",
@@ -1106,9 +1210,9 @@
         ]
       },
       "status": "rule-verified",
-      "reviewed": "2026-09-05",
-      "reviewedCount": 49,
-      "reviewedSet": "89ab2c9e"
+      "reviewed": "2026-11-23",
+      "reviewedCount": 53,
+      "reviewedSet": "f89cc8f7"
     },
     {
       "id": "ezreal-prodigy-accelerate",
@@ -1138,9 +1242,9 @@
         ]
       },
       "status": "rule-verified",
-      "reviewed": "2026-09-04",
-      "reviewedCount": 26,
-      "reviewedSet": "de437a7f"
+      "reviewed": "2026-11-23",
+      "reviewedCount": 32,
+      "reviewedSet": "bc56db25"
     },
     {
       "id": "dark-child-off-turn-reactions",
@@ -1155,6 +1259,14 @@
           {
             "card": "UNL-073",
             "why": "the [Reaction] is inside the quoted text of the Gold token it makes, not the spell's own speed; Deadly Flourish itself is played at normal speed."
+          },
+          {
+            "card": "RAD-100",
+            "why": "Its only [Reaction] is inside the quoted text of the Gold tokens it makes, the UNL-073 line: the spell itself is not Reaction speed."
+          },
+          {
+            "card": "RAD-101",
+            "why": "Its only [Reaction] is inside the quoted text of the Gold token it makes, the UNL-073 line: the spell itself is [Action] speed."
           }
         ]
       },
@@ -1174,9 +1286,9 @@
         ]
       },
       "status": "rule-verified",
-      "reviewed": "2026-09-06",
-      "reviewedCount": 62,
-      "reviewedSet": "a6898084"
+      "reviewed": "2026-11-23",
+      "reviewedCount": 71,
+      "reviewedSet": "b6cade6f"
     },
     {
       "id": "azir-sovereign-token-relay",
@@ -1205,9 +1317,9 @@
         ]
       },
       "status": "rule-verified",
-      "reviewed": "2026-09-06",
-      "reviewedCount": 17,
-      "reviewedSet": "0dd7bff6"
+      "reviewed": "2026-11-23",
+      "reviewedCount": 21,
+      "reviewedSet": "c8295ae5"
     },
     {
       "id": "forgotten-signpost-carries-exhausted",
@@ -1236,9 +1348,9 @@
         ]
       },
       "status": "rule-verified",
-      "reviewed": "2026-09-06",
-      "reviewedCount": 17,
-      "reviewedSet": "0dd7bff6"
+      "reviewed": "2026-11-23",
+      "reviewedCount": 21,
+      "reviewedSet": "c8295ae5"
     },
     {
       "id": "blood-money-small-token-fodder",
@@ -1268,9 +1380,9 @@
         ]
       },
       "status": "rule-verified",
-      "reviewed": "2026-11-16",
-      "reviewedCount": 30,
-      "reviewedSet": "aeb64fd6"
+      "reviewed": "2026-11-23",
+      "reviewedCount": 38,
+      "reviewedSet": "a2e47561"
     },
     {
       "id": "defender-of-tomorrow-readies-gear",
@@ -1305,6 +1417,14 @@
           {
             "card": "SFD-083",
             "why": "\"exhaust: Pay any amount of rainbow to Add that much Energy\" has no cap per activation, so a second simultaneous activation converts nothing a bigger single payment couldn't already."
+          },
+          {
+            "card": "RAD-012",
+            "why": "Its only exhaust ability is \":rb_energy_2::rb_rune_chaos:, :rb_exhaust:: Kill this\", the OGN-186 shape: it kills its own source, so a ready finds nothing left to use."
+          },
+          {
+            "card": "RAD-052",
+            "why": "No exhaust ability of its own: the only :rb_exhaust:: in its text is inside the quoted reminder of the Gold gear token it plays, and that token's \"Kill this\" leaves nothing to run a second time."
           }
         ]
       },
@@ -1320,9 +1440,9 @@
         ]
       },
       "status": "rule-verified",
-      "reviewed": "2026-09-06",
-      "reviewedCount": 32,
-      "reviewedSet": "376c125e"
+      "reviewed": "2026-11-23",
+      "reviewedCount": 36,
+      "reviewedSet": "7f6d672a"
     },
     {
       "id": "veiled-temple-readies-gear",
@@ -1349,6 +1469,14 @@
           {
             "card": "VEN-133",
             "why": "its exhaust ability hands the gear to a player of your choice and recalls it; a second use is not yours to have, and it is no longer a friendly gear."
+          },
+          {
+            "card": "RAD-012",
+            "why": "Its only exhaust ability is \":rb_energy_2::rb_rune_chaos:, :rb_exhaust:: Kill this\", the OGN-186 shape: it kills its own source, so a ready finds nothing left to use."
+          },
+          {
+            "card": "RAD-052",
+            "why": "No exhaust ability of its own: the only :rb_exhaust:: in its text is inside the quoted reminder of the Gold gear token it plays, and that token's \"Kill this\" leaves nothing to run a second time."
           }
         ]
       },
@@ -1366,9 +1494,9 @@
         ]
       },
       "status": "rule-verified",
-      "reviewed": "2026-09-06",
-      "reviewedCount": 34,
-      "reviewedSet": "37ffe7ac"
+      "reviewed": "2026-11-23",
+      "reviewedCount": 38,
+      "reviewedSet": "89aebb30"
     },
     {
       "id": "royal-entourage-readies-your-legend",
@@ -1393,9 +1521,9 @@
         ]
       },
       "status": "rule-verified",
-      "reviewed": "2026-09-06",
-      "reviewedCount": 24,
-      "reviewedSet": "a4d7ebfa"
+      "reviewed": "2026-11-23",
+      "reviewedCount": 28,
+      "reviewedSet": "f7fe0d79"
     },
     {
       "id": "hall-of-legends-readies-your-legend",
@@ -1420,9 +1548,9 @@
         ]
       },
       "status": "rule-verified",
-      "reviewed": "2026-09-06",
-      "reviewedCount": 24,
-      "reviewedSet": "a4d7ebfa"
+      "reviewed": "2026-11-23",
+      "reviewedCount": 28,
+      "reviewedSet": "f7fe0d79"
     },
     {
       "id": "miss-fortune-readies-your-legend",
@@ -1447,9 +1575,9 @@
         ]
       },
       "status": "rule-verified",
-      "reviewed": "2026-09-06",
-      "reviewedCount": 24,
-      "reviewedSet": "a4d7ebfa"
+      "reviewed": "2026-11-23",
+      "reviewedCount": 28,
+      "reviewedSet": "f7fe0d79"
     },
     {
       "id": "stare-down-empties-the-garrison",
@@ -1489,9 +1617,9 @@
         ]
       },
       "status": "rule-verified",
-      "reviewed": "2026-09-06",
-      "reviewedCount": 54,
-      "reviewedSet": "815a7aaf"
+      "reviewed": "2026-11-23",
+      "reviewedCount": 60,
+      "reviewedSet": "7ca94dc2"
     },
     {
       "id": "blast-cone-enemy-move",
@@ -1514,9 +1642,9 @@
         ]
       },
       "status": "rule-verified",
-      "reviewed": "2026-09-06",
-      "reviewedCount": 19,
-      "reviewedSet": "8e5b6b54"
+      "reviewed": "2026-11-23",
+      "reviewedCount": 21,
+      "reviewedSet": "e54e57d5"
     },
     {
       "id": "radiant-dawn-stun-buff",
@@ -1551,9 +1679,9 @@
         ]
       },
       "status": "rule-verified",
-      "reviewed": "2026-09-06",
-      "reviewedCount": 21,
-      "reviewedSet": "5924a7b4"
+      "reviewed": "2026-11-23",
+      "reviewedCount": 25,
+      "reviewedSet": "0d110b6a"
     },
     {
       "id": "twilight-reveler-ganking-second-move",
@@ -1582,9 +1710,9 @@
         ]
       },
       "status": "rule-verified",
-      "reviewed": "2026-09-06",
-      "reviewedCount": 37,
-      "reviewedSet": "2b2f31b8"
+      "reviewed": "2026-11-23",
+      "reviewedCount": 43,
+      "reviewedSet": "07234236"
     },
     {
       "id": "on-the-hunt-ganking-second-move",
@@ -1610,9 +1738,9 @@
         ]
       },
       "status": "rule-verified",
-      "reviewed": "2026-09-06",
-      "reviewedCount": 37,
-      "reviewedSet": "2b2f31b8"
+      "reviewed": "2026-11-23",
+      "reviewedCount": 43,
+      "reviewedSet": "07234236"
     },
     {
       "id": "acceleration-gate-ganking-second-move",
@@ -1639,9 +1767,9 @@
         ]
       },
       "status": "rule-verified",
-      "reviewed": "2026-09-06",
-      "reviewedCount": 37,
-      "reviewedSet": "2b2f31b8"
+      "reviewed": "2026-11-23",
+      "reviewedCount": 43,
+      "reviewedSet": "07234236"
     },
     {
       "id": "ancient-henge-energy-surplus",
@@ -1677,9 +1805,9 @@
         ]
       },
       "status": "rule-verified",
-      "reviewed": "2026-09-06",
-      "reviewedCount": 11,
-      "reviewedSet": "94ec901e"
+      "reviewed": "2026-11-23",
+      "reviewedCount": 12,
+      "reviewedSet": "28911da3"
     },
     {
       "id": "hextech-anomaly-power-surplus",
@@ -1691,6 +1819,14 @@
           {
             "card": "OGN-247",
             "why": "\"[Add] :rb_rune_rainbow:. Use only to play spells.\" — the Anomaly is a gear's activated ability, so this Power can never pay it. Fire Below the Mountain is the same sentence with the opposite scope and stays in."
+          },
+          {
+            "card": "RAD-101",
+            "why": "The Gold goes to the killed gear's controller, so it reaches your pool only when you kill your own gear; the card is removal, and an opponent's Gold is the line UNL-130 is excluded on elsewhere."
+          },
+          {
+            "card": "RAD-143",
+            "why": "\"Spend this Power only to play units or gear\": the Anomaly is a gear's activated ability, not a play, the OGN-247 line this rule already excludes."
           }
         ]
       },
@@ -1709,9 +1845,9 @@
         ]
       },
       "status": "rule-verified",
-      "reviewed": "2026-09-06",
-      "reviewedCount": 16,
-      "reviewedSet": "e0bf9f22"
+      "reviewed": "2026-11-23",
+      "reviewedCount": 24,
+      "reviewedSet": "4b7b8845"
     },
     {
       "id": "blade-dancer-buff-is-choosing",
@@ -1743,6 +1879,14 @@
           {
             "card": "SFD-166",
             "why": "\"When a friendly unit is played this turn, buff it\" — the unit is the one that was played, so 355.10.d makes it programmatically selected rather than chosen and 355.10.d.1 confirms the exception applies \"solely to objects for which no choice is ever possible\". 383.4.b.3 keeps 702.2.a's internal \"chooses\" from being read across, so Blade Dancer never fires."
+          },
+          {
+            "card": "RAD-043",
+            "why": "\"[Buff] me\" buffs Riven herself, the SFD-098 line: 355.10.d takes an object no choice is ever possible for out of the choosing, and her other two modes spend the buff and choose no friendly unit."
+          },
+          {
+            "card": "RAD-154",
+            "why": "\"When you play it, [Buff] it\" buffs the unit just played, the SFD-166 line: 355.10.d makes it programmatically selected rather than chosen, so Blade Dancer never fires."
           }
         ]
       },
@@ -1761,9 +1905,9 @@
         ]
       },
       "status": "rule-verified",
-      "reviewed": "2026-09-14",
-      "reviewedCount": 32,
-      "reviewedSet": "c3d9eca0"
+      "reviewed": "2026-11-23",
+      "reviewedCount": 36,
+      "reviewedSet": "219e83e0"
     },
     {
       "id": "irelia-fervent-buff-is-choosing",
@@ -1795,6 +1939,14 @@
           {
             "card": "UNL-162",
             "why": "\"Spend 2 XP: [Buff] me\" — same, a self-buff that cannot pick another unit."
+          },
+          {
+            "card": "RAD-043",
+            "why": "\"[Buff] me\" is Riven's only buff, so it can only ever choose herself and never reaches Irelia, the same shape as UNL-102."
+          },
+          {
+            "card": "RAD-154",
+            "why": "\"When you play it, [Buff] it\" buffs the unit just played, which 355.10.d makes programmatically selected rather than chosen (the SFD-166 exclude on blade-dancer-buff-is-choosing), so it never chooses Irelia; this predicate leaves \"buff it\" out for that reason and matched only the bracketed [Buff]."
           }
         ]
       },
@@ -1812,9 +1964,9 @@
         ]
       },
       "status": "rule-verified",
-      "reviewed": "2026-09-06",
-      "reviewedCount": 21,
-      "reviewedSet": "146a6381"
+      "reviewed": "2026-11-23",
+      "reviewedCount": 25,
+      "reviewedSet": "a94d45c9"
     },
     {
       "id": "jae-medarda-chosen-by-spell",
@@ -1833,6 +1985,10 @@
           {
             "card": "UNL-165",
             "why": "\"Choose a friendly unit without [Temporary]. Give it [Temporary]\" — it does choose him, and then kills him at the start of your next Beginning Phase (816.1.b). Trading a 5-Might body for one card is a drawback, not a pairing."
+          },
+          {
+            "card": "RAD-154",
+            "why": "\"When you play it, [Buff] it\" is a delayed trigger on the next unit you play. 355.5.b keeps the choices of \"Delayed or Reflexive Triggers generated by the item\" out of the spell's own choosing, and \"it\" is picked by criteria (355.5.a), so the spell never chooses Jae."
           }
         ]
       },
@@ -1849,9 +2005,9 @@
         ]
       },
       "status": "rule-verified",
-      "reviewed": "2026-09-06",
-      "reviewedCount": 34,
-      "reviewedSet": "7847d9c2"
+      "reviewed": "2026-11-23",
+      "reviewedCount": 39,
+      "reviewedSet": "a6164891"
     },
     {
       "id": "renekton-brute-relative-might-gate",
@@ -1896,9 +2052,9 @@
         ]
       },
       "status": "rule-verified",
-      "reviewed": "2026-09-06",
-      "reviewedCount": 2,
-      "reviewedSet": "212c1eff"
+      "reviewed": "2026-11-23",
+      "reviewedCount": 3,
+      "reviewedSet": "60890f2c"
     },
     {
       "id": "moonlight-affliction-might-gate",
@@ -1923,9 +2079,9 @@
         ]
       },
       "status": "rule-verified",
-      "reviewed": "2026-09-06",
-      "reviewedCount": 16,
-      "reviewedSet": "a66a8d9c"
+      "reviewed": "2026-11-23",
+      "reviewedCount": 17,
+      "reviewedSet": "50fc71bb"
     },
     {
       "id": "pit-crew-gear-ready",
@@ -1958,9 +2114,9 @@
         ]
       },
       "status": "rule-verified",
-      "reviewed": "2026-09-06",
-      "reviewedCount": 106,
-      "reviewedSet": "d30cf28a"
+      "reviewed": "2026-11-23",
+      "reviewedCount": 132,
+      "reviewedSet": "0276956d"
     },
     {
       "id": "shurelyas-requiem-ganking-second-move",
@@ -1985,9 +2141,9 @@
         ]
       },
       "status": "rule-verified",
-      "reviewed": "2026-09-06",
-      "reviewedCount": 36,
-      "reviewedSet": "a11e3aca"
+      "reviewed": "2026-11-23",
+      "reviewedCount": 42,
+      "reviewedSet": "e4678b54"
     },
     {
       "id": "yordle-explorer-power-two",
@@ -2010,9 +2166,9 @@
         ]
       },
       "status": "rule-verified",
-      "reviewed": "2026-09-06",
-      "reviewedCount": 82,
-      "reviewedSet": "a84c5c99"
+      "reviewed": "2026-11-23",
+      "reviewedCount": 95,
+      "reviewedSet": "40f4816a"
     },
     {
       "id": "lady-of-luminosity-expensive-spells",
@@ -2037,9 +2193,9 @@
         ]
       },
       "status": "rule-verified",
-      "reviewed": "2026-09-06",
-      "reviewedCount": 37,
-      "reviewedSet": "013fc95f"
+      "reviewed": "2026-11-23",
+      "reviewedCount": 42,
+      "reviewedSet": "d858be78"
     },
     {
       "id": "get-excited-expensive-discard",
@@ -2061,9 +2217,9 @@
         ]
       },
       "status": "rule-verified",
-      "reviewed": "2026-09-06",
-      "reviewedCount": 67,
-      "reviewedSet": "bd7f9645"
+      "reviewed": "2026-11-23",
+      "reviewedCount": 85,
+      "reviewedSet": "63a28776"
     },
     {
       "id": "rhasa-trash-counter",
@@ -2108,9 +2264,9 @@
         ]
       },
       "status": "rule-verified",
-      "reviewed": "2026-11-16",
-      "reviewedCount": 29,
-      "reviewedSet": "66921f80",
+      "reviewed": "2026-11-23",
+      "reviewedCount": 35,
+      "reviewedSet": "6001f254",
       "retired": {
         "since": "2026-11-23",
         "why": "Anchor OGN-195 Rhasa the Sunderer is banned in Constructed and 2v2 from 2026-11-23 (the Radiance bans in data/legality.json), so from that day the rule can never fire in a legal deck. Shown until then; kept, not deleted (#667)."
@@ -2294,9 +2450,9 @@
         ]
       },
       "status": "rule-verified",
-      "reviewed": "2026-09-06",
-      "reviewedCount": 19,
-      "reviewedSet": "b5ddd831"
+      "reviewed": "2026-11-23",
+      "reviewedCount": 22,
+      "reviewedSet": "4238abe9"
     },
     {
       "id": "gentle-gemdragon-dragon-ready",
@@ -2319,9 +2475,9 @@
         ]
       },
       "status": "rule-verified",
-      "reviewed": "2026-09-06",
-      "reviewedCount": 18,
-      "reviewedSet": "1716d9fe"
+      "reviewed": "2026-11-23",
+      "reviewedCount": 21,
+      "reviewedSet": "f76eeaf6"
     },
     {
       "id": "direwing-dragon-ready",
@@ -2344,9 +2500,9 @@
         ]
       },
       "status": "rule-verified",
-      "reviewed": "2026-09-06",
-      "reviewedCount": 18,
-      "reviewedSet": "4e208bbe"
+      "reviewed": "2026-11-23",
+      "reviewedCount": 21,
+      "reviewedSet": "03ad2886"
     },
     {
       "id": "friendship-four-tags",
@@ -2371,9 +2527,9 @@
         ]
       },
       "status": "rule-verified",
-      "reviewed": "2026-09-06",
-      "reviewedCount": 51,
-      "reviewedSet": "6eb28488"
+      "reviewed": "2026-11-23",
+      "reviewedCount": 57,
+      "reviewedSet": "8b32b7b8"
     },
     {
       "id": "stalking-wolf-four-tags",
@@ -2400,9 +2556,9 @@
         ]
       },
       "status": "rule-verified",
-      "reviewed": "2026-09-06",
-      "reviewedCount": 50,
-      "reviewedSet": "fa464ff3"
+      "reviewed": "2026-11-23",
+      "reviewedCount": 56,
+      "reviewedSet": "60540c63"
     },
     {
       "id": "starhound-four-tags",
@@ -2429,9 +2585,9 @@
         ]
       },
       "status": "rule-verified",
-      "reviewed": "2026-09-06",
-      "reviewedCount": 50,
-      "reviewedSet": "817f0138"
+      "reviewed": "2026-11-23",
+      "reviewedCount": 56,
+      "reviewedSet": "eaf7f468"
     },
     {
       "id": "undying-loyalty-four-tags",
@@ -2456,9 +2612,9 @@
         ]
       },
       "status": "rule-verified",
-      "reviewed": "2026-09-06",
-      "reviewedCount": 51,
-      "reviewedSet": "6eb28488"
+      "reviewed": "2026-11-23",
+      "reviewedCount": 57,
+      "reviewedSet": "8b32b7b8"
     },
     {
       "id": "ivern-friend-to-all-four-tags",
@@ -2488,9 +2644,9 @@
         ]
       },
       "status": "rule-verified",
-      "reviewed": "2026-09-06",
-      "reviewedCount": 51,
-      "reviewedSet": "6eb28488"
+      "reviewed": "2026-11-23",
+      "reviewedCount": 57,
+      "reviewedSet": "8b32b7b8"
     },
     {
       "id": "daisy-four-tags",
@@ -2515,9 +2671,9 @@
         ]
       },
       "status": "rule-verified",
-      "reviewed": "2026-09-06",
-      "reviewedCount": 51,
-      "reviewedSet": "6eb28488"
+      "reviewed": "2026-11-23",
+      "reviewedCount": 57,
+      "reviewedSet": "8b32b7b8"
     },
     {
       "id": "green-father-brush-four-tags",
@@ -2545,9 +2701,9 @@
         ]
       },
       "status": "rule-verified",
-      "reviewed": "2026-09-06",
-      "reviewedCount": 54,
-      "reviewedSet": "06a26713"
+      "reviewed": "2026-11-23",
+      "reviewedCount": 60,
+      "reviewedSet": "c52b9d43"
     },
     {
       "id": "grim-resolve-combat-win-removal-family",
@@ -2582,9 +2738,9 @@
         ]
       },
       "status": "rule-verified",
-      "reviewed": "2026-09-06",
-      "reviewedCount": 28,
-      "reviewedSet": "1b96db77"
+      "reviewed": "2026-11-23",
+      "reviewedCount": 30,
+      "reviewedSet": "18dac588"
     },
     {
       "id": "pyke-returned-enemy-kill-removal-family",
@@ -2639,9 +2795,9 @@
         ]
       },
       "status": "rule-verified",
-      "reviewed": "2026-09-06",
-      "reviewedCount": 23,
-      "reviewedSet": "72497cdc"
+      "reviewed": "2026-11-23",
+      "reviewedCount": 25,
+      "reviewedSet": "d6dfbe9b"
     },
     {
       "id": "portal-rescue-replays-a-body",
@@ -2657,6 +2813,10 @@
           {
             "card": "VEN-068",
             "why": "the predicate caught \"play a non-token gear\" in his trigger condition; his play effect readies something, it puts nothing on the board."
+          },
+          {
+            "card": "RAD-116",
+            "why": "a gear: Portal Rescue banishes \"a friendly unit\", so it never replays this play effect."
           }
         ]
       },
@@ -2676,9 +2836,9 @@
         ]
       },
       "status": "rule-verified",
-      "reviewed": "2026-09-06",
-      "reviewedCount": 16,
-      "reviewedSet": "c965a660"
+      "reviewed": "2026-11-23",
+      "reviewedCount": 21,
+      "reviewedSet": "e3e10940"
     },
     {
       "id": "teemo-strategist-lures-the-attacker",
@@ -2739,9 +2899,9 @@
         ]
       },
       "status": "rule-verified",
-      "reviewed": "2026-09-06",
-      "reviewedCount": 13,
-      "reviewedSet": "7bbeee88"
+      "reviewed": "2026-11-23",
+      "reviewedCount": 15,
+      "reviewedSet": "2d5fad39"
     },
     {
       "id": "dark-child-off-turn-reaction-units",
@@ -2767,9 +2927,9 @@
         ]
       },
       "status": "rule-verified",
-      "reviewed": "2026-09-06",
-      "reviewedCount": 17,
-      "reviewedSet": "993a87c8"
+      "reviewed": "2026-11-23",
+      "reviewedCount": 18,
+      "reviewedSet": "269754af"
     },
     {
       "id": "scrutinizing-sergeant-xp-producer",
@@ -2798,7 +2958,17 @@
       "name": "Magma Wurm lets a whole turn of token bodies attack the turn they land",
       "anchor": "OGN-011",
       "partner": {
-        "textMatches": "[Pp]lay (a|an|two|three|four|up to \\w+)\\b[^.]{0,90}?unit tokens?\\b|[Pp]lay that token"
+        "textMatches": "[Pp]lay (a|an|two|three|four|up to \\w+)\\b[^.]{0,90}?unit tokens?\\b|[Pp]lay that token",
+        "excludes": [
+          {
+            "card": "RAD-132",
+            "why": "\"If you would play a unit token ..., you may play a 3 Might Mech unit token ... instead\" replaces a token another card was already making and plays none of its own, so the anchor gains no body (the RAD-132 exclude on grand-plaza-unit-tokens)."
+          },
+          {
+            "card": "RAD-009",
+            "why": "\"I enter ready\" and \"play a ready 3 Might Mech unit token\": both bodies already enter ready, so the Wurm adds nothing."
+          }
+        ]
       },
       "why": "143.4 defaults every unit that enters the board to exhausted; Magma Wurm's static \"Other friendly units enter ready\" overrides that default for everything you play while she is out, not just herself. Nothing in the pool pays this off one unit at a time — the payoff scales with how many bodies land in the same turn, which is exactly what a unit-token generator does (per #48's walk-to-the-battlefield finding, the bottleneck on a token swarm was never the count, it was getting them anywhere useful; Magma Wurm removes the other bottleneck, needing to wait a turn to attack). One-shot per token batch, no repeat step of its own, so this is a deckbuilding pairing rather than an engine.",
       "basis": {
@@ -2811,9 +2981,9 @@
         ]
       },
       "status": "rule-verified",
-      "reviewed": "2026-09-06",
-      "reviewedCount": 50,
-      "reviewedSet": "9b1a19ce"
+      "reviewed": "2026-11-23",
+      "reviewedCount": 59,
+      "reviewedSet": "9325be80"
     },
     {
       "id": "weaponmaster-equip-discount",
@@ -2823,6 +2993,12 @@
         "textMatches": "\\[Equip\\]",
         "types": [
           "gear"
+        ],
+        "excludes": [
+          {
+            "card": "RAD-123",
+            "why": "Its [Equip] costs 1 Energy and no rune, and 821.1.c.3 says such a cost \"can still be paid, but will not be reduced\"."
+          }
         ]
       },
       "why": "[Weaponmaster]'s own reminder text — \"you may [Equip] one of your Equipment to me for a rune less, even if it's already attached\" — is a discount on the [Equip] Activated Ability (818.1), independent of aphelios-equipment-attach's per-attach mode choice: this is a second, independent equip-discount mechanism, not a rewording of the first. It cannot loop: 818.1 makes Equip an Activated Ability, so re-equipping is never Playing (818.1.b) and never re-fires a \"When you play this\" on the gear or a second copy of Weaponmaster's own \"When you play me\" trigger — \"even if it's already attached\" only changes WHERE the Equipment ends up, once, on the turn Weaponmaster enters.",
@@ -2838,9 +3014,9 @@
         ]
       },
       "status": "rule-verified",
-      "reviewed": "2026-09-06",
-      "reviewedCount": 39,
-      "reviewedSet": "5bbe8f55"
+      "reviewed": "2026-11-23",
+      "reviewedCount": 40,
+      "reviewedSet": "3ea76d31"
     },
     {
       "id": "oasis-raider-low-rune-family",
@@ -2886,9 +3062,9 @@
         ]
       },
       "status": "rule-verified",
-      "reviewed": "2026-09-06",
-      "reviewedCount": 39,
-      "reviewedSet": "5bbe8f55"
+      "reviewed": "2026-11-23",
+      "reviewedCount": 41,
+      "reviewedSet": "861ce1b3"
     },
     {
       "id": "karma-channeler-vision-recycle",
@@ -2936,9 +3112,9 @@
         ]
       },
       "status": "rule-verified",
-      "reviewed": "2026-09-06",
-      "reviewedCount": 41,
-      "reviewedSet": "6fe158b8"
+      "reviewed": "2026-11-23",
+      "reviewedCount": 48,
+      "reviewedSet": "2dc9d650"
     },
     {
       "id": "profiteer-empower-relay",
@@ -3045,16 +3221,22 @@
         ]
       },
       "status": "rule-verified",
-      "reviewed": "2026-09-06",
-      "reviewedCount": 50,
-      "reviewedSet": "9b1a19ce"
+      "reviewed": "2026-11-23",
+      "reviewedCount": 61,
+      "reviewedSet": "6433f095"
     },
     {
       "id": "gemcraft-seer-vision-generalization",
       "name": "Gemcraft Seer hands [Vision] to every friendly unit, not just Mechs",
       "anchor": "OGN-100",
       "partner": {
-        "textMatches": "[Pp]lay (a|an|two|three|four|up to \\w+)\\b[^.]{0,90}?unit tokens?\\b|[Pp]lay that token"
+        "textMatches": "[Pp]lay (a|an|two|three|four|up to \\w+)\\b[^.]{0,90}?unit tokens?\\b|[Pp]lay that token",
+        "excludes": [
+          {
+            "card": "RAD-132",
+            "why": "\"If you would play a unit token ..., you may play a 3 Might Mech unit token ... instead\" replaces a token another card was already making and plays none of its own, so the anchor gains no body (the RAD-132 exclude on grand-plaza-unit-tokens)."
+          }
+        ]
       },
       "why": "Forecaster (\"Your Mechs have [Vision]\") is the pool's narrow version of this static grant, restricted to a single tag; Gemcraft Seer's \"Other friendly units have [Vision]\" is the same mechanism (817.1's Triggered Ability keyword) generalized to ANY friendly unit entering the board, which is exactly what a unit-token generator produces in volume — every token that lands gets a free look-and-recycle (817.1.b) it would not otherwise carry. karma-channeler-vision-recycle is the downstream payoff for the [Vision] this creates; this rule is the upstream supply side.",
       "basis": {
@@ -3068,9 +3250,9 @@
         ]
       },
       "status": "rule-verified",
-      "reviewed": "2026-09-06",
-      "reviewedCount": 50,
-      "reviewedSet": "9b1a19ce"
+      "reviewed": "2026-11-23",
+      "reviewedCount": 60,
+      "reviewedSet": "a71016f5"
     },
     {
       "id": "malzahar-fanatic-friendly-death-payoff",
@@ -3114,6 +3296,18 @@
           {
             "card": "SFD-083",
             "why": "\"exhaust: Pay any amount of rainbow to Add that much Energy\" has no cap per activation, so a second simultaneous activation converts nothing a bigger single payment couldn't already."
+          },
+          {
+            "card": "RAD-012",
+            "why": "Its only exhaust ability is \":rb_energy_2::rb_rune_chaos:, :rb_exhaust:: Kill this\", the OGN-186 shape: it kills its own source, so a ready finds nothing left to use."
+          },
+          {
+            "card": "RAD-052",
+            "why": "No exhaust ability of its own: the only :rb_exhaust:: in its text is inside the quoted reminder of the Gold gear token it plays, and that token's \"Kill this\" leaves nothing to run a second time."
+          },
+          {
+            "card": "RAD-105",
+            "why": "No exhaust ability of its own: the only :rb_exhaust:: in its text is inside the quoted reminder of the Gold gear token it plays, and that token's \"Kill this\" leaves nothing to run a second time."
           }
         ]
       },
@@ -3137,9 +3331,9 @@
         ]
       },
       "status": "rule-verified",
-      "reviewed": "2026-09-06",
-      "reviewedCount": 73,
-      "reviewedSet": "4e82fe5f"
+      "reviewed": "2026-11-23",
+      "reviewedCount": 87,
+      "reviewedSet": "b70155aa"
     },
     {
       "id": "blade-of-ruined-king-deathknell-ondemand",
@@ -3175,9 +3369,9 @@
         ]
       },
       "status": "rule-verified",
-      "reviewed": "2026-09-06",
-      "reviewedCount": 22,
-      "reviewedSet": "227479b8"
+      "reviewed": "2026-11-23",
+      "reviewedCount": 25,
+      "reviewedSet": "50020487"
     },
     {
       "id": "heedless-resurrection-deathknell-ondemand",
@@ -3207,9 +3401,9 @@
         ]
       },
       "status": "rule-verified",
-      "reviewed": "2026-09-06",
-      "reviewedCount": 22,
-      "reviewedSet": "227479b8"
+      "reviewed": "2026-11-23",
+      "reviewedCount": 25,
+      "reviewedSet": "50020487"
     },
     {
       "id": "unforgiven-move-triggers",
@@ -3233,9 +3427,9 @@
         ]
       },
       "status": "rule-verified",
-      "reviewed": "2026-09-14",
-      "reviewedCount": 31,
-      "reviewedSet": "19986c78"
+      "reviewed": "2026-11-23",
+      "reviewedCount": 35,
+      "reviewedSet": "9169e385"
     },
     {
       "id": "grandmaster-at-arms-equip-relay",
@@ -3283,9 +3477,9 @@
         ]
       },
       "status": "rule-verified",
-      "reviewed": "2026-09-06",
-      "reviewedCount": 9,
-      "reviewedSet": "8f8ae652"
+      "reviewed": "2026-11-23",
+      "reviewedCount": 11,
+      "reviewedSet": "6c7bd1b5"
     },
     {
       "id": "undertitan-reveal-fuel",
@@ -3301,6 +3495,14 @@
           {
             "card": "OGN-200",
             "why": "\"reveal the top rune of your rune deck\" reveals from the Rune Deck, not the Main Deck a unit card lives in."
+          },
+          {
+            "card": "RAD-018",
+            "why": "\"reveal the top card of each opponent's Main Deck\", the OGN-025 line: Undertitan is never in that deck."
+          },
+          {
+            "card": "RAD-111",
+            "why": "It reveals at the start of your Beginning Phase, and 167 empties the Rune Pool at the start of the Main Phase, so Undertitan's 2 Energy is lost unless a Reaction spends it first."
           }
         ]
       },
@@ -3321,9 +3523,9 @@
         ]
       },
       "status": "rule-verified",
-      "reviewed": "2026-09-06",
-      "reviewedCount": 10,
-      "reviewedSet": "9ab73601"
+      "reviewed": "2026-11-23",
+      "reviewedCount": 12,
+      "reviewedSet": "5b2ffe80"
     },
     {
       "id": "black-market-broker-hidden-family",
@@ -3370,9 +3572,9 @@
         ]
       },
       "status": "rule-verified",
-      "reviewed": "2026-09-06",
-      "reviewedCount": 39,
-      "reviewedSet": "13c73347"
+      "reviewed": "2026-11-23",
+      "reviewedCount": 45,
+      "reviewedSet": "230921cc"
     },
     {
       "id": "flame-chompers-discard-family",
@@ -3408,9 +3610,9 @@
         ]
       },
       "status": "rule-verified",
-      "reviewed": "2026-09-06",
-      "reviewedCount": 24,
-      "reviewedSet": "50ea1646"
+      "reviewed": "2026-11-23",
+      "reviewedCount": 29,
+      "reviewedSet": "1107383d"
     },
     {
       "id": "fae-dragon-buff-spend-payoff",
@@ -3472,9 +3674,9 @@
         ]
       },
       "status": "rule-verified",
-      "reviewed": "2026-09-06",
-      "reviewedCount": 21,
-      "reviewedSet": "5924a7b4"
+      "reviewed": "2026-11-23",
+      "reviewedCount": 25,
+      "reviewedSet": "0d110b6a"
     },
     {
       "id": "solari-chief-stun-into-kill",
@@ -3510,9 +3712,9 @@
         ]
       },
       "status": "rule-verified",
-      "reviewed": "2026-09-06",
-      "reviewedCount": 21,
-      "reviewedSet": "5924a7b4"
+      "reviewed": "2026-11-23",
+      "reviewedCount": 25,
+      "reviewedSet": "0d110b6a"
     },
     {
       "id": "ava-achiever-hidden-discount",
@@ -3564,16 +3766,22 @@
         ]
       },
       "status": "rule-verified",
-      "reviewed": "2026-09-06",
-      "reviewedCount": 36,
-      "reviewedSet": "38f8abb8"
+      "reviewed": "2026-11-23",
+      "reviewedCount": 42,
+      "reviewedSet": "e60324c7"
     },
     {
       "id": "show-of-strength-mighty-payoff",
       "name": "Show of Strength draws off the same Mighty count Kadregrin does",
       "anchor": "SFD-106",
       "partner": {
-        "textMatches": "\\[Mighty\\]"
+        "textMatches": "\\[Mighty\\]",
+        "excludes": [
+          {
+            "card": "RAD-074",
+            "why": "It tests whether a revealed Main Deck card is [Mighty] (by printed Might, 711) and makes no unit Mighty; Show of Strength counts Mighty units on the board, and as a spell it is never the card the reveal draws."
+          }
+        ]
       },
       "why": "Show of Strength prints the identical \"Draw 1 for each of your [Mighty] units\" Kadregrin carries, as a [Reaction] spell instead of a unit's play trigger — so it stacks with him rather than competing, and it can be cast on the opponent's turn once your board is already built. Same family (708: 5+ Might) and same two-sided pairing as kadregrin-mighty-payoff: a mass-buff enabler (Pridestalker) that pushes bodies over the line feeds it directly, and it also reads off the same count as the threshold cards (Sacrifice, Sunken Temple) that only need a Mighty unit to be present.",
       "basis": {
@@ -3586,16 +3794,22 @@
         ]
       },
       "status": "rule-verified",
-      "reviewed": "2026-09-06",
-      "reviewedCount": 9,
-      "reviewedSet": "ed78b3ff"
+      "reviewed": "2026-11-23",
+      "reviewedCount": 10,
+      "reviewedSet": "ac0dd8f9"
     },
     {
       "id": "pridestalker-mighty-enabler",
       "name": "Pridestalker pushes every unit you play toward the 5-Might line, for free",
       "anchor": "UNL-183",
       "partner": {
-        "textMatches": "\\[Mighty\\]"
+        "textMatches": "\\[Mighty\\]",
+        "excludes": [
+          {
+            "card": "RAD-074",
+            "why": "It tests whether a revealed Main Deck card is [Mighty], by printed Might (711); Pridestalker's +1 Might reaches only units on the board and never moves that test."
+          }
+        ]
       },
       "why": "\"When you play a unit, give a unit +1 Might this turn\" has no cost and no \"may\" — 709 makes becoming Mighty an event that fires only the moment Might crosses from below 5 to 5+, so a body sitting at 4 only needs this ONE buff to cross it, on every single unit play. That is the enabler half of the [Mighty] family: Kadregrin and Show of Strength both draw off the resulting count, and the threshold cards (Sacrifice, Sunken Temple, Unsung Hero) only need the crossing to have happened once. The buff itself is a continuous modifier granted by card text, not a 702 counter, so it never collides with 702.3's one-buff cap.",
       "basis": {
@@ -3609,9 +3823,9 @@
         ]
       },
       "status": "rule-verified",
-      "reviewed": "2026-09-06",
-      "reviewedCount": 10,
-      "reviewedSet": "14e7db04"
+      "reviewed": "2026-11-23",
+      "reviewedCount": 11,
+      "reviewedSet": "daffefa2"
     },
     {
       "id": "isolate-open-battlefield-walker",
@@ -3660,9 +3874,9 @@
         ]
       },
       "status": "rule-verified",
-      "reviewed": "2026-09-06",
-      "reviewedCount": 54,
-      "reviewedSet": "008d750c"
+      "reviewed": "2026-11-23",
+      "reviewedCount": 69,
+      "reviewedSet": "ec6bd930"
     },
     {
       "id": "jax-unrelenting-attach-draw",
@@ -3686,9 +3900,9 @@
         ]
       },
       "status": "rule-verified",
-      "reviewed": "2026-09-06",
-      "reviewedCount": 39,
-      "reviewedSet": "5bbe8f55"
+      "reviewed": "2026-11-23",
+      "reviewedCount": 41,
+      "reviewedSet": "861ce1b3"
     },
     {
       "id": "marai-spire-repeat-discount",
@@ -3731,7 +3945,13 @@
       "name": "Lee Sin, Ascetic breaks the one-buff cap for any repeatable buff source",
       "anchor": "OGN-078",
       "partner": {
-        "textMatches": ":rb_exhaust:[^.]*[Bb]uff|[Bb]uff[^.]*:rb_exhaust:"
+        "textMatches": ":rb_exhaust:[^.]*[Bb]uff|[Bb]uff[^.]*:rb_exhaust:",
+        "excludes": [
+          {
+            "card": "RAD-027",
+            "why": "\"If it's already buffed, give it +2 Might this turn instead\": on a Lee Sin who holds a buff it gives the temporary +2, never a second buff, so nothing stacks."
+          }
+        ]
       },
       "why": "702.3 caps every unit in the pool at ONE buff at a time (702.3.a: a second buff offered to an already-buffed unit is simply not placed), which is why buffs elsewhere are a status to spend, not a resource to stack — Lee Sin, Ascetic's own \"I can have any number of buffs\" is the pool's one printed exception. That makes any REPEATABLE buff source worth stacking on him specifically: an exhaust-cost activated ability readies every Awaken (315.1.b), so Blind Monk's legend ability and Arena Bar's gear ability both add a fresh +1 Might to him every turn instead of fizzling against the cap. The list is small on purpose — a one-shot buff (a play trigger, a spell) only ever gives him the one it would give anyone else; it is the REPEATABLE sources that turn his exception into unbounded Might.",
       "basis": {
@@ -3744,7 +3964,7 @@
         ]
       },
       "status": "rule-verified",
-      "reviewed": "2026-09-06",
+      "reviewed": "2026-11-23",
       "reviewedCount": 3,
       "reviewedSet": "f3081af9"
     },
@@ -3758,6 +3978,14 @@
           {
             "card": "SFD-044",
             "why": "\"return a friendly gear to its owner's hand\" only ever moves gear — Bewitching Spirit is a unit, so this can never bounce him for a replay."
+          },
+          {
+            "card": "RAD-075",
+            "why": "\"return a friendly gear to its owner's hand\" only ever moves gear; Bewitching Spirit is a unit, so this can never bounce him for a replay, as with SFD-044."
+          },
+          {
+            "card": "RAD-066",
+            "why": "\"return a friendly gear to its owner's hand\" only ever moves gear; Bewitching Spirit is a unit, so this can never bounce him for a replay, as with SFD-044."
           }
         ]
       },
@@ -3772,9 +4000,9 @@
         ]
       },
       "status": "rule-verified",
-      "reviewed": "2026-09-06",
-      "reviewedCount": 7,
-      "reviewedSet": "f5d377a7"
+      "reviewed": "2026-11-23",
+      "reviewedCount": 10,
+      "reviewedSet": "aa2b730b"
     },
     {
       "id": "chem-baroness-gold-ramp",
@@ -3803,9 +4031,9 @@
         ]
       },
       "status": "rule-verified",
-      "reviewed": "2026-09-06",
-      "reviewedCount": 20,
-      "reviewedSet": "95d0e0b7"
+      "reviewed": "2026-11-23",
+      "reviewedCount": 25,
+      "reviewedSet": "6ef596fe"
     },
     {
       "id": "ravenbloom-student-spell-replay",
@@ -3858,6 +4086,14 @@
           {
             "card": "UNL-043",
             "why": "\"[Buff] all units here\" — 702.3 caps every one of them at one buff, so unless a buff was deliberately spent between the two Beginning Phases the second one lands on already-buffed bodies and does nothing."
+          },
+          {
+            "card": "RAD-136",
+            "why": "The first hold kills it to play the banished card, so the extra turn's hold finds it gone and plays nothing (203.3)."
+          },
+          {
+            "card": "RAD-156",
+            "why": "Its only hold effect returns it to hand, the OGN-067 shape this rule excludes: the extra turn's hold has nothing to return."
           }
         ]
       },
@@ -3879,9 +4115,9 @@
         ]
       },
       "status": "rule-verified",
-      "reviewed": "2026-09-06",
-      "reviewedCount": 47,
-      "reviewedSet": "e48455f2"
+      "reviewed": "2026-11-23",
+      "reviewedCount": 53,
+      "reviewedSet": "c4ae12fe"
     },
     {
       "id": "peak-guardian-buffed-payoff",
@@ -3935,9 +4171,9 @@
         ]
       },
       "status": "rule-verified",
-      "reviewed": "2026-09-06",
-      "reviewedCount": 14,
-      "reviewedSet": "d24177cb"
+      "reviewed": "2026-11-23",
+      "reviewedCount": 19,
+      "reviewedSet": "4e914ee3"
     },
     {
       "id": "sprite-queen-friendly-death-feeder",
@@ -3991,9 +4227,9 @@
         ]
       },
       "status": "rule-verified",
-      "reviewed": "2026-09-06",
-      "reviewedCount": 22,
-      "reviewedSet": "5420120a"
+      "reviewed": "2026-11-23",
+      "reviewedCount": 33,
+      "reviewedSet": "e6987ab2"
     },
     {
       "id": "sky-splitter-might-discount",
@@ -4012,9 +4248,9 @@
         ]
       },
       "status": "rule-verified",
-      "reviewed": "2026-09-06",
-      "reviewedCount": 10,
-      "reviewedSet": "ec12e28a"
+      "reviewed": "2026-11-23",
+      "reviewedCount": 11,
+      "reviewedSet": "a39adba2"
     },
     {
       "id": "master-of-shadows-banish-empower",
@@ -4030,6 +4266,14 @@
           {
             "card": "VEN-110",
             "why": "\"banish an enemy unit\" — the predicate's \"a\" matched inside \"an\", but the card it names is never one you own; this banish is never yours."
+          },
+          {
+            "card": "RAD-124",
+            "why": "Burn Away banishes a unit or gear and returns nothing, so it empowers him only by destroying one of your own cards; the list's members banish to replay or banish themselves."
+          },
+          {
+            "card": "RAD-143",
+            "why": "Iron Revenant is a legend and so is Master of Shadows: a deck has one Champion Legend (103.1), and a legend an effect adds is not one (107.4.d.1), so the two never share a board."
           }
         ]
       },
@@ -4046,9 +4290,9 @@
         ]
       },
       "status": "rule-verified",
-      "reviewed": "2026-09-06",
-      "reviewedCount": 31,
-      "reviewedSet": "d553df39"
+      "reviewed": "2026-11-23",
+      "reviewedCount": 34,
+      "reviewedSet": "4b311541"
     },
     {
       "id": "undertitan-reveal-payoff",
@@ -4072,9 +4316,9 @@
         ]
       },
       "status": "rule-verified",
-      "reviewed": "2026-09-06",
-      "reviewedCount": 8,
-      "reviewedSet": "fe1288ca"
+      "reviewed": "2026-11-23",
+      "reviewedCount": 10,
+      "reviewedSet": "66e7aa4b"
     },
     {
       "id": "karma-channeler-recycle-main",
@@ -4110,6 +4354,14 @@
           {
             "card": "OGN-025",
             "why": "\"Each opponent reveals the top card... Then recycle the rest\" disposes of the OTHER opponents' own unchosen reveals to their own decks (416.1.c), never Karma's controller's."
+          },
+          {
+            "card": "RAD-016",
+            "why": "\"recycle all your runes\" sends runes to the RUNE Deck (416.1.b), never the Main Deck Karma's trigger names, as with OGN-200."
+          },
+          {
+            "card": "RAD-018",
+            "why": "\"reveal the top card of each opponent's Main Deck ... Recycle the rest\" recycles the opponents' own reveals to their own decks (416.1.c), never Karma's controller's, as with OGN-025."
           }
         ]
       },
@@ -4126,9 +4378,9 @@
         ]
       },
       "status": "rule-verified",
-      "reviewed": "2026-09-06",
-      "reviewedCount": 46,
-      "reviewedSet": "7e88f0a2"
+      "reviewed": "2026-11-23",
+      "reviewedCount": 58,
+      "reviewedSet": "2fa02bdd"
     },
     {
       "id": "back-alley-bar-any-mover",
@@ -4140,6 +4392,10 @@
           {
             "card": "SFD-079",
             "why": "\"move any number of your units to an open battlefield\" — 170.11.c defines open as unoccupied AND uncontrolled, so the units land where no combat exists to spend the +1 Might in on the turn they arrive."
+          },
+          {
+            "card": "RAD-102",
+            "why": "\"Move it to an open battlefield\" is its only move, so the buff lands on a body with no fight in front of it (170.11.c), the same reason as Bard, Mercurial (SFD-079)."
           }
         ]
       },
@@ -4154,9 +4410,9 @@
         ]
       },
       "status": "rule-verified",
-      "reviewed": "2026-09-06",
-      "reviewedCount": 46,
-      "reviewedSet": "377daf07"
+      "reviewed": "2026-11-23",
+      "reviewedCount": 54,
+      "reviewedSet": "533ba6c2"
     },
     {
       "id": "lillia-protector-token-unit-tank",
@@ -4168,6 +4424,10 @@
           {
             "card": "UNL-130",
             "why": "\"Choose an opponent. They play a 1 Might Bird unit token\" — the OPPONENT plays it, never Lillia's own controller, so her \"when you play a token unit\" trigger never sees it."
+          },
+          {
+            "card": "RAD-132",
+            "why": "\"If you would play a unit token ..., you may play a 3 Might Mech unit token ... instead\" replaces a token another card was already making and plays none of its own, so the anchor gains no body (the RAD-132 exclude on grand-plaza-unit-tokens)."
           }
         ]
       },
@@ -4185,9 +4445,9 @@
         ]
       },
       "status": "rule-verified",
-      "reviewed": "2026-09-06",
-      "reviewedCount": 48,
-      "reviewedSet": "de0224c0"
+      "reviewed": "2026-11-23",
+      "reviewedCount": 58,
+      "reviewedSet": "2ede6857"
     },
     {
       "id": "viktor-leader-friendly-kill",
@@ -4204,6 +4464,10 @@
           {
             "card": "VEN-133",
             "why": "\"kill this and deal 5 to all units you control\" kills the gear itself; \"units you control\" names the damage's targets, not what dies."
+          },
+          {
+            "card": "RAD-142",
+            "why": "\"Kill any number of friendly Bomb tokens\" kills gear: every card that names a Bomb's type prints \"Bomb gear token\" (RAD-001 Amateur Demolitionist, RAD-094 Explosimian), so no friendly unit dies."
           }
         ]
       },
@@ -4219,9 +4483,9 @@
         ]
       },
       "status": "rule-verified",
-      "reviewed": "2026-09-06",
-      "reviewedCount": 14,
-      "reviewedSet": "36c9f517"
+      "reviewed": "2026-11-23",
+      "reviewedCount": 19,
+      "reviewedSet": "8667c01f"
     },
     {
       "id": "wraith-of-echoes-friendly-kill",
@@ -4238,6 +4502,10 @@
           {
             "card": "VEN-133",
             "why": "\"kill this and deal 5 to all units you control\" kills the gear itself; \"units you control\" names the damage's targets, not what dies."
+          },
+          {
+            "card": "RAD-142",
+            "why": "\"Kill any number of friendly Bomb tokens\" kills gear: every card that names a Bomb's type prints \"Bomb gear token\" (RAD-001 Amateur Demolitionist, RAD-094 Explosimian), so no friendly unit dies."
           }
         ]
       },
@@ -4253,9 +4521,9 @@
         ]
       },
       "status": "rule-verified",
-      "reviewed": "2026-09-06",
-      "reviewedCount": 14,
-      "reviewedSet": "36c9f517"
+      "reviewed": "2026-11-23",
+      "reviewedCount": 19,
+      "reviewedSet": "8667c01f"
     },
     {
       "id": "vanguard-helm-friendly-kill",
@@ -4272,6 +4540,10 @@
           {
             "card": "VEN-133",
             "why": "\"kill this and deal 5 to all units you control\" kills the gear itself; \"units you control\" names the damage's targets, not what dies."
+          },
+          {
+            "card": "RAD-142",
+            "why": "\"Kill any number of friendly Bomb tokens\" kills gear: every card that names a Bomb's type prints \"Bomb gear token\" (RAD-001 Amateur Demolitionist, RAD-094 Explosimian), so no friendly unit dies and the Helm never triggers."
           }
         ]
       },
@@ -4287,9 +4559,9 @@
         ]
       },
       "status": "rule-verified",
-      "reviewed": "2026-09-06",
-      "reviewedCount": 14,
-      "reviewedSet": "36c9f517"
+      "reviewed": "2026-11-23",
+      "reviewedCount": 19,
+      "reviewedSet": "8667c01f"
     },
     {
       "id": "altar-of-memories-friendly-kill",
@@ -4306,6 +4578,10 @@
           {
             "card": "VEN-133",
             "why": "\"kill this and deal 5 to all units you control\" kills the gear itself; \"units you control\" names the damage's targets, not what dies."
+          },
+          {
+            "card": "RAD-142",
+            "why": "\"Kill any number of friendly Bomb tokens\" kills gear: every card that names a Bomb's type prints \"Bomb gear token\" (RAD-001 Amateur Demolitionist, RAD-094 Explosimian), so no friendly unit dies."
           }
         ]
       },
@@ -4319,9 +4595,9 @@
         ]
       },
       "status": "rule-verified",
-      "reviewed": "2026-09-06",
-      "reviewedCount": 14,
-      "reviewedSet": "36c9f517"
+      "reviewed": "2026-11-23",
+      "reviewedCount": 19,
+      "reviewedSet": "8667c01f"
     },
     {
       "id": "spectral-centaur-friendly-kill",
@@ -4338,6 +4614,14 @@
           {
             "card": "VEN-133",
             "why": "\"kill this and deal 5 to all units you control\" kills the gear itself; \"units you control\" names the damage's targets, not what dies."
+          },
+          {
+            "card": "RAD-139",
+            "why": "The kill it grants is \"Kill me at end of turn\", so the death lands at the end of the turn, when the Centaur's \"+2 Might this turn\" has nothing left to do."
+          },
+          {
+            "card": "RAD-142",
+            "why": "\"Kill any number of friendly Bomb tokens\" kills gear: every card that names a Bomb's type prints \"Bomb gear token\" (RAD-001 Amateur Demolitionist, RAD-094 Explosimian), so no friendly unit dies."
           }
         ]
       },
@@ -4353,9 +4637,9 @@
         ]
       },
       "status": "rule-verified",
-      "reviewed": "2026-09-06",
-      "reviewedCount": 14,
-      "reviewedSet": "36c9f517"
+      "reviewed": "2026-11-23",
+      "reviewedCount": 18,
+      "reviewedSet": "c29d6082"
     },
     {
       "id": "shard-of-undoing-temporary-death",
@@ -4414,9 +4698,9 @@
         ]
       },
       "status": "rule-verified",
-      "reviewed": "2026-09-06",
-      "reviewedCount": 14,
-      "reviewedSet": "b67cc9ef"
+      "reviewed": "2026-11-23",
+      "reviewedCount": 15,
+      "reviewedSet": "c795a9e3"
     },
     {
       "id": "jinx-rebel-discard-family",
@@ -4451,9 +4735,9 @@
         ]
       },
       "status": "rule-verified",
-      "reviewed": "2026-09-06",
-      "reviewedCount": 24,
-      "reviewedSet": "50ea1646"
+      "reviewed": "2026-11-23",
+      "reviewedCount": 29,
+      "reviewedSet": "1107383d"
     },
     {
       "id": "mask-mother-choice-discard-buff",
@@ -4485,9 +4769,9 @@
         ]
       },
       "status": "rule-verified",
-      "reviewed": "2026-09-06",
-      "reviewedCount": 24,
-      "reviewedSet": "50ea1646"
+      "reviewed": "2026-11-23",
+      "reviewedCount": 29,
+      "reviewedSet": "1107383d"
     },
     {
       "id": "vex-mocking-stun-relocate",
@@ -4528,9 +4812,9 @@
         ]
       },
       "status": "rule-verified",
-      "reviewed": "2026-09-06",
-      "reviewedCount": 21,
-      "reviewedSet": "5924a7b4"
+      "reviewed": "2026-11-23",
+      "reviewedCount": 25,
+      "reviewedSet": "0d110b6a"
     },
     {
       "id": "eclipse-herald-stun-ready",
@@ -4568,9 +4852,9 @@
         ]
       },
       "status": "rule-verified",
-      "reviewed": "2026-09-06",
-      "reviewedCount": 21,
-      "reviewedSet": "5924a7b4"
+      "reviewed": "2026-11-23",
+      "reviewedCount": 25,
+      "reviewedSet": "0d110b6a"
     },
     {
       "id": "solari-shrine-stun-kill-draw",
@@ -4608,9 +4892,9 @@
         ]
       },
       "status": "rule-verified",
-      "reviewed": "2026-09-06",
-      "reviewedCount": 21,
-      "reviewedSet": "5924a7b4"
+      "reviewed": "2026-11-23",
+      "reviewedCount": 25,
+      "reviewedSet": "0d110b6a"
     },
     {
       "id": "katarina-reckless-hidden-package",
@@ -4655,9 +4939,9 @@
         ]
       },
       "status": "rule-verified",
-      "reviewed": "2026-09-06",
-      "reviewedCount": 39,
-      "reviewedSet": "13c73347"
+      "reviewed": "2026-11-23",
+      "reviewedCount": 45,
+      "reviewedSet": "230921cc"
     },
     {
       "id": "ember-monk-hidden-play-might",
@@ -4696,9 +4980,9 @@
         ]
       },
       "status": "rule-verified",
-      "reviewed": "2026-09-06",
-      "reviewedCount": 39,
-      "reviewedSet": "13c73347"
+      "reviewed": "2026-11-23",
+      "reviewedCount": 45,
+      "reviewedSet": "230921cc"
     },
     {
       "id": "spirit-wheel-choose-friendly-draw",
@@ -4719,9 +5003,9 @@
         ]
       },
       "status": "rule-verified",
-      "reviewed": "2026-09-06",
-      "reviewedCount": 16,
-      "reviewedSet": "d90f325d"
+      "reviewed": "2026-11-23",
+      "reviewedCount": 18,
+      "reviewedSet": "118dca62"
     },
     {
       "id": "soul-reflection-empower-relay",
@@ -4733,6 +5017,10 @@
           {
             "card": "VEN-163",
             "why": "\"[Empower] costs of your units here cost 1 Energy or rainbow less\" is a discount on OTHER units' Empower costs — Risen Altar never pays an [Empower] cost itself, so it never becomes Empowered and never triggers \"you empower something else\"."
+          },
+          {
+            "card": "RAD-139",
+            "why": "a legend: 103.1 gives a deck one Champion Legend, which here is Soul's Reflection, and the only way a second legend reaches the Legend Zone (107.4.d.1) is Neeko, Blending In (RAD-167), which the pool leaves out (#695). Its Fury/Mind domains are outside her Mind/Chaos identity as well."
           }
         ]
       },
@@ -4752,7 +5040,7 @@
         ]
       },
       "status": "rule-verified",
-      "reviewed": "2026-09-07",
+      "reviewed": "2026-11-23",
       "reviewedCount": 38,
       "reviewedSet": "d8488c92"
     },
@@ -4766,6 +5054,10 @@
           {
             "card": "VEN-163",
             "why": "\"[Empower] costs of your units here cost 1 Energy or rainbow less\" is a discount on OTHER units' Empower costs — Risen Altar never pays an [Empower] cost itself, so it never becomes Empowered and never triggers \"you empower something else\"."
+          },
+          {
+            "card": "RAD-139",
+            "why": "a legend: 103.1 gives a deck one Champion Legend, which here is Matriarch of War, and the only way a second legend reaches the Legend Zone (107.4.d.1) is Neeko, Blending In (RAD-167), which the pool leaves out (#695). Its Fury/Mind domains are outside her Body/Order identity as well."
           }
         ]
       },
@@ -4785,7 +5077,7 @@
         ]
       },
       "status": "rule-verified",
-      "reviewed": "2026-09-07",
+      "reviewed": "2026-11-23",
       "reviewedCount": 38,
       "reviewedSet": "d8488c92"
     },
@@ -4816,6 +5108,26 @@
           {
             "card": "UNL-169",
             "why": "\"Choose a card revealed this way and banish it. When they hold, return it to their hand\" moves a card from the opponent's HAND to Banishment and back — it never touches a battlefield, so it is never \"a unit here\"."
+          },
+          {
+            "card": "RAD-130",
+            "why": "\"return it to its owner's hand\" returns a friendly GEAR that died, never a unit, so Ripper's Bay's \"a unit here\" never sees it, as with SFD-044."
+          },
+          {
+            "card": "RAD-156",
+            "why": "\"you may return this to its owner's hand\" returns this gear itself, never a unit, so Ripper's Bay's \"a unit here\" never sees it."
+          },
+          {
+            "card": "RAD-075",
+            "why": "\"return a friendly gear to its owner's hand\" as an additional cost moves gear, never a unit, so Ripper's Bay's \"a unit here\" never sees it, as with SFD-044."
+          },
+          {
+            "card": "RAD-066",
+            "why": "\"return a friendly gear to its owner's hand\" as an additional cost moves gear, never a unit, so Ripper's Bay's \"a unit here\" never sees it, as with SFD-044."
+          },
+          {
+            "card": "RAD-106",
+            "why": "\"return this to its owner's hand\" returns this gear itself, never a unit, so Ripper's Bay's \"a unit here\" never sees it."
           }
         ]
       },
@@ -4832,9 +5144,9 @@
         ]
       },
       "status": "rule-verified",
-      "reviewed": "2026-09-07",
-      "reviewedCount": 13,
-      "reviewedSet": "61e9c72d"
+      "reviewed": "2026-11-23",
+      "reviewedCount": 17,
+      "reviewedSet": "3dd31b75"
     },
     {
       "id": "pirates-haven-any-friendly-ready",
@@ -4869,9 +5181,9 @@
         ]
       },
       "status": "rule-verified",
-      "reviewed": "2026-09-07",
-      "reviewedCount": 30,
-      "reviewedSet": "6e29b015"
+      "reviewed": "2026-11-23",
+      "reviewedCount": 38,
+      "reviewedSet": "2caade83"
     },
     {
       "id": "jayce-hammer-second-ready",
@@ -4907,9 +5219,9 @@
         ]
       },
       "status": "rule-verified",
-      "reviewed": "2026-09-07",
-      "reviewedCount": 15,
-      "reviewedSet": "1cd3f28e"
+      "reviewed": "2026-11-23",
+      "reviewedCount": 20,
+      "reviewedSet": "a26f09bd"
     },
     {
       "id": "fretful-feline-second-ready",
@@ -4945,9 +5257,9 @@
         ]
       },
       "status": "rule-verified",
-      "reviewed": "2026-09-07",
-      "reviewedCount": 15,
-      "reviewedSet": "1cd3f28e"
+      "reviewed": "2026-11-23",
+      "reviewedCount": 20,
+      "reviewedSet": "a26f09bd"
     },
     {
       "id": "mistfall-buff-ready",
@@ -4977,9 +5289,9 @@
         ]
       },
       "status": "rule-verified",
-      "reviewed": "2026-09-14",
-      "reviewedCount": 35,
-      "reviewedSet": "e7554931"
+      "reviewed": "2026-11-23",
+      "reviewedCount": 41,
+      "reviewedSet": "2166a9e6"
     },
     {
       "id": "simian-ancestor-buff-ready",
@@ -4995,6 +5307,10 @@
           {
             "card": "OGN-207",
             "why": "\"spend a buff as an additional cost\" spends a buff as a cost, same as Wallop — a consumer, not a source."
+          },
+          {
+            "card": "RAD-043",
+            "why": "\"[Buff] me\" is Riven's only buff, so it only ever buffs herself and never Simian Ancestor."
           }
         ]
       },
@@ -5009,9 +5325,9 @@
         ]
       },
       "status": "rule-verified",
-      "reviewed": "2026-09-14",
-      "reviewedCount": 35,
-      "reviewedSet": "a60a1fc3"
+      "reviewed": "2026-11-23",
+      "reviewedCount": 40,
+      "reviewedSet": "559a9983"
     },
     {
       "id": "prize-of-progress-gear-activation",
@@ -5021,7 +5337,13 @@
         "types": [
           "gear"
         ],
-        "textMatches": ":rb_exhaust:"
+        "textMatches": ":rb_exhaust:",
+        "excludes": [
+          {
+            "card": "RAD-052",
+            "why": "No activated ability of its own: the only :rb_exhaust: is in the quoted reminder of the Gold gear token it plays, and the rule's list is gear that carry their own exhaust cost."
+          }
+        ]
       },
       "why": "\"When you use an activated ability of a gear, give me +1 Might this turn\" counts activations, not gear, and the verified engine (prize-of-progress-seal-gear-might) is deliberately the cheapest possible partner: Seal of Insight is the Mind deck's E0 Power base, so its exhaust is already being paid every turn regardless of Prize of Progress. Every gear in the list carries an exhaust cost of its own, but the honest ceiling is small — an exhaust cost allows one activation per copy per turn (315.1.b readies it at the next Awaken), so the real count is however many gear abilities a given turn actually uses, not the size of this list. 377.2.a adds WHEN it pays, and the answer is a credential rather than the caveat it looks like: \"If 'using' or 'playing' an Activated Ability is part of a trigger condition, that condition is fulfilled when the Activated Ability resolves.\" So the +1 Might rides on the activation RESOLVING and an activation answered on the chain pays nothing - and in this pool it practically cannot be answered. The only two cards that counter an ability at all are SFD-045 Not So Fast and UNL-106 Repulse (swept 2026-09-14: 11 counter printings, 9 say \"a spell\", these two say \"spell or ability\", none names a unit), and BOTH are confined to an ability that CHOOSES a friendly unit or gear. Measured over this rule's own 39 partners, exactly ONE qualifies - UNL-045 Forgotten Signpost - so 38 of 39 gear activations here are un-counterable by anything the pool prints.",
       "basis": {
@@ -5036,9 +5358,9 @@
         ]
       },
       "status": "rule-verified",
-      "reviewed": "2026-09-07",
-      "reviewedCount": 39,
-      "reviewedSet": "58498f79"
+      "reviewed": "2026-11-23",
+      "reviewedCount": 44,
+      "reviewedSet": "48c548c8"
     },
     {
       "id": "vicious-snapjaws-friendly-kill",
@@ -5055,6 +5377,10 @@
           {
             "card": "VEN-133",
             "why": "\"kill this and deal 5 to all units you control\" kills the gear itself; \"units you control\" names the damage's targets, not what dies."
+          },
+          {
+            "card": "RAD-142",
+            "why": "\"Kill any number of friendly Bomb tokens\" kills gear: every card that names a Bomb's type prints \"Bomb gear token\" (RAD-001 Amateur Demolitionist, RAD-094 Explosimian), so no friendly unit dies."
           }
         ]
       },
@@ -5067,9 +5393,9 @@
         "combos": []
       },
       "status": "rule-verified",
-      "reviewed": "2026-09-07",
-      "reviewedCount": 14,
-      "reviewedSet": "36c9f517"
+      "reviewed": "2026-11-23",
+      "reviewedCount": 19,
+      "reviewedSet": "8667c01f"
     },
     {
       "id": "sprite-queen-conquer-battlefield-cycle",
@@ -5100,9 +5426,9 @@
         ]
       },
       "status": "rule-verified",
-      "reviewed": "2026-09-07",
-      "reviewedCount": 14,
-      "reviewedSet": "2b7b030b"
+      "reviewed": "2026-11-23",
+      "reviewedCount": 18,
+      "reviewedSet": "72ae5c45"
     },
     {
       "id": "forge-of-fluft-repeatable-attach",
@@ -5173,9 +5499,9 @@
         ]
       },
       "status": "rule-verified",
-      "reviewed": "2026-09-14",
-      "reviewedCount": 33,
-      "reviewedSet": "fbba6e63"
+      "reviewed": "2026-11-23",
+      "reviewedCount": 39,
+      "reviewedSet": "8b923fb0"
     },
     {
       "id": "monastery-hirana-buff-supply",
@@ -5215,9 +5541,9 @@
         ]
       },
       "status": "rule-verified",
-      "reviewed": "2026-09-14",
-      "reviewedCount": 32,
-      "reviewedSet": "86e5a0db"
+      "reviewed": "2026-11-23",
+      "reviewedCount": 38,
+      "reviewedSet": "78490c98"
     },
     {
       "id": "irelia-fervent-choose-cost",
@@ -5239,9 +5565,9 @@
         ]
       },
       "status": "rule-verified",
-      "reviewed": "2026-09-07",
-      "reviewedCount": 4,
-      "reviewedSet": "49f1deca"
+      "reviewed": "2026-11-23",
+      "reviewedCount": 5,
+      "reviewedSet": "7e7c15d6"
     },
     {
       "id": "blade-dancer-choose-relocate",
@@ -5263,9 +5589,9 @@
         ]
       },
       "status": "rule-verified",
-      "reviewed": "2026-09-07",
-      "reviewedCount": 3,
-      "reviewedSet": "d4b0b861"
+      "reviewed": "2026-11-23",
+      "reviewedCount": 4,
+      "reviewedSet": "00cad495"
     },
     {
       "id": "dragon-roost-dragon-tag",
@@ -5287,9 +5613,9 @@
         ]
       },
       "status": "rule-verified",
-      "reviewed": "2026-09-07",
-      "reviewedCount": 19,
-      "reviewedSet": "b5ddd831"
+      "reviewed": "2026-11-23",
+      "reviewedCount": 22,
+      "reviewedSet": "4238abe9"
     },
     {
       "id": "risen-altar-empower-discount",
@@ -5317,6 +5643,10 @@
           {
             "card": "VEN-124",
             "why": "[Empower] cost is \"Kill a friendly unit\" — no Energy and no rune component for the discount to bite on."
+          },
+          {
+            "card": "RAD-139",
+            "why": "A legend: the Altar discounts \"[Empower] costs of your units here\", and Boy Who Shattered Time is not a unit."
           }
         ]
       },
@@ -5334,7 +5664,7 @@
         ]
       },
       "status": "rule-verified",
-      "reviewed": "2026-09-07",
+      "reviewed": "2026-11-23",
       "reviewedCount": 33,
       "reviewedSet": "f82c7c48"
     },
@@ -5410,9 +5740,9 @@
         ]
       },
       "status": "rule-verified",
-      "reviewed": "2026-09-07",
-      "reviewedCount": 7,
-      "reviewedSet": "1432386e"
+      "reviewed": "2026-11-23",
+      "reviewedCount": 8,
+      "reviewedSet": "9b9ffe11"
     },
     {
       "id": "sandswept-tomb-choose-friendly-spells",
@@ -5422,6 +5752,12 @@
         "textMatches": "[Cc]hoose a friendly unit",
         "types": [
           "spell"
+        ],
+        "excludes": [
+          {
+            "card": "RAD-102",
+            "why": "Demon Shade prints no Power, and 356.6 (\"Energy and Power costs can't be reduced below 0\") keeps the discount from taking its Power below 0, so the Tomb takes nothing off."
+          }
         ]
       },
       "why": "\"Each spell that chooses one or more units here that are friendly to it costs one rainbow less\" names no \"you\" — 190.6.d only blanks a battlefield's instructions through that word, and the Tomb instead keys on \"friendly to it\" (the spell's own controller), so unlike a \"While you control this battlefield\" discount it is live from turn one, before either player has walked anywhere. 355.10.d exempts a programmatically-selected object from being a target, so this reads only spells that CHOOSE — the same predicate the project already uses for Jae Medarda, Spirit Wheel and Blade Dancer. `VEN-154 Public Execution` is the entry's worked example: E2 with no Power at all when the chosen unit stands at the Tomb, and its [Flow] replay drops by the same rainbow.",
@@ -5435,7 +5771,7 @@
         ]
       },
       "status": "rule-verified",
-      "reviewed": "2026-09-07",
+      "reviewed": "2026-11-23",
       "reviewedCount": 14,
       "reviewedSet": "f6cdc1bc"
     },
@@ -5462,9 +5798,9 @@
         ]
       },
       "status": "rule-verified",
-      "reviewed": "2026-09-13",
-      "reviewedCount": 6,
-      "reviewedSet": "0754421f"
+      "reviewed": "2026-11-23",
+      "reviewedCount": 7,
+      "reviewedSet": "c724c105"
     },
     {
       "id": "forbidding-waste-lone-defender-buff",
@@ -5531,16 +5867,22 @@
         ]
       },
       "status": "rule-verified",
-      "reviewed": "2026-09-07",
-      "reviewedCount": 40,
-      "reviewedSet": "c66e81af"
+      "reviewed": "2026-11-23",
+      "reviewedCount": 47,
+      "reviewedSet": "08387987"
     },
     {
       "id": "taric-protector-granted-shield-sums",
       "name": "Taric, Protector's granted [Shield] sums with any printed Shield in the pool",
       "anchor": "OGN-074",
       "partner": {
-        "textMatches": "\\[Shield"
+        "textMatches": "\\[Shield",
+        "excludes": [
+          {
+            "card": "RAD-147",
+            "why": "[Shield] appears only inside the quoted \"I have [Assault] equal to my [Shield]\" that Pride of Nazumah gives another unit: it prints and grants no Shield of its own, the nested-quote shape."
+          }
+        ]
       },
       "why": "814.2 sums granted Shield exactly the way 807.2 sums granted Assault, and its own worked example is a Stalwart Poro beside Block landing at Shield 4. \"Other friendly units here have [Shield]\" is Taric's free, permanent instance, so every one of the twenty-six other printed-Shield cards in the pool defends one Might higher at his battlefield with no card spent: a bare [Shield] unit (Stalwart Poro, Petty Officer's cousin family) reaches Shield 2, a numbered one (Blue Sentinel's [Shield 2], Needlessly Large Yordle's [Shield 5]) is one higher again, and a second GRANTER standing there (Chakram Dancer, Fortified Position, Mechanized Menace, Black Flame Altar) compounds rather than replaces. 814.1.c is why none of this shows up outside a combat: [Shield] Might is conditional on the Defender designation, so it is invisible to any Main-Phase Mighty count.",
       "basis": {
@@ -5553,9 +5895,9 @@
         ]
       },
       "status": "rule-verified",
-      "reviewed": "2026-09-07",
-      "reviewedCount": 26,
-      "reviewedSet": "52b9fa7c"
+      "reviewed": "2026-11-23",
+      "reviewedCount": 39,
+      "reviewedSet": "5b759878"
     },
     {
       "id": "disciple-of-shen-exactly-two-units",
@@ -5597,9 +5939,9 @@
         ]
       },
       "status": "rule-verified",
-      "reviewed": "2026-09-07",
-      "reviewedCount": 10,
-      "reviewedSet": "f599ca34"
+      "reviewed": "2026-11-23",
+      "reviewedCount": 11,
+      "reviewedSet": "826b9bd9"
     },
     {
       "id": "syndra-transcendent-repeat-grant",
@@ -5684,9 +6026,9 @@
         ]
       },
       "status": "rule-verified",
-      "reviewed": "2026-09-07",
-      "reviewedCount": 34,
-      "reviewedSet": "c51c0dc7"
+      "reviewed": "2026-11-23",
+      "reviewedCount": 36,
+      "reviewedSet": "f864ef89"
     },
     {
       "id": "kinkou-temple-tank-wall-doubling",
@@ -5706,9 +6048,9 @@
         ]
       },
       "status": "rule-verified",
-      "reviewed": "2026-09-07",
-      "reviewedCount": 25,
-      "reviewedSet": "af89f2e2"
+      "reviewed": "2026-11-23",
+      "reviewedCount": 30,
+      "reviewedSet": "c9d577dc"
     },
     {
       "id": "eye-of-twilight-tank-on-a-shield-body",
@@ -5718,6 +6060,12 @@
         "textMatches": "\\[Shield",
         "types": [
           "unit"
+        ],
+        "excludes": [
+          {
+            "card": "RAD-078",
+            "why": "It prints [Tank], and 815.2 makes a second instance redundant, so the legend's grant buys nothing on it."
+          }
         ]
       },
       "why": "815.1.c.2 is the load-bearing sentence: \"Units without Tank are invalid assignments until all units with Tank have lethal damage assigned to them.\" So an attack whose summed Might cannot reach the Tank's CURRENT Might assigns nothing anywhere, and the whole garrison survives — the Tank's own Might is the only lever, because 815.2 makes a second Tank grant redundant. 814.1.c makes [Shield] \"While I am a defender, I have +X [M]\" and 814.1.d.1 keeps it in effect as long as the Defender designation lasts, so a [Shield] body's threshold is exactly the number that matters and exists only at the moment it matters; 814.2 sums a second granted instance on top. The legend's ability is [Action], and 806.1.c.2 lets it be activated during showdowns on any player's turn, so the grant is bought AFTER 464.2.c.3 has designated the attackers and their summed Might is countable. It must NOT go on the [Backline] body: 465.2.c.8 names Caitlyn, Patrolling by name as the worked example of an exclusionary pair and hands the choice back to the attacker. This rule REPLACES `eye-of-twilight-protects-backline`, refuted 2026-09-09: 465.2.c.6 already puts a Backline body last, so granting Tank to some OTHER body left its position unchanged and the Backline card was a bystander rather than a partner. PARTNER NARROWED TO UNITS 2026-09-14: the anchor's own text says \"a friendly unit\", and the bare \\\\[Shield predicate was matching Shield SOURCES as well as Shield BODIES - five of the 27 were not units at all (UNL-208 Black Flame Altar and OGN-279 Fortified Position are battlefields, OGN-057 Block is a spell, SFD-064 Cloth Armor an Equipment, SFD-181 Mechanized Menace a legend). All five GRANT Shield to somebody else and none has a Shield threshold of its own, which is the quantity this rule is about. OGN-057 Block is the sharpest case for the Tank half specifically: it grants [Tank] itself, so pairing it with a Tank-granting legend is 815.2's redundancy rather than a synergy. One judgement call is deliberately LEFT IN rather than excluded silently: UNL-071 Chakram Dancer is a unit that GRANTS [Shield] to its neighbours and carries none itself, so it survives the types filter while having no threshold of its own - flagged here for the author rather than dropped.",
@@ -5741,9 +6089,9 @@
         ]
       },
       "status": "rule-verified",
-      "reviewed": "2026-09-14",
-      "reviewedCount": 22,
-      "reviewedSet": "ea728e38"
+      "reviewed": "2026-11-23",
+      "reviewedCount": 29,
+      "reviewedSet": "05aa6d9a"
     },
     {
       "id": "counter-strike-protects-while-at-battlefield",
@@ -5767,9 +6115,9 @@
         ]
       },
       "status": "rule-verified",
-      "reviewed": "2026-09-07",
-      "reviewedCount": 14,
-      "reviewedSet": "18f27e83"
+      "reviewed": "2026-11-23",
+      "reviewedCount": 16,
+      "reviewedSet": "f61f1703"
     },
     {
       "id": "heedless-resurrection-accelerated-return",
@@ -5794,9 +6142,9 @@
         ]
       },
       "status": "rule-verified",
-      "reviewed": "2026-09-07",
-      "reviewedCount": 26,
-      "reviewedSet": "de437a7f"
+      "reviewed": "2026-11-23",
+      "reviewedCount": 31,
+      "reviewedSet": "b9d9eb60"
     },
     {
       "id": "allay-eager-admirer-granted-deflect-sums",
@@ -5816,6 +6164,10 @@
           {
             "card": "OGN-063",
             "why": "Spirit's Refuge grants \"[Deflect] if they didn't already\". Every other friendly unit at Allay's battlefield already has it, so the grant is placed on nothing and 809.2 has no second instance to sum — the second-trigger-is-a-no-op shape, scoped to this rule (away from Allay the same card is a fine Deflect source). Swept 2026-09-09: it is the only conditional grant in the pool (`grep -inE \"if they didn'?t already\"` returns one row)."
+          },
+          {
+            "card": "RAD-037",
+            "why": "\"Your gear have [Deflect]\" gives the keyword to gear, and Allay's grant reaches only \"your other units here\", so no permanent carries both instances for 809.2 to sum."
           }
         ]
       },
@@ -5831,9 +6183,9 @@
         ]
       },
       "status": "rule-verified",
-      "reviewed": "2026-09-09",
-      "reviewedCount": 42,
-      "reviewedSet": "b6668c32"
+      "reviewed": "2026-11-23",
+      "reviewedCount": 47,
+      "reviewedSet": "f55e2f29"
     },
     {
       "id": "wielder-of-water-attack-defend-alone-family",
@@ -5883,9 +6235,9 @@
         ]
       },
       "status": "rule-verified",
-      "reviewed": "2026-09-09",
-      "reviewedCount": 8,
-      "reviewedSet": "98df14b8"
+      "reviewed": "2026-11-23",
+      "reviewedCount": 9,
+      "reviewedSet": "b3c22418"
     },
     {
       "id": "mageseeker-warden-base-reaching-removal",
@@ -5914,9 +6266,9 @@
         ]
       },
       "status": "rule-verified",
-      "reviewed": "2026-09-09",
-      "reviewedCount": 9,
-      "reviewedSet": "25b20b75"
+      "reviewed": "2026-11-23",
+      "reviewedCount": 12,
+      "reviewedSet": "a8cffad8"
     },
     {
       "id": "seal-of-rage-finalization-power",
@@ -5970,9 +6322,9 @@
         ]
       },
       "status": "rule-verified",
-      "reviewed": "2026-09-09",
-      "reviewedCount": 5,
-      "reviewedSet": "6c372e00"
+      "reviewed": "2026-11-23",
+      "reviewedCount": 6,
+      "reviewedSet": "0d69e300"
     },
     {
       "id": "ravenborn-tome-bonus-damage-per-action",
@@ -5987,6 +6339,10 @@
           {
             "card": "UNL-192",
             "why": "\"Choose a friendly unit. It deals damage equal to its Might split among enemy units\" — 417.6.b.3 makes that UNIT damage, not the spell's, so the Tome (which pumps a spell) never reaches it. Volibear, Furious is absent from this list for the same reason under types: an ability is not a spell."
+          },
+          {
+            "card": "RAD-006",
+            "why": "\"Deal 5 damage split among units at a single battlefield\" is one Deal action, and 715.3 applies Bonus Damage to the amount split, so the Tome collects once, like Final Spark. The why leaves split cases to Annie."
           }
         ]
       },
@@ -6007,7 +6363,7 @@
         ]
       },
       "status": "rule-verified",
-      "reviewed": "2026-09-09",
+      "reviewed": "2026-11-23",
       "reviewedCount": 4,
       "reviewedSet": "95589fb0"
     },
@@ -6036,9 +6392,9 @@
         ]
       },
       "status": "rule-verified",
-      "reviewed": "2026-09-09",
-      "reviewedCount": 15,
-      "reviewedSet": "89b517bf"
+      "reviewed": "2026-11-23",
+      "reviewedCount": 19,
+      "reviewedSet": "b8ab98a0"
     },
     {
       "id": "patched-porobot-gold-gear-count",
@@ -6062,9 +6418,9 @@
         ]
       },
       "status": "rule-verified",
-      "reviewed": "2026-09-09",
-      "reviewedCount": 23,
-      "reviewedSet": "faa27691"
+      "reviewed": "2026-11-23",
+      "reviewedCount": 28,
+      "reviewedSet": "80229868"
     },
     {
       "id": "wily-newtfish-xp-this-turn",
@@ -6096,7 +6452,13 @@
       "name": "Cull the Weak is a 2-Energy sacrifice outlet that no [Deflect] and no \"can't be chosen\" can answer",
       "anchor": "OGN-209",
       "partner": {
-        "textMatches": "\\[Deathknell\\]|friendly unit dies|unit you control dies"
+        "textMatches": "\\[Deathknell\\]|friendly unit dies|unit you control dies",
+        "excludes": [
+          {
+            "card": "RAD-062",
+            "why": "Its [Deathknell] is on a gear, and Cull the Weak has each player kill one of their units, so it can never die to it."
+          }
+        ]
       },
       "why": "\"Each player kills one of their units\" is 355.10.e's own printed worked example: \"It is part of a set of objects chosen in whole or in part by other players. e.g., 'Each player kills a unit they control' does not target. Each player, including the one who played the spell, chooses a unit to kill as the spell or ability resolves.\" Nothing is targeted and nothing is chosen by you on their side, so 809.1.c's [Deflect] tax — \"an amount of Power equal to [Deflect Value] more to play as an additional cost for each time they choose\" — is never charged, and an absolute \"I can't be chosen by enemy spells and abilities\" body is not consulted either. What that buys is a sacrifice outlet for two Energy and one Power that is also a piece of removal, and this list is what pays for your half: every Deathknell body and every card that watches a friendly unit die. Two limits to state rather than hide. The opponent picks their own casualty, so the removal half takes their worst body and is never an answer to a particular threat. And the payoff you kill has to be a body you can spare — 428.1.a.1.b snapshots a dying unit's location and attributes before the kill instruction completes, which is what makes Loyal Poro's \"if I didn't die alone\" reliably true when other friendlies stand with it.",
       "basis": {
@@ -6112,9 +6474,9 @@
         ]
       },
       "status": "rule-verified",
-      "reviewed": "2026-09-09",
-      "reviewedCount": 33,
-      "reviewedSet": "756eeff9"
+      "reviewed": "2026-11-23",
+      "reviewedCount": 37,
+      "reviewedSet": "c2a59ddc"
     },
     {
       "id": "prepared-neophyte-repeat-cost",
@@ -6174,9 +6536,9 @@
         ]
       },
       "status": "rule-verified",
-      "reviewed": "2026-09-09",
-      "reviewedCount": 40,
-      "reviewedSet": "159d1f67"
+      "reviewed": "2026-11-23",
+      "reviewedCount": 43,
+      "reviewedSet": "46918057"
     },
     {
       "id": "warwick-hunter-damage-marker",
@@ -6202,9 +6564,9 @@
         ]
       },
       "status": "rule-verified",
-      "reviewed": "2026-09-09",
-      "reviewedCount": 14,
-      "reviewedSet": "1e6fdcd1"
+      "reviewed": "2026-11-23",
+      "reviewedCount": 16,
+      "reviewedSet": "87ba9ba9"
     },
     {
       "id": "immortal-phoenix-spell-kill",
@@ -6219,6 +6581,10 @@
           {
             "card": "UNL-007",
             "why": "\"Deal 3 to a unit at a battlefield. If it would die this turn, banish it instead\" replaces the death, so no kill action is ever generated and 428.5.c has nothing to attribute — the one damage spell in the pool that provably cannot fire this trigger."
+          },
+          {
+            "card": "RAD-096",
+            "why": "Its only \"deal 2 to\" is in the reminder of the Bomb gear token it plays; Satchel Charge deals no damage and kills nothing."
           }
         ]
       },
@@ -6239,9 +6605,9 @@
         ]
       },
       "status": "rule-verified",
-      "reviewed": "2026-09-09",
-      "reviewedCount": 33,
-      "reviewedSet": "ea143c7c"
+      "reviewed": "2026-11-23",
+      "reviewedCount": 38,
+      "reviewedSet": "4d0fe5f6"
     },
     {
       "id": "atakhan-expensive-sacrifice",
@@ -6270,9 +6636,9 @@
         ]
       },
       "status": "rule-verified",
-      "reviewed": "2026-09-09",
-      "reviewedCount": 28,
-      "reviewedSet": "45d6f55b"
+      "reviewed": "2026-11-23",
+      "reviewedCount": 36,
+      "reviewedSet": "417ad064"
     },
     {
       "id": "temporal-breach-replays-in-place",
@@ -6303,9 +6669,9 @@
         ]
       },
       "status": "rule-verified",
-      "reviewed": "2026-09-09",
-      "reviewedCount": 11,
-      "reviewedSet": "4bab6efa"
+      "reviewed": "2026-11-23",
+      "reviewedCount": 14,
+      "reviewedSet": "692b9c10"
     },
     {
       "id": "caitlyn-patrolling-tank-screen",
@@ -6336,9 +6702,9 @@
         ]
       },
       "status": "rule-verified",
-      "reviewed": "2026-09-09",
-      "reviewedCount": 25,
-      "reviewedSet": "d8d80a27"
+      "reviewed": "2026-11-23",
+      "reviewedCount": 31,
+      "reviewedSet": "4fc46271"
     },
     {
       "id": "factory-recall-equipment-rehost",
@@ -6368,9 +6734,9 @@
         ]
       },
       "status": "rule-verified",
-      "reviewed": "2026-09-09",
-      "reviewedCount": 40,
-      "reviewedSet": "159d1f67"
+      "reviewed": "2026-11-23",
+      "reviewedCount": 43,
+      "reviewedSet": "46918057"
     },
     {
       "id": "bard-mercurial-carries-conquer-payoffs",
@@ -6417,9 +6783,9 @@
         ]
       },
       "status": "rule-verified",
-      "reviewed": "2026-09-09",
-      "reviewedCount": 29,
-      "reviewedSet": "f12d69a8"
+      "reviewed": "2026-11-23",
+      "reviewedCount": 31,
+      "reviewedSet": "14655767"
     },
     {
       "id": "zhonyas-hourglass-cost-still-paid",
@@ -6456,9 +6822,9 @@
         ]
       },
       "status": "rule-verified",
-      "reviewed": "2026-11-16",
-      "reviewedCount": 8,
-      "reviewedSet": "2d60512e",
+      "reviewed": "2026-11-23",
+      "reviewedCount": 13,
+      "reviewedSet": "10b73371",
       "retired": {
         "since": "2026-11-23",
         "why": "Anchor OGN-077 Zhonya's Hourglass is banned in Constructed and 2v2 from 2026-11-23 (the Radiance bans in data/legality.json), so from that day the rule can never fire in a legal deck. Shown until then; kept, not deleted. Not named in #667's body; found by its every-ban-date test (#667)."
@@ -6519,9 +6885,9 @@
         ]
       },
       "status": "rule-verified",
-      "reviewed": "2026-09-14",
-      "reviewedCount": 22,
-      "reviewedSet": "ea728e38"
+      "reviewed": "2026-11-23",
+      "reviewedCount": 30,
+      "reviewedSet": "b6080e33"
     },
     {
       "id": "dune-surfer-one-way-tank-ignore",
@@ -6548,9 +6914,9 @@
         ]
       },
       "status": "rule-verified",
-      "reviewed": "2026-09-09",
-      "reviewedCount": 25,
-      "reviewedSet": "d8d80a27"
+      "reviewed": "2026-11-23",
+      "reviewedCount": 31,
+      "reviewedSet": "4fc46271"
     },
     {
       "id": "soraka-wanderer-replacement-fork",
@@ -6562,6 +6928,10 @@
           {
             "card": "UNL-007",
             "why": "Smite replaces a death with a BANISH, so the body is still removed — it is removal aimed at an enemy, not a second save, and 808.1.d.1's own example is that shape erasing the Deathknell of whatever it catches."
+          },
+          {
+            "card": "RAD-020",
+            "why": "His replacement saves only himself, and at printed Might (5 against her 4) her \"less Might than me\" never covers him, so no event carries both replacements to fork between (373.2)."
           }
         ]
       },
@@ -6583,7 +6953,7 @@
         ]
       },
       "status": "rule-verified",
-      "reviewed": "2026-09-09",
+      "reviewed": "2026-11-23",
       "reviewedCount": 7,
       "reviewedSet": "a0f81c1f"
     },
@@ -6605,6 +6975,10 @@
           {
             "card": "UNL-020",
             "why": "Dancing Grenade is self-scoped in the same way (\"this deals 1 additional Bonus Damage for each time this spell has dealt damage this turn\"), and R15 = A scopes that history to the card itself."
+          },
+          {
+            "card": "RAD-023",
+            "why": "\"Abilities of friendly gear deal 1 Bonus Damage\" reaches gear abilities only, and Volibear's split is a unit's triggered ability, the OGN-032 line."
           }
         ]
       },
@@ -6628,7 +7002,7 @@
         ]
       },
       "status": "rule-verified",
-      "reviewed": "2026-09-09",
+      "reviewed": "2026-11-23",
       "reviewedCount": 3,
       "reviewedSet": "6e0854e1"
     },
@@ -6642,6 +7016,10 @@
           {
             "card": "UNL-130",
             "why": "Walking Roost gives its Bird to an OPPONENT — 182 lets a creating effect name a different controller — so it never produces a body you may kill as your own additional cost."
+          },
+          {
+            "card": "RAD-132",
+            "why": "\"If you would play a unit token ..., you may play a 3 Might Mech unit token ... instead\" replaces a token another card was already making and plays none of its own, so the anchor gains no body (the RAD-132 exclude on grand-plaza-unit-tokens)."
           }
         ]
       },
@@ -6661,9 +7039,9 @@
         ]
       },
       "status": "rule-verified",
-      "reviewed": "2026-09-09",
-      "reviewedCount": 48,
-      "reviewedSet": "de0224c0"
+      "reviewed": "2026-11-23",
+      "reviewedCount": 58,
+      "reviewedSet": "2ede6857"
     },
     {
       "id": "treasure-hoard-temporary-garrison-cycle",
@@ -6718,9 +7096,9 @@
         ]
       },
       "status": "rule-verified",
-      "reviewed": "2026-09-09",
-      "reviewedCount": 15,
-      "reviewedSet": "32aa1b6a"
+      "reviewed": "2026-11-23",
+      "reviewedCount": 16,
+      "reviewedSet": "2ac77766"
     },
     {
       "id": "baron-pit-move-to-a-battlefield",
@@ -6799,9 +7177,9 @@
         ]
       },
       "status": "rule-verified",
-      "reviewed": "2026-09-12",
-      "reviewedCount": 14,
-      "reviewedSet": "700ab276"
+      "reviewed": "2026-11-23",
+      "reviewedCount": 19,
+      "reviewedSet": "3a7560fb"
     },
     {
       "id": "iascylla-schedules-the-defend-half",
@@ -6850,9 +7228,9 @@
         ]
       },
       "status": "rule-verified",
-      "reviewed": "2026-09-12",
-      "reviewedCount": 8,
-      "reviewedSet": "41ecea43"
+      "reviewed": "2026-11-23",
+      "reviewedCount": 10,
+      "reviewedSet": "68afc8df"
     },
     {
       "id": "jax-unmatched-quick-draw-everywhere",
@@ -6878,6 +7256,10 @@
           {
             "card": "SFD-186",
             "why": "Spinning Axe already prints [Quick-Draw]; 819.2 makes the grant a no-op."
+          },
+          {
+            "card": "RAD-123",
+            "why": "Protector's Shield already prints [Quick-Draw], and 819.2 says \"Multiple instances of Quick-Draw do not trigger separately and have no effect beyond the first.\" Jax's grant is worth nothing on it, as on Long Sword (SFD-022)."
           }
         ]
       },
@@ -6898,9 +7280,9 @@
         ]
       },
       "status": "rule-verified",
-      "reviewed": "2026-09-12",
-      "reviewedCount": 36,
-      "reviewedSet": "c7e30c33"
+      "reviewed": "2026-11-23",
+      "reviewedCount": 38,
+      "reviewedSet": "45f82ef1"
     },
     {
       "id": "power-nexus-reaction-power-at-finalization",
@@ -6916,6 +7298,10 @@
           {
             "card": "SFD-189",
             "why": "Fire Below the Mountain's Add reads \"Use only to play gear or use gear abilities\". The Nexus is a battlefield's Triggered Ability and is neither."
+          },
+          {
+            "card": "RAD-143",
+            "why": "Iron Revenant's Add reads \"Spend this Power only to play units or gear\". The Power Nexus's point is a Triggered Ability of a battlefield, not a play, so this rainbow can never pay it, as with OGN-247."
           }
         ]
       },
@@ -6946,9 +7332,9 @@
         ]
       },
       "status": "rule-verified",
-      "reviewed": "2026-09-12",
-      "reviewedCount": 12,
-      "reviewedSet": "1b26396f"
+      "reviewed": "2026-11-23",
+      "reviewedCount": 17,
+      "reviewedSet": "9d78db9d"
     },
     {
       "id": "sun-disc-enters-ready-exhaust-abilities",
@@ -6979,6 +7365,14 @@
           {
             "card": "UNL-145",
             "why": "Pyke, Returned matches on the same nested Gold-token reminder text; his own abilities carry no exhaust cost, so entering ready buys him nothing."
+          },
+          {
+            "card": "RAD-040",
+            "why": "No exhaust ability of its own: the quoted one is granted to friendly legends, and the Sun Disc grant is on the unit you play."
+          },
+          {
+            "card": "RAD-105",
+            "why": "No exhaust-cost ability of its own: the only :rb_exhaust:: is in the quoted Gold token reminder (the UNL-018 line), and it already has [Accelerate]."
           }
         ]
       },
@@ -7001,9 +7395,9 @@
         ]
       },
       "status": "rule-verified",
-      "reviewed": "2026-09-12",
-      "reviewedCount": 10,
-      "reviewedSet": "28c66d38"
+      "reviewed": "2026-11-23",
+      "reviewedCount": 15,
+      "reviewedSet": "6ec4ea04"
     },
     {
       "id": "the-academy-granted-repeat-modal-spell",
@@ -7041,9 +7435,9 @@
         ]
       },
       "status": "rule-verified",
-      "reviewed": "2026-09-12",
-      "reviewedCount": 6,
-      "reviewedSet": "c34944b3"
+      "reviewed": "2026-11-23",
+      "reviewedCount": 9,
+      "reviewedSet": "55ed115a"
     },
     {
       "id": "highlander-kill-cost-shield",
@@ -7082,9 +7476,9 @@
         ]
       },
       "status": "rule-verified",
-      "reviewed": "2026-09-13",
-      "reviewedCount": 8,
-      "reviewedSet": "2d60512e"
+      "reviewed": "2026-11-23",
+      "reviewedCount": 13,
+      "reviewedSet": "10b73371"
     },
     {
       "id": "ki-barrier-tank-raises-the-toll",
@@ -7121,9 +7515,9 @@
         ]
       },
       "status": "rule-verified",
-      "reviewed": "2026-09-14",
-      "reviewedCount": 21,
-      "reviewedSet": "be92fd05"
+      "reviewed": "2026-11-23",
+      "reviewedCount": 25,
+      "reviewedSet": "9b65042d"
     },
     {
       "id": "flurry-of-blades-one-sided-sweep",
@@ -7146,9 +7540,9 @@
         "combos": []
       },
       "status": "rule-verified",
-      "reviewed": "2026-09-13",
-      "reviewedCount": 6,
-      "reviewedSet": "0754421f"
+      "reviewed": "2026-11-23",
+      "reviewedCount": 7,
+      "reviewedSet": "c724c105"
     },
     {
       "id": "angler-beast-one-sided-bounce",
@@ -7170,9 +7564,9 @@
         "combos": []
       },
       "status": "rule-verified",
-      "reviewed": "2026-09-13",
-      "reviewedCount": 6,
-      "reviewedSet": "0754421f"
+      "reviewed": "2026-11-23",
+      "reviewedCount": 7,
+      "reviewedSet": "c724c105"
     },
     {
       "id": "rage-amplifier-lifts-the-damage-band",
@@ -7201,9 +7595,9 @@
         "combos": []
       },
       "status": "rule-verified",
-      "reviewed": "2026-11-16",
-      "reviewedCount": 21,
-      "reviewedSet": "eaf5b141"
+      "reviewed": "2026-11-23",
+      "reviewedCount": 29,
+      "reviewedSet": "14a39246"
     },
     {
       "id": "bullet-time-pays-on-resolution",
@@ -7231,10 +7625,34 @@
           {
             "card": "SFD-189",
             "why": "\"[Add] rainbow. Use only to play gear or use gear abilities\" — Bullet Time is a SPELL, so this rainbow can never be spent on it. The restriction is the card's own and 054.2 makes an \"only\" clause a prohibition."
+          },
+          {
+            "card": "RAD-022",
+            "why": "Its only [Add] is inside the quoted reminder of a Gold gear token it plays exhausted, the UNL-018 line this rule already excludes: it adds nothing itself, and the token cannot pay the turn it arrives."
+          },
+          {
+            "card": "RAD-052",
+            "why": "Its only [Add] is inside the quoted reminder of a Gold gear token it plays exhausted, the UNL-018 line this rule already excludes: it adds nothing itself, and the token cannot pay the turn it arrives."
+          },
+          {
+            "card": "RAD-101",
+            "why": "Its only [Add] is inside the quoted reminder of a Gold gear token it plays exhausted, the UNL-018 line this rule already excludes: it adds nothing itself, and the token cannot pay the turn it arrives. The Gold also goes to the killed gear's controller."
+          },
+          {
+            "card": "RAD-105",
+            "why": "Its only [Add] is inside the quoted reminder of a Gold gear token it plays exhausted, the UNL-018 line this rule already excludes: it adds nothing itself, and the token cannot pay the turn it arrives."
+          },
+          {
+            "card": "RAD-157",
+            "why": "Its only [Add] is inside the quoted reminder of a Gold gear token it plays exhausted, the UNL-018 line this rule already excludes: it adds nothing itself, and the token cannot pay the turn it arrives."
+          },
+          {
+            "card": "RAD-143",
+            "why": "\"Spend this Power only to play units or gear\": Bullet Time is a spell, so this rainbow can never pay it, the SFD-189 line this rule already excludes."
           }
         ]
       },
-      "why": "\"Pay any amount of [A] to deal that much damage to all enemy units at a battlefield\" is a Cost within an Instruction, so 204.3.b and 740.4.a.1 have it paid ON RESOLUTION rather than as the spell is played — and 204.3.b's own worked examples are Bullet Time and SFD-117 Ancient Henge in consecutive sentences, which is Riot pairing this anchor with its best partner itself. The consequence is the whole rule: the size of the sweep is chosen after the opponent has already responded or declined to, so rainbow held open is damage held open, and 355.10.d makes a deal-to-ALL untargeted so no [Deflect] in their garrison taxes a single point of it. The Henge is the extreme case, converting Energy to rainbow 1:1 with no cap per activation. Two limits: 356.6 floors nothing here because there is no cost to reduce, but 135.2.e.5.a is what lets a domain Power pay the rainbow at all; and every Gold-producing card in the pool prints its token \"exhausted\", so a Gold is next turn's rainbow and never this turn's.",
+      "why": "\"Pay any amount of [A] to deal that much damage to all enemy units at a battlefield\" is a Cost within an Instruction, so 204.3.b and 740.4.a.1 have it paid ON RESOLUTION rather than as the spell is played — and 204.3.b's own worked examples are Bullet Time and SFD-117 Ancient Henge in consecutive sentences, which is Riot pairing this anchor with its best partner itself. The consequence is the whole rule: the size of the sweep is chosen after the opponent has already responded or declined to, so rainbow held open is damage held open, and 355.10.d makes a deal-to-ALL untargeted so no [Deflect] in their garrison taxes a single point of it. The Henge is the extreme case, converting Energy to rainbow 1:1 with no cap per activation. Two limits: 356.6 floors nothing here because there is no cost to reduce, but 135.2.e.5.a is what lets a domain Power pay the rainbow at all; and every Gold-producing card in the pool but one prints its token \"exhausted\", so a Gold is next turn's rainbow and not this turn's; the one is RAD-100 The Waters' Wage, whose three Golds come ready when it is played from face down on your turn.",
       "basis": {
         "rules": [
           "054.2",
@@ -7247,16 +7665,22 @@
         "combos": []
       },
       "status": "rule-verified",
-      "reviewed": "2026-09-13",
-      "reviewedCount": 6,
-      "reviewedSet": "48fcf7b0"
+      "reviewed": "2026-11-23",
+      "reviewedCount": 10,
+      "reviewedSet": "063f7967"
     },
     {
       "id": "kogmaw-caustic-sacrifice-outlet",
       "name": "Kog'Maw is a 4-damage wipe of one battlefield, fired whenever you choose to kill him",
       "anchor": "OGN-190",
       "partner": {
-        "textMatches": "[Kk]ill (?:a|any number of) friendly units?|[Kk]ill a unit you control here"
+        "textMatches": "[Kk]ill (?:a|any number of) friendly units?|[Kk]ill a unit you control here",
+        "excludes": [
+          {
+            "card": "RAD-020",
+            "why": "Its kill is offered only inside a replacement, once a turn, when Mordekaiser himself would die, so it never fires Kog'Maw's wipe on demand, which is what the rule says an outlet adds."
+          }
+        ]
       },
       "why": "\"[Deathknell] — Deal 4 to all units at my battlefield\" on a Might 1 body for E3 + 1 Chaos is a board wipe whose only problem is TIMING: left alone it fires when the opponent chooses to kill him, or not at all. A friendly-kill outlet turns that into a wipe you fire on demand, and 428.1.a.1.b is what makes it work rather than merely legal — a unit killed by a Kill INSTRUCTION has its Deathknell put on the chain FIRST, with \"the unit's location, attributes, and other relevant information\" noted before the kill completes, so \"at my battlefield\" still resolves to where he was standing. It is not a \"when another friendly unit dies\" trigger and no rule of that family reaches it: 808.1.c makes a Deathknell short for \"When I die\", which is why malzahar-fanatic-friendly-death-payoff's list does not contain him. 355.10.d makes a deal-to-ALL untargeted, so a garrison of [Deflect] Birds pays no tax and 143.2.a takes everything up to Might 4 with it — including your own, which is the cost. Three of the ten are worth naming for speed: OGN-113 Malzahar, Fanatic is free, repeatable and [Action], so it fires inside a showdown; SFD-163 Deathgrip and UNL-142 Heedless Resurrection carry [Reaction], which reaches a Closed State on the opponent's turn. Six of the ten pay the kill as an additional cost to play a card, so they fire him ONCE, and SFD-178 Blade of the Ruined King pays it per attachment — 718.2 and 721.2 make an attached Equipment unable to pay its own [Equip] again.",
       "basis": {
@@ -7272,9 +7696,9 @@
         "combos": []
       },
       "status": "rule-verified",
-      "reviewed": "2026-09-13",
-      "reviewedCount": 10,
-      "reviewedSet": "ef0174c5"
+      "reviewed": "2026-11-23",
+      "reviewedCount": 13,
+      "reviewedSet": "c6fee08c"
     },
     {
       "id": "nocturne-horrifying-deck-top-look",
@@ -7301,9 +7725,9 @@
         "combos": []
       },
       "status": "rule-verified",
-      "reviewed": "2026-11-16",
-      "reviewedCount": 29,
-      "reviewedSet": "9bcc8898",
+      "reviewed": "2026-11-23",
+      "reviewedCount": 36,
+      "reviewedSet": "764343e4",
       "retired": {
         "since": "2026-11-23",
         "why": "Anchor OGN-194 Nocturne, Horrifying is banned in Constructed and 2v2 from 2026-11-23 (the Radiance bans in data/legality.json), so from that day the rule can never fire in a legal deck. Shown until then; kept, not deleted (#667)."
@@ -7340,9 +7764,9 @@
         "combos": []
       },
       "status": "rule-verified",
-      "reviewed": "2026-09-14",
-      "reviewedCount": 29,
-      "reviewedSet": "e05816ad"
+      "reviewed": "2026-11-23",
+      "reviewedCount": 32,
+      "reviewedSet": "5695c4af"
     }
   ]
 }
