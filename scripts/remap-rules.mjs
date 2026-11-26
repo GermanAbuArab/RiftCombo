@@ -12,7 +12,8 @@
 // 164.2.a and 164.2.b; #653: 429.2 and 429.3.a to 430.2, 429.2.a to 430.2.a; #654: 477.1.b.1.b to
 // 479.1.b, 477.2 to 479.3, 477.3 to 479.4; #655: 464.2.b to 466.2.b, 464.2.d to 466.2.c.1.a,
 // 464.2.e to 466.2.d; #656: 323.4 to 383.2.c.3, 323.5 to 323.4, 323.8 to 323.7, 323.9 to 323.8, and
-// 323.7 split, per citer, into 323.6 and 323.6.a; #658: 355.7, 355.10.d and 355.11.b). The data marks the edition per ENTRY (`rulesVersion`), so
+// 323.7 split, per citer, into 323.6 and 323.6.a; #658: 355.7, 355.10.d and 355.11.b; #657: 465.2.c.3 to 467.2.c.3, 465.2.c.5 to
+// 467.2.c.5). The data marks the edition per ENTRY (`rulesVersion`), so
 // the pin is per entry: an entry that cites any paragraph Riot reworded or deleted keeps every number
 // and `rulesVersion: "2026-07-16"`, and an entry whose every citation kept its text moves whole.
 // data/synergies.json carries one `rulesVersion` for the file and stays on 07-16.

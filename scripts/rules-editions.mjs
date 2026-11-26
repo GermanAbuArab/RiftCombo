@@ -157,6 +157,14 @@ export const REREAD = {
     // The same clause, for combat. Deleted 323.9.a, a combat staged while two opposing players have
     // units there, is still 463 and 323.9 (07-16 461 and 323.10, same text) (#656).
     "323.9": { to: "323.8", from: "be0d0289b407bb01", as: "0a13fedb0f3bf61b", by: "#656", was: String.raw`controlled by opposing players\.|remains [Ss]taged` },
+    // The rule is word for word. The example's "at least 3 damage to one" is "3 damage to one", which
+    // 465.2.c.4 (467.2.c.4, same text) already required while other units remain. `was` keeps on 07-16
+    // an entry that prints the 07-16 example outside a whole quote of the paragraph (#657).
+    "465.2.c.3": { to: "467.2.c.3", from: "a9ad2f10381c7c91", as: "d6bf419332c7334a", by: "#657", was: String.raw`at least 3 damage to one` },
+    // "passive abilities and replacement effects": a Passive Ability can already be a Replacement
+    // Effect (368.1, both editions), and the three examples, Lotus Trap's among them, are word for
+    // word. `was` keeps on 07-16 an entry that prints the 07-16 clause (#657).
+    "465.2.c.5": { to: "467.2.c.5", from: "4b84b259c40ecac2", as: "65cdf475f9a962c4", by: "#657", was: String.raw`this way, replacement effects` },
     // Players and Zones were Targets already (355.9.a and 355.10 name them in both editions), so "they
     // are" is the plural. The Picks sentence reads with Show Off (832.1.c, new in 10-09), the one card
     // text that picks; every citer's choice is a Choose. `was` keeps on 07-16 an entry that prints the
