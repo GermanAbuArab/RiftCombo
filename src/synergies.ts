@@ -157,9 +157,10 @@ export function partnersOf(s: Synergy, cards: CardIndex): Card[] {
   const canonical = new Map<string, Card>();
   for (const c of cards.cards) {
     if (c.base !== c.code) continue; // one row per base code; alt-art printings repeat the text
-    // Tokens and the two helper cards are never in a decklist. Battlefields have no domains either,
-    // and they are deckable, so the test has to spare them.
-    if (c.domains.length === 0 && !c.type.includes("battlefield")) continue;
+    // Tokens and the two helper cards are never in a decklist. A token is the gallery's mark, not an
+    // empty domain list: RAD-167 Neeko indicates no domain and is deckable (103.2.b.5, #695). The
+    // battlefields are spared as they were before, the gallery's two battlefield tokens with them.
+    if (c.token && !c.type.includes("battlefield")) continue;
     if (anchorIsBattlefield && c.type.includes("battlefield")) continue;
     if (anchor.has(c.base) || banned.has(c.base)) continue;
     if (s.partner.types && !s.partner.types.some((t) => c.type.includes(t))) continue;

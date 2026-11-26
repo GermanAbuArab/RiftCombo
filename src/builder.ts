@@ -97,10 +97,11 @@ export const isEmptyDeck = (deck: Deck): boolean => {
 };
 
 /**
- * A decklist can never hold a token or one of the two typeless helpers (`UNL-T04 Buff`,
- * `UNL-T08 XP Tracker`), so the pool leaves them out — the same test the synergy lists use: no
- * domain indicated and not a battlefield. One cell per NAME, never per base or per printing (#104):
- * 101 playable names carry two or three bases — Riot reprints a card across sets (`Vi, Destructive`
+ * A decklist can never hold a token, the two typeless helpers (`UNL-T04 Buff`, `UNL-T08 XP Tracker`)
+ * among them, so the pool leaves them out — the same test the synergy lists use: a token by the
+ * gallery's mark (`Card.token`) and not a battlefield. Not "no domain indicated", which read the
+ * same until RAD-167 Neeko, deckable under 103.2.b.5 (#695). One cell per NAME, never per base or
+ * per printing (#104): 101 playable names carry two or three bases — Riot reprints a card across sets (`Vi, Destructive`
  * is OGN-036 and VEN-167) and even within one set (94 legend bases are only 49 names, a main-set
  * printing plus a starter reissue) — and Core Rules 103.2.b counts copies by name, not by code. The
  * canonical printing of a name is the earliest by release order (`SETS`) and then collector number;
@@ -115,7 +116,7 @@ function basesByName(cards: CardIndex): Map<string, string[]> {
   if (cached) return cached;
   const seen = new Map<string, Set<string>>();
   for (const c of cards.cards) {
-    if (!c.domains.length && !c.type.includes("battlefield")) continue;
+    if (c.token && !c.type.includes("battlefield")) continue;
     const card = cards.get(c.base);
     if (!card) continue;
     (seen.get(card.name) ?? seen.set(card.name, new Set()).get(card.name)!).add(card.base);

@@ -26,6 +26,9 @@ export interface Card {
   set: string;
   collectorNumber: number;
   type: CardType[];
+  /** The gallery's `cardType.superType` "token" (#695). A card with no domain is not always one:
+   *  RAD-167 Neeko indicates none and is deckable under 103.2.b.5. */
+  token: boolean;
   rarity: string | null;
   domains: Domain[];
   energy: number | null;

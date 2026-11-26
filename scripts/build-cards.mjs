@@ -95,6 +95,11 @@ const splitVariant = (code) => {
 // the other three are Riot's renames (OGS-004/009 "Yi" -> "Master Yi", VEN-T04 "Recruit (NX)" ->
 // "Recruit"), listed on #660.
 const isSignature = (item) => (item.cardType.superType ?? []).some((t) => t.id === "signature");
+// #695: a token is what the gallery's `superType` says, not a card with no domain. Read 2026-11-26 it
+// marks 14 items "token" (12 units, gear and typeless helpers, 2 battlefields), and RAD-167 Neeko,
+// Blending In ("Neutral cards can go in decks of any Domain") is the one domainless card besides
+// the battlefields that it does not mark.
+const isToken = (item) => (item.cardType.superType ?? []).some((t) => t.id === "token");
 export function displayName(item) {
   if (!item.subtitle || isSignature(item)) return item.name;
   const sep = item.cardType.type.some((t) => t.id === "legend") ? " - " : ", ";
@@ -127,6 +132,7 @@ function normalize(item) {
     set: item.set.value.id,
     collectorNumber: item.collectorNumber,
     type: item.cardType.type.map((t) => t.id),
+    token: isToken(item),
     rarity: val(item.rarity),
     // Riot lists domainless cards (battlefields, tokens) as "colorless"; we model that as no domain,
     // which is what Domain Identity's subset rule needs.

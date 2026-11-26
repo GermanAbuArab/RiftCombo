@@ -42,6 +42,9 @@ const ORDER_RUNE = "OGN-214";
 const SPIDERLING = "VEN-097";  // "Your deck can have any number of cards named Spiderling"
 const VI = "OGN-036";          // Vi, Destructive
 const VI_VEN = "VEN-167";      // Vi, Destructive — the Vendetta reprint
+const NEEKO = "RAD-167";       // Neeko, Blending In — no Domain, and not a token
+// The twelve items the gallery calls tokens that are not battlefields (read 2026-11-23 and 2026-11-26).
+const TOKENS = ["OGN-271", "OGN-272", "OGN-273", "OGN-274", "SFD-T03", "UNL-T02", "UNL-T04", "UNL-T05", "UNL-T06", "UNL-T07", "UNL-T08", "VEN-T04"];
 // 103.2.d (#211). Ornn is the one champion tag with three Signature names, and all three are Unique,
 // which is why a deck can reach exactly three on-tag Signature cards and no more.
 const ORNN_LEGEND = "SFD-189";  // Fire Below the Mountain, the only Ornn legend, calm + mind
@@ -78,18 +81,38 @@ describe("the pool the builder draws from", () => {
   });
 
   /**
-   * A decklist can never hold a token or one of the two typeless helpers, so offering them would be
-   * offering an illegal card. Same filter the synergy lists use: no domain and not a battlefield.
+   * A decklist can never hold a token, so offering one would be offering an illegal card. A token is
+   * what the gallery calls one (`cardType.superType` "token", read into `Card.token`, #695), not a
+   * card with no domain: Neeko, Blending In is the first card that indicates no Domain and is not a
+   * token, and 103.2.b.5 (Core Rules 2026-10-09) permits it "in decks of any Domain Identity". Same
+   * filter the synergy lists use.
    */
-  it("leaves out the tokens and the two typeless helpers", () => {
-    // 926 before Radiance; #664 added 166: its 178 names, less the 11 it reprints and Neeko, Blending In,
-    // the first Neutral card, which the gallery ships as "colorless" and the build reads as no domain.
-    // 103.2.b.5 (Core Rules 2026-10-09) permits a card with no Domain in any deck, so leaving it out
-    // is a known gap: telling it from a token needs its own card field (#695).
-    expect(pool.length).toBe(1092);
-    for (const c of pool) expect(c.domains.length > 0 || c.type.includes("battlefield"), c.base).toBe(true);
-    expect(pool.find((c) => c.base === "UNL-T05")).toBeUndefined();  // Gold
-    expect(pool.find((c) => c.base === "UNL-T08")).toBeUndefined();  // XP Tracker, no type at all
+  it("leaves out the tokens and keeps the domainless card that is not one", () => {
+    // 926 before Radiance; #664 added 166 (its 178 names, less the 11 it reprints and Neeko); #695 added Neeko.
+    expect(pool.length).toBe(1093);
+    for (const base of TOKENS) {
+      expect(cards.get(base)!.token, base).toBe(true);
+      expect(pool.find((c) => c.base === base), base).toBeUndefined();
+    }
+    expect(pool.find((c) => c.base === NEEKO)?.name).toBe("Neeko, Blending In");
+    expect(pool.filter((c) => !c.domains.length && !c.type.includes("battlefield")).map((c) => c.base)).toEqual([NEEKO]);
+    // The gallery calls two battlefields tokens as well, and this filter spares every battlefield, so
+    // the pool still offers them as it did before #695. Baron Pit's own text says "(You can't start
+    // the game with a token battlefield.)"; that is its own defect, reported on #695.
+    expect(pool.filter((c) => c.token).map((c) => c.base).sort()).toEqual(["UNL-T01", "UNL-T03"]);
+  });
+
+  it("offers Neeko to the Main Deck under legends of two different identities (103.2.b.5)", () => {
+    const [mindOrder, calmBody] = [LADY, YI_LEGEND].map((l) => cards.domainsOf(l));
+    expect(mindOrder!.some((d) => calmBody!.includes(d))).toBe(false);
+    for (const legend of [LADY, YI_LEGEND]) {
+      // What the builder shows once a legend is picked: the Main Deck zone, its two domains preselected.
+      const main = filterPool(cards, { zone: "main", domains: [...cards.domainsOf(legend)], legend });
+      expect(main.map((c) => c.base), legend).toContain(NEEKO);
+      const deck = addCard(emptyDeck(), legend, cards);
+      expect(capOf(deck, NEEKO, cards).full, legend).toBe(false);
+      expect(addCard(deck, NEEKO, cards).main[NEEKO], legend).toBe(1);
+    }
   });
 
   // 112 legend bases are only 58 names — 54 of them print a main-set base AND a starter reissue.
