@@ -237,9 +237,6 @@ export function applyErrata(cards, errata) {
 
 const normName = (s) => s.replace(/[’‘']/g, "'").replace(/\s+/g, " ").trim().toLowerCase();
 
-// `notInPool` (#647) records a ban on a card Riot has announced but our pool does not hold yet: the
-// entry carries the code Riot's gallery gives it and skips the lookup. It fails the build the moment
-// the pool does hold the name, so the field is removed by whoever ingests the set (#664, #665).
 export function resolveLegality(cards, src) {
   const byName = new Map();
   for (const c of cards) {
@@ -250,11 +247,7 @@ export function resolveLegality(cards, src) {
   const out = { source: src.source, retrieved: src.retrieved, entries: [] };
   for (const fmt of src.formats) {
     for (const ban of fmt.banned) {
-      const found = (byName.get(normName(ban.name)) ?? []).filter((c) => c.type.includes(ban.entity));
-      if (ban.notInPool && found.length) {
-        throw new Error(`legality: ${ban.entity} ${JSON.stringify(ban.name)} is in the pool now; remove its notInPool`);
-      }
-      const matches = ban.notInPool ? [{ name: ban.name, code: ban.notInPool, base: ban.notInPool }] : found;
+      const matches = (byName.get(normName(ban.name)) ?? []).filter((c) => c.type.includes(ban.entity));
       if (matches.length === 0) throw new Error(`legality: ${ban.entity} ${JSON.stringify(ban.name)} not found`);
       out.entries.push({
         format: fmt.id,
