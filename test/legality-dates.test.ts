@@ -86,24 +86,27 @@ describe("the text corpus names the date an announced ban starts (#647)", () => 
   });
 });
 
-describe("notInPool records a ban on a card the pool does not hold yet", () => {
+describe("every ban resolves by name over the pool (#665)", () => {
   const one = (ban: Record<string, unknown>) => ({
     source: "https://example.test/", retrieved: "2026-11-16",
     formats: [{ id: "constructed", lastUpdated: "2026-11-16", source: "https://example.test/", banned: [ban] }],
   });
 
-  // A made-up card: Riven, Broken Blade (RAD-043) was the real case until #664 put Radiance in the pool.
-  it("records it under the declared code, without a pool lookup", () => {
-    const out = resolveLegality(pool, one({ entity: "unit", name: "Nobody, Unprinted", notInPool: "TST-001" }));
-    expect(out.entries[0]).toMatchObject({ name: "Nobody, Unprinted", codes: ["TST-001"], bases: ["TST-001"] });
+  // Riven, Broken Blade was recorded under a declared code (#647) until #664 put Radiance in the pool;
+  // now it resolves to its printings like every other ban.
+  it("RAD-043 Riven, Broken Blade is found in the pool and banned from 2026-11-23, in both formats", () => {
+    expect(pool.filter((c) => c.base === "RAD-043").map((c) => `${c.code} ${c.name}`).sort())
+      .toEqual(["RAD-043 Riven, Broken Blade", "RAD-043a Riven, Broken Blade"]);
+    for (const format of ["constructed", "2v2"] as const) {
+      expect(on("2026-11-22").legality("RAD-043", format)).toBeUndefined();
+      expect(on("2026-11-23").legality("RAD-043", format)).toMatchObject({
+        name: "Riven, Broken Blade", codes: ["RAD-043", "RAD-043a"], bases: ["RAD-043"], status: "banned", since: "2026-11-23",
+        source: "https://playriftbound.com/en-us/news/announcements/radiance-ban-list-updates-effective-november-23-2026",
+      });
+    }
   });
 
-  it("fails the build once the pool holds the card, so the field cannot outlive the ingestion", () => {
-    expect(() => resolveLegality(pool, one({ entity: "unit", name: "Ekko, Recurrent", notInPool: "OGN-110" })))
-      .toThrow(/notInPool/);
-  });
-
-  it("an ordinary name that does not resolve still fails", () => {
+  it("a name that does not resolve fails the build", () => {
     expect(() => resolveLegality(pool, one({ entity: "unit", name: "Nobody, Unprinted" }))).toThrow(/not found/);
   });
 });
