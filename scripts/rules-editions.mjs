@@ -157,6 +157,19 @@ export const REREAD = {
     // The same clause, for combat. Deleted 323.9.a, a combat staged while two opposing players have
     // units there, is still 463 and 323.9 (07-16 461 and 323.10, same text) (#656).
     "323.9": { to: "323.8", from: "be0d0289b407bb01", as: "0a13fedb0f3bf61b", by: "#656", was: String.raw`controlled by opposing players\.|remains [Ss]taged` },
+    // Players and Zones were Targets already (355.9.a and 355.10 name them in both editions), so "they
+    // are" is the plural. The Picks sentence reads with Show Off (832.1.c, new in 10-09), the one card
+    // text that picks; every citer's choice is a Choose. `was` keeps on 07-16 an entry that prints the
+    // 07-16 sentence (#658).
+    "355.7": { to: "355.7", from: "87724f7b3c950442", as: "6bf9160b4ad41dca", by: "#658", was: String.raw`Game Objects to affect|it is Targeted` },
+    // The rule, its other four examples, 355.10.d.1 and 355.10.d.2 are word for word; the two legend
+    // examples moved to new 355.10.g with the same answers. `was` keeps on 07-16 an entry that prints
+    // a legend example next to the number (#658).
+    "355.10.d": { to: "355.10.d", from: "5c14c5e4197debd4", as: "f6bdc5169864e94c", by: "#658", was: String.raw`one legend|two friendly legends|[Rr]eady (?:your|a friendly) legend` },
+    // "can choose a subset" is "must choose a legal subset", which its own example said in 07-16;
+    // new 355.11.b.1 makes the subset a largest one, and no citer chooses fewer targets than fit.
+    // `was` keeps on 07-16 an entry that prints "can choose a subset" (#658).
+    "355.11.b": { to: "355.11.b", from: "9abb927c53682792", as: "f1cd6b9ea920716b", by: "#658", was: String.raw`can choose a subset` },
   },
   tournament: {},
 };
