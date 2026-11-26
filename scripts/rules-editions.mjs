@@ -350,7 +350,11 @@ export function citations(entry) {
  * this, not the raw file: an entry moved to 2026-10-09 says 103.2.b.1 where 07-16 says another number
  * for the same text, and counting it raw found 15 "rules the notes never carry" that were only that.
  * Each number an entry cites goes back to the one 07-16 paragraph its ledger hash names: one the move
- * rewrote, or else the number itself.
+ * rewrote, or else the number itself. An entry walked again by hand on 10-09 (`walkedVersion`, #708)
+ * has no ledger row: each of its numbers goes back to the one 07-16 paragraph whose text it holds
+ * (the paragraph fates and the REREAD rows, inverted; the same number when it is among several), and
+ * a number with no single such paragraph is written `=NNN.x`, which no counter reads as a rule,
+ * because counting it would credit a 07-16 paragraph that says something else.
  */
 export function catalogueText() {
   const read = (p) => fs.readFileSync(new URL(p, root), "utf8");
@@ -384,8 +388,33 @@ export function catalogueText() {
       : Array.isArray(node) ? node.map((v) => back(v, map, key))
       : node && typeof node === "object" ? Object.fromEntries(Object.entries(node).map(([k, v]) => [k, back(v, map, k)]))
       : node;
+  // The 07-16 numbers each 10-09 number holds the text of: the paragraph fates (same, renumbered,
+  // moved cross-reference) and the REREAD rows, inverted. Built only when an entry needs it.
+  let inv = null;
+  const invert = () => {
+    inv = {};
+    for (const b of BOOKS) {
+      const m = (inv[b] = new Map());
+      const add = (to, id) => (m.get(to) || m.set(to, []).get(to)).push(id);
+      const ed = (v) => parseText(read(EDITIONS[v][b]));
+      for (const r of fates(ed(OLD), ed(NEW)).rows) if (["same", "renumbered", "xref"].includes(r.fate)) for (const to of r.to.split(" | ")) add(to, r.id);
+      for (const l of legs(REREAD[b])) add(l.to, l.id);
+    }
+  };
+  const rewalked = (e) => {
+    inv ??= (invert(), inv);
+    const map = new Map();
+    for (const { 0: t, index: at } of JSON.stringify(e).matchAll(TOKEN)) {
+      const book = BOOKS.find((b) => inv[b].has(t));
+      if (map.has(t) || NOT_A_RULE(JSON.stringify(e), at, t.length)) continue;
+      const ids = book ? [...new Set(inv[book].get(t))] : [];
+      map.set(t, ids.includes(t) ? t : ids.length === 1 ? ids[0] : `=${t}`);
+    }
+    return back(e, map, "");
+  };
   db.combos = db.combos.map((e) => {
     if (e.rulesVersion === OLD) return e;
+    if (e.walkedVersion === NEW) return rewalked(e);
     const row = ledger[e.id];
     if (!row) throw new Error(`${e.id} is on ${e.rulesVersion} with no row in the ledger`);
     const map = new Map();

@@ -231,7 +231,9 @@ describe("the walked-against line (#645)", () => {
     const moved = combos.filter((c) => c.status === "verified" && c.rulesVersion !== c.walkedVersion);
     expect(moved.length).toBeGreaterThan(0);
     for (const c of combos.filter((e) => e.status === "verified")) {
-      expect(c.walkedVersion, c.id).toBe("2026-07-16");
+      // A re-walk on the 2026-10-09 text (#708) is numbered on that text too.
+      expect(["2026-07-16", "2026-10-09"], c.id).toContain(c.walkedVersion);
+      if (c.walkedVersion === "2026-10-09") expect(c.rulesVersion, c.id).toBe("2026-10-09");
       expect(comboPage(c, ctx), c.id).toContain(`<p class="rules-version">${rulesLine(c)}</p>`);
     }
   });
