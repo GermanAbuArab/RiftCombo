@@ -1,7 +1,7 @@
 import { readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
 // @ts-expect-error plain .mjs shared with scripts/remap-rules.mjs, which cannot import TypeScript.
-import { BOOKS, EDITIONS, REREAD, catalogueText, citations, hash, legs, paragraphs } from "../scripts/rules-editions.mjs";
+import { BOOKS, EDITIONS, HELD_ON_OLD, REREAD, catalogueText, citations, hash, legs, paragraphs } from "../scripts/rules-editions.mjs";
 
 /**
  * Every rule paragraph this catalogue cites has to exist in a rules document we ship.
@@ -455,5 +455,29 @@ describe("a slash shorthand cites its members too (#652)", () => {
     expect(text).not.toMatch(/434\.1\.[a-z](\/[a-z])*\/i(?![0-9a-z])/);
     expect(text).toContain("434.1.f/g/h");
     expect(text).toContain("434.1.c/d/f/g/h");
+  });
+});
+
+describe("entries held on 2026-07-16 by id stay there, pinned in the remap record with their reason (#707)", () => {
+  const held = Object.entries(HELD_ON_OLD as Record<string, string>);
+  const record = readFileSync(new URL("docs/rules-diff/remap-2026-10-09.md", root), "utf8");
+  const pinned = record.split("\n## Pinned entries")[1]!.split("\n").filter((l) => l.startsWith("- `"));
+
+  it("keeps each one on 07-16 and out of the ledger, whatever its citations", () => {
+    expect(held.length).toBeGreaterThan(0);
+    const faults = held.flatMap(([id]) => {
+      const e = combos.combos.find((x) => x.id === id);
+      if (!e) return [`${id} is not in the catalogue`];
+      return [...(e.rulesVersion === OLD ? [] : [`${id} names ${e.rulesVersion}`]), ...(id in ledger.entries ? [`${id} has a ledger row`] : [])];
+    });
+    expect(faults).toEqual([]);
+  });
+
+  it("lists each one under Pinned entries with its reason", () => {
+    for (const [id, why] of held) {
+      const line = pinned.find((l) => l.startsWith(`- \`${id}\` [`));
+      expect(line, id).toBeDefined();
+      expect(line!.slice(line!.indexOf("]: ") + 3).split("; "), id).toContain(why);
+    }
   });
 });

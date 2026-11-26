@@ -27,13 +27,15 @@
 //     test/source-quotes.test.ts on the first run: a rule number INSIDE Riot's own words);
 //   - a dotted number resolves in neither 07-16 book (the old-numbering quote in OLD_NUMBERING);
 //   - a string quotes an issue's words, translated, with a 07-16 number in them that would change
-//     (ISSUE_QUOTES): the number is the issue's and stays as the issue wrote it.
+//     (ISSUE_QUOTES): the number is the issue's and stays as the issue wrote it;
+//   - its id is held on 07-16 with a reason (HELD_ON_OLD in scripts/rules-editions.mjs): a walk made
+//     on the 07-16 rules that the same words in 10-09 do not settle (#707: R36, #706).
 //
 // Output: data/rules-remap-2026-10-09.json, the ledger test/rule-refs.test.ts reads (per remapped entry,
 // the old numbers it moved and, per cited number, the book and a hash of the 07-16 text it meant), and
 // docs/rules-diff/remap-2026-10-09.md, the record of every entry moved or pinned and why.
 import fs from "node:fs";
-import { citations, fates, hash, legs, parseText, EDITIONS, BOOKS, REREAD } from "./rules-editions.mjs";
+import { citations, fates, hash, legs, parseText, EDITIONS, BOOKS, REREAD, HELD_ON_OLD } from "./rules-editions.mjs";
 
 const FROM = "2026-07-16";
 const TO = "2026-10-09";
@@ -154,6 +156,7 @@ function plan(entry) {
   const pins = new Set();
   if (OLD_NUMBERING.has(entry.id)) pins.add("quotes a commenter citing an older numbering verbatim");
   if (ISSUE_QUOTES.has(entry.id)) pins.add("quotes an issue's words with a 07-16 number that would change");
+  if (HELD_ON_OLD[entry.id]) pins.add(HELD_ON_OLD[entry.id]);
   const edits = []; // { path, at, len, from, to, put? (what is printed, when not `to`) }
   const ledger = new Map(); // new number -> [book, count, hash]
   const moved = new Set();
