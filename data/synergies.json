@@ -341,6 +341,42 @@
           {
             "card": "RAD-009",
             "why": "\"play a ready 3 Might Mech unit token\": the token already enters ready."
+          },
+          {
+            "card": "OGN-094",
+            "why": "\"Play a ready 3 :rb_might: Sprite unit token with [Temporary]\": the token already enters ready, so \"Your tokens enter ready\" changes nothing for it."
+          },
+          {
+            "card": "OGN-106",
+            "why": "\"play a ready 3 :rb_might: Sprite unit token with [Temporary] here\": the token already enters ready, so \"Your tokens enter ready\" changes nothing for it."
+          },
+          {
+            "card": "UNL-048",
+            "why": "\"When I hold, play a ready 3 :rb_might: Sprite unit token with [Temporary] here\": the token already enters ready, so \"Your tokens enter ready\" changes nothing for it."
+          },
+          {
+            "card": "UNL-069",
+            "why": "\"Play two ready 3 :rb_might: Sprite unit tokens with [Temporary]\": both tokens already enter ready, so \"Your tokens enter ready\" changes nothing for it."
+          },
+          {
+            "card": "UNL-078",
+            "why": "\"play a ready 3 :rb_might: Sprite unit token with [Temporary] to your base\": the token already enters ready, and its [Deathknell] repeats that same ready token, so \"Your tokens enter ready\" changes nothing for it."
+          },
+          {
+            "card": "UNL-084",
+            "why": "\"play a ready 3 :rb_might: Sprite unit token with [Temporary] to your base\": the token already enters ready, so \"Your tokens enter ready\" changes nothing for it."
+          },
+          {
+            "card": "UNL-189",
+            "why": "\"Play a ready 3 :rb_might: Sprite unit token with [Temporary]\": the token already enters ready, so \"Your tokens enter ready\" changes nothing for it."
+          },
+          {
+            "card": "UNL-199",
+            "why": "\"play a ready Reflection unit token there\": the token already enters ready, so \"Your tokens enter ready\" changes nothing for it."
+          },
+          {
+            "card": "UNL-200",
+            "why": "\"Play a ready Reflection unit token to your base\": the token already enters ready, so \"Your tokens enter ready\" changes nothing for it."
           }
         ]
       },
@@ -373,9 +409,9 @@
         ]
       },
       "status": "rule-verified",
-      "reviewed": "2026-11-23",
-      "reviewedCount": 87,
-      "reviewedSet": "983c297d"
+      "reviewed": "2026-11-26",
+      "reviewedCount": 78,
+      "reviewedSet": "ceb4eca8"
     },
     {
       "id": "grand-plaza-unit-tokens",
@@ -563,6 +599,30 @@
           {
             "card": "RAD-157",
             "why": "No exhaust ability of its own: the only :rb_exhaust:: in its text is inside the quoted reminder of the Gold gear token it plays, and that token's \"Kill this\" leaves nothing to run a second time."
+          },
+          {
+            "card": "UNL-018",
+            "why": "No exhaust ability of its own: the only :rb_exhaust:: in its text is inside the quoted reminder of the Gold gear tokens it plays (\"[Reaction][>] Kill this, :rb_exhaust:: [Add] :rb_rune_rainbow:.\"), and that token's \"Kill this\" leaves nothing to run a second time."
+          },
+          {
+            "card": "UNL-073",
+            "why": "No exhaust ability of its own: the only :rb_exhaust:: in its text is inside the quoted reminder of the Gold gear token it plays (\"[Reaction][>] Kill this, :rb_exhaust:: [Add] :rb_rune_rainbow:.\"), and that token's \"Kill this\" leaves nothing to run a second time."
+          },
+          {
+            "card": "UNL-145",
+            "why": "No exhaust ability of its own: the only :rb_exhaust:: in its text is inside the quoted reminder of the Gold gear token it plays (\"[Reaction][>] Kill this, :rb_exhaust:: [Add] :rb_rune_rainbow:.\"), and that token's \"Kill this\" leaves nothing to run a second time."
+          },
+          {
+            "card": "OGN-186",
+            "why": "Its only exhaust ability is \":rb_rune_chaos:, :rb_exhaust:: Kill this.\": it kills its own source, so a ready finds nothing left to use."
+          },
+          {
+            "card": "UNL-136",
+            "why": "Its only exhaust ability has \"Kill this\" in its cost (\"Kill this, :rb_energy_1:, :rb_exhaust:: [Predict 2], then draw 1.\"), so it runs once and a ready finds nothing left to use again. Readying it the turn it lands (\"This enters exhausted.\") only moves that one use earlier."
+          },
+          {
+            "card": "UNL-161",
+            "why": "Its only exhaust ability has \"Kill this\" in its cost (\"[Action][>] Kill this, :rb_exhaust:: Give a unit +2 :rb_might: this turn.\"), so it runs once and a ready finds nothing left to use again; 149.1 already has it enter play ready."
           }
         ]
       },
@@ -580,9 +640,9 @@
         ]
       },
       "status": "rule-verified",
-      "reviewed": "2026-11-23",
-      "reviewedCount": 90,
-      "reviewedSet": "d65ad84a"
+      "reviewed": "2026-11-26",
+      "reviewedCount": 84,
+      "reviewedSet": "49be6059"
     },
     {
       "id": "ride-the-wind-move-triggers",
@@ -1989,6 +2049,10 @@
           {
             "card": "RAD-154",
             "why": "\"When you play it, [Buff] it\" is a delayed trigger on the next unit you play. 355.5.b keeps the choices of \"Delayed or Reflexive Triggers generated by the item\" out of the spell's own choosing, and \"it\" is picked by criteria (355.5.a), so the spell never chooses Jae."
+          },
+          {
+            "card": "OGN-153",
+            "why": "Chooses no unit: \"For each friendly unit, you may spend its buff to ready it\" and \"buff all friendly units\" both take every friendly unit by a characteristic, which 355.10.d keeps from being chosen (\"programmatically selected based on its characteristics rather than chosen by the spell or ability's controller\"); the \"you may\" is whether to spend a buff, not which unit the spell picks."
           }
         ]
       },
@@ -2005,9 +2069,9 @@
         ]
       },
       "status": "rule-verified",
-      "reviewed": "2026-11-23",
-      "reviewedCount": 39,
-      "reviewedSet": "a6164891"
+      "reviewed": "2026-11-26",
+      "reviewedCount": 38,
+      "reviewedSet": "307fa37f"
     },
     {
       "id": "renekton-brute-relative-might-gate",
@@ -2817,6 +2881,14 @@
           {
             "card": "RAD-116",
             "why": "a gear: Portal Rescue banishes \"a friendly unit\", so it never replays this play effect."
+          },
+          {
+            "card": "OGN-212",
+            "why": "A gear: its play effect is \"When you play this, play a 1 :rb_might: Recruit unit token at your base\", and Portal Rescue banishes \"a friendly unit\", so it never replays that play effect."
+          },
+          {
+            "card": "UNL-078",
+            "why": "A gear: its play effect is \"When you play this, play a ready 3 :rb_might: Sprite unit token with [Temporary] to your base\", and Portal Rescue banishes \"a friendly unit\", so it never replays that play effect."
           }
         ]
       },
@@ -2836,9 +2908,9 @@
         ]
       },
       "status": "rule-verified",
-      "reviewed": "2026-11-23",
-      "reviewedCount": 21,
-      "reviewedSet": "e3e10940"
+      "reviewed": "2026-11-26",
+      "reviewedCount": 19,
+      "reviewedSet": "4e914ee3"
     },
     {
       "id": "teemo-strategist-lures-the-attacker",
@@ -2967,6 +3039,18 @@
           {
             "card": "RAD-009",
             "why": "\"I enter ready\" and \"play a ready 3 Might Mech unit token\": both bodies already enter ready, so the Wurm adds nothing."
+          },
+          {
+            "card": "OGN-094",
+            "why": "\"Play a ready 3 :rb_might: Sprite unit token with [Temporary]\": the token already enters ready, so the Wurm adds nothing."
+          },
+          {
+            "card": "OGN-106",
+            "why": "\"play a ready 3 :rb_might: Sprite unit token with [Temporary] here\": the token already enters ready, so the Wurm adds nothing to it. Sprite Mother herself entering ready is what the Wurm does for any unit, not a token body this list is for."
+          },
+          {
+            "card": "UNL-069",
+            "why": "\"Play two ready 3 :rb_might: Sprite unit tokens with [Temporary]\": both tokens already enter ready, so the Wurm adds nothing."
           }
         ]
       },
@@ -2981,9 +3065,9 @@
         ]
       },
       "status": "rule-verified",
-      "reviewed": "2026-11-23",
-      "reviewedCount": 59,
-      "reviewedSet": "9325be80"
+      "reviewed": "2026-11-26",
+      "reviewedCount": 56,
+      "reviewedSet": "ef4f82a5"
     },
     {
       "id": "weaponmaster-equip-discount",
@@ -2998,6 +3082,10 @@
           {
             "card": "RAD-123",
             "why": "Its [Equip] costs 1 Energy and no rune, and 821.1.c.3 says such a cost \"can still be paid, but will not be reduced\"."
+          },
+          {
+            "card": "UNL-158",
+            "why": "Its [Equip] cost is \"Spend 1 XP\", with no rune in it, and 821.1.c.3 says such a cost \"can still be paid, but will not be reduced\"."
           }
         ]
       },
@@ -3014,9 +3102,9 @@
         ]
       },
       "status": "rule-verified",
-      "reviewed": "2026-11-23",
-      "reviewedCount": 40,
-      "reviewedSet": "3ea76d31"
+      "reviewed": "2026-11-26",
+      "reviewedCount": 39,
+      "reviewedSet": "5e593a93"
     },
     {
       "id": "oasis-raider-low-rune-family",
@@ -3308,6 +3396,18 @@
           {
             "card": "RAD-105",
             "why": "No exhaust ability of its own: the only :rb_exhaust:: in its text is inside the quoted reminder of the Gold gear token it plays, and that token's \"Kill this\" leaves nothing to run a second time."
+          },
+          {
+            "card": "UNL-018",
+            "why": "No exhaust ability of its own: the only :rb_exhaust:: in its text is inside the quoted reminder of the Gold gear tokens it plays (\"[Reaction][>] Kill this, :rb_exhaust:: [Add] :rb_rune_rainbow:.\"), so it gives Heimerdinger nothing to have. Copied onto Heimerdinger, the token's \"Kill this\" would name Heimerdinger (053: a card refers to itself, read as R30 reads a borrowed \"I\"), trading the unit for one rainbow."
+          },
+          {
+            "card": "UNL-145",
+            "why": "No exhaust ability of its own: the only :rb_exhaust:: in its text is inside the quoted reminder of the Gold gear token it plays (\"[Reaction][>] Kill this, :rb_exhaust:: [Add] :rb_rune_rainbow:.\"), so it gives Heimerdinger nothing to have. Copied onto Heimerdinger, the token's \"Kill this\" would name Heimerdinger (053: a card refers to itself, read as R30 reads a borrowed \"I\"), trading the unit for one rainbow."
+          },
+          {
+            "card": "OGN-186",
+            "why": "Its only exhaust ability is \":rb_rune_chaos:, :rb_exhaust:: Kill this.\", whose whole effect is killing its source. On Heimerdinger that \"this\" names Heimerdinger (053, read as R30 reads a borrowed \"I\"), so the copy kills Heimerdinger and the Trove's own \"When this leaves the board\" never fires."
           }
         ]
       },
@@ -3331,9 +3431,9 @@
         ]
       },
       "status": "rule-verified",
-      "reviewed": "2026-11-23",
-      "reviewedCount": 87,
-      "reviewedSet": "b70155aa"
+      "reviewed": "2026-11-26",
+      "reviewedCount": 84,
+      "reviewedSet": "ff2962bb"
     },
     {
       "id": "blade-of-ruined-king-deathknell-ondemand",
@@ -3503,6 +3603,10 @@
           {
             "card": "RAD-111",
             "why": "It reveals at the start of your Beginning Phase, and 167 empties the Rune Pool at the start of the Main Phase, so Undertitan's 2 Energy is lost unless a Reaction spends it first."
+          },
+          {
+            "card": "OGN-160",
+            "why": "It reveals \"At the end of your turn\", in the Ending Step (317.1.a), and 317.2.d empties the Rune Pool right after it (\"Each player's Rune Pool empties. Any unspent Energy and Power are lost.\", the 167 rule), so Undertitan's 2 Energy is lost unless a Reaction spends it first. An Undertitan it reveals is the unit it banishes and plays \"ignoring its cost\", so the Energy never pays for its own play either."
           }
         ]
       },
@@ -3523,9 +3627,9 @@
         ]
       },
       "status": "rule-verified",
-      "reviewed": "2026-11-23",
-      "reviewedCount": 12,
-      "reviewedSet": "5b2ffe80"
+      "reviewed": "2026-11-26",
+      "reviewedCount": 11,
+      "reviewedSet": "742388b8"
     },
     {
       "id": "black-market-broker-hidden-family",
@@ -5021,6 +5125,14 @@
           {
             "card": "RAD-139",
             "why": "a legend: 103.1 gives a deck one Champion Legend, which here is Soul's Reflection, and the only way a second legend reaches the Legend Zone (107.4.d.1) is Neeko, Blending In (RAD-167), which the pool leaves out (#695). Its Fury/Mind domains are outside her Mind/Chaos identity as well."
+          },
+          {
+            "card": "VEN-139",
+            "why": "A legend: its [Empower] (\":rb_energy_3::rb_rune_rainbow:: Empower this\") is on a legend, and 103.2 gives a deck \"1 Champion Legend\", which here is Soul's Reflection. The only card that adds another legend to the Legend Zone (103.1, 107.4.d.1) is Neeko, Blending In (RAD-167), which the pool leaves out (#695). Its Fury/Calm domains are outside Soul's Reflection's Mind/Chaos identity as well."
+          },
+          {
+            "card": "VEN-149",
+            "why": "A legend: its [Empower] (\":rb_energy_2::rb_rune_rainbow::rb_rune_rainbow:: Empower me\") is on a legend, and 103.2 gives a deck \"1 Champion Legend\", which here is Soul's Reflection. The only card that adds another legend to the Legend Zone (103.1, 107.4.d.1) is Neeko, Blending In (RAD-167), which the pool leaves out (#695). Its Body domain is outside Soul's Reflection's Mind/Chaos identity as well."
           }
         ]
       },
@@ -5040,9 +5152,9 @@
         ]
       },
       "status": "rule-verified",
-      "reviewed": "2026-11-23",
-      "reviewedCount": 38,
-      "reviewedSet": "d8488c92"
+      "reviewed": "2026-11-26",
+      "reviewedCount": 36,
+      "reviewedSet": "1f7b093d"
     },
     {
       "id": "matriarch-of-war-empower-relay",
@@ -5058,6 +5170,14 @@
           {
             "card": "RAD-139",
             "why": "a legend: 103.1 gives a deck one Champion Legend, which here is Matriarch of War, and the only way a second legend reaches the Legend Zone (107.4.d.1) is Neeko, Blending In (RAD-167), which the pool leaves out (#695). Its Fury/Mind domains are outside her Body/Order identity as well."
+          },
+          {
+            "card": "VEN-139",
+            "why": "A legend: its [Empower] (\":rb_energy_3::rb_rune_rainbow:: Empower this\") is on a legend, and 103.2 gives a deck \"1 Champion Legend\", which here is Matriarch of War. The only card that adds another legend to the Legend Zone (103.1, 107.4.d.1) is Neeko, Blending In (RAD-167), which the pool leaves out (#695). Its Fury/Calm domains are outside Matriarch of War's Body/Order identity as well."
+          },
+          {
+            "card": "VEN-149",
+            "why": "A legend: its [Empower] (\":rb_energy_2::rb_rune_rainbow::rb_rune_rainbow:: Empower me\") is on a legend, and 103.2 gives a deck \"1 Champion Legend\", which here is Matriarch of War. The only card that adds another legend to the Legend Zone (103.1, 107.4.d.1) is Neeko, Blending In (RAD-167), which the pool leaves out (#695). Its Mind domain is outside Matriarch of War's Body/Order identity as well."
           }
         ]
       },
@@ -5077,9 +5197,9 @@
         ]
       },
       "status": "rule-verified",
-      "reviewed": "2026-11-23",
-      "reviewedCount": 38,
-      "reviewedSet": "d8488c92"
+      "reviewed": "2026-11-26",
+      "reviewedCount": 36,
+      "reviewedSet": "1f7b093d"
     },
     {
       "id": "rippers-bay-bounce-channel",
@@ -5311,6 +5431,14 @@
           {
             "card": "RAD-043",
             "why": "\"[Buff] me\" is Riven's only buff, so it only ever buffs herself and never Simian Ancestor."
+          },
+          {
+            "card": "OGN-056",
+            "why": "\"If you do, buff me\" is Adaptatron's only buff, so it only ever buffs itself and never Simian Ancestor."
+          },
+          {
+            "card": "OGN-164",
+            "why": "\"When I'm played and when I conquer, buff me\" is Sett, Brawler's only buff, so it only ever buffs itself and never Simian Ancestor; \"Spend my buff\" spends its own."
           }
         ]
       },
@@ -5325,9 +5453,9 @@
         ]
       },
       "status": "rule-verified",
-      "reviewed": "2026-11-23",
-      "reviewedCount": 40,
-      "reviewedSet": "559a9983"
+      "reviewed": "2026-11-26",
+      "reviewedCount": 38,
+      "reviewedSet": "967d1795"
     },
     {
       "id": "prize-of-progress-gear-activation",
@@ -5647,6 +5775,34 @@
           {
             "card": "RAD-139",
             "why": "A legend: the Altar discounts \"[Empower] costs of your units here\", and Boy Who Shattered Time is not a unit."
+          },
+          {
+            "card": "VEN-139",
+            "why": "A legend: the Altar discounts \"[Empower] costs of your units here\", and Rogue Assassin's [Empower] (:rb_energy_3::rb_rune_rainbow:) is a legend's, not a unit's."
+          },
+          {
+            "card": "VEN-149",
+            "why": "A legend: the Altar discounts \"[Empower] costs of your units here\", and Defender of Tomorrow's [Empower] (:rb_energy_2::rb_rune_rainbow::rb_rune_rainbow:) is a legend's, not a unit's."
+          },
+          {
+            "card": "VEN-133",
+            "why": "A gear: the Altar discounts \"[Empower] costs of your units here\", and Glowstone's [Empower] (:rb_rune_rainbow::rb_rune_rainbow:) is a gear's, not a unit's, and it carries no Equipment tag to lend that cost to a unit."
+          },
+          {
+            "card": "VEN-045",
+            "why": "A gear: the Altar discounts \"[Empower] costs of your units here\", and Helm of Suppression's [Empower] (:rb_energy_4::rb_rune_calm:) is a gear's, not a unit's, and it carries no Equipment tag to lend that cost to a unit."
+          },
+          {
+            "card": "VEN-075",
+            "why": "A gear: the Altar discounts \"[Empower] costs of your units here\", and Platewyrm Egg's [Empower] (:rb_energy_1:, :rb_exhaust:) is a gear's, not a unit's, and it carries no Equipment tag to lend that cost to a unit."
+          },
+          {
+            "card": "VEN-018",
+            "why": "A gear: the Altar discounts \"[Empower] costs of your units here\", and Rage Amplifier's [Empower] (:rb_energy_6::rb_rune_fury:) is a gear's, not a unit's, and it carries no Equipment tag to lend that cost to a unit."
+          },
+          {
+            "card": "VEN-077",
+            "why": "A gear: the Altar discounts \"[Empower] costs of your units here\", and Tools of Empire's [Empower] (:rb_energy_2:) is a gear's, not a unit's, and it carries no Equipment tag to lend that cost to a unit."
           }
         ]
       },
@@ -5664,9 +5820,9 @@
         ]
       },
       "status": "rule-verified",
-      "reviewed": "2026-11-23",
-      "reviewedCount": 33,
-      "reviewedSet": "f82c7c48"
+      "reviewed": "2026-11-26",
+      "reviewedCount": 26,
+      "reviewedSet": "119bc8fa"
     },
     {
       "id": "forgotten-library-spent-four-threshold",
@@ -5757,6 +5913,30 @@
           {
             "card": "RAD-102",
             "why": "Demon Shade prints no Power, and 356.6 (\"Energy and Power costs can't be reduced below 0\") keeps the discount from taking its Power below 0, so the Tomb takes nothing off."
+          },
+          {
+            "card": "OGS-020",
+            "why": "Highlander prints no Power and has no additional cost, and 356.6 (\"Energy and Power costs can't be reduced below 0\") keeps the discount from taking its Power below 0, so the Tomb takes nothing off."
+          },
+          {
+            "card": "SFD-114",
+            "why": "Marching Orders prints no Power and its only additional cost, \"[Repeat] :rb_energy_3:\", is Energy, so 356.6 (\"Energy and Power costs can't be reduced below 0\") keeps the discount from taking its Power below 0, and the Tomb takes nothing off."
+          },
+          {
+            "card": "UNL-107",
+            "why": "Stare Down prints no Power and has no additional cost, and 356.6 (\"Energy and Power costs can't be reduced below 0\") keeps the discount from taking its Power below 0, so the Tomb takes nothing off."
+          },
+          {
+            "card": "UNL-165",
+            "why": "Shadow's Call prints no Power and has no additional cost, and 356.6 (\"Energy and Power costs can't be reduced below 0\") keeps the discount from taking its Power below 0, so the Tomb takes nothing off."
+          },
+          {
+            "card": "UNL-175",
+            "why": "Tactical Retreat prints no Power and has no additional cost, and 356.6 (\"Energy and Power costs can't be reduced below 0\") keeps the discount from taking its Power below 0, so the Tomb takes nothing off."
+          },
+          {
+            "card": "VEN-040",
+            "why": "Decree of Focus prints no Power and has no additional cost, and 356.6 (\"Energy and Power costs can't be reduced below 0\") keeps the discount from taking its Power below 0, so the Tomb takes nothing off."
           }
         ]
       },
@@ -5771,9 +5951,9 @@
         ]
       },
       "status": "rule-verified",
-      "reviewed": "2026-11-23",
-      "reviewedCount": 14,
-      "reviewedSet": "f6cdc1bc"
+      "reviewed": "2026-11-26",
+      "reviewedCount": 8,
+      "reviewedSet": "bbb88b9f"
     },
     {
       "id": "frozen-fortress-token-toughness",
@@ -6457,6 +6637,10 @@
           {
             "card": "RAD-062",
             "why": "Its [Deathknell] is on a gear, and Cull the Weak has each player kill one of their units, so it can never die to it."
+          },
+          {
+            "card": "UNL-078",
+            "why": "Its [Deathknell] is the gear's own (\"[Deathknell][>] Repeat this gear's play effect.\"), and Cull the Weak has each player kill one of their units, so the Fountain never dies to it; the Sprite token it plays has no Deathknell."
           }
         ]
       },
@@ -6474,9 +6658,9 @@
         ]
       },
       "status": "rule-verified",
-      "reviewed": "2026-11-23",
-      "reviewedCount": 37,
-      "reviewedSet": "c2a59ddc"
+      "reviewed": "2026-11-26",
+      "reviewedCount": 36,
+      "reviewedSet": "8d495dcb"
     },
     {
       "id": "prepared-neophyte-repeat-cost",
