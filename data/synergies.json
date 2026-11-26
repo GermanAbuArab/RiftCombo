@@ -617,10 +617,6 @@
             "why": "Its only exhaust ability is \":rb_rune_chaos:, :rb_exhaust:: Kill this.\": it kills its own source, so a ready finds nothing left to use."
           },
           {
-            "card": "UNL-136",
-            "why": "Its only exhaust ability has \"Kill this\" in its cost (\"Kill this, :rb_energy_1:, :rb_exhaust:: [Predict 2], then draw 1.\"), so it runs once and a ready finds nothing left to use again. Readying it the turn it lands (\"This enters exhausted.\") only moves that one use earlier."
-          },
-          {
             "card": "UNL-161",
             "why": "Its only exhaust ability has \"Kill this\" in its cost (\"[Action][>] Kill this, :rb_exhaust:: Give a unit +2 :rb_might: this turn.\"), so it runs once and a ready finds nothing left to use again; 149.1 already has it enter play ready."
           }
@@ -641,8 +637,8 @@
       },
       "status": "rule-verified",
       "reviewed": "2026-11-26",
-      "reviewedCount": 84,
-      "reviewedSet": "49be6059"
+      "reviewedCount": 85,
+      "reviewedSet": "3d5ab72b"
     },
     {
       "id": "ride-the-wind-move-triggers",
