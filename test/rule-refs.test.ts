@@ -369,6 +369,43 @@ describe("reworded paragraphs re-read and held let their citations move (REREAD)
       expect(ledgerFaults(e!, row, { core: { ...REREADS.core!, "323.7": { ...r, into } }, tournament: {} })).toContain(`${half.to} in the ${NEW} core rules is not the paragraph the entry meant`);
     }
   });
+
+  it("moves a 355.7 citation and puts a Riot quote of its 07-16 words in its 10-09 words (#658)", () => {
+    // 10-09 355.7 names Players and Zones, which 355.9.a and 355.10 make Targets in both editions, and
+    // says that what a card Picks is not Targeted; Show Off (832.1.c, new in 10-09) is the card that picks.
+    const r = REREADS.core!["355.7"]! as Leg;
+    const citer = onNew.find((e) => e.id === "jae-medarda-dragon-form-flow-double-draw")!;
+    const row = ledger.entries[citer.id]!;
+    expect(row.refs["355.7"]?.[2]).toBe(r.from);
+    expect(JSON.stringify(citer)).toContain(`355.7: '${(paragraphs(NEW, "core") as Map<string, string>).get("355.7")}'`);
+    expect(ledgerFaults(citer, row)).toEqual([]);
+    const { "355.7": _, ...rest } = REREADS.core!;
+    expect(ledgerFaults(citer, row, { core: rest, tournament: {} })).toContain(`355.7 in the ${NEW} core rules is not the paragraph the entry meant`);
+  });
+
+  it("keeps on 07-16 an entry that prints 355.7 in its 07-16 words next to the number (#658)", () => {
+    const near = new RegExp(String.raw`355\.7(?![0-9a-z]|\.[0-9a-z])[^]{0,120}?(?:${REREAD.core["355.7"].was})`);
+    const strings = (n: unknown): string[] => (typeof n === "string" ? [n] : n && typeof n === "object" ? Object.values(n).flatMap(strings) : []);
+    for (const id of ["blade-dancer-caitlyn-choose-ready", "jae-medarda-repulse-counter-that-pays-for-itself"]) {
+      const e = combos.combos.find((x) => x.id === id)!;
+      expect([e.rulesVersion, id in ledger.entries, strings(e).some((s) => near.test(s))], id).toEqual([OLD, false, true]);
+    }
+  });
+
+  it("moves a 355.10.d citation, whose two legend examples went to new 355.10.g with the same answers (#658)", () => {
+    const r = REREADS.core!["355.10.d"]! as Leg;
+    const [was, now] = [OLD, NEW].map((v) => (paragraphs(v, "core") as Map<string, string>).get("355.10.d")!);
+    expect(was.replace(/ e\.g\., “Ready your legend” .*? legends\./, "")).toBe(now);
+    const g = (paragraphs(NEW, "core") as Map<string, string>).get("355.10.g")!;
+    expect([(paragraphs(OLD, "core") as Map<string, string>).has("355.10.g"), g]).toEqual([false, expect.stringContaining("“Ready your legend.” doesn’t target any legend.")]);
+    expect(g).toContain("“Ready a friendly legend.” targets the friendly legend.");
+    const citer = onNew.find((e) => e.id === "firestorm-walking-roost-deflect-is-a-tax")!;
+    const row = ledger.entries[citer.id]!;
+    expect(row.refs["355.10.d"]?.[2]).toBe(r.from);
+    expect(ledgerFaults(citer, row)).toEqual([]);
+    const { "355.10.d": _, ...rest } = REREADS.core!;
+    expect(ledgerFaults(citer, row, { core: rest, tournament: {} })).toContain(`355.10.d in the ${NEW} core rules is not the paragraph the entry meant`);
+  });
 });
 
 describe("a slash shorthand cites its members too (#652)", () => {
