@@ -417,6 +417,31 @@ describe("reworded paragraphs re-read and held let their citations move (REREAD)
     const { "355.10.d": _, ...rest } = REREADS.core!;
     expect(ledgerFaults(citer, row, { core: rest, tournament: {} })).toContain(`355.10.d in the ${NEW} core rules is not the paragraph the entry meant`);
   });
+
+  it("moves a 465.2.c.3 citation to 467.2.c.3, whose example lost only its 'at least' (#657)", () => {
+    // 465.2.c.4 (467.2.c.4, word for word) caps a unit at lethal while other units remain, so the 07-16
+    // example's "at least 3 damage to one" already meant 3.
+    const core = (v: string) => paragraphs(v, "core") as Map<string, string>;
+    expect(core(OLD).get("465.2.c.3")!.replace("at least 3 damage to one", "3 damage to one")).toBe(core(NEW).get("467.2.c.3"));
+    expect(core(NEW).get("467.2.c.4")).toBe(core(OLD).get("465.2.c.4"));
+    const r = REREADS.core!["465.2.c.3"]! as Leg;
+    const citer = onNew.find((e) => e.id === "brambleback-trinity-skyfall-conquer")!;
+    const row = ledger.entries[citer.id]!;
+    expect(row.refs["467.2.c.3"]?.[2]).toBe(r.from);
+    expect(JSON.stringify(citer)).toContain(`467.2.c.3: '${core(NEW).get("467.2.c.3")}'`);
+    expect(ledgerFaults(citer, row)).toEqual([]);
+    const { "465.2.c.3": _, ...rest } = REREADS.core!;
+    expect(ledgerFaults(citer, row, { core: rest, tournament: {} })).toContain(`467.2.c.3 in the ${NEW} core rules is not the paragraph the entry meant`);
+  });
+
+  it("reads 467.2.c.5's added 'passive abilities' as a kind 368.1 already made a replacement effect (#657)", () => {
+    const core = (v: string) => paragraphs(v, "core") as Map<string, string>;
+    expect(core(OLD).get("465.2.c.5")!.replace("this way, replacement effects", "this way, passive abilities and replacement effects")).toBe(core(NEW).get("467.2.c.5"));
+    expect([core(OLD).get("368.1"), core(NEW).get("368.1")]).toEqual(["Passive Abilities can be Replacement Effects.", "Passive Abilities can be Replacement Effects."]);
+    // Its one citer stays on 07-16, pinned by 811.1.d.2 and a non-Riot quote, not by 465.2.c.5.
+    const e = combos.combos.find((x) => x.id === "lotus-trap-morgana-excess-damage")!;
+    expect([e.rulesVersion, e.id in ledger.entries]).toEqual([OLD, false]);
+  });
 });
 
 describe("a slash shorthand cites its members too (#652)", () => {
