@@ -178,6 +178,24 @@ export const REREAD = {
 export const legs = (rows) =>
   Object.entries(rows).flatMap(([id, { into, ...r }]) => (into ? Object.entries(into).map(([to, half]) => ({ id, ...r, to, ...half })) : [{ id, ...r }]));
 
+/**
+ * Entries that stay on 2026-07-16 whatever their citations, by id, with the reason the remap record
+ * prints. scripts/remap-rules.mjs pins each one; test/rule-refs.test.ts fails on one that names another
+ * edition. A re-read that clears an entry's last reworded paragraph leaves it here.
+ */
+// R36 (#706): these entries state the Svellsongur stack count (2^v instances with v Svellsongur) as
+// the #45 walk derived it on the 07-16 layers, the Effect Text append (477.2.c) in Layer 2. 10-09
+// prints that sentence as 479.3.c in Layer 3 and names Svellsongur's a copy effect of Layer 1
+// (479.1.d); what the count is there is R36. The first six had moved by text identity (#645) and
+// went back by their ledger rows (#707).
+const R36 = "waits on R36 (#706): the Svellsongur stack count was walked on the 2026-07-16 layers";
+export const HELD_ON_OLD = Object.fromEntries(
+  [
+    "ahri-blue-sentinel-hold", "svellsongur-eminent-benefactor-gold", "svellsongur-rumble-scrapper-mechs", "ivern-svellsongur-four-tags-hold", "svellsongur-traveling-merchant-discard", "svellsongur-ribbon-dancer-fiora-mass-ready",
+    "svellsongur-copy-hold", "twilight-reveler-svellsongur-stellacorn-draw", "steel-paws-svellsongur-might", "corina-svellsongur-plaza", "reveler-svellsongur-jhin-infinite-power", "desert-call-vi-sand-soldier-plaza", "gromp-arena-svellsongur-xp", "anivia-svellsongur-double-burn", "yasuo-stellacorn-svellsongur-draw", "shen-kinkou-svellsongur-hold", "svellsongur-treasure-hunter-gold", "svellsongur-yasuo-remorseful-sweep", "svellsongur-trevor-leblanc-plaza", "svellsongur-faefolk-mass-evacuation", "svellsongur-apprentice-smith-gear-dig", "svellsongur-fae-porter-relay", "svellsongur-qiyana-victorious-modal", "svellsongur-ava-achiever-hidden-flood", "svellsongur-kato-the-arm-keyword-spread", "svellsongur-imposing-challenger-unstage", "svellsongur-teemo-strategist-defend-burst", "svellsongur-corrupt-enforcer-trash-fill", "yasuo-remorseful-svellsongur-nasus-conquer", "forge-of-fluft-free-svellsongur", "svellsongur-ivern-nurturer-optional-draw", "nasus-svellsongur-conquer-burst", "swain-svellsongur-conquer-burst", "tryndamere-svellsongur-excess-burst", "draven-svellsongur-bloodless-combat-burst", "ahri-trinity-svellsongur-hold", "noxian-drummer-eye-svellsongur-plaza",
+  ].map((id) => [id, R36]),
+);
+
 const root = new URL("../", import.meta.url);
 const cache = new Map();
 /** Paragraphs of one book of one edition, as a Map id -> normalised text (first occurrence wins). */
