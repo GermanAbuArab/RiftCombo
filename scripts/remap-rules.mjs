@@ -25,7 +25,9 @@
 //   - a string names the 07-16 edition next to a number that would change (a walk title, a note);
 //   - a quotation would stop matching the 10-09 text (listed in QUOTE_PINS, found by
 //     test/source-quotes.test.ts on the first run: a rule number INSIDE Riot's own words);
-//   - a dotted number resolves in neither 07-16 book (the old-numbering quote in OLD_NUMBERING).
+//   - a dotted number resolves in neither 07-16 book (the old-numbering quote in OLD_NUMBERING);
+//   - a string quotes an issue's words, translated, with a 07-16 number in them that would change
+//     (ISSUE_QUOTES): the number is the issue's and stays as the issue wrote it.
 //
 // Output: data/rules-remap-2026-10-09.json, the ledger test/rule-refs.test.ts reads (per remapped entry,
 // the old numbers it moved and, per cited number, the book and a hash of the 07-16 text it meant), and
@@ -37,6 +39,9 @@ const FROM = "2026-07-16";
 const TO = "2026-10-09";
 const DRY = process.argv.includes("--dry");
 const OLD_NUMBERING = new Set(["jhin-fiora-facebreaker-recall"]);
+// #658: its notes say issue #89 "says '415.3.a gives Blade Dancer one free readying per turn'"; 10-09
+// numbers that paragraph 416.3.a, and the issue still reads 415.3.a.
+const ISSUE_QUOTES = new Set(["blade-dancer-irelia-defiant-dance"]);
 
 const read = (v, b) => parseText(fs.readFileSync(EDITIONS[v][b], "utf8"));
 const F = {}, oldText = {}, newText = {};
@@ -148,6 +153,7 @@ const reword = (entry, path, s, rereads) => {
 function plan(entry) {
   const pins = new Set();
   if (OLD_NUMBERING.has(entry.id)) pins.add("quotes a commenter citing an older numbering verbatim");
+  if (ISSUE_QUOTES.has(entry.id)) pins.add("quotes an issue's words with a 07-16 number that would change");
   const edits = []; // { path, at, len, from, to, put? (what is printed, when not `to`) }
   const ledger = new Map(); // new number -> [book, count, hash]
   const moved = new Set();

@@ -15395,20 +15395,20 @@
       "prerequisites": {
         "easy": [
           "Legend domains are Blade Dancer's own, Calm and Chaos; Irelia is Calm and Defiant Dance is Calm/Chaos.",
-          "Irelia has to be on the board and Blade Dancer ready — 416.3.a hands the legend back every Awakening Phase."
+          "Irelia has to be on the board and Blade Dancer ready — 415.3.a hands the legend back every Awakening Phase."
         ],
         "notable": [
           "THE 'CHOOSE' IS REAL BY RULE, NOT BY READING. 355.5: 'If a card requires you to specifically choose one or more Game Objects, that choice is made now', and its own example says 'Stun a unit at a battlefield' IS a Choice while 'Kill all gear' is not. Defiant Dance names two units one at a time, so both are Choices; 355.7 makes each of them a Target. Picking Irelia for the +2 is therefore a 'choose a friendly unit' for Blade Dancer and a 'choose me' for Irelia in the same instant.",
           "IRELIA IS PAID TWICE PER SPELL, WHICH IS WHAT MAKES HER A DIFFERENT PARTNER FROM CAITLYN. Her text is 'When you choose or ready me'. Defiant Dance chooses her (+1) and gives her +2; Blade Dancer's readying of her is a ready (+1). ARITHMETIC WITH THE QUANTITIES DECLARED: 4 base + 2 (Defiant Dance) + 1 (the choose) + 1 (the ready) = 8 MIGHT, and she is READY. Cost: 1 Energy + 1 Power for the spell, 1 rainbow Power for Blade Dancer. One Energy and two Power.",
           "THE -2 GOES ON AN ENEMY, AND THE REASON IS ARITHMETIC. Defiant Dance's second half is compulsory ('and another unit -2 [M]'). Put on a friendly body it cancels most of what the first half bought; put on an enemy it is a second effect. It is also a second Choice, so a friendly target would trigger Blade Dancer again — but her exhaust is already spent, so that trigger has nothing to pay with.",
-          "WHAT CAPS IT IS BLADE DANCER'S OWN EXHAUST, NOT 416.3.a — THE HUNT CITED THE WRONG RULE. 416.3.a says 'A player Readies all non-spell Game Objects they Control during the Awakening Phase on their turn'; it gives nobody a free readying mid-turn. Blade Dancer's readying costs 'exhaust me and pay [R]', so it is once per turn plus once for every Conquer, since her own second sentence buys her back for 1 Energy. Two readyings in a turn with one conquer, three with two.",
+          "WHAT CAPS IT IS BLADE DANCER'S OWN EXHAUST, NOT 415.3.a — THE HUNT CITED THE WRONG RULE. 415.3.a says 'A player Readies all non-spell Game Objects they Control during the Awakening Phase on their turn'; it gives nobody a free readying mid-turn. Blade Dancer's readying costs 'exhaust me and pay [R]', so it is once per turn plus once for every Conquer, since her own second sentence buys her back for 1 Energy. Two readyings in a turn with one conquer, three with two.",
           "IRELIA'S [Deflect] IS FREE HERE. 'Opponents must pay [R] to choose me with a spell or ability' taxes the opponent only; your own Defiant Dance chooses her at no extra cost.",
           "THE PUMP IS FOR THE TURN AND THE READY IS NOT. '+1 [M] this turn' expires at cleanup, so the 8 Might is a combat number, not a board state. What survives the turn is that Irelia stood up again.",
           "OVERLAP DECLARED. blade-dancer-caitlyn-choose-ready runs the same legend with OGN-068 Caitlyn and SFD-052 Heart of Dark Ice, and turns the readying into repeated removal. This entry turns it into a body: the two want the same legend and the same single readying per turn, so in one deck they are alternatives, not additions."
         ]
       },
       "steps": [
-        "Have Irelia, Fervent on the board and Blade Dancer ready (416.3.a gives her back each Awaken).",
+        "Have Irelia, Fervent on the board and Blade Dancer ready (415.3.a gives her back each Awaken).",
         "Play Defiant Dance for 1 Energy + 1 Power. Choose Irelia for the +2 Might and an enemy unit for the -2.",
         "Choosing Irelia triggers her: +1 Might this turn. It also triggers Blade Dancer.",
         "Pay 1 rainbow Power and exhaust Blade Dancer to ready Irelia. That readying triggers Irelia again: +1 Might this turn.",
@@ -15417,13 +15417,13 @@
       ],
       "netPerIteration": "one Defiant Dance turns Irelia into a ready 8 Might body for 1 Energy and 2 Power, and readies her a second time for every Conquer plus 1 Energy",
       "terminatesIn": "engine only — one Blade Dancer readying per turn plus one per Conquer, and three Defiant Dance; the Might is 'this turn' and expires at cleanup",
-      "rulesVersion": "2026-10-09",
+      "rulesVersion": "2026-07-16",
       "walkedVersion": "2026-07-16",
       "sources": [
         {
-          "title": "Riftbound Core Rules, Last Updated 2026-10-09 (data/Riftbound-Core-Rules-2026-10-09.txt)",
+          "title": "Riftbound Core Rules, Last Updated 2026-07-16 (data/Riftbound-Core-Rules-2026-07-16.txt)",
           "kind": "riot",
-          "date": "2026-10-09"
+          "date": "2026-07-16"
         },
         {
           "title": "Corpus de 8.307 listas de torneo — issue #89 (GitHub)",
@@ -15438,7 +15438,7 @@
           "date": "2026-09-06"
         }
       ],
-      "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-issue89-tournament-corpus.md), issue #89 candidate 3 (184 registered lists). SFD-057 Irelia, Fervent and SFD-196 Defiant Dance appeared in NO entry before this; SFD-195 Blade Dancer anchors blade-dancer-caitlyn-choose-ready and the overlap is declared. TWO CORRECTIONS TO THE ISSUE, both recorded in the walk: it writes the legend as 'SFD-246 Blade Dancer' when the card is SFD-195, and it says '416.3.a gives Blade Dancer one free readying per turn' when 416.3.a is the Awakening Phase rule and grants nothing mid-turn — what caps her is the exhaust inside her own cost. Card text verbatim from data/corpus_flat.txt. Citations opened: 103.3.b, 355.5, 355.5.a, 355.7, 416.3.a. Ban check: none of the three carries a [BANNED marker. Arithmetic against its own declared quantities: 4 + 2 + 1 + 1 = 8 Might for 1 Energy and 2 Power. Trap check: no attack designation is claimed; no [Repeat]; no [Temporary]; no token; no recall, so 457 and 808.1.d.1 never arise; the pump is 'this turn' and the entry says so. Depends on no unruled reading."
+      "notes": "HAND-WALKED 2026-09-06 (docs/phase0/walks/2026-09-06-issue89-tournament-corpus.md), issue #89 candidate 3 (184 registered lists). SFD-057 Irelia, Fervent and SFD-196 Defiant Dance appeared in NO entry before this; SFD-195 Blade Dancer anchors blade-dancer-caitlyn-choose-ready and the overlap is declared. TWO CORRECTIONS TO THE ISSUE, both recorded in the walk: it writes the legend as 'SFD-246 Blade Dancer' when the card is SFD-195, and it says '415.3.a gives Blade Dancer one free readying per turn' when 415.3.a is the Awakening Phase rule and grants nothing mid-turn — what caps her is the exhaust inside her own cost. Card text verbatim from data/corpus_flat.txt. Citations opened: 103.2.b, 355.5, 355.5.a, 355.7, 415.3.a. Ban check: none of the three carries a [BANNED marker. Arithmetic against its own declared quantities: 4 + 2 + 1 + 1 = 8 Might for 1 Energy and 2 Power. Trap check: no attack designation is claimed; no [Repeat]; no [Temporary]; no token; no recall, so 455 and 808.1.d.1 never arise; the pump is 'this turn' and the entry says so. Depends on no unruled reading."
     },
     {
       "id": "flame-chompers-discard-recursion",

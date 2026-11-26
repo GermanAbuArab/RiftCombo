@@ -392,6 +392,17 @@ describe("reworded paragraphs re-read and held let their citations move (REREAD)
     }
   });
 
+  it("keeps on 07-16 an entry that quotes an issue's 07-16 number, which the move would renumber (#658)", () => {
+    // Issue #89 wrote 415.3.a; 10-09 prints that text as 416.3.a and gives 415.3.a to other words, so a
+    // move would put 416.3.a in the issue's mouth.
+    const core = (v: string) => paragraphs(v, "core") as Map<string, string>;
+    expect(core(NEW).get("416.3.a")).toBe(core(OLD).get("415.3.a"));
+    expect(core(NEW).get("415.3.a")).not.toBe(core(OLD).get("415.3.a"));
+    const e = combos.combos.find((x) => x.id === "blade-dancer-irelia-defiant-dance")!;
+    expect([e.rulesVersion, e.id in ledger.entries]).toEqual([OLD, false]);
+    expect(JSON.stringify(e)).toContain("it says '415.3.a gives Blade Dancer one free readying per turn'");
+  });
+
   it("moves a 355.10.d citation, whose two legend examples went to new 355.10.g with the same answers (#658)", () => {
     const r = REREADS.core!["355.10.d"]! as Leg;
     const now = (paragraphs(NEW, "core") as Map<string, string>).get("355.10.d");
