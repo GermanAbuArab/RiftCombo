@@ -4,7 +4,7 @@ import { join } from "node:path";
 import { describe, expect, it } from "vitest";
 import { authoredWords, comboPage, CURRENT_RULES_VERSION, rulesLine, rulesNotice, THIN_WORDS, type ComboContext } from "../src/render/combo.js";
 import { clip, DISCLAIMER, ORIGIN } from "../src/render/layout.js";
-import { guideBody, sourcesBody } from "../src/render/pages.js";
+import { guideBody, SITE_LD, sourcesBody } from "../src/render/pages.js";
 import { playArticle, type Play } from "../src/render/play.js";
 import { fileOf, renderSite, type BuiltPage, type SiteInput } from "../src/render/site.js";
 import type { Combo } from "../src/types.js";
@@ -38,15 +38,17 @@ const input: SiteInput = {
 const pages: BuiltPage[] = renderSite(input);
 
 const count = (html: string, re: RegExp) => (html.match(re) ?? []).length;
+const landing = pages.find((p) => p.path === "/")!;
+const LANDING_SCRIPTS = `<script type="application/ld+json">${SITE_LD}</script>\n<script src="/legacy.js"></script>`;
 const levels = (html: string) => [...html.matchAll(/<h([1-6])[\s>]/g)].map((m) => Number(m[1]));
 
 describe("every pre-rendered page (#286)", () => {
-  it("covers every combo, every play, both indexes and the three prose pages", () => {
+  it("covers the landing, every combo, every play, both indexes and the three prose pages", () => {
     const paths = new Set(pages.map((p) => p.path));
     for (const c of combos) expect(paths.has(`/combos/${c.id}`), c.id).toBe(true);
     for (const p of plays) expect(paths.has(`/plays/${p.slug}`), p.slug).toBe(true);
-    for (const p of ["/combos", "/plays", "/guide", "/sources", "/about"]) expect(paths.has(p), p).toBe(true);
-    expect(pages).toHaveLength(combos.length + plays.length + 5);
+    for (const p of ["/", "/combos", "/plays", "/guide", "/sources", "/about"]) expect(paths.has(p), p).toBe(true);
+    expect(pages).toHaveLength(combos.length + plays.length + 6);
     expect(new Set(pages.map((p) => p.file)).size).toBe(pages.length);
   });
 
@@ -68,12 +70,18 @@ describe("every pre-rendered page (#286)", () => {
     expect(new Set(titles).size).toBe(titles.length);
   });
 
+  /**
+   * The landing is the one exception, and it is two exact tags: the JSON-LD data block the CSP names
+   * by hash, and the same-origin script that sends a pre-#287 `/#/...` link on (#288).
+   */
   it("carries no inline style, no script and no event handler, which the CSP would refuse", () => {
     for (const p of pages) {
-      expect(p.html, p.path).not.toMatch(/\sstyle=/);
-      expect(p.html, p.path).not.toMatch(/<script/i);
-      expect(p.html, p.path).not.toMatch(/\son[a-z]+=/i);
+      const html = p.path === "/" ? p.html.replace(LANDING_SCRIPTS, "") : p.html;
+      expect(html, p.path).not.toMatch(/\sstyle=/);
+      expect(html, p.path).not.toMatch(/<script/i);
+      expect(html, p.path).not.toMatch(/\son[a-z]+=/i);
     }
+    expect(landing.html).toContain(LANDING_SCRIPTS);
   });
 
   it("never skips a heading level", () => {
@@ -99,7 +107,11 @@ describe("every pre-rendered page (#286)", () => {
   it("reaches the app only through plain links, from a page that runs no script", () => {
     const toApp = pages.filter((p) => /href="\/(app|decks)(\/|"|\?)/.test(p.html));
     expect(toApp.length).toBeGreaterThan(0);
-    for (const p of toApp) expect(p.html, p.path).not.toMatch(/<script\b(?![^>]*application\/ld\+json)/);
+    // The landing's /legacy.js only ever makes a full load (test/dom/router.dom.test.ts, "old hash links").
+    for (const p of toApp) {
+      const ran = [...p.html.matchAll(/<script\b(?![^>]*application\/ld\+json)[^>]*>/g)].map((m) => m[0]);
+      expect(ran, p.path).toEqual(p.path === "/" ? ['<script src="/legacy.js">'] : []);
+    }
   });
 
   it("says 'walked by hand' in a description only of what was walked", () => {
@@ -130,6 +142,50 @@ describe("every pre-rendered page (#286)", () => {
       expect(p.html).toContain('href="/fonts/inter-latin.woff2"');
       expect(p.html).not.toMatch(/fonts\.googleapis|font-family/);
     }
+  });
+});
+
+/**
+ * #288 (reversing #39 for the content): `/` is a public page of its own, no longer the app shell
+ * behind sign-in. The gate, `data-auth` and the one sign-in button stay in `web/index.html`, which is
+ * served only at /app and /decks (test/headers.test.ts, "has exactly one way in").
+ */
+describe("the landing at / (#288)", () => {
+  it("is index.html, indexable and in the sitemap once", () => {
+    expect(landing.file).toBe("index.html");
+    expect(fileOf("/")).toBe("index.html");
+    expect(landing.noindex).toBe(false);
+    expect(landing.html).not.toContain("noindex");
+    const listed = (sitemapEntries(root, pages) as { path: string }[]).filter((e) => e.path === "/");
+    expect(listed).toHaveLength(1);
+  });
+
+  it("is a page anyone can read: no gate, no auth state, no sign-in button", () => {
+    expect(landing.html).toMatch(/<body>/);
+    expect(landing.html).not.toContain("data-auth");
+    expect(landing.html).not.toContain('id="gate"');
+    expect(landing.html).not.toContain("Sign in with Google");
+  });
+
+  it("leaves every combo, play and prose page as open as the landing: no page carries the gate", () => {
+    const gated = pages.filter((p) => /data-auth|id="gate"|Sign in with Google/.test(p.html)).map((p) => p.path);
+    expect(pages.length).toBeGreaterThan(100);
+    expect(gated, "pages carrying the shell's gate").toEqual([]);
+  });
+
+  it("links the catalogue, the plays and the guide, and the finder and My decks for a deck", () => {
+    const main = /<main[^>]*>([\s\S]*?)<\/main>/.exec(landing.html)![1]!;
+    for (const href of ["/combos", "/plays", "/guide", "/app", "/decks"]) expect(main, href).toContain(`href="${href}"`);
+    expect(main).toMatch(/<h1 class="doc-title">[^<]+<\/h1>/);
+  });
+
+  it("says 'walked by hand' only of a verified combo, the catalogue holding candidates too", () => {
+    const main = /<main[^>]*>([\s\S]*?)<\/main>/.exec(landing.html)![1]!;
+    expect(combos.some((c) => c.status !== "verified")).toBe(true);
+    for (const sentence of main.replace(/<[^>]+>/g, "").split(/(?<=[.;])\s+/).filter((s) => /walked by hand/i.test(s))) {
+      expect(sentence).toMatch(/^A verified combo /);
+    }
+    expect(main).toContain("marked <em>candidate</em> until a person has walked it");
   });
 });
 
@@ -261,16 +317,15 @@ describe("the build writes a file for every sitemap URL (#286)", () => {
     const out = mkdtempSync(join(tmpdir(), "render-"));
     writePages(out, pages);
     const entries = sitemapEntries(root, pages) as { path: string; file: string; lastmod: string | null }[];
-    // The three hand-written pages are copied by build-web; here they are stood in for.
-    for (const f of ["index.html", "privacy.html", "terms.html"]) writePages(out, [{ file: f, html: "" }]);
+    // The two hand-written pages are copied by build-web; here they are stood in for.
+    for (const f of ["privacy.html", "terms.html"]) writePages(out, [{ file: f, html: "" }]);
     writeSeo(out, entries);
     const xml = readFileSync(join(out, "sitemap.xml"), "utf8");
     const locs = [...xml.matchAll(/<loc>([^<]+)<\/loc>/g)].map((m) => m[1]!);
     expect(locs.length).toBe(entries.length);
     for (const loc of locs) {
       const path = loc.slice(ORIGIN.length);
-      const file = path === "/" ? "index.html" : fileOf(path);
-      expect(existsSync(join(out, file)), loc).toBe(true);
+      expect(existsSync(join(out, fileOf(path))), loc).toBe(true);
     }
     for (const c of combos) expect(existsSync(join(out, "combos", `${c.id}.html`)), c.id).toBe(true);
     for (const e of entries) if (e.lastmod) expect(e.lastmod, e.path).toMatch(/^\d{4}-\d{2}-\d{2}$/);

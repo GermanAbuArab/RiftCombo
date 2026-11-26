@@ -12,7 +12,8 @@
  *   - Riot's disclaimer, verbatim, in the footer (docs/plan.md §1).
  *   - a canonical URL on https://riftcombo.app, the address the sitemap lists.
  * No inline `style=` and no inline script anywhere: the CSP forbids the first and names the hash of
- * the one JSON-LD block it allows for the second, which lives in `web/index.html` only.
+ * the one JSON-LD block it allows for the second, which the landing at `/` carries (#288) and
+ * `scripts/build-headers.mjs` hashes from that page.
  */
 import { esc } from "../html.js";
 
@@ -54,6 +55,8 @@ export interface PageMeta {
   ogType?: "website" | "article";
   /** Extra classes on `<main>` after `doc page`. */
   mainClass?: string;
+  /** Markup closing the `<head>`: the landing's JSON-LD and its old-link script, nothing else. */
+  head?: string;
 }
 
 /** A meta description that fits a search result: whole words, at most ~160 characters. */
@@ -103,7 +106,7 @@ ${meta.noindex ? '<meta name="robots" content="noindex">\n' : ""}<link rel="cano
 <link rel="manifest" href="/manifest.webmanifest">
 <link rel="preload" href="/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/styles.css">
-</head>
+${meta.head ? `${meta.head}\n` : ""}</head>
 <body>
 <header class="topbar">
   <a class="brand" href="/">

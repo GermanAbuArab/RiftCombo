@@ -4,12 +4,12 @@
  *
  * `scripts/build-web.mjs` calls this once, writes each page, and builds the sitemap from the result,
  * so the sitemap can only list a page that was written. Under `cleanUrls` Vercel serves
- * `combos/<id>.html` at /combos/<id> and `combos.html` at /combos.
+ * `combos/<id>.html` at /combos/<id>, `combos.html` at /combos and `index.html` at / (#288).
  */
 import { CardIndex } from "../cards.js";
 import type { Card, Combo, Feature, LegalityEntry } from "../types.js";
 import { authoredWords, comboPage, combosIndexPage, THIN_WORDS, type ComboContext } from "./combo.js";
-import { aboutPage, cardDataNote, guidePage, sourcesPage } from "./pages.js";
+import { aboutPage, cardDataNote, guidePage, landingPage, sourcesPage } from "./pages.js";
 import { comboIdsIn, playPage, playsIndexPage, playWords, type Play } from "./play.js";
 
 export interface SiteInput {
@@ -33,8 +33,8 @@ export interface BuiltPage {
   sources: string[];
 }
 
-/** "/combos/x" → "combos/x.html". */
-export const fileOf = (path: string): string => `${path.replace(/^\//, "")}.html`;
+/** "/combos/x" → "combos/x.html", "/" → "index.html". */
+export const fileOf = (path: string): string => (path === "/" ? "index.html" : `${path.replace(/^\//, "")}.html`);
 
 const page = (path: string, html: string, sources: string[], noindex = false): BuiltPage =>
   ({ path, file: fileOf(path), html, noindex, sources });
@@ -62,6 +62,7 @@ export function renderSite(input: SiteInput): BuiltPage[] {
   const CATALOGUE = ["data/combos.json", "data/cards.json"];
 
   return [
+    page("/", landingPage(), ["src/render/pages.ts"]),
     page("/combos", combosIndexPage(input.combos, ctx), ["data/combos.json"]),
     ...input.combos.map((c) => page(`/combos/${c.id}`, comboPage(c, ctx), CATALOGUE, isThin(authoredWords(c)))),
     page("/plays", playsIndexPage(input.plays), ["docs/plays"]),

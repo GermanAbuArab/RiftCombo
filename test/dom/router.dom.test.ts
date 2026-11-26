@@ -63,8 +63,8 @@ describe("what a route does to the page", () => {
     expect(document.querySelector('a[href="/decks"]')!.classList.contains("active")).toBe(true);
   });
 
-  it("opens Combos on / and on /app, and marks the Combos tab on both", async () => {
-    for (const url of ["/", "/app?deck=d1"]) {
+  it("opens Combos on /app, with or without a deck, and marks the Combos tab", async () => {
+    for (const url of ["/app", "/app?deck=d1"]) {
       const { startRouter } = await load(url);
       startRouter();
       expect(shown(), url).toEqual(["view-combos"]);
@@ -200,27 +200,61 @@ describe("the public/app boundary is a full load, never a pushState", () => {
   });
 });
 
+/**
+ * Every pre-#287 link points at `/`, which is the public landing since #288, so the redirect runs there
+ * from `web/legacy.ts` and crosses into the app the only way a public page may: a full load (#272 §5).
+ */
 describe("old hash links (#287)", () => {
-  it("rewrites an in-app one in place, before the route is read", async () => {
-    const { redirectLegacyHash, route, spies } = await load("/#/combos?deck=d1");
-    expect(redirectLegacyHash()).toBe(false);
-    expect(location.pathname + location.search + location.hash).toBe("/app?deck=d1");
-    expect(route().analyzing).toBe("d1");
-    expect(spies.replace).not.toHaveBeenCalled();
+  /** The landing's one script, loaded the way the page loads it: it runs on import. */
+  const landing = async (url: string) => {
+    const mod = await load(url);
+    const rewrite = vi.spyOn(history, "replaceState");
+    await import("../../web/legacy.js");
+    return { ...mod, spies: { ...mod.spies, rewrite } };
+  };
+
+  it("sends an in-app one from the landing to the shell with a full load that replaces the old entry", async () => {
+    const { spies } = await landing("/#/combos?deck=d1");
+    expect(spies.replace).toHaveBeenCalledWith("/app?deck=d1");
+    expect(spies.push).not.toHaveBeenCalled();
+    expect(spies.rewrite).not.toHaveBeenCalled();
+    expect(location.pathname).toBe("/");
   });
 
-  it("keeps a deck code in the fragment", async () => {
-    const { redirectLegacyHash, route } = await load("/#deck=CMAAAAA");
-    redirectLegacyHash();
-    expect(location.pathname + location.hash).toBe("/app#deck=CMAAAAA");
-    expect(route().legacyDeck).toBe("CMAAAAA");
+  it("carries a deck code from the landing to the shell in the fragment", async () => {
+    const { spies } = await landing("/#deck=CMAAAAA");
+    expect(spies.replace).toHaveBeenCalledWith("/app#deck=CMAAAAA");
   });
 
   it("sends a public one to its page with a full load that replaces the old entry", async () => {
-    const { redirectLegacyHash, spies } = await load("/#/plays/some-play");
-    expect(redirectLegacyHash()).toBe(true);
+    const { spies } = await landing("/#/plays/some-play");
     expect(spies.replace).toHaveBeenCalledWith("/plays/some-play");
     expect(spies.push).not.toHaveBeenCalled();
+    expect(spies.rewrite).not.toHaveBeenCalled();
+  });
+
+  it("leaves the landing alone on no fragment or a plain one", async () => {
+    for (const url of ["/", "/#stage"]) {
+      const { spies } = await landing(url);
+      expect(spies.replace, url).not.toHaveBeenCalled();
+      expect(location.pathname + location.hash, url).toBe(url);
+    }
+  });
+
+  it("rewrites an in-app one in place when the page is already the shell, before the route is read", async () => {
+    const { redirectLegacyHash, route, spies } = await load("/app#deck=CMAAAAA");
+    expect(redirectLegacyHash()).toBe(false);
+    expect(location.pathname + location.hash).toBe("/app#deck=CMAAAAA");
+    expect(route().legacyDeck).toBe("CMAAAAA");
+    expect(spies.replace).not.toHaveBeenCalled();
+  });
+
+  it.each(["/app#/decks/..", "/decks#/decks/%2e%2e"])("never rewrites %s in place: its target resolves to the landing, so it is a full load", async (url) => {
+    const { redirectLegacyHash, spies } = await load(url);
+    const rewrite = vi.spyOn(history, "replaceState");
+    expect(redirectLegacyHash()).toBe(true);
+    expect(rewrite).not.toHaveBeenCalled();
+    expect(spies.replace).toHaveBeenCalledOnce();
   });
 
   it("does nothing on a plain fragment", async () => {

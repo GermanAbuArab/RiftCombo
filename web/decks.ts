@@ -103,11 +103,6 @@ export function initDecks(h: DeckHooks): void {
     void guard(async () => {
       decks = sortSaved(await listDecks());
       loaded = true;
-      // Somebody with saved lists almost always came back for one of them; somebody with none has
-      // nothing to see there. Only ever on a bare entry, so a shared link still wins; /app is the
-      // Combos tab's own address (#/combos before #287), so being there is asking for Combos.
-      const bare = location.pathname === "/" && !location.search && !location.hash;
-      if (bare && decks.length) go("/decks");
       // A page opened straight on /app?deck=<id> asked for a list we only have now.
       handOver(current);
     });

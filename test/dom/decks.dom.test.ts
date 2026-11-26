@@ -112,13 +112,12 @@ beforeEach(() => { api.decks = []; document.body.innerHTML = HTML; });
 
 describe("the library", () => {
   /**
-   * Somebody who opens the bare site with saved lists is sent to them; somebody who asked for Combos
-   * by its own address (#287: the tab links /app, as it linked #/combos before) stays there.
+   * Somebody who asked for Combos by its own address (#287: the tab links /app, as it linked #/combos
+   * before) stays there, saved lists or not. The bare entry that used to open My decks was `/`, which
+   * is the public landing since #288 and never boots the shell.
    */
-  it("opens My decks on a bare entry only, never over an address that asked for Combos", async () => {
+  it("never sends an address that asked for Combos to My decks", async () => {
     api.decks = [row()];
-    await boot("/");
-    expect(location.pathname).toBe("/decks");
     for (const path of ["/app", "/app?deck=d1"]) {
       await boot(path);
       expect(location.pathname + location.search, path).toBe(path);

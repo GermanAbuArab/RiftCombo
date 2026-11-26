@@ -1,8 +1,7 @@
 // robots.txt, sitemap.xml and the pre-rendered pages for public/ (#268, #286). Crawlers see only real
-// paths: the views behind `#/combos`, `#/decks`, `#/plays/...` are one document to them, so no hash
-// route is listed. The hand-written pages are STATIC_PAGES; every other entry is a page
-// `src/render/site.ts` rendered, so the sitemap is generated from what the build wrote, and
-// `writeSeo` still refuses a path with no file behind it.
+// paths, never a hash route. The hand-written pages are STATIC_PAGES; every other entry, the landing
+// at `/` among them (#288), is a page `src/render/site.ts` rendered, so the sitemap is generated from
+// what the build wrote, and `writeSeo` still refuses a path with no file behind it.
 
 import { execFileSync } from "node:child_process";
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
@@ -15,8 +14,6 @@ export const ORIGIN = "https://riftcombo.app";
  * file in public/, and the source file whose last commit dates them.
  */
 export const STATIC_PAGES = [
-  // The Guide and Sources views at / are filled from src/render/pages.ts.
-  { path: "/", file: "index.html", sources: ["web/index.html", "src/render/pages.ts"] },
   { path: "/privacy", file: "privacy.html", sources: ["web/privacy.html"] },
   { path: "/terms", file: "terms.html", sources: ["web/terms.html"] },
 ];
