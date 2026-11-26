@@ -1,5 +1,5 @@
 /**
- * The three prose pages — Guide, Sources, About — as HTML (#286).
+ * The landing at `/` (#288) and the three prose pages — Guide, Sources, About — as HTML (#286).
  *
  * The Guide and Sources used to be written into `web/index.html`; they live here now, and the build
  * writes the public pages at /guide and /sources from them. The app shell's own Guide and Sources
@@ -9,7 +9,7 @@
  * Each is a page of its own, so its title is the h1 (the app's views that drew 2 are gone, #575).
  */
 import { esc } from "../html.js";
-import { renderDocument } from "./layout.js";
+import { ORIGIN, renderDocument } from "./layout.js";
 
 export interface ProseSurface {
   /** Whether the catalogue holds an unwalked entry; the word "candidate" is explained only then. */
@@ -97,4 +97,57 @@ export const aboutPage = () => renderDocument(
     section: "about",
   },
   aboutBody(),
+);
+
+/**
+ * The structured data for the site as a whole (#269). It rides on the landing only, the page a search
+ * result for the site points at; `scripts/build-headers.mjs` names its sha256 in `script-src`, so
+ * editing it means re-running `npm run headers`.
+ */
+const SITE_DESCRIPTION = "Paste a Riftbound decklist or deck code and see which known combos it already contains, and which it is a few cards short of.";
+export const SITE_LD = JSON.stringify({
+  "@context": "https://schema.org",
+  "@graph": [
+    { "@type": "WebSite", name: "RiftCombo", url: `${ORIGIN}/`, description: SITE_DESCRIPTION, inLanguage: "en" },
+    {
+      "@type": "WebApplication", name: "RiftCombo", url: `${ORIGIN}/`, description: SITE_DESCRIPTION,
+      applicationCategory: "GameApplication", operatingSystem: "Any", browserRequirements: "Requires JavaScript",
+      isAccessibleForFree: true, offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
+    },
+  ],
+});
+
+/**
+ * What RiftCombo is, for somebody who has not signed in (#288, reversing #39 for the content). It reads
+ * as a page, not as the entrance: the catalogue, the plays and the guide are links anyone can follow,
+ * and only the finder and My decks ask for an account.
+ */
+export function landingBody(): string {
+  return `<h1 class="doc-title">Riftbound combo finder</h1>
+  <p>RiftCombo is a catalogue of Riftbound combos — lines of cards that loop, burst to the Victory Score, chain points or build advantage — and a finder that reads a deck list against it. A verified combo is walked by hand against the card text and Riot's Core Rules, with the rule paragraphs cited; one an automated sweep proposed is marked <em>candidate</em> until a person has walked it.</p>
+  <h2>Read the catalogue</h2>
+  <ul>
+    <li><a href="/combos">Combos</a>: every catalogued line, with its pieces, what has to be true before it works, the steps and the sources behind each one.</li>
+    <li><a href="/plays">Run plays</a>: games played out turn by turn, with the mana, against an opponent who is doing something.</li>
+    <li><a href="/guide">Guide</a>: what Complete, Near misses and What to add show, and what each combo class means.</li>
+  </ul>
+  <h2>Match a deck</h2>
+  <p>Paste a deck list, a deck code or a public Piltover Archive link into the <a href="/app">combo finder</a> to see which lines the list already holds and which it is a card or two short of. The finder and <a href="/decks">My decks</a> ask you to sign in with Google; the catalogue, the plays and the guide do not.</p>`;
+}
+
+/**
+ * Pre-#287 links pointed at `/` with the route in the fragment (`/#/plays/x`, `/#deck=<code>`). The
+ * server never sees a fragment, so this one same-origin script sends them on (`web/legacy.ts`).
+ */
+const LEGACY_SCRIPT = `<script src="/legacy.js"></script>`;
+
+export const landingPage = () => renderDocument(
+  {
+    path: "/",
+    title: "Riftbound combo finder",
+    description: "A catalogue of Riftbound combos with their pieces, steps and Core Rules sources, run plays priced turn by turn, and a finder that reads a deck list against the catalogue.",
+    section: null,
+    head: `<script type="application/ld+json">${SITE_LD}</script>\n${LEGACY_SCRIPT}`,
+  },
+  landingBody(),
 );

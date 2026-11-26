@@ -50,9 +50,9 @@ describe("the path routes", () => {
     expect(parseUrl(`/decks/${encodeURIComponent("a b/c")}`).deckId).toBe("a b/c");
   });
 
-  it("knows which paths the app shell serves; every other path is a public page", () => {
-    for (const p of ["/", "/app", "/decks", "/decks/new", "/decks/8f3c-1"]) expect(isAppPath(p), p).toBe(true);
-    for (const p of ["/combos", "/combos/x", "/plays", "/plays/x", "/guide", "/sources", "/about", "/privacy", "/decksx", "/application"]) {
+  it("knows which paths the app shell serves; every other path, the landing at / among them (#288), is a public page", () => {
+    for (const p of ["/app", "/decks", "/decks/new", "/decks/8f3c-1"]) expect(isAppPath(p), p).toBe(true);
+    for (const p of ["/", "/combos", "/combos/x", "/plays", "/plays/x", "/guide", "/sources", "/about", "/privacy", "/decksx", "/application"]) {
       expect(isAppPath(p), p).toBe(false);
     }
   });

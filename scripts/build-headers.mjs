@@ -11,9 +11,10 @@
 //   NEON_DATA_API_URL=https://<ep>.apirest.<...>.neon.tech/neondb/rest/v1 node scripts/build-headers.mjs
 
 import { createHash } from "node:crypto";
-import { readFileSync, writeFileSync } from "node:fs";
+import { writeFileSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
+import { tsImport } from "tsx/esm/api";
 import { siteConfig } from "./site-config.mjs";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
@@ -23,15 +24,17 @@ const { origins } = siteConfig(ROOT);
 // and `public.profiles`) from two hosts on the same endpoint, so connect-src lists both.
 const connect = ["'self'", ...origins].join(" ");
 
-// The JSON-LD in index.html (#269) is an inline <script>, so script-src names its exact hash rather than
-// 'unsafe-inline'. Browsers do not execute a data block, but a hash keeps the policy true to the page
-// and a stale one fails test/social-meta.test.ts. Editing that block means re-running this script.
+// The JSON-LD on the landing (#269, on `/` since #288) is an inline <script>, so script-src names its
+// exact hash rather than 'unsafe-inline'. Browsers do not execute a data block, but a hash keeps the
+// policy true to the page and a stale one fails test/social-meta.test.ts. The hash is read from the
+// page as `src/render/pages.ts` renders it, so editing that block means re-running this script.
 function inlineScriptHashes(html) {
   return [...html.matchAll(/<script\b[^>]*>([\s\S]*?)<\/script>/g)]
     .filter((m) => m[1].length > 0)
     .map((m) => `'sha256-${createHash("sha256").update(m[1], "utf8").digest("base64")}'`);
 }
-const scriptSrc = ["'self'", ...inlineScriptHashes(readFileSync(join(ROOT, "web", "index.html"), "utf8"))].join(" ");
+const { landingPage } = await tsImport("../src/render/pages.ts", import.meta.url);
+const scriptSrc = ["'self'", ...inlineScriptHashes(landingPage())].join(" ");
 
 const config = {
   $schema: "https://openapi.vercel.sh/vercel.json",
