@@ -93,7 +93,7 @@ const BLOCK_WILDCARD = /^\d{3}(\.[0-9a-z]+)*\.x$/;
 const OLD_NUMBERING_ENTRY = "jhin-fiora-facebreaker-recall";
 
 type Hit = { ref: string; id: string; path: string; edition: string };
-type Entry = { id: string; rulesVersion?: string };
+type Entry = { id: string; rulesVersion?: string; walkedVersion?: string };
 
 function collect(file: string, entries: Entry[], fileEdition?: string): Hit[] {
   const hits: Hit[] = [];
@@ -217,9 +217,10 @@ function ledgerFaults(entry: Entry, row: Ledger["entries"][string], rereads: Rer
 
 describe("entries moved to the 2026-10-09 rules cite the paragraphs they meant (#645 ledger)", () => {
   const byId = new Map(combos.combos.map((e) => [e.id, e]));
-  const onNew = combos.combos.filter((e) => e.rulesVersion === NEW).map((e) => e.id);
+  // An entry walked again by hand on 10-09 (#708) took its numbers from the walk, not from the remap.
+  const onNew = combos.combos.filter((e) => e.rulesVersion === NEW && e.walkedVersion !== NEW).map((e) => e.id);
 
-  it("covers exactly the entries on 2026-10-09", () => {
+  it("covers exactly the entries moved to 2026-10-09 by the remap", () => {
     expect([ledger.from, ledger.to]).toEqual([OLD, NEW]);
     expect(onNew.length).toBeGreaterThan(100);
     expect(Object.keys(ledger.entries).sort()).toEqual([...onNew].sort());
@@ -268,6 +269,7 @@ describe("entries moved to the 2026-10-09 rules cite the paragraphs they meant (
 
 describe("reworded paragraphs re-read and held let their citations move (REREAD)", () => {
   const onNew = combos.combos.filter((e) => e.rulesVersion === NEW);
+  const remapped = onNew.filter((e) => e.walkedVersion !== NEW);
 
   it("names the two shipped texts each verdict was read on, and an issue that holds it", () => {
     const rows = [...BOOKS].flatMap((b: string) => legsOf(REREADS[b] ?? {}).map((r) => ({ b, ...r })));
@@ -283,7 +285,7 @@ describe("reworded paragraphs re-read and held let their citations move (REREAD)
 
   it("is what clears an entry that cites one, and only for the texts it was read on", () => {
     const [id, r] = Object.entries(REREADS.core!)[0]! as [string, Leg];
-    const citer = onNew.find((e) => ledger.entries[e.id]!.refs[r.to]?.[2] === r.from);
+    const citer = remapped.find((e) => ledger.entries[e.id]!.refs[r.to]?.[2] === r.from);
     expect(citer, `a moved entry citing core ${id}`).toBeDefined();
     const row = ledger.entries[citer!.id]!;
     expect(ledgerFaults(citer!, row)).toEqual([]);
@@ -298,7 +300,7 @@ describe("reworded paragraphs re-read and held let their citations move (REREAD)
     // row reads into 430.2 too, from another text, and does not clear a citation of 429.3.a.
     const r = REREADS.core!["429.3.a"]! as Leg;
     expect(r.to).toBe("430.2");
-    const citer = onNew.find((e) => ledger.entries[e.id]!.refs[r.to]?.[2] === r.from);
+    const citer = remapped.find((e) => ledger.entries[e.id]!.refs[r.to]?.[2] === r.from);
     expect(citer, "a moved entry citing core 429.3.a").toBeDefined();
     const row = ledger.entries[citer!.id]!;
     expect(row.moved).toContain("429.3.a");
@@ -354,7 +356,7 @@ describe("reworded paragraphs re-read and held let their citations move (REREAD)
     expect(halves.map((l) => l.to)).toEqual(["323.6", "323.6.a"]);
     const [recall, hidden] = halves as [Leg & Half, Leg & Half];
     expect(recall.ids.filter((id) => hidden.ids.includes(id))).toEqual([]);
-    const citers = onNew.filter((e) => Object.values(ledger.entries[e.id]!.refs).some(([b, , h]) => b === "core" && h === r.from));
+    const citers = remapped.filter((e) => Object.values(ledger.entries[e.id]!.refs).some(([b, , h]) => b === "core" && h === r.from));
     for (const e of citers) {
       const nums = Object.entries(ledger.entries[e.id]!.refs).filter(([, [b, , h]]) => b === "core" && h === r.from).map(([n]) => n);
       expect(nums, e.id).toEqual([recall.ids.includes(e.id) ? "323.6" : hidden.ids.includes(e.id) ? "323.6.a" : "neither"]);
@@ -504,5 +506,41 @@ describe("entries held on 2026-07-16 by id stay there, pinned in the remap recor
       expect(line, id).toBeDefined();
       expect(line!.slice(line!.indexOf("]: ") + 3).split("; "), id).toContain(why);
     }
+  });
+});
+
+describe("entries re-walked by hand on 2026-10-09 stand on that walk, outside the remap (#708)", () => {
+  type Walked = Entry & { status: string; sources: { kind: string; title: string }[] };
+  const rewalked = (combos.combos as Walked[]).filter((e) => e.walkedVersion === NEW);
+  const record = readFileSync(new URL("docs/rules-diff/remap-2026-10-09.md", root), "utf8");
+  const listed = (head: string) => (record.split(`\n## ${head}`)[1] ?? "").split("\n## ")[0]!.split("\n").filter((l) => l.startsWith("- `"));
+  const strings = (n: unknown): string[] => (typeof n === "string" ? [n] : n && typeof n === "object" ? Object.values(n).flatMap(strings) : []);
+
+  it("names each one's walk, numbers it on 10-09, and keeps it out of the ledger", () => {
+    expect(rewalked.length).toBeGreaterThanOrEqual(6);
+    const faults = rewalked.flatMap((e) => {
+      const walks = e.sources.filter((s) => s.kind === "manual-walk").map((s) => /docs\/phase0\/walks\/[^ )]+\.md/.exec(s.title)?.[0]).filter((f): f is string => !!f);
+      return [
+        ...(e.status === "verified" ? [] : [`${e.id} is ${e.status}`]),
+        ...(e.rulesVersion === NEW ? [] : [`${e.id} is numbered on ${e.rulesVersion}`]),
+        ...(walks.some((f) => readFileSync(new URL(f, root), "utf8").includes(`\`${e.id}\``)) ? [] : [`${e.id}: no walk document names it`]),
+        ...(e.id in ledger.entries ? [`${e.id} has a ledger row`] : []),
+        ...(e.sources.some((s) => s.kind === "riot" && s.title.includes(OLD)) ? [`${e.id} cites a ${OLD} Riot source`] : []),
+      ];
+    });
+    expect(faults).toEqual([]);
+  });
+
+  it("is listed under Re-walked in the remap record and not under Pinned", () => {
+    const rw = listed("Re-walked on").map((l) => /^- `([^`]+)`/.exec(l)![1]);
+    const pinned = listed("Pinned entries").map((l) => /^- `([^`]+)`/.exec(l)![1]);
+    expect(rw.sort()).toEqual(rewalked.map((e) => e.id).sort());
+    expect(rewalked.filter((e) => pinned.includes(e.id)).map((e) => e.id)).toEqual([]);
+  });
+
+  it("no entry on 10-09 says a copy keeps its own Might, which was R27's reading of 07-16 only", () => {
+    const r27 = /Might is not (a )?copyable|R27 (leaves|keeps|keeping)|copy at 0|not copy the Might/i;
+    const onNew = combos.combos.filter((e) => e.rulesVersion === NEW);
+    expect(onNew.filter((e) => strings(e).some((s) => r27.test(s))).map((e) => e.id)).toEqual([]);
   });
 });
