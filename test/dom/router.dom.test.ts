@@ -249,6 +249,14 @@ describe("old hash links (#287)", () => {
     expect(spies.replace).not.toHaveBeenCalled();
   });
 
+  it.each(["/app#/decks/..", "/decks#/decks/%2e%2e"])("never rewrites %s in place: its target resolves to the landing, so it is a full load", async (url) => {
+    const { redirectLegacyHash, spies } = await load(url);
+    const rewrite = vi.spyOn(history, "replaceState");
+    expect(redirectLegacyHash()).toBe(true);
+    expect(rewrite).not.toHaveBeenCalled();
+    expect(spies.replace).toHaveBeenCalledOnce();
+  });
+
   it("does nothing on a plain fragment", async () => {
     const { redirectLegacyHash, spies } = await load("/app#stage");
     expect(redirectLegacyHash()).toBe(false);

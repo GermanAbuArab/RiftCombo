@@ -178,6 +178,15 @@ describe("the landing at / (#288)", () => {
     for (const href of ["/combos", "/plays", "/guide", "/app", "/decks"]) expect(main, href).toContain(`href="${href}"`);
     expect(main).toMatch(/<h1 class="doc-title">[^<]+<\/h1>/);
   });
+
+  it("says 'walked by hand' only of a verified combo, the catalogue holding candidates too", () => {
+    const main = /<main[^>]*>([\s\S]*?)<\/main>/.exec(landing.html)![1]!;
+    expect(combos.some((c) => c.status !== "verified")).toBe(true);
+    for (const sentence of main.replace(/<[^>]+>/g, "").split(/(?<=[.;])\s+/).filter((s) => /walked by hand/i.test(s))) {
+      expect(sentence).toMatch(/^A verified combo /);
+    }
+    expect(main).toContain("marked <em>candidate</em> until a person has walked it");
+  });
 });
 
 describe("the thin-content line (#272 §2)", () => {

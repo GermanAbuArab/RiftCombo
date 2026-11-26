@@ -124,7 +124,7 @@ export const SITE_LD = JSON.stringify({
  */
 export function landingBody(): string {
   return `<h1 class="doc-title">Riftbound combo finder</h1>
-  <p>RiftCombo is a catalogue of Riftbound combos — lines of cards that loop, burst to the Victory Score, chain points or build advantage — and a finder that reads a deck list against it. Combos are walked by hand against the card text and Riot's Core Rules, with the rule paragraphs cited.</p>
+  <p>RiftCombo is a catalogue of Riftbound combos — lines of cards that loop, burst to the Victory Score, chain points or build advantage — and a finder that reads a deck list against it. A verified combo is walked by hand against the card text and Riot's Core Rules, with the rule paragraphs cited; one an automated sweep proposed is marked <em>candidate</em> until a person has walked it.</p>
   <h2>Read the catalogue</h2>
   <ul>
     <li><a href="/combos">Combos</a>: every catalogued line, with its pieces, what has to be true before it works, the steps and the sources behind each one.</li>
@@ -145,7 +145,7 @@ export const landingPage = () => renderDocument(
   {
     path: "/",
     title: "Riftbound combo finder",
-    description: "Riftbound combos walked against the card text and the Core Rules, run plays priced turn by turn, and a finder that reads a deck list against the catalogue.",
+    description: "A catalogue of Riftbound combos with their pieces, steps and Core Rules sources, run plays priced turn by turn, and a finder that reads a deck list against the catalogue.",
     section: null,
     head: `<script type="application/ld+json">${SITE_LD}</script>\n${LEGACY_SCRIPT}`,
   },

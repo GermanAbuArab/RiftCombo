@@ -95,7 +95,8 @@ export const navigate = {
 export function redirectLegacyHash(): boolean {
   const target = legacyTarget(location.hash);
   if (!target) return false;
-  if (isAppPath(location.pathname) && isAppPath(target.replace(/[?#].*$/, ""))) {
+  // The path the browser would land on, dot segments resolved: `/decks/..` is the landing, not the shell.
+  if (isAppPath(location.pathname) && isAppPath(new URL(target, location.href).pathname)) {
     history.replaceState(history.state, "", target);
     return false;
   }
