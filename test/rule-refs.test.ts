@@ -394,8 +394,8 @@ describe("reworded paragraphs re-read and held let their citations move (REREAD)
 
   it("moves a 355.10.d citation, whose two legend examples went to new 355.10.g with the same answers (#658)", () => {
     const r = REREADS.core!["355.10.d"]! as Leg;
-    const [was, now] = [OLD, NEW].map((v) => (paragraphs(v, "core") as Map<string, string>).get("355.10.d")!);
-    expect(was.replace(/ e\.g\., “Ready your legend” .*? legends\./, "")).toBe(now);
+    const now = (paragraphs(NEW, "core") as Map<string, string>).get("355.10.d");
+    expect((paragraphs(OLD, "core") as Map<string, string>).get("355.10.d")!.replace(/ e\.g\., “Ready your legend” .*? legends\./, "")).toBe(now);
     const g = (paragraphs(NEW, "core") as Map<string, string>).get("355.10.g")!;
     expect([(paragraphs(OLD, "core") as Map<string, string>).has("355.10.g"), g]).toEqual([false, expect.stringContaining("“Ready your legend.” doesn’t target any legend.")]);
     expect(g).toContain("“Ready a friendly legend.” targets the friendly legend.");
