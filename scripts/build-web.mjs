@@ -1,7 +1,8 @@
 #!/usr/bin/env node
-// Build the static site into public/: bundle web/main.ts, copy the page + styles, and emit two data
-// files for the browser — a slimmed card index (matching needs codes/names/domains; the drawer shows
-// text) and the run plays, whose markdown in docs/plays/ stays the single source of truth (#206).
+// Build the static site into public/: bundle web/main.ts (and the landing's web/legacy.ts), copy the
+// hand-written pages + styles, pre-render the public pages, and emit two data files for the browser —
+// a slimmed card index (matching needs codes/names/domains; the drawer shows text) and the run plays,
+// whose markdown in docs/plays/ stays the single source of truth (#206).
 //
 //   node scripts/build-web.mjs           # production build
 //   node scripts/build-web.mjs --watch   # rebuild on change
@@ -46,10 +47,11 @@ writeFileSync(join(OUT, "data", "plays.json"), JSON.stringify({ plays }));
 // to work in the case where the bundle is what went wrong (#77).
 // The social card, the icons and the manifest (#269) are rendered once by scripts/build-brand-images.sh
 // and committed, so the build only copies them.
-const STATIC = ["index.html", "privacy.html", "terms.html", "404.html", "styles.css", "favicon.svg", "og.png", "apple-touch-icon.png", "icon-192.png", "icon-512.png", "manifest.webmanifest", "riot.txt"];
+const STATIC = ["privacy.html", "terms.html", "404.html", "styles.css", "favicon.svg", "og.png", "apple-touch-icon.png", "icon-192.png", "icon-512.png", "manifest.webmanifest", "riot.txt"];
 for (const f of STATIC) copyFileSync(join(ROOT, "web", f), join(OUT, f));
-// The app shell at /app and, through vercel.json's one rewrite, /decks/* (#287): the same page with
-// `noindex` in place of the canonical, so a signed-in tool screen never enters an index.
+// The app shell at /app and, through vercel.json's one rewrite, /decks/* (#287): web/index.html with
+// `noindex` in place of the canonical, so a signed-in tool screen never enters an index. It is served
+// nowhere else: public/index.html is the landing `renderSite` writes below (#288).
 writeFileSync(join(OUT, "app.html"), appShell(readFileSync(join(ROOT, "web", "index.html"), "utf8")));
 // Inter is served from this origin (#295), so no page asks Google Fonts for it before any consent choice.
 cpSync(join(ROOT, "web", "fonts"), join(OUT, "fonts"), { recursive: true });
@@ -94,13 +96,14 @@ const site = siteConfig(ROOT);
 const stripComboProse = stripProsePlugin(ROOT, readFileSync);
 
 const options = {
-  entryPoints: [join(ROOT, "web", "main.ts")],
+  // public/app.js, and public/legacy.js, which only the landing loads (#288).
+  entryPoints: { app: join(ROOT, "web", "main.ts"), legacy: join(ROOT, "web", "legacy.ts") },
   bundle: true,
   format: "esm",
   target: ["es2022"],
   minify: !watch,
   sourcemap: true,
-  outfile: join(OUT, "app.js"),
+  outdir: OUT,
   logLevel: "info",
   plugins: [stripComboProse],
   define: {

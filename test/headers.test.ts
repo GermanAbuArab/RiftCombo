@@ -8,6 +8,7 @@ import { deckCountLine } from "../src/deck.js";
 import { rewritten } from "../scripts/qa-serve.mjs";
 // @ts-expect-error -- plain .mjs build script, no types
 import { appShell } from "../scripts/web-seo.mjs";
+import { landingPage } from "../src/render/pages.js";
 
 /**
  * The three things about accounts (#31) that break silently rather than loudly, pinned here because
@@ -79,6 +80,18 @@ describe("what the page promises about storing a list", () => {
     expect(html.match(/Sign in with Google/g)?.length).toBe(1);
     expect(html).toContain('id="gate-signin"');
     expect(html).not.toContain('id="acct-signin"');
+  });
+
+  /**
+   * #288: the gate is the app shell's, and the shell is served only at /app and /decks. The landing at
+   * `/` is a public page: it links the finder and My decks, whose entrance carries the one button.
+   */
+  it("keeps the landing free of the gate: no entrance, no auth state, no second sign-in button", () => {
+    const landing = landingPage();
+    expect(landing).not.toContain("data-auth");
+    expect(landing).not.toContain('id="gate"');
+    expect(landing).not.toContain("Sign in with Google");
+    expect(landing).toContain('href="/app"');
   });
 });
 
@@ -343,7 +356,8 @@ describe("only master deploys (#277)", () => {
 /**
  * #287: the app shell is served at /app (`cleanUrls` finds `app.html`) and at every /decks address
  * through ONE rewrite, and the shell says `noindex` (#272 §2: the signed-in tool screens never enter an
- * index). `/` keeps serving `index.html`, indexable, until #288 gives it a landing of its own.
+ * index). `/` is the landing `src/render/site.ts` writes as `public/index.html` (#288), so the build
+ * copies `web/index.html` only as `app.html`.
  */
 describe("the app shell (#287)", () => {
   const rewrites = (vercel as unknown as { rewrites: { source: string; destination: string }[] }).rewrites;
@@ -352,6 +366,13 @@ describe("the app shell (#287)", () => {
   it("has exactly one SPA rewrite, every /decks address to the noindex shell", () => {
     const spa = rewrites.filter((r) => r.destination === "/app" || r.destination === "/index.html");
     expect(spa).toEqual([{ source: "/decks/:path*", destination: "/app" }]);
+  });
+
+  it("reaches public/ only as app.html, never as the page at /", () => {
+    const build = readFileSync(new URL("../scripts/build-web.mjs", import.meta.url), "utf8");
+    const statics = /const STATIC = \[([^\]]*)\]/.exec(build)![1]!;
+    expect(statics).not.toContain('"index.html"');
+    expect(build).toContain('writeFileSync(join(OUT, "app.html"), appShell(readFileSync(join(ROOT, "web", "index.html"), "utf8")));');
   });
 
   it("is index.html with noindex in place of its canonical", () => {

@@ -1,14 +1,17 @@
 import { createHash } from "node:crypto";
 import { readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
+import { landingPage } from "../src/render/pages.js";
 
 /**
  * Social and structured metadata (#269): a shared link has to render as a card, the JSON-LD has to
  * parse, and the strict CSP has to name the JSON-LD block by hash instead of loosening script-src.
+ * The home page is the landing `src/render/pages.ts` renders at `/` since #288; `web/index.html` is
+ * the app shell, served only at /app and /decks with `noindex`.
  */
 const read = (path: string) => readFileSync(new URL(`../${path}`, import.meta.url));
 const page = (f: string) => read(`web/${f}`).toString("utf8");
-const index = page("index.html");
+const index = landingPage();
 const attr = (html: string, selector: RegExp): string | undefined => selector.exec(html)?.[1];
 const meta = (html: string, kind: "property" | "name", key: string) =>
   attr(html, new RegExp(`<meta ${kind}="${key.replace(/[.:]/g, "\\$&")}" content="([^"]*)">`));
@@ -51,12 +54,16 @@ describe("Open Graph and Twitter card on the home page (#269)", () => {
 
   it("keeps lang=en on every page, the content being English", () => {
     for (const f of ["index.html", "privacy.html", "terms.html", "404.html"]) expect(page(f), f).toContain('<html lang="en">');
+    expect(index).toContain('<html lang="en">');
   });
 });
 
 describe("canonical links (#269)", () => {
+  it("the landing names https://riftcombo.app/", () => {
+    expect(index.match(/<link rel="canonical"[^>]*>/g)).toEqual(['<link rel="canonical" href="https://riftcombo.app/">']);
+  });
+
   it.each([
-    ["index.html", "https://riftcombo.app/"],
     ["privacy.html", "https://riftcombo.app/privacy"],
     ["terms.html", "https://riftcombo.app/terms"],
   ])("%s names %s", (f, href) => {
@@ -70,6 +77,10 @@ describe("canonical links (#269)", () => {
 
 describe("JSON-LD (#269)", () => {
   const blocks = [...index.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)].map((m) => m[1]!);
+
+  it("rides on the landing only, so the CSP names one hash: the app shell carries none", () => {
+    expect(page("index.html")).not.toContain("application/ld+json");
+  });
 
   it("is one block that parses, holding a WebSite and a free GameApplication", () => {
     expect(blocks).toHaveLength(1);
@@ -104,9 +115,9 @@ describe("apple-touch-icon and web manifest (#269)", () => {
   };
 
   it("every page links the touch icon and the manifest", () => {
-    for (const f of ["index.html", "privacy.html", "terms.html", "404.html"]) {
-      expect(page(f), f).toContain('<link rel="apple-touch-icon" href="/apple-touch-icon.png">');
-      expect(page(f), f).toContain('<link rel="manifest" href="/manifest.webmanifest">');
+    for (const [f, html] of [...["index.html", "privacy.html", "terms.html", "404.html"].map((f) => [f, page(f)]), ["landing", index]]) {
+      expect(html, f).toContain('<link rel="apple-touch-icon" href="/apple-touch-icon.png">');
+      expect(html, f).toContain('<link rel="manifest" href="/manifest.webmanifest">');
     }
   });
 

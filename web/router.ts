@@ -5,13 +5,14 @@
 //
 // #287 moved the router from the hash to the History API (#272 design §2). The app is the shell at
 //   /app  /app?deck=<id>  /app#deck=<code>  /decks  /decks/new  /decks/<id>
-// and `/` while it still serves that shell (#288 gives `/` its own landing). Every other path —
-// /combos/<id>, /plays/<slug>, /guide, /sources, /about, /privacy — is a pre-rendered public page
-// (#286), and crossing between the two surfaces is a FULL navigation, never a pushState, so the
-// browser applies the destination's own headers (its CSP above all, #272 §5).
+// Every other path — the landing at `/` (#288), /combos/<id>, /plays/<slug>, /guide, /sources,
+// /about, /privacy — is a pre-rendered public page (#286), and crossing between the two surfaces is a
+// FULL navigation, never a pushState, so the browser applies the destination's own headers (its CSP
+// above all, #272 §5).
 //
 // Old hash links (`#/plays/x`, `#/combos?deck=<id>`, `#deck=<code>`, every other `#/<view>`) still
-// work: the server never sees a fragment, so `redirectLegacyHash` turns them into paths on boot.
+// work: the server never sees a fragment, so `redirectLegacyHash` turns them into paths, on boot in
+// the shell and from `web/legacy.ts` on the landing, where those links point.
 
 export const VIEWS = ["combos", "decks"] as const;
 export type ViewName = (typeof VIEWS)[number];
@@ -39,7 +40,7 @@ const TITLES: Record<ViewName, string> = {
 
 /** The paths the app shell serves; everything else on the origin is a public page. */
 export function isAppPath(pathname: string): boolean {
-  return pathname === "/" || pathname === "/app" || pathname === "/decks" || pathname.startsWith("/decks/");
+  return pathname === "/app" || pathname === "/decks" || pathname.startsWith("/decks/");
 }
 
 const decode = (s: string): string => {
@@ -87,13 +88,14 @@ export const navigate = {
 };
 
 /**
- * Turn an old hash link into its path, before anything reads the route. An in-app target is
- * rewritten in place; a public one is a full navigation. Returns true when the page is leaving.
+ * Turn an old hash link into its path, before anything reads the route. In the shell, an in-app
+ * target is rewritten in place; any other is a full navigation, as `go()` would make it. Returns true
+ * when the page is leaving.
  */
 export function redirectLegacyHash(): boolean {
   const target = legacyTarget(location.hash);
   if (!target) return false;
-  if (isAppPath(target.replace(/[?#].*$/, ""))) {
+  if (isAppPath(location.pathname) && isAppPath(target.replace(/[?#].*$/, ""))) {
     history.replaceState(history.state, "", target);
     return false;
   }
