@@ -13,7 +13,7 @@
 // 479.1.b, 477.2 to 479.3, 477.3 to 479.4; #655: 464.2.b to 466.2.b, 464.2.d to 466.2.c.1.a,
 // 464.2.e to 466.2.d; #656: 323.4 to 383.2.c.3, 323.5 to 323.4, 323.8 to 323.7, 323.9 to 323.8, and
 // 323.7 split, per citer, into 323.6 and 323.6.a; #658: 355.7, 355.10.d and 355.11.b; #657: 465.2.c.3 to 467.2.c.3, 465.2.c.5 to
-// 467.2.c.5). The data marks the edition per ENTRY (`rulesVersion`), so
+// 467.2.c.5; #659: 347.1.b, 347.2.b and 348). The data marks the edition per ENTRY (`rulesVersion`), so
 // the pin is per entry: an entry that cites any paragraph Riot reworded or deleted keeps every number
 // and `rulesVersion: "2026-07-16"`, and an entry whose every citation kept its text moves whole.
 // data/synergies.json carries one `rulesVersion` for the file and stays on 07-16.
@@ -217,7 +217,8 @@ function plan(entry) {
     typeof node === "string" ? [[path, node]] : Array.isArray(node) ? node.flatMap((v, i) => walkPaths(v, `${path}[${i}]`)) : node && typeof node === "object" ? Object.entries(node).flatMap(([k, v]) => walkPaths(v, `${path}.${k}`)) : [];
   // A re-read paragraph keeps its number and changes its words, so where the entry prints its 07-16
   // words they become its 10-09 words (reword). A paraphrase that keeps the 07-16 form next to the
-  // number cannot be rewritten by text, and would misquote the paragraph the number then names.
+  // number cannot be rewritten by text, and would misquote the paragraph the number then names. Next to
+  // is either side: "the Attacker takes Focus at 464.2.d" states the deleted task before its number (#659).
   const reworded = new Set();
   for (const [path, s] of walkPaths(entry, "")) {
     const t = reword(entry, path, s, rereads);
@@ -226,7 +227,8 @@ function plan(entry) {
       const [book, id] = rr.split(" ");
       const was = REREAD[book][id].was;
       if (!was || !ownWords(entry, path, book)) continue;
-      const near = new RegExp(String.raw`(?<![0-9.])${id.replace(/\./g, "\\.")}(?![0-9a-z]|\.[0-9a-z])[^]{0,120}?(?:${was})`);
+      const num = String.raw`(?<![0-9.])${id.replace(/\./g, "\\.")}(?![0-9a-z]|\.[0-9a-z])`;
+      const near = new RegExp(String.raw`${num}[^]{0,120}?(?:${was})|(?:${was})[^]{0,120}?${num}`);
       if (near.test(t)) pins.add(`${path} prints ${book} ${id} in its ${FROM} form`);
     }
   }
