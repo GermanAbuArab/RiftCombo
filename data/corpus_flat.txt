@@ -1,4 +1,4 @@
-# Riftbound card corpus — 1103 distinct cards (1408 printings incl. alt-art), Riot gallery API data as of 2026-11-23T16:55:54.728567058Z, errata applied.
+# Riftbound card corpus — 1103 distinct cards (1408 printings incl. alt-art), Riot gallery API data as of 2026-11-26T16:11:16.878617490Z, errata applied.
 # Columns: code | name | type | domains | cost | text   (cost: E=Energy, P=Power, M=Might, M+=Equipment Might bonus)
 # Icons: :rb_energy_N: = N Energy; :rb_rune_<domain>: = 1 Power of that domain; :rb_rune_rainbow: = 1 Power of any domain; :rb_exhaust: = exhaust; :rb_might: = Might.
 # Equipment: the [Effect] clause is the text granted to the unit it is attached to ("I" = that unit).

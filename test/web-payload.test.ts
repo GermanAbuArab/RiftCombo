@@ -51,6 +51,18 @@ describe("the card payload the browser downloads", () => {
     expect(withSig.length).toBe(60);
     expect(withSig.filter((c: unknown) => (slimCard(c) as { signature?: boolean }).signature).length).toBe(60);
   });
+
+  /**
+   * `Card.token` (#695) is what `poolOf` and the synergy scan drop a token by, now that a card with no
+   * domain is not always one (RAD-167 Neeko). Without it in the projection every card would read as
+   * `token: undefined` in the browser and the builder's pool would offer all fourteen.
+   */
+  it("carries the token mark the pool reads", () => {
+    expect(WEB_CARD_FIELDS, "token is read by src/builder.ts and src/synergies.ts").toContain("token");
+    const tokens = cards.cards.filter((c: { token?: boolean }) => c.token);
+    expect(tokens.length).toBe(14);
+    expect(tokens.filter((c: unknown) => (slimCard(c) as { token?: boolean }).token).length).toBe(14);
+  });
 });
 
 /**
