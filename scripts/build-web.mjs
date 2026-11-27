@@ -58,9 +58,14 @@ writeFileSync(join(OUT, "app.html"), appShell(readFileSync(join(ROOT, "web", "in
 // rendered page gets it from renderSite, and writeSeo writes ads.txt.
 const adsenseId = publisherId(ADSENSE_PUBLISHER_ID);
 if (adsenseId) {
-  const { withAdsenseAccount } = await tsImport("../src/render/layout.ts", import.meta.url);
+  const { withAdsenseAccount, withPrivacyChoices } = await tsImport("../src/render/layout.ts", import.meta.url);
   for (const f of [...STATIC.filter((s) => s.endsWith(".html")), "app.html"]) {
     writeFileSync(join(OUT, f), withAdsenseAccount(readFileSync(join(OUT, f), "utf8"), adsenseId));
+  }
+  // The "Privacy choices" link (#293) goes on the two public hand-written pages only: 404.html
+  // carries no script (#77), and the app shell carries no ads (#272 §6).
+  for (const f of ["privacy.html", "terms.html"]) {
+    writeFileSync(join(OUT, f), withPrivacyChoices(readFileSync(join(OUT, f), "utf8"), adsenseId));
   }
 }
 // Inter is served from this origin (#295), so no page asks Google Fonts for it before any consent choice.
@@ -107,8 +112,9 @@ const site = siteConfig(ROOT);
 const stripComboProse = stripProsePlugin(ROOT, readFileSync);
 
 const options = {
-  // public/app.js, and public/legacy.js, which only the landing loads (#288).
-  entryPoints: { app: join(ROOT, "web", "main.ts"), legacy: join(ROOT, "web", "legacy.ts") },
+  // public/app.js, public/legacy.js, which only the landing loads (#288), and public/privacy-choices.js,
+  // which only a page with the "Privacy choices" link loads (#293).
+  entryPoints: { app: join(ROOT, "web", "main.ts"), legacy: join(ROOT, "web", "legacy.ts"), "privacy-choices": join(ROOT, "web", "privacy-choices.ts") },
   bundle: true,
   format: "esm",
   target: ["es2022"],

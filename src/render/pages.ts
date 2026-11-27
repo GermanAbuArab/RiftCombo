@@ -53,7 +53,7 @@ export function sourcesBody(s: ProseSurface & { note?: string }): string {
   return `${title("Sources")}
   <p id="data-note">Card text and art come from Riot's official card gallery, with Riot's published errata applied. Legality follows the official Rules Hub. Combos are walked by hand against the Core Rules, card text and rule numbers cited.${when(s, ` Entries marked <em>candidate</em> were proposed by an automated sweep and not yet reviewed.`)} Pairs are a separate file with a weaker guarantee: the rule is walked once and cites its paragraphs, the instances are text matches, and every rule's whole match list was read card by card before it shipped.${s.note ? ` ${esc(s.note)}` : ""}</p>
   <p>Saving a deck stores the list text you typed, not the result of matching it, so an old list is read again against today's catalogue and today's ban list every time you open it. Only you can read your own rows.</p>
-  <p>No advertising, no donations, no play-rate or win-rate data. RiftCombo describes combos; it never plays them for you.</p>`;
+  <p>No donations, no play-rate or win-rate data. RiftCombo describes combos; it never plays them for you.</p>`;
 }
 
 const REPO = "https://github.com/GermanAbuArab/RiftCombo";
