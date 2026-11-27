@@ -1,0 +1,47 @@
+name: Refresh
+
+# Daily model-free detector (#735): rebuilds the card data from Riot's gallery on the runner, reads
+# the rules hub and the news page, and files one issue per change it has not filed before
+# (scripts/refresh-check.mjs). It never commits: a merge to master is a production deploy, and the
+# rebuilt files die with the runner. A run here is never merge evidence; it only files issues.
+
+on:
+  schedule:
+    - cron: "17 9 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+concurrency:
+  group: refresh
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: ".nvmrc"
+          cache: "npm"
+
+      - run: npm ci
+
+      - id: build
+        name: Rebuild cards and legality from Riot's gallery
+        shell: bash
+        run: |
+          set +e
+          node scripts/build-cards.mjs 2> build-err.txt
+          code=$?
+          cat build-err.txt >&2
+          echo "exit=$code" >> "$GITHUB_OUTPUT"
+
+      - name: Diff against the repo and file issues
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: node scripts/refresh-check.mjs --build-exit "${{ steps.build.outputs.exit }}" --build-err build-err.txt
