@@ -123,9 +123,9 @@ describe("the run plays the browser downloads", () => {
     expect(readPlay("2026-09-12-x.md", "# Play — x\n\n**Subject: `no-such-entry`.** Rest.\n", nameOf).lede).toBe("Subject: no-such-entry. Rest.");
     const resolved = loadPlays(".", nameOf) as { slug: string; lede: string }[];
     expect(resolved.filter((p) => /^Subject: /.test(p.lede)).length, "the Subject-opener shape exists in the corpus").toBeGreaterThan(0);
-    for (const p of resolved) {
-      for (const id of names.keys()) expect(p.lede, `${p.slug} lede prints the id ${id}`).not.toContain(id);
-    }
+    // One assertion per play, not per play per id: plays × catalogue ids grew past the 5 s budget (#762).
+    const ids = [...names.keys()];
+    for (const p of resolved) expect(ids.filter((id) => p.lede.includes(id)), `${p.slug} lede prints an id`).toEqual([]);
   });
 
   it("sorts newest first, which is the order an index wants", () => {
