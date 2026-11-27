@@ -128,13 +128,14 @@ function link(a: Node, b: Node): EdgeLink | null {
   return null;
 }
 
-export function identityCovers(pool: Card[], set: Card[]): boolean {
+/** `legendPool` is the pool's legends, filtered once by the caller: this runs once per candidate. */
+export function identityCovers(legendPool: Card[], set: Card[]): boolean {
   const need = new Set<Domain>(set.flatMap((c) => c.domains));
   const legends = set.filter((c) => c.type.includes("legend"));
   const fits = (l: Card) => [...need].every((d) => l.domains.includes(d));
   if (legends.length > 1) return false;
   if (legends.length === 1) return fits(legends[0]!);
-  return pool.some((c) => c.type.includes("legend") && fits(c));
+  return legendPool.some(fits);
 }
 
 const UNREACHABLE = 1 << 20;
@@ -179,6 +180,7 @@ export function search(pool: Card[], opts: SearchOptions = {}): SearchResult {
   const toTerminal = backwardBfs(nodes.map((_, i) => i).filter((i) => terminalOf(i).length > 0));
 
   const byBase = new Map(pool.map((c) => [c.base, c]));
+  const legendPool = pool.filter((c) => c.type.includes("legend"));
   const found = new Map<string, Candidate>();
   let expansions = 0;
   let completeDepth = 1;
@@ -198,7 +200,7 @@ export function search(pool: Card[], opts: SearchOptions = {}): SearchResult {
       class: cls,
       energy: members.reduce((s, c) => s + (c.energy ?? 0), 0),
       domains: [...new Set(members.flatMap((c) => c.domains))].sort(),
-      oneIdentity: identityCovers(pool, members),
+      oneIdentity: identityCovers(legendPool, members),
       limiters: limitersOf(path),
     });
   };

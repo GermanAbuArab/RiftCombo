@@ -46,10 +46,12 @@ console.log(`graph: ${result.nodes} abilities, ${result.edges} edges; ${result.e
 
 const outDir = join(dirname(fileURLToPath(import.meta.url)), "..", "out", "engine");
 mkdirSync(outDir, { recursive: true });
-// The file keeps the head of the ranking plus every line a catalogued entry is found in: millions of
-// rows would pass V8's string limit and no reader goes past the first few thousand.
+// The file keeps the head of the ranking plus each catalogued entry's first (best-ranked) line, so it
+// stays bounded at KEEP + the entry count: millions of rows would pass V8's string limit, and no
+// reader goes past the first few thousand.
 const KEEP = 20_000;
-const kept = ranked.map((c, i) => ({ rank: i + 1, ...c })).filter((c) => c.rank <= KEEP || c.known !== undefined);
+const firstHits = new Set(recall.found.map((f) => f.rank));
+const kept = ranked.map((c, i) => ({ rank: i + 1, ...c })).filter((c) => c.rank <= KEEP || firstHits.has(c.rank));
 writeFileSync(join(outDir, "candidates.json"), JSON.stringify({
   note: "Engine output (#736): text-graph candidates, not verified combos. A catalogue entry still needs a hand walk.",
   completeDepth: result.completeDepth,
