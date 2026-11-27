@@ -1,10 +1,10 @@
 import { execFileSync } from "node:child_process";
-import { copyFileSync, mkdirSync, mkdtempSync, readFileSync, writeFileSync } from "node:fs";
+import { copyFileSync, existsSync, mkdirSync, mkdtempSync, readFileSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { describe, expect, it } from "vitest";
 // @ts-expect-error -- plain .mjs build script, no types
-import { gitLastmod, lastmodOf, ORIGIN, robotsTxt, sitemapEntries, sitemapXml, STATIC_PAGES, writeSeo } from "../scripts/web-seo.mjs";
+import { ADSENSE_PUBLISHER_ID, adsTxt, gitLastmod, lastmodOf, ORIGIN, publisherId, robotsTxt, sitemapEntries, sitemapXml, STATIC_PAGES, writeSeo } from "../scripts/web-seo.mjs";
 
 type Page = { path: string; file: string; sources: string[] };
 const pages = STATIC_PAGES as Page[];
@@ -16,7 +16,7 @@ const web = (f: string) => new URL(`../web/${f}`, import.meta.url).pathname;
 describe("robots.txt and sitemap.xml (#268)", () => {
   it("are written by build:web", () => {
     const build = readFileSync(new URL("../scripts/build-web.mjs", import.meta.url), "utf8");
-    expect(build).toContain("writeSeo(OUT, sitemap)");
+    expect(build).toContain("writeSeo(OUT, sitemap, adsenseId)");
   });
 
   it("robots.txt points at the sitemap and never disallows the whole site", () => {
@@ -95,8 +95,58 @@ describe("robots.txt and sitemap.xml (#268)", () => {
 
   it("the security headers cover both files", () => {
     const vercel = JSON.parse(readFileSync(new URL("../vercel.json", import.meta.url), "utf8")) as { headers: { source: string }[] };
-    for (const f of ["/robots.txt", "/sitemap.xml"]) {
+    for (const f of ["/robots.txt", "/sitemap.xml", "/ads.txt"]) {
       expect(vercel.headers.some((h) => new RegExp(`^${h.source}$`).test(f)), f).toBe(true);
     }
+  });
+});
+
+describe("ads.txt and the publisher id (#291)", () => {
+  const FAKE = "pub-0000000000000000";
+  const built = () => {
+    const out = mkdtempSync(join(tmpdir(), "ads-"));
+    for (const p of pages) copyFileSync(web(p.file), join(out, p.file));
+    return out;
+  };
+
+  it("ships dark: the committed id is empty, and an empty id writes no ads.txt", () => {
+    expect(ADSENSE_PUBLISHER_ID).toBe("");
+    const out = built();
+    writeSeo(out, entries());
+    expect(existsSync(join(out, "ads.txt"))).toBe(false);
+    writeSeo(out, entries(), "");
+    expect(existsSync(join(out, "ads.txt"))).toBe(false);
+  });
+
+  it("an id writes the one AdSense line, exactly", () => {
+    const out = built();
+    writeSeo(out, entries(), FAKE);
+    expect(readFileSync(join(out, "ads.txt"), "utf8")).toBe("google.com, pub-0000000000000000, DIRECT, f08c47fec0942fa0\n");
+    expect(adsTxt(FAKE)).toBe("google.com, pub-0000000000000000, DIRECT, f08c47fec0942fa0\n");
+  });
+
+  it("a build with no id removes the ads.txt an earlier build left", () => {
+    const out = built();
+    writeSeo(out, entries(), FAKE);
+    writeSeo(out, entries(), "");
+    expect(existsSync(join(out, "ads.txt"))).toBe(false);
+  });
+
+  it("refuses an id that is not the bare pub- form, before writing anything", () => {
+    for (const bad of ["ca-pub-0000000000000000", "pub-000000000000000", "pub-00000000000000000", "0000000000000000", " pub-0000000000000000", "pub-000000000000000a"]) {
+      expect(() => publisherId(bad), bad).toThrow(/ADSENSE_PUBLISHER_ID/);
+      const out = mkdtempSync(join(tmpdir(), "ads-"));
+      expect(() => writeSeo(out, [], bad), bad).toThrow(/ADSENSE_PUBLISHER_ID/);
+      expect(existsSync(join(out, "robots.txt")) || existsSync(join(out, "ads.txt")), bad).toBe(false);
+    }
+    expect(publisherId("")).toBe("");
+    expect(publisherId(FAKE)).toBe(FAKE);
+    expect(() => adsTxt("")).toThrow();
+  });
+
+  it("is served as text/plain; charset=utf-8", () => {
+    const vercel = JSON.parse(readFileSync(new URL("../vercel.json", import.meta.url), "utf8")) as { headers: { source: string; headers: { key: string; value: string }[] }[] };
+    const rule = vercel.headers.find((h) => h.source === "/ads.txt");
+    expect(rule?.headers).toEqual([{ key: "Content-Type", value: "text/plain; charset=utf-8" }]);
   });
 });

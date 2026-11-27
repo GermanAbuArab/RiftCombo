@@ -69,6 +69,26 @@ export function clip(text: string, max = 160): string {
   return `${(at > 0 ? cut.slice(0, at) : cut).replace(/[\s,;:.—–-]+$/, "")}…`;
 }
 
+/**
+ * The AdSense site-verification tag for a bare publisher id (`pub-…`), or "" for none (#291). Its
+ * content is the id with `ca-` in front, as https://support.google.com/adsense/answer/12169212 shows
+ * it: `<meta name="google-adsense-account" content="ca-pub-0000000000000000">`. The id is checked
+ * where it is set (`publisherId` in `scripts/web-seo.mjs`), so this only formats it.
+ */
+export const adsenseAccountMeta = (id: string): string =>
+  id ? `<meta name="google-adsense-account" content="ca-${esc(id)}">` : "";
+
+/**
+ * `html` with the tag above as the last line of its `<head>`, or unchanged when `id` is "". Every page
+ * the build writes goes through this one function, the rendered ones (`renderSite`) and the
+ * hand-written ones and the app shell (`scripts/build-web.mjs`), so no document can miss it.
+ */
+export function withAdsenseAccount(html: string, id: string): string {
+  if (!id) return html;
+  if (!html.includes("</head>")) throw new Error("withAdsenseAccount: document has no </head>");
+  return html.replace("</head>", `${adsenseAccountMeta(id)}\n</head>`);
+}
+
 const BRAND_MARK = `<svg class="brand-mark" viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.5 18.5 10 10 18.5 1.5 10Z"/><path d="M10 6.2 13.8 10 10 13.8 6.2 10Z"/></svg>`;
 
 /** A whole HTML document. `body` must carry the page's one `<h1>`. */
