@@ -118,9 +118,9 @@
    "issue": null
   },
   "/en-us/news/organizedplay/testing-start-of-game-rules": {
-   "status": "unaccounted",
+   "status": "not-applicable",
    "read": "2026-11-27",
-   "issue": null
+   "issue": 745
   },
   "/en-us/news/rules-and-releases/riftbound-core-rules-patch-notes": {
    "status": "ingested",
