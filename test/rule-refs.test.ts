@@ -284,7 +284,9 @@ describe("reworded paragraphs re-read and held let their citations move (REREAD)
   });
 
   it("is what clears an entry that cites one, and only for the texts it was read on", () => {
-    const [id, r] = Object.entries(REREADS.core!)[0]! as [string, Leg];
+    // By id, not by order: an integer-like key ("348", #659) comes first in an object's entries.
+    const id = "164.2.a";
+    const r = REREADS.core![id]! as Leg;
     const citer = remapped.find((e) => ledger.entries[e.id]!.refs[r.to]?.[2] === r.from);
     expect(citer, `a moved entry citing core ${id}`).toBeDefined();
     const row = ledger.entries[citer!.id]!;
@@ -443,6 +445,45 @@ describe("reworded paragraphs re-read and held let their citations move (REREAD)
     // Its one citer stays on 07-16, pinned by 811.1.d.2 and a non-Riot quote, not by 465.2.c.5.
     const e = combos.combos.find((x) => x.id === "lotus-trap-morgana-excess-damage")!;
     expect([e.rulesVersion, e.id in ledger.entries]).toEqual([OLD, false]);
+  });
+
+  it("moves 347.1.b and 347.2.b citations, whose 'Focus passes to the next Player' is 346's 'the next Player gains' (#659)", () => {
+    const core = (v: string) => paragraphs(v, "core") as Map<string, string>;
+    for (const id of ["347.1.b", "347.2.b"])
+      expect(core(OLD).get(id)!.replace("Focus passes to the next Player in Turn Order", "the next Player in Turn Order gains Focus"), id).toBe(core(NEW).get(id));
+    // One event under both names, in both editions.
+    expect([core(OLD).get("346"), core(NEW).get("346")]).toEqual([expect.stringContaining("Focus passes, and the next Player gains both Focus and Priority"), core(OLD).get("346")]);
+    const citer = onNew.find((e) => e.id === "darius-trifarian-thrill")!;
+    const row = ledger.entries[citer.id]!;
+    expect([row.refs["347.1.b"]?.[2], row.refs["347.2.b"]?.[2]]).toEqual([REREADS.core!["347.1.b"]!.from, REREADS.core!["347.2.b"]!.from]);
+    expect(JSON.stringify(citer)).toContain(`347.1.b, '${core(NEW).get("347.1.b")}'`);
+    expect(ledgerFaults(citer, row)).toEqual([]);
+    for (const id of ["347.1.b", "347.2.b"]) {
+      const { [id]: _, ...rest } = REREADS.core!;
+      expect(ledgerFaults(citer, row, { core: rest, tournament: {} }), id).toContain(`${id} in the ${NEW} core rules is not the paragraph the entry meant`);
+    }
+  });
+
+  it("reads 348's 'a card' as what 347.1 and 347.2.a already said, and keeps its five citers where they were (#659)", () => {
+    const core = (v: string) => paragraphs(v, "core") as Map<string, string>;
+    expect(core(OLD).get("348")!.replace("without playing a spell", "without playing a card")).toBe(core(NEW).get("348"));
+    expect([core(OLD).get("347.1"), core(OLD).get("347.2.a")]).toEqual([core(NEW).get("347.1"), core(NEW).get("347.2.a")]);
+    expect(core(NEW).get("347.1")).toBe("Play a Card or Activated Ability that is legally timed.");
+    // Each is pinned by another paragraph: none of the five moves in #659.
+    for (const id of ["charm-evacuate-conquer", "isolate-deckhand-open-conquer", "bard-mercurial-mass-relocation", "amateur-recital-free-evacuation", "possession-action-defender-flip"]) {
+      const e = combos.combos.find((x) => x.id === id)!;
+      expect([e.rulesVersion, e.id in ledger.entries], id).toEqual([OLD, false]);
+    }
+  });
+
+  it("keeps on 07-16 every entry that states 464.2.d's task, before the number or after it (#659)", () => {
+    const record = readFileSync(new URL("docs/rules-diff/remap-2026-10-09.md", root), "utf8");
+    const form = record.split("\n## Pinned entries")[1]!.split("\n").filter((l) => l.includes("prints core 464.2.d in its 2026-07-16 form"));
+    expect(form.map((l) => /^- `([^`]+)`/.exec(l)![1]).sort()).toEqual(["leona-zealot-stun-lethal-spread", "possession-action-defender-flip", "radiant-dawn-stun-buff-free-glory"]);
+    const e = combos.combos.find((x) => x.id === "radiant-dawn-stun-buff-free-glory")! as Entry & { steps: string[] };
+    expect([e.rulesVersion, e.id in ledger.entries]).toEqual([OLD, false]);
+    expect(e.steps[1]).toContain("the Attacker takes Focus at 464.2.d");
+    expect(form.find((l) => l.startsWith("- `radiant-dawn-stun-buff-free-glory`"))).toContain(".steps[1] prints core 464.2.d in its 2026-07-16 form");
   });
 });
 

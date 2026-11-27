@@ -122,8 +122,9 @@ export const REREAD = {
     // Deleted. The Attacker gains Focus at 466.2.c.1.a (07-16 464.2.c.1.a, same text), as the
     // showdown the combat opens begins, and keeps no task of its own. No one acts in between: 335.1
     // gives the Focus player priority only once no Task is Outstanding. A showdown already ongoing
-    // keeps its Focus (466.2.c.1.b). `was` keeps on 07-16 an entry that prints the old task (#655).
-    "464.2.d": { to: "466.2.c.1.a", from: "fd19557c12a93933", as: "7acbba31d76b8627", by: "#655", was: String.raw`Attacker gains Focus|[Tt]ask 3\b` },
+    // keeps its Focus (466.2.c.1.b). `was` keeps on 07-16 an entry that prints the old task (#655), in
+    // any verb: "the Attacker takes Focus at 464.2.d", "464.2.d giving the Attacker Focus" (#659).
+    "464.2.d": { to: "466.2.c.1.a", from: "fd19557c12a93933", as: "7acbba31d76b8627", by: "#655", was: String.raw`Attacker(?: \w+)? Focus|[Tt]ask 3\b` },
     // Task 4 is task 3 now that the Focus task is gone; 464.2.e.1 is 466.2.d.1 word for word (#655).
     "464.2.e": { to: "466.2.d", from: "45b0e1f6115b8f83", as: "7d97365bcf4781a6", by: "#655", was: String.raw`[Tt]ask 4\b|4\. Add items` },
     // Deleted. Cleanup step 3a took the Deathknell of a unit with lethal damage before 3b killed it;
@@ -178,6 +179,16 @@ export const REREAD = {
     // new 355.11.b.1 makes the subset a largest one, and no citer chooses fewer targets than fit.
     // `was` keeps on 07-16 an entry that prints "can choose a subset" (#658).
     "355.11.b": { to: "355.11.b", from: "9abb927c53682792", as: "f1cd6b9ea920716b", by: "#658", was: String.raw`can choose a subset` },
+    // "Focus passes to the next Player" is "the next Player gains Focus": 346 says both of one event in
+    // both editions ("Focus passes, and the next Player gains both Focus and Priority"), and 313.2 gives
+    // that player Priority. `was` keeps on 07-16 an entry that quotes the 07-16 clause outside a whole
+    // quote of the paragraph (#659).
+    "347.1.b": { to: "347.1.b", from: "31df5aa47a4e53e6", as: "6ce9a7900f9fbf5e", by: "#659", was: String.raw`Focus passes to the next Player in Turn Order` },
+    "347.2.b": { to: "347.2.b", from: "7ae8bca612dbc0cb", as: "cade40df40259598", by: "#659", was: String.raw`Focus passes to the next Player in Turn Order` },
+    // "a card" is what 347.1 ("Play a Card or Activated Ability") and 347.2.a, word for word in both
+    // editions, already said: a player who plays any card has not passed. Every citer's Showdown plays
+    // nothing or a spell. `was` keeps on 07-16 an entry that prints the 07-16 clause (#659).
+    "348": { to: "348", from: "79da6d92bbae68e0", as: "9b86c1d2c8a60862", by: "#659", was: String.raw`without playing a spell` },
   },
   tournament: {},
 };
