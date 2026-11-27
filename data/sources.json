@@ -1,0 +1,176 @@
+{
+ "rules": {
+  "https://cmsassets.rgpub.io/sanity/files/dsfx7636/news_live/5c7946f7c3b8c6e0faff85ab6dadc6d2e721ea94.pdf": {
+   "status": "ingested",
+   "read": "2026-11-27",
+   "issue": null
+  },
+  "https://cmsassets.rgpub.io/sanity/files/dsfx7636/news_live/861752822d217edf37d9febaeaf77a7d924c1bb6.pdf": {
+   "status": "ingested",
+   "read": "2026-11-27",
+   "issue": null
+  }
+ },
+ "news": {
+  "/en-us/news/announcements/announcing-riftbounds-first-bans": {
+   "status": "ingested",
+   "read": "2026-11-27",
+   "issue": null
+  },
+  "/en-us/news/announcements/april-2026-tournament-rules-update-changelog": {
+   "status": "ingested",
+   "read": "2026-11-27",
+   "issue": null
+  },
+  "/en-us/news/announcements/core-rules-radiance-patch-notes-effective-october-16-2026": {
+   "status": "ingested",
+   "read": "2026-11-27",
+   "issue": null
+  },
+  "/en-us/news/announcements/core-rules-vendetta-patch-notes": {
+   "status": "ingested",
+   "read": "2026-11-27",
+   "issue": null
+  },
+  "/en-us/news/announcements/july-2026-tournament-rules-update-changelog": {
+   "status": "ingested",
+   "read": "2026-11-27",
+   "issue": null
+  },
+  "/en-us/news/announcements/july-ban-list-updates": {
+   "status": "ingested",
+   "read": "2026-11-27",
+   "issue": null
+  },
+  "/en-us/news/announcements/march-2026-tournament-rules-update--changelog": {
+   "status": "ingested",
+   "read": "2026-11-27",
+   "issue": null
+  },
+  "/en-us/news/announcements/october-2026-tournament-rules-changelog": {
+   "status": "ingested",
+   "read": "2026-11-27",
+   "issue": null
+  },
+  "/en-us/news/announcements/product-drawing-faq": {
+   "status": "not-applicable",
+   "read": "2026-11-27",
+   "issue": null
+  },
+  "/en-us/news/announcements/radiance-ban-list-updates-effective-november-23-2026": {
+   "status": "ingested",
+   "read": "2026-11-27",
+   "issue": null
+  },
+  "/en-us/news/announcements/radiance-errata-updates": {
+   "status": "ingested",
+   "read": "2026-11-27",
+   "issue": null
+  },
+  "/en-us/news/announcements/regional-championship-qualification-faq": {
+   "status": "not-applicable",
+   "read": "2026-11-27",
+   "issue": null
+  },
+  "/en-us/news/announcements/september-ban-list-updates-effective-september-18-2026": {
+   "status": "ingested",
+   "read": "2026-11-27",
+   "issue": null
+  },
+  "/en-us/news/announcements/spiritforged-product-drawing-faq": {
+   "status": "not-applicable",
+   "read": "2026-11-27",
+   "issue": null
+  },
+  "/en-us/news/announcements/the-radiance-overview": {
+   "status": "ingested",
+   "read": "2026-11-27",
+   "issue": null
+  },
+  "/en-us/news/announcements/the-unleashed-overview": {
+   "status": "ingested",
+   "read": "2026-11-27",
+   "issue": null
+  },
+  "/en-us/news/announcements/the-vendetta-overview": {
+   "status": "ingested",
+   "read": "2026-11-27",
+   "issue": null
+  },
+  "/en-us/news/announcements/tournament-rules-january-update": {
+   "status": "ingested",
+   "read": "2026-11-27",
+   "issue": null
+  },
+  "/en-us/news/announcements/vendetta-errata-updates": {
+   "status": "ingested",
+   "read": "2026-11-27",
+   "issue": null
+  },
+  "/en-us/news/organizedplay/radiance-rules-faq-and-clarifications": {
+   "status": "unaccounted",
+   "read": "2026-11-27",
+   "issue": 734
+  },
+  "/en-us/news/organizedplay/regional-championship-na-rules-update": {
+   "status": "not-applicable",
+   "read": "2026-11-27",
+   "issue": null
+  },
+  "/en-us/news/organizedplay/testing-start-of-game-rules": {
+   "status": "unaccounted",
+   "read": "2026-11-27",
+   "issue": null
+  },
+  "/en-us/news/rules-and-releases/riftbound-core-rules-patch-notes": {
+   "status": "ingested",
+   "read": "2026-11-27",
+   "issue": null
+  },
+  "/en-us/news/rules-and-releases/riftbound-core-rules-spiritforged-patch-notes": {
+   "status": "ingested",
+   "read": "2026-11-27",
+   "issue": null
+  },
+  "/en-us/news/rules-and-releases/riftbound-core-rules-unleashed-patch-notes": {
+   "status": "ingested",
+   "read": "2026-11-27",
+   "issue": null
+  },
+  "/en-us/news/rules-and-releases/riftbound-origins-card-errata": {
+   "status": "ingested",
+   "read": "2026-11-27",
+   "issue": null
+  },
+  "/en-us/news/rules-and-releases/riftbound-origins-faq": {
+   "status": "unaccounted",
+   "read": "2026-11-27",
+   "issue": null
+  },
+  "/en-us/news/rules-and-releases/riftbound-spiritforged-errata": {
+   "status": "ingested",
+   "read": "2026-11-27",
+   "issue": null
+  },
+  "/en-us/news/rules-and-releases/riftbound-spiritforged-faq": {
+   "status": "unaccounted",
+   "read": "2026-11-27",
+   "issue": null
+  },
+  "/en-us/news/rules-and-releases/unleashed-errata-updates": {
+   "status": "ingested",
+   "read": "2026-11-27",
+   "issue": null
+  },
+  "/en-us/news/rules-and-releases/unleashed-rules-faq-and-clarifications": {
+   "status": "ingested",
+   "read": "2026-11-27",
+   "issue": null
+  },
+  "/en-us/news/rules-and-releases/vendetta-rules-faq-and-clarifications": {
+   "status": "unaccounted",
+   "read": "2026-11-27",
+   "issue": null
+  }
+ }
+}

@@ -12,11 +12,13 @@
 // hid the Eye of the Herald engine from the Phase 0 hunt.
 
 import { readFileSync, writeFileSync, mkdirSync } from "node:fs";
-import { join, dirname } from "node:path";
+import { join, dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
-const DATA = join(ROOT, "data");
+// RIFTCOMBO_DATA_DIR (#735) points the build at another copy of data/: scripts/refresh-check.mjs
+// --dry-run rebuilds into a temp copy so the working tree stays clean.
+const DATA = process.env.RIFTCOMBO_DATA_DIR ? resolve(process.env.RIFTCOMBO_DATA_DIR) : join(ROOT, "data");
 const API =
   "https://content.publishing.riotgames.com/publishing-content/v2.0/public/channel/riftbound_website/list/riftbound_gallery_cards";
 const UA = "RiftCombo/0.1 (personal fan project; +https://github.com/GermanAbuArab)";
