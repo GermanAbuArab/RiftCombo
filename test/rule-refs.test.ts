@@ -585,3 +585,64 @@ describe("entries re-walked by hand on 2026-10-09 stand on that walk, outside th
     expect(onNew.filter((e) => strings(e).some((s) => r27.test(s))).map((e) => e.id)).toEqual([]);
   });
 });
+
+describe("the nine Svellsongur BURSTs re-walked at v + 1 under R36 = B (#722)", () => {
+  type Walked = Entry & { status: string; class: string; notes?: string; sources: { kind: string; title: string }[] };
+  const WALK = "docs/phase0/walks/2026-11-26-r36-rewalk-1.md";
+  // Where docs/phase0/walks/2026-11-26-r36-rewalk-1.md put each one, and the open re-read issue that
+  // keeps an entry on 2026-07-16 (#703 is the programme for a pin with no issue of its own).
+  const BATCH: Record<string, { status: string; class: string; on: string; pins: string[] }> = {
+    "svellsongur-copy-hold": { status: "verified", class: "BURST", on: NEW, pins: [] },
+    "ahri-blue-sentinel-hold": { status: "verified", class: "BURST", on: NEW, pins: [] },
+    "shen-kinkou-svellsongur-hold": { status: "candidate", class: "ENGINE", on: NEW, pins: [] },
+    "ivern-svellsongur-four-tags-hold": { status: "candidate", class: "ENGINE", on: NEW, pins: [] },
+    "ahri-trinity-svellsongur-hold": { status: "candidate", class: "BURST", on: OLD, pins: ["#720"] },
+    "nasus-svellsongur-conquer-burst": { status: "candidate", class: "ENGINE", on: OLD, pins: ["#715"] },
+    "swain-svellsongur-conquer-burst": { status: "candidate", class: "ENGINE", on: OLD, pins: ["#719"] },
+    "tryndamere-svellsongur-excess-burst": { status: "candidate", class: "ENGINE", on: OLD, pins: ["#703"] },
+    "draven-svellsongur-bloodless-combat-burst": { status: "candidate", class: "ENGINE", on: OLD, pins: ["#720", "#715"] },
+  };
+  const batch = Object.keys(BATCH).map((id) => (combos.combos as Walked[]).find((e) => e.id === id));
+  const strings = (n: unknown): string[] => (typeof n === "string" ? [n] : n && typeof n === "object" ? Object.values(n).flatMap(strings) : []);
+
+  it("are all in the catalogue and named by the walk", () => {
+    const walk = readFileSync(new URL(WALK, root), "utf8");
+    expect(batch.map((e, i) => (e ? null : Object.keys(BATCH)[i])).filter(Boolean)).toEqual([]);
+    expect(Object.keys(BATCH).filter((id) => !walk.includes(`\`${id}\``))).toEqual([]);
+  });
+
+  it("no longer state the 2^v count of the 2026-07-16 layers", () => {
+    expect(batch.flatMap((e) => strings(e).filter((s) => /2\^[0-9]|2\^v/.test(s)).map((s) => `${e!.id}: ${s.slice(0, 80)}`))).toEqual([]);
+  });
+
+  it("each lands where the walk put it, a candidate with no walkedVersion", () => {
+    const faults = batch.flatMap((e) => {
+      const want = BATCH[e!.id]!;
+      const walked = want.status === "verified" ? NEW : "";
+      return [
+        ...(e!.status === want.status ? [] : [`${e!.id} is ${e!.status}`]),
+        ...(e!.class === want.class ? [] : [`${e!.id} is ${e!.class}`]),
+        ...(e!.rulesVersion === want.on ? [] : [`${e!.id} is numbered on ${e!.rulesVersion}`]),
+        ...((e!.walkedVersion ?? "") === walked ? [] : [`${e!.id} has walkedVersion ${JSON.stringify(e!.walkedVersion)}`]),
+        ...(e!.sources.some((s) => s.kind === "manual-walk" && s.title.includes(WALK)) ? [] : [`${e!.id} cites no ${WALK}`]),
+      ];
+    });
+    expect(faults).toEqual([]);
+  });
+
+  it("a demoted entry says why in its notes, and one left on 2026-07-16 names the issue that pins it", () => {
+    const faults = batch.flatMap((e) => {
+      const { status, pins } = BATCH[e!.id]!;
+      const notes = e!.notes ?? "";
+      return [
+        ...(status === "candidate" && !notes.includes("[2026-11-26, #722 (") ? [`${e!.id}: no #722 reason in its notes`] : []),
+        ...pins.filter((n) => !new RegExp(`${n}\\b`).test(notes)).map((n) => `${e!.id}: notes do not name ${n}`),
+      ];
+    });
+    expect(faults).toEqual([]);
+  });
+
+  it("none of the nine is held on 2026-07-16 by id any more", () => {
+    expect(Object.keys(HELD_ON_OLD as Record<string, string>).filter((id) => id in BATCH)).toEqual([]);
+  });
+});

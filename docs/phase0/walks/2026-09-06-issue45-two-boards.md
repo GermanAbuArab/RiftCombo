@@ -103,6 +103,13 @@ Este bloque no estaba pedido por el issue. Salió al enumerar los repartos de Sv
 - **434.1.c** (4576) — *"The Top-Most card has **all** Effect Text of **all** cards Attached to it appended
   to its Rules Text."* → el "texto de la unidad" que un Svellsongur copia incluye el effect text de los
   otros Equipment ya attacheados. Es el hallazgo de #41, y aquí queda pegado literal.
+  **[2026-11-26, #722: this paragraph and the 2^v derivation below (to the table) are a reading of the
+  2026-07-16 layers only. On the 2026-10-09 rules R36 = B (#706,
+  https://github.com/GermanAbuArab/RiftCombo/issues/706#issuecomment-7197461954): the copy is a copy-layer
+  effect that reads the unit's printed text alone, the append is a later layer, and each effect applies
+  once, so v Svellsongur give v + 1 instances and another Equipment's Effect Text is not copied. The nine
+  BURSTs that carried this count are re-walked in `docs/phase0/walks/2026-11-26-r36-rewalk-1.md`; the
+  board below is 10 points there, with the gears split two on Ahri and one on the Sentinel.]**
 - **136.2.d** — *"Effect Text may refer to 'this' or to the name of the Attached game object … Doing so
   refers to the Attached game object and not the Top-Most Card."* Con los ejemplos del propio reglamento
   (Guardian Angel, Brutalizer). → el "I" del texto copiado es **Ahri**, no el gear, así que dispara como
