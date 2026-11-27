@@ -295,7 +295,6 @@
           "svellsongur-rumble-scrapper-mechs",
           "svellsongur-traveling-merchant-discard",
           "svellsongur-treasure-hunter-gold",
-          "svellsongur-trevor-leblanc-plaza",
           "svellsongur-yasuo-remorseful-sweep",
           "yasuo-remorseful-svellsongur-nasus-conquer"
         ]
@@ -440,7 +439,6 @@
           "herald-heimerdinger-armory-plaza",
           "leblanc-temporary-plaza",
           "sprite-mother-burst-leblanc-plaza",
-          "svellsongur-trevor-leblanc-plaza",
           "vanguard-captain-manufactor-plaza"
         ]
       },
@@ -470,8 +468,7 @@
         "combos": [
           "leblanc-temporary-plaza",
           "sprite-mother-burst-leblanc-plaza",
-          "sprite-queen-leblanc-permanent-army",
-          "svellsongur-trevor-leblanc-plaza"
+          "sprite-queen-leblanc-permanent-army"
         ]
       },
       "status": "rule-verified",

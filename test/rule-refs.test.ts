@@ -675,3 +675,65 @@ describe("the nine Svellsongur BURSTs re-walked at v + 1 under R36 = B (#722)", 
     expect(Object.keys(HELD_ON_OLD as Record<string, string>).filter((id) => id in BATCH)).toEqual([]);
   });
 });
+
+describe("the four Svellsongur ALT_WINs and one INFINITE re-walked at v + 1 under R36 = B (#723)", () => {
+  type Walked = Entry & { status: string; class: string; notes?: string; sources: { kind: string; title: string }[] };
+  const WALK = "docs/phase0/walks/2026-11-26-r36-rewalk-2.md";
+  // Where docs/phase0/walks/2026-11-26-r36-rewalk-2.md put each one. All five stay on 2026-07-16, each on
+  // the open re-read issues of the paragraphs it cites; a verified one keeps the walk it was promoted on.
+  const BATCH: Record<string, { status: string; class: string; pins: string[] }> = {
+    "corina-svellsongur-plaza": { status: "verified", class: "ALT_WIN", pins: ["#713", "#716", "#717"] },
+    "reveler-svellsongur-jhin-infinite-power": { status: "verified", class: "INFINITE", pins: ["#713", "#716", "#718"] },
+    "desert-call-vi-sand-soldier-plaza": { status: "verified", class: "ALT_WIN", pins: ["#715", "#716"] },
+    "noxian-drummer-eye-svellsongur-plaza": { status: "candidate", class: "ALT_WIN", pins: ["#713", "#715", "#716", "#717"] },
+    "svellsongur-trevor-leblanc-plaza": { status: "candidate", class: "ALT_WIN", pins: ["#713", "#715", "#716", "#654"] },
+  };
+  const batch = Object.keys(BATCH).map((id) => (combos.combos as Walked[]).find((e) => e.id === id));
+  const strings = (n: unknown): string[] => (typeof n === "string" ? [n] : n && typeof n === "object" ? Object.values(n).flatMap(strings) : []);
+
+  it("are all in the catalogue and named by the walk", () => {
+    const walk = readFileSync(new URL(WALK, root), "utf8");
+    expect(batch.map((e, i) => (e ? null : Object.keys(BATCH)[i])).filter(Boolean)).toEqual([]);
+    expect(Object.keys(BATCH).filter((id) => !walk.includes(`\`${id}\``))).toEqual([]);
+  });
+
+  it("no longer state the 2^v count of the 2026-07-16 layers", () => {
+    expect(batch.flatMap((e) => strings(e).filter((s) => /2\^[0-9]|2\^v/.test(s)).map((s) => `${e!.id}: ${s.slice(0, 80)}`))).toEqual([]);
+  });
+
+  it("each lands where the walk put it, on 2026-07-16, a candidate with no walkedVersion", () => {
+    const faults = batch.flatMap((e) => {
+      const want = BATCH[e!.id]!;
+      const walked = want.status === "verified" ? OLD : "";
+      return [
+        ...(e!.status === want.status ? [] : [`${e!.id} is ${e!.status}`]),
+        ...(e!.class === want.class ? [] : [`${e!.id} is ${e!.class}`]),
+        ...(e!.rulesVersion === OLD ? [] : [`${e!.id} is numbered on ${e!.rulesVersion}`]),
+        ...((e!.walkedVersion ?? "") === walked ? [] : [`${e!.id} has walkedVersion ${JSON.stringify(e!.walkedVersion)}`]),
+        ...(e!.sources.some((s) => s.kind === "manual-walk" && s.title.includes(WALK)) ? [] : [`${e!.id} cites no ${WALK}`]),
+      ];
+    });
+    expect(faults).toEqual([]);
+  });
+
+  it("each says in its notes what R36 changed and names the issues that pin it", () => {
+    const faults = batch.flatMap((e) => {
+      const notes = e!.notes ?? "";
+      return [
+        ...(notes.includes("[2026-11-27, #723 (") ? [] : [`${e!.id}: no #723 bracket in its notes`]),
+        ...BATCH[e!.id]!.pins.filter((n) => !new RegExp(`${n}\\b`).test(notes)).map((n) => `${e!.id}: notes do not name ${n}`),
+      ];
+    });
+    expect(faults).toEqual([]);
+  });
+
+  it("a demoted entry is no longer the basis of a synergy rule", () => {
+    const demoted = Object.keys(BATCH).filter((id) => BATCH[id]!.status === "candidate");
+    const cites = (synergies.synergies as (Entry & { basis?: { combos?: string[] } })[]).flatMap((s) => (s.basis?.combos ?? []).filter((id) => demoted.includes(id)).map((id) => `${s.id}: ${id}`));
+    expect(cites).toEqual([]);
+  });
+
+  it("none of the five is held on 2026-07-16 by id any more", () => {
+    expect(Object.keys(HELD_ON_OLD as Record<string, string>).filter((id) => id in BATCH)).toEqual([]);
+  });
+});
