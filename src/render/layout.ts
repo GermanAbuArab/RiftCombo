@@ -115,7 +115,7 @@ export function withPrivacyChoices(html: string, id: string): string {
   return linked.replace("</head>", `${PRIVACY_CHOICES_SCRIPT}\n</head>`);
 }
 
-const BRAND_MARK =`<svg class="brand-mark" viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.5 18.5 10 10 18.5 1.5 10Z"/><path d="M10 6.2 13.8 10 10 13.8 6.2 10Z"/></svg>`;
+const BRAND_MARK = `<svg class="brand-mark" viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.5 18.5 10 10 18.5 1.5 10Z"/><path d="M10 6.2 13.8 10 10 13.8 6.2 10Z"/></svg>`;
 
 /** A whole HTML document. `body` must carry the page's one `<h1>`. */
 export function renderDocument(meta: PageMeta, body: string): string {
