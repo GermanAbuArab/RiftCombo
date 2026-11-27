@@ -43,6 +43,7 @@ The card text the play turns on:
   battlefield.)"*
 - Ultrasoft Poro: *":rb_exhaust:: Play two :rb_energy_1: :rb_might: Bird unit tokens with [Deflect].
   Use this ability only while I'm at a battlefield."* The corpus renders the token as a 1-Might Bird.
+  [2026-11-27, #663: Riot's gallery now prints "Play two 1 :rb_might: Bird unit tokens", the numeral in place of the Energy glyph, with no errata page (docs/data-anomalies.md); meaning unchanged.]
 - Carrion Dredger: *"[Deathknell][>] Play a 1 :rb_might: Bird unit token with [Deflect] to your
   base."*
 - Keeper of the Hammer: *"When you hold, gain 1 XP. Spend 3 XP, :rb_exhaust:: Draw 1."* You hold

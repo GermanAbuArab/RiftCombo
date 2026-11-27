@@ -29542,7 +29542,7 @@
           "quantity": 1,
           "role": "engine",
           "zone": "HAND",
-          "note": "Fury unit, E6 M5. 'As you play me, you may discard 1 as an additional cost. If you do, reduce my cost by :rb_energy_2:.' In zero entries before this walk."
+          "note": "Fury unit, E6 M5. 'As you play me, you may discard a card as an additional cost. If you do, reduce my cost by :rb_energy_2:.' In zero entries before this walk."
         }
       ],
       "needs": [],
@@ -29558,7 +29558,7 @@
           "THE DISCARD IS A COST HERE, WHICH IS WHY IT IS ITS OWN ENTRY. Every other catalogued Mask Mother line spends an effect to discard her and replaces the card: mask-mother-scrapyard-champion draws two back, mask-mother-lunar-boon-reaction-trick draws two back. The Buccaneer replaces nothing — it converts the card straight into 2 Energy of discount, so the Mother is a card you sell rather than a card you cycle. Priced whole: 6 - 2 = 4 Energy for a 5-Might Fury body, plus 1 Energy for her trigger, for 5 Energy and one card.",
           "THE TRAP, AND IT IS THE REASON TO WRITE THIS ONE DOWN. The Buccaneer is NOT a legal target for the +2 Might he paid for. 'As you play me' puts the discard in the playing steps, so the Mother's trigger fires while the Buccaneer is still a Pending Chain Item; the trigger is Finalized above him and 340.1 resolves 'The newest Finalized Chain Item' first. Her +2 therefore resolves before he is ever on the Board. The +2 has to go on a unit that is already in play — a body in the combat you are about to open, not the body you are buying.",
           "423.1.b and 385.2 are what let her fire at all: the trigger is executed after the discard has occurred, from the trash, and a Triggered Ability outside the Board self-describes its context.",
-          "REFUSED IN THE SAME BREATH: SFD-149 Ezreal, Prodigy does not make this cheaper. His text is 'Optional additional costs you pay cost :rb_energy_1: or :rb_rune_rainbow: less', and the Buccaneer's optional additional cost is 'discard 1' — it has no Energy and no rainbow component for the reduction to bite on, and 356.6 ('Energy and Power costs can't be reduced below 0') is a floor on resource costs, not a converter. Ezreal discounts the Power-flavoured optional costs in the pool (UNL-028 Pyke, Dockside Butcher's 1 Fury; UNL-052 Nami, Headstrong's 1 Calm; VEN-120 Masa, Crashing Thunder's 1 Order; OGN-030 Jinx, Demolitionist's [Accelerate]); he does nothing for a discard.",
+          "REFUSED IN THE SAME BREATH: SFD-149 Ezreal, Prodigy does not make this cheaper. His text is 'Optional additional costs you pay cost :rb_energy_1: or :rb_rune_rainbow: less', and the Buccaneer's optional additional cost is 'discard a card' — it has no Energy and no rainbow component for the reduction to bite on, and 356.6 ('Energy and Power costs can't be reduced below 0') is a floor on resource costs, not a converter. Ezreal discounts the Power-flavoured optional costs in the pool (UNL-028 Pyke, Dockside Butcher's 1 Fury; UNL-052 Nami, Headstrong's 1 Calm; VEN-120 Masa, Crashing Thunder's 1 Order; OGN-030 Jinx, Demolitionist's [Accelerate]); he does nothing for a discard.",
           "203.3 gates it from the other side: with no card in hand the optional cost cannot be paid, and the Buccaneer simply costs 6.",
           "The +2 Might is a continuous modifier, not a 702 buff, so it stacks with a second Mother discarded the same turn and feeds nothing that spends a buff. Three Mothers and three Buccaneers is the 103.3.b ceiling."
         ]
