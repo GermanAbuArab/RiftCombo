@@ -278,9 +278,7 @@
         ],
         "combos": [
           "guardian-passage-svellsongur",
-          "ivern-svellsongur-four-tags-hold",
           "riven-shattered-svellsongur-weaponmaster-pull",
-          "shen-kinkou-svellsongur-hold",
           "svellsongur-apprentice-smith-gear-dig",
           "svellsongur-ava-achiever-hidden-flood",
           "svellsongur-copy-hold",
@@ -2699,8 +2697,7 @@
         "combos": [
           "ivern-arena-sentinel-hold",
           "ivern-bard-four-tag-double-conquer",
-          "ivern-sentinel-hold",
-          "ivern-svellsongur-four-tags-hold"
+          "ivern-sentinel-hold"
         ]
       },
       "status": "rule-verified",
