@@ -9,6 +9,7 @@
  * Each is a page of its own, so its title is the h1 (the app's views that drew 2 are gone, #575).
  */
 import { esc } from "../html.js";
+import { adSlot } from "./ad.js";
 import { ORIGIN, renderDocument } from "./layout.js";
 
 export interface ProseSurface {
@@ -69,14 +70,15 @@ export function aboutBody(): string {
   <p>The site is open source at <a href="${REPO}" rel="noopener noreferrer" target="_blank">github.com/GermanAbuArab/RiftCombo</a>. A wrong step, a missing ruling or a card read the wrong way is best reported as an <a href="${REPO}/issues" rel="noopener noreferrer" target="_blank">issue on that repository</a>, with the entry and the card text it concerns.</p>`;
 }
 
-export const guidePage = (candidates: boolean) => renderDocument(
+/** With a publisher id (#292) the guide carries one ad slot, at the end of the article (#272 §6). */
+export const guidePage = (candidates: boolean, adsenseId = "") => renderDocument(
   {
     path: "/guide",
     title: "Guide",
     description: "How to find Riftbound combos in a deck list: complete lines, near misses, what to add, pairs, combo classes and the Victory Score, and how run plays price a game.",
     section: "guide",
   },
-  guideBody({ candidates }),
+  guideBody({ candidates }) + adSlot("end", adsenseId),
 );
 
 export const sourcesPage = (candidates: boolean, note: string) => renderDocument(

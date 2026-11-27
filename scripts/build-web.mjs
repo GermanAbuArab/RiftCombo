@@ -16,7 +16,7 @@ import { siteConfig } from "./site-config.mjs";
 import { slimCard } from "./web-card-fields.mjs";
 import { loadPlays } from "./web-plays.mjs";
 import { stripInternalDeep, stripProsePlugin } from "./web-combo-prose.mjs";
-import { ADSENSE_PUBLISHER_ID, appShell, publisherId, sitemapEntries, writePages, writeSeo } from "./web-seo.mjs";
+import { ADSENSE_PUBLISHER_ID, appShell, publisherId, sitemapEntries, withoutAdStyles, writePages, writeSeo } from "./web-seo.mjs";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
 const OUT = join(ROOT, "public");
@@ -57,6 +57,8 @@ writeFileSync(join(OUT, "app.html"), appShell(readFileSync(join(ROOT, "web", "in
 // of each hand-written page and of the shell carries the `google-adsense-account` tag here, each
 // rendered page gets it from renderSite, and writeSeo writes ads.txt.
 const adsenseId = publisherId(ADSENSE_PUBLISHER_ID);
+// Dark, no page carries an ad slot (#292), so its rules leave public/styles.css too.
+if (!adsenseId) writeFileSync(join(OUT, "styles.css"), withoutAdStyles(readFileSync(join(OUT, "styles.css"), "utf8")));
 if (adsenseId) {
   const { withAdsenseAccount, withPrivacyChoices } = await tsImport("../src/render/layout.ts", import.meta.url);
   for (const f of [...STATIC.filter((s) => s.endsWith(".html")), "app.html"]) {
