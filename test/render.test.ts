@@ -3,7 +3,8 @@ import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { describe, expect, it } from "vitest";
 import { authoredWords, comboPage, CURRENT_RULES_VERSION, rulesLine, rulesNotice, THIN_WORDS, type ComboContext } from "../src/render/combo.js";
-import { clip, DISCLAIMER, ORIGIN } from "../src/render/layout.js";
+import { AD_LOADER_SCRIPT, isAdPath } from "../src/render/ad-loader.js";
+import { adsenseAccountMeta, clip, DISCLAIMER, ORIGIN, PRIVACY_CHOICES_LINK, PRIVACY_CHOICES_SCRIPT, withAdsenseAccount, withPrivacyChoices } from "../src/render/layout.js";
 import { guideBody, SITE_LD, sourcesBody } from "../src/render/pages.js";
 import { playArticle, type Play } from "../src/render/play.js";
 import { fileOf, renderSite, type BuiltPage, type SiteInput } from "../src/render/site.js";
@@ -15,7 +16,7 @@ import { loadPlays } from "../scripts/web-plays.mjs";
 // @ts-expect-error same.
 import { stripInternalDeep } from "../scripts/web-combo-prose.mjs";
 // @ts-expect-error same.
-import { ORIGIN as SEO_ORIGIN, SLUG_SHAPE, pageFileProblem, sitemapEntries, writePages, writeSeo } from "../scripts/web-seo.mjs";
+import { appShell, ORIGIN as SEO_ORIGIN, SLUG_SHAPE, pageFileProblem, sitemapEntries, writePages, writeSeo } from "../scripts/web-seo.mjs";
 
 /**
  * #286: the public pages, rendered from the same data the build reads and checked page by page. The
@@ -38,6 +39,11 @@ const input: SiteInput = {
 const pages: BuiltPage[] = renderSite(input);
 
 const count = (html: string, re: RegExp) => (html.match(re) ?? []).length;
+/**
+ * A page as its own markup, without the ad surface's loader (#290): the loader's source names the
+ * adsense meta tag and the privacy-choices script it looks for, which is not the page carrying them.
+ */
+const own = (html: string) => html.replace(AD_LOADER_SCRIPT, "");
 const landing = pages.find((p) => p.path === "/")!;
 const LANDING_SCRIPTS = `<script type="application/ld+json">${SITE_LD}</script>\n<script src="/legacy.js"></script>`;
 const levels = (html: string) => [...html.matchAll(/<h([1-6])[\s>]/g)].map((m) => Number(m[1]));
@@ -76,7 +82,9 @@ describe("every pre-rendered page (#286)", () => {
    */
   it("carries no inline style, no script and no event handler, which the CSP would refuse", () => {
     for (const p of pages) {
-      const html = p.path === "/" ? p.html.replace(LANDING_SCRIPTS, "") : p.html;
+      const html = p.path === "/" ? p.html.replace(LANDING_SCRIPTS, "") : own(p.html);
+      // The ad surface's one script, hashed by its CSP (#290): on those pages and no other.
+      expect(p.html.includes(AD_LOADER_SCRIPT), p.path).toBe(isAdPath(p.path));
       expect(html, p.path).not.toMatch(/\sstyle=/);
       expect(html, p.path).not.toMatch(/<script/i);
       expect(html, p.path).not.toMatch(/\son[a-z]+=/i);
@@ -108,8 +116,9 @@ describe("every pre-rendered page (#286)", () => {
     const toApp = pages.filter((p) => /href="\/(app|decks)(\/|"|\?)/.test(p.html));
     expect(toApp.length).toBeGreaterThan(0);
     // The landing's /legacy.js only ever makes a full load (test/dom/router.dom.test.ts, "old hash links").
+    // The ad surface's loader (#290) navigates nowhere: it inserts the consent and ad scripts.
     for (const p of toApp) {
-      const ran = [...p.html.matchAll(/<script\b(?![^>]*application\/ld\+json)[^>]*>/g)].map((m) => m[0]);
+      const ran = [...own(p.html).matchAll(/<script\b(?![^>]*application\/ld\+json)[^>]*>/g)].map((m) => m[0]);
       expect(ran, p.path).toEqual(p.path === "/" ? ['<script src="/legacy.js">'] : []);
     }
   });
@@ -364,8 +373,104 @@ describe("the build writes a file for every sitemap URL (#286)", () => {
     const build = readFileSync(join(root, "scripts", "build-web.mjs"), "utf8");
     expect(build).toContain("renderSite(");
     expect(build).toContain("writePages(OUT, pages)");
-    expect(build).toContain("writeSeo(OUT, sitemap)");
+    expect(build).toContain("writeSeo(OUT, sitemap, adsenseId)");
     expect(build).toContain("stripInternalDeep(");
-    expect(build.indexOf("for (const f of STATIC)")).toBeLessThan(build.indexOf("writeSeo(OUT, sitemap)"));
+    expect(build.indexOf("for (const f of STATIC)")).toBeLessThan(build.indexOf("writeSeo(OUT, sitemap, adsenseId)"));
+  });
+});
+
+describe("the google-adsense-account tag (#291)", () => {
+  const FAKE = "pub-0000000000000000";
+  const TAG = '<meta name="google-adsense-account" content="ca-pub-0000000000000000">';
+  const head = (html: string) => html.slice(0, html.indexOf("</head>"));
+  const handWritten = () => [
+    appShell(readFileSync(join(root, "web", "index.html"), "utf8")) as string,
+    ...["privacy.html", "terms.html", "404.html"].map((f) => readFileSync(join(root, "web", f), "utf8")),
+  ];
+
+  it("is on no page while the id is empty", () => {
+    for (const p of pages) expect(own(p.html), p.path).not.toContain("google-adsense-account");
+    for (const p of renderSite({ ...input, adsensePublisherId: "" })) expect(own(p.html), p.path).not.toContain("google-adsense-account");
+    for (const html of handWritten()) {
+      expect(html).not.toContain("google-adsense-account");
+      expect(withAdsenseAccount(html, "")).toBe(html);
+    }
+    expect(adsenseAccountMeta("")).toBe("");
+  });
+
+  it("is in the head of every page, / and /combos/<id> among them, exactly once, once an id is set", { timeout: 60_000 }, () => {
+    expect(adsenseAccountMeta(FAKE)).toBe(TAG);
+    const site = renderSite({ ...input, adsensePublisherId: FAKE });
+    expect(site.map((p) => p.path)).toEqual(pages.map((p) => p.path));
+    const combo = site.find((p) => p.path === `/combos/${combos[0]!.id}`)!;
+    for (const p of [site.find((x) => x.path === "/")!, combo, ...site]) {
+      expect(count(own(p.html), /google-adsense-account/g), p.path).toBe(1);
+      expect(head(p.html), p.path).toContain(TAG);
+    }
+    for (const html of handWritten()) {
+      const tagged = withAdsenseAccount(html, FAKE);
+      expect(count(tagged, /google-adsense-account/g)).toBe(1);
+      expect(head(tagged)).toContain(TAG);
+    }
+  });
+
+  it("is added to the hand-written pages and the shell by build:web", () => {
+    const build = readFileSync(join(root, "scripts", "build-web.mjs"), "utf8");
+    expect(build).toContain("adsensePublisherId: adsenseId");
+    expect(build).toContain('for (const f of [...STATIC.filter((s) => s.endsWith(".html")), "app.html"])');
+  });
+});
+
+describe("the Privacy choices footer link (#293)", () => {
+  const FAKE = "pub-0000000000000000";
+  const footer = (html: string) => html.slice(html.indexOf('<footer class="doc colophon">'));
+  const hand = (f: string) => readFileSync(join(root, "web", f), "utf8");
+  const built = (id: string) => {
+    const out = mkdtempSync(join(tmpdir(), "choices-"));
+    writePages(out, renderSite({ ...input, adsensePublisherId: id }));
+    return (path: string) => readFileSync(join(out, fileOf(path)), "utf8");
+  };
+
+  it("is on no page while the id is empty: public/combos/<id>.html counts 0", { timeout: 60_000 }, () => {
+    const read = built("");
+    expect(count(read(`/combos/${combos[0]!.id}`), /Privacy choices/g)).toBe(0);
+    for (const p of pages) {
+      expect(p.html, p.path).not.toContain("Privacy choices");
+      expect(own(p.html), p.path).not.toContain("privacy-choices.js");
+    }
+    for (const f of ["privacy.html", "terms.html"]) expect(withPrivacyChoices(hand(f), "")).toBe(hand(f));
+  });
+
+  it("is in the footer of every page once an id is set: public/combos/<id>.html counts 1, with its script", { timeout: 60_000 }, () => {
+    const read = built(FAKE);
+    const combo = read(`/combos/${combos[0]!.id}`);
+    expect(count(combo, /Privacy choices/g)).toBe(1);
+    expect(footer(combo)).toContain(PRIVACY_CHOICES_LINK);
+    for (const p of renderSite({ ...input, adsensePublisherId: FAKE })) {
+      expect(count(p.html, /Privacy choices/g), p.path).toBe(1);
+      expect(footer(p.html), p.path).toContain(`<a href="/terms">Terms</a> · ${PRIVACY_CHOICES_LINK}</p>`);
+      // An ad page's strict CSP trusts only the loader, which inserts the script itself (#290).
+      const head = p.html.slice(0, p.html.indexOf("</head>"));
+      if (isAdPath(p.path)) {
+        expect(head, p.path).not.toContain(PRIVACY_CHOICES_SCRIPT);
+        expect(head, p.path).toContain(AD_LOADER_SCRIPT);
+      } else expect(head, p.path).toContain(PRIVACY_CHOICES_SCRIPT);
+    }
+    for (const f of ["privacy.html", "terms.html"]) {
+      const linked = withPrivacyChoices(hand(f), FAKE);
+      expect(count(linked, /data-privacy-choices/g), f).toBe(1);
+      expect(footer(linked), f).toContain(PRIVACY_CHOICES_LINK);
+    }
+  });
+
+  it("refuses a document with no colophon footer rather than dropping the link", () => {
+    expect(() => withPrivacyChoices("<html><head></head><body></body></html>", FAKE)).toThrow(/footer/);
+  });
+
+  it("is added to the hand-written privacy and terms pages by build:web, and its script is an entry point", () => {
+    const build = readFileSync(join(root, "scripts", "build-web.mjs"), "utf8");
+    expect(build).toContain('for (const f of ["privacy.html", "terms.html"])');
+    expect(build).toContain("withPrivacyChoices(readFileSync(join(OUT, f), \"utf8\"), adsenseId)");
+    expect(build).toContain('"privacy-choices": join(ROOT, "web", "privacy-choices.ts")');
   });
 });

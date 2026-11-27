@@ -11,9 +11,9 @@
  *     heading they share (#270); here, each page is its own document and names itself.
  *   - Riot's disclaimer, verbatim, in the footer (docs/plan.md §1).
  *   - a canonical URL on https://riftcombo.app, the address the sitemap lists.
- * No inline `style=` and no inline script anywhere: the CSP forbids the first and names the hash of
- * the one JSON-LD block it allows for the second, which the landing at `/` carries (#288) and
- * `scripts/build-headers.mjs` hashes from that page.
+ * No inline `style=` and no inline script beyond two the CSP names by hash: the landing's JSON-LD
+ * block at `/` (#288) and the ad surface's loader (`src/render/ad-loader.ts`, #290), both of which
+ * `scripts/build-headers.mjs` hashes from the bytes the pages carry.
  */
 import { esc } from "../html.js";
 
@@ -67,6 +67,53 @@ export function clip(text: string, max = 160): string {
   // At the last word boundary; a text with no space in reach is cut where it stands.
   const at = cut.lastIndexOf(" ");
   return `${(at > 0 ? cut.slice(0, at) : cut).replace(/[\s,;:.—–-]+$/, "")}…`;
+}
+
+/**
+ * The AdSense site-verification tag for a bare publisher id (`pub-…`), or "" for none (#291). Its
+ * content is the id with `ca-` in front, as https://support.google.com/adsense/answer/12169212 shows
+ * it: `<meta name="google-adsense-account" content="ca-pub-0000000000000000">`. The id is checked
+ * where it is set (`publisherId` in `scripts/web-seo.mjs`), so this only formats it.
+ */
+export const adsenseAccountMeta = (id: string): string =>
+  id ? `<meta name="google-adsense-account" content="ca-${esc(id)}">` : "";
+
+/**
+ * `html` with the tag above as the last line of its `<head>`, or unchanged when `id` is "". Every page
+ * the build writes goes through this one function, the rendered ones (`renderSite`) and the
+ * hand-written ones and the app shell (`scripts/build-web.mjs`), so no document can miss it.
+ */
+export function withAdsenseAccount(html: string, id: string): string {
+  if (!id) return html;
+  if (!html.includes("</head>")) throw new Error("withAdsenseAccount: document has no </head>");
+  return html.replace("</head>", `${adsenseAccountMeta(id)}\n</head>`);
+}
+
+/**
+ * The footer's "Privacy choices" link (#293, #272 §4): Google's consent message has to be reopenable
+ * after the first choice, so a page that can carry ads offers it in its footer. `/privacy-choices.js`
+ * (`web/privacy-choices.ts`) turns a click into Google's `showRevocationMessage()` when Google's
+ * consent code is on the page; when it is not, the link is a plain one to the privacy notice's
+ * paragraph on consent. The CSP forbids a `javascript:` href, which is what Google's own sample uses.
+ */
+export const PRIVACY_CHOICES_LINK = `<a href="/privacy#choices" data-privacy-choices>Privacy choices</a>`;
+export const PRIVACY_CHOICES_SCRIPT = `<script src="/privacy-choices.js" defer></script>`;
+
+/**
+ * `html` with the link above at the end of its footer's first line and its script in the head, or
+ * unchanged when `id` is "" (the dark launch, #291): with no publisher id there is no ad and no
+ * consent message to reopen. The rendered pages get it from `renderSite`, the hand-written privacy
+ * and terms pages from `scripts/build-web.mjs`. An ad page passes `script: false`: its strict CSP
+ * (#290) trusts only the hashed loader, which inserts the script itself (`src/render/ad-loader.ts`).
+ */
+export function withPrivacyChoices(html: string, id: string, { script = true }: { script?: boolean } = {}): string {
+  if (!id) return html;
+  const footer = html.indexOf('<footer class="doc colophon">');
+  const end = footer < 0 ? -1 : html.indexOf("</p>", footer);
+  if (end < 0) throw new Error("withPrivacyChoices: document has no colophon footer line");
+  if (!html.includes("</head>")) throw new Error("withPrivacyChoices: document has no </head>");
+  const linked = `${html.slice(0, end)} · ${PRIVACY_CHOICES_LINK}${html.slice(end)}`;
+  return script ? linked.replace("</head>", `${PRIVACY_CHOICES_SCRIPT}\n</head>`) : linked;
 }
 
 const BRAND_MARK = `<svg class="brand-mark" viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.5 18.5 10 10 18.5 1.5 10Z"/><path d="M10 6.2 13.8 10 10 13.8 6.2 10Z"/></svg>`;

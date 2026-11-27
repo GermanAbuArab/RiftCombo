@@ -36,6 +36,68 @@ function inlineScriptHashes(html) {
 const { landingPage } = await tsImport("../src/render/pages.ts", import.meta.url);
 const scriptSrc = ["'self'", ...inlineScriptHashes(landingPage())].join(" ");
 
+// The ad surface (#290, #272 §5): `/combos/<id>`, `/plays/<slug>` and `/guide`, the only pages that will
+// carry ad slots. Its one inline script is the loader every ad page carries byte for byte, hashed here
+// from the same constant the renderer writes into those pages (test/headers.test.ts checks every page).
+const { AD_LOADER_SCRIPT, AD_SURFACE } = await tsImport("../src/render/ad-loader.ts", import.meta.url);
+const [loaderHash] = inlineScriptHashes(AD_LOADER_SCRIPT);
+
+// The allowlist policy, on every page. The ad surface's copy differs only in also trusting the loader,
+// so the privacy-choices script it inserts (#293) still runs there while this policy is the enforced one.
+// It names no Google origin, so it still refuses adsbygoogle.js and its frames and images: no ad can run
+// until the strict policy below replaces it as the enforced one (#272 §5, a later change; ads are off in
+// production until then anyway, #285).
+const allowlist = (scripts) => [
+  "default-src 'self'",
+  `script-src ${scripts}`,
+  // Inter is self-hosted (#295): no stylesheet or font comes from another origin, and
+  // test/fonts.test.ts fails if Google Fonts comes back into either directive.
+  "style-src 'self'",
+  "font-src 'self'",
+  "img-src 'self' data: https://cmsassets.rgpub.io",
+  `connect-src ${connect}`,
+  "frame-ancestors 'none'",
+  // `default-src 'self'` would already cover plugin content, but its fallback is 'self', not
+  // 'none'. The app has no <object>, <embed> or <applet> anywhere, so pinning it to 'none'
+  // costs nothing and stays correct if a same-origin file is ever served from this domain.
+  "object-src 'none'",
+  "base-uri 'self'",
+  "form-action 'self'",
+].join("; ");
+
+// Google supports only a strict CSP for AdSense ("Because the domains that the AdSense ad code uses change
+// over time, we only support strict CSP", https://support.google.com/adsense/answer/16283098, read
+// 2026-10-07), and a static page cannot carry a nonce, so the ad surface's is the hash form web.dev's
+// strict-CSP guide gives for static pages. No default-src: frames, images, connections and styles stay
+// open, as Google's policy leaves them. 'unsafe-inline' and `https: http:` are the fallback for browsers
+// without 'strict-dynamic', which ignore it. It ships as Content-Security-Policy-Report-Only first and
+// reports to /api/csp-report; it is enforced after a clean window, by a later change.
+const strict = [
+  `script-src ${loaderHash} 'strict-dynamic' 'unsafe-inline' 'unsafe-eval' https: http:`,
+  "object-src 'none'",
+  "base-uri 'self'",
+  "frame-ancestors 'none'",
+  "form-action 'self'",
+  "upgrade-insecure-requests",
+  "report-uri /api/csp-report",
+].join("; ");
+
+// The headers every page carries after its CSP.
+const common = [
+  // Sign-in uses a full-page redirect, so this stays as it is. A popup flow would need
+  // `same-origin-allow-popups`, and without it the popup never reports back at all.
+  { key: "Cross-Origin-Opener-Policy", value: "same-origin" },
+  // Vercel already sends HSTS for the apex (max-age two years, measured live 2026-09-21);
+  // `includeSubDomains` is the owner's decision of 2026-09-21 and is stated here so the
+  // committed file says what production sends. It commits every future subdomain to HTTPS
+  // for two years after a visitor's first load — no subdomain exists today (`www` only redirects).
+  { key: "Strict-Transport-Security", value: "max-age=63072000; includeSubDomains" },
+  { key: "X-Content-Type-Options", value: "nosniff" },
+  { key: "X-Frame-Options", value: "DENY" },
+  { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
+  { key: "Permissions-Policy", value: "camera=(), microphone=(), geolocation=()" },
+];
+
 const config = {
   $schema: "https://openapi.vercel.sh/vercel.json",
   buildCommand: "npm run build:web",
@@ -117,45 +179,27 @@ const config = {
     { source: "/decks/:path*", destination: "/app" },
   ],
   headers: [
+    // The two surfaces are disjoint on purpose: no path matches both rules, so no header depends on how
+    // Vercel combines two rules that set the same key. Every other path (the landing, the indexes, the
+    // prose and legal pages, /app and /decks) keeps the allowlist policy with its pinned Neon connect-src.
     {
-      source: "/(.*)",
+      source: `/((?!(?:${AD_SURFACE})$).*)`,
+      headers: [{ key: "Content-Security-Policy", value: allowlist(scriptSrc) }, ...common],
+    },
+    {
+      source: `/(${AD_SURFACE})`,
       headers: [
-        {
-          key: "Content-Security-Policy",
-          value: [
-            "default-src 'self'",
-            `script-src ${scriptSrc}`,
-            // Inter is self-hosted (#295): no stylesheet or font comes from another origin, and
-            // test/fonts.test.ts fails if Google Fonts comes back into either directive.
-            "style-src 'self'",
-            "font-src 'self'",
-            "img-src 'self' data: https://cmsassets.rgpub.io",
-            `connect-src ${connect}`,
-            "frame-ancestors 'none'",
-            // `default-src 'self'` would already cover plugin content, but its fallback is 'self', not
-            // 'none'. The app has no <object>, <embed> or <applet> anywhere, so pinning it to 'none'
-            // costs nothing and stays correct if a same-origin file is ever served from this domain.
-            "object-src 'none'",
-            "base-uri 'self'",
-            "form-action 'self'",
-          ].join("; "),
-        },
-        // Sign-in uses a full-page redirect, so this stays as it is. A popup flow would need
-        // `same-origin-allow-popups`, and without it the popup never reports back at all.
-        { key: "Cross-Origin-Opener-Policy", value: "same-origin" },
-        // Vercel already sends HSTS for the apex (max-age two years, measured live 2026-09-21);
-        // `includeSubDomains` is the owner's decision of 2026-09-21 and is stated here so the
-        // committed file says what production sends. It commits every future subdomain to HTTPS
-        // for two years after a visitor's first load — no subdomain exists today (`www` only redirects).
-        { key: "Strict-Transport-Security", value: "max-age=63072000; includeSubDomains" },
-        { key: "X-Content-Type-Options", value: "nosniff" },
-        { key: "X-Frame-Options", value: "DENY" },
-        { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
-        { key: "Permissions-Policy", value: "camera=(), microphone=(), geolocation=()" },
+        { key: "Content-Security-Policy", value: allowlist(`${scriptSrc} ${loaderHash}`) },
+        { key: "Content-Security-Policy-Report-Only", value: strict },
+        ...common,
       ],
     },
     // Vercel's own type for .webmanifest is not documented, so the manifest's is stated here (#269).
     { source: "/manifest.webmanifest", headers: [{ key: "Content-Type", value: "application/manifest+json" }] },
+    // ads.txt (#291) is read by ad crawlers as plain text; the charset is stated rather than left to
+    // Vercel's guess, as the IAB spec asks for UTF-8. The build writes the file only once an AdSense
+    // publisher id is set; the rule is harmless while there is none.
+    { source: "/ads.txt", headers: [{ key: "Content-Type", value: "text/plain; charset=utf-8" }] },
   ],
 };
 

@@ -9,6 +9,7 @@
  * Each is a page of its own, so its title is the h1 (the app's views that drew 2 are gone, #575).
  */
 import { esc } from "../html.js";
+import { adSlot } from "./ad.js";
 import { ORIGIN, renderDocument } from "./layout.js";
 
 export interface ProseSurface {
@@ -53,7 +54,7 @@ export function sourcesBody(s: ProseSurface & { note?: string }): string {
   return `${title("Sources")}
   <p id="data-note">Card text and art come from Riot's official card gallery, with Riot's published errata applied. Legality follows the official Rules Hub. Combos are walked by hand against the Core Rules, card text and rule numbers cited.${when(s, ` Entries marked <em>candidate</em> were proposed by an automated sweep and not yet reviewed.`)} Pairs are a separate file with a weaker guarantee: the rule is walked once and cites its paragraphs, the instances are text matches, and every rule's whole match list was read card by card before it shipped.${s.note ? ` ${esc(s.note)}` : ""}</p>
   <p>Saving a deck stores the list text you typed, not the result of matching it, so an old list is read again against today's catalogue and today's ban list every time you open it. Only you can read your own rows.</p>
-  <p>No advertising, no donations, no play-rate or win-rate data. RiftCombo describes combos; it never plays them for you.</p>`;
+  <p>No donations, no play-rate or win-rate data. RiftCombo describes combos; it never plays them for you.</p>`;
 }
 
 const REPO = "https://github.com/GermanAbuArab/RiftCombo";
@@ -69,14 +70,15 @@ export function aboutBody(): string {
   <p>The site is open source at <a href="${REPO}" rel="noopener noreferrer" target="_blank">github.com/GermanAbuArab/RiftCombo</a>. A wrong step, a missing ruling or a card read the wrong way is best reported as an <a href="${REPO}/issues" rel="noopener noreferrer" target="_blank">issue on that repository</a>, with the entry and the card text it concerns.</p>`;
 }
 
-export const guidePage = (candidates: boolean) => renderDocument(
+/** With a publisher id (#292) the guide carries one ad slot, at the end of the article (#272 §6). */
+export const guidePage = (candidates: boolean, adsenseId = "") => renderDocument(
   {
     path: "/guide",
     title: "Guide",
     description: "How to find Riftbound combos in a deck list: complete lines, near misses, what to add, pairs, combo classes and the Victory Score, and how run plays price a game.",
     section: "guide",
   },
-  guideBody({ candidates }),
+  guideBody({ candidates }) + adSlot("end", adsenseId),
 );
 
 export const sourcesPage = (candidates: boolean, note: string) => renderDocument(

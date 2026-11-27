@@ -15,6 +15,7 @@
     "deploy": "vercel deploy --prod",
     "deploy:preview": "vercel deploy",
     "synergies": "tsx src/cli-synergies.ts",
+    "engine": "tsx src/cli-engine.ts",
     "headers": "node scripts/build-headers.mjs",
     "check:rls": "node scripts/check-rls-neon.mjs",
     "scan:rls": "node scripts/scan-rls.mjs",
@@ -32,6 +33,7 @@
     "@types/node": "^26.4.1",
     "esbuild": "^0.28.2",
     "happy-dom": "^20.14.0",
+    "playwright-core": "^1.65.1",
     "tsx": "^4.23.13",
     "typescript": "^7.0.2",
     "vitest": "^4.1.11"

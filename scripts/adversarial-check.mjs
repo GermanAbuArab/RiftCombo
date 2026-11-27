@@ -738,7 +738,7 @@ function deployTurnUncached(types, costs, ladd, limit = 40, faceCap = BATTLEFIEL
   const vBig = { e: 0, re: 0, p: 0, rune: 0, share: false, drg: 0 }, vAtt = { e: 0, re: 0, p: 0, rune: 0, share: false, drg: 0 };
   // `rMax` bounds what one copy can return in this sub-turn, for the prune at the top of `order`.
   let rNeed = 0, rBest = NONE, nk = runers.length, g0 = 0, rMax = 0;
-  const trigMemo = new Map();
+  const trigMemo = [], trigByHerald = new Map();
   // DOMINANCE (#523's security scan: 3 Gemdragons, 21 other Dragons and an Aphelios ran past 120s).
   // Which copies are placed fixes everything but the readies: `spent` is their Energy, the Adds they
   // used are min(adds, their Power) and so `left` is fixed too, and every LATER step returns what it
@@ -882,12 +882,26 @@ function deployTurnUncached(types, costs, ladd, limit = 40, faceCap = BATTLEFIEL
           if (!fire && aOn) for (const i of atts) if (cnt[i] !== haveOf(i)) { fire = true; break; }
           if (!fire && g0) for (const i of chainTypes) if (cnt[i] !== haveOf(i)) { fire = true; break; }
           if (!fire) return;
-          // The search reads nothing else, so its answer is memoized on exactly these.
-          let mk = delta + space * (runes + 13 * (rain + nf + 64 * (need + 256 * (g0 + 8 * (aOn + 8 * (aNew ? 1 : 0))))));
+          // The search reads nothing else, so its answer is memoized on exactly these: `delta`, which
+          // is under `space`, and `rest`. They were one key, `delta + space * rest`, which is the same
+          // equality; split, `rest` stays a small integer and each table stays small (#739).
+          const rest = runes + 13 * (rain + nf + 64 * (need + 256 * (g0 + 8 * (aOn + 8 * (aNew ? 1 : 0)))));
           // #532: the Heralds already on the board set the Dragons' `re` too, and `delta` holds only
-          // the ones this sub-turn bought.
-          if (reds.length) { let rh = 0; for (const r of reds) rh += haveOf(r) * stride[r]; mk = `${mk}|${rh}`; }
-          const hit = trigMemo.get(mk);
+          // the ones this sub-turn bought, so with a Herald in the set there is one set of tables per
+          // Herald count on the board. That was a string key, `${mk}|${rh}`, and building it on every
+          // leaf was most of --ignition-nogate's time (#739: 23 million lookups, on one closure of
+          // 221,184 states; with the split it went from 15.3s to 6.3s user on the Mac at load 46, the
+          // output byte-identical in --turns, --ignition-nogate, --strict-ordering and --engines).
+          let byDelta = trigMemo;
+          if (reds.length) {
+            let rh = 0;
+            for (const r of reds) rh += haveOf(r) * stride[r];
+            byDelta = trigByHerald.get(rh);
+            if (!byDelta) trigByHerald.set(rh, (byDelta = []));
+          }
+          let memo = byDelta[delta];
+          if (!memo) byDelta[delta] = memo = new Map();
+          const hit = memo.get(rest);
           if (hit !== undefined) rBest = hit;
           else {
           if (g0 + g) for (const i of chainTypes) for (let q = cnt[i] - haveOf(i); q > 0; q--) chain[cn++] = i;
@@ -922,7 +936,7 @@ function deployTurnUncached(types, costs, ladd, limit = 40, faceCap = BATTLEFIEL
           }
           // The extra kinds are spent: `order` restored every count it took.
           nk = runers.length;
-          trigMemo.set(mk, rBest);
+          memo.set(rest, rBest);
           }
         }
         if (rBest === NONE) return;

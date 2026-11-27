@@ -25,7 +25,7 @@ const png = (path: string) => {
 const vercel = JSON.parse(read("vercel.json").toString("utf8")) as {
   headers: { source: string; headers: { key: string; value: string }[] }[];
 };
-const csp = vercel.headers.find((h) => h.source === "/(.*)")!.headers.find((h) => h.key === "Content-Security-Policy")!.value;
+const csp = vercel.headers[0]!.headers.find((h) => h.key === "Content-Security-Policy")!.value;
 const scriptSrc = csp.split(";").map((d) => d.trim().split(/\s+/)).find(([name]) => name === "script-src")!.slice(1);
 
 describe("Open Graph and Twitter card on the home page (#269)", () => {

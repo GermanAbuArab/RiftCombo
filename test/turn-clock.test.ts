@@ -230,7 +230,7 @@ describe("the allocator's ordering constraint", () => {
     expect(differ.length, differ.map(([id, r]) => `${id} ${r.pays}/${other.get(id)}`).join(" || ")).toBeLessThanOrEqual(6);
     // and every disagreement is at most one turn, which is what makes "T4 or T5" a statement
     for (const [id, r] of differ) expect(r.pays - (other.get(id) as number), id).toBeLessThanOrEqual(1);
-  }, 60_000); // spawns scripts/adversarial-check.mjs: 3.4s in a full run on the Windows tower (#244)
+  }, 60_000); // spawns scripts/adversarial-check.mjs: 4.6s in a full run of this file on the Mac at load 40 on 14 cores, 6.3s user alone at load 46 (#739; 15.3s at e7787a9, whose readier memo built a string key per leaf)
 
   /**
    * #205 shipped because one of two cost builders was patched. There is one builder now, but three

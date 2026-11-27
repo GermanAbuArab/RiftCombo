@@ -9,6 +9,8 @@
 import { CardIndex } from "../cards.js";
 import type { Card, Combo, Feature, LegalityEntry } from "../types.js";
 import { authoredWords, comboPage, combosIndexPage, THIN_WORDS, type ComboContext } from "./combo.js";
+import { isAdPath, withAdLoader } from "./ad-loader.js";
+import { withAdsenseAccount, withPrivacyChoices } from "./layout.js";
 import { aboutPage, cardDataNote, guidePage, landingPage, sourcesPage } from "./pages.js";
 import { comboIdsIn, playPage, playsIndexPage, playWords, type Play } from "./play.js";
 
@@ -21,6 +23,12 @@ export interface SiteInput {
   /** Each with the repo path of its markdown, which dates its page. */
   plays: (Play & { file: string })[];
   resultsUpdatedAt: string;
+  /**
+   * The bare AdSense publisher id, or "" (the dark launch, #291): every page's head carries its tag, and its footer the
+   * "Privacy choices" link (#293), and the ad surface's pages their reserved slots (#292). The ad surface's loader (#290)
+   * is on its pages either way; it does nothing without the tag.
+   */
+  adsensePublisherId?: string;
 }
 
 export interface BuiltPage {
@@ -60,18 +68,22 @@ export function renderSite(input: SiteInput): BuiltPage[] {
   const slugs = new Set(input.plays.map((p) => p.slug));
   const candidates = input.combos.some((c) => c.status !== "verified");
   const CATALOGUE = ["data/combos.json", "data/cards.json"];
-
+  const ads = input.adsensePublisherId ?? "";
   return [
     page("/", landingPage(), ["src/render/pages.ts"]),
     page("/combos", combosIndexPage(input.combos, ctx), ["data/combos.json"]),
-    ...input.combos.map((c) => page(`/combos/${c.id}`, comboPage(c, ctx), CATALOGUE, isThin(authoredWords(c)))),
+    ...input.combos.map((c) => page(`/combos/${c.id}`, comboPage(c, ctx, ads), CATALOGUE, isThin(authoredWords(c)))),
     page("/plays", playsIndexPage(input.plays), ["docs/plays"]),
     ...input.plays.map((p) => {
       const thin = isThin(playWords(p));
-      return page(`/plays/${p.slug}`, playPage(p, slugs, thin), [p.file], thin);
+      return page(`/plays/${p.slug}`, playPage(p, slugs, thin, ads), [p.file], thin);
     }),
-    page("/guide", guidePage(candidates), ["src/render/pages.ts"]),
+    page("/guide", guidePage(candidates, ads), ["src/render/pages.ts"]),
     page("/sources", sourcesPage(candidates, cardDataNote(input.resultsUpdatedAt, input.cards.length, input.combos)), ["src/render/pages.ts", "data/cards.json"]),
     page("/about", aboutPage(), ["src/render/pages.ts"]),
-  ];
+  ].map((p) => {
+    const ad = isAdPath(p.path);
+    const html = withPrivacyChoices(withAdsenseAccount(p.html, ads), ads, { script: !ad });
+    return { ...p, html: ad ? withAdLoader(html) : html };
+  });
 }

@@ -1,4 +1,5 @@
 import { execFileSync } from "node:child_process";
+import { createHash } from "node:crypto";
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
 import { fileURLToPath } from "node:url";
@@ -8,7 +9,17 @@ import { deckCountLine } from "../src/deck.js";
 import { rewritten } from "../scripts/qa-serve.mjs";
 // @ts-expect-error -- plain .mjs build script, no types
 import { appShell } from "../scripts/web-seo.mjs";
-import { landingPage } from "../src/render/pages.js";
+// @ts-expect-error -- plain .mjs, no types
+import { headerRules, headersFor } from "../scripts/dev-support.mjs";
+// @ts-expect-error -- plain .mjs shared with scripts/build-web.mjs, no types
+import { slimCard } from "../scripts/web-card-fields.mjs";
+// @ts-expect-error -- same
+import { loadPlays } from "../scripts/web-plays.mjs";
+// @ts-expect-error -- same
+import { stripInternalDeep } from "../scripts/web-combo-prose.mjs";
+import { AD_LOADER, isAdPath } from "../src/render/ad-loader.js";
+import { landingPage, SITE_LD, sourcesBody } from "../src/render/pages.js";
+import { renderSite, type SiteInput } from "../src/render/site.js";
 
 /**
  * The three things about accounts (#31) that break silently rather than loudly, pinned here because
@@ -25,7 +36,7 @@ import { landingPage } from "../src/render/pages.js";
  * what Vercel actually serves.
  */
 const vercel = JSON.parse(readFileSync(new URL("../vercel.json", import.meta.url), "utf8")) as {
-  headers: { headers: { key: string; value: string }[] }[];
+  headers: { source: string; headers: { key: string; value: string }[] }[];
 };
 const header = (key: string): string => {
   const found = vercel.headers.flatMap((h) => h.headers).find((h) => h.key === key);
@@ -92,6 +103,59 @@ describe("what the page promises about storing a list", () => {
     expect(landing).not.toContain('id="gate"');
     expect(landing).not.toContain("Sign in with Google");
     expect(landing).toContain('href="/app"');
+  });
+});
+
+/**
+ * #293 (#272 §4): the public pages carry Google ads, so the privacy notice and the terms say so, in
+ * the statements AdSense's "Required content" page asks for, and drop the absolutes that ads make
+ * false. The text is checked as rendered prose: tags stripped, whitespace collapsed.
+ */
+describe("what the privacy notice and terms say about ads (#293)", () => {
+  const prose = (f: string) => readFileSync(new URL(`../web/${f}`, import.meta.url), "utf8")
+    .replace(/<[^>]+>/g, "").replace(/&amp;/g, "&").replace(/\s+/g, " ");
+  const privacy = readFileSync(new URL("../web/privacy.html", import.meta.url), "utf8");
+
+  it("privacy: an Advertising section with Google AdSense, the cookie disclosure, the opt-out links and how to change consent", () => {
+    const text = prose("privacy.html");
+    expect(privacy).toContain("<h3>Advertising</h3>");
+    expect(text).toContain("carry ads served by Google AdSense");
+    expect(text).toContain("The deck tools (the combo finder and My decks) and the sign-in screen carry none.");
+    expect(text).toContain("Third-party vendors, including Google, use cookies to serve ads based on your earlier visits to this site or to other sites.");
+    expect(text).toContain("Google's use of advertising cookies lets it and its partners serve you ads based on your visits to this site and/or other sites on the Internet.");
+    expect(privacy).toContain('href="https://adssettings.google.com"');
+    expect(privacy).toContain('href="https://www.aboutads.info"');
+    expect(text).toContain("Visitors in the European Economic Area, the United Kingdom and Switzerland are asked first, by Google's consent message");
+    expect(text).toContain("Either choice can be changed at any time with Privacy choices in the footer");
+    expect(privacy).toContain('<p id="choices">');
+    expect(text).toContain("blocks gambling and betting and other sensitive categories");
+  });
+
+  it("privacy: no cookies of its own still holds, Google's cookies are named as Google's, and consent never gates sign-in", () => {
+    const text = prose("privacy.html");
+    expect(text).toContain("This site sets no cookies of its own.");
+    expect(text).toContain("Google and its partners set their own advertising cookies");
+    expect(privacy).toContain('href="https://policies.google.com/technologies/cookies"');
+    expect(text).toContain("the consent message never stands in the way of signing in");
+  });
+
+  it("privacy: Google is among the processors, and the absolutes ads make false are gone", () => {
+    const text = prose("privacy.html");
+    expect(text).toContain("The ads on the public pages are served by Google AdSense, and the consent message that comes with them is Google's Privacy & messaging");
+    for (const gone of ["There is no third-party script", "No advertising", "no tracking pixels", "no profiling", "loading a page sends no request to Google", "Google is involved only when you choose to sign in"]) {
+      expect(text, gone).not.toContain(gone);
+    }
+  });
+
+  it("terms: free and supported by ads on public pages, served by Google, no donations and nothing to buy", () => {
+    const text = prose("terms.html");
+    expect(text).toContain("It is free, supported by advertising on its public pages; there are no donations and nothing to buy.");
+    expect(text).toContain("The ads are served by Google: RiftCombo does not choose individual ads, and it blocks gambling and betting and other sensitive categories.");
+    expect(text).not.toContain("no advertising");
+  });
+
+  it("the sources page no longer claims no advertising", () => {
+    expect(sourcesBody({ candidates: false })).not.toMatch(/no advertising/i);
   });
 });
 
@@ -386,5 +450,98 @@ describe("the app shell (#287)", () => {
   it("is served for /decks and below by the local QA server too, and nowhere else", () => {
     for (const p of ["/decks", "/decks/new", "/decks/8f3c-1"]) expect(rewritten(rewrites, p), p).toBe("/app");
     for (const p of ["/decksx", "/app", "/", "/combos/x"]) expect(rewritten(rewrites, p), p).toBe(p);
+  });
+});
+
+/**
+ * #290 (#272 §5): the CSP splits by surface. The ad surface (`/combos/<id>`, `/plays/<slug>`, `/guide`)
+ * carries a hash-based strict policy as Report-Only beside the allowlist one; every other path keeps the
+ * allowlist policy unchanged, with its pinned Neon connect-src. The pages are the ones `renderSite`
+ * returns, which is the call `scripts/build-web.mjs` writes to public/.
+ */
+describe("the CSP per surface (#290)", () => {
+  const root = fileURLToPath(new URL("..", import.meta.url));
+  const rules = headerRules(vercel);
+  const at = (path: string): Record<string, string> => headersFor(path, rules);
+  const sha = (s: string) => `'sha256-${createHash("sha256").update(s, "utf8").digest("base64")}'`;
+  const LOADER = sha(AD_LOADER);
+  const LANDING = sha(SITE_LD);
+  const connect = (csp.get("connect-src") ?? []).join(" ");
+  const ALLOWLIST = (scripts: string) => `default-src 'self'; script-src ${scripts}; style-src 'self'; font-src 'self'; img-src 'self' data: https://cmsassets.rgpub.io; connect-src ${connect}; frame-ancestors 'none'; object-src 'none'; base-uri 'self'; form-action 'self'`;
+  const STRICT = `script-src ${LOADER} 'strict-dynamic' 'unsafe-inline' 'unsafe-eval' https: http:; object-src 'none'; base-uri 'self'; frame-ancestors 'none'; form-action 'self'; upgrade-insecure-requests; report-uri /api/csp-report`;
+  const AD = ["/combos/x", "/plays/x", "/guide"];
+  const OTHER = ["/", "/combos", "/plays", "/sources", "/about", "/privacy", "/terms", "/404", "/app", "/decks", "/decks/x", "/guide/", "/combos/x/y", "/guidex", "/app.js", "/api/deck-url"];
+
+  const data = (f: string) => stripInternalDeep(JSON.parse(readFileSync(join(root, "data", f), "utf8")));
+  const cardsFile = JSON.parse(readFileSync(join(root, "data", "cards.json"), "utf8")) as { resultsUpdatedAt: string; cards: object[] };
+  const input: SiteInput = {
+    combos: (data("combos.json") as { combos: SiteInput["combos"] }).combos,
+    cards: cardsFile.cards.map(slimCard),
+    legality: (data("legality.json") as { entries: SiteInput["legality"] }).entries,
+    features: (data("features.json") as { features: SiteInput["features"] }).features,
+    plays: (loadPlays(root) as SiteInput["plays"]).map((p) => ({ ...p, file: `docs/plays/${p.slug}.md` })),
+    resultsUpdatedAt: cardsFile.resultsUpdatedAt,
+  };
+  const FAKE = "pub-0000000000000000";
+  const built = [...renderSite(input), ...renderSite({ ...input, adsensePublisherId: FAKE })];
+  /** The inline scripts a page EXECUTES: a JSON-LD data block is not one. */
+  const inlineScripts = (h: string) => [...h.matchAll(/<script\b([^>]*)>([\s\S]*?)<\/script>/g)]
+    .filter((m) => m[2]!.length > 0 && !/type="application\/ld\+json"/.test(m[1]!)).map((m) => m[2]!);
+
+  it("pins the allowlist policy everywhere off the ad surface, unchanged, and no Report-Only there", () => {
+    for (const p of OTHER) {
+      expect(at(p)["Content-Security-Policy"], p).toBe(ALLOWLIST(`'self' ${LANDING}`));
+      expect(at(p)["Content-Security-Policy-Report-Only"], p).toBeUndefined();
+    }
+  });
+
+  it("pins the ad surface's two policies: the allowlist plus the loader, and the strict one as Report-Only", () => {
+    for (const p of AD) {
+      expect(at(p)["Content-Security-Policy"], p).toBe(ALLOWLIST(`'self' ${LANDING} ${LOADER}`));
+      expect(at(p)["Content-Security-Policy-Report-Only"], p).toBe(STRICT);
+    }
+  });
+
+  it("puts the strict policy on the ad paths only: every built page, and no rule but the ad rule carries it", () => {
+    for (const p of built) expect(at(p.path)["Content-Security-Policy-Report-Only"] !== undefined, p.path).toBe(isAdPath(p.path));
+    expect(built.filter((p) => isAdPath(p.path)).length).toBeGreaterThan(2);
+    const carriers = vercel.headers.filter((r) => r.headers.some((h) => h.key === "Content-Security-Policy-Report-Only"));
+    expect(carriers).toHaveLength(1);
+    expect(vercel.headers.flatMap((h) => h.headers).filter((h) => h.value.includes("'strict-dynamic'"))).toHaveLength(1);
+  });
+
+  it("keeps the Neon connect-src pin on /app: both origins, exact, no wildcard", () => {
+    const pinned = /connect-src ([^;]*)/.exec(at("/app")["Content-Security-Policy"]!)![1]!.split(" ");
+    expect(pinned[0]).toBe("'self'");
+    expect(pinned.slice(1), "the app surface lost its Neon origins").toHaveLength(2);
+    for (const o of pinned.slice(1)) expect(o).toMatch(/^https:\/\/[a-z0-9.-]+\.(neonauth|apirest)\.[a-z0-9.-]+\.neon\.tech$/);
+  });
+
+  it("hashes the loader every ad page carries, byte for byte, and no other page carries it", () => {
+    for (const p of built) {
+      const scripts = inlineScripts(p.html);
+      if (isAdPath(p.path)) {
+        expect(scripts, p.path).toEqual([AD_LOADER]);
+        expect(sha(scripts[0]!), p.path).toBe(LOADER);
+      } else {
+        expect(scripts, p.path).toEqual([]);
+      }
+    }
+  });
+
+  it("leaves no parser-inserted script on an ad page that the strict policy would refuse", () => {
+    for (const p of built.filter((x) => isAdPath(x.path))) expect(p.html, p.path).not.toMatch(/<script\b[^>]*\ssrc=/);
+  });
+
+  it("writes no inline style= into any built HTML: every rendered page, the hand-written pages and the app shell", () => {
+    const build = readFileSync(join(root, "scripts", "build-web.mjs"), "utf8");
+    const hand = /const STATIC = \[([^\]]*)\]/.exec(build)![1]!.match(/"[^"]+\.html"/g)!.map((s) => s.slice(1, -1));
+    expect(hand.sort()).toEqual(["404.html", "privacy.html", "terms.html"]);
+    const docs = [
+      ...built.map((p) => [p.path, p.html] as const),
+      ...hand.map((f) => [f, page(f)] as const),
+      ["app.html", appShell(page("index.html")) as string] as const,
+    ];
+    for (const [name, h] of docs) expect(h, name).not.toMatch(/<[^>]+\sstyle=/);
   });
 });

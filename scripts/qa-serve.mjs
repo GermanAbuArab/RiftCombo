@@ -22,6 +22,7 @@ import { existsSync, readFileSync, statSync } from "node:fs";
 import { createServer } from "node:http";
 import { dirname, extname, join, resolve, sep } from "node:path";
 import { fileURLToPath } from "node:url";
+import { headerRules, headersFor } from "./dev-support.mjs";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
 
@@ -38,17 +39,21 @@ const TYPES = {
 export const isThrowaway = (answer) => (answer?.branch ?? answer)?.default === false;
 
 /**
- * Production's own headers, so a CSP or COOP break shows up here too. Two changes: `connect-src` names
- * the child branch's origins, since a new branch mints a new endpoint, and HSTS goes, because it means
- * nothing on plain http.
+ * Production's own headers for a path, so a CSP or COOP break shows up here too: every vercel.json rule
+ * whose source matches, as `scripts/dev-support.mjs` evaluates them, which gives the ad surface its
+ * Report-Only policy (#290). Two changes: `connect-src` names the child branch's origins, since a new
+ * branch mints a new endpoint, and HSTS goes, because it means nothing on plain http.
  */
 export function qaHeaders(vercel, origins) {
-  const all = vercel.headers.find((h) => h.source === "/(.*)").headers;
-  const headers = Object.fromEntries(all.map((h) => [h.key, h.value]));
-  delete headers["Strict-Transport-Security"];
-  headers["Content-Security-Policy"] = headers["Content-Security-Policy"]
-    .replace(/connect-src [^;]*/, `connect-src 'self' ${origins.join(" ")}`);
-  return headers;
+  const rules = headerRules(vercel);
+  return (path) => {
+    const headers = headersFor(path, rules);
+    delete headers["Strict-Transport-Security"];
+    for (const key of ["Content-Security-Policy", "Content-Security-Policy-Report-Only"]) {
+      if (headers[key]) headers[key] = headers[key].replace(/connect-src [^;]*/, `connect-src 'self' ${origins.join(" ")}`);
+    }
+    return headers;
+  };
 }
 
 /**
@@ -129,17 +134,21 @@ const isOwnScript = ({ "sec-fetch-site": site, "sec-fetch-mode": mode, "sec-fetc
  */
 export function createQaServer({ root, headers, rewrites, authUrl, email, password }) {
   let handedOut = false;
+  // `headers` is a path's headers (`qaHeaders`) or one fixed set for every path.
+  const headersOf = typeof headers === "function" ? headers : () => headers;
   const server = createServer((req, res) => {
     const { port } = server.address();
+    // Production matches a header rule on the path before any rewrite; "/" until the URL is read.
+    let pathname = "/";
     const send = (status, type, body, extra = {}) => {
-      res.writeHead(status, { ...headers, "Content-Type": type, ...extra });
+      res.writeHead(status, { ...headersOf(pathname), "Content-Type": type, ...extra });
       res.end(body);
     };
     if (req.headers.host !== `localhost:${port}`) return send(403, TYPES[".txt"], "Forbidden");
     if (req.method !== "GET" && req.method !== "HEAD") return send(405, TYPES[".txt"], "Method not allowed");
 
     if (!req.url.startsWith("/")) return send(400, TYPES[".txt"], "Bad request");
-    const [pathname] = req.url.split(/[?#]/, 1);
+    pathname = req.url.split(/[?#]/, 1)[0];
     if (pathname === SIGN_IN_PAGE) {
       if (req.headers["sec-fetch-site"] !== "none") return send(403, TYPES[".txt"], "Forbidden");
       return send(200, TYPES[".html"], signInPage);

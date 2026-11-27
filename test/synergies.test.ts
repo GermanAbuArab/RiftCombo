@@ -1,8 +1,9 @@
 import { readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
-import { CardIndex } from "../src/cards.js";
+import { banDay, CardIndex } from "../src/cards.js";
 import { loadDeck } from "../src/deck.js";
 import { loadCardIndex, loadCombos, loadSynergies } from "../src/load.js";
+import type { LegalityEntry } from "../src/types.js";
 import { FIXTURE_DAY } from "./fixture-day.js";
 import { fingerprintOf, isRetired, matchSynergies, partnersOf, planSynergies, validateSynergies } from "../src/synergies.js";
 
@@ -574,13 +575,16 @@ describe("a rule on a banned anchor is retired by date (#667)", () => {
     });
   }
 
-  it("validates clean on today's date and on both sides of every date in the ban list", () => {
-    // Today, and the day of and the day before every `since` the ban list holds, so a ban entered
-    // ahead of its date fails here the day it is entered rather than the day it starts.
-    const legality = JSON.parse(readFileSync(new URL("../data/legality.json", import.meta.url), "utf8")) as { entries: { since: string }[] };
-    const dayBefore = (d: string) => new Date(Date.parse(`${d}T12:00:00Z`) - 864e5).toISOString().slice(0, 10);
-    const days = new Set([loadCardIndex().asOf, ...legality.entries.flatMap((e) => [e.since, dayBefore(e.since)])]);
-    for (const day of [...days].sort()) expect(validateSynergies(synergies, loadCardIndex(day)), day).toEqual([]);
+  // Today, and the day of and the day before every `since` the ban list holds, so a ban entered
+  // ahead of its date fails here the day it is entered rather than the day it starts. One test per
+  // day (#739, the #378 route): each day has its own budget, a red names its day, and the list
+  // growing by a ban date adds a test instead of lengthening one. The ban list is parsed once and
+  // each day's index is built from the parsed arrays.
+  const legality = JSON.parse(readFileSync(new URL("../data/legality.json", import.meta.url), "utf8")) as { entries: LegalityEntry[] };
+  const dayBefore = (d: string) => new Date(Date.parse(`${d}T12:00:00Z`) - 864e5).toISOString().slice(0, 10);
+  const days = [...new Set([banDay(), ...legality.entries.flatMap((e) => [e.since, dayBefore(e.since)])])].sort();
+  it.each(days)("validates clean on %s (today, or a ban-list date or the day before it)", (day) => {
+    expect(validateSynergies(synergies, new CardIndex(cards.cards, legality.entries, day)), day).toEqual([]);
   });
 
   it("fails a rule retired before its anchor is banned, and one left standing after", () => {
