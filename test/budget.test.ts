@@ -1,5 +1,5 @@
-import { describe, expect, it } from "vitest";
-import { BUDGET_MS, budgetMs } from "./budget.js";
+import { describe, expect, it, vi } from "vitest";
+import { budgetMs } from "./budget.js";
 
 describe("budgetMs (#765)", () => {
   it("keeps the base budget on a machine with spare cores", () => {
@@ -38,9 +38,14 @@ describe("budgetMs (#765)", () => {
     expect(budgetMs(60000, [50, 50, 50], Number.NaN)).toBe(60000);
   });
 
-  it("samples this machine into BUDGET_MS, between the base and 8x the base", () => {
-    expect(Number.isInteger(BUDGET_MS)).toBe(true);
-    expect(BUDGET_MS).toBeGreaterThanOrEqual(60000);
-    expect(BUDGET_MS).toBeLessThanOrEqual(480000);
+  it("samples this machine's load and core count into BUDGET_MS", async () => {
+    vi.doMock("node:os", () => ({ default: { loadavg: () => [57, 50, 40], cpus: () => new Array(12).fill({}) } }));
+    vi.resetModules();
+    try {
+      expect((await import("./budget.js")).BUDGET_MS).toBe(285000);
+    } finally {
+      vi.doUnmock("node:os");
+      vi.resetModules();
+    }
   });
 });
