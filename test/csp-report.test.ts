@@ -61,6 +61,12 @@ describe("/api/csp-report (#290)", () => {
 
   it("refuses a body over the cap with 413, and a body that is not a report with 400", async () => {
     expect((await post(`{"csp-report":{"x":"${"a".repeat(MAX_REPORT_BYTES)}"}}`)).status).toBe(413);
+    // Declared too large: refused before the body is read.
+    const declared = new Request(URL_, { method: "POST", headers: { "content-type": "application/csp-report", "content-length": String(MAX_REPORT_BYTES + 1) }, body: "{}" });
+    expect((await handler(declared)).status).toBe(413);
+    // Declared small, sent large (a lying or absent header): still cut off the stream.
+    const chunks = new ReadableStream<Uint8Array>({ start(c) { for (let i = 0; i < 5; i++) c.enqueue(new TextEncoder().encode("a".repeat(4000))); c.close(); } });
+    expect((await handler(new Request(URL_, { method: "POST", headers: { "content-type": "application/csp-report" }, body: chunks, duplex: "half" } as RequestInit))).status).toBe(413);
     for (const body of ["not json", "{}", "[]", `{"csp-report":"x"}`, `[{"type":"deprecation","body":{}}]`, "null"]) {
       expect((await post(body)).status, body).toBe(400);
     }
@@ -71,6 +77,7 @@ describe("/api/csp-report (#290)", () => {
     const line = reportLine({ "blocked-uri": `x\ncsp-report {"forged":1}${"b".repeat(MAX_FIELD * 2)}` });
     expect(line).not.toContain("\n");
     expect((JSON.parse(line.slice("csp-report ".length)) as { blocked: string }).blocked).toHaveLength(MAX_FIELD);
+    expect(reportLine({ "document-uri": "a\u0085b\u2028c\u2029d\u001b[31m" })).toBe(`csp-report {"document":"a b c d [31m"}`);
   });
 
   it("leaves out a field that is not a string or a number, so a crafted object cannot throw (500)", async () => {
