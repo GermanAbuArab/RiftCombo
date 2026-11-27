@@ -41,7 +41,6 @@ const REWORDED = [
 type Card = { code: string; name: string; text: string | null };
 const cards: Card[] = JSON.parse(readFileSync("data/cards.json", "utf8")).cards;
 const flat = (s: string) => s.replace(/\s+/g, " ");
-const printed = cards.map((c) => flat(c.text ?? ""));
 
 type Use = { card: string; note?: string };
 type Entry = { id: string; uses?: Use[] };
@@ -67,21 +66,25 @@ describe("printings Riot re-worded without an errata page (#663)", () => {
   });
 
   it("the catalogue quotes none of the retired spans", () => {
+    const spans = REWORDED.map((r) => ({
+      ...r,
+      elsewhere: cards.filter((c) => flat(c.text ?? "").includes(r.old)).map((c) => c.code),
+      name: cards.find((c) => c.code === r.code)!.name,
+    }));
     const hits: string[] = [];
     for (const { file, entries } of catalogue) {
       for (const e of entries) {
-        for (const r of REWORDED) {
-          const elsewhere = cards.filter((c, i) => printed[i].includes(r.old)).map((c) => c.code);
-          const used = (e.uses ?? []).map((u) => u.card);
-          const name = cards.find((c) => c.code === r.code)!.name;
+        const all = strings(e).map(flat);
+        const used = (e.uses ?? []).map((u) => u.card);
+        for (const r of spans) {
           const tied =
-            elsewhere.length === 0 || (used.includes(r.code) && !used.some((c) => elsewhere.includes(c)))
-              ? strings(e)
+            r.elsewhere.length === 0 || (used.includes(r.code) && !used.some((c) => r.elsewhere.includes(c)))
+              ? all
               : [
-                  ...(e.uses ?? []).filter((u) => u.card === r.code).map((u) => u.note ?? ""),
-                  ...strings(e).filter((s) => s.includes(r.code) || s.includes(name)),
+                  ...(e.uses ?? []).filter((u) => u.card === r.code).map((u) => flat(u.note ?? "")),
+                  ...all.filter((s) => s.includes(r.code) || s.includes(r.name)),
                 ];
-          if (tied.some((s) => flat(s).includes(r.old))) hits.push(`${file} ${e.id}: ${r.code}`);
+          if (tied.some((s) => s.includes(r.old))) hits.push(`${file} ${e.id}: ${r.code}`);
         }
       }
     }
