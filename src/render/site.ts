@@ -9,6 +9,7 @@
 import { CardIndex } from "../cards.js";
 import type { Card, Combo, Feature, LegalityEntry } from "../types.js";
 import { authoredWords, comboPage, combosIndexPage, THIN_WORDS, type ComboContext } from "./combo.js";
+import { isAdPath, withAdLoader } from "./ad-loader.js";
 import { withAdsenseAccount, withPrivacyChoices } from "./layout.js";
 import { aboutPage, cardDataNote, guidePage, landingPage, sourcesPage } from "./pages.js";
 import { comboIdsIn, playPage, playsIndexPage, playWords, type Play } from "./play.js";
@@ -22,7 +23,10 @@ export interface SiteInput {
   /** Each with the repo path of its markdown, which dates its page. */
   plays: (Play & { file: string })[];
   resultsUpdatedAt: string;
-  /** The bare AdSense publisher id, or "" (the dark launch, #291): every page's head carries its tag, and its footer the "Privacy choices" link (#293). */
+  /**
+   * The bare AdSense publisher id, or "" (the dark launch, #291): every page's head carries its tag, and its footer the
+   * "Privacy choices" link (#293). The ad surface's loader (#290) is on its pages either way; it does nothing without the tag.
+   */
   adsensePublisherId?: string;
 }
 
@@ -77,5 +81,9 @@ export function renderSite(input: SiteInput): BuiltPage[] {
     page("/guide", guidePage(candidates), ["src/render/pages.ts"]),
     page("/sources", sourcesPage(candidates, cardDataNote(input.resultsUpdatedAt, input.cards.length, input.combos)), ["src/render/pages.ts", "data/cards.json"]),
     page("/about", aboutPage(), ["src/render/pages.ts"]),
-  ].map((p) => ({ ...p, html: withPrivacyChoices(withAdsenseAccount(p.html, ads), ads) }));
+  ].map((p) => {
+    const ad = isAdPath(p.path);
+    const html = withPrivacyChoices(withAdsenseAccount(p.html, ads), ads, { script: !ad });
+    return { ...p, html: ad ? withAdLoader(html) : html };
+  });
 }

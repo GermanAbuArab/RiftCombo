@@ -13,6 +13,10 @@ import { join } from "node:path";
 
 /** Path relative to the repo root -> its class. The ONLY hand-written list. */
 export const ROUTES = {
+  "api/csp-report.ts": {
+    kind: "public",
+    reason: "receives the ad pages' CSP Report-Only violation reports, which a browser sends without credentials; it stores nothing and returns nothing, and POST-only, the report content type, a 16 KiB body cap, a JSON shape check and a per-minute line cap are the defence",
+  },
   "api/deck-url.ts": {
     kind: "public",
     reason: "imports a public Piltover Archive deck page for a signed-out or signed-in browser alike; it reads no account data, and its host allowlist, redirect check, timeout and byte cap are the defence",
