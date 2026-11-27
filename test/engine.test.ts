@@ -5,7 +5,7 @@ import { describe, expect, it } from "vitest";
 import { CardIndex } from "../src/cards.js";
 import { EFFECT_PREDICATES, LIMITER_PREDICATES, TRIGGER_PREDICATES, abilitiesOf } from "../src/engine/tags.js";
 import { identityCovers, search } from "../src/engine/search.js";
-import { markKnown, rank } from "../src/engine/rank.js";
+import { RECALL_FLOOR, markKnown, rank, recallExitCode } from "../src/engine/rank.js";
 import type { Card, Combo } from "../src/types.js";
 
 const fixture = <T>(n: string): T => JSON.parse(readFileSync(new URL(`./fixtures/engine/${n}`, import.meta.url), "utf8")) as T;
@@ -130,5 +130,27 @@ describe("rank and recall", () => {
     expect(known.set).toEqual(expect.arrayContaining(["ENG-001", "ENG-003"]));
     expect(ranked.indexOf(known) + 1).toBe(recall.found[0]!.rank);
     expect(recall.medianRank).toBe(recall.found[0]!.rank);
+  });
+});
+
+describe("recall floor (#750)", () => {
+  it("is the 18/92 #736 measured, and the --recall exit code is non-zero only below it", () => {
+    expect(RECALL_FLOOR).toBe(18);
+    expect(recallExitCode(17)).toBe(1);
+    expect(recallExitCode(0)).toBe(1);
+    expect(recallExitCode(18)).toBe(0);
+    expect(recallExitCode(19)).toBe(0);
+    expect(recallExitCode(4, 5)).toBe(1);
+  });
+
+  it("fails a fixture run whose recall is below the floor it is given", () => {
+    const f = fixture<{ cycle: Raw[]; burst: Raw[]; legends: Raw[] }>("cards.json");
+    const all = [...f.cycle, ...f.burst, ...f.legends].map(card);
+    const index = new CardIndex(all, [], "2026-11-27");
+    const entry = (id: string, cardsIn: string[]) => ({ id, class: "INFINITE", uses: cardsIn.map((c) => ({ card: c, quantity: 1, role: "engine" })) }) as unknown as Combo;
+    const recall = markKnown(rank(search(all, { maxCards: 3 }).candidates), [entry("fixture-loop", ["ENG-001", "ENG-003"]), entry("fixture-missing", ["ENG-011", "ENG-090"])], index);
+    expect(recall.found.length).toBe(1);
+    expect(recallExitCode(recall.found.length, 2)).toBe(1);
+    expect(recallExitCode(recall.found.length, 1)).toBe(0);
   });
 });

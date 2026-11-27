@@ -23,6 +23,16 @@ export function rank(candidates: Candidate[]): Candidate[] {
 /** The catalogued entries recall is measured against: every non-ENGINE entry, verified or candidate. */
 export const benchmarkEntries = (combos: Combo[]): Combo[] => combos.filter((c) => c.class !== "ENGINE");
 
+/**
+ * The recall floor `npm run engine -- --recall` fails below (#750). Measured by #736 (PR #749, head
+ * fbf5c0f) at default options: `recall: 18/92, median rank 101583.5`, `complete to 3 cards (stopped by
+ * maxCandidates); 2000000 candidates`. Raise it when a change to `src/engine/` measures more.
+ */
+export const RECALL_FLOOR = 18;
+
+/** The `--recall` exit code: 0 at or above the floor, 1 below it. */
+export const recallExitCode = (found: number, floor = RECALL_FLOOR): number => (found < floor ? 1 : 0);
+
 const entrySet = (cards: CardIndex, c: Combo) => [...new Set(c.uses.map((u) => canonicalOf(cards, u.card)))];
 
 export interface RecallResult {

@@ -5,7 +5,8 @@
 // (.github/workflows/engine.yml), not on the Mac (#451).
 //
 //   npm run engine                   # search, write candidates.json, print the top 30
-//   npm run engine -- --recall       # also print recall against the catalogue's non-ENGINE entries
+//   npm run engine -- --recall       # also print recall against the catalogue's non-ENGINE entries,
+//                                    # and exit 1 below RECALL_FLOOR (src/engine/rank.ts, #750) at default options
 //   npm run engine -- --coverage     # also print how many deckable cards the tagger tags, and the rest
 //   npm run engine -- --max-cards=4 --budget=1000000
 import { mkdirSync, writeFileSync } from "node:fs";
@@ -14,7 +15,7 @@ import { fileURLToPath } from "node:url";
 import { loadCardIndex, loadCombos } from "./load.js";
 import { isTagged, tagCard } from "./engine/tags.js";
 import { deckablePool, search } from "./engine/search.js";
-import { markKnown, rank } from "./engine/rank.js";
+import { RECALL_FLOOR, markKnown, rank, recallExitCode } from "./engine/rank.js";
 
 const args = process.argv.slice(2);
 const flag = (name: string) => args.includes(`--${name}`);
@@ -74,4 +75,10 @@ if (flag("recall")) {
   console.log(`\nrecall: ${recall.found.length}/${recall.total}, median rank ${recall.medianRank ?? "n/a"}`);
   for (const f of recall.found) console.log(`  found  #${f.rank} ${f.id}`);
   console.log(`missed (${recall.missed.length}): ${recall.missed.join(", ")}`);
+  // The floor was measured at default search options, so a run that overrides one is not held to it.
+  if (["max-cards", "budget", "max-candidates"].some((n) => num(n) !== undefined)) console.log(`floor ${RECALL_FLOOR} not applied: search options differ from the measured defaults`);
+  else {
+    process.exitCode = recallExitCode(recall.found.length);
+    if (process.exitCode) console.error(`recall ${recall.found.length}/${recall.total} is below the floor of ${RECALL_FLOOR} (src/engine/rank.ts)`);
+  }
 }
