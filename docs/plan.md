@@ -111,6 +111,8 @@ sponsor this project.
 
 **Launch posture: no ads, no donations, no legal entity, no paywall.** Moots the ads/donations conflict between Riot's two policy documents entirely.
 
+> `[2026-10-07: reversed for ads by the owner on 2026-10-06 (#272). The "conflict" resolves without one: LJJ Exception 1 allows passive ads on an individual's website; the Riftbound Digital Tools Policy bans ads only for apps that simulate gameplay, and lists "a valid API key approved by Riot" as a condition of monetising any App. RiftCombo therefore shows ads only once its Developer Portal registration is Approved. Still no donations, no paywall, no legal entity.]`
+
 ### Combo data landscape ✅
 **Nothing exists.** No structured combo DB on Piltover Archive (88,050 decks, zero combo entities), riftbound.gg, RiftScribe, Hextech, RIFT TCG Dex, or ~60 GitHub repos. **No competitor is building one.**
 
@@ -277,6 +279,8 @@ Per house design rules: no emoji in UI (LOOPLINE uses them — skip that), one c
 
 > `[2026-09-06: se hostea en Vercel desde #12. La cláusula no comercial de Hobby dejó de ser un problema al fijar la postura legal: sin publicidad y sin donaciones, por decisión propia. Persistencia: Supabase Postgres, no D1. Dominio propio riftcombo.app desde #42 (US$15/año).]`
 
+> `[2026-10-07: the Vercel team is on Pro (GET /v2/teams), so the Hobby non-commercial clause no longer applies.]`
+
 Budget the **$5/mo paid plan early** — free tier is 10 ms CPU (tight for graph building over a 40-card deck) and **1,000 KV writes/day**. Use D1 (100k writes/day) for cache, not KV.
 
 Copy LOOPLINE's security posture wholesale: `connect-src 'self'` (browser never calls upstream), strict CSP, COOP, `X-Frame-Options: DENY`, nosniff, Permissions-Policy.
@@ -351,6 +355,8 @@ Policy says assets must come from the Riot API. Unknown: what `riftbound-content
 | C. Launch on RiftScribe/gallery data | Stated policy violation on the one requirement that's cheap to satisfy |
 
 Phases 0–3 need no decision here — proceed, and the answer arrives before it's load-bearing.
+
+> `[2026-10-07: no longer deferrable. Ads (#272) depend on the key, so the application is now on the critical path.]`
 
 **D2 — Card images.** `cdn.riftscribe.gg` is out (policy + their robots.txt). Riot's own `cmsassets.rgpub.io` serves official card images, responds 200 with no hotlink protection, and supports resize params — closer to compliant, still not "the Riot API." The gallery content API now returns each card's `cmsassets.rgpub.io` image URL alongside its text, so image and text come from the same Riot-operated source (`data/cards.json` → `image`). Resolve alongside D1.
 

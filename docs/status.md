@@ -17,8 +17,12 @@ link) and it tells you which known combos the list already contains, which it is
 short of, and which cards in it are banned or restricted in the format you pick. Matching runs
 entirely in the browser against a static bundle; there is no matching server.
 
-**The whole site sits behind sign-in** (#39, user decision of 2026-09-05, which deliberately reverses
-the "anonymous is identical" posture #31 was built with). `<body data-auth>` carries the state —
+**The content is public; only the tools sit behind sign-in** (#288, PR #741, merged 2026-11-26, on the
+#272 design of 2026-10-07). From 2026-09-05 (#39) until then the whole site did. The landing (`/`), combo
+entries, plays, the guide, sources and about are pre-rendered public pages (`renderSite`, called from
+`scripts/build-web.mjs`); the matcher with a pasted list, saved decks and the deckbuilder are the app
+shell, `public/app.html`, served at `/app` and, through `vercel.json`'s one rewrite, at `/decks/*`. On
+that shell `<body data-auth>` carries the state —
 `pending` (the HTML default, which shows neither side so nothing flashes), `out` (the entrance only),
 `in` (the application) and `open` (any build missing `NEON_AUTH_URL` or `NEON_DATA_API_URL`, which has no gate to open). The CSS
 decides what is visible; `web/account.ts` sets the attribute. `test/headers.test.ts` fails if
