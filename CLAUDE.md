@@ -131,7 +131,7 @@
 
 ## Team
 - Repo: GermanAbuArab/RiftCombo
-- Implementers: mac 6, tower 6
+- Implementers: mac 6, tower 3 (tower held at 3 until the tower load gate, personal-claude-issues#1370, lands; #767)
 - Reviewer: ephemeral
 - Verify: npm run typecheck && npm test && npm run build:web
 - Needs the owner: nothing (owner rule 2026-09-25: the orchestrator does it or delegates it; only a password, 2FA or captcha screen is handed over, in the same window)
