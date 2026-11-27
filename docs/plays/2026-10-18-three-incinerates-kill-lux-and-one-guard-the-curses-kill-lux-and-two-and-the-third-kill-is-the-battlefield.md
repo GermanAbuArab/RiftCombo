@@ -64,6 +64,7 @@ The card text the play turns on:
   This deals 1 Bonus Damage for each card with this name in your trash."*
 - Annie, Fiery: *"Your spells and abilities deal 1 Bonus Damage. (Each instance of damage the spell
   deals is increased by 1.)"*
+  [2026-11-27, #663: Riot's gallery now prints the reminder as "(Each instance of damage they deal is increased by 1.)", which names abilities as well as spells, as the sentence before it always did; no errata page, and nothing here changes.]
 - The control, `OGS-003 Incinerate` (Fury, E2): *"[Action] (Play on your turn or in showdowns.) Deal 2
   to a unit at a battlefield."*
 

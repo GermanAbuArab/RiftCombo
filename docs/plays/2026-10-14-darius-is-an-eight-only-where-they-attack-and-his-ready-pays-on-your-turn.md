@@ -236,6 +236,7 @@ counted as the play counts its own: a rune exhausted for Energy can be recycled 
   react with later for :rb_energy_0:.) [Action] (Play on your turn or in showdowns.) Swap the Might of
   two units at the same battlefield this turn."* Darius's 8 for a Diplomat's 2: their 16 kill both of yours, and your 4
   kill one or two of theirs.
+  [2026-11-27, #663: Riot's gallery now prints "Swap the Mights of two units", plural, with no errata page; meaning unchanged.]
 
 If they run three copies of Gust, one is among the 9 cards they have seen by their T4 (four opening,
 four draws and Kinkou's) in **55.58%**; with six answers from the list, **81.80%**; with twelve

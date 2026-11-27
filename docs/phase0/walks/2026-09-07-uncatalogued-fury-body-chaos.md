@@ -156,6 +156,7 @@ enemy spells and abilities" clauses do not bite.
 
 Volibear's parenthesis is load-bearing twice: "a battlefield **other than mine**" forces a two-
 battlefield board, and "(Bases are not battlefield.)" means a retreat pays him nothing.
+[2026-11-27, #663: Riot's gallery now prints "(Bases are not battlefields.)", plural, with no errata page; meaning unchanged.]
 
 ### 2.3 `unyielding-spirit-challenge-unit-damage` — OGN-145 + OGN-128 (both in zero entries)
 

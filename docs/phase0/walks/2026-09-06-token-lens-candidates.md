@@ -28,6 +28,7 @@ UNL-084 | Sprite Queen | Unit | Mind | E7 P1 M6 | When you play me or at the sta
 SFD-168 | Vanguard Armory | Gear | Order | E7 P1 | :rb_exhaust:: Play three 1 :rb_might: Recruit unit tokens. (You may play them to different locations.)
 OGN-265 | Herald of the Arcane | Legend | Mind/Order | - | :rb_energy_1:, :rb_exhaust:: Play a 1 :rb_might: Recruit unit token. [Tags: Viktor]
 ```
+[2026-11-27, #663: Riot's gallery now prints "You can hide ignoring costs this turn." with no errata page. Hiding is placing a card facedown (421.1), so the dropped word changes nothing here.]
 
 **Ban check.** `grep -o "\[BANNED[^]]*\]"` over each of the 22 codes above returns nothing. None of them
 carries a ban or restriction marker. (The corpus does mark bans — 11 rows carry `[BANNED …]`, including
@@ -265,6 +266,7 @@ Bounds the entry states rather than hides:
   `OGN-264 Guerilla Warfare` (Mind/Chaos, E2 P1, "Return up to two cards with [Hidden] from your trash to
   your hand. You can hide cards ignoring costs this turn.") is the only recursion in the identity and buys
   two more cycles per cast; it is the reason this is an ENGINE and not a one-shot.
+  [2026-11-27, #663: Riot's gallery now prints "You can hide ignoring costs this turn." with no errata page. Hiding is placing a card facedown (421.1), so the dropped word changes nothing here.]
 - 811.1.b hides only at a battlefield **you control**, and 323.7 trashes hidden cards the moment you stop
   controlling it. 419.4.a.1: a countered flip pays nothing.
 - The Cask's other mode needs no [Hidden] at all: any spell you play on the opponent's turn triggers it.

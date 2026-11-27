@@ -233,6 +233,7 @@ Two moves a turn × 8 instances. The Standard Move costs the Hunter's own exhaus
 puts the exhaust price only on the Standard Move, so it moves an already-exhausted body. Same
 two-move structure as the catalogued `yasuo-stellacorn-svellsongur-draw`, with three gears instead of
 one — and with a payoff that has no Burn Out wall (#59: 431.1.a + 194.1.d cap the draw version).
+[2026-11-27, #663: Riot's gallery now prints OGN-259 as "Move a friendly unit to or from your base." with no errata page (OGN-305, the showcase Unforgiven, still reads "its base"). In 1v1 a friendly unit's own base is yours (107.1.c), so this passage holds; only a teammate's unit, friendly by 740.1.a, now moves to or from your base instead of its own.]
 
 He ends every turn back at his base, so the only exposure is base removal.
 

@@ -50,6 +50,7 @@ is one of Yasuo's three moves, free, every turn. In Chaos/Fury you buy that move
 friendly unit and ready it." Note the Ripper's bounce is **to HAND, which is not a Move at all**
 (455 defines a Recall as a relocation to the BASE; a return to hand is neither), so it gives Yasuo
 nothing and costs you the body.
+[2026-11-27, #663: Riot's gallery now prints OGN-259 as "Move a friendly unit to or from your base." with no errata page (OGN-305, the showcase Unforgiven, still reads "its base"). In 1v1 a friendly unit's own base is yours (107.1.c), so this passage holds; only a teammate's unit, friendly by 740.1.a, now moves to or from your base instead of its own.]
 
 Legend chosen for the play: **`OGN-251 Loose Cannon`**, because the deck's real problem is finding six
 specific cards and it is the only one of the five that refills. Any of the five is legal.

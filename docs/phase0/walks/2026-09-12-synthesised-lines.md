@@ -1506,6 +1506,7 @@ That is the whole trick: the three Iverns are **already exhausted** from walking
 (144.2), and only an effect move can carry them to the second. Note also that its move carries **no
 destination clause**, unlike `OGN-259 Unforgiven`'s *"to or from its base"* — which is why the Unforgiven
 CHAIN could never have been re-pointed at this.
+[2026-11-27, #663: Riot's gallery now prints OGN-259 as "Move a friendly unit to or from your base." with no errata page (OGN-305, the showcase Unforgiven, still reads "its base"). In 1v1 a friendly unit's own base is yours (107.1.c), so this passage holds; only a teammate's unit, friendly by 740.1.a, now moves to or from your base instead of its own.]
 
 | when | rule | points |
 |---|---|---|
