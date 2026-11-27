@@ -1,4 +1,5 @@
 import { configDefaults, defineConfig } from "vitest/config";
+import { BUDGET_MS } from "./test/budget.js";
 
 /**
  * THE ONLY REASON THIS FILE EXISTS: vitest's default include glob matches every `.test.ts` at any
@@ -26,8 +27,9 @@ export default defineConfig({
     // combo, synergy and card the bundle carries — and under the load this machine runs at (load
     // average 55-60, several sessions at once) that import passed vitest's 10s hook default and the
     // suite went red with "Hook timed out", which reads exactly like a failure. The same files pass
-    // at once when run alone. A hook whose cost is the point of it gets a budget, not a retry.
-    hookTimeout: 60_000,
+    // at once when run alone. A hook whose cost is the point of it gets a budget, not a retry. The
+    // budget is 60 s scaled by the machine's load (#765, test/budget.ts), as every slow test's is.
+    hookTimeout: BUDGET_MS,
     // A THIRD reason, added 2026-10-04 (#244). On the 12-core Windows tower vitest's default runs 11
     // forks, and a fork that loads the catalogue peaks at 400-900 MB, so the default measured 5.7 GB of
     // node at its peak; with other sessions holding the rest of the 32 GB that twice ended in "Worker

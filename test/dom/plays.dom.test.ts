@@ -8,6 +8,7 @@
 // into markup. Every assertion about escaping below is about that: the parser is handed hostile text
 // and the result is checked for elements, not for strings.
 import { describe, expect, it, vi } from "vitest";
+import { BUDGET_MS } from "../budget.js";
 import { playArticle, playsIndex } from "../../src/render/play.js";
 // @ts-expect-error plain .mjs shared with scripts/build-web.mjs, which cannot import TypeScript.
 import { loadPlays as readPlays } from "../../scripts/web-plays.mjs";
@@ -31,7 +32,7 @@ const bySlug = (slug: string) => PLAYS.find((p) => p.slug === slug)!;
 
 // Each test renders the real plays; explicit budget, like the 222-list sweeps: a slow test with no
 // explicit timeout is a flake waiting for load (#239).
-vi.setConfig({ testTimeout: 60_000 });
+vi.setConfig({ testTimeout: BUDGET_MS });
 
 describe("the plays index", () => {
   it("lists every play with its title, date and lede", () => {

@@ -13,6 +13,7 @@
 import { readFileSync, readdirSync } from "node:fs";
 import { join } from "node:path";
 import { afterEach, describe, expect, it, vi } from "vitest";
+import { BUDGET_MS } from "../budget.js";
 import { renderSite, type SiteInput } from "../../src/render/site.js";
 // @ts-expect-error plain .mjs shared with scripts/build-web.mjs.
 import { slimCard } from "../../scripts/web-card-fields.mjs";
@@ -119,7 +120,7 @@ describe("check 3: signed out, the app touches no data (#585)", () => {
         record(`${start} then ${next}`);
       }
       expect(seen, `Data API reached while signed out: ${seen.join("; ")}`).toEqual([]);
-    }, 60_000);
+    }, BUDGET_MS);
   }
 
   it("is not vacuous: the same stubs see the reads once a session arrives", async () => {
@@ -132,7 +133,7 @@ describe("check 3: signed out, the app touches no data (#585)", () => {
     expect(neon.calls.some((c) => c.startsWith("from(profiles)"))).toBe(true);
     expect(neon.calls.some((c) => c.startsWith("rpc(claim_staged_decks"))).toBe(true);
     expect(neon.calls.some((c) => c.startsWith("from(decks)"))).toBe(true);
-  }, 60_000);
+  }, BUDGET_MS);
 });
 
 describe("check 3: no pre-rendered page references the Data API (#585)", () => {

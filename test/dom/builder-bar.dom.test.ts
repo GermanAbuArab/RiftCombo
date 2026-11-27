@@ -10,6 +10,7 @@
 // `data-act` click itself is decks.ts's own delegation and is exercised there.
 import { readFileSync } from "node:fs";
 import { beforeEach, describe, expect, it, vi } from "vitest";
+import { BUDGET_MS } from "../budget.js";
 import { loadCardIndex } from "../../src/load.js";
 
 const cards = loadCardIndex();
@@ -49,7 +50,7 @@ async function mount(actions = "") {
 // Every test here drives the whole app through happy-dom, and the slowest one measured 2.2s in a
 // full default-parallel run on the Windows tower (#244) against vitest's 5s default. Explicit budget,
 // like the 222-list sweeps: a slow test with no explicit timeout is a flake waiting for load.
-vi.setConfig({ testTimeout: 60_000 });
+vi.setConfig({ testTimeout: BUDGET_MS });
 
 describe("the fixed bar keeps Import reachable from the Pool tab (#127)", () => {
   beforeEach(() => { document.body.innerHTML = ""; });

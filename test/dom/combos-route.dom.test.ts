@@ -9,6 +9,7 @@
 // numbers back off the same click.
 import { readFileSync } from "node:fs";
 import { beforeAll, describe, expect, it, vi } from "vitest";
+import { BUDGET_MS } from "../budget.js";
 import { fixtureClock } from "../fixture-day.js";
 
 vi.mock("../../web/neon.js", () => ({
@@ -53,7 +54,7 @@ beforeAll(async () => {
 // Every test here drives the whole app through happy-dom, and the slowest one measured 2.6s in a
 // full default-parallel run on the Windows tower (#244) against vitest's 5s default. Explicit budget,
 // like the 222-list sweeps: a slow test with no explicit timeout is a flake waiting for load.
-vi.setConfig({ testTimeout: 60_000 });
+vi.setConfig({ testTimeout: BUDGET_MS });
 
 describe("the drawer shows the route the chip is", () => {
   it("agrees with every chip on the class and the card count", async () => {

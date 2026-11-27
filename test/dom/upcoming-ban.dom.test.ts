@@ -7,6 +7,7 @@
 // (SFD-048) and Zhonya's Hourglass (OGN-077), both banned from 2026-11-23, and reads the panel back.
 import { readFileSync } from "node:fs";
 import { beforeAll, describe, expect, it, vi } from "vitest";
+import { BUDGET_MS } from "../budget.js";
 
 vi.mock("../../web/neon.js", () => ({
   accountsEnabled: false,
@@ -38,7 +39,7 @@ beforeAll(async () => {
   await settle();
 });
 
-vi.setConfig({ testTimeout: 60_000 });
+vi.setConfig({ testTimeout: BUDGET_MS });
 
 describe("the Banned and restricted panel names an announced ban (#670)", () => {
   it("prints one Banned from line per card, in markup that is neither a banned nor a restricted row", () => {

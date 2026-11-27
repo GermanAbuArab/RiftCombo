@@ -3,6 +3,7 @@ import { mkdtempSync, readFileSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { describe, expect, it } from "vitest";
+import { BUDGET_MS } from "./budget.js";
 import { loadCardIndex } from "../src/load.js";
 // @ts-expect-error plain .mjs helper, no declaration file
 import { inForce, parseAsOf } from "../scripts/legality-asof.mjs";
@@ -63,5 +64,5 @@ describe("dated legality for scripts (#668)", () => {
     expect(day22.length, "the row was printed").toBe(1);
     expect(day22.join()).not.toContain("BANNED in constructed");
     expect(line("2026-11-23").join()).toContain("BANNED in constructed");
-  }, 60_000);
+  }, BUDGET_MS);
 });

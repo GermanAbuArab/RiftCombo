@@ -3,6 +3,7 @@ import { mkdirSync, mkdtempSync, readFileSync, rmSync, symlinkSync, writeFileSyn
 import { tmpdir } from "node:os";
 import { join, resolve } from "node:path";
 import { afterAll, beforeAll, describe, expect, it } from "vitest";
+import { BUDGET_MS } from "./budget.js";
 
 /**
  * The turn clock has no other test, and that is exactly how a defect shipped.
@@ -230,7 +231,7 @@ describe("the allocator's ordering constraint", () => {
     expect(differ.length, differ.map(([id, r]) => `${id} ${r.pays}/${other.get(id)}`).join(" || ")).toBeLessThanOrEqual(6);
     // and every disagreement is at most one turn, which is what makes "T4 or T5" a statement
     for (const [id, r] of differ) expect(r.pays - (other.get(id) as number), id).toBeLessThanOrEqual(1);
-  }, 60_000); // spawns scripts/adversarial-check.mjs: 4.6s in a full run of this file on the Mac at load 40 on 14 cores, 6.3s user alone at load 46 (#739; 15.3s at e7787a9, whose readier memo built a string key per leaf)
+  }, BUDGET_MS); // spawns scripts/adversarial-check.mjs: 4.6s in a full run of this file on the Mac at load 40 on 14 cores, 6.3s user alone at load 46 (#739; 15.3s at e7787a9, whose readier memo built a string key per leaf)
 
   /**
    * #205 shipped because one of two cost builders was patched. There is one builder now, but three
@@ -323,7 +324,7 @@ describe("power income (#501)", () => {
     const m = eng.match(/power income \([^)]*\): (\d+) of (\d+) rows hold an income card/);
     expect(m, "the income non-vacuity line is missing from --engines").toBeTruthy();
     expect(Number(m![1])).toBeGreaterThan(5);
-  }, 60_000);
+  }, BUDGET_MS);
 });
 
 /**
@@ -671,12 +672,12 @@ describe("conditional rune readiers (#523)", () => {
   it("sends 3 Gemdragons + 21 other Dragons + 2 Aphelios to the greedy fallback instead of hanging, and says so", () => {
     const r = spawnSync("node", ["scripts/adversarial-check.mjs", "--price",
       "UNL-104:3,OGN-001:3,OGN-131:3,OGN-038:3,VEN-016:3,OGN-142:3,SFD-006:3,UNL-118:3,SFD-224:2"],
-      { encoding: "utf8", timeout: 60_000, env: { ...process.env, RC_FB: "1", RC_LEAVES: "", RC_GUARD: "" } });
+      { encoding: "utf8", timeout: BUDGET_MS, env: { ...process.env, RC_FB: "1", RC_LEAVES: "", RC_GUARD: "" } });
     expect(r.status, r.stderr).toBe(0);
     expect(r.stdout).toContain("GREEDY FALLBACK");
     expect(r.stderr).toMatch(/FALLBACK leaves>/);
     expect(r.stderr).not.toMatch(/FALLBACK space=/);
-  }, 60_000); // ~6s alone: it walks the whole leaf budget before it falls back
+  }, BUDGET_MS); // ~6s alone: it walks the whole leaf budget before it falls back
 });
 
 /**
@@ -819,23 +820,23 @@ describe("[Hidden], the copy limit and a legend's [Add] (#528)", () => {
   // RC_FB names the guard, so this fails if the set went exact or through another one.
   it("prices five Hidden cards at 3 copies at the free-copy bound instead of hanging, and says so", () => {
     const r = spawnSync("node", ["scripts/adversarial-check.mjs", "--price", "OGN-094:3,OGN-097:3,OGN-121:3,UNL-083:3,OGN-168:3"],
-      { encoding: "utf8", timeout: 60_000, env: { ...process.env, RC_FB: "1", RC_SPLITS: "" } });
+      { encoding: "utf8", timeout: BUDGET_MS, env: { ...process.env, RC_FB: "1", RC_SPLITS: "" } });
     expect(r.status, r.stderr).toBe(0);
     expect(r.stdout).toContain("HIDDEN BOUND");
     expect(r.stderr).toMatch(/FALLBACK hidden splits=1024 mixes=1/);
     expect(out).toMatch(/split guard \(256\): 0 rows priced at the free-copy bound/);
-  }, 60_000);
+  }, BUDGET_MS);
 
   // The same scan: the guard first BUILT the (copies + 1)^N splits and then counted them, so fourteen
   // Hidden cards (268M splits) ran out of heap at 4.4 GB before it could act. It counts first now.
   it("prices fourteen Hidden cards at the bound without building their 268M splits", () => {
     const set = "OGN-053:3,OGN-057:3,OGN-077:3,OGN-083:3,OGN-094:3,OGN-097:3,OGN-121:3,OGN-135:3,OGN-168:3,OGN-197:3,OGN-199:3,OGN-213:3,OGN-220:3,OGN-256:3";
     const r = spawnSync("node", ["scripts/adversarial-check.mjs", "--price", set],
-      { encoding: "utf8", timeout: 60_000, env: { ...process.env, RC_FB: "1", RC_SPLITS: "" } });
+      { encoding: "utf8", timeout: BUDGET_MS, env: { ...process.env, RC_FB: "1", RC_SPLITS: "" } });
     expect(r.status, r.stderr.slice(-500)).toBe(0);
     expect(r.stdout).toContain("HIDDEN BOUND");
     expect(r.stderr).toMatch(/FALLBACK hidden splits=268435456 mixes=1/);
-  }, 60_000);
+  }, BUDGET_MS);
 
   // The same scan: the copy limit's layered fronts gave this legal set 8,451 capped mixes at 8 bodies,
   // 11s (0.1s before #528). Past the mix guard the bodies come from one front with no copy limit.
@@ -843,12 +844,12 @@ describe("[Hidden], the copy limit and a legend's [Add] (#528)", () => {
   // Body/Calm front (#664); the price, T4 paying T5, did not move.
   it("prices eight bodies past the mix guard on the uncapped front, says so, and no catalogue row needs it", () => {
     const r = spawnSync("node", ["scripts/adversarial-check.mjs", "--price", "OGN-136:3,VEN-043:3", "--bodies", "8"],
-      { encoding: "utf8", timeout: 60_000, env: { ...process.env, RC_FB: "1", RC_MIXES: "" } });
+      { encoding: "utf8", timeout: BUDGET_MS, env: { ...process.env, RC_FB: "1", RC_MIXES: "" } });
     expect(r.status, r.stderr).toBe(0);
     expect(r.stdout).toContain("COPY BOUND");
     expect(r.stderr).toMatch(/FALLBACK copies mixes=17205/);
     expect(out).toMatch(/mix guard \(256\): 0 rows priced uncapped\n/);
-  }, 60_000);
+  }, BUDGET_MS);
 
   // The post-commit review of 93514fa: a split searched to `best.pays - 1` lost the 40-turn horizon
   // when no split before it deployed (Infinity - 1). Twelve E7/P1 and two E8/P2 cards at 3 copies
@@ -858,7 +859,7 @@ describe("[Hidden], the copy limit and a legend's [Add] (#528)", () => {
     const set = "OGN-059:3,OGN-116:3,OGS-009:3,SFD-027:3,SFD-101:3,SFD-168:3,SFD-179:3,UNL-005:3,UNL-050:3,UNL-084:3,UNL-144:3,VEN-089:3,OGN-082:3,OGN-109:3";
     expect(price(set).pays).toBe(Infinity);
     expect(price(`${set},OGN-057:1`).pays).toBe(Infinity);
-  }, 60_000);
+  }, BUDGET_MS);
 
   it("errs early past the mix guard: four bodies with two Flurries go back to four Sentries at T2, under the exact T3", () => {
     const r = spawnSync("node", ["scripts/adversarial-check.mjs", "--price", "OGN-133:2", "--bodies", "4"],
@@ -893,7 +894,7 @@ describe("[Hidden], the copy limit and a legend's [Add] (#528)", () => {
     const e = engines().match(/# legend \[Add\] [^\n]*; (\d+) of (\d+) rows name a modelled one/);
     expect(e, "the legend [Add] line is missing from --engines").toBeTruthy();
     expect(Number(e![1])).toBeGreaterThan(0);
-  }, 60_000);
+  }, BUDGET_MS);
 });
 
 /**
@@ -968,18 +969,18 @@ describe("one facedown card per battlefield held (#541)", () => {
       expect(Number(m![2]), name).toBe(0);
       expect(text, name).not.toMatch(/^# split guard/m);
     }
-  }, 60_000);
+  }, BUDGET_MS);
 
   it("names each row past the split guard on a # split guard line in --turns, as a lower bound", () => {
     const r = spawnSync("node", ["scripts/adversarial-check.mjs", "--turns"],
-      { encoding: "utf8", timeout: 60_000, maxBuffer: 1 << 24, env: { ...process.env, RC_SPLITS: "0" } });
+      { encoding: "utf8", timeout: BUDGET_MS, maxBuffer: 1 << 24, env: { ...process.env, RC_SPLITS: "0" } });
     expect(r.status, r.stderr).toBe(0);
     const n = Number(r.stdout.match(/split guard \(0\): (\d+) rows priced at the free-copy bound/)![1]);
     const named = [...r.stdout.matchAll(/^# split guard \(0\): (\S+) T(\d+) is a lower bound/gm)];
     expect(n).toBeGreaterThan(0);
     expect(named).toHaveLength(n);
     for (const [, id, t] of named) expect(r.stdout, id).toMatch(new RegExp(`^  T\\s*${t} vs T\\d+ baseline .* ${id}(\\s|$)`, "m"));
-  }, 60_000);
+  }, BUDGET_MS);
 });
 
 /**
@@ -1398,7 +1399,7 @@ describe("an ability that lives only in effect (#548)", () => {
     expect(real).toMatch(/^# readying .*: \d+ of \d+ rows hold a readier$/);
     const moved = execFileSync("node", [script, "--engines"], { encoding: "utf8", maxBuffer: 1 << 24, cwd: dirOf("VEN-150") });
     expect(readying(moved)).toBe(real);
-  }, 60_000); // two --engines runs, ~6s each alone
+  }, BUDGET_MS); // two --engines runs, ~6s each alone
 
   // The latent half: a card with an empty `text` is priced now, but one the clock was never walked
   // against is worth a look. Measured 2026-10-31 (#544) and again 2026-11-23 (#548): 0 of 1189.

@@ -13,6 +13,7 @@
 // analysed, the text survives a reopen unchanged, and anything that went wrong leaves it open.
 import { readFileSync } from "node:fs";
 import { beforeAll, describe, expect, it, vi } from "vitest";
+import { BUDGET_MS } from "../budget.js";
 
 vi.mock("../../web/neon.js", () => ({
   accountsEnabled: false,
@@ -47,7 +48,7 @@ beforeAll(async () => {
 // Every test here drives the whole app through happy-dom, and the slowest one measured 3.7s in a
 // full default-parallel run on the Windows tower (#244) against vitest's 5s default. Explicit budget,
 // like the 222-list sweeps: a slow test with no explicit timeout is a flake waiting for load.
-vi.setConfig({ testTimeout: 60_000 });
+vi.setConfig({ testTimeout: BUDGET_MS });
 
 describe("the deck form after a run", () => {
   it("starts open, with no summary row in the way", () => {
