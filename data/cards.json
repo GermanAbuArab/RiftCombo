@@ -1,7 +1,7 @@
 {
  "source": "https://content.publishing.riotgames.com/publishing-content/v2.0/public/channel/riftbound_website/list/riftbound_gallery_cards",
- "resultsUpdatedAt": "2026-11-26T16:11:16.878617490Z",
- "built": "2026-11-26T16:16:54.884Z",
+ "resultsUpdatedAt": "2026-11-27T21:53:54.593574269Z",
+ "built": "2026-11-27T21:54:10.436Z",
  "count": 1408,
  "cards": [
   {
@@ -39324,7 +39324,8 @@
    "set": "VEN",
    "collectorNumber": 58,
    "type": [
-    "unit"
+    "unit",
+    "gear"
    ],
    "token": false,
    "rarity": "common",
@@ -39345,6 +39346,13 @@
    "orientation": "portrait",
    "artist": "Six More Vodka",
    "image": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/7667d7e0c902782c38221e9326d1bb98181ec17f-744x1039.png?accountingTag=RB",
+   "galleryFix": {
+    "fields": [
+     "type"
+    ],
+    "read": "2026-11-27",
+    "source": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/7667d7e0c902782c38221e9326d1bb98181ec17f-744x1039.png"
+   },
    "signature": false
   },
   {
@@ -42733,12 +42741,18 @@
    "text": "When you play a card from anywhere other than your hand, empower me.\n[Action][>] Disempower me, :rb_exhaust:: Give a unit [Assault 2] this turn. (+2 :rb_might: while it's an attacker.)",
    "effect": null,
    "tags": [
-    "Yordle",
     "Kennen"
    ],
    "orientation": "portrait",
    "artist": "Envar Studio",
    "image": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/0eab83392b310417d2630d50a3bfee3dd02b31c4-744x1039.png?accountingTag=RB",
+   "galleryFix": {
+    "fields": [
+     "tags"
+    ],
+    "read": "2026-11-27",
+    "source": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/0eab83392b310417d2630d50a3bfee3dd02b31c4-744x1039.png"
+   },
    "signature": false
   },
   {
@@ -44283,12 +44297,18 @@
    "text": "When you play a card from anywhere other than your hand, empower me.\n[Action][>] Disempower me, :rb_exhaust:: Give a unit [Assault 2] this turn.",
    "effect": null,
    "tags": [
-    "Yordle",
     "Kennen"
    ],
    "orientation": "portrait",
    "artist": "Shop Sun",
    "image": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/f208ffb2ee76827cd4c608bcc8e1bcb9380bfa31-744x1039.png?accountingTag=RB",
+   "galleryFix": {
+    "fields": [
+     "tags"
+    ],
+    "read": "2026-11-27",
+    "source": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/f208ffb2ee76827cd4c608bcc8e1bcb9380bfa31-744x1039.png"
+   },
    "signature": false
   },
   {
@@ -44316,12 +44336,18 @@
    "text": "When you play a card from anywhere other than your hand, empower me.\n[Action][>] Disempower me, :rb_exhaust:: Give a unit [Assault 2] this turn.",
    "effect": null,
    "tags": [
-    "Yordle",
     "Kennen"
    ],
    "orientation": "portrait",
    "artist": "Shop Sun",
    "image": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/853681913bcd2a2e2b42217e290b530b72518142-744x1039.png?accountingTag=RB",
+   "galleryFix": {
+    "fields": [
+     "tags"
+    ],
+    "read": "2026-11-27",
+    "source": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/f208ffb2ee76827cd4c608bcc8e1bcb9380bfa31-744x1039.png"
+   },
    "signature": false
   },
   {

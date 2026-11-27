@@ -121,8 +121,8 @@ export function feeds(effect: EffectTag, t: TriggerTag): boolean {
   if (!FEEDS[effect.kind].includes(t.kind)) return false;
   if (t.kind === "play") {
     if (t.subject === "self" && !FEEDS_SELF_PLAY.has(effect.kind)) return false;
-    const a = effect.object ?? "card", b = t.object ?? "card";
-    return a === "card" || b === "card" || a === b;
+    const a = effect.object ?? ["card"], b = t.object ?? ["card"];
+    return a.includes("card") || b.includes("card") || a.some((k) => b.includes(k));
   }
   return true;
 }

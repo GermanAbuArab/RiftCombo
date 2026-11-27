@@ -1,4 +1,4 @@
-# Riftbound card corpus — 1103 distinct cards (1408 printings incl. alt-art), Riot gallery API data as of 2026-11-26T16:11:16.878617490Z, errata applied.
+# Riftbound card corpus — 1103 distinct cards (1408 printings incl. alt-art), Riot gallery API data as of 2026-11-27T21:53:54.593574269Z, errata applied.
 # Columns: code | name | type | domains | cost | text   (cost: E=Energy, P=Power, M=Might, M+=Equipment Might bonus)
 # Icons: :rb_energy_N: = N Energy; :rb_rune_<domain>: = 1 Power of that domain; :rb_rune_rainbow: = 1 Power of any domain; :rb_exhaust: = exhaust; :rb_might: = Might.
 # Equipment: the [Effect] clause is the text granted to the unit it is attached to ("I" = that unit).
@@ -1004,7 +1004,7 @@ VEN-054 | Questionable Tome | Gear | Mind | E3 | [Empower] —  :rb_exhaust: (Pa
 VEN-055 | Applied Researchers | Unit | Mind | E4 M4 | [Empower] :rb_energy_3: (:rb_energy_3:: Empower me. Use only if not Empowered.) [Empowered][>] Your spells cost :rb_energy_1::rb_rune_rainbow: less, to a minimum of :rb_energy_1:. [Tags: Shurima]
 VEN-056 | Clairvoyance | Spell | Mind | E7 | [Reaction] (Play any time, even before spells and abilities resolve.) [Predict 5]. (Look at the top 5 cards of your Main Deck. Recycle any of them and put the rest back in any order.) Draw 2.
 VEN-057 | Covert Informant | Unit | Mind | E3 P1 M4 | [Empower] :rb_energy_3: (:rb_energy_3:: Empower me. Use only if not Empowered.) [Empowered][>] When I move, draw 1. [Tags: Noxus]
-VEN-058 | Patched Porobot | Unit | Mind | E2 M2 | (I enter exhausted.) When you play me, if you control 3 or more other gear, draw 1. [Tags: Mech, Poro, Piltover]
+VEN-058 | Patched Porobot | Unit/Gear | Mind | E2 M2 | (I enter exhausted.) When you play me, if you control 3 or more other gear, draw 1. [Tags: Mech, Poro, Piltover]
 VEN-059 | Shock Blast | Spell | Mind | E3 P1 | [Action] (Play on your turn or in showdowns.) This costs :rb_energy_2: less if you control something that's [Empowered]. Deal 4 to a unit at a battlefield.
 VEN-060 | Sky Cruiser | Unit | Mind | E4 P1 M3 | Discard a gear, :rb_energy_1:, :rb_exhaust:: Deal 4 to a unit at a battlefield. [Tags: Piltover]
 VEN-061 | Decree of Insight | Spell | Mind | E1 | [Reaction] (Play any time, even before spells and abilities resolve.) Ignore [Deflect] while paying this spell's cost. Give an enemy Body (:rb_rune_body:) unit -5 :rb_might: this turn.
@@ -1101,7 +1101,7 @@ VEN-151 | Soul's Reflection | Legend | Mind/Chaos | - | When you empower somethi
 VEN-152 | Rebuttal | Spell | Mind/Chaos | E1 P1 | [Reaction] (Play any time, even before spells and abilities resolve.) Choose a spell with Energy cost no more than :rb_energy_4:.  You may pay :rb_rune_rainbow:. If you do, gain control of it and you may make new choices for it. Otherwise, counter it. [Tags: Mel]
 VEN-153 | Matriarch of War | Legend | Body/Order | - | When you empower something else, empower me. (I become Empowered if I'm not already.) Disempower me, :rb_rune_rainbow:, :rb_exhaust:: Ready a unit. [Tags: Ambessa]
 VEN-154 | Public Execution | Spell | Body/Order | E2 P1 | Choose a friendly unit. Kill an enemy unit with less Might than it. [Flow] :rb_energy_5::rb_rune_rainbow::rb_rune_rainbow: (You may play this from your trash for its Flow cost. Then banish it.) [Tags: Ambessa]
-VEN-155 | Heart of the Tempest | Legend | Order/Chaos | - | When you play a card from anywhere other than your hand, empower me. [Action][>] Disempower me, :rb_exhaust:: Give a unit [Assault 2] this turn. (+2 :rb_might: while it's an attacker.) [Tags: Yordle, Kennen]
+VEN-155 | Heart of the Tempest | Legend | Order/Chaos | - | When you play a card from anywhere other than your hand, empower me. [Action][>] Disempower me, :rb_exhaust:: Give a unit [Assault 2] this turn. (+2 :rb_might: while it's an attacker.) [Tags: Kennen]
 VEN-156 | Lightning Rush | Spell | Order/Chaos | E1 | Look at the top 3 cards of your Main Deck. You may choose a card from among them and draw it. Put the rest into your trash. [Flow] :rb_energy_2::rb_rune_rainbow: (You may play this from your trash for its Flow cost. Then banish it.) [Tags: Kennen]
 VEN-157 | Dragon Roost | Battlefield | Colorless | - | Any player may pay :rb_rune_rainbow::rb_rune_rainbow: as an additional cost to play a Dragon. If they do, they play it to this battlefield.
 VEN-158 | Heisho, Shell of the World | Battlefield | Colorless | - | Players ignore [Deflect] while paying for spells and abilities choosing something here.

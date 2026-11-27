@@ -38,24 +38,27 @@ export type Subject = "self" | "other";
 /** What kind of card a play trigger listens for, or a bounce, replay or token puts back into play. */
 export type PlayObject = "unit" | "spell" | "gear" | "card";
 
-/** `object` is set on `play` triggers only. */
-export interface TriggerTag { kind: Trigger; subject: Subject; span: string; object?: PlayObject }
+/** `object` is set on `play` triggers only: every kind of card the trigger listens for. */
+export interface TriggerTag { kind: Trigger; subject: Subject; span: string; object?: PlayObject[] }
 /**
  * `of` is set on `retrigger` only: the triggers whose effects it fires again. `object` is set on the
  * three effects that make a card be played again (`return-to-hand`, `play-from-trash`, `create-token`).
  */
-export interface EffectTag { kind: Effect; span: string; of?: Trigger[]; object?: PlayObject }
+export interface EffectTag { kind: Effect; span: string; of?: Trigger[]; object?: PlayObject[] }
 
 /** The object a span names: a unit (or "me", "it" on a unit), a spell, a gear, or any card. */
-export function objectOf(span: string, fallback: PlayObject = "card"): PlayObject {
-  if (/\bspells?\b/i.test(span)) return "spell";
-  if (/\b(?:gear|equipment)\b/i.test(span)) return "gear";
-  if (/\bunits?\b|\btokens?\b|\b(?:mechs?|recruits?|sand soldiers?|birds?|cats?|dogs?|poros?)\b/i.test(span)) return "unit";
+export function objectOf(span: string, fallback: PlayObject[] = ["card"]): PlayObject[] {
+  if (/\bspells?\b/i.test(span)) return ["spell"];
+  if (/\b(?:gear|equipment)\b/i.test(span)) return ["gear"];
+  if (/\bunits?\b|\btokens?\b|\b(?:mechs?|recruits?|sand soldiers?|birds?|cats?|dogs?|poros?)\b/i.test(span)) return ["unit"];
   return fallback;
 }
 const PLAYS_AGAIN: ReadonlySet<Effect> = new Set(["return-to-hand", "play-from-trash", "create-token"]);
-const cardObject = (card: Card): PlayObject =>
-  card.type.includes("spell") ? "spell" : card.type.includes("gear") ? "gear" : card.type.includes("unit") ? "unit" : "card";
+// Every kind the card is: VEN-058 Patched Porobot prints UNIT GEAR, so playing it again is both (#692).
+const cardObject = (card: Card): PlayObject[] => {
+  const kinds = (["spell", "gear", "unit"] as const).filter((k) => card.type.includes(k));
+  return kinds.length > 0 ? [...kinds] : ["card"];
+};
 
 /** One ability: a trigger (none for a static line), what it does, and what bounds it. */
 export interface Ability {
@@ -171,7 +174,7 @@ export function abilitiesOf(card: Card): Ability[] {
           if (/:rb_(?:energy|rune)_/i.test(cost)) current.triggers.push({ kind: "spend", subject: "self", span: cost.trim() });
         }
         // A spell's whole text happens when it is played; a line with no trigger on a permanent is static.
-        if (isSpell && current.triggers.length === 0) current.triggers.push({ kind: "play", subject: "self", span: "(spell)", object: "spell" });
+        if (isSpell && current.triggers.length === 0) current.triggers.push({ kind: "play", subject: "self", span: "(spell)", object: ["spell"] });
       } else {
         current!.text += " " + s;
       }
@@ -185,7 +188,7 @@ export function abilitiesOf(card: Card): Ability[] {
       if (p.of) tag.of = p.of(m);
       // A token is a unit unless the span names gear ("play a Gold gear token"); a bounce or replay
       // of "it" or "me" is of the card's own kind.
-      if (PLAYS_AGAIN.has(p.kind)) tag.object = objectOf(m[0], p.kind === "create-token" ? "unit" : cardObject(card));
+      if (PLAYS_AGAIN.has(p.kind)) tag.object = objectOf(m[0], p.kind === "create-token" ? ["unit"] : cardObject(card));
       a.effects.push(tag);
     }
     for (const p of LIMITER_PREDICATES) if (p.re.test(a.text)) a.limiters.push(p.kind);

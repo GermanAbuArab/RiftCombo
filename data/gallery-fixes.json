@@ -3,7 +3,8 @@
     "#664, read 2026-11-23. Riot's gallery API ships most Radiance (RAD) printings with a card type, domain or tag list that is not the one printed on Riot's own card image for that printing. Each entry names the base, the value the gallery ships (`gallery`) and the value printed on the card (`printed`), and cites the card image it was read from (`source`, the gallery item's own `cardImage.url`, 744x1039).",
     "Printed type and tags are the card's type line (for example 'CHAMPION UNIT • MORDEKAISER • NOXUS • SPIRIT' is type unit, tags Mordekaiser, Noxus, Spirit). Printed domains are the domain symbols in the lower right corner (Core Rules 134.1: 'Most cards belong to one or more of six Domains, identified by one or more symbols in the lower right corner.'), named by colour (134.2): red fury, green calm, blue mind, orange body, purple chaos, yellow order.",
     "How each image was read: three blind transcription passes (code, name and image URL only, no expected value) over all 111 differing bases, then 15 re-read by hand (RAD-001, 012, 016, 020, 025, 035, 049, 053, 060, 066, 069, 071, 108, 137, 146); all 15 matched. Every printed value also matches Piltover Archive and dotgg on type, domains and tags; the mirrors were used only to find the candidates, never as the source.",
-    "build-cards.mjs applies an entry to every printing of its base and fails the build when a printing's gallery value is no longer the entry's `gallery` value. When Riot fixes the gallery the build says so, and the entry's field is deleted."
+    "build-cards.mjs applies an entry to every printing of its base and fails the build when a printing's gallery value is no longer the entry's `gallery` value. When Riot fixes the gallery the build says so, and the entry's field is deleted.",
+    "#692, read 2026-11-27. The same class of error outside Radiance: the gallery types VEN-058 Patched Porobot as a unit while its card prints the type line `UNIT GEAR • PILTOVER • MECH • PORO`, and tags both Heart of the Tempest legends (VEN-155, VEN-197 and its VEN-197* signed printing) Yordle while each prints `LEGEND • KENNEN`. Found by the #664 cross-check of OGN, SFD, UNL, VEN and OGS against Piltover Archive and dotgg (8 of 1020 printings differed); each value here was read from the card image named in `source`. An entry's `source` is one image per base; the VEN-197 entry also covers the signed VEN-197*, whose own image (https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/853681913bcd2a2e2b42217e290b530b72518142-744x1039.png) was read on the same day and prints the same `LEGEND • KENNEN`."
   ],
   "entries": [
     {
@@ -1789,6 +1790,54 @@
         "tags": [
           "Evelynn",
           "Demon"
+        ]
+      }
+    },
+    {
+      "base": "VEN-058",
+      "read": "2026-11-27",
+      "source": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/7667d7e0c902782c38221e9326d1bb98181ec17f-744x1039.png",
+      "gallery": {
+        "type": [
+          "unit"
+        ]
+      },
+      "printed": {
+        "type": [
+          "unit",
+          "gear"
+        ]
+      }
+    },
+    {
+      "base": "VEN-155",
+      "read": "2026-11-27",
+      "source": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/0eab83392b310417d2630d50a3bfee3dd02b31c4-744x1039.png",
+      "gallery": {
+        "tags": [
+          "Yordle",
+          "Kennen"
+        ]
+      },
+      "printed": {
+        "tags": [
+          "Kennen"
+        ]
+      }
+    },
+    {
+      "base": "VEN-197",
+      "read": "2026-11-27",
+      "source": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/game_data_live/f208ffb2ee76827cd4c608bcc8e1bcb9380bfa31-744x1039.png",
+      "gallery": {
+        "tags": [
+          "Yordle",
+          "Kennen"
+        ]
+      },
+      "printed": {
+        "tags": [
+          "Kennen"
         ]
       }
     }

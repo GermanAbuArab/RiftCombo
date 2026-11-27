@@ -4,7 +4,7 @@ import { readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
 import { CardIndex } from "../src/cards.js";
 import { EFFECT_PREDICATES, LIMITER_PREDICATES, TRIGGER_PREDICATES, abilitiesOf } from "../src/engine/tags.js";
-import { identityCovers, search } from "../src/engine/search.js";
+import { feeds, identityCovers, search } from "../src/engine/search.js";
 import { RECALL_FLOOR, markKnown, rank, recallExitCode, scores } from "../src/engine/rank.js";
 import type { Card, Combo } from "../src/types.js";
 
@@ -64,6 +64,17 @@ describe("tagger", () => {
     const [a, ...rest] = abilitiesOf(card({ text: "[Deathknell] — Draw 1. (When I die, get the effect.)" }));
     expect(rest).toHaveLength(0);
     expect(a!.triggers.map((t) => t.kind)).toEqual(["die"]);
+  });
+});
+
+describe("a card that is two types (#692)", () => {
+  // VEN-058 Patched Porobot prints UNIT GEAR: its own "When you play me" fires whether an effect
+  // replays a unit or a gear, and a spell replay never reaches it.
+  const [trigger] = abilitiesOf(card({ type: ["unit", "gear"], text: "When you play me, draw 1." })).flatMap((a) => a.triggers);
+  it("lets an effect that replays a unit, a gear or any card feed its own play trigger, and not a spell's", () => {
+    expect(trigger).toMatchObject({ kind: "play", subject: "self" });
+    for (const object of ["unit", "gear", "card"] as const) expect(feeds({ kind: "return-to-hand", span: "", object: [object] }, trigger!), object).toBe(true);
+    expect(feeds({ kind: "return-to-hand", span: "", object: ["spell"] }, trigger!)).toBe(false);
   });
 });
 

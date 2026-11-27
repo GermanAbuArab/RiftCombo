@@ -44,6 +44,9 @@ describe("gearMight keeps Equipment's bonus out of `might` (#660)", () => {
   it("keeps a unit's might", () => {
     expect(gearMight(card({ type: ["unit"], might: 5 }))).toBe(5);
   });
+  it("keeps a unit gear's own might: VEN-058 Patched Porobot prints UNIT GEAR, Might 2, no bonus (#692)", () => {
+    expect(gearMight(card({ type: ["unit", "gear"], might: 2 }))).toBe(2);
+  });
   it("keeps a gear with no might as null", () => {
     expect(gearMight(card({ type: ["gear"] }))).toBeNull();
   });
