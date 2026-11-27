@@ -9,6 +9,7 @@
 import { CardIndex } from "../cards.js";
 import type { Card, Combo, Feature, LegalityEntry } from "../types.js";
 import { authoredWords, comboPage, combosIndexPage, THIN_WORDS, type ComboContext } from "./combo.js";
+import { withAdsenseAccount } from "./layout.js";
 import { aboutPage, cardDataNote, guidePage, landingPage, sourcesPage } from "./pages.js";
 import { comboIdsIn, playPage, playsIndexPage, playWords, type Play } from "./play.js";
 
@@ -21,6 +22,8 @@ export interface SiteInput {
   /** Each with the repo path of its markdown, which dates its page. */
   plays: (Play & { file: string })[];
   resultsUpdatedAt: string;
+  /** The bare AdSense publisher id, or "" (the dark launch, #291): every page's head carries its tag. */
+  adsensePublisherId?: string;
 }
 
 export interface BuiltPage {
@@ -61,6 +64,7 @@ export function renderSite(input: SiteInput): BuiltPage[] {
   const candidates = input.combos.some((c) => c.status !== "verified");
   const CATALOGUE = ["data/combos.json", "data/cards.json"];
 
+  const ads = input.adsensePublisherId ?? "";
   return [
     page("/", landingPage(), ["src/render/pages.ts"]),
     page("/combos", combosIndexPage(input.combos, ctx), ["data/combos.json"]),
@@ -73,5 +77,5 @@ export function renderSite(input: SiteInput): BuiltPage[] {
     page("/guide", guidePage(candidates), ["src/render/pages.ts"]),
     page("/sources", sourcesPage(candidates, cardDataNote(input.resultsUpdatedAt, input.cards.length, input.combos)), ["src/render/pages.ts", "data/cards.json"]),
     page("/about", aboutPage(), ["src/render/pages.ts"]),
-  ];
+  ].map((p) => ({ ...p, html: withAdsenseAccount(p.html, ads) }));
 }

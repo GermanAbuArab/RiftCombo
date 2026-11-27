@@ -4,10 +4,36 @@
 // what the build wrote, and `writeSeo` still refuses a path with no file behind it.
 
 import { execFileSync } from "node:child_process";
-import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
+import { existsSync, mkdirSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import { dirname, join } from "node:path";
 
 export const ORIGIN = "https://riftcombo.app";
+
+/**
+ * The AdSense publisher id, bare (`pub-` and 16 digits), or "" (#291, #272 design §3). Not a secret
+ * and not an env var: it is printed in ads.txt and in every page's head for anyone to read. Empty is
+ * the dark launch: no ads.txt, no `google-adsense-account` tag, no loader and no slots. The value
+ * comes from #273; ad slots stay off until the Riot Developer Portal approves (#285) and AdSense does.
+ */
+export const ADSENSE_PUBLISHER_ID = "";
+
+const PUBLISHER_ID = /^pub-\d{16}$/;
+
+/** `id` itself once it is "" or a well-formed publisher id; a typo fails the build instead of shipping. */
+export function publisherId(id) {
+  if (id !== "" && !PUBLISHER_ID.test(id)) throw new Error(`ADSENSE_PUBLISHER_ID ${JSON.stringify(id)} is not "" or ${PUBLISHER_ID}`);
+  return id;
+}
+
+/**
+ * The one ads.txt line, in the form https://support.google.com/adsense/answer/12171612 gives it:
+ * `google.com, pub-0000000000000000, DIRECT, f08c47fec0942fa0` (f08c47fec0942fa0 is Google's
+ * certification authority id, the same for every publisher).
+ */
+export function adsTxt(id) {
+  if (publisherId(id) === "") throw new Error("adsTxt needs a publisher id");
+  return `google.com, ${id}, DIRECT, f08c47fec0942fa0\n`;
+}
 
 /**
  * The hand-written pages, as they are linked (cleanUrls serves `/privacy` from privacy.html), their
@@ -128,11 +154,18 @@ export function sitemapEntries(root, rendered) {
   return listed.map((p) => ({ path: p.path, file: p.file, lastmod: lastmodOf(p.sources, dates) }));
 }
 
-/** Write robots.txt and sitemap.xml into `out`, after checking every listed page is really there. */
-export function writeSeo(out, entries) {
+/**
+ * Write robots.txt and sitemap.xml into `out`, after checking every listed page is really there, and
+ * ads.txt when a publisher id is set. With none, an ads.txt left by an earlier local build is removed,
+ * so `out` holds one exactly when the id is set.
+ */
+export function writeSeo(out, entries, adsenseId = ADSENSE_PUBLISHER_ID) {
+  const ads = publisherId(adsenseId);
   for (const p of entries) {
     if (!existsSync(join(out, p.file))) throw new Error(`sitemap lists ${p.path} but ${p.file} is not in ${out}`);
   }
   writeFileSync(join(out, "robots.txt"), robotsTxt());
   writeFileSync(join(out, "sitemap.xml"), sitemapXml(entries));
+  if (ads) writeFileSync(join(out, "ads.txt"), adsTxt(ads));
+  else rmSync(join(out, "ads.txt"), { force: true });
 }

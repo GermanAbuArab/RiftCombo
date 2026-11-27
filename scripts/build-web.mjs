@@ -16,7 +16,7 @@ import { siteConfig } from "./site-config.mjs";
 import { slimCard } from "./web-card-fields.mjs";
 import { loadPlays } from "./web-plays.mjs";
 import { stripInternalDeep, stripProsePlugin } from "./web-combo-prose.mjs";
-import { appShell, sitemapEntries, writePages, writeSeo } from "./web-seo.mjs";
+import { ADSENSE_PUBLISHER_ID, appShell, publisherId, sitemapEntries, writePages, writeSeo } from "./web-seo.mjs";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
 const OUT = join(ROOT, "public");
@@ -53,6 +53,16 @@ for (const f of STATIC) copyFileSync(join(ROOT, "web", f), join(OUT, f));
 // `noindex` in place of the canonical, so a signed-in tool screen never enters an index. It is served
 // nowhere else: public/index.html is the landing `renderSite` writes below (#288).
 writeFileSync(join(OUT, "app.html"), appShell(readFileSync(join(ROOT, "web", "index.html"), "utf8")));
+// The AdSense publisher id (#291): "" ships dark and leaves every document as written. Set, the head
+// of each hand-written page and of the shell carries the `google-adsense-account` tag here, each
+// rendered page gets it from renderSite, and writeSeo writes ads.txt.
+const adsenseId = publisherId(ADSENSE_PUBLISHER_ID);
+if (adsenseId) {
+  const { withAdsenseAccount } = await tsImport("../src/render/layout.ts", import.meta.url);
+  for (const f of [...STATIC.filter((s) => s.endsWith(".html")), "app.html"]) {
+    writeFileSync(join(OUT, f), withAdsenseAccount(readFileSync(join(OUT, f), "utf8"), adsenseId));
+  }
+}
 // Inter is served from this origin (#295), so no page asks Google Fonts for it before any consent choice.
 cpSync(join(ROOT, "web", "fonts"), join(OUT, "fonts"), { recursive: true });
 
@@ -70,12 +80,13 @@ const pages = renderSite({
   features: readData("features.json").features,
   plays: plays.map((p) => ({ ...p, file: `docs/plays/${p.slug}.md` })),
   resultsUpdatedAt: slim.resultsUpdatedAt,
+  adsensePublisherId: adsenseId,
 });
 writePages(OUT, pages);
 // After the copy and the pages, because writeSeo checks every sitemap path against a file in
 // public/ (#268) and the sitemap is generated from the pages written.
 const sitemap = sitemapEntries(ROOT, pages);
-writeSeo(OUT, sitemap);
+writeSeo(OUT, sitemap, adsenseId);
 const prerenderMs = Math.round(performance.now() - prerenderStart);
 
 // Both values are public by design and are baked in rather than fetched, so the account layer is

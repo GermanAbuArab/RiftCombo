@@ -3,7 +3,7 @@ import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { describe, expect, it } from "vitest";
 import { authoredWords, comboPage, CURRENT_RULES_VERSION, rulesLine, rulesNotice, THIN_WORDS, type ComboContext } from "../src/render/combo.js";
-import { clip, DISCLAIMER, ORIGIN } from "../src/render/layout.js";
+import { adsenseAccountMeta, clip, DISCLAIMER, ORIGIN, withAdsenseAccount } from "../src/render/layout.js";
 import { guideBody, SITE_LD, sourcesBody } from "../src/render/pages.js";
 import { playArticle, type Play } from "../src/render/play.js";
 import { fileOf, renderSite, type BuiltPage, type SiteInput } from "../src/render/site.js";
@@ -15,7 +15,7 @@ import { loadPlays } from "../scripts/web-plays.mjs";
 // @ts-expect-error same.
 import { stripInternalDeep } from "../scripts/web-combo-prose.mjs";
 // @ts-expect-error same.
-import { ORIGIN as SEO_ORIGIN, SLUG_SHAPE, pageFileProblem, sitemapEntries, writePages, writeSeo } from "../scripts/web-seo.mjs";
+import { appShell, ORIGIN as SEO_ORIGIN, SLUG_SHAPE, pageFileProblem, sitemapEntries, writePages, writeSeo } from "../scripts/web-seo.mjs";
 
 /**
  * #286: the public pages, rendered from the same data the build reads and checked page by page. The
@@ -364,8 +364,50 @@ describe("the build writes a file for every sitemap URL (#286)", () => {
     const build = readFileSync(join(root, "scripts", "build-web.mjs"), "utf8");
     expect(build).toContain("renderSite(");
     expect(build).toContain("writePages(OUT, pages)");
-    expect(build).toContain("writeSeo(OUT, sitemap)");
+    expect(build).toContain("writeSeo(OUT, sitemap, adsenseId)");
     expect(build).toContain("stripInternalDeep(");
-    expect(build.indexOf("for (const f of STATIC)")).toBeLessThan(build.indexOf("writeSeo(OUT, sitemap)"));
+    expect(build.indexOf("for (const f of STATIC)")).toBeLessThan(build.indexOf("writeSeo(OUT, sitemap, adsenseId)"));
+  });
+});
+
+describe("the google-adsense-account tag (#291)", () => {
+  const FAKE = "pub-0000000000000000";
+  const TAG = '<meta name="google-adsense-account" content="ca-pub-0000000000000000">';
+  const head = (html: string) => html.slice(0, html.indexOf("</head>"));
+  const handWritten = () => [
+    appShell(readFileSync(join(root, "web", "index.html"), "utf8")) as string,
+    ...["privacy.html", "terms.html", "404.html"].map((f) => readFileSync(join(root, "web", f), "utf8")),
+  ];
+
+  it("is on no page while the id is empty", () => {
+    for (const p of pages) expect(p.html, p.path).not.toContain("google-adsense-account");
+    for (const p of renderSite({ ...input, adsensePublisherId: "" })) expect(p.html, p.path).not.toContain("google-adsense-account");
+    for (const html of handWritten()) {
+      expect(html).not.toContain("google-adsense-account");
+      expect(withAdsenseAccount(html, "")).toBe(html);
+    }
+    expect(adsenseAccountMeta("")).toBe("");
+  });
+
+  it("is in the head of every page, / and /combos/<id> among them, exactly once, once an id is set", { timeout: 60_000 }, () => {
+    expect(adsenseAccountMeta(FAKE)).toBe(TAG);
+    const site = renderSite({ ...input, adsensePublisherId: FAKE });
+    expect(site.map((p) => p.path)).toEqual(pages.map((p) => p.path));
+    const combo = site.find((p) => p.path === `/combos/${combos[0]!.id}`)!;
+    for (const p of [site.find((x) => x.path === "/")!, combo, ...site]) {
+      expect(count(p.html, /google-adsense-account/g), p.path).toBe(1);
+      expect(head(p.html), p.path).toContain(TAG);
+    }
+    for (const html of handWritten()) {
+      const tagged = withAdsenseAccount(html, FAKE);
+      expect(count(tagged, /google-adsense-account/g)).toBe(1);
+      expect(head(tagged)).toContain(TAG);
+    }
+  });
+
+  it("is added to the hand-written pages and the shell by build:web", () => {
+    const build = readFileSync(join(root, "scripts", "build-web.mjs"), "utf8");
+    expect(build).toContain("adsensePublisherId: adsenseId");
+    expect(build).toContain('for (const f of [...STATIC.filter((s) => s.endsWith(".html")), "app.html"])');
   });
 });

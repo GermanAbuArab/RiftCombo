@@ -156,6 +156,10 @@ const config = {
     },
     // Vercel's own type for .webmanifest is not documented, so the manifest's is stated here (#269).
     { source: "/manifest.webmanifest", headers: [{ key: "Content-Type", value: "application/manifest+json" }] },
+    // ads.txt (#291) is read by ad crawlers as plain text; the charset is stated rather than left to
+    // Vercel's guess, as the IAB spec asks for UTF-8. The build writes the file only once an AdSense
+    // publisher id is set; the rule is harmless while there is none.
+    { source: "/ads.txt", headers: [{ key: "Content-Type", value: "text/plain; charset=utf-8" }] },
   ],
 };
 
