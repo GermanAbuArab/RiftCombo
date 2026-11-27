@@ -1,5 +1,6 @@
 import { execFileSync } from "node:child_process";
 import { describe, expect, it } from "vitest";
+import { BUDGET_MS } from "./budget.js";
 
 /**
  * The two rules veins of #187 and #191 are closed (#229), and this keeps them closed.
@@ -24,7 +25,7 @@ describe("rules veins stay closed", () => {
     const pop = out.match(/ZERO times in CLAUDE\.md \+ docs\/rules-notes: (\d+)/);
     expect(pop).not.toBeNull();
     expect(Number(pop![1])).toBe(0);
-  }, 60_000); // the gap script scans 2,381 headings against 7 MB; ~5s alone, more under load
+  }, BUDGET_MS); // the gap script scans 2,381 headings against 7 MB; ~5s alone, more under load
 
   it("Vein B: every sub-rule with a worked Example is cited somewhere", () => {
     const out = execFileSync("node", ["scripts/uncited-examples.mjs", "--count"], { encoding: "utf8" });
@@ -36,5 +37,5 @@ describe("rules veins stay closed", () => {
     expect(r.catalogueCitationTokens).toBeGreaterThan(10_000);
     expect(r.walkFiles).toBeGreaterThan(50);
     expect(r.rows).toEqual([]);
-  }, 60_000);
+  }, BUDGET_MS);
 });

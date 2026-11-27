@@ -2,6 +2,7 @@ import { existsSync, mkdtempSync, readdirSync, readFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { describe, expect, it } from "vitest";
+import { BUDGET_MS } from "./budget.js";
 import { authoredWords, comboPage, CURRENT_RULES_VERSION, rulesLine, rulesNotice, THIN_WORDS, type ComboContext } from "../src/render/combo.js";
 import { AD_LOADER_SCRIPT, isAdPath } from "../src/render/ad-loader.js";
 import { adsenseAccountMeta, clip, DISCLAIMER, ORIGIN, PRIVACY_CHOICES_LINK, PRIVACY_CHOICES_SCRIPT, withAdsenseAccount, withPrivacyChoices } from "../src/render/layout.js";
@@ -324,7 +325,7 @@ describe("one text for the app and the page", () => {
 });
 
 describe("the build writes a file for every sitemap URL (#286)", () => {
-  it("every loc has a file and every combo id has its page", { timeout: 60_000 }, () => {
+  it("every loc has a file and every combo id has its page", { timeout: BUDGET_MS }, () => {
     const out = mkdtempSync(join(tmpdir(), "render-"));
     writePages(out, pages);
     const entries = sitemapEntries(root, pages) as { path: string; file: string; lastmod: string | null }[];
@@ -398,7 +399,7 @@ describe("the google-adsense-account tag (#291)", () => {
     expect(adsenseAccountMeta("")).toBe("");
   });
 
-  it("is in the head of every page, / and /combos/<id> among them, exactly once, once an id is set", { timeout: 60_000 }, () => {
+  it("is in the head of every page, / and /combos/<id> among them, exactly once, once an id is set", { timeout: BUDGET_MS }, () => {
     expect(adsenseAccountMeta(FAKE)).toBe(TAG);
     const site = renderSite({ ...input, adsensePublisherId: FAKE });
     expect(site.map((p) => p.path)).toEqual(pages.map((p) => p.path));
@@ -431,7 +432,7 @@ describe("the Privacy choices footer link (#293)", () => {
     return (path: string) => readFileSync(join(out, fileOf(path)), "utf8");
   };
 
-  it("is on no page while the id is empty: public/combos/<id>.html counts 0", { timeout: 60_000 }, () => {
+  it("is on no page while the id is empty: public/combos/<id>.html counts 0", { timeout: BUDGET_MS }, () => {
     const read = built("");
     expect(count(read(`/combos/${combos[0]!.id}`), /Privacy choices/g)).toBe(0);
     for (const p of pages) {
@@ -441,7 +442,7 @@ describe("the Privacy choices footer link (#293)", () => {
     for (const f of ["privacy.html", "terms.html"]) expect(withPrivacyChoices(hand(f), "")).toBe(hand(f));
   });
 
-  it("is in the footer of every page once an id is set: public/combos/<id>.html counts 1, with its script", { timeout: 60_000 }, () => {
+  it("is in the footer of every page once an id is set: public/combos/<id>.html counts 1, with its script", { timeout: BUDGET_MS }, () => {
     const read = built(FAKE);
     const combo = read(`/combos/${combos[0]!.id}`);
     expect(count(combo, /Privacy choices/g)).toBe(1);

@@ -1,5 +1,6 @@
 import { readdirSync, readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
+import { BUDGET_MS } from "./budget.js";
 import { loadCardIndex } from "../src/load.js";
 import { FIXTURE_DAY } from "./fixture-day.js";
 import { loadDeck } from "../src/deck.js";
@@ -557,7 +558,7 @@ describe("checkBuild against the 222 registered tournament lists", () => {
     expect(notTheBanList).toEqual(ERRATA);
     expect(legal).toBeGreaterThan(100);
     expect(banOnly).toBeGreaterThan(50);
-  }, 60_000); // 222 real lists: legitimately ~6s, and vitest's default 5s makes it flake under load
+  }, BUDGET_MS); // 222 real lists: legitimately ~6s, and vitest's default 5s makes it flake under load
 
   /**
    * 92 of these 222 lists — Riot's own published tournament results — hold a card that is banned TODAY:
@@ -570,7 +571,7 @@ describe("checkBuild against the 222 registered tournament lists", () => {
     const banned = FILES.filter((f) => report(f).rules.some((r) => r.rule === "103.2.e" && r.status === "fail"));
     expect(banned.length).toBeGreaterThan(FILES.length * 0.3);
     expect(banned.length).toBeLessThan(FILES.length);               // and not simply all of them
-  }, 60_000); // reads all 222 registered lists: 4.2s in a full default-parallel run on the Windows tower (#244)
+  }, BUDGET_MS); // reads all 222 registered lists: 4.2s in a full default-parallel run on the Windows tower (#244)
 
   /**
    * The denominator that makes the `403.4.b` row's silence meaningful (#215). All 222 lists carry a
@@ -594,7 +595,7 @@ describe("checkBuild against the 222 registered tournament lists", () => {
     expect(withSide).toBe(FILES.length);                            // every list has one
     expect(rows).toBeGreaterThan(1000);                             // non-vacuity
     expect(off).toBe(0);
-  }, 60_000); // the same 222-list sweep as above: timed out at 5s under load on 2026-09-24
+  }, BUDGET_MS); // the same 222-list sweep as above: timed out at 5s under load on 2026-09-24
 });
 
 describe("601.1.c — the sideboard (#197)", () => {

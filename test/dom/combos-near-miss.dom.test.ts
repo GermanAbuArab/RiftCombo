@@ -15,6 +15,7 @@
 // This mounts the whole Combos view and reads what the control does now.
 import { readFileSync } from "node:fs";
 import { beforeAll, describe, expect, it, vi } from "vitest";
+import { BUDGET_MS } from "../budget.js";
 
 vi.mock("../../web/neon.js", () => ({
   accountsEnabled: false,
@@ -65,7 +66,7 @@ beforeAll(async () => {
 // Every test here drives the whole app through happy-dom, and the slowest one measured 5.3s in a
 // full default-parallel run on the Windows tower (#244) against vitest's 5s default. Explicit budget,
 // like the 222-list sweeps: a slow test with no explicit timeout is a flake waiting for load.
-vi.setConfig({ testTimeout: 60_000 });
+vi.setConfig({ testTimeout: BUDGET_MS });
 
 describe("where the near-miss distance lives", () => {
   it("sits beside the view it qualifies, not in the deck form on the other side of the window", () => {

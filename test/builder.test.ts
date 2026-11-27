@@ -1,5 +1,6 @@
 import { readFileSync, readdirSync } from "node:fs";
 import { describe, expect, it } from "vitest";
+import { BUDGET_MS } from "./budget.js";
 import { loadCardIndex } from "../src/load.js";
 import type { Card, Deck } from "../src/types.js";
 import { ANY_NUMBER, UNIQUE, championTagOf, checkBuild } from "../src/build.js";
@@ -1018,7 +1019,7 @@ describe("the editor can rebuild every registered list it should be able to", ()
      */
     expect(refused).toEqual(["utrecht-17.txt", "vancouver-06.txt"]);
     expect(rebuilt).toBe(FILES.length - 2);
-  }, 60_000); // 222 real lists: legitimately ~6s, and vitest's default 5s makes it flake under load
+  }, BUDGET_MS); // 222 real lists: legitimately ~6s, and vitest's default 5s makes it flake under load
 });
 
 /**
