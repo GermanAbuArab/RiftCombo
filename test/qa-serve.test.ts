@@ -48,7 +48,7 @@ describe("isBuiltFor", () => {
 });
 
 describe("qaHeaders", () => {
-  const headers = qaHeaders(vercel, CHILD);
+  const headers = qaHeaders(vercel, CHILD)("/app");
 
   it("keeps production's policy and swaps only the Neon origins", () => {
     const csp = headers["Content-Security-Policy"]!;
@@ -60,6 +60,20 @@ describe("qaHeaders", () => {
 
   it("drops HSTS, which means nothing on plain http", () => {
     expect(headers["Strict-Transport-Security"]).toBeUndefined();
+  });
+
+  it("gives a path the headers of the vercel.json rules that match it: the ad surface's Report-Only policy too (#290)", () => {
+    const at = qaHeaders(vercel, CHILD);
+    const strict = (vercel.headers as { headers: { key: string; value: string }[] }[]).flatMap((h) => h.headers).find((h) => h.key === "Content-Security-Policy-Report-Only")!.value;
+    for (const p of ["/combos/x", "/plays/x", "/guide"]) {
+      expect(at(p)["Content-Security-Policy-Report-Only"], p).toBe(strict);
+      expect(at(p)["Content-Security-Policy"], p).toContain(`connect-src 'self' ${CHILD.join(" ")}`);
+      expect(at(p)["Strict-Transport-Security"], p).toBeUndefined();
+    }
+    for (const p of ["/", "/app", "/combos", "/plays", "/guide/", "/about"]) {
+      expect(at(p)["Content-Security-Policy-Report-Only"], p).toBeUndefined();
+      expect(at(p)["Content-Security-Policy"], p).toBe(headers["Content-Security-Policy"]);
+    }
   });
 });
 
@@ -94,11 +108,13 @@ describe("createQaServer", () => {
   let close = () => {};
   afterEach(() => close());
 
-  async function start() {
+  async function start(headers: object = { "X-Frame-Options": "DENY" }) {
     const root = mkdtempSync(join(tmpdir(), "qa-serve-"));
     writeFileSync(join(root, "index.html"), "home");
+    mkdirSync(join(root, "combos"));
+    writeFileSync(join(root, "combos", "x.html"), "combo");
     const server = createQaServer({
-      root, headers: { "X-Frame-Options": "DENY" }, authUrl: `${CHILD[0]}/neondb/auth`, email: "e", password: "p-value",
+      root, headers, authUrl: `${CHILD[0]}/neondb/auth`, email: "e", password: "p-value",
     });
     await new Promise<void>((done) => server.listen(0, "127.0.0.1", done));
     close = () => server.close();
@@ -109,6 +125,16 @@ describe("createQaServer", () => {
     const res = await fetch(`${await start()}/`);
     expect(res.status).toBe(200);
     expect(res.headers.get("x-frame-options")).toBe("DENY");
+  });
+
+  it("serves each path the headers qaHeaders gives it: Report-Only on an ad page, not on the landing (#290)", async () => {
+    const base = await start(qaHeaders(vercel, CHILD));
+    const combo = await fetch(`${base}/combos/x`, { method: "HEAD" });
+    expect(combo.status).toBe(200);
+    expect(combo.headers.get("content-security-policy-report-only")).toContain("'strict-dynamic'");
+    const home = await fetch(`${base}/`, { method: "HEAD" });
+    expect(home.headers.get("content-security-policy-report-only")).toBeNull();
+    expect(home.headers.get("content-security-policy")).toContain(`connect-src 'self' ${CHILD.join(" ")}`);
   });
 
   it("hands the credential out once, then never again", async () => {

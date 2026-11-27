@@ -44,17 +44,26 @@ describe("dev NODE_OPTIONS (#597)", () => {
 describe("dev-static headers from vercel.json (#605)", () => {
   const config = JSON.parse(readFileSync(new URL("../vercel.json", import.meta.url), "utf8"));
   const at = (path: string, cfg: object): Record<string, string> => headersFor(path, headerRules(cfg));
-  const all = config.headers.find((r: { source: string }) => r.source === "/(.*)");
+  // Since #290 the site-wide rule excludes the ad surface, which has a rule of its own; it is still the first.
+  const all = config.headers[0];
+  const ads = config.headers[1];
 
-  it("gives every page the /(.*) rule, keys and values as vercel.json has them", () => {
-    for (const path of ["/", "/app", "/app.html", "/fonts/inter.woff2"]) {
+  it("gives every page off the ad surface the site-wide rule, keys and values as vercel.json has them", () => {
+    expect(all.source).toMatch(/^\/\(\(\?!/);
+    for (const path of ["/", "/app", "/app.html", "/fonts/inter.woff2", "/combos", "/plays", "/guide/"]) {
       const got = at(path, config);
-      for (const { key, value } of all.headers) expect(got[key]).toBe(value);
+      for (const { key, value } of all.headers) expect(got[key], path).toBe(value);
     }
     expect(Object.keys(at("/", config))).toEqual(all.headers.map((h: { key: string }) => h.key));
   });
 
-  it("matches /(.*) on a path that decodes to a line break", () => {
+  it("gives the ad surface its own rule and none of the site-wide one's CSP (#290)", () => {
+    for (const path of ["/combos/x", "/plays/x", "/guide"]) {
+      expect(at(path, config), path).toEqual(Object.fromEntries(ads.headers.map((h: { key: string; value: string }) => [h.key, h.value])));
+    }
+  });
+
+  it("matches the site-wide rule on a path that decodes to a line break", () => {
     expect(at("/x\r\nX-Evil:1", config)["Content-Security-Policy"]).toBe(all.headers[0].value);
   });
 

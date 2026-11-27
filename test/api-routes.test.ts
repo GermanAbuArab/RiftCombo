@@ -203,8 +203,8 @@ describe("check 2: the build exposes no function outside the table (#585)", () =
 
   it("passes on this tree and prints both lists", () => {
     const { ok, lines } = checkFunctions(root);
-    expect(lines).toContain("functions in the table: api/deck-url.ts");
-    expect(lines).toContain("functions Vercel would deploy: api/deck-url.ts");
+    expect(lines).toContain("functions in the table: api/csp-report.ts, api/deck-url.ts");
+    expect(lines).toContain("functions Vercel would deploy: api/csp-report.ts, api/deck-url.ts");
     expect(ok).toBe(true);
   });
 
