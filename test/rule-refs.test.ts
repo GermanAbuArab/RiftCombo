@@ -517,6 +517,35 @@ describe("a slash shorthand cites its members too (#652)", () => {
     expect(ledgerFaults(bad, row)).toContain("435.1.h at .notes has no ledger row");
   });
 
+  // A member with a dot in it is not read: one has the shape of its head's last segment, so after
+  // 359.3.f.1 the f.2 of 359.3.f.1/f.2 gives no number, and after 356.4.a the c.1 of 356.4.a/c/c.1
+  // reads as a second c. Its paragraph is then invisible to the remap and to this file, which is how
+  // zed-clone-eye-recruits lost its pin on reworded 359.3.f.2 (#701). A whole number after a slash
+  // (355.2/355.2.a) is read on its own and is not one.
+  const DOTTED = String.raw`(?:\/[0-9a-z]+)*?\/(?!\d{3})[0-9a-z]+\.[0-9a-z]`;
+  const dotted = (entry: Entry) =>
+    (citations(entry) as { kind: string; tok: string; path: string; str: string; at: number; sib?: object }[])
+      .filter((c) => c.kind === "ref" && !c.sib && new RegExp(DOTTED, "y").test(c.str.slice(c.at + c.tok.length)))
+      .map((c) => `${entry.id} ${c.path}: ${/^[0-9a-z.]+(?:\/[0-9a-z.]*[0-9a-z])+/.exec(c.str.slice(c.at))![0]} has a dotted member after a slash, which nothing reads: write each number out`);
+
+  it("goes red on a dotted member after a slash, which it cannot read: write the numbers out (#701)", () => {
+    expect(combos.combos.flatMap(dotted)).toEqual([]);
+    expect(toks("359.3.f.1/f.2")).toEqual(["359.3.f.1"]);
+    expect(dotted({ id: "x", notes: "and 359.3.f.1/f.2 read 'here' at execution" } as Entry)).toEqual([
+      "x .notes: 359.3.f.1/f.2 has a dotted member after a slash, which nothing reads: write each number out",
+    ]);
+    expect(dotted({ id: "x", steps: ["805.2.b, 356.4.a/c/c.1/f/f.1, 356.6"] } as Entry)).toEqual([
+      "x .steps[0]: 356.4.a/c/c.1/f/f.1 has a dotted member after a slash, which nothing reads: write each number out",
+    ]);
+    expect(dotted({ id: "x", notes: "435.1.f/g/h. 355.2/355.2.a, 369.3/370 and 164.2.a/or 164.2.b." } as Entry)).toEqual([]);
+  });
+
+  it("pins zed-clone-eye-recruits on reworded 359.3.f.2, which it cited only as 359.3.f.1/f.2 (#701)", () => {
+    const record = readFileSync(new URL("docs/rules-diff/remap-2026-10-09.md", root), "utf8");
+    const row = record.split("\n## Pinned entries")[1]!.split("\n").find((l) => l.startsWith("- `zed-clone-eye-recruits`"));
+    expect(row).toContain("core 359.3.f.2 reworded in 2026-10-09");
+  });
+
   it("goes back to 07-16 with its head in the catalogue text the notes readers count", () => {
     const text = catalogueText();
     // 07-16 has no 434.1.i, so a member still printed in its 10-09 form shows up as one.
