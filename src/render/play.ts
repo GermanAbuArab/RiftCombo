@@ -13,6 +13,7 @@
  */
 import { esc } from "../html.js";
 import { parseMarkdown, resolvePlayHref, type Block, type Span } from "../markdown.js";
+import { adSlot } from "./ad.js";
 import { clip, renderDocument } from "./layout.js";
 
 export interface Play {
@@ -103,13 +104,20 @@ function block(b: Block, slugs: Slugs): string {
  * One play. The document's own h1 is dropped and replaced with the title the index shows, so the two
  * surfaces agree: the files are filed under a "Play — " prefix, which is a filing convention and pure
  * repetition under a heading that already says Run plays.
+ *
+ * With a publisher id (#292, #272 §6) it carries two ad slots: in-content after the second section,
+ * i.e. right before the third heading that renders as h2 (a block boundary, so never inside a quote or
+ * a table), and one at the end of the article. A play with fewer than three sections gets the end slot only.
  */
-export function playArticle(play: Play, slugs: Slugs): string {
+export function playArticle(play: Play, slugs: Slugs, adsenseId = ""): string {
   const blocks = parseMarkdown(play.markdown);
   const body = blocks[0]?.kind === "heading" && blocks[0].level === 1 ? blocks.slice(1) : blocks;
+  const third = body.map((b, i) => (b.kind === "heading" && b.level <= 2 ? i : -1)).filter((i) => i >= 0)[2] ?? -1;
+  const inContent = adSlot("in-content", adsenseId);
   return `<a class="play-back" href="${esc(PREFIX.replace(/\/$/, ""))}">← All plays</a>`
     + `<h1 class="doc-title">${esc(play.title)}</h1>`
-    + body.map((b) => block(b, slugs)).join("\n");
+    + body.map((b, i) => `${i === third && inContent ? `${inContent}\n` : ""}${block(b, slugs)}`).join("\n")
+    + adSlot("end", adsenseId);
 }
 
 /**
@@ -127,7 +135,8 @@ export const playWords = (p: Play): number => p.markdown.split(/\s+/).filter(Boo
 /** Titles are filed lowercase ("Play — the order is free…"); a page title starts with a capital. */
 const capital = (s: string) => s.charAt(0).toUpperCase() + s.slice(1);
 
-export function playPage(play: Play, slugs: ReadonlySet<string>, noindex: boolean): string {
+/** A thin play (`noindex`, #272 §2) carries no ad slot, whatever the publisher id. */
+export function playPage(play: Play, slugs: ReadonlySet<string>, noindex: boolean, adsenseId = ""): string {
   return renderDocument(
     {
       path: `/plays/${play.slug}`,
@@ -138,7 +147,7 @@ export function playPage(play: Play, slugs: ReadonlySet<string>, noindex: boolea
       ogType: "article",
       mainClass: "play",
     },
-    playArticle(play, slugs),
+    playArticle(play, slugs, noindex ? "" : adsenseId),
   );
 }
 

@@ -46,6 +46,22 @@ export const STATIC_PAGES = [
 
 const CANONICAL = `<link rel="canonical" href="${ORIGIN}/">`;
 
+/** The markers around the ad slot rules in web/styles.css (#292). */
+export const AD_STYLES = ["/* ad slots begin */\n", "/* ad slots end */\n"];
+
+/**
+ * web/styles.css with the ad slot rules cut out, for a dark build (#292): with no publisher id no page
+ * carries a slot, so nothing about ads ships either. Throws if the markers are gone, so a rename cannot
+ * quietly leave the rules in.
+ */
+export function withoutAdStyles(css) {
+  const [begin, end] = AD_STYLES;
+  const from = css.indexOf(begin);
+  const to = css.indexOf(end);
+  if (from < 0 || to < from || css.indexOf(begin, from + 1) >= 0) throw new Error("styles.css has no single ad slots begin/end block");
+  return css.slice(0, from) + css.slice(to + end.length);
+}
+
 /**
  * The app shell served at /app and /decks/* (#287): `index.html` with `noindex` where its canonical
  * was. A canonical pointing at `/` beside `noindex` would send a crawler two answers, and the shell

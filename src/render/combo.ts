@@ -16,6 +16,7 @@ import { CLASS_RANK, sourceHref } from "../combos.js";
 import { esc } from "../html.js";
 import { classLabel } from "../victory.js";
 import type { Card, Combo, ComboClass, Feature } from "../types.js";
+import { adSlot } from "./ad.js";
 import { clip, renderDocument } from "./layout.js";
 
 /**
@@ -62,12 +63,16 @@ const bodiesOf = (c: Combo, h: string) => c.anyBodies
   ? `<${h}>Bodies no card supplies</${h}><p class="net">${esc(c.anyBodies.note)}</p>`
   : "";
 
-/** An entry's prose: prerequisites, steps, how it ends, sources, the audit notes, the rules version. */
-export function comboSections(c: Combo, h: "h2" | "h3" = "h3"): string {
+/**
+ * An entry's prose: prerequisites, steps, how it ends, sources, the audit notes, the rules version.
+ * `afterSteps` is markup placed right after the steps list: the page's in-content ad slot (#292); the
+ * drawer passes none.
+ */
+export function comboSections(c: Combo, h: "h2" | "h3" = "h3", afterSteps = ""): string {
   return `
     ${c.prerequisites.notable.length ? `<${h}>Prerequisites</${h}><ul>${c.prerequisites.notable.map((s) => `<li>${esc(s)}</li>`).join("")}</ul>` : ""}
     ${bodiesOf(c, h)}
-    <${h}>Steps</${h}><ol>${c.steps.map((s) => `<li>${esc(s)}</li>`).join("")}</ol>
+    <${h}>Steps</${h}><ol>${c.steps.map((s) => `<li>${esc(s)}</li>`).join("")}</ol>${afterSteps}
     ${c.netPerIteration ? `<${h}>Per iteration</${h}><p class="net">${esc(c.netPerIteration)}</p>` : ""}
     ${c.terminatesIn ? `<${h}>How it ends</${h}><p class="ends">${esc(c.terminatesIn)}</p>` : ""}
     ${sourcesOf(c, h)}
@@ -143,8 +148,11 @@ function piece(u: Combo["uses"][number], ctx: ComboContext): string {
       <span class="csub">${esc(sub)}</span>${text}</li>`;
 }
 
-/** The body of /combos/<id>, h1 included. */
-export function comboBody(c: Combo, ctx: ComboContext): string {
+/**
+ * The body of /combos/<id>, h1 included. With a publisher id (#292) it carries the two ad slots: one
+ * after the steps list, one at the end of the article, above the footer.
+ */
+export function comboBody(c: Combo, ctx: ComboContext, adsenseId = ""): string {
   const copies = c.uses.reduce((n, u) => n + u.quantity, 0);
   const domains = [...new Set(c.uses.flatMap((u) => ctx.card(u.card)?.domains ?? []))];
   const payoff = c.produces.map((f) => ctx.feature(f)).filter((f): f is Feature => !!f && f.status === "STANDALONE");
@@ -158,22 +166,24 @@ ${payoff.length ? `<h2>Payoff</h2><div class="pills">${payoff.map((f) => `<span 
 ${c.prerequisites.easy.length ? `<h2>Deck</h2><ul>${c.prerequisites.easy.map((s) => `<li>${esc(s)}</li>`).join("")}</ul>` : ""}
 ${plays.length ? `<h2>Run play${plays.length === 1 ? "" : "s"}</h2><ul class="play-refs">${plays
     .map((p) => `<li><a href="/plays/${esc(p.slug)}">${esc(p.title)}</a></li>`).join("")}</ul>` : ""}
-${comboSections(c, "h2")}
-<p class="page-cta"><a href="/">Match a deck list against the whole catalogue</a></p>`;
+${comboSections(c, "h2", adSlot("in-content", adsenseId))}
+<p class="page-cta"><a href="/">Match a deck list against the whole catalogue</a></p>${adSlot("end", adsenseId)}`;
 }
 
-export function comboPage(c: Combo, ctx: ComboContext): string {
+/** A thin page (#272 §2) is `noindex` and carries no ad slot, whatever the publisher id. */
+export function comboPage(c: Combo, ctx: ComboContext, adsenseId = ""): string {
+  const thin = authoredWords(c) < THIN_WORDS;
   return renderDocument(
     {
       path: `/combos/${c.id}`,
       title: c.name,
       description: clip(`${classLabel(c.class)} Riftbound combo: ${pieceNames(c, ctx)}. ${c.steps.length} steps ${c.status === "verified" ? "walked by hand" : "proposed by an automated sweep, not yet walked by hand,"} against Core Rules ${c.rulesVersion}, with sources.`),
       section: "combos",
-      noindex: authoredWords(c) < THIN_WORDS,
+      noindex: thin,
       ogType: "article",
       mainClass: "combo-page",
     },
-    comboBody(c, ctx),
+    comboBody(c, ctx, thin ? "" : adsenseId),
   );
 }
 
