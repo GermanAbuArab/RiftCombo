@@ -207,12 +207,13 @@ export const legs = (rows) =>
 // prints that sentence as 479.3.c in Layer 3 and names Svellsongur's a copy effect of Layer 1
 // (479.1.d); what the count is there is R36. The first six had moved by text identity (#645) and
 // went back by their ledger rows (#707). R36 = B (2026-11-26: v Svellsongur give v + 1 instances) lifted
-// the nine Svellsongur BURSTs of #722, re-walked in docs/phase0/walks/2026-11-26-r36-rewalk-1.md.
+// the nine Svellsongur BURSTs of #722, re-walked in docs/phase0/walks/2026-11-26-r36-rewalk-1.md, and the four ALT_WINs and one INFINITE of #723,
+// re-walked in docs/phase0/walks/2026-11-26-r36-rewalk-2.md.
 const R36 = "waits on R36 (#706): the Svellsongur stack count was walked on the 2026-07-16 layers";
 export const HELD_ON_OLD = Object.fromEntries(
   [
     "svellsongur-eminent-benefactor-gold", "svellsongur-rumble-scrapper-mechs", "svellsongur-traveling-merchant-discard", "svellsongur-ribbon-dancer-fiora-mass-ready",
-    "twilight-reveler-svellsongur-stellacorn-draw", "steel-paws-svellsongur-might", "corina-svellsongur-plaza", "reveler-svellsongur-jhin-infinite-power", "desert-call-vi-sand-soldier-plaza", "gromp-arena-svellsongur-xp", "anivia-svellsongur-double-burn", "yasuo-stellacorn-svellsongur-draw", "svellsongur-treasure-hunter-gold", "svellsongur-yasuo-remorseful-sweep", "svellsongur-trevor-leblanc-plaza", "svellsongur-faefolk-mass-evacuation", "svellsongur-apprentice-smith-gear-dig", "svellsongur-fae-porter-relay", "svellsongur-qiyana-victorious-modal", "svellsongur-ava-achiever-hidden-flood", "svellsongur-kato-the-arm-keyword-spread", "svellsongur-imposing-challenger-unstage", "svellsongur-teemo-strategist-defend-burst", "svellsongur-corrupt-enforcer-trash-fill", "yasuo-remorseful-svellsongur-nasus-conquer", "forge-of-fluft-free-svellsongur", "svellsongur-ivern-nurturer-optional-draw", "noxian-drummer-eye-svellsongur-plaza",
+    "twilight-reveler-svellsongur-stellacorn-draw", "steel-paws-svellsongur-might", "gromp-arena-svellsongur-xp", "anivia-svellsongur-double-burn", "yasuo-stellacorn-svellsongur-draw", "svellsongur-treasure-hunter-gold", "svellsongur-yasuo-remorseful-sweep", "svellsongur-faefolk-mass-evacuation", "svellsongur-apprentice-smith-gear-dig", "svellsongur-fae-porter-relay", "svellsongur-qiyana-victorious-modal", "svellsongur-ava-achiever-hidden-flood", "svellsongur-kato-the-arm-keyword-spread", "svellsongur-imposing-challenger-unstage", "svellsongur-teemo-strategist-defend-burst", "svellsongur-corrupt-enforcer-trash-fill", "yasuo-remorseful-svellsongur-nasus-conquer", "forge-of-fluft-free-svellsongur", "svellsongur-ivern-nurturer-optional-draw",
   ].map((id) => [id, R36]),
 );
 

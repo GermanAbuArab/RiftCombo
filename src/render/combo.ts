@@ -170,6 +170,15 @@ ${comboSections(c, "h2", adSlot("in-content", adsenseId))}
 <p class="page-cta"><a href="/">Match a deck list against the whole catalogue</a></p>${adSlot("end", adsenseId)}`;
 }
 
+/** The status clause is what tells a reader whether the line was walked, so a long piece list is
+ *  clipped and the clause never is (#723: Trevor's four names pushed "not yet walked" past 160). */
+function comboDescription(c: Combo, ctx: ComboContext): string {
+  const status = c.status === "verified" ? "walked by hand" : "proposed by an automated sweep, not yet walked by hand,";
+  const tail = `${c.steps.length} steps ${status} against Core Rules ${c.rulesVersion}, with sources.`;
+  const head = clip(`${classLabel(c.class)} Riftbound combo: ${pieceNames(c, ctx)}`, 160 - tail.length - 2).replace(/ \+…$/, "…");
+  return `${head}${head.endsWith("…") ? " " : ". "}${tail}`;
+}
+
 /** A thin page (#272 §2) is `noindex` and carries no ad slot, whatever the publisher id. */
 export function comboPage(c: Combo, ctx: ComboContext, adsenseId = ""): string {
   const thin = authoredWords(c) < THIN_WORDS;
@@ -177,7 +186,7 @@ export function comboPage(c: Combo, ctx: ComboContext, adsenseId = ""): string {
     {
       path: `/combos/${c.id}`,
       title: c.name,
-      description: clip(`${classLabel(c.class)} Riftbound combo: ${pieceNames(c, ctx)}. ${c.steps.length} steps ${c.status === "verified" ? "walked by hand" : "proposed by an automated sweep, not yet walked by hand,"} against Core Rules ${c.rulesVersion}, with sources.`),
+      description: comboDescription(c, ctx),
       section: "combos",
       noindex: thin,
       ogType: "article",
