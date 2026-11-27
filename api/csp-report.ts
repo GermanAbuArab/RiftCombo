@@ -6,6 +6,11 @@
 // It is public because a browser sends reports without credentials. Its guards, in order: POST only,
 // a report content type only, a byte cap counted off the stream, a JSON shape check, a per-instance
 // cap on lines logged per minute, and every logged value cut to a fixed length.
+//
+// The per-minute cap lives in module state, so it bounds one instance, never the whole deployment: each
+// new instance starts a fresh minute (`vercel dev` starts one per request, so it bounds only a batch
+// there). It keeps one POST, or one warm instance, from writing more than its budget of lines; it is no
+// global rate limit, and a request this function refuses is still a line in Vercel's own request log.
 
 export const config = { runtime: "edge" };
 
@@ -56,11 +61,15 @@ function reportsIn(payload: unknown): Record<string, unknown>[] | null {
   return isObject(payload) && isObject(payload["csp-report"]) ? [payload["csp-report"]] : null;
 }
 
-/** One log line: the known fields only, each a string cut to MAX_FIELD, control characters removed. */
+/**
+ * One log line: the known fields only, each a string cut to MAX_FIELD, control characters removed. A field
+ * whose value is not a string or a number is left out: browsers send only those, and `String()` of a
+ * crafted object (`{"toString":1}`) throws.
+ */
 export function reportLine(report: Record<string, unknown>): string {
   const out: Record<string, string> = {};
   for (const [name, keys] of FIELDS) {
-    const key = keys.find((k) => report[k] !== undefined && report[k] !== null);
+    const key = keys.find((k) => typeof report[k] === "string" || typeof report[k] === "number");
     if (key === undefined) continue;
     out[name] = String(report[key]).replace(/[\u0000-\u001f\u007f]/g, " ").slice(0, MAX_FIELD);
   }

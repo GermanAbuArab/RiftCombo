@@ -73,6 +73,12 @@ describe("/api/csp-report (#290)", () => {
     expect((JSON.parse(line.slice("csp-report ".length)) as { blocked: string }).blocked).toHaveLength(MAX_FIELD);
   });
 
+  it("leaves out a field that is not a string or a number, so a crafted object cannot throw (500)", async () => {
+    const res = await post(`{"csp-report":{"blocked-uri":{"toString":1},"document-uri":["a"],"effective-directive":"script-src-elem","line-number":3}}`);
+    expect(res.status).toBe(204);
+    expect(logged).toEqual([`csp-report {"directive":"script-src-elem","line":"3"}`]);
+  });
+
   it("logs at most its per-minute budget and answers 429 past it", async () => {
     for (let i = 0; i < MAX_LINES_PER_MINUTE; i++) expect((await post(JSON.stringify(REPORT))).status).toBe(204);
     expect((await post(JSON.stringify(REPORT))).status).toBe(429);
