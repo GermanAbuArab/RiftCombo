@@ -1,0 +1,26 @@
+{
+  "note": "Invented cards for the engine's search tests (#736). Codes use the set ENG so they can never collide with a real printing.",
+  "cycle": [
+    { "code": "ENG-001", "name": "Loop Dier", "type": ["unit"], "domains": ["fury"], "energy": 2, "text": "[Deathknell] — Draw 1. (When I die, get the effect.)" },
+    { "code": "ENG-002", "name": "Loop Bouncer", "type": ["unit"], "domains": ["fury"], "energy": 3, "text": "When you draw, return a friendly unit to its owner's hand." },
+    { "code": "ENG-003", "name": "Loop Killer", "type": ["unit"], "domains": ["mind"], "energy": 1, "text": "When you play me, kill a friendly unit." }
+  ],
+  "boundedKiller": { "code": "ENG-004", "name": "Careful Killer", "type": ["unit"], "domains": ["mind"], "energy": 1, "text": "When you play me for the first time, kill a friendly unit." },
+  "burst": [
+    { "code": "ENG-010", "name": "Study Hall", "type": ["spell"], "domains": ["calm"], "energy": 2, "text": "Draw 2." },
+    { "code": "ENG-011", "name": "Scholar", "type": ["unit"], "domains": ["calm"], "energy": 3, "text": "When you draw, score 1 point." }
+  ],
+  "disjoint": [
+    { "code": "ENG-020", "name": "Fury Drawer", "type": ["spell"], "domains": ["fury"], "energy": 1, "text": "Draw 1." },
+    { "code": "ENG-021", "name": "Calm Scorer", "type": ["unit"], "domains": ["calm"], "energy": 2, "text": "When you draw, score 1 point." }
+  ],
+  "battlefields": [
+    { "code": "ENG-030", "name": "Mover Field", "type": ["battlefield"], "domains": [], "energy": null, "text": "When you conquer here, move a friendly unit to your base." },
+    { "code": "ENG-031", "name": "Plaza Field", "type": ["battlefield"], "domains": [], "energy": null, "text": "When you hold here, if you have 7+ units here, you win the game." },
+    { "code": "ENG-032", "name": "Walker", "type": ["unit"], "domains": ["fury"], "energy": 2, "text": "When you play me, move me to a battlefield." }
+  ],
+  "legends": [
+    { "code": "ENG-090", "name": "Fury Mind Legend", "type": ["legend"], "domains": ["fury", "mind"], "energy": null, "text": null },
+    { "code": "ENG-091", "name": "Calm Body Legend", "type": ["legend"], "domains": ["calm", "body"], "energy": null, "text": null }
+  ]
+}

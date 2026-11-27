@@ -1,0 +1,45 @@
+name: Engine
+
+# The model-free combo engine (#736): tags card text, searches the trigger/effect graph for 2-5-card
+# lines and ranks them (src/cli-engine.ts). It runs here and not on the Mac, because a five-deep search
+# over the whole pool is CPU and memory load (#451). It never commits: candidates.json is an artifact
+# for the vote (the follow-up issue) and a hand walk, never a catalogue entry.
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [master]
+    paths:
+      - "data/cards.json"
+      - "src/engine/**"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: engine
+  cancel-in-progress: true
+
+jobs:
+  engine:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: ".nvmrc"
+          cache: "npm"
+
+      - run: npm ci
+
+      - name: Search, rank and measure recall and coverage
+        run: npm run engine -- --recall --coverage
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: candidates
+          path: out/engine/candidates.json
+          retention-days: 90
+          if-no-files-found: error
