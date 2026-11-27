@@ -123,6 +123,7 @@ cost triggered.**
 and no rainbow component for the reduction to bite on, and 356.6 is a floor on resource costs, not a
 converter. Ezreal discounts the Power-flavoured optional costs (UNL-028 Pyke's 1 Fury, UNL-052 Nami's
 1 Calm, VEN-120 Masa's 1 Order, OGN-030 Jinx, Demolitionist's [Accelerate]) and nothing else.
+[2026-11-27, #663: Riot's gallery now prints OGN-002 as "you may discard a card as an additional cost", with no errata page. The cost still has no Energy or rainbow component, so this refusal holds.]
 
 ### 2.6 `mask-mother-ruthless-strike-doubled-payment` — VEN-094 + VEN-008 (in zero entries)
 
@@ -136,6 +137,7 @@ contend.
 
 - **`SFD-149 Ezreal, Prodigy` as a discount on any discard cost** — refused, see 2.5. Rule: 356.6 plus
   the absence of an Energy/rainbow component in "discard 1".
+  [2026-11-27, #663: Riot's gallery now prints OGN-002 as "you may discard a card as an additional cost", with no errata page. The cost still has no Energy or rainbow component, so this refusal holds.]
 - **`VEN-143 Master of Shadows` as Jinx's outlet** — not written as an entry, because
   `master-of-shadows-banish-rummage` already runs the legend with its renewable banish and five
   cards; adding Jinx makes a sixth, and a lead that would add a sixth card to a five-card line goes

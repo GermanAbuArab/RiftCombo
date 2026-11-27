@@ -551,6 +551,7 @@ unit tokens with [Deflect]. Use this ability only while I'm at a battlefield. (�
 UNL-153 | Carrion Dredger | Unit | Order | E2 M1 | [Deathknell][>] Play a 1 :rb_might: Bird unit token
 with [Deflect] to your base. (…) [Tags: Mech, Zaun]
 ```
+[2026-11-27, #663: Riot's gallery now prints "Play two 1 :rb_might: Bird unit tokens", the numeral in place of the Energy glyph, with no errata page (docs/data-anomalies.md); meaning unchanged.]
 
 **356.2.b.1** confirma que *"you may kill any number … as an additional cost"* es **opcional**
 (lleva *"may"*), y **356.6** (*"Energy and Power costs can't be reduced below 0"*) confirma el tope:

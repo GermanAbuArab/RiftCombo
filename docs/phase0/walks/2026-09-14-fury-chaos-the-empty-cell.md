@@ -279,6 +279,7 @@ is one of Yasuo's three moves, free, every turn — and
 `docs/plays/2026-09-12-chaos-fury-yasuo-shuttle.md` already walks what a Fury/Chaos deck pays instead
 (a card, `OGN-173`, per Yasuo per turn). The play knew; the axis did not; the two agree once the axis
 is asked the right question.
+[2026-11-27, #663: Riot's gallery now prints OGN-259 as "Move a friendly unit to or from your base." with no errata page (OGN-305, the showcase Unforgiven, still reads "its base"). In 1v1 a friendly unit's own base is yours (107.1.c), so this passage holds; only a teammate's unit, friendly by 740.1.a, now moves to or from your base instead of its own.]
 
 ### What this does to §1's conclusion: nothing, and that is the point
 

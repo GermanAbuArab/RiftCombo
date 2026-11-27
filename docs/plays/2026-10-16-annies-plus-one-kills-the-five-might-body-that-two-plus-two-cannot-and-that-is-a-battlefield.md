@@ -59,6 +59,7 @@ The card text the play turns on:
 
 - Annie, Fiery: *"Your spells and abilities deal 1 Bonus Damage. (Each instance of damage the spell
   deals is increased by 1.)"*
+  [2026-11-27, #663: Riot's gallery now prints the reminder as "(Each instance of damage they deal is increased by 1.)", which names abilities as well as spells, as the sentence before it always did; no errata page, and nothing here changes.]
 - Piercing Light: *"[Repeat] :rb_energy_2::rb_rune_fury: (You may pay the additional cost to repeat
   this spell's effect.) Deal 2 to a unit at a battlefield, then deal 2 to up to one other unit."*
 

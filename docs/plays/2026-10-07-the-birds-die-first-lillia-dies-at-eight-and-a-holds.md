@@ -42,6 +42,7 @@ The card text the play turns on:
 - Flurry of Feathers (Calm, E4 + 2 Power): *"[Reaction] Choose one — • Counter a spell. • Play four 1
   :rb_might: Bird unit tokens with [Deflect]. (Opponents must pay :rb_rune_rainbow: to choose them with
   a spell or ability.)"*
+  [2026-11-27, #663: Riot's gallery now prints the reminder "(Play any time, even before spells and abilities resolve.)" after the Reaction keyword, the one every Reaction card prints (OGN-033, OGN-045); no errata page, meaning unchanged.]
 - Stalwart Poro (Calm, E2, M2): *"[Shield] (+1 :rb_might: while I'm a defender.)"*
 - Against the Odds (theirs, Fury, E2): *"[Reaction] (Play any time, even before spells and abilities
   resolve.) Give a friendly unit at a battlefield +2 :rb_might: this turn for each enemy unit there."*

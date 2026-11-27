@@ -298,7 +298,7 @@ describe("the stalled-board buckets", () => {
 /**
  * A sweeper that hits the caster's own board is half the price of one that does not, and the emitter
  * quoted the text without drawing the conclusion. `OGN-123 Unchecked Power` reads "Exhaust all friendly
- * units, then deal 12 to ALL units at battlefields"; `OGS-002 Firestorm` reads "all ENEMY units". Four
+ * units, then deal 12 to all units at battlefields"; `OGS-002 Firestorm` reads "all ENEMY units". Four
  * of the seven swept answers are symmetric and three are enemy-only, and which one a row names changes
  * whether the opponent would cast it at all. The EQUIPMENT arm has said this about Thermo Beam from the
  * start; the garrison arm did not.

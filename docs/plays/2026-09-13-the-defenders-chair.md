@@ -49,6 +49,7 @@ all**, and every answer has to be cast a turn early, on their own.
 three bodies of any kind. Seven units, and the Plaza pays at **the start of the attacker's Beginning
 Phase**. So the bodies must be standing there through **your whole turn**. You get a full turn of
 warning and can answer at leisure, on your own mana.
+[2026-11-27, #663: Riot's gallery now prints the reminder "(Play any time, even before spells and abilities resolve.)" after the Reaction keyword, the one every Reaction card prints (OGN-033, OGN-045); no errata page, meaning unchanged.]
 
 **`keeper-of-masks-flurry-plaza-window` is the one that does not give you the turn**, and its name is
 the mechanism. `UNL-081 Keeper of Masks` is *"[Hidden] (Hide now for [rainbow] to react with later for 0

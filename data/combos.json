@@ -4703,7 +4703,7 @@
           "quantity": 1,
           "role": "legend",
           "zone": "LEGEND",
-          "note": "Yasuo's Calm/Chaos legend. '2 Energy, exhaust: Move a friendly unit to or from its base.'"
+          "note": "Yasuo's Calm/Chaos legend. '2 Energy, exhaust: Move a friendly unit to or from your base.'"
         },
         {
           "card": "OGN-184",
@@ -6784,7 +6784,7 @@
           "quantity": 3,
           "role": "enabler",
           "zone": "HAND",
-          "note": "Mind/Chaos spell, E2 P1. 'Return up to two cards with [Hidden] from your trash to your hand. You can hide cards ignoring costs this turn.' The pool's only recursion of hidden cards, and it only reaches SPELLS: a flipped unit stays on the board and never passes through the trash. 3 copies (103.2.b) = 6 cards recovered per game."
+          "note": "Mind/Chaos spell, E2 P1. 'Return up to two cards with [Hidden] from your trash to your hand. You can hide ignoring costs this turn.' The pool's only recursion of hidden cards, and it only reaches SPELLS: a flipped unit stays on the board and never passes through the trash. 3 copies (103.2.b) = 6 cards recovered per game."
         },
         {
           "card": "OGN-101",
@@ -9927,7 +9927,7 @@
           "THE CYCLE, WITH THE QUANTITIES DECLARED. Your turn: hide Sprite Call for 1 Energy. The opponent's turn: play it from facedown for 0 (811.1.b, and 811.6 gives it [Reaction] so the window exists). That one flip is 'a card played from face down' for the Broker (1 Gold) and 'a spell played on an opponent's turn' for the Cask (1 Gold), and Sprite Call itself leaves a ready 3 Might Sprite at that battlefield. Your Awaken (315.1.b) readies both Gold: +2 rainbow Power for 1 Energy and one card.",
           "THE GOLD IS NEXT-TURN POWER HERE, and the entry does not pretend otherwise. Renata Glasc, Industrialist would make it immediate under R25 = A, but she is Order and cannot be in a Mind/Chaos deck. 187.5 makes the Gold's ability cost an exhaust, and an exhausted gear cannot pay it.",
           "THE CASK IS ONCE PER TURN CYCLE. 'You may exhaust me' is the cost, and it readies in your Awaken (315.1.b), so a second flip in the same cycle collects only the Broker's Gold.",
-          "THE CEILING IS THE [Hidden] CARD, NOT THE SLOT — the same bound black-market-broker-bandle-tree-gold records. Each cycle burns one. OGN-264 Guerilla Warfare (Mind/Chaos, E2 P1, 'Return up to two cards with [Hidden] from your trash to your hand. You can hide cards ignoring costs this turn.') is the only recursion in the identity and buys two more cycles per cast; it is why this is an ENGINE and not a one-shot.",
+          "THE CEILING IS THE [Hidden] CARD, NOT THE SLOT — the same bound black-market-broker-bandle-tree-gold records. Each cycle burns one. OGN-264 Guerilla Warfare (Mind/Chaos, E2 P1, 'Return up to two cards with [Hidden] from your trash to your hand. You can hide ignoring costs this turn.') is the only recursion in the identity and buys two more cycles per cast; it is why this is an ENGINE and not a one-shot.",
           "323.7 IS THE REAL PRICE OF HIDING: a Cleanup 'Remove[s] all Hidden cards from all Battlefields that are not controlled by the same player and place[s] them in their owner's Trash', and 466.5.c repeats it the instant somebody establishes Control. Losing the battlefield does not stall the engine — it eats the card. 811.1.b also only lets you hide at a battlefield you control at all, and 419.4.a.1 pays nothing for a countered flip.",
           "THE CASK ALSO WORKS WITHOUT [Hidden]: any spell you play on the opponent's turn triggers it. Ten 1-Energy [Reaction] spells in the pool carry no Power in their cost, but only FOUR are legal beside the Cask under Mind/Chaos — OGN-095 Stupefy, OGN-104 Retreat, VEN-061 Decree of Insight (Mind) and OGN-169 Gust (Chaos). The other six are Calm, Body or Order."
         ]
@@ -13038,7 +13038,7 @@
           "quantity": 1,
           "role": "legend",
           "zone": "LEGEND",
-          "note": "Calm/Chaos legend (Yasuo). '2 Energy, exhaust: Move a friendly unit to or from its base.' Move one, and the one that puts Yasuo on the board."
+          "note": "Calm/Chaos legend (Yasuo). '2 Energy, exhaust: Move a friendly unit to or from your base.' Move one, and the one that puts Yasuo on the board."
         },
         {
           "card": "OGN-205",
@@ -13869,7 +13869,7 @@
           "quantity": 1,
           "role": "legend",
           "zone": "LEGEND",
-          "note": "Calm/Chaos legend (Yasuo). '2 Energy, exhaust: Move a friendly unit to or from its base.' The second move, and the only one that costs no exhaust from the unit."
+          "note": "Calm/Chaos legend (Yasuo). '2 Energy, exhaust: Move a friendly unit to or from your base.' The second move, and the only one that costs no exhaust from the unit."
         },
         {
           "card": "SFD-048",
@@ -23464,7 +23464,7 @@
           "quantity": 1,
           "role": "legend",
           "zone": "LEGEND",
-          "note": "Calm/Chaos legend. '2 Energy, exhaust: Move a friendly unit to or from its base.' The second move of the turn, and the one that walks the Hunter home."
+          "note": "Calm/Chaos legend. '2 Energy, exhaust: Move a friendly unit to or from your base.' The second move of the turn, and the one that walks the Hunter home."
         }
       ],
       "needs": [],
@@ -24776,7 +24776,7 @@
         "notable": [
           "THIS IS THE BURN-OUT-SAFE ENGINE, AND THAT IS THE WHOLE REASON IT IS WORTH EIGHT INSTANCES. 431.1.c is explicit: 'If an instruction directs a player to look at or reveal cards in excess to the number of cards in a player's Main Deck, that player looks at or Reveals as many as possible, but does not Burn Out.' Every other Svellsongur draw line in the catalogue is capped by the opposite rule — 431.1.a turns an over-draw into a Burn Out and 194.1.d hands the opponent a point, which is exactly what holds yasuo-stellacorn-svellsongur-draw and twilight-reveler-svellsongur-stellacorn-draw to four cards a turn. The Smith reveals; only the gear it FINDS is drawn.",
           "Eight reveals per move, and each one either draws a gear or recycles the card to the bottom (416.1.a / 416.5). So the deck is filtered, not spent: a non-gear goes under the deck rather than into the trash, and the engine cannot mill you out either.",
-          "Two moves a turn if the shell has a mover. The Standard Move is move one and costs the Smith's own exhaust (144.2, base ↔ battlefield only under 144.4); a legend or effect mover is move two, and 420.3.a puts the exhaust cost only on the Standard Move so it works on an exhausted body. OGN-259 Unforgiven (Calm/Chaos, '2 Energy, exhaust: Move a friendly unit to or from its base') is the on-identity one and takes this to sixteen reveals a turn.",
+          "Two moves a turn if the shell has a mover. The Standard Move is move one and costs the Smith's own exhaust (144.2, base ↔ battlefield only under 144.4); a legend or effect mover is move two, and 420.3.a puts the exhaust cost only on the Standard Move so it works on an exhausted body. OGN-259 Unforgiven (Calm/Chaos, '2 Energy, exhaust: Move a friendly unit to or from your base') is the on-identity one and takes this to sixteen reveals a turn.",
           "It only finds GEAR, which is what makes it a shell card rather than a general engine — but the shell it belongs in is the Svellsongur shell itself, where every copy of the multiplier is a gear it can draw. It also finds Trinity Force, World Atlas, Cull, Skyfall of Areion and Boneshiver, i.e. most of the catalogue's Hold and Conquer payoffs.",
           "A 2-Might body carrying three gears at M+0 (137.3), living at its base between moves. 137.3.a detaches everything the instant it dies, and there is no [Shield] to copy — unlike shen-kinkou-svellsongur-hold, this line gains nothing defensive from the composition.",
           "Cost, counted whole: the Smith 2 Energy; each Svellsongur 3 Energy + 1 Calm Power to play PLUS 1 Energy + 1 Calm Power to [Equip]. 14 Energy and 6 Calm Power.",
@@ -24837,7 +24837,7 @@
           "IT IS ALSO EIGHT DRAWS, WHICH IS THE OPPOSITE OF svellsongur-apprentice-smith-gear-dig. 431.1.a: drawing in excess of the Main Deck is a Burn Out, 194.1.d gives the opponent a point, and 431.2.b then recycles your whole trash back into the deck — erasing everything the discards put there. Eight a move against a 39-card deck (103.2 with 103.2.a.1 removing the Chosen Champion) is roughly four moves. This engine is a sprint and the entry says so.",
           "The discard is what it is FOR. 422.1.b makes a 'When I am discarded' ability execute AFTER the discard, i.e. from the trash, and 385.1 / 385.2 let a Triggered Ability outside the board self-describe its context — which is why OGN-006 Flame Chompers ('When you discard me, you may pay 1 Fury: play me') is a whole synergy rule of its own, and why every '[Flow]' spell (829.1.b) and every 'return a unit from your trash' body wants this. The order inside each instance is fixed by the card: discard first, then draw, so a card drawn by instance k can be discarded by instance k+1.",
           "It does NOT compose with a Flame Chompers shell, and the reason is Domain Identity rather than timing: Flame Chompers is Fury, this pair is Calm and Chaos, and 103.1.b is a subset test against the legend's two domains. The on-identity payoffs are the Chaos half of the trash lens — VEN-165 Shadow Temple is colourless and stacks with it, but see shadow-temple-sentinel-burn for the same fuse.",
-          "Two moves a turn with Unforgiven ('2 Energy, exhaust: Move a friendly unit to or from its base') is sixteen discard-and-draws, which empties a 39-card deck in two and a half turns. One move a turn is the sustainable setting.",
+          "Two moves a turn with Unforgiven ('2 Energy, exhaust: Move a friendly unit to or from your base') is sixteen discard-and-draws, which empties a 39-card deck in two and a half turns. One move a turn is the sustainable setting.",
           "A 2-Might body at M+0 (137.3) living at its base, with 137.3.a detaching all three gears when it dies. Cost, counted whole: the Merchant 2 Energy; each Svellsongur 3 Energy + 1 Calm Power to play PLUS 1 Energy + 1 Calm Power to [Equip]. 14 Energy and 6 Calm Power."
         ]
       },
@@ -25070,7 +25070,7 @@
           "It is also not restricted to tokens. #48 measured that 'exactly ONE card in the pool relocates tokens in bulk — SFD-177 Azir, Sovereign', and Azir needs an enemy garrison to attack (807.1.d, 383.4.e). Fae Porter needs only a move, moves ANY unit you control, and eight instances relocate eight of them.",
           "THE CAP IS THE POWER, NOT THE INSTANCES, and the entry will not publish the eight without it. Each instance is 'you may pay 1 Chaos Power', so eight relocations cost EIGHT Chaos Power in one turn. Against #44's measured free floor of 2 Power a turn (164.2.b carries no exhaust, so an already-exhausted rune still pays), the sustainable setting is two or three a turn; eight needs a Power engine behind it. That is why this entry declares needs rather than pretending to be self-contained.",
           "Where they land: 'the same battlefield' is wherever the Porter moved, read at execution (359.3.f.2). Move him to a battlefield you already control and 190.3.a.1 applies no Contested, so the relocated bodies simply arrive; move him to an open one and the whole group Contests it together for the Showdown Conquer (344.2 → 348.2.a → 348.2.a.1).",
-          "The Porter is a 4-Might body at M+0 from the gears (137.3), and 137.3.a detaches all three the instant he dies. He must MOVE each turn to fire, and the Standard Move is base-to-battlefield only (144.4), so a repeat needs him walked home — which is what Unforgiven's '2 Energy, exhaust: Move a friendly unit to or from its base' is for.",
+          "The Porter is a 4-Might body at M+0 from the gears (137.3), and 137.3.a detaches all three the instant he dies. He must MOVE each turn to fire, and the Standard Move is base-to-battlefield only (144.4), so a repeat needs him walked home — which is what Unforgiven's '2 Energy, exhaust: Move a friendly unit to or from your base' is for.",
           "Cost, counted whole: the Porter 4 Energy; each Svellsongur 3 Energy + 1 Calm Power to play PLUS 1 Energy + 1 Calm Power to [Equip]. 16 Energy and 6 Calm Power to assemble, then 1 Chaos Power per body relocated.",
           "A BLOODLESS CONQUER IS NOT A FAIT ACCOMPLI, AND 46 OF THE 47 ENTRIES CITING 344.2 DID NOT SAY SO (added 2026-09-12, #187 batch 25). **316.8.b.1.a**: during a Non-Combat Showdown *\"units controlled by a different player may become present at the Battlefield where the Showdown is\"*, which converts it to a COMBAT Showdown in the following cleanup - so the opponent can turn your uncontested walk-in into a fight. 316.8.c is the permission (a Showdown is a Window of Opportunity for [Action] and [Reaction] cards). **The answer set is THREE CARDS, swept on the ACTOR rather than on the destination**: `OGN-173 Ride the Wind` (Chaos, E2+1), `OGN-262 Zenith Blade` (Calm/Order, E3+2) and `SFD-184 Relentless Pursuit` (Fury/Body, E2+1) - twelve printings move a friendly unit, and nine of them send it to base or need a body already there. They span three identities, so **no identity is safe**; and `OGN-262 Zenith Blade` is the worst to walk into, because it STUNS your body on the way in, and 423.1.b removes a stunned unit`s contribution to the damage step while 423.1.c keeps its full Might as the price to kill it - one 3-Energy card takes the unit and the battlefield. **[Ambush] is not a fourth answer**: 822.1.b needs a battlefield where the player already has units, and the defining feature of that board is that they have none there. **THE REMEDY IS A COUNTERSPELL, AND A FIRST VERSION OF THIS NOTABLE SAID SOMETHING FALSE THAT IS WITHDRAWN HERE (corrected within the hour, 2026-09-12).** It said that because all three answers are [Action] and 358.4 admits an Action card only as the card that CLOSES the state, the attacker - who holds Focus by 345 and priority by 335.1 - could shut them out by playing any cheap Action card first. Every step is true and the conclusion is false, because **a Showdown is a LOOP, not a single window**: 346 - *\"When the last item on the chain resolves and the turn returns to an Open State during a Showdown, Focus passes, and the next Player gains both Focus and Priority\"* - with 347.1.b and 347.2.a. Closing the state buys a lock-out lasting exactly that CHAIN; when it resolves the Showdown reopens, Focus passes TO THE DEFENDER, and they play their answer into an open Showdown after all. **The real sequence**: walk in, take Focus, **PASS** (acting first gains nothing); they play the answer, which closes the state as it is played; **you COUNTER it**, since 358.4`s other half now admits only [Reaction] and all eleven of the pool`s counters are Reaction, and 425.1.c refunds them nothing; all players then pass in sequence, 347.2.a ends the Showdown, and 348.2.a with 348.2.a.1 give you Control and the Conquer. The cheap counter is `OGN-045 Defy` (Calm, E1 + 1 Power, *\"counter a spell that costs no more than 4 Energy and no more than one rainbow\"*), which covers all three answers; `OGN-064 Wind Wall` is the unconditional one. **So the protection narrows to pairs containing CALM** - it is not the one-Energy insurance any deck can buy."
         ]
@@ -26208,7 +26208,7 @@
           "THE OTHER HALF IS THE HAZARD, AND IT IS NOT OPTIONAL. 'When I win a combat, draw 1' is copied eight times too, and it carries no 'may' — win one combat with him on the board and you draw 8, which against a 39-card deck (103.2, 103.2.a.1) is a Burn Out waiting to happen: 431.1.a gives the opponent a point (194.1.d) and 431.2.b then recycles your whole trash into the deck, erasing everything the discards put there. Keep him out of combats, or accept the draw and count.",
           "The discard is the product. 422.1.b makes a 'When I am discarded' ability execute AFTER the discard, i.e. from the trash, and 385.1 / 385.2 let a Triggered Ability outside the board self-describe its context — which is why OGN-006 Flame Chompers is a synergy rule of its own and why [Flow] spells (829.1.b) and 'return a unit from your trash' bodies want a big outlet. #95 measured that none of the lens's 31 outlets was free and repeatable within a turn; this one is.",
           "Flame Chompers itself is NOT available here: it is Fury, and 103.1.b is a subset test against the legend's two domains, so a Calm/Chaos shell cannot run it. The on-identity payoffs are the Chaos half of the trash lens, and VEN-165 Shadow Temple is colourless — but see shadow-temple-sentinel-burn for what stacking two trash faucets does to the deck.",
-          "He must move TO A BATTLEFIELD to fire — 'When I move to a battlefield', not 'when I move' — so a walk home does nothing and the repeat needs him returned to base each turn (144.4 makes the Standard Move base-to-battlefield only, and Unforgiven's '2 Energy, exhaust: Move a friendly unit to or from its base' is the return leg).",
+          "He must move TO A BATTLEFIELD to fire — 'When I move to a battlefield', not 'when I move' — so a walk home does nothing and the repeat needs him returned to base each turn (144.4 makes the Standard Move base-to-battlefield only, and Unforgiven's '2 Energy, exhaust: Move a friendly unit to or from your base' is the return leg).",
           "Cost, counted whole: the Enforcer 3 Energy + 1 Chaos Power, each Svellsongur 3 Energy + 1 Calm Power to play PLUS 1 Energy + 1 Calm Power to [Equip]. 15 Energy, 1 Chaos Power and 6 Calm Power."
         ]
       },
@@ -27346,7 +27346,7 @@
           "quantity": 3,
           "role": "enabler",
           "zone": "HAND",
-          "note": "Calm spell, E4 P2. '[Reaction] Choose one — • Counter a spell. • Play four 1 Might Bird unit tokens with [Deflect].' Four token units on ONE card, at Reaction speed, which is what makes the wall land inside the opponent's attack."
+          "note": "Calm spell, E4 P2. '[Reaction] (Play any time, even before spells and abilities resolve.) Choose one — • Counter a spell. • Play four 1 Might Bird unit tokens with [Deflect].' Four token units on ONE card, at Reaction speed, which is what makes the wall land inside the opponent's attack."
         }
       ],
       "needs": [],
@@ -29542,7 +29542,7 @@
           "quantity": 1,
           "role": "engine",
           "zone": "HAND",
-          "note": "Fury unit, E6 M5. 'As you play me, you may discard 1 as an additional cost. If you do, reduce my cost by :rb_energy_2:.' In zero entries before this walk."
+          "note": "Fury unit, E6 M5. 'As you play me, you may discard a card as an additional cost. If you do, reduce my cost by :rb_energy_2:.' In zero entries before this walk."
         }
       ],
       "needs": [],
@@ -29558,7 +29558,7 @@
           "THE DISCARD IS A COST HERE, WHICH IS WHY IT IS ITS OWN ENTRY. Every other catalogued Mask Mother line spends an effect to discard her and replaces the card: mask-mother-scrapyard-champion draws two back, mask-mother-lunar-boon-reaction-trick draws two back. The Buccaneer replaces nothing — it converts the card straight into 2 Energy of discount, so the Mother is a card you sell rather than a card you cycle. Priced whole: 6 - 2 = 4 Energy for a 5-Might Fury body, plus 1 Energy for her trigger, for 5 Energy and one card.",
           "THE TRAP, AND IT IS THE REASON TO WRITE THIS ONE DOWN. The Buccaneer is NOT a legal target for the +2 Might he paid for. 'As you play me' puts the discard in the playing steps, so the Mother's trigger fires while the Buccaneer is still a Pending Chain Item; the trigger is Finalized above him and 340.1 resolves 'The newest Finalized Chain Item' first. Her +2 therefore resolves before he is ever on the Board. The +2 has to go on a unit that is already in play — a body in the combat you are about to open, not the body you are buying.",
           "423.1.b and 385.2 are what let her fire at all: the trigger is executed after the discard has occurred, from the trash, and a Triggered Ability outside the Board self-describes its context.",
-          "REFUSED IN THE SAME BREATH: SFD-149 Ezreal, Prodigy does not make this cheaper. His text is 'Optional additional costs you pay cost :rb_energy_1: or :rb_rune_rainbow: less', and the Buccaneer's optional additional cost is 'discard 1' — it has no Energy and no rainbow component for the reduction to bite on, and 356.6 ('Energy and Power costs can't be reduced below 0') is a floor on resource costs, not a converter. Ezreal discounts the Power-flavoured optional costs in the pool (UNL-028 Pyke, Dockside Butcher's 1 Fury; UNL-052 Nami, Headstrong's 1 Calm; VEN-120 Masa, Crashing Thunder's 1 Order; OGN-030 Jinx, Demolitionist's [Accelerate]); he does nothing for a discard.",
+          "REFUSED IN THE SAME BREATH: SFD-149 Ezreal, Prodigy does not make this cheaper. His text is 'Optional additional costs you pay cost :rb_energy_1: or :rb_rune_rainbow: less', and the Buccaneer's optional additional cost is 'discard a card' — it has no Energy and no rainbow component for the reduction to bite on, and 356.6 ('Energy and Power costs can't be reduced below 0') is a floor on resource costs, not a converter. Ezreal discounts the Power-flavoured optional costs in the pool (UNL-028 Pyke, Dockside Butcher's 1 Fury; UNL-052 Nami, Headstrong's 1 Calm; VEN-120 Masa, Crashing Thunder's 1 Order; OGN-030 Jinx, Demolitionist's [Accelerate]); he does nothing for a discard.",
           "203.3 gates it from the other side: with no card in hand the optional cost cannot be paid, and the Buccaneer simply costs 6.",
           "The +2 Might is a continuous modifier, not a 702 buff, so it stacks with a second Mother discarded the same turn and feeds nothing that spends a buff. Three Mothers and three Buccaneers is the 103.3.b ceiling."
         ]
@@ -33425,7 +33425,7 @@
           "quantity": 3,
           "role": "payoff",
           "zone": "HAND",
-          "note": "Calm spell, E4 P2. '[Reaction] Choose one — • Counter a spell. • Play four 1 :rb_might: Bird unit tokens with [Deflect]. (Opponents must pay :rb_rune_rainbow: to choose them with a spell or ability.)' The only card in the pool that plays four token units at [Reaction] speed, which is what lets the wall appear inside the combat that is already open (813.1.c.1)."
+          "note": "Calm spell, E4 P2. '[Reaction] (Play any time, even before spells and abilities resolve.) Choose one — • Counter a spell. • Play four 1 :rb_might: Bird unit tokens with [Deflect]. (Opponents must pay :rb_rune_rainbow: to choose them with a spell or ability.)' The only card in the pool that plays four token units at [Reaction] speed, which is what lets the wall appear inside the combat that is already open (813.1.c.1)."
         }
       ],
       "needs": [],
@@ -35231,7 +35231,7 @@
           "quantity": 1,
           "role": "engine",
           "zone": "BATTLEFIELD",
-          "note": "Fury unit, E5 P1 M4. 'Your spells and abilities deal 1 Bonus Damage. (Each instance of damage the spell deals is increased by 1.)' She is Riot's own worked example under 715.2. In zero entries before this walk."
+          "note": "Fury unit, E5 P1 M4. 'Your spells and abilities deal 1 Bonus Damage. (Each instance of damage they deal is increased by 1.)' She is Riot's own worked example under 715.2. In zero entries before this walk."
         },
         {
           "card": "SFD-023",
@@ -35813,7 +35813,7 @@
           "quantity": 3,
           "role": "payoff",
           "zone": "HAND",
-          "note": "Body unit, E12 P2 M10. '[Shield 3] (+3 :rb_might: while I'm a defender.) [Tank] (I must be assigned combat damage first.) When an opponent moves to a battlefield other than mine, draw 1. (Bases are not battlefield.)' The most expensive unit in the pool, and therefore the honest measure of what +2 Energy a turn is for. Defending he is Might 13 (814.1.c) and 815.1.c.2 makes every other body of yours an invalid assignment until he has taken all 13."
+          "note": "Body unit, E12 P2 M10. '[Shield 3] (+3 :rb_might: while I'm a defender.) [Tank] (I must be assigned combat damage first.) When an opponent moves to a battlefield other than mine, draw 1. (Bases are not battlefields.)' The most expensive unit in the pool, and therefore the honest measure of what +2 Energy a turn is for. Defending he is Might 13 (814.1.c) and 815.1.c.2 makes every other body of yours an invalid assignment until he has taken all 13."
         }
       ],
       "needs": [],
@@ -36456,7 +36456,7 @@
           "quantity": 1,
           "role": "payoff",
           "zone": "BATTLEFIELD",
-          "note": "Body unit, E12 P2 M10, [Shield 3], [Tank]. 'When an opponent moves to a battlefield other than mine, draw 1. (Bases are not battlefield.)' In zero entries before this walk."
+          "note": "Body unit, E12 P2 M10, [Shield 3], [Tank]. 'When an opponent moves to a battlefield other than mine, draw 1. (Bases are not battlefields.)' In zero entries before this walk."
         }
       ],
       "needs": [],
@@ -36472,7 +36472,7 @@
         "notable": [
           "FORCING THEM TO MOVE MAKES THEM THE ATTACKER ON YOUR OWN TURN. 190.3.a keys Contested on the moved unit's controller — 'a Unit controlled by a Player who does not currently Control that Battlefield Moves or otherwise becomes present there' — and 464.2.c.1 makes the Attacker 'the player whose unit(s) applied the Contested status'. Neither says anything about who caused the move. So one enemy body walks into a battlefield you control, in your Main Phase, wearing the Attacker designation, and your garrison plus 465.2.b's summed defence answers it.",
           "AND THE SPELL TARGETS NOTHING ON THEIR SIDE. 355.10.e: an object 'part of a set of objects chosen in whole or in part by other players' is not a target. 'They move a unit they control' is their choice, made as the spell resolves — so [Deflect] never charges (809.1.c, 809.1.d) and 'can't be moved by enemy spells and abilities' clauses such as `VEN-073 Jagged Cutlass`' do not bite, because the mover is its own controller. The cost is that they choose WHICH body walks in, and it will be the one they least mind losing.",
-          "VOLIBEAR'S PARENTHESIS IS LOAD-BEARING TWICE OVER. 'When an opponent moves to a battlefield other than mine, draw 1. (Bases are not battlefield.)' — so the forced move must land somewhere Volibear is NOT, which means two battlefields under your control, and a move to base pays nothing. That parenthesis is also why he never draws off an opponent retreating.",
+          "VOLIBEAR'S PARENTHESIS IS LOAD-BEARING TWICE OVER. 'When an opponent moves to a battlefield other than mine, draw 1. (Bases are not battlefields.)' — so the forced move must land somewhere Volibear is NOT, which means two battlefields under your control, and a move to base pays nothing. That parenthesis is also why he never draws off an opponent retreating.",
           "He is the board on his own while he does it: 10 Might, [Shield 3] making him 13 defending (814.1.c), and [Tank] making every other body of yours an invalid damage assignment until he has lethal (815.1.c.2). At 12 Energy + 2 Body Power he is the most expensive card in the Body population and this entry does not pretend otherwise — the pairing is what makes the twelfth Energy do something on the turns nobody attacks him.",
           "Three copies of Call to Battle (103.2.b) is three cards and three forced attacks; Volibear's trigger has no once-per-turn clause, so any other source of enemy movement pays him too — `UNL-202 Void Assault` and `OGN-043 Charm` among them. That is a synergy-rule shape, and this entry names the one partner that also hands you the combat.",
           "144.1.b is not in the way: the spell moves both units by EFFECT, and 420.3.a puts the exhaust cost on the Standard Move alone, so nothing is exhausted on either side."
@@ -40832,7 +40832,7 @@
           "quantity": 3,
           "role": "payoff",
           "zone": "HAND",
-          "note": "Calm spell, E4 P2. '[Reaction] Choose one — • Counter a spell. • Play four 1 :rb_might: Bird unit tokens with [Deflect].' The only card in the pool that puts four unit tokens on the board at [Reaction] speed, which is what turns the Seer's static into a four-instance trigger."
+          "note": "Calm spell, E4 P2. '[Reaction] (Play any time, even before spells and abilities resolve.) Choose one — • Counter a spell. • Play four 1 :rb_might: Bird unit tokens with [Deflect].' The only card in the pool that puts four unit tokens on the board at [Reaction] speed, which is what turns the Seer's static into a four-instance trigger."
         }
       ],
       "needs": [],
@@ -42782,7 +42782,7 @@
           "quantity": 1,
           "role": "engine",
           "zone": "BASE",
-          "note": "Fury unit, E5 P1 M4. 'Your spells and abilities deal 1 Bonus Damage. (Each instance of damage the spell deals is increased by 1.)' Her static names no location, so she does this from your BASE — which is the whole reason she survives a sweep that would otherwise kill her at Might 4."
+          "note": "Fury unit, E5 P1 M4. 'Your spells and abilities deal 1 Bonus Damage. (Each instance of damage they deal is increased by 1.)' Her static names no location, so she does this from your BASE — which is the whole reason she survives a sweep that would otherwise kill her at Might 4."
         },
         {
           "card": "OGS-017",
@@ -45210,7 +45210,7 @@
           "quantity": 3,
           "role": "engine",
           "zone": "HAND",
-          "note": "Chaos spell, E2 P2. '[Hidden] ... [Action] (Play on your turn or in showdowns.) Swap the Might of two units at the same battlefield this turn.' No controller restriction on either unit, which is the whole card: one of the two may be the enemy's."
+          "note": "Chaos spell, E2 P2. '[Hidden] ... [Action] (Play on your turn or in showdowns.) Swap the Mights of two units at the same battlefield this turn.' No controller restriction on either unit, which is the whole card: one of the two may be the enemy's."
         },
         {
           "card": "OGN-013",
@@ -47075,7 +47075,7 @@
           "quantity": 1,
           "role": "legend",
           "zone": "LEGEND",
-          "note": "Calm/Chaos legend. ':rb_energy_2:, :rb_exhaust:: Move a friendly unit to or from its base.' Forced by 103.2.d.2, and the repositioning that a re-readied 8-Might body wants."
+          "note": "Calm/Chaos legend. ':rb_energy_2:, :rb_exhaust:: Move a friendly unit to or from your base.' Forced by 103.2.d.2, and the repositioning that a re-readied 8-Might body wants."
         }
       ],
       "needs": [],
@@ -47093,7 +47093,7 @@
           "THE MIGHT IS READ AT EXECUTION. 359.3.f.2: 'Information referenced in an instruction in this way will be checked on execution of the instruction', whose worked examples are exactly this shape (Yasuo, Remorseful resolving on 'his current Might of 5' after a Stupefy). So a pump added in response raises the shot, and a shrink lowers it — and if the chosen body leaves the board the referent returns null (359.3.f.2.a).",
           "EIGHT IS THE CEILING IN THIS IDENTITY, and it is worth naming why: Beast Below at Might 8 is the the body chosen here for its cost, not the biggest mono-Chaos prints (UNL-147 Baron Nashor is Might 12 at E10 + 3 Power), so this is an 8-damage [Action]-speed shot for 3 Energy + 2 Power on a turn the body has already attacked. It kills anything in the pool short of a buffed 9.",
           "AND THE BEAST'S OWN ETB IS A DRAWBACK YOU MUST PLAN FOR: 'return another friendly unit and an enemy unit to their owners' hands' is not optional. A bounce to hand is not a Recall (455 sends a Recall to the BASE), so your own body leaves the board entirely and has to be paid for again — play the Beast when the friendly you are giving back is one whose ETB you want to re-buy.",
-          "THE LEGEND IS THE FOLLOW-UP, NOT DECORATION: 2 Energy and its own exhaust move a friendly unit to or from its base, which is how an 8-Might body that has just been readied gets out of a losing combat or into the next one. 381 confines it to your own turn in an Open State."
+          "THE LEGEND IS THE FOLLOW-UP, NOT DECORATION: 2 Energy and its own exhaust move a friendly unit to or from your base, which is how an 8-Might body that has just been readied gets out of a losing combat or into the next one. 381 confines it to your own turn in an Open State."
         ]
       },
       "steps": [
@@ -47101,7 +47101,7 @@
         "On a later turn, attack with it (144.2, 144.4): it fights at Might 8 and is now exhausted.",
         "Play Last Breath (3 Energy + 2 Power) at [Action] speed, choosing the Beast: it is readied (415.1), then deals 8 to an enemy unit at a battlefield.",
         "359.3.f.2 reads its Might on execution, so any pump you added in the same window is counted.",
-        "With the exhaust back, use it — a second Standard Move, or 2 Energy on Unforgiven to move it to or from its base."
+        "With the exhaust back, use it — a second Standard Move, or 2 Energy on Unforgiven to move it to or from your base."
       ],
       "terminatesIn": "engine — 8 damage at [Action] speed plus a refunded exhaust per Last Breath, three a game (103.2.b); nothing here scores",
       "netPerIteration": "one enemy unit up to 8 Might killed, and the shooter readied, for 3 Energy + 2 Power",
@@ -53932,7 +53932,7 @@
           "quantity": 3,
           "role": "enabler",
           "zone": "HAND",
-          "note": "Mind/Chaos spell, E2 P1. 'Return up to two cards with [Hidden] from your trash to your hand. You can hide cards ignoring costs this turn.' It reads [Hidden] on cards lying face UP in the trash."
+          "note": "Mind/Chaos spell, E2 P1. 'Return up to two cards with [Hidden] from your trash to your hand. You can hide ignoring costs this turn.' It reads [Hidden] on cards lying face UP in the trash."
         },
         {
           "card": "OGN-107",
@@ -53955,7 +53955,7 @@
         "notable": [
           "811.5 AND 811.5.a WERE UNCITED AND THEY ARE WHAT MAKE THE WHOLE ARCHETYPE LEGAL. 811.5: 'Hidden, and whether or not a card has Hidden, is a characteristic of the card and may be checked or referenced by other Game Effects.' 811.5.a: 'This is independent of the state of being facedown.' Without .a there would be a live reading that 'a card with [Hidden]' means a card currently face down - and every one of the pool's four Hidden-readers works on cards that are NOT face down.",
           "THE FOUR READERS, NAMED, WITH THE ZONE EACH READS. Swept 2026-09-09 over data/corpus_flat.txt for 'card(s)/unit(s) with [Hidden]': OGN-107 Ava Achiever reads HAND, OGN-121 Teemo Strategist reads the top five of the MAIN DECK, OGN-263 Swift Scout reads HAND (a discount on hiding), OGN-264 Guerilla Warfare reads the TRASH. Four cards, four zones, none of them face down - which is the whole content of 811.5.a.",
-          "THE TWO HALVES OF GUERILLA WARFARE ARE NOT THE SAME HALF. 'Return up to two cards with [Hidden] from your trash to your hand' is the 811.5.a read; 'You can hide cards ignoring costs this turn' is a cost waiver on 811.1.b's rainbow, and 811.1.c.1 ('Hide is not a subset of Play') is why waiving the hide cost is not waiving anything else. Two Hidden cards back plus free hides is the turn this deck is built around.",
+          "THE TWO HALVES OF GUERILLA WARFARE ARE NOT THE SAME HALF. 'Return up to two cards with [Hidden] from your trash to your hand' is the 811.5.a read; 'You can hide ignoring costs this turn' is a cost waiver on 811.1.b's rainbow, and 811.1.c.1 ('Hide is not a subset of Play') is why waiving the hide cost is not waiving anything else. Two Hidden cards back plus free hides is the turn this deck is built around.",
           "AVA IS THE HALF THAT DOES NOT CARE ABOUT HIDING AT ALL. She plays a Hidden card FROM HAND, so 811.1.d never engages: 811.1.d.1 confines a hidden PERMANENT to the battlefield it was hidden at, 811.1.d.2 confines the TARGETS of a hidden card's play effects, and neither has anything to bind here. Her payload's targets are unrestricted, and 811.3 says the same thing from the card's side: 'Instead of being hidden, a card with Hidden may be played for its cost as normal, at its normal timing with no restrictions on targeting.' The cost she waives is the base cost, not the timing.",
           "THE PRICE OF THAT FREEDOM IS THE WATCHERS. 811.1.c.1's 'Hide is not a subset of Play' cuts the other way too: a card Ava throws from hand was never face down, so the three 'when you play a card from face down' triggers in the pool - UNL-023 Katarina, OGN-167 Ember Monk, SFD-121 Black Market Broker - never see it. Ava and that package are alternatives, not partners.",
           "AND THE CEILING IS THE BOARD, NOT THE DECK. 811.1.b hides one card per battlefield you control and 485.4 puts two on a Duel table, so however many Hidden cards Guerilla Warfare returns, at most two can be face down at once. What the spell actually buys is a SECOND USE of cards already spent - 811.5.a is what lets it find them - and Ava is the outlet that needs no facedown slot at all. 811.4: 'Multiple instances of Hidden are redundant.'"
@@ -58477,7 +58477,7 @@
           "quantity": 3,
           "role": "enabler",
           "zone": "HAND",
-          "note": "Chaos spell, E2 + 1 Chaos Power. '[Action] (Play on your turn or in showdowns.) Move a friendly unit and ready it.' One copy per Ivern, because it moves ONE unit. This is the Chaos answer to what SFD-079 Bard, Mercurial does in Mind: 449 and 420.2.b make an effect move a route separate from the Standard Move, so 144.4's base-to-battlefield restriction does not bind it and 420.3.a's exhaust cost - which sits on the Standard Move alone - is not charged, which is why it can move an Ivern that is ALREADY EXHAUSTED from walking into the first battlefield. Note its move carries NO destination clause, unlike OGN-259 Unforgiven's 'to or from its base'."
+          "note": "Chaos spell, E2 + 1 Chaos Power. '[Action] (Play on your turn or in showdowns.) Move a friendly unit and ready it.' One copy per Ivern, because it moves ONE unit. This is the Chaos answer to what SFD-079 Bard, Mercurial does in Mind: 449 and 420.2.b make an effect move a route separate from the Standard Move, so 144.4's base-to-battlefield restriction does not bind it and 420.3.a's exhaust cost - which sits on the Standard Move alone - is not charged, which is why it can move an Ivern that is ALREADY EXHAUSTED from walking into the first battlefield. Note its move carries NO destination clause, unlike OGN-259 Unforgiven's 'to or from your base'."
         }
       ],
       "needs": [],

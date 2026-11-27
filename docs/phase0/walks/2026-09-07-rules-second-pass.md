@@ -1030,7 +1030,7 @@ a different card is a note). For the record, with the second activation priced:
 | `UNL-189 Bashful Bloom` (Calm/Mind) | 4 Energy, exhaust: ready 3 Might Sprite with [Temporary], −1 Energy per friendly [Temporary] | a second Sprite at 3 Energy, because the first is already on the board — but `leblanc-bashful-bloom-trevor-plaza` already ratchets that cost to zero, so the Entourage adds a body, not a discount |
 | `SFD-189 Fire Below the Mountain` (Calm/Mind) | exhaust: [Reaction] [Add] rainbow, gear only | one more rainbow for gear; note 103.2.d.2 — `SFD-191 Rabadon's Deathcrown` is Ornn's Signature and forces this legend, never the reverse |
 | `VEN-139 Rogue Assassin` (Fury/Calm) | [Action] exhaust: move a friendly unit in a showdown to base, ready it if [Empowered] | a second evacuation inside one showdown |
-| `OGN-259 Unforgiven` (Calm/Chaos) | 2 Energy, exhaust: move a friendly unit to or from its base | a second effect move — 420.3.a puts the exhaust cost only on the STANDARD move, so this moves an exhausted body |
+| `OGN-259 Unforgiven` (Calm/Chaos) | 2 Energy, exhaust: move a friendly unit to or from its base [2026-11-27, #663: the gallery now prints "your base"; in 1v1 that is the same base, 107.1.c] | a second effect move — 420.3.a puts the exhaust cost only on the STANDARD move, so this moves an exhausted body |
 
 ### 24.6 A refusal recorded: the "ready or **exhaust**" half is dead letter against an opponent
 

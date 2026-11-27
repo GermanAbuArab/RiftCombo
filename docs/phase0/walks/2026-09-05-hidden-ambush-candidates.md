@@ -256,6 +256,7 @@ Leídas de `CLAUDE.md` (no de memoria):
   facedown card to its owner's hand"*) libera el slot pero la carta devuelta vuelve a esperar un turno
   entero por 811.1.b, y `OGN-264 Guerilla Warfare` (*"You can hide cards ignoring costs this turn"*)
   abarata el escondite, no lo acelera.
+  [2026-11-27, #663: Riot's gallery now prints "You can hide ignoring costs this turn." with no errata page. Hiding is placing a card facedown (421.1), so the dropped word changes nothing here.]
 - Del lado `[Ambush]`, 822 no imprime ni reducción de coste ni repetición.
 
 **Corrección de énfasis a #40.** El issue presenta el slot como *"el recurso escaso de la lente"*.
@@ -346,6 +347,7 @@ OGN-263 | Swift Scout | Legend | Mind/Chaos | - | You may pay :rb_energy_1: to h
 OGN-264 | Guerilla Warfare | Spell | Mind/Chaos | E2 P1 | Return up to two cards with [Hidden] from your trash to your hand. You can hide cards ignoring costs this turn. [Tags: Teemo]
 OGN-101 | Mushroom Pouch | Gear | Mind | E2 | At the start of your Beginning Phase, if you control a facedown card at a battlefield, draw 1.
 ```
+[2026-11-27, #663: Riot's gallery now prints "You can hide ignoring costs this turn." with no errata page. Hiding is placing a card facedown (421.1), so the dropped word changes nothing here.]
 
 Swift Scout reemplaza el `[A]` de 811.1.b por **1 Energy**. Eso es lo único que hace esta entrada y es
 suficiente: convierte el ciclo en un **convertidor Energy → Power**. El ledger de la loop de Lux

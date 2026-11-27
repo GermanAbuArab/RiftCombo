@@ -207,6 +207,8 @@ scored by that Team, that turn"* — and its mirror **469.1.a**.
 > `UNL-015 | Right of Conquest | Spell | Fury | E3 P1 | Draw 1, then draw 1 for each battlefield you or
 > allies control.`
 
+[2026-11-27, #663: Riot's gallery now ends SFD-217's sentence "you or allies control." with one period (docs/data-anomalies.md); meaning unchanged.]
+
 The numbers, from the rules rather than from the issue:
 
 - **489.4** *"Battlefield Count: 3"* — so in 2v2, "you or allies control" tops out at **3** and

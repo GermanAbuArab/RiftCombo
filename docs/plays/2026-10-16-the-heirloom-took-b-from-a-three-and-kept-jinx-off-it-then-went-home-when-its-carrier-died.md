@@ -332,6 +332,7 @@ T2:**
   instead."*
 - `SFD-145 Switcheroo`: *"Swap the Might of two units at the same battlefield this turn."* A 3 against
   a 4.
+  [2026-11-27, #663: Riot's gallery now prints "Swap the Mights of two units", plural, with no errata page; meaning unchanged.]
 - `SFD-139 Edge of Night` (M+2): *"When you play this from face down, attach it to a unit you control
   (here)."* A Drakehound of 5.
 

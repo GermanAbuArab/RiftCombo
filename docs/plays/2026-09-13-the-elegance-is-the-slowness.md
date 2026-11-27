@@ -86,6 +86,7 @@ unmodelled. A number that is right for the wrong reason gets worse when you fix 
 - **`OGN-123 Unchecked Power`**, and the entry names it itself: Mind, 7 Energy + 2 Power, *"Exhaust
   all friendly units, then deal 12 to ALL units at battlefields."* Shen is Might 7 and the Sentinel
   Might 4 with `[Shield 2]`; twelve kills both, and the line is two bodies wide with no spare.
+  [2026-11-27, #663: Riot's gallery now prints "deal 12 to all units at battlefields", lower case, with no errata page; meaning unchanged.]
 - **One extra body at that battlefield.** Shen reads *"exactly one other unit you control here"*, and
   383.2.a.1 makes that count part of the Trigger Condition, so it is checked as the trigger is placed.
   An opponent's token landing there, or a second Sentinel of your own, takes three points a turn to

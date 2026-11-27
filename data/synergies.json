@@ -3505,7 +3505,7 @@
       "partner": {
         "textMatches": "[Ww]hen I move\\b|[Tt]he \\w+ time I move\\b"
       },
-      "why": "Unforgiven's legend ability — \"2 Energy, exhaust: Move a friendly unit to or from its base\" — is an effect Move (420.1), so it fires that unit's own move triggers and those of any Equipment attached to it (420.2.a), exactly like Ride the Wind and the other two move-effect anchors. The legend's cost carries an exhaust, so 315.1.b readies it once every Awaken: one free move trigger a turn for as long as Unforgiven is out, with no card spent. A recall is not a Move (456.1) and would not do this.",
+      "why": "Unforgiven's legend ability — \"2 Energy, exhaust: Move a friendly unit to or from your base\" — is an effect Move (420.1), so it fires that unit's own move triggers and those of any Equipment attached to it (420.2.a), exactly like Ride the Wind and the other two move-effect anchors. The legend's cost carries an exhaust, so 315.1.b readies it once every Awaken: one free move trigger a turn for as long as Unforgiven is out, with no card spent. A recall is not a Move (456.1) and would not do this.",
       "basis": {
         "rules": [
           "420.1",

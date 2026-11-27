@@ -562,6 +562,7 @@ cuerpo extra en el battlefield.
 UNL-044 | Flurry of Feathers | Spell | Calm | E4 P2 | [Reaction] Choose one — • Counter a spell. • Play four 1 :rb_might: Bird unit tokens with [Deflect]. (...)
 OGN-293 | The Grand Plaza | Battlefield | Colorless | - | When you hold here, if you have 7+ units here, you win the game.
 ```
+[2026-11-27, #663: Riot's gallery now prints the reminder "(Play any time, even before spells and abilities resolve.)" after the Reaction keyword, the one every Reaction card prints (OGN-033, OGN-045); no errata page, meaning unchanged.]
 
 ### Lo que hace el video, y por qué no funciona
 

@@ -37,6 +37,7 @@ The card text the play turns on:
 - Flurry of Feathers: *"[Reaction] Choose one — • Counter a spell. • Play four 1 :rb_might: Bird unit
   tokens with [Deflect]. (Opponents must pay :rb_rune_rainbow: to choose them with a spell or
   ability.)"*
+  [2026-11-27, #663: Riot's gallery now prints the reminder "(Play any time, even before spells and abilities resolve.)" after the Reaction keyword, the one every Reaction card prints (OGN-033, OGN-045); no errata page, meaning unchanged.]
 
 ## 2. Your order: the Seer first, the Birds in response
 

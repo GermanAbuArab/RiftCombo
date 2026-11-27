@@ -31,6 +31,7 @@ marker in `data/corpus_flat.txt`. **None is banned or restricted in any format.*
 turn, you score 1 point.**"*
 **OGN-259** Unforgiven (Legend, Calm/Chaos): *"`:rb_energy_2:`, `:rb_exhaust:`: Move a friendly unit
 to or from its base."*
+[2026-11-27, #663: Riot's gallery now prints OGN-259 as "Move a friendly unit to or from your base." with no errata page (OGN-305, the showcase Unforgiven, still reads "its base"). In 1v1 a friendly unit's own base is yours (107.1.c), so this passage holds; only a teammate's unit, friendly by 740.1.a, now moves to or from your base instead of its own.]
 **OGN-184** The Syren (Gear, Chaos, E2): *"`:rb_energy_1:`, `:rb_exhaust:`: Move a friendly unit at a
 battlefield to its base."*
 
