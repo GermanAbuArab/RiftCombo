@@ -5,7 +5,7 @@ import { describe, expect, it } from "vitest";
 import { CardIndex } from "../src/cards.js";
 import { EFFECT_PREDICATES, LIMITER_PREDICATES, TRIGGER_PREDICATES, abilitiesOf } from "../src/engine/tags.js";
 import { identityCovers, search } from "../src/engine/search.js";
-import { RECALL_FLOOR, markKnown, rank, recallExitCode } from "../src/engine/rank.js";
+import { RECALL_FLOOR, markKnown, rank, recallExitCode, scores } from "../src/engine/rank.js";
 import type { Card, Combo } from "../src/types.js";
 
 const fixture = <T>(n: string): T => JSON.parse(readFileSync(new URL(`./fixtures/engine/${n}`, import.meta.url), "utf8")) as T;
@@ -105,6 +105,15 @@ describe("search", () => {
     expect(candidates.map((c) => `${c.class} ${c.cards.join(">")}`)).toEqual(["ALT_WIN ENG-032>ENG-031"]);
   });
 
+  it("keeps the ordering of a card set that ends in a point, whichever ordering it visits first (#751)", () => {
+    const pinger = card({ code: "ENG-020", domains: ["calm"], text: "When you draw, deal 3 to a unit at a battlefield and draw 1." });
+    const scorer = card({ code: "ENG-021", domains: ["calm"], text: "When you draw, score 1 point and draw 1." });
+    for (const pool of [[pinger, scorer], [scorer, pinger]]) {
+      const bursts = search([...pool, ...legends], { maxCards: 2 }).candidates.filter((c) => c.class === "BURST");
+      expect(bursts.map((c) => `${c.cards.join(">")} ${c.ends.join("+")}`)).toEqual(["ENG-020>ENG-021 gain-point"]);
+    }
+  });
+
   it("stops at the budget and keeps the depths it finished", () => {
     const r = search([...f.cycle.map(card), ...legends], { maxCards: 3, budget: 3 });
     expect(r.stoppedBy).toBe("budget");
@@ -130,6 +139,17 @@ describe("rank and recall", () => {
     expect(known.set).toEqual(expect.arrayContaining(["ENG-001", "ENG-003"]));
     expect(ranked.indexOf(known) + 1).toBe(recall.found[0]!.rank);
     expect(recall.medianRank).toBe(recall.found[0]!.rank);
+  });
+
+  it("ranks a BURST that ends in a point above one of the same class, card count and Energy that ends only in damage (#751)", () => {
+    // ENG-005 sorts before ENG-011, so the card-set tie-break alone would put the damage line first.
+    const pyro: Raw = { code: "ENG-005", name: "Pyro Scholar", type: ["unit"], domains: ["calm"], energy: 3, text: "When you draw, deal 3 to a unit at a battlefield." };
+    const ranked = rank(search([...f.burst, pyro, ...f.legends].map(card), { maxCards: 2 }).candidates);
+    expect(ranked.map((c) => `${c.class} ${c.set.join(",")} ${c.energy}E ${c.ends.join("+")}`)).toEqual([
+      "BURST ENG-010,ENG-011 5E gain-point",
+      "BURST ENG-005,ENG-010 5E deal-damage",
+    ]);
+    expect(ranked.map(scores)).toEqual([true, false]);
   });
 });
 

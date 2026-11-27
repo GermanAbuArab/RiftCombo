@@ -3,16 +3,20 @@ import type { CardIndex } from "../cards.js";
 import { CLASS_RANK } from "../combos.js";
 import type { Combo } from "../types.js";
 import type { Candidate } from "./search.js";
-import { canonicalOf } from "./search.js";
+import { canonicalOf, scores } from "./search.js";
+
+export { scores };
 
 /**
  * Order: class as `src/combos.ts` ranks it (higher `CLASS_RANK` first, the order `src/plan.ts` and the
- * route list sort by), then fewer cards, then one identity, then lower total Energy; the sorted card
+ * route list sort by), then a line that `scores` above one that ends only in damage or in no payoff
+ * (#751), then fewer cards, then one identity, then lower total Energy; the sorted card
  * set breaks the last tie so a run is reproducible.
  */
 export function rank(candidates: Candidate[]): Candidate[] {
   return [...candidates].sort((a, b) =>
     CLASS_RANK[b.class] - CLASS_RANK[a.class] ||
+    Number(scores(b)) - Number(scores(a)) ||
     a.set.length - b.set.length ||
     Number(b.oneIdentity) - Number(a.oneIdentity) ||
     a.energy - b.energy ||
