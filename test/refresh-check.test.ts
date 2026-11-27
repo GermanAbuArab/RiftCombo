@@ -47,6 +47,13 @@ describe("watchedSlugs", () => {
     expect(watchedSlugs(page("new-playmat-banner-art"))).toEqual([]);
     expect(watchedSlugs(page("urban-legends-event"))).toEqual([]);
     expect(watchedSlugs(page("announcing-riftbounds-first-bans"))).toHaveLength(1);
+    for (const slug of ["cards-banned-in-standard", "banning-update", "spiritforged-faqs", "core-rules-patches", "set-overviews"]) {
+      expect(watchedSlugs(page(slug))).toHaveLength(1);
+    }
+    const fast = (slug: string) =>
+      changes({ rules: {}, news: {} }, { slugs: watchedSlugs(page(slug)), pdfs: [], ...noData })[0]?.labels.includes("ready");
+    expect(fast("cards-banned-in-standard")).toBe(true);
+    expect(fast("spiritforged-faqs")).toBe(false);
   });
 
   it("skips a merch or event slug, and filters on the slug, not the rules-and-releases category", () => {

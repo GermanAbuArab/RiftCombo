@@ -29,9 +29,11 @@ const sha256 = (s) => createHash("sha256").update(s).digest("hex");
 
 const NEWS_PATH = /\/en-us\/news\/[a-z-]+\/[a-z0-9-]+/g;
 const PDF_URL = /https:\/\/cmsassets\.rgpub\.io\/[^"]+\.pdf/g;
-// Matched against the slug's hyphen-separated words, so "banner" or "urban" is not a ban list.
-const WATCHED = /(^|-)(bans?|errata|rules|faq|patch|changelog|overview)(-|$)/;
-const FAST = /(^|-)(bans?|errata)(-|$)/;
+// Matched against the slug's hyphen-separated words (with their inflections), so "banner" or
+// "urban" is not a ban list while "banned" and "faqs" still are.
+const BAN_WORDS = "bans?|banned|banning|banlists?|erratas?";
+const WATCHED = new RegExp(`(^|-)(${BAN_WORDS}|rules?|faqs?|patch(es)?|changelogs?|overviews?)(-|$)`);
+const FAST = new RegExp(`(^|-)(${BAN_WORDS})(-|$)`);
 const FETCH_MS = 60_000;
 
 // --- sources ------------------------------------------------------------------
