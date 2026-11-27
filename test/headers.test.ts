@@ -8,7 +8,7 @@ import { deckCountLine } from "../src/deck.js";
 import { rewritten } from "../scripts/qa-serve.mjs";
 // @ts-expect-error -- plain .mjs build script, no types
 import { appShell } from "../scripts/web-seo.mjs";
-import { landingPage } from "../src/render/pages.js";
+import { landingPage, sourcesBody } from "../src/render/pages.js";
 
 /**
  * The three things about accounts (#31) that break silently rather than loudly, pinned here because
@@ -92,6 +92,59 @@ describe("what the page promises about storing a list", () => {
     expect(landing).not.toContain('id="gate"');
     expect(landing).not.toContain("Sign in with Google");
     expect(landing).toContain('href="/app"');
+  });
+});
+
+/**
+ * #293 (#272 §4): the public pages carry Google ads, so the privacy notice and the terms say so, in
+ * the statements AdSense's "Required content" page asks for, and drop the absolutes that ads make
+ * false. The text is checked as rendered prose: tags stripped, whitespace collapsed.
+ */
+describe("what the privacy notice and terms say about ads (#293)", () => {
+  const prose = (f: string) => readFileSync(new URL(`../web/${f}`, import.meta.url), "utf8")
+    .replace(/<[^>]+>/g, "").replace(/&amp;/g, "&").replace(/\s+/g, " ");
+  const privacy = readFileSync(new URL("../web/privacy.html", import.meta.url), "utf8");
+
+  it("privacy: an Advertising section with Google AdSense, the cookie disclosure, the opt-out links and how to change consent", () => {
+    const text = prose("privacy.html");
+    expect(privacy).toContain("<h3>Advertising</h3>");
+    expect(text).toContain("carry ads served by Google AdSense");
+    expect(text).toContain("The deck tools (the combo finder and My decks) and the sign-in screen carry none.");
+    expect(text).toContain("Third-party vendors, including Google, use cookies to serve ads based on your earlier visits to this site or to other sites.");
+    expect(text).toContain("Google's use of advertising cookies lets it and its partners serve you ads based on your visits to this site and/or other sites on the Internet.");
+    expect(privacy).toContain('href="https://adssettings.google.com"');
+    expect(privacy).toContain('href="https://www.aboutads.info"');
+    expect(text).toContain("Visitors in the European Economic Area, the United Kingdom and Switzerland are asked first, by Google's consent message");
+    expect(text).toContain("Either choice can be changed at any time with Privacy choices in the footer");
+    expect(privacy).toContain('<p id="choices">');
+    expect(text).toContain("blocks gambling and betting and other sensitive categories");
+  });
+
+  it("privacy: no cookies of its own still holds, Google's cookies are named as Google's, and consent never gates sign-in", () => {
+    const text = prose("privacy.html");
+    expect(text).toContain("This site sets no cookies of its own.");
+    expect(text).toContain("Google and its partners set their own advertising cookies");
+    expect(privacy).toContain('href="https://policies.google.com/technologies/cookies"');
+    expect(text).toContain("the consent message never stands in the way of signing in");
+  });
+
+  it("privacy: Google is among the processors, and the absolutes ads make false are gone", () => {
+    const text = prose("privacy.html");
+    expect(text).toContain("The ads on the public pages are served by Google AdSense, and the consent message that comes with them is Google's Privacy & messaging");
+    for (const gone of ["There is no third-party script", "No advertising", "no tracking pixels", "no profiling", "loading a page sends no request to Google", "Google is involved only when you choose to sign in"]) {
+      expect(text, gone).not.toContain(gone);
+    }
+  });
+
+  it("terms: free and supported by ads on public pages, served by Google, no donations and nothing to buy", () => {
+    const text = prose("terms.html");
+    expect(text).toContain("It is free, supported by advertising on its public pages; there are no donations and nothing to buy.");
+    expect(text).toContain("The ads are served by Google: RiftCombo does not choose individual ads, and it blocks gambling and betting and other sensitive categories.");
+    expect(text).not.toContain("no advertising");
+  });
+
+  it("the sources page no longer claims no advertising", () => {
+    expect(sourcesBody({ candidates: false })).not.toMatch(/no advertising/i);
   });
 });
 

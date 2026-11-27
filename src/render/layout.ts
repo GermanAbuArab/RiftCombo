@@ -89,6 +89,32 @@ export function withAdsenseAccount(html: string, id: string): string {
   return html.replace("</head>", `${adsenseAccountMeta(id)}\n</head>`);
 }
 
+/**
+ * The footer's "Privacy choices" link (#293, #272 §4): Google's consent message has to be reopenable
+ * after the first choice, so a page that can carry ads offers it in its footer. `/privacy-choices.js`
+ * (`web/privacy-choices.ts`) turns a click into Google's `showRevocationMessage()` when Google's
+ * consent code is on the page; when it is not, the link is a plain one to the privacy notice's
+ * paragraph on consent. The CSP forbids a `javascript:` href, which is what Google's own sample uses.
+ */
+export const PRIVACY_CHOICES_LINK = `<a href="/privacy#choices" data-privacy-choices>Privacy choices</a>`;
+export const PRIVACY_CHOICES_SCRIPT = `<script src="/privacy-choices.js" defer></script>`;
+
+/**
+ * `html` with the link above at the end of its footer's first line and its script in the head, or
+ * unchanged when `id` is "" (the dark launch, #291): with no publisher id there is no ad and no
+ * consent message to reopen. The rendered pages get it from `renderSite`, the hand-written privacy
+ * and terms pages from `scripts/build-web.mjs`.
+ */
+export function withPrivacyChoices(html: string, id: string): string {
+  if (!id) return html;
+  const footer = html.indexOf('<footer class="doc colophon">');
+  const end = footer < 0 ? -1 : html.indexOf("</p>", footer);
+  if (end < 0) throw new Error("withPrivacyChoices: document has no colophon footer line");
+  if (!html.includes("</head>")) throw new Error("withPrivacyChoices: document has no </head>");
+  const linked = `${html.slice(0, end)} · ${PRIVACY_CHOICES_LINK}${html.slice(end)}`;
+  return linked.replace("</head>", `${PRIVACY_CHOICES_SCRIPT}\n</head>`);
+}
+
 const BRAND_MARK = `<svg class="brand-mark" viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.5 18.5 10 10 18.5 1.5 10Z"/><path d="M10 6.2 13.8 10 10 13.8 6.2 10Z"/></svg>`;
 
 /** A whole HTML document. `body` must carry the page's one `<h1>`. */

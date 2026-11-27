@@ -3,7 +3,7 @@ import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { describe, expect, it } from "vitest";
 import { authoredWords, comboPage, CURRENT_RULES_VERSION, rulesLine, rulesNotice, THIN_WORDS, type ComboContext } from "../src/render/combo.js";
-import { adsenseAccountMeta, clip, DISCLAIMER, ORIGIN, withAdsenseAccount } from "../src/render/layout.js";
+import { adsenseAccountMeta, clip, DISCLAIMER, ORIGIN, PRIVACY_CHOICES_LINK, PRIVACY_CHOICES_SCRIPT, withAdsenseAccount, withPrivacyChoices } from "../src/render/layout.js";
 import { guideBody, SITE_LD, sourcesBody } from "../src/render/pages.js";
 import { playArticle, type Play } from "../src/render/play.js";
 import { fileOf, renderSite, type BuiltPage, type SiteInput } from "../src/render/site.js";
@@ -409,5 +409,54 @@ describe("the google-adsense-account tag (#291)", () => {
     const build = readFileSync(join(root, "scripts", "build-web.mjs"), "utf8");
     expect(build).toContain("adsensePublisherId: adsenseId");
     expect(build).toContain('for (const f of [...STATIC.filter((s) => s.endsWith(".html")), "app.html"])');
+  });
+});
+
+describe("the Privacy choices footer link (#293)", () => {
+  const FAKE = "pub-0000000000000000";
+  const footer = (html: string) => html.slice(html.indexOf('<footer class="doc colophon">'));
+  const hand = (f: string) => readFileSync(join(root, "web", f), "utf8");
+  const built = (id: string) => {
+    const out = mkdtempSync(join(tmpdir(), "choices-"));
+    writePages(out, renderSite({ ...input, adsensePublisherId: id }));
+    return (path: string) => readFileSync(join(out, fileOf(path)), "utf8");
+  };
+
+  it("is on no page while the id is empty: public/combos/<id>.html counts 0", { timeout: 60_000 }, () => {
+    const read = built("");
+    expect(count(read(`/combos/${combos[0]!.id}`), /Privacy choices/g)).toBe(0);
+    for (const p of pages) {
+      expect(p.html, p.path).not.toContain("Privacy choices");
+      expect(p.html, p.path).not.toContain("privacy-choices.js");
+    }
+    for (const f of ["privacy.html", "terms.html"]) expect(withPrivacyChoices(hand(f), "")).toBe(hand(f));
+  });
+
+  it("is in the footer of every page once an id is set: public/combos/<id>.html counts 1, with its script", { timeout: 60_000 }, () => {
+    const read = built(FAKE);
+    const combo = read(`/combos/${combos[0]!.id}`);
+    expect(count(combo, /Privacy choices/g)).toBe(1);
+    expect(footer(combo)).toContain(PRIVACY_CHOICES_LINK);
+    for (const p of renderSite({ ...input, adsensePublisherId: FAKE })) {
+      expect(count(p.html, /Privacy choices/g), p.path).toBe(1);
+      expect(footer(p.html), p.path).toContain(`<a href="/terms">Terms</a> · ${PRIVACY_CHOICES_LINK}</p>`);
+      expect(p.html.slice(0, p.html.indexOf("</head>")), p.path).toContain(PRIVACY_CHOICES_SCRIPT);
+    }
+    for (const f of ["privacy.html", "terms.html"]) {
+      const linked = withPrivacyChoices(hand(f), FAKE);
+      expect(count(linked, /data-privacy-choices/g), f).toBe(1);
+      expect(footer(linked), f).toContain(PRIVACY_CHOICES_LINK);
+    }
+  });
+
+  it("refuses a document with no colophon footer rather than dropping the link", () => {
+    expect(() => withPrivacyChoices("<html><head></head><body></body></html>", FAKE)).toThrow(/footer/);
+  });
+
+  it("is added to the hand-written privacy and terms pages by build:web, and its script is an entry point", () => {
+    const build = readFileSync(join(root, "scripts", "build-web.mjs"), "utf8");
+    expect(build).toContain('for (const f of ["privacy.html", "terms.html"])');
+    expect(build).toContain("withPrivacyChoices(readFileSync(join(OUT, f), \"utf8\"), adsenseId)");
+    expect(build).toContain('"privacy-choices": join(ROOT, "web", "privacy-choices.ts")');
   });
 });
