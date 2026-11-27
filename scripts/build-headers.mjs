@@ -44,6 +44,9 @@ const [loaderHash] = inlineScriptHashes(AD_LOADER_SCRIPT);
 
 // The allowlist policy, on every page. The ad surface's copy differs only in also trusting the loader,
 // so the privacy-choices script it inserts (#293) still runs there while this policy is the enforced one.
+// It names no Google origin, so it still refuses adsbygoogle.js and its frames and images: no ad can run
+// until the strict policy below replaces it as the enforced one (#272 §5, a later change; ads are off in
+// production until then anyway, #285).
 const allowlist = (scripts) => [
   "default-src 'self'",
   `script-src ${scripts}`,
