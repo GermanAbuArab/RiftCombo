@@ -36,6 +36,9 @@ const FEEDS_SELF_PLAY: ReadonlySet<Effect> = new Set(["return-to-hand", "play-fr
 /** The effects that end a line, and the class a path ending in one is guessed as. */
 export const TERMINAL: Partial<Record<Effect, ComboClass>> = { "gain-point": "BURST", "deal-damage": "BURST", win: "ALT_WIN" };
 
+/** The effects a line can pay out in, for the ranker (#751): a point, a win, an extra turn, or damage. */
+export const PAYOFF: readonly Effect[] = ["gain-point", "win", "extra-turn", "deal-damage"];
+
 export interface EdgeLink {
   from: string;
   to: string;
@@ -58,6 +61,11 @@ export interface Candidate {
   /** One legend's domains cover every card (Domain Identity 103.1.b), and the line holds at most one legend. */
   oneIdentity: boolean;
   limiters: string[];
+  /**
+   * The payoff effects the line ends in (#751), out of `PAYOFF`: a path's last ability's, a cycle's from
+   * every ability on it (a loop pays out wherever its payoff sits). Empty when it ends in none of them.
+   */
+  ends: Effect[];
   /** Set by the ranker: the id of a catalogued entry whose card set this one equals or contains. */
   known?: string;
 }
@@ -187,7 +195,8 @@ export function search(pool: Card[], opts: SearchOptions = {}): SearchResult {
   let stoppedBy: SearchResult["stoppedBy"] = null;
 
   const limitersOf = (path: number[]) => [...new Set(path.flatMap((i) => nodes[i]!.ability.limiters))];
-  const record = (path: number[], edges: EdgeLink[], cls: ComboClass) => {
+  const endsOf = (at: number[]) => PAYOFF.filter((p) => at.some((i) => nodes[i]!.ability.effects.some((e) => e.kind === p)));
+  const record = (path: number[], edges: EdgeLink[], cls: ComboClass, ends: Effect[]) => {
     const cardsIn = path.map((i) => cardOf[i]!);
     const set = [...cardsIn].sort();
     const key = `${cls}|${set.join(",")}`;
@@ -202,6 +211,7 @@ export function search(pool: Card[], opts: SearchOptions = {}): SearchResult {
       domains: [...new Set(members.flatMap((c) => c.domains))].sort(),
       oneIdentity: identityCovers(legendPool, members),
       limiters: limitersOf(path),
+      ends,
     });
   };
 
@@ -221,8 +231,8 @@ export function search(pool: Card[], opts: SearchOptions = {}): SearchResult {
       if (field[i]) fields++;
       if (left === 0) {
         const back = link(nodes[i]!, nodes[path[0]!]!);
-        if (back) record(path, [...edges, back], limitersOf(path).length ? "CHAIN" : "INFINITE");
-        for (const cls of new Set(terminalOf(i))) record(path, edges, cls);
+        if (back) record(path, [...edges, back], limitersOf(path).length ? "CHAIN" : "INFINITE", endsOf(path));
+        for (const cls of new Set(terminalOf(i))) record(path, edges, cls, endsOf([i]));
         if (found.size >= maxCandidates) { stoppedBy = "maxCandidates"; return false; }
       } else {
         for (const { to, link: l } of adj[i]!) {

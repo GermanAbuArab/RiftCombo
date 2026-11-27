@@ -5,7 +5,7 @@ import { describe, expect, it } from "vitest";
 import { CardIndex } from "../src/cards.js";
 import { EFFECT_PREDICATES, LIMITER_PREDICATES, TRIGGER_PREDICATES, abilitiesOf } from "../src/engine/tags.js";
 import { identityCovers, search } from "../src/engine/search.js";
-import { RECALL_FLOOR, markKnown, rank, recallExitCode } from "../src/engine/rank.js";
+import { RECALL_FLOOR, markKnown, rank, recallExitCode, scores } from "../src/engine/rank.js";
 import type { Card, Combo } from "../src/types.js";
 
 const fixture = <T>(n: string): T => JSON.parse(readFileSync(new URL(`./fixtures/engine/${n}`, import.meta.url), "utf8")) as T;
@@ -130,6 +130,17 @@ describe("rank and recall", () => {
     expect(known.set).toEqual(expect.arrayContaining(["ENG-001", "ENG-003"]));
     expect(ranked.indexOf(known) + 1).toBe(recall.found[0]!.rank);
     expect(recall.medianRank).toBe(recall.found[0]!.rank);
+  });
+
+  it("ranks a BURST that ends in a point above one of the same class, card count and Energy that ends only in damage (#751)", () => {
+    // ENG-005 sorts before ENG-011, so the card-set tie-break alone would put the damage line first.
+    const pyro: Raw = { code: "ENG-005", name: "Pyro Scholar", type: ["unit"], domains: ["calm"], energy: 3, text: "When you draw, deal 3 to a unit at a battlefield." };
+    const ranked = rank(search([...f.burst, pyro, ...f.legends].map(card), { maxCards: 2 }).candidates);
+    expect(ranked.map((c) => `${c.class} ${c.set.join(",")} ${c.energy}E ${c.ends.join("+")}`)).toEqual([
+      "BURST ENG-010,ENG-011 5E gain-point",
+      "BURST ENG-005,ENG-010 5E deal-damage",
+    ]);
+    expect(ranked.map(scores)).toEqual([true, false]);
   });
 });
 
