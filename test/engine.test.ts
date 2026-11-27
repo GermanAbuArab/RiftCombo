@@ -105,6 +105,15 @@ describe("search", () => {
     expect(candidates.map((c) => `${c.class} ${c.cards.join(">")}`)).toEqual(["ALT_WIN ENG-032>ENG-031"]);
   });
 
+  it("keeps the ordering of a card set that ends in a point, whichever ordering it visits first (#751)", () => {
+    const pinger = card({ code: "ENG-020", domains: ["calm"], text: "When you draw, deal 3 to a unit at a battlefield and draw 1." });
+    const scorer = card({ code: "ENG-021", domains: ["calm"], text: "When you draw, score 1 point and draw 1." });
+    for (const pool of [[pinger, scorer], [scorer, pinger]]) {
+      const bursts = search([...pool, ...legends], { maxCards: 2 }).candidates.filter((c) => c.class === "BURST");
+      expect(bursts.map((c) => `${c.cards.join(">")} ${c.ends.join("+")}`)).toEqual(["ENG-020>ENG-021 gain-point"]);
+    }
+  });
+
   it("stops at the budget and keeps the depths it finished", () => {
     const r = search([...f.cycle.map(card), ...legends], { maxCards: 3, budget: 3 });
     expect(r.stoppedBy).toBe("budget");

@@ -3,10 +3,9 @@ import type { CardIndex } from "../cards.js";
 import { CLASS_RANK } from "../combos.js";
 import type { Combo } from "../types.js";
 import type { Candidate } from "./search.js";
-import { canonicalOf } from "./search.js";
+import { canonicalOf, scores } from "./search.js";
 
-/** A line that ends in a point, a win or an extra turn (#751): damage alone wins no game in Riftbound. */
-export const scores = (c: Pick<Candidate, "ends">): boolean => c.ends.some((e) => e !== "deal-damage");
+export { scores };
 
 /**
  * Order: class as `src/combos.ts` ranks it (higher `CLASS_RANK` first, the order `src/plan.ts` and the

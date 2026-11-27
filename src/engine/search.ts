@@ -39,6 +39,9 @@ export const TERMINAL: Partial<Record<Effect, ComboClass>> = { "gain-point": "BU
 /** The effects a line can pay out in, for the ranker (#751): a point, a win, an extra turn, or damage. */
 export const PAYOFF: readonly Effect[] = ["gain-point", "win", "extra-turn", "deal-damage"];
 
+/** A line that ends in a point, a win or an extra turn (#751): damage alone wins no game in Riftbound. */
+export const scores = (c: Pick<Candidate, "ends">): boolean => c.ends.some((e) => e !== "deal-damage");
+
 export interface EdgeLink {
   from: string;
   to: string;
@@ -200,7 +203,10 @@ export function search(pool: Card[], opts: SearchOptions = {}): SearchResult {
     const cardsIn = path.map((i) => cardOf[i]!);
     const set = [...cardsIn].sort();
     const key = `${cls}|${set.join(",")}`;
-    if (found.has(key)) return;
+    // One row per class and card set; another ordering of the same set replaces it only when it scores
+    // and the kept one does not, so the visiting order never ranks a scoring line as damage-only (#751).
+    const kept = found.get(key);
+    if (kept && (scores(kept) || !scores({ ends }))) return;
     const members = set.map((b) => byBase.get(b)!);
     found.set(key, {
       cards: cardsIn,
