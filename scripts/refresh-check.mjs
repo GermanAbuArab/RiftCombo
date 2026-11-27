@@ -25,11 +25,14 @@ const UA = "RiftCombo/0.1 (personal fan project; +https://github.com/GermanAbuAr
 export const NEWS_URL = "https://playriftbound.com/en-us/news/";
 export const HUB_URL = "https://playriftbound.com/en-us/rules-hub/";
 const SITE = "https://playriftbound.com";
+const sha256 = (s) => createHash("sha256").update(s).digest("hex");
 
 const NEWS_PATH = /\/en-us\/news\/[a-z-]+\/[a-z0-9-]+/g;
 const PDF_URL = /https:\/\/cmsassets\.rgpub\.io\/[^"]+\.pdf/g;
-const WATCHED = /ban|errata|rules|faq|patch|changelog|overview/;
-const FAST = /ban|errata/;
+// Matched against the slug's hyphen-separated words, so "banner" or "urban" is not a ban list.
+const WATCHED = /(^|-)(bans?|errata|rules|faq|patch|changelog|overview)(-|$)/;
+const FAST = /(^|-)(bans?|errata)(-|$)/;
+const FETCH_MS = 60_000;
 
 // --- sources ------------------------------------------------------------------
 
@@ -44,7 +47,7 @@ function articleMeta(html) {
     if (!o || typeof o !== "object") return;
     const url = o.action?.payload?.url;
     const path = typeof url === "string" ? url.match(NEWS_PATH)?.[0] : undefined;
-    if (path && !meta.has(path)) meta.set(path, { title: o.title ?? null, publishedAt: o.analytics?.publishDate ?? null });
+    if (path && !meta.has(path)) meta.set(path, { title: typeof o.title === "string" ? o.title.replace(/\s+/g, " ").trim() : null, publishedAt: o.analytics?.publishDate ?? null });
     Object.values(o).forEach(walk);
   };
   walk(JSON.parse(m[1]));
@@ -68,18 +71,23 @@ export function rulesPdfs(hubHtml) {
 
 // --- data diffs ---------------------------------------------------------------
 
-const CARD_FIELDS = ["text", "effect", "name"];
+/** The fields of a card whose value differs between two builds (every field, not only the text). */
+const changedFields = (a, b) =>
+  [...new Set([...Object.keys(a), ...Object.keys(b)])].filter((f) => JSON.stringify(a[f]) !== JSON.stringify(b[f])).sort();
 
-/** cards[] by id; `built` and `resultsUpdatedAt` change on every build and are not compared. */
+/**
+ * cards[] by id; the top-level `built` and `resultsUpdatedAt` change on every build and are not
+ * compared. `digest` maps each added or changed id to a hash of its rebuilt card, so the key of a
+ * later change to the same card differs from the key of the first one.
+ */
 export function diffCards(oldJson, newJson) {
   const before = new Map(oldJson.cards.map((c) => [c.id, c]));
   const after = new Map(newJson.cards.map((c) => [c.id, c]));
   const added = [...after.keys()].filter((id) => !before.has(id)).sort();
   const removed = [...before.keys()].filter((id) => !after.has(id)).sort();
-  const changed = [...after.keys()]
-    .filter((id) => before.has(id) && CARD_FIELDS.some((f) => JSON.stringify(before.get(id)[f]) !== JSON.stringify(after.get(id)[f])))
-    .sort();
-  return { added, removed, changed };
+  const changed = [...after.keys()].filter((id) => before.has(id) && changedFields(before.get(id), after.get(id)).length > 0).sort();
+  const digest = Object.fromEntries([...added, ...changed].map((id) => [id, sha256(JSON.stringify(after.get(id)))]));
+  return { added, removed, changed, digest };
 }
 
 /** entries[] present on one side only (compared as whole entries), each tagged with its side. */
@@ -101,7 +109,6 @@ export function buildErrorLine(stderr) {
 
 // --- keys ---------------------------------------------------------------------
 
-const sha256 = (s) => createHash("sha256").update(s).digest("hex");
 
 /** The dedup key a filed issue carries as `refresh-key: <key>`. */
 export function refreshKey(kind, payload) {
@@ -111,7 +118,11 @@ export function refreshKey(kind, payload) {
       return `${kind}:${payload}`;
     case "cards":
       return `cards:${sha256(
-        [...payload.added.map((id) => `+${id}`), ...payload.removed.map((id) => `-${id}`), ...payload.changed.map((id) => `~${id}`)]
+        [
+          ...payload.added.map((id) => `+${id} ${payload.digest[id]}`),
+          ...payload.removed.map((id) => `-${id}`),
+          ...payload.changed.map((id) => `~${id} ${payload.digest[id]}`),
+        ]
           .sort()
           .join("\n"),
       )}`;
@@ -196,7 +207,7 @@ function cardsChange(cards, before, after) {
   const b = byId(before);
   const a = byId(after);
   const lines = cards.changed.slice(0, 10).flatMap((id) =>
-    CARD_FIELDS.filter((f) => JSON.stringify(b.get(id)[f]) !== JSON.stringify(a.get(id)[f])).map(
+    changedFields(b.get(id), a.get(id)).map(
       (f) => `- ${id} ${f}: ${JSON.stringify(b.get(id)[f])} -> ${JSON.stringify(a.get(id)[f])}`,
     ),
   );
@@ -211,7 +222,7 @@ function cardsChange(cards, before, after) {
       `- Printings: ${before.cards.length} -> ${after.cards.length}`,
       `- Added (${cards.added.length}): ${list(cards.added)}`,
       `- Removed (${cards.removed.length}): ${list(cards.removed)}`,
-      `- Changed text/effect/name (${cards.changed.length}): ${list(cards.changed)}`,
+      `- Changed (${cards.changed.length}): ${list(cards.changed)}`,
       ...(lines.length ? ["", "First changed lines:", ...lines.slice(0, 10)] : []),
       "",
       "## Change",
@@ -299,7 +310,7 @@ export function changes(sources, { slugs, pdfs, cards, legality, buildExit, buil
 // --- main ---------------------------------------------------------------------
 
 async function getText(url) {
-  const res = await fetch(url, { headers: { "User-Agent": UA } });
+  const res = await fetch(url, { headers: { "User-Agent": UA }, signal: AbortSignal.timeout(FETCH_MS) });
   if (!res.ok) throw new Error(`${url} -> HTTP ${res.status}`);
   return res.text();
 }
@@ -307,6 +318,7 @@ async function getText(url) {
 async function github(path, init = {}) {
   const res = await fetch(`https://api.github.com${path}`, {
     ...init,
+    signal: AbortSignal.timeout(FETCH_MS),
     headers: {
       Authorization: `Bearer ${process.env.GITHUB_TOKEN}`,
       Accept: "application/vnd.github+json",

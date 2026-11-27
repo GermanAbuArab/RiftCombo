@@ -42,6 +42,13 @@ describe("watchedSlugs", () => {
     ]);
   });
 
+  it("matches the slug's words, so a word that only contains 'ban' is not watched", () => {
+    const page = (slug: string) => `<a href="/en-us/news/announcements/${slug}">x</a>`;
+    expect(watchedSlugs(page("new-playmat-banner-art"))).toEqual([]);
+    expect(watchedSlugs(page("urban-legends-event"))).toEqual([]);
+    expect(watchedSlugs(page("announcing-riftbounds-first-bans"))).toHaveLength(1);
+  });
+
   it("skips a merch or event slug, and filters on the slug, not the rules-and-releases category", () => {
     const slugs = watchedSlugs(news).map((s: { slug: string }) => s.slug);
     expect(news).toContain("celebrate-convergence-fest-at-american-game-stores");
@@ -111,7 +118,7 @@ describe("changes", () => {
     const before = cardsJson("2026-11-26T00:00:00Z", [card("OGN-001", "a")]);
     const after = cardsJson("2026-11-27T09:17:00Z", [card("OGN-001", "a")]);
     const diff = diffCards(before, after);
-    expect(diff).toEqual({ added: [], removed: [], changed: [] });
+    expect(diff).toEqual({ added: [], removed: [], changed: [], digest: {} });
     expect(run(allKnown(), { cards: diff, cardsJson: { before, after } })).toEqual([]);
   });
 
@@ -119,11 +126,19 @@ describe("changes", () => {
     const before = cardsJson("1", [card("OGN-001", "a"), card("OGN-002", "b")]);
     const after = cardsJson("2", [card("OGN-001", "a2"), card("RAD-001", "c")]);
     const diff = diffCards(before, after);
-    expect(diff).toEqual({ added: ["RAD-001"], removed: ["OGN-002"], changed: ["OGN-001"] });
+    expect(diff).toMatchObject({ added: ["RAD-001"], removed: ["OGN-002"], changed: ["OGN-001"] });
     const out = run(allKnown(), { cards: diff, cardsJson: { before, after } });
     expect(out).toHaveLength(1);
     expect(out[0]!.labels).toEqual(["refresh", "data", "ready", "P2"]);
     expect(out[0]!.body).toContain('- OGN-001 text: "a" -> "a2"');
+  });
+
+  it("a change to any card field counts, not only the text", () => {
+    const before = cardsJson("1", [card("OGN-001", "a")]);
+    const after = cardsJson("1", [{ ...card("OGN-001", "a"), might: 2 }]);
+    const diff = diffCards(before, after);
+    expect(diff.changed).toEqual(["OGN-001"]);
+    expect(run(allKnown(), { cards: diff, cardsJson: { before, after } })[0]!.body).toContain("- OGN-001 might: 1 -> 2");
   });
 
   it("a legality diff on a green build is one change; a red build reports only the build", () => {
@@ -142,8 +157,9 @@ describe("changes", () => {
 
 describe("refreshKey", () => {
   it("the same change twice gives the same key, whatever the order", () => {
-    expect(refreshKey("cards", { added: ["B", "A"], removed: [], changed: ["C"] })).toBe(
-      refreshKey("cards", { added: ["A", "B"], removed: [], changed: ["C"] }),
+    const digest = { A: "1", B: "2", C: "3" };
+    expect(refreshKey("cards", { added: ["B", "A"], removed: [], changed: ["C"], digest })).toBe(
+      refreshKey("cards", { added: ["A", "B"], removed: [], changed: ["C"], digest }),
     );
     const e1 = { side: "+", entry: { name: "X" } };
     const e2 = { side: "-", entry: { name: "Y" } };
@@ -151,7 +167,16 @@ describe("refreshKey", () => {
     const s = allKnown();
     delete s.news[RADIANCE_BANS];
     expect(run(s)).toEqual(run(s));
-    expect(refreshKey("cards", { added: ["A"], removed: [], changed: [] })).not.toBe(refreshKey("cards", { added: [], removed: ["A"], changed: [] }));
+    const base = cardsJson("1", [card("OGN-001", "a")]);
+    const once = diffCards(base, cardsJson("2", [card("OGN-001", "b")]));
+    expect(refreshKey("cards", once)).toBe(refreshKey("cards", diffCards(base, cardsJson("3", [card("OGN-001", "b")]))));
+  });
+
+  it("a second change to the same card, after the first is fixed on master, gets a new key", () => {
+    const first = diffCards(cardsJson("1", [card("OGN-001", "a")]), cardsJson("2", [card("OGN-001", "b")]));
+    const second = diffCards(cardsJson("2", [card("OGN-001", "b")]), cardsJson("3", [card("OGN-001", "c")]));
+    expect(first.changed).toEqual(second.changed);
+    expect(refreshKey("cards", first)).not.toBe(refreshKey("cards", second));
   });
 
   it("a build failure is keyed by its Error line, not by Node's version footer", () => {
