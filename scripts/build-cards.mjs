@@ -115,8 +115,10 @@ export function displayName(item) {
 // whose two numbers differ would be a new shape, so it fails the build instead of being guessed.
 // It reads the normalized card after applyGalleryFixes (#664), because the gallery types some
 // Radiance units as gear (RAD-120 Meticulous Restorationist: gear with Might 2 and no bonus).
+// A card that is a unit and a gear (VEN-058 Patched Porobot prints UNIT GEAR, Might 2, no bonus;
+// #692) keeps its Might: it is a unit's own.
 export function gearMight(card) {
-  if (card.might === null || !card.type.includes("gear")) return card.might;
+  if (card.might === null || !card.type.includes("gear") || card.type.includes("unit")) return card.might;
   if (card.might !== card.mightBonus) throw new Error(`${card.publicCode}: gear might ${card.might} differs from mightBonus ${card.mightBonus}`);
   return null;
 }

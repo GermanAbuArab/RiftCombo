@@ -90,4 +90,12 @@ describe("data/gallery-fixes.json", () => {
       for (const c of printings) for (const [f, v] of Object.entries(e.printed)) expect(c[f], `${c.code} ${f}`).toEqual(v);
     }
   });
+
+  it("corrects the old-set rows #692 read from the card images: VEN-058 a unit gear, Heart of the Tempest no Yordle", () => {
+    const { cards } = JSON.parse(readFileSync(new URL("../data/cards.json", import.meta.url), "utf8"));
+    const at = (code: string) => cards.find((c: { code: string }) => c.code === code);
+    expect(at("VEN-058").type).toEqual(["unit", "gear"]);
+    expect(at("VEN-058").might).toBe(2);
+    for (const code of ["VEN-155", "VEN-197", "VEN-197*"]) expect(at(code).tags, code).toEqual(["Kennen"]);
+  });
 });

@@ -29,10 +29,14 @@ code is the stable key.
 | `VEN-109` Illaoi (and `UNL-160` Ultrasoft Poro until 2026-11) | Token Might printed as `:rb_energy_1: :rb_might:` — Riot uses the *Energy* glyph for the numeral `1` in front of the Might icon. Reads as "1 Energy of Might" if taken literally; it means a 1 Might token. Rule 187.7 is the authority for the Bird token, 187 for the shape. `UNL-160` reads `Play two 1 :rb_might: Bird unit` in the gallery read 2026-11-16 (#660); `VEN-109` still carries the Energy glyph. | Corpus L709, L884 as of the audit. |
 | `RAD-012` Runeblade Anvil | The kill cost names a Chaos rune, `:rb_energy_2::rb_rune_chaos:, :rb_exhaust:: Kill this.`, where the card prints a Fury rune. The gallery also ships the card as Chaos, and `data/gallery-fixes.json` corrects its domain to the printed Fury, but that overlay never touches text. Only the colour is wrong, and no script prices this cost: the turn clock reads rune glyphs only in an `[Equip]` cost (`equipCost`, `scripts/adversarial-check.mjs:1962`) or an `[Add]` (`POWER_ADD`, `LEGEND_ADD`, `HENGE`), and the card has neither. The site shows the text as shipped, `2 Energy + 1 Chaos Power, Exhaust: Kill this.` (`readableCardText` in `src/cards.ts`, also the deckbuilder's search text), and four synergy excludes quote it. The only RAD card whose text names a rune outside its own domains (measured 2026-11-23, #664). | API text read 2026-11-23. The card image, the `source` of its `data/gallery-fixes.json` entry, read 2026-11-23: `2`, a Fury rune, exhaust: Kill this. |
 | `OGN-259` Unforgiven against `OGN-305` / `OGN-305*` Unforgiven | Two printings of one legend with different text (#663). Riot re-worded `OGN-259` from `to or from its base` to `to or from your base` with no errata page; the showcase `OGN-305` and `OGN-305*` still read `its base`. In 1v1 the two are the same base, since a friendly unit is your own (740.1.a) and resides in your Base (107.1.c); in a team mode a teammate's unit is friendly too, and `OGN-259` now moves it to or from your base rather than its controller's. `equivalents` in `src/cards.ts` still treats them as one card. No catalogue entry moves a teammate's unit. | API bodies read 2026-11-27T21:15:24Z: `OGN-259/298` `<p>:rb_energy_2:, :rb_exhaust:: Move a friendly unit to or from your base.</p>`; `OGN-305/298` and `OGN-305*/298` `<p>…to or from its base.</p>`. |
+| `VEN-058` Patched Porobot | The gallery types it `["unit"]`; the card prints the type line `UNIT GEAR • PILTOVER • MECH • PORO`, cost 2, Might 2, no Might bonus. As a gear it triggers `OGN-091` Pit Crew ("When you play a gear, ready me.") and counts toward every "control N or more gear" clause, its own "3 or more OTHER gear" included for a second Porobot. **Overlaid**: `data/gallery-fixes.json` entry `VEN-058` sets `type` to `["unit","gear"]` (#692), and `gearMight` in `scripts/build-cards.mjs` keeps a unit gear's own Might. | Gallery read 2026-11-27 (`npm run build:data`): `type` `["unit"]`. The card image, the entry's `source`, read 2026-11-27. |
+| `VEN-155` Heart of the Tempest | The gallery tags it `["Yordle","Kennen"]`; the card prints the type line `LEGEND • KENNEN`, with no `Yordle`. **Overlaid**: `data/gallery-fixes.json` entry `VEN-155` sets `tags` to `["Kennen"]` (#692). No synergy rule matched it on `Yordle`: `npm run synergies` lists it under the same rules before and after. | Gallery read 2026-11-27: `tags` `["Yordle","Kennen"]`. The card image, the entry's `source`, read 2026-11-27. |
+| `VEN-197` / `VEN-197*` Heart of the Tempest | The same `Yordle` tag on the showcase printing and its signed `VEN-197*`; both images print `LEGEND • KENNEN`. **Overlaid**: `data/gallery-fixes.json` entry `VEN-197`, which applies to every printing of the base, so it covers `VEN-197*` too; `VEN-155` is a separate base and has its own entry (#692). | Gallery read 2026-11-27: `tags` `["Yordle","Kennen"]` on both. The images of `VEN-197` (the entry's `source`) and `VEN-197*` read 2026-11-27. |
 
 Except `RAD-012`, whose walk pays its kill cost with the Fury rune the card prints, and the two
 Unforgivens in a team mode, none of these change what a card does, so none of them blocks a rules
-walk. The
+walk. The three type and tag rows (`VEN-058`, `VEN-155`, `VEN-197`) did change what a card is, and
+the built data no longer carries them: `data/gallery-fixes.json` overlays the printed value. The
 bracket-less keywords are the ones with teeth: any parser that finds keywords by `[…]` misses
 `Equip` on `VEN-073` and `RAD-071`, `Ganking` on `SFD-096` and `Hidden` on `SFD-138`. Five synergy
 predicates do find `[Equip]` that way (`fiora-equipment-ready`, `aphelios-equipment-attach`,
@@ -55,9 +59,9 @@ method (a blind transcription of every image, cross-checked). `applyGalleryFixes
 card, and like the errata overlay it fails the build when the gallery stops shipping the named value,
 so an entry retires itself when Riot corrects the data. `test/gallery-fixes.test.ts` pins both.
 
-The same class of error in the older sets (`VEN-058` Patched Porobot typed `unit` against a printed
-`UNIT GEAR`, the `Yordle` tag on `VEN-155` and `VEN-197`, and `OGN-235` above) is not overlaid yet:
-it is #692.
+The same class of error in the older sets is overlaid by the same file since #692: `VEN-058`
+Patched Porobot typed `unit` against a printed `UNIT GEAR`, and the `Yordle` tag on `VEN-155` and
+`VEN-197` (rows in the table above). `OGN-235` Karma's `Vi` tag stays a register row only.
 
 ## Not anomalies — checked and explained
 
@@ -77,6 +81,11 @@ it is #692.
   name + type and `src/matcher.ts:47` uses it, so a decklist bringing `VEN-SP6` matches a combo
   authored on `OGS-014`.
 - **`" - Starter"` in legend names.** Refuted in issue #14: both forms resolve.
+- **`energy: null` on the tokens `OGN-271`–`OGN-274`** (three Recruits and Sprite). Piltover
+  Archive and dotgg give them `0`; Riot's gallery gives `null`. The gallery is right: each card
+  image prints `TOKEN UNIT` and a Might (1, 1, 1, 3) and no cost at all. `OGN-271` was read by the
+  #664 cross-check (2026-11-23), `OGN-272`, `OGN-273` and `OGN-274` on 2026-11-27 (#692). A token
+  is never paid for, so no cost is the printed value and nothing is overlaid.
 
 ## Corpus membership
 
