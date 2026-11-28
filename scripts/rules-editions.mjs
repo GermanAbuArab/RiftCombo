@@ -209,12 +209,11 @@ export const legs = (rows) =>
 // went back by their ledger rows (#707). R36 = B (2026-11-26: v Svellsongur give v + 1 instances) lifted
 // the nine Svellsongur BURSTs of #722, re-walked in docs/phase0/walks/2026-11-26-r36-rewalk-1.md, and the four ALT_WINs and one INFINITE of #723,
 // re-walked in docs/phase0/walks/2026-11-26-r36-rewalk-2.md, and the eleven ENGINEs of #724, re-walked in
-// docs/phase0/walks/2026-11-26-r36-rewalk-3.md.
+// docs/phase0/walks/2026-11-26-r36-rewalk-3.md, and the twelve ENGINEs of #725, re-walked in
+// docs/phase0/walks/2026-11-26-r36-rewalk-4.md, which leaves none held.
 const R36 = "waits on R36 (#706): the Svellsongur stack count was walked on the 2026-07-16 layers";
 export const HELD_ON_OLD = Object.fromEntries(
   [
-    "svellsongur-eminent-benefactor-gold", "svellsongur-rumble-scrapper-mechs", "svellsongur-traveling-merchant-discard", "svellsongur-ribbon-dancer-fiora-mass-ready",
-    "twilight-reveler-svellsongur-stellacorn-draw", "yasuo-stellacorn-svellsongur-draw", "svellsongur-treasure-hunter-gold", "svellsongur-yasuo-remorseful-sweep", "svellsongur-qiyana-victorious-modal", "svellsongur-kato-the-arm-keyword-spread", "svellsongur-teemo-strategist-defend-burst", "yasuo-remorseful-svellsongur-nasus-conquer",
   ].map((id) => [id, R36]),
 );
 

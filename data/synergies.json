@@ -281,14 +281,11 @@
           "riven-shattered-svellsongur-weaponmaster-pull",
           "svellsongur-copy-hold",
           "svellsongur-eminent-benefactor-gold",
-          "svellsongur-kato-the-arm-keyword-spread",
           "svellsongur-ornn-hold",
           "svellsongur-qiyana-victorious-modal",
           "svellsongur-ribbon-dancer-fiora-mass-ready",
           "svellsongur-rumble-scrapper-mechs",
           "svellsongur-traveling-merchant-discard",
-          "svellsongur-treasure-hunter-gold",
-          "svellsongur-yasuo-remorseful-sweep",
           "yasuo-remorseful-svellsongur-nasus-conquer"
         ]
       },
@@ -3503,7 +3500,6 @@
           "456.1"
         ],
         "combos": [
-          "svellsongur-treasure-hunter-gold",
           "yasuo-stellacorn-svellsongur-draw",
           "yasuo-syren-unforgiven-point",
           "yasuo-windrider-ride-the-wind-chain"
