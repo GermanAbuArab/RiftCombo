@@ -20,7 +20,7 @@ const TYPES = {
   ".woff2": "font/woff2", ".map": "application/json", ".png": "image/png", ".txt": "text/plain; charset=utf-8",
 };
 
-createServer((req, res) => {
+const server = createServer((req, res) => {
   const path = requestPath(req.url);
   // On every answer, 400 and 404 included, as production's vercel.json headers are; a path that does not
   // decode is matched raw, which only the /(.*) rule can match.
@@ -37,3 +37,13 @@ createServer((req, res) => {
     res.writeHead(200).end(body);
   } catch { res.writeHead(500).end("read failed"); }
 }).listen(Number(process.env.PORT), "127.0.0.1");
+
+// A teardown that kills `vercel dev` (by its port, by pid, by SIGKILL) never reaches this child, which was
+// reparented to pid 1 and kept serving from a removed worktree (#780). Exit once the parent is gone; a ppid of
+// 1 is gone too, which covers a parent that died before this line could record it.
+const PARENT = process.ppid;
+setInterval(() => {
+  if (process.ppid === PARENT && PARENT !== 1) return;
+  server.close(() => process.exit(0));
+  server.closeAllConnections(); // a keep-alive socket would hold close() open
+}, 1000).unref();
