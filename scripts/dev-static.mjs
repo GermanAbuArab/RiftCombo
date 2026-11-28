@@ -39,10 +39,11 @@ const server = createServer((req, res) => {
 }).listen(Number(process.env.PORT), "127.0.0.1");
 
 // A teardown that kills `vercel dev` (by its port, by pid, by SIGKILL) never reaches this child, which was
-// reparented to pid 1 and kept serving from a removed worktree (#780). Exit once the parent is gone.
+// reparented to pid 1 and kept serving from a removed worktree (#780). Exit once the parent is gone; a ppid of
+// 1 is gone too, which covers a parent that died before this line could record it.
 const PARENT = process.ppid;
 setInterval(() => {
-  if (process.ppid === PARENT) return;
+  if (process.ppid === PARENT && PARENT !== 1) return;
   server.close(() => process.exit(0));
   server.closeAllConnections(); // a keep-alive socket would hold close() open
 }, 1000).unref();

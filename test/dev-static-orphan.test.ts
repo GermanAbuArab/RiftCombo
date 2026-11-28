@@ -21,16 +21,20 @@ const alive = (pid: number) => {
 describe("dev-static exits when its parent dies (#780)", () => {
   it("is gone within 5 s of a SIGKILL to its parent", async () => {
     const parent = spawn(process.execPath, ["-e", PARENT, DEV_STATIC], { stdio: ["ignore", "pipe", "inherit"] });
-    const pid = Number(await new Promise<string>((ok) => parent.stdout.once("data", (d) => ok(String(d).trim()))));
-    expect(pid).toBeGreaterThan(0);
-    // Let it start listening, so the exit is the watch's and not a crash before listen.
-    await new Promise((ok) => setTimeout(ok, 500));
-    expect(alive(pid)).toBe(true);
-    parent.kill("SIGKILL");
-    const deadline = Date.now() + 5_000;
-    while (alive(pid) && Date.now() < deadline) await new Promise((ok) => setTimeout(ok, 100));
-    const survived = alive(pid);
-    if (survived) process.kill(pid, "SIGKILL");
-    expect(survived).toBe(false);
+    let pid = 0;
+    try {
+      pid = Number(await new Promise<string>((ok) => parent.stdout.once("data", (d) => ok(String(d).trim()))));
+      expect(pid).toBeGreaterThan(0);
+      // Let it start listening, so the exit is the watch's and not a crash before listen.
+      await new Promise((ok) => setTimeout(ok, 500));
+      expect(alive(pid)).toBe(true);
+      parent.kill("SIGKILL");
+      const deadline = Date.now() + 5_000;
+      while (alive(pid) && Date.now() < deadline) await new Promise((ok) => setTimeout(ok, 100));
+      expect(alive(pid)).toBe(false);
+    } finally {
+      parent.kill("SIGKILL");
+      if (pid > 0 && alive(pid)) process.kill(pid, "SIGKILL");
+    }
   }, BUDGET_MS);
 });
