@@ -1,0 +1,36 @@
+{
+ "Lux infinite energy (POSITIVE, 2 sources)": [
+  "OGN-212/298",
+  "OGN-110/298",
+  "UNL-165/219",
+  "UNL-173/219"
+ ],
+ "Lux infinite power (POSITIVE, 1 source)": [
+  "OGN-212/298",
+  "OGN-104/298",
+  "OGN-087/298"
+ ],
+ "Infinite Recruits T3 (POSITIVE, Riot primary)": [
+  "OGN-177/298",
+  "SFD-153/221",
+  "SFD-171/221"
+ ],
+ "Renata double Time Warp (POSITIVE, 1 src)": [
+  "SFD-088/221",
+  "OGN-122/298",
+  "OGN-110/298",
+  "OGN-213/298"
+ ],
+ "Kai'Sa Garbage (POSITIVE, 1 src)": [
+  "SFD-005/221",
+  "OGN-099/298",
+  "OGN-113/298",
+  "UNL-009/219",
+  "OGN-110/298"
+ ],
+ "MALZAHAR/FIORA/GAREN (NEGATIVE - my broken derivation)": [
+  "OGN-113/298",
+  "SFD-180/221",
+  "OGS-013/024"
+ ]
+}

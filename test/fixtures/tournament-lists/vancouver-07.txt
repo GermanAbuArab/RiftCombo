@@ -1,0 +1,36 @@
+Legend:
+Jhin, Virtuoso
+Champion:
+1 Jhin, Murderous Artist
+Main Deck:
+2 Consult the Past
+3 Curtain Call
+3 Deadly Flourish
+3 Downstage Dramatics
+2 Falling Star
+2 Frigid Touch
+3 Jhin, Meticulous Killer
+3 Noxus Hopeful
+3 Plundering Poro
+2 Pouty Poro
+1 Progress Day
+2 Singularity
+2 Sprite Burst
+2 Stupefy
+2 Thousand-Tailed Watcher
+2 Time Warp
+2 Watchful Sentry
+Battlefields:
+1 Forgotten Library
+1 Frozen Fortress
+1 Void Gate
+Rune Pool:
+6 Fury Rune
+6 Mind Rune
+Sideboard:
+1 Falling Star
+2 Ferrous Forerunner
+1 Rocket Barrage
+1 Singularity
+2 Thermo Beam
+1 Unchecked Power

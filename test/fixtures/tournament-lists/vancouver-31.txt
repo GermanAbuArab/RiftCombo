@@ -1,0 +1,39 @@
+Legend:
+Kai'Sa, Daughter of the Void
+Champion:
+1 Kai'Sa, Survivor
+Main Deck:
+1 Bellows Breath
+1 Brynhir Thundersong
+2 Eclipse
+3 Falling Star
+3 Ferrous Forerunner
+3 Hextech Ray
+2 Inferna
+2 Lecturing Yordle
+1 Long Sword
+2 Noxus Hopeful
+3 Ravenbloom Student
+2 Singularity
+1 Smite
+3 Stupefy
+3 Thousand-Tailed Watcher
+2 Time Warp
+1 Turn to Dust
+1 Void Seeker
+3 Watchful Sentry
+Battlefields:
+1 Star Spring
+1 The Arena's Greatest
+1 Void Gate
+Rune Pool:
+7 Fury Rune
+5 Mind Rune
+Sideboard:
+1 Brynhir Thundersong
+1 Progress Day
+1 Rengar, Pouncing
+1 Smite
+1 Thermo Beam
+2 Turn to Dust
+1 Unchecked Power

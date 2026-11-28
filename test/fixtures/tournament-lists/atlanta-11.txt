@@ -1,0 +1,33 @@
+Legend:
+1 Lee Sin, Blind Monk
+Champion:
+1 Lee Sin, Centered
+Main Deck:
+3 Challenge
+3 Charm
+3 Defy
+1 Desert's Call
+3 Discipline
+2 Not So Fast
+3 Punch First
+1 Clockwork Keeper
+3 First Mate
+3 Irelia, Fervent
+3 Lonely Poro
+3 Lucian, Merciless
+3 Stalwart Poro
+2 Doran's Blade
+3 Zhonya's Hourglass
+Battlefields:
+1 Monastery of Hirana
+1 Sunken Temple
+1 Zaun Warrens
+Rune Pool:
+6 Body Rune
+6 Calm Rune
+Sideboard:
+1 Akshan, Mischievous
+2 Disarming Rake
+2 Sabotage
+1 Thwonk!
+2 Unyielding Spirit

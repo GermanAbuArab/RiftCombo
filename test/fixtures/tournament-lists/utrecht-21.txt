@@ -1,0 +1,34 @@
+Legend:
+1 Miss Fortune, Bounty Hunter
+Champion:
+1 Miss Fortune, Captain
+Main Deck:
+3 Bullet Time
+3 Catalyst of Aeons
+3 Dazzling Aurora
+3 Elder Dragon
+1 Flurry of Blades
+3 Gust
+2 Last Rites
+3 Lunar Boon
+3 Mindsplitter
+3 Mobilize
+2 Repulse
+3 Sabotage
+3 Scryer's Bloom
+3 Stacked Deck
+1 The Harrowing
+Battlefields:
+1 Aspirant's Climb
+1 Forgotten Monument
+1 Sigil of the Storm
+Rune Pool:
+6 Body Rune
+6 Chaos Rune
+Sideboard:
+2 Abandon
+1 Challenge
+1 Factory Recall
+1 Fading Memories
+1 Repulse
+2 Unyielding Spirit

@@ -1,0 +1,119 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "buildCommand": "npm run build:web",
+  "devCommand": "node scripts/dev-static.mjs",
+  "ignoreCommand": "base=$VERCEL_GIT_PREVIOUS_SHA; { [ -n \"$base\" ] && git cat-file -e \"$base^{commit}\" 2>/dev/null && git diff --quiet \"$base\" HEAD -- web src data scripts api docs/plays package.json package-lock.json tsconfig.json vercel.json ; } || exit 1",
+  "outputDirectory": "public",
+  "framework": null,
+  "git": {
+    "deploymentEnabled": {
+      "*/*": false,
+      "*/**": false,
+      "work": false,
+      "issue-*": false,
+      "pr-assets": false,
+      "master": true
+    }
+  },
+  "cleanUrls": true,
+  "rewrites": [
+    {
+      "source": "/favicon.ico",
+      "destination": "/favicon.svg"
+    },
+    {
+      "source": "/decks/:path*",
+      "destination": "/app"
+    }
+  ],
+  "headers": [
+    {
+      "source": "/((?!(?:(?:combos|plays)/[^/]+|guide)$).*)",
+      "headers": [
+        {
+          "key": "Content-Security-Policy",
+          "value": "default-src 'self'; script-src 'self' 'sha256-jTZ1NN0fcaPrxjNo8In2/xdPdOzR5Pil1LnZ7gkEVYc='; style-src 'self'; font-src 'self'; img-src 'self' data: https://cmsassets.rgpub.io; connect-src 'self' https://ep-shiny-feather-avr21d2p.neonauth.c-11.us-east-1.aws.neon.tech https://ep-shiny-feather-avr21d2p.apirest.c-11.us-east-1.aws.neon.tech; frame-ancestors 'none'; object-src 'none'; base-uri 'self'; form-action 'self'"
+        },
+        {
+          "key": "Cross-Origin-Opener-Policy",
+          "value": "same-origin"
+        },
+        {
+          "key": "Strict-Transport-Security",
+          "value": "max-age=63072000; includeSubDomains"
+        },
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "X-Frame-Options",
+          "value": "DENY"
+        },
+        {
+          "key": "Referrer-Policy",
+          "value": "strict-origin-when-cross-origin"
+        },
+        {
+          "key": "Permissions-Policy",
+          "value": "camera=(), microphone=(), geolocation=()"
+        }
+      ]
+    },
+    {
+      "source": "/((?:combos|plays)/[^/]+|guide)",
+      "headers": [
+        {
+          "key": "Content-Security-Policy",
+          "value": "default-src 'self'; script-src 'self' 'sha256-jTZ1NN0fcaPrxjNo8In2/xdPdOzR5Pil1LnZ7gkEVYc=' 'sha256-E0fRoBX116XP3oU7oYV/0m8fUwVwvkzwC0p6vTkNr1c='; style-src 'self'; font-src 'self'; img-src 'self' data: https://cmsassets.rgpub.io; connect-src 'self' https://ep-shiny-feather-avr21d2p.neonauth.c-11.us-east-1.aws.neon.tech https://ep-shiny-feather-avr21d2p.apirest.c-11.us-east-1.aws.neon.tech; frame-ancestors 'none'; object-src 'none'; base-uri 'self'; form-action 'self'"
+        },
+        {
+          "key": "Content-Security-Policy-Report-Only",
+          "value": "script-src 'sha256-E0fRoBX116XP3oU7oYV/0m8fUwVwvkzwC0p6vTkNr1c=' 'strict-dynamic' 'unsafe-inline' 'unsafe-eval' https: http:; object-src 'none'; base-uri 'self'; frame-ancestors 'none'; form-action 'self'; upgrade-insecure-requests; report-uri /api/csp-report"
+        },
+        {
+          "key": "Cross-Origin-Opener-Policy",
+          "value": "same-origin"
+        },
+        {
+          "key": "Strict-Transport-Security",
+          "value": "max-age=63072000; includeSubDomains"
+        },
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "X-Frame-Options",
+          "value": "DENY"
+        },
+        {
+          "key": "Referrer-Policy",
+          "value": "strict-origin-when-cross-origin"
+        },
+        {
+          "key": "Permissions-Policy",
+          "value": "camera=(), microphone=(), geolocation=()"
+        }
+      ]
+    },
+    {
+      "source": "/manifest.webmanifest",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "application/manifest+json"
+        }
+      ]
+    },
+    {
+      "source": "/ads.txt",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "text/plain; charset=utf-8"
+        }
+      ]
+    }
+  ]
+}

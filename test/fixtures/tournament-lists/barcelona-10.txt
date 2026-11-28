@@ -1,0 +1,38 @@
+Legend:
+1 Jhin, Virtuoso
+Champion:
+1 Jhin, Meticulous Killer
+Main Deck:
+1 Bellows Breath
+3 Consult the Past
+3 Curtain Call
+3 Deadly Flourish
+2 Ferrous Forerunner
+2 Forecaster
+3 Noxus Hopeful
+1 Orb of Regret
+3 Plundering Poro
+2 Progress Day
+1 Rocket Barrage
+3 Singularity
+3 Sprite Burst
+3 Stupefy
+2 Thousand-Tailed Watcher
+2 Time Warp
+1 Unchecked Power
+1 Watchful Sentry
+Battlefields:
+1 Frozen Fortress
+1 Rockfall Path
+1 Sigil of the Storm
+Rune Pool:
+4 Fury Rune
+8 Mind Rune
+Sideboard:
+2 Brittle Steel
+2 Decree of Insight
+1 Falling Comet
+1 Ferrous Forerunner
+1 Frigid Touch
+2 Pickpocket
+1 Temporal Breach

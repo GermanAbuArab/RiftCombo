@@ -1,0 +1,33 @@
+Legend:
+1 Fiora, Grand Duelist
+Champion:
+1 Fiora, Worthy
+Main Deck:
+3 Akshan, Mischievous
+3 Challenge
+3 Dazzling Aurora
+3 Divining Shells
+1 Doran's Blade
+3 Elder Dragon
+2 Harnessed Dragon
+1 Hidden Blade
+3 Mobilize
+2 Rengar, Trophy Hunter
+3 Rift Herald
+3 Riposte
+3 Sacrifice
+3 Sett, Brawler
+3 Shepherd's Heirloom
+Battlefields:
+1 Amateur Recital
+1 Aspirant's Climb
+1 Trapping Ground
+Rune Pool:
+8 Body Rune
+4 Order Rune
+Sideboard:
+2 Divine Judgment
+1 Fiora, Victorious
+1 Repulse
+2 Sabotage
+2 Salvage

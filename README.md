@@ -1,0 +1,125 @@
+# RiftCombo
+
+Pegá una lista de Riftbound — texto, deck code o link público de Piltover Archive — y ves qué combos
+conocidos ya contiene, cuáles le faltan por una o dos cartas, y qué cartas están baneadas o
+restringidas en el formato que elijas, dibujado como un mapa de piezas, combos y remates.
+
+**Live:** https://riftcombo.app · **Estado del proyecto:** [`docs/status.md`](docs/status.md)
+
+Riftbound no tiene una base pública de combos. Este repositorio es una: cada entrada de
+`data/combos.json` está escrita a mano contra el texto de carta de Riot y las Core Rules, con sus
+fuentes adjuntas. Las **245 entradas de hoy son `verified`**: alguien caminó el loop paso a paso y
+dejó el documento de la caminata en [`docs/phase0/walks/`](docs/phase0/walks/README.md).
+
+## Qué hace
+
+- Empareja por código de carta (`OGN-212`), nunca por nombre, así que una reimpresión o una errata
+  nunca parte un combo en dos.
+- Compone combos en un grafo de dependencias: una línea que necesita Energía infinita se muestra
+  junto al loop que la produce.
+- Muestra los casi-aciertos: combos a una, dos o tres cartas, con las piezas que faltan marcadas.
+- Reporta legalidad por formato desde el Rules Hub de Riot, y aplica la errata publicada como un
+  overlay fechado.
+- **My decks**: biblioteca de mazos, editor con validación de construcción, importación desde
+  Piltover Archive y exportación a deck code.
+- Empareja entero en el navegador. Una lista se guarda sólo si iniciás sesión y apretás Save, y
+  entonces se guarda el texto que pegaste — así una lista vieja se vuelve a emparejar contra el
+  catálogo de hoy en vez de quedar como un resultado rancio.
+
+## Verificar
+
+Los tres, antes de decir que algo anda:
+
+```
+npm test && npm run typecheck && npm run build:web
+```
+
+## Correrlo
+
+```
+npm install
+npm run build:data   # baja la galería de Riot -> data/cards.json, aplica errata, resuelve legalidad
+```
+
+`npm run dev` está roto (el Development Command del proyecto de Vercel es `npm run dev`, así que
+`vercel dev` lo rechaza como invocación recursiva). Para mirar la UI: `cd public && python3 -m
+http.server 8788`, que alcanza para todo menos la ruta `/api/deck-url`.
+
+**El deploy es un push a master**: Vercel está conectado al repo y construye desde el árbol
+committeado. `public/` es artefacto de build de `web/` — no se edita a mano.
+
+> ⚠️ No hay ambiente de staging: cualquier push a `master` deploya a producción de inmediato, y el
+> único proyecto Neon configurado también es el de producción. Para probar cuentas o RLS, creá un
+> branch hijo de Neon (ver `scripts/check-rls-neon.mjs`); nunca corras el check contra `main`.
+
+## Cuentas
+
+Todo el sitio está detrás del login con Google (Neon Auth, con el cliente OAuth propio del
+proyecto). Dos valores públicos lo configuran, desde `.env.local` localmente y desde las variables
+de entorno de Vercel en producción:
+
+```
+NEON_AUTH_URL=https://<ep>.neonauth.<región>.neon.tech/neondb/auth
+NEON_DATA_API_URL=https://<ep>.apirest.<región>.neon.tech/neondb/rest/v1
+```
+
+Las dos son públicas por diseño: viajan en cada bundle del navegador, y lo que mantiene las filas
+de un jugador lejos de otro es row-level security en la base, servida por la Data API de Neon.
+`scripts/build-web.mjs` las hornea en el bundle, y `npm run headers` regenera `vercel.json` para
+que el mismo origen aparezca literal en `connect-src` — corrélo después de cambiar cualquiera de
+las dos y committeá el resultado, porque Vercel lee `vercel.json` antes de correr el build.
+
+El sign-in es una redirección de página completa, no un popup: el sitio manda
+`Cross-Origin-Opener-Policy: same-origin`, bajo la cual un popup queda cortado de la página que lo
+abrió y el flujo nunca vuelve, sin nada en la consola que lo diga.
+
+```
+npm run check:rls   # dos usuarios reales; ninguno puede tocar las filas del otro
+```
+
+`npm run check:rls` corre `scripts/check-rls-neon.mjs` y **solo en un branch hijo de Neon**, nunca
+en `main` (producción tiene el sign-up por email apagado; el header del script explica cómo
+prenderlo en el branch). Lee `NEON_AUTH_URL`, `NEON_DATA_API_URL`, `NEON_PROJECT_ID` y
+`NEON_BRANCH_ID`, todas públicas; no maneja ninguna clave.
+
+*Historia: hasta el 2026-09-25 las cuentas vivían en Supabase; el corte a Neon fue el PR #225.
+`supabase/` queda en el repo solo como registro de esas migraciones.*
+
+## Infraestructura
+
+- **Hosting**: Vercel project `riftcombo` (Pro team), production branch `master`. `npx vercel ls riftcombo` on 2026-11-01 shows the latest production deploys Ready.
+- **Database and auth**: Neon `quiet-breeze-27436036` (aws-us-east-1), branch `main` = `br-wandering-haze-av7v6x9v`; Neon Auth with the project's own Google OAuth client, and the Data API (RLS). Production reads `NEON_AUTH_URL` and `NEON_DATA_API_URL`.
+- **Backing decision**: `_infra/decisions/2026-09-19-todo-a-neon-salvo-sir-loin`.
+- **Data refresh detector (#735)**: GitHub Actions workflow `.github/workflows/refresh.yml` on this repo, daily at 09:17 UTC (`cron "17 9 * * *"`) plus `workflow_dispatch`, on a standard `ubuntu-latest` runner. Token: the run's `GITHUB_TOKEN` only, scoped `contents: read, issues: write`; no secret. It rebuilds the card data on the runner, reads the rules hub and the news page, and files one `refresh`-labelled issue per change (`scripts/refresh-check.mjs`, state in `data/sources.json`); it never commits. Cost: zero, since the repo is public (`gh repo view --json visibility` printed `PUBLIC` on 2026-11-27) and GitHub's Actions billing page lists "Standard GitHub-hosted runners in public repositories" under usage that "remains free" (https://docs.github.com/en/billing/concepts/product-billing/github-actions, read 2026-11-27).
+- **Combo engine (#736)**: GitHub Actions workflow `.github/workflows/engine.yml` on this repo, on `workflow_dispatch` and on a push to `master` that touches `data/cards.json` or `src/engine/**`, on a standard `ubuntu-latest` runner with `timeout-minutes: 30`. Token: the run's `GITHUB_TOKEN`, scoped `contents: read`; no secret. It runs `npm run engine -- --recall --coverage` (`src/cli-engine.ts`) and uploads `out/engine/candidates.json` as the 90-day artifact `candidates`; it never commits. Cost: zero on the same basis as the refresh detector above (public repo, standard runner). It runs there and not on the Mac because the full search is CPU and memory load (#451).
+- **Search engines (#271, 2026-10-07)**: Google Search Console, **domain** property `riftcombo.app`, verified by DNS with the record `TXT @ "google-site-verification=O7V2TlovaHfx_-ex5s7ZBLlH3kaBi7hYXlNRou8RHsw"` (Vercel DNS, team `germanabuarabs-projects`, `rec_dd3a9683fe204fc2892c09c7`; deleting it un-verifies the property). Bing Webmaster Tools, site `https://riftcombo.app/` imported from Search Console (no record of its own; Bing re-validates against Search Console with read-only access). `https://riftcombo.app/sitemap.xml` is submitted in both. Account: the owner's Google account, in both.
+- **Riot Developer Portal (#285, 2026-10-07)**: product **RiftCombo**, application `888790`, Production API key, game focus Riftbound, API `RIFTBOUND-CONTENT-V1`, Default Group of the owner's Riot account (signed in with his Google account). URL verified through `web/riot.txt`, served at `https://riftcombo.app/riot.txt` (deleting it before approval blocks the review). Status on 2026-10-07: **Unverified** (submitted; Riot reviews it only after the portal's VERIFY URL check finds `riot.txt` live, which this README's PR deploys; the status after that check is on #285). Ads stay off until the status is Approved or Acknowledged (Riftbound Digital Tools Policy, #272 §1). The application text is on #285.
+
+## Datos
+
+| archivo | qué | fuente |
+|---|---|---|
+| `data/cards.json` | cada printing, con el texto de reglas y el `effect` de Equipment que la mayoría de los mirrors pierde | API de galería de Riot, vía `scripts/build-cards.mjs` |
+| `data/errata.json` | overlay fechado de find/replace; el build **falla** si un find-string deja de matchear | anuncios de errata de Riot |
+| `data/legality.src.json` | lista de bans por formato | Rules Hub de Riot, transcrita a mano |
+| `data/combos.json` | el catálogo, autorado | ver las `sources` de cada entrada |
+| `data/synergies.json` | 96 reglas de patrón: regla verificada a mano, instancias por texto | ver `basis` de cada regla |
+| `docs/status.md` | **el estado del proyecto** | medido |
+| `docs/phase0/walks/` | las 62 caminatas a mano, con su índice | — |
+
+## Aportar un combo
+
+Abrí un issue con las cartas (códigos, no sólo nombres), el texto exacto que importa, el estado de
+juego que necesita, los pasos numerados con la aritmética por iteración, los números de regla en los
+que se apoya y dónde lo encontraste. Todo lo que llegue a 8 puntos, loopee sin cota, gane por
+condición alternativa o produzca valor repetible entra acá. "Se siente fuerte" no.
+
+## Legal
+
+El descargo va literal, sin parafrasear (`docs/plan.md` §1):
+
+> RiftCombo was created under Riot Games' "Legal Jibber Jabber" policy using assets owned by Riot
+> Games. Riot Games does not endorse or sponsor this project.
+
+Sin publicidad, sin donaciones, sin datos de play-rate ni win-rate. RiftCombo describe combos; nunca
+los juega por vos.

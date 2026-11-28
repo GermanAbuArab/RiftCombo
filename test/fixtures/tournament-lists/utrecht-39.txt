@@ -1,0 +1,38 @@
+Legend:
+1 Viktor, Herald of the Arcane
+Champion:
+1 Viktor, Leader
+Main Deck:
+2 Bellows Breath
+2 Card Sharp
+3 Carrion Dredger
+1 Chakram Dancer
+3 Cull the Weak
+1 Eclipse
+1 Facebreaker
+3 Hidden Blade
+3 Honest Broker
+3 Imperial Decree
+1 Salvage
+2 Shadow's Call
+2 Sprite Fountain
+3 Stupefy
+2 Thousand-Tailed Watcher
+2 Vi, Peacekeeper
+2 Wages of Pain
+3 Xin Zhao, Vigilant
+Battlefields:
+1 Forbidding Waste
+1 Rockfall Path
+1 The Arena's Greatest
+Rune Pool:
+5 Mind Rune
+7 Order Rune
+Sideboard:
+1 Ashe, Focused
+1 Eclipse
+2 Pickpocket
+1 Safety Inspector
+1 Salvage
+1 Singularity
+1 Sprite Fountain

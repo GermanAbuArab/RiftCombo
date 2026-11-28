@@ -1,0 +1,1056 @@
+/* RiftCombo — visual identity taken from Riot's own Riftbound surfaces (playriftbound.com):
+   navy-teal ground, cream text, one orange accent. One type family; hierarchy comes from size
+   and weight, not from a display face. Deliberately NOT the reference tool's vocabulary: no dot
+   grid, no mono eyebrows with wide tracking, no categorical rainbow. House rules: no glow, no
+   noise, no emoji, no decorative shadows, no blue/purple gradients. */
+
+/* Inter, self-hosted (#295): the variable font Google Fonts serves, one file per subset with Google's own
+   unicode-range split, so a page downloads only the subsets its text uses and renders as it did when
+   Google served it. Fetched from Google Fonts (Inter v20) on 2026-10-07; SIL OFL 1.1, licence
+   in fonts/OFL.txt. */
+@font-face { font-family: "Inter"; font-style: normal; font-weight: 400 700; font-display: swap; src: url("/fonts/inter-cyrillic-ext.woff2") format("woff2"); unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F; }
+@font-face { font-family: "Inter"; font-style: normal; font-weight: 400 700; font-display: swap; src: url("/fonts/inter-cyrillic.woff2") format("woff2"); unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116; }
+@font-face { font-family: "Inter"; font-style: normal; font-weight: 400 700; font-display: swap; src: url("/fonts/inter-greek-ext.woff2") format("woff2"); unicode-range: U+1F00-1FFF; }
+@font-face { font-family: "Inter"; font-style: normal; font-weight: 400 700; font-display: swap; src: url("/fonts/inter-greek.woff2") format("woff2"); unicode-range: U+0370-0377, U+037A-037F, U+0384-038A, U+038C, U+038E-03A1, U+03A3-03FF; }
+@font-face { font-family: "Inter"; font-style: normal; font-weight: 400 700; font-display: swap; src: url("/fonts/inter-vietnamese.woff2") format("woff2"); unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB; }
+@font-face { font-family: "Inter"; font-style: normal; font-weight: 400 700; font-display: swap; src: url("/fonts/inter-latin-ext.woff2") format("woff2"); unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+@font-face { font-family: "Inter"; font-style: normal; font-weight: 400 700; font-display: swap; src: url("/fonts/inter-latin.woff2") format("woff2"); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+
+:root {
+  --bg: #0f1a1e;
+  --panel: #16242b;
+  --panel-2: #1e3043;
+  --panel-3: #293a4c;
+  --line: #24404c;
+  --line-2: #336073;
+  --text: #f9eedc;
+  --muted: #8fa7b3;          /* 7.03:1 on --bg, 6.32 on --panel, 5.35 on --panel-2 */
+  /* The tier below --muted still has to be readable where it lands (#81). At #6a8794 it measured
+     4.17:1 on --panel and 3.53:1 on --panel-2 — under AA — on the tray chip's class line, the
+     "What to add" class tag, the drawer's card sub-line and the import note in My decks. Same hue
+     and the same saturation, lightness 49.8% → 57.5%, which is the first step that clears AA on all
+     three: 5.92 on --bg, 5.32 on --panel, 4.51 on --panel-2. Still a visible step under --muted,
+     which is the whole job of this token. (Not AA on --panel-3, 3.89 — no text token is drawn
+     there; test/a11y.test.ts says so and says why.) */
+  --faint: #8199a4;
+  --accent: #ef7d00;         /* 6.41:1 on --bg; --accent-ink on --accent is 6.84:1 */
+  --accent-ink: #1a0f00;
+  --accent-dim: #a85700;
+  --danger: #d8552f;      /* borders and fills only: 4.43 on --bg, 3.98 on --panel, 3.37 on --panel-2 */
+  /* Red carries letters too (#94: the BANNED tag is 10.5px uppercase on --panel), and --danger is
+     under AA on all three grounds. Same hue and the same saturation, lightness 51.6% → 61.7%, the
+     first step that clears 4.5:1 everywhere it lands: 5.94 on --bg, 5.34 on --panel, 4.52 on
+     --panel-2. Measured like #81, and test/a11y.test.ts keeps --danger off text for good. */
+  --danger-text: #e0795a;
+  --ok: #6fa88b;
+  /* The last raw colours, named so a change of palette is one block (2026-09-20 review, D7). */
+  --accent-hover: #ff8c14; --accent-disabled-text: #d8c4ae;
+  --stage-bg: #0c161a; --node-plate: #0b1417;
+  --scrim: rgba(6, 12, 15, .84); --scrim-2: rgba(15, 26, 30, .74);
+  --selection: rgba(239, 125, 0, .3);
+
+  /* Domain colours are reserved by Riot and must not be reused for anything else. */
+  --dom-fury: #ce212d; --dom-calm: #15ac72; --dom-mind: #22799c;
+  --dom-body: #e4720c; --dom-chaos: #6c4993; --dom-order: #d0ab01;
+
+  --font: Inter, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --mono: ui-monospace, SFMono-Regular, Menlo, monospace;
+  --topbar: 64px;
+  --panel-w: 320px;
+  --tray-h: 124px;
+}
+
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+html, body { margin: 0; background: var(--bg); color: var(--text); }
+/* Tells the browser the page is dark, so its own chrome — scrollbars, the native select popup, form
+   control defaults — stops arriving light on a #0f1a1e page (design review 2026-09-20, FINDING-005). */
+html { color-scheme: dark; }
+body { font: 1rem/1.5 var(--font); -webkit-font-smoothing: antialiased; }
+a { color: inherit; text-decoration: none; }
+button, input, select, textarea { font: inherit; color: inherit; }
+::selection { background: var(--selection); }
+.mono { font-family: var(--mono); font-variant-numeric: tabular-nums; }
+/* Said to a screen reader and to nobody else: the word behind a mark, the name behind a colour. */
+.sr-only { position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden; clip-path: inset(50%); white-space: nowrap; border: 0; }
+.muted { color: var(--muted); }
+/* The one de-emphasised text style: empty states, loading lines, footnotes under a panel. Each of
+   the five that use it keeps its own class for layout and states only how it DIFFERS from this. */
+.quiet { color: var(--muted); font-size: 0.78125rem; line-height: 1.5; }
+h1, h2, h3 { font-weight: 600; letter-spacing: -.02em; text-wrap: balance; }
+.eyebrow { margin: 0 0 5px; font: 500 0.75rem/1.2 var(--font); letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
+
+/* Top bar */
+.topbar {
+  height: var(--topbar); display: grid; grid-template-columns: auto 1fr auto; align-items: center;
+  padding: 0 22px; border-bottom: 1px solid var(--line); background: var(--bg);
+}
+.brand { display: inline-flex; align-items: baseline; gap: 10px; }
+.brand-mark { width: 20px; height: 20px; fill: none; stroke: var(--accent); stroke-width: 1.6; align-self: center; }
+.brand-name { margin: 0; font-weight: 600; font-size: 1.25rem; letter-spacing: .08em; color: var(--text); }
+.brand-tag { font-size: 0.6875rem; letter-spacing: .14em; text-transform: uppercase; color: var(--faint); }
+.topnav { display: flex; gap: 4px; height: 100%; justify-content: flex-start; padding-left: 34px; }
+.topnav a { display: flex; align-items: center; padding: 0 14px; color: var(--muted); font-size: 0.90625rem; white-space: nowrap; border-bottom: 2px solid transparent; }
+.topnav a.active, .topnav a[aria-current="page"] { color: var(--text); border-bottom-color: var(--accent); }
+.topnav a:hover { color: var(--text); }
+.topbar-right { display: flex; align-items: center; justify-content: flex-end; gap: 12px; }
+
+/* Segmented controls — one rounded shell, rule-separated inside */
+.segmented { display: inline-flex; margin: 0; padding: 0; border: 1px solid var(--line-2); border-radius: 6px; background: transparent; overflow: hidden; }
+.segmented label { position: relative; display: block; }
+.segmented label + label { border-left: 1px solid var(--line-2); }
+.segmented input { position: absolute; inset: 0; opacity: 0; margin: 0; cursor: pointer; }
+.segmented span { display: block; padding: 7px 14px; font-size: 0.84375rem; color: var(--muted); }
+.segmented input:checked + span { background: var(--panel-2); color: var(--text); font-weight: 500; }
+/* One focus ring for the whole site, in the one accent (#82). Chrome's default is a light blue that
+   appears nowhere else here, and three controls had replaced it with a 1px border change that reads
+   as a quarter of the ring every other control gets. The exceptions below are elements the ring
+   cannot sit on: the segmented control's input is invisible and stretched over its label, and an
+   SVG node is drawn by stroking its own frame. */
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.segmented input:focus-visible { outline: none; }
+.segmented input:focus-visible + span { outline: 2px solid var(--accent); outline-offset: -2px; }
+.segmented.small span { padding: 5px 11px; font-size: 0.78125rem; }
+
+/* Buttons */
+.primary {
+  display: inline-flex; align-items: center; gap: 8px; padding: 11px 20px; border: 0; border-radius: 6px;
+  background: var(--accent); color: var(--accent-ink); font-weight: 600; font-size: 0.875rem; cursor: pointer;
+}
+.primary svg { width: 14px; height: 14px; fill: none; stroke: currentColor; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
+.primary:hover { background: var(--accent-hover); }
+.primary:disabled { background: var(--accent-dim); color: var(--accent-disabled-text); cursor: wait; }
+.ghost { padding: 8px 14px; border: 1px solid var(--line-2); border-radius: 6px; background: var(--panel); color: var(--text); font-weight: 500; font-size: 0.84375rem; cursor: pointer; }
+.ghost:hover:not(:disabled) { border-color: var(--accent); color: var(--accent); }
+.linklike { background: none; border: 0; padding: 0; color: var(--muted); font-size: 0.875rem; cursor: pointer; }
+.linklike:hover:not(:disabled) { color: var(--accent); text-decoration: underline; text-underline-offset: 3px; }
+/* A disabled button has to read as disabled. Without this a .ghost keeps the enabled colours, the
+   pointer cursor and the orange hover, so it offers a press that does nothing. */
+.ghost:disabled, .linklike:disabled { color: var(--faint); border-color: var(--line); cursor: not-allowed; }
+.icon-btn {
+  width: 34px; height: 34px; padding: 0; display: inline-grid; place-items: center; border: 1px solid var(--line-2); border-radius: 6px;
+  background: var(--panel); color: var(--muted); cursor: pointer; font-size: 1.0625rem; line-height: 1;
+}
+.icon-btn svg { width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.icon-btn:hover { color: var(--text); border-color: var(--muted); }
+.icon-btn.toggle.on { color: var(--accent); border-color: var(--accent); }
+/* An icon button that also names itself. The export buttons are two downloads, so a glyph
+   alone would be two identical arrows and a guess (design review 2026-09-20, D4). */
+.icon-btn.wide { width: auto; grid-auto-flow: column; gap: 5px; padding: 0 9px; }
+.icon-btn .btn-tag { font: 600 0.6875rem var(--mono); letter-spacing: .04em; }
+.icon-btn:disabled { opacity: .45; cursor: default; }
+.icon-btn:disabled:hover { color: var(--muted); border-color: var(--line-2); }
+
+/* Shell */
+.app-shell { display: grid; grid-template-columns: var(--panel-w) minmax(0, 1fr); height: calc(100vh - var(--topbar)); min-height: 620px; }
+.app-shell.collapsed { grid-template-columns: 0 minmax(0, 1fr); }
+.app-shell.collapsed .deck-panel { display: none; }
+
+/* Deck panel */
+.deck-panel { border-right: 1px solid var(--line); padding: 20px 22px 18px; overflow-y: auto; scrollbar-width: thin; display: flex; flex-direction: column; gap: 13px; background: var(--bg); }
+.panel-head { display: flex; justify-content: space-between; align-items: flex-start; }
+.panel-head h2 { margin: 0; font-size: 1.0625rem; }
+.deck-panel form { display: flex; flex-direction: column; gap: 8px; }
+.field-label { font-size: 0.84375rem; font-weight: 500; color: var(--text); }
+/* The count grows to "40 main · 12 runes · 3 battlefields · 8 sideboard · legend" the moment a real
+   list is pasted — 300px of text in a 275px column. Without a gap and a label that refuses to break,
+   `space-between` wraps both children and interleaves them into "Paste40 main · 12 runes · 3 / a list
+   battlefields · …", which is what every 40-card list looked like at 1280px and at 390px. */
+.field-row { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; margin-top: 8px; font-size: 0.8125rem; }
+.field-row .field-label { flex: none; white-space: nowrap; }
+.field-row #card-count { text-align: right; }
+.url-row { display: flex; gap: 6px; }
+.url-row input { flex: 1; min-width: 0; }
+/* `.field-input` is here because this rule was written when the only text field on the page was a
+   URL, and a bare `input[type=text]` would have out-specified `.detail-name` and changed the
+   deckbuilder's name field. A class says the same thing and stays out of that fight (#178). */
+input[type=url], .field-input, textarea, select {
+  width: 100%; padding: 9px 11px; background: var(--panel); border: 1px solid var(--line-2); border-radius: 6px; color: var(--text);
+}
+input[type=url], .field-input { font-size: 0.84375rem; }
+input[type=url]:focus, .field-input:focus, textarea:focus, select:focus { border-color: var(--accent); }
+textarea { resize: vertical; font-family: var(--mono); font-size: 0.8125rem; line-height: 1.65; min-height: 190px; }
+textarea::placeholder, input::placeholder { color: var(--faint); }
+.fine { margin: 0; font-size: 0.75rem; color: var(--faint); line-height: 1.45; }
+.or { display: flex; align-items: center; gap: 10px; margin: 6px 0; color: var(--faint); font-size: 0.75rem; }
+.or::before, .or::after { content: ""; flex: 1; border-top: 1px solid var(--line); }
+.notice { margin: 6px 0; padding: 9px 12px; border-left: 2px solid var(--line-2); font-size: 0.78125rem; line-height: 1.55; color: var(--muted); }
+.actions { display: flex; justify-content: space-between; align-items: center; margin-top: 6px; }
+.status-card { display: flex; gap: 12px; align-items: center; padding: 13px; border: 1px solid var(--line); border-radius: 10px; background: var(--panel); }
+.status-card strong { display: block; font-size: 0.875rem; font-family: var(--font); font-weight: 600; }
+.status-card span { display: block; font-size: 0.78125rem; color: var(--muted); }
+/* The mobile-only jump to the diagram (design review 2026-09-20, D6). Above 900px the stage is
+   already beside the deck panel, so the link is off at every width but the one it exists for; the
+   `hidden` attribute on top of that is the OTHER question — whether there is a diagram to jump to.
+   `display: none` here rather than a media query the other way round, so a build that never reaches
+   the 900px block cannot leak it onto the desktop layout. */
+.jump-to-diagram { display: none; }
+.status-dot { width: 10px; height: 10px; flex: 0 0 auto; border-radius: 50%; border: 1.5px solid var(--line-2); }
+.status-card.ok .status-dot { border-color: var(--ok); background: var(--ok); }
+.status-card.error .status-dot { border-color: var(--danger); background: var(--danger); }
+/* A destructive link reads as one. `linklike danger` was written at three call sites (delete a deck,
+   delete the account) and defined nowhere, so "Delete for good" rendered in the same grey as "Keep it"
+   beside it (design review 2026-09-20, FINDING-001). --danger-text is the red that clears AA on text. */
+.linklike.danger { color: var(--danger-text); }
+.linklike.danger:hover:not(:disabled) { color: var(--danger-text); text-decoration-color: var(--danger); }
+.legal { margin: auto 0 0; font-size: 0.71875rem; line-height: 1.5; color: var(--faint); }
+
+/* Workspace */
+.workspace { grid-column: 2; display: grid; grid-template-rows: 72px minmax(0, 1fr) var(--tray-h); min-width: 0; background: var(--bg); }
+.ws-head { display: flex; justify-content: space-between; align-items: center; padding: 0 22px; gap: 16px; }
+.ws-title { margin: 0; font-size: 1.375rem; display: flex; align-items: baseline; gap: 10px; }
+.count-pill { font: 500 0.8125rem var(--mono); padding: 1px 9px; border-radius: 4px; border: 1px solid var(--line-2); color: var(--accent); }
+.ws-sub { margin: 2px 0 0; font-size: 0.78125rem; color: var(--faint); }
+.ws-controls { display: flex; gap: 10px; align-items: center; }
+/* The near-miss distance, beside the segmented control it qualifies: the same border token, the same
+   corner and the same type size, so the two read as one row of controls rather than a form field. */
+.near-miss { display: inline-flex; align-items: center; gap: 8px; margin: 0; font-size: 0.84375rem; color: var(--muted); white-space: nowrap; }
+.near-miss select { width: auto; padding: 8px 10px; font-size: 0.84375rem; cursor: pointer; }
+
+/* Stage — flat ground with three faint lanes, not a dot grid */
+.stage { position: relative; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); overflow: hidden; background: var(--stage-bg); }
+.graph-host { position: absolute; inset: 0; }
+.graph-host svg { position: absolute; inset: 0; width: 100%; height: 100%; display: block; cursor: grab; touch-action: none; }
+.graph-host svg.dragging { cursor: grabbing; }
+.stage-enter { position: absolute; top: 14px; left: 14px; z-index: 2; }
+.stage-tools { position: absolute; right: 14px; top: 14px; display: flex; gap: 6px; z-index: 2; }
+.zoom { position: absolute; right: 14px; bottom: 14px; display: flex; align-items: center; gap: 2px; padding: 2px; border: 1px solid var(--line-2); border-radius: 6px; background: var(--panel); z-index: 2; }
+.zoom .icon-btn { border: 0; width: 28px; height: 28px; background: transparent; }
+.zoom span { min-width: 46px; text-align: center; font-size: 0.75rem; color: var(--muted); }
+
+.empty { position: absolute; inset: 0; display: grid; place-content: center; justify-items: center; gap: 8px; text-align: center; padding: 24px; max-width: 620px; margin: 0 auto; }
+.empty-glyph { width: 48px; height: 48px; border: 1px solid var(--line-2); border-radius: 10px; display: grid; place-items: center; }
+.empty-glyph svg { width: 20px; height: 20px; fill: none; stroke: var(--faint); stroke-width: 1.5; stroke-linecap: round; }
+.empty-title { margin: 14px 0 0; font-family: var(--font); font-weight: 600; font-size: 1.125rem; color: var(--text); }
+.empty-body { margin: 0; font-size: 0.84375rem; color: var(--muted); line-height: 1.6; }
+.empty-body strong { color: var(--text); font-weight: 600; }
+.empty-coverage { margin: 4px 0 0; font-size: 0.78125rem; color: var(--muted); line-height: 1.7; font-variant-numeric: tabular-nums; }
+.empty-coverage strong { color: var(--text); font-weight: 600; }
+.empty-note { margin: 10px 0 0; padding-top: 10px; border-top: 1px solid var(--line); font-size: 0.78125rem; color: var(--faint); line-height: 1.6; }
+
+/* Graph */
+.lane-label { fill: var(--muted); font: 600 0.875rem var(--font); letter-spacing: .05em; }
+.lane-rule { stroke: var(--line); stroke-width: 1; }
+.edge { fill: none; stroke-width: 1.6; opacity: .4; transition: opacity .18s ease, stroke-width .18s ease; }
+.edge.missing { stroke-dasharray: 4 6; }
+.edge.needs { stroke-width: 1.2; opacity: .45; stroke-dasharray: none; }
+.edge.hl { opacity: .9; stroke-width: 2.4; }
+.edge.selected { opacity: 1; stroke-width: 3; stroke: var(--accent) !important; }
+.dim-unrelated.has-selection .edge.dimmed { opacity: .07; }
+.node { cursor: pointer; transition: opacity .18s ease; }
+.node:focus, .node:focus-visible { outline: none; }
+.node:focus-visible .frame, .node:focus-visible .route-shell, .node:focus-visible .result-shell { stroke: var(--accent); stroke-width: 2.5; }
+.dim-unrelated.has-selection .node.dimmed { opacity: .16; }
+.node.card .frame { fill: var(--panel); stroke: var(--line-2); stroke-width: 1; }
+.node.card.missing .frame { stroke: var(--accent); stroke-dasharray: 6 4; }
+.node.card.missing image { opacity: .5; filter: grayscale(.85); }
+.node.card .no-art { fill: var(--panel-2); stroke: var(--line); }
+.node.card .name-bg { fill: var(--node-plate); stroke: var(--line-2); }
+.node.card .name { fill: var(--text); font: 500 0.78125rem var(--font); }
+.node.card .qty-bg { fill: var(--node-plate); stroke: var(--line-2); }
+.node.card .qty { fill: var(--muted); font: 500 0.6875rem var(--mono); }
+.node.card.missing .qty { fill: var(--accent); }
+.node.card.hl .frame, .node.card.selected .frame, .node.card:hover .frame { stroke: var(--accent); stroke-width: 2; }
+.node.card.illegal .name { text-decoration: line-through; }
+.node.route .route-shell { fill: var(--panel); stroke-width: 1; }
+.node.route .route-accent { stroke-width: 3; }
+.node.route.hl .route-shell, .node.route.selected .route-shell, .node.route:hover .route-shell { stroke: var(--accent); stroke-width: 2; }
+.node.route.candidate .route-shell { stroke-dasharray: 5 4; }
+.node.route .mini-frame { fill: var(--panel-2); stroke: var(--line); }
+.node.route .route-label { fill: var(--text); font: 500 0.8125rem var(--font); }
+.node.route .route-class { fill: var(--muted); font: 500 0.65625rem var(--mono); letter-spacing: .06em; }
+.node.result .result-shell { fill: var(--panel-2); stroke-width: 1; }
+.node.result.hl .result-shell, .node.result.selected .result-shell, .node.result:hover .result-shell { stroke: var(--accent); stroke-width: 2; }
+.node.result .result-label { fill: var(--text); font: 600 0.84375rem var(--font); }
+.node.result .result-sub { fill: var(--muted); font: 500 0.6875rem var(--mono); }
+.hub-ring { fill: none; stroke: var(--line); }
+.hub-disc { fill: var(--panel); stroke: var(--line-2); }
+.hub-eyebrow { fill: var(--muted); font: 600 0.6875rem var(--font); letter-spacing: .06em; }
+.hub-count { fill: var(--accent); font: 600 2rem var(--font); }
+.hub-sub { fill: var(--faint); font: 500 0.6875rem var(--font); }
+
+/* Tray */
+.tray { display: flex; gap: 0; padding: 0; overflow-x: auto; overflow-y: hidden; scrollbar-width: thin; align-items: stretch; background: var(--bg); }
+/* The tray's overflow control (2026-09-07). It sits in the strip as the last item, so it is where
+   the chips run out rather than somewhere else on the page, and it is a real button: keyboard
+   reachable, aria-expanded, and its focus ring is drawn INSIDE it — see the rule below. */
+.tray-more { flex: 0 0 auto; align-self: stretch; width: 148px; padding: 13px 16px; border: 0; border-left: 1px solid var(--line); background: var(--bg); color: var(--muted); font: 500 0.78125rem var(--font); text-align: left; cursor: pointer; }
+.tray-more:hover { background: var(--panel); color: var(--text); }
+.tray-empty { margin: auto; color: var(--faint); font-size: 0.8125rem; background: var(--bg); width: 100%; text-align: center; padding: 40px 0; }
+.chip {
+  flex: 0 0 auto; width: 268px; padding: 13px 16px 13px 14px; border: 0; border-left: 3px solid var(--line-2); border-right: 1px solid var(--line); border-radius: 0 10px 10px 0; background: var(--bg);
+  text-align: left; cursor: pointer; display: flex; flex-direction: column; gap: 6px; color: var(--text);
+}
+.chip:hover { background: var(--panel); }
+/* The ring goes INSIDE, and this is a fix rather than a preference: `.tray` is `overflow-x: auto`
+   with `overflow-y: hidden`, a chip stretches to the tray's full height, and the pinned ring is 2px
+   at 2px offset — so every chip's ring was clipped top and bottom, measured in Chrome on 2026-09-07
+   (chip top and bottom both 0px from the tray's edges against an outline reaching 4px). CSS gives no
+   way out: with one axis clipped the other cannot be `visible`. Drawing it inside is what the
+   segmented control already does for the same reason (`.segmented input:focus-visible + span`). */
+.chip:focus-visible, .tray-more:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
+.chip.active { background: var(--panel-2); border-left-color: var(--accent); }
+.chip-head { display: flex; justify-content: space-between; gap: 8px; align-items: flex-start; }
+.chip-title { font-family: var(--font); font-weight: 600; font-size: 0.90625rem; line-height: 1.3; overflow: hidden; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; }
+.pill { flex: 0 0 auto; font: 500 0.65625rem var(--mono); padding: 2px 7px; border-radius: 4px; border: 1px solid; }
+.chip-outcome { font-size: 0.8125rem; color: var(--muted); display: flex; align-items: center; gap: 7px; }
+.swatch { width: 8px; height: 8px; flex: 0 0 auto; border-radius: 50%; }
+.chip-meta { font: 500 0.6875rem var(--mono); color: var(--faint); }
+/* What a line walked to 8 points is short of under a format whose Victory Score is not 8
+   (#120). One rule for the three places it is said: the tray chip, the drawer and the plan. */
+.score-short { display: block; margin: 4px 0 0; font-size: 0.71875rem; line-height: 1.45; color: var(--muted); }
+.chip-meta.illegal { color: var(--danger-text); }
+
+/* Drawer */
+.drawer {
+  position: absolute; top: 0; right: 0; bottom: 0; width: 348px; padding: 20px 22px 28px; overflow-y: auto; scrollbar-width: thin;
+  background: var(--bg); border-left: 1px solid var(--line-2); z-index: 3;
+}
+.drawer-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; }
+/* The class is the drawer's headline. It reads through size and weight, never a per-class colour
+   (that would be the categorical rainbow this project rules out), which leaves the accent to mean
+   one thing here: something you can click. */
+.drawer .route-class { margin: 0 0 2px; font: 700 1.3125rem/1.2 var(--font); color: var(--text); }
+.drawer h2 { margin: 0 0 6px; font: 500 0.875rem/1.35 var(--font); color: var(--muted); }
+.drawer h2 .plus { color: var(--accent); font-weight: 400; padding: 0 5px; }
+.drawer .meta { margin: 0 0 18px; font: 500 0.75rem var(--mono); color: var(--muted); }
+.drawer h3 { margin: 20px 0 8px; font-family: var(--font); font-weight: 600; font-size: 0.8125rem; letter-spacing: .05em; color: var(--faint); }
+.drawer h3 .h3-hint { font-weight: 500; letter-spacing: 0; text-transform: none; color: var(--faint); }
+.drawer .ends { font-size: 0.8125rem; color: var(--muted); }
+
+/* One section per catalogued entry of the route, supporting entries first and the entry that needed
+   them last. Only the first is open: an 8% minority of entries have `needs` at all, and a route
+   caps at three, so this is progressive disclosure for the few and invisible for the many. */
+.route-step { border-top: 1px solid var(--line); padding: 10px 0 2px; }
+.route-step > summary { cursor: pointer; display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px; font: 500 0.8125rem/1.4 var(--font); color: var(--text); }
+.route-step > summary:hover { color: var(--accent); }
+.route-step .rstep-n { font: 500 0.6875rem var(--mono); color: var(--faint); }
+.route-step .rstep-name { flex: 1 1 auto; }
+.route-step .rstep-class { font: 600 0.6875rem var(--mono); letter-spacing: .04em; color: var(--muted); }
+.route-step .rstep-supplies { flex: 1 0 100%; font: 500 0.6875rem var(--mono); color: var(--faint); }
+.drawer h3.route-h { margin-top: 22px; }
+
+/* A page a reader can open and a record of this project's own walk are two different claims, so
+   they do not get the same link affordance (#158). */
+.drawer .src-kind { margin: 10px 0 4px; font: 500 0.6875rem var(--mono); letter-spacing: .04em; color: var(--faint); }
+.drawer .sources.own { color: var(--faint); font-size: 0.78125rem; }
+.drawer .sources.own .record { margin-left: 6px; font: 500 0.6875rem var(--mono); color: var(--muted); text-decoration: underline; text-underline-offset: 2px; }
+.drawer .sources.own .record:hover { color: var(--accent); }
+.drawer ol, .drawer ul { margin: 0; padding-left: 18px; font-size: 0.875rem; color: var(--text); }
+.drawer li { margin: 6px 0; }
+.drawer li::marker { color: var(--faint); }
+.drawer p { margin: 4px 0; font-size: 0.875rem; color: var(--text); }
+.card-list { display: flex; flex-direction: column; gap: 8px; }
+.card-row { display: grid; grid-template-columns: 34px 1fr auto; gap: 10px; align-items: center; }
+/* The thumbnail is a button (#128): the card modal it opens had no keyboard route at all. */
+.card-thumb { display: block; width: 34px; height: 47px; padding: 0; border: 1px solid var(--line-2); border-radius: 4px; overflow: hidden; background: var(--panel); cursor: zoom-in; }
+.card-thumb img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.card-row .cname { font-weight: 500; font-size: 0.875rem; }
+.card-row .csub { font: 500 0.6875rem var(--mono); color: var(--faint); }
+.card-row .have { font: 500 0.6875rem var(--mono); color: var(--muted); }
+.card-row .have.short { color: var(--accent); }
+.card-row.missing .cname { color: var(--muted); }
+.pills { display: flex; flex-wrap: wrap; gap: 6px; }
+.pills .pill { font: 500 0.75rem var(--font); padding: 4px 10px; }
+.drawer .net { font: 500 0.75rem var(--mono); color: var(--text); padding: 9px 11px; border-left: 2px solid var(--accent); background: var(--panel); }
+.drawer .sources a { color: var(--accent); text-decoration: underline; text-underline-offset: 2px; }
+/* The run play covering this route (#206). It sits with Payoff and Deck because it is a claim about
+   the whole route, and it is an internal address, so it takes the same accent link as a source does. */
+.drawer .play-refs a { color: var(--accent); text-decoration: underline; text-underline-offset: 2px; }
+.drawer .rules-version { margin-top: 16px; font: 500 0.6875rem var(--mono); color: var(--faint); }
+.drawer .rules-notice { margin-top: 4px; font: 500 0.6875rem var(--mono); color: var(--faint); }
+
+/* Card preview — click a thumbnail (or double-click a node) to read the card */
+.card-preview { position: fixed; inset: 0; z-index: 50; display: grid; place-items: center; padding: 24px; background: var(--scrim); }
+.card-preview-box {
+  position: relative; display: grid; grid-template-columns: auto minmax(0, 380px); gap: 26px; align-items: start;
+  max-width: min(960px, 100%); max-height: 100%; overflow: auto; padding: 24px 24px 26px;
+  background: var(--bg); border: 1px solid var(--line-2); border-radius: 10px;
+}
+.card-preview-box img { display: block; width: 330px; max-width: 100%; height: auto; border-radius: 10px; background: var(--panel); }
+.card-preview-box img.landscape { width: 470px; }
+.cp-close { position: absolute; top: 12px; right: 12px; }
+.cp-name { margin: 0 34px 4px 0; font-size: 1.3125rem; }
+.cp-meta { margin: 0 0 14px; font: 500 0.75rem var(--mono); color: var(--muted); line-height: 1.6; }
+.cp-text { font-size: 0.90625rem; line-height: 1.65; white-space: pre-line; }
+.cp-effect { margin-top: 14px; padding: 10px 12px; border-left: 2px solid var(--accent); background: var(--panel); font-size: 0.875rem; line-height: 1.55; white-space: pre-line; }
+.cp-label { display: block; margin-bottom: 5px; font: 500 0.6875rem var(--font); letter-spacing: .12em; text-transform: uppercase; color: var(--accent); }
+.cp-hint { margin: 16px 0 0; font-size: 0.75rem; color: var(--faint); }
+.card-thumb:hover { border-color: var(--accent); }
+@media (max-width: 760px) {
+  .card-preview { padding: 12px; }
+  .card-preview-box { grid-template-columns: 1fr; justify-items: center; }
+  .card-preview-box img.landscape { width: 100%; }
+}
+
+/* Docs below the app.
+   The reading size is 1rem (design review 2026-09-20, D1). It was 0.90625rem — 14.5px — on the
+   Guide, the plays and the legal pages, and 0.84375rem on Sources, and reading prose is the one
+   place on this site where the 16px guideline is about comprehension rather than tap targets.
+   `body` moved with it, and that is inert rather than risky: measured 2026-09-21 in the rebuilt
+   site with a deck loaded, the drawer open and all five views unhidden, NOTHING VISIBLE INHERITS
+   `body`'s size — every text-bearing class sets its own. So this block is the change a reader
+   feels, and the dense UI classes (the 320px panel's rows, the tray chips, `.pool-view`'s tap
+   arithmetic) were measured at their own sizes and keep them.
+
+   Two consequences that had to move with it or the retune would have shipped a defect: `.play h3`
+   and `.play h4` were 15px and 14.5px, which is SMALLER than the 16px prose they head, so the play
+   headings are re-stepped to 22 / 19 / 17 / 16-bold; and `.colophon p` keeps its one step of
+   de-emphasis rather than its old 13.5px. The measure does not change — `max-width: 65ch` scales
+   with the size, so `.doc p` renders the same ~86 average characters it did before. */
+.doc { max-width: 820px; margin: 0 auto; padding: 44px 24px 20px; color: var(--muted); font-size: 1rem; }
+.doc h1, .doc-title { margin: 0 0 14px; font-size: 1.3125rem; font-weight: 600; letter-spacing: -.02em; color: var(--text); }
+.doc h3 { margin: 26px 0 8px; font-size: 1.125rem; color: var(--text); font-weight: 600; }
+.doc p { margin: 0 0 10px; line-height: 1.65; max-width: 65ch; }
+.doc a { color: var(--accent); text-decoration: underline; text-underline-offset: 3px; }
+.doc ol { padding-left: 20px; } .doc li { margin: 7px 0; }
+.doc strong { color: var(--text); font-weight: 600; }
+
+/* ad slots begin */
+/* The reserved ad slot (#292, #272 §6), drawn only while ADSENSE_PUBLISHER_ID is set; while it is "",
+   build:web drops everything between the two `ad slots` markers from public/styles.css (withoutAdStyles). Its size is fixed
+   here, before any script runs, and an unfilled box keeps it: collapsing it would itself be a layout
+   shift. In-content 336x280 / 300x250 and end of article 728x90 / 320x100, switching at 760px. At 760px
+   the .doc column's content box is 712px, so the 730px end box overflows it: `justify-content: center`
+   is unsafe centring, so it spills evenly into the 24px padding on both sides rather than off one edge.
+   The label sits outside the box so the box keeps its size; `.ad .ad-label` outranks `.doc p`. The
+   `<ins>` fills the box and the box clips it, so a creative of another size cannot move the page. */
+.ad { display: grid; justify-content: center; gap: 6px; margin-block: 32px; }
+.ad .ad-label { margin: 0; max-width: none; font-size: 0.75rem; line-height: 1.4; color: var(--faint); }
+.ad-slot { box-sizing: content-box; overflow: hidden; background: var(--panel); border: 1px solid var(--line); border-radius: 10px; }
+.ad-slot .adsbygoogle { display: block; width: 100%; height: 100%; }
+.ad-slot-in-content { width: 300px; height: 250px; }
+.ad-slot-end { width: 320px; height: 100px; }
+@media (min-width: 760px) {
+  .ad-slot-in-content { width: 336px; height: 280px; }
+  .ad-slot-end { width: 728px; height: 90px; }
+}
+/* ad slots end */
+.colophon { padding-bottom: 44px; border-top: 1px solid var(--line); }
+.colophon p { margin: 7px 0; font-size: 0.9375rem; }
+.colophon em { font-style: normal; color: var(--text); }
+
+/* Run plays (#206). A play is a document, so this styles a document: the prose keeps .doc's measure
+   and the wide things — turn tables, hand-aligned fenced blocks — are allowed past it and scroll if
+   they still do not fit, which is the only honest answer for a table that is genuinely 4 columns of
+   sentences wide. Hierarchy is size and weight; the one accent stays on links. */
+.play { max-width: 940px; padding-bottom: 56px; }
+/* The title is an h2 and the sections start at h3, one level under it, because the page's one h1 is
+   the brand in the header (#270); `.play h4` carries what `.doc h3` and the base heading rule gave
+   the level it used to be. */
+.play .doc-title { margin: 6px 0 18px; font-size: 1.375rem; line-height: 1.3; }
+.play h3 { margin: 34px 0 10px; font-size: 1.1875rem; font-weight: 600; line-height: 1.35; color: var(--text); letter-spacing: -.01em; }
+.play h4 { margin: 24px 0 8px; font-size: 1.0625rem; font-weight: 600; color: var(--text); letter-spacing: -.02em; text-wrap: balance; }
+.play h5 { margin: 20px 0 6px; font-size: 1rem; font-weight: 600; color: var(--text); }
+.play hr { margin: 28px 0; border: 0; border-top: 1px solid var(--line); }
+.play .play-list-block { margin: 0 0 12px; padding-left: 22px; max-width: 65ch; }
+.play .play-list-block li { margin: 6px 0; line-height: 1.65; }
+.play em { font-style: italic; color: var(--text); }
+
+/* A card code set in prose. 4px is the radius the count pill and the domain pills already use. */
+.play-code { font: 500 0.875rem var(--mono); background: var(--panel-2); color: var(--text); padding: 1px 5px; border-radius: 4px; }
+
+/* The hand-aligned turn tables. One lost space is a lost table, so nothing wraps and it scrolls. */
+.play-pre { margin: 0 0 16px; padding: 14px 16px; background: var(--panel); border: 1px solid var(--line); border-radius: 10px; overflow-x: auto; font: 500 0.78125rem var(--mono); line-height: 1.6; color: var(--text); }
+
+.play-quote { margin: 0 0 16px; padding: 2px 0 2px 16px; border-left: 2px solid var(--line-2); max-width: 65ch; }
+.play-quote p { margin: 0 0 8px; }
+.play-quote p:last-child { margin-bottom: 0; }
+
+.play-table-wrap { margin: 0 0 18px; overflow-x: auto; border: 1px solid var(--line); border-radius: 10px; }
+.play-table { border-collapse: collapse; width: 100%; font-size: 0.84375rem; }
+.play-table th { text-align: left; font-weight: 600; color: var(--text); background: var(--panel); padding: 9px 14px; border-bottom: 1px solid var(--line-2); vertical-align: top; }
+.play-table td { padding: 9px 14px; border-top: 1px solid var(--line); color: var(--muted); line-height: 1.6; vertical-align: top; }
+.play-table tbody tr:first-child td { border-top: 0; }
+.play-table td:first-child { color: var(--text); }
+.play-table strong { color: var(--text); font-weight: 600; }
+
+/* The index. A play's title is its verdict, so the list leads with the title and not with a date. */
+.play-intro { margin: 0 0 22px; color: var(--muted); }
+.play-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+.play-item { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 14px 16px; }
+/* Scoped under .play deliberately. `.doc a` is (0,1,1) and sets the accent and an underline for every
+   link in a document; a bare `.play-link` is (0,1,0) and loses to it however late it is declared, which
+   drew the index as four orange underlined headlines. Same trap as extending the shared field style. */
+.play .play-link { display: flex; gap: 14px; align-items: baseline; justify-content: space-between; color: var(--text); text-decoration: none; }
+.play .play-link:hover .play-item-title, .play .play-link:focus-visible .play-item-title { color: var(--accent); text-decoration: underline; text-underline-offset: 3px; }
+.play-item-title { font-size: 1rem; font-weight: 600; line-height: 1.35; letter-spacing: -.01em; }
+.play-item-date { flex: 0 0 auto; font: 500 0.75rem var(--mono); color: var(--faint); font-variant-numeric: tabular-nums; }
+.play-item-lede { margin: 7px 0 0; font-size: 0.84375rem; color: var(--muted); line-height: 1.6; max-width: 72ch; }
+/* The lede is a whole first paragraph, and twelve of sixteen run five to nine lines: the index read
+   as a wall on desktop and as an unbroken scroll at 375. Three lines is a summary; the rest is one
+   click away (design review 2026-09-20, FINDING-006). The titles are filed lowercase ("Play — the
+   order is free…"); an index entry and a page heading start with a capital. */
+.play-item-lede { display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 3; overflow: hidden; }
+.play-item-title { display: block; }
+.play-item-title::first-letter, .play .doc-title::first-letter { text-transform: uppercase; }
+
+.play .play-back { display: inline-block; margin: 0 0 10px; font-size: 0.8125rem; color: var(--muted); text-decoration: none; }
+.play .play-back:hover, .play .play-back:focus-visible { color: var(--accent); }
+
+/* The pre-rendered public pages (#286): /combos/<id>, /plays/<slug>, /guide, /sources, /about. Each is
+   its own document, so its title is the h1 and its sections are h2 — one level higher than the same
+   text inside the app, where the brand is the h1 (#270). These rules give each level the look the
+   app gives the level it would have there; nothing here is a new style. */
+.page h2 { margin: 26px 0 8px; font-size: 1.125rem; font-weight: 600; color: var(--text); }
+.page h2 .count { font: 500 0.75rem var(--mono); color: var(--faint); margin-left: 4px; }
+.page.play h2 { margin: 34px 0 10px; font-size: 1.1875rem; line-height: 1.35; letter-spacing: -.01em; }
+.page.play h3 { margin: 24px 0 8px; font-size: 1.0625rem; font-weight: 600; color: var(--text); letter-spacing: -.02em; text-wrap: balance; }
+.page.play h4 { margin: 20px 0 6px; font-size: 1rem; font-weight: 600; color: var(--text); }
+.page ul { padding-left: 20px; } .page ul li::marker, .page ol li::marker { color: var(--faint); }
+.page .meta { margin: 0 0 18px; font: 500 0.75rem var(--mono); color: var(--muted); }
+.page .csub { font: 500 0.6875rem var(--mono); color: var(--faint); }
+.page .net { font: 500 0.75rem var(--mono); color: var(--text); padding: 9px 11px; border-left: 2px solid var(--accent); background: var(--panel); max-width: 65ch; }
+.page .ends { color: var(--muted); }
+.page .src-kind { margin: 10px 0 4px; font: 500 0.6875rem var(--mono); letter-spacing: .04em; color: var(--faint); }
+.page .sources { font-size: 0.875rem; }
+.page .sources.own { color: var(--faint); font-size: 0.8125rem; }
+.page .sources.own .record { margin-left: 6px; font: 500 0.6875rem var(--mono); color: var(--muted); }
+.page .rules-version { margin-top: 16px; font: 500 0.6875rem var(--mono); color: var(--faint); }
+.page .rules-notice { margin-top: 4px; font: 500 0.6875rem var(--mono); color: var(--faint); }
+.page .audit { margin: 18px 0 0; }
+.page .audit summary { cursor: pointer; color: var(--text); font-weight: 500; }
+.page .audit-key { font-size: 0.8125rem; color: var(--faint); }
+.page .pills { margin: 0 0 6px; }
+.page .pills .pill { color: var(--text); border-color: var(--line-2); }
+.page .pieces { list-style: none; padding: 0; margin: 0; display: grid; gap: 10px; }
+.page .pieces .piece { margin: 0; background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 12px 14px; }
+.page .pieces .piece-name { color: var(--text); font-weight: 600; }
+.page .pieces .piece-qty { font: 500 0.75rem var(--mono); color: var(--muted); }
+.page .pieces .csub { display: block; margin-top: 2px; }
+.page .pieces .piece-text { margin: 8px 0 0; font-size: 0.875rem; color: var(--muted); }
+.page .combo-index { list-style: none; padding: 0; margin: 0 0 8px; }
+.page .combo-index li { margin: 0; padding: 7px 0; border-top: 1px solid var(--line); }
+.page .combo-index li:first-child { border-top: 0; }
+.page .combo-index .csub { display: block; margin-top: 2px; }
+/* 779 links in one column: the names carry the page and the accent marks the one under the pointer,
+   the way the plays index does. */
+.page .combo-index a { color: var(--text); text-decoration: none; }
+.page .combo-index a:hover, .page .combo-index a:focus-visible { color: var(--accent); text-decoration: underline; }
+.page-cta { margin-top: 28px; }
+
+/* Responsive */
+@media (max-width: 900px) {
+  /* The tabs stay on screen at every width. Hiding them was harmless while they were anchors that
+     scrolled to sections of the same page; since #43 they are the only way to reach My decks, Guide
+     and Sources, so hiding them hid the app. Two rows instead: brand + account above, tabs + format
+     below, the tabs scrolling sideways when four of them do not fit 390px. */
+  .topbar {
+    height: auto; padding: 0 14px;
+    grid-template-columns: minmax(0, 1fr) auto;
+    grid-template-areas: "brand acct" "nav format";
+  }
+  .brand { grid-area: brand; min-height: var(--topbar); align-items: center; }
+  /* So the format toggle and the account block can sit in different rows of the topbar grid. */
+  .topbar-right { display: contents; }
+  .topbar-right .segmented { grid-area: format; align-self: center; }
+  .acct-top { grid-area: acct; justify-content: flex-end; min-width: 0; }
+  .acct-who { min-width: 0; }
+  .acct-label { max-width: 40vw; }
+  #acct-signout { white-space: nowrap; }
+  .play { padding-left: 16px; padding-right: 16px; }
+  .play-link { flex-direction: column; gap: 2px; }
+  .topnav {
+    grid-area: nav; min-width: 0; height: 46px; padding-left: 0;
+    overflow-x: auto; scrollbar-width: none; border-top: 1px solid var(--line);
+  }
+  .topnav::-webkit-scrollbar { display: none; }
+  .topnav a { padding: 0 12px; }
+  .app-shell { display: block; height: auto; }
+  .deck-panel { border-right: 0; border-bottom: 1px solid var(--line); }
+  .jump-to-diagram {
+    display: flex; align-items: center; justify-content: center; gap: 8px;
+    margin: 10px 0 0; padding: 11px 14px; border: 1px solid var(--line-2); border-radius: 6px;
+    background: var(--panel); color: var(--accent); font-size: 0.875rem; font-weight: 600;
+  }
+  .jump-to-diagram svg { width: 15px; height: 15px; fill: none; stroke: currentColor; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+  /* The topbar is not sticky at this width — measured, it scrolls away — so this is breathing room
+     above the stage rather than a compensation for a fixed header. */
+  .stage { scroll-margin-top: 12px; }
+  .workspace { grid-template-rows: auto 68vh var(--tray-h); }
+  .ws-head { flex-direction: column; align-items: flex-start; gap: 10px; padding: 14px; }
+  .ws-controls { flex-wrap: wrap; }
+  .drawer { width: 100%; top: auto; height: 62%; border-left: 0; border-top: 1px solid var(--line-2); }
+  .stage-tools { top: auto; bottom: 14px; right: 14px; }
+  .zoom { bottom: 14px; left: 14px; right: auto; }
+  .chip { width: 240px; }
+}
+/* On a phone the four tabs and the format toggle cannot share a row: the tabs alone are ~330px. The
+   toggle moves up beside the brand, the name goes (you know who you are — Sign out stays), and the
+   tabs get the whole second row rather than scrolling half of themselves out of sight. */
+@media (max-width: 560px) {
+  .topbar {
+    grid-template-columns: minmax(0, 1fr) auto auto; column-gap: 10px;
+    grid-template-areas: "brand format acct" "nav nav nav";
+  }
+  .brand-name { font-size: 1.0625rem; }
+  .topbar-right .segmented { grid-area: format; }
+  .topbar-right .segmented span { padding: 5px 10px; font-size: 0.78125rem; }
+  .acct-label { display: none; }
+  /* Five links fit in the 347px the nav has at 375 (design review 2026-09-20, FINDING-004). Above
+     this width they scroll with the scrollbar hidden, which at 375 clipped "Sources" at x=437 with no
+     sign there was more to the right: a swipe nobody is told about is a link nobody finds. */
+  .topnav { padding-left: 10px; gap: 0; }
+  .topnav a { padding: 0 8px; font-size: 0.8125rem; }
+}
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+
+/* --- what to add (#18) ---------------------------------------------------------------- */
+/* Lives in the 320px deck panel, so every row has to work at ~276px of usable width. */
+.plan { display: flex; flex-direction: column; gap: 11px; padding-top: 14px; border-top: 1px solid var(--line); }
+.plan-head { margin: 0; font-size: 0.8125rem; letter-spacing: .05em; color: var(--accent); }
+#plan-body { display: flex; flex-direction: column; gap: 15px; }
+.plan-sec { display: flex; flex-direction: column; gap: 7px; }
+
+/* Ban list. Sits above the status card because a tournament list wants that answer first. The
+   status is carried by the left rule and the tag's weight, not by a second accent colour. */
+.bans .plan-head { color: var(--danger-text); }
+.ban-row { padding: 8px 10px; border: 1px solid var(--line); border-left: 2px solid var(--danger); border-radius: 6px; background: var(--panel); }
+.ban-row + .ban-row { margin-top: 7px; }
+.ban-row.restricted { border-left-color: var(--accent-dim); }
+.ban-name { margin: 0; font: 600 0.8125rem/1.35 var(--font); color: var(--text); }
+.ban-tag { margin-left: 5px; font: 500 0.65625rem var(--font); letter-spacing: .1em; text-transform: uppercase; color: var(--danger-text); }
+.ban-row.restricted .ban-tag { color: var(--accent); }
+.ban-meta { margin: 3px 0 0; font-size: 0.71875rem; line-height: 1.5; color: var(--muted); }
+.ban-meta a { color: var(--muted); text-decoration: underline; text-underline-offset: 2px; }
+.ban-meta a:hover { color: var(--accent); }
+/* The deck-size row is in the same panel as the bans but is not one: a list of 36 is not illegal to
+   own, it is just not a deck yet. Neutral rule colour, no status tag. */
+.size-row { padding: 8px 10px; border: 1px solid var(--line); border-left: 2px solid var(--line-2); border-radius: 6px; background: var(--panel); }
+.size-row + .ban-row, .size-row + .size-row { margin-top: 7px; }
+/* The audit register, closed by default: it is evidence the reader can open, not the first thing the
+   drawer says. Same disclosure shape as a synergy rule (#72). */
+.audit { margin-top: 12px; border-top: 1px solid var(--line); padding-top: 10px; }
+.audit > summary { cursor: pointer; font: 500 0.75rem/1.4 var(--font); letter-spacing: .04em; color: var(--muted); text-transform: uppercase; }
+.audit > summary:hover { color: var(--text); }
+.audit-key { margin: 8px 0 6px; font-size: 0.71875rem; line-height: 1.6; color: var(--faint); }
+.bans-foot { margin: 0; font-size: 0.71875rem; line-height: 1.6; color: var(--faint); }
+.bans-foot:empty { display: none; }
+.plan-lab { font: 500 0.65625rem var(--font); letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
+.plan-note { margin: 0; line-height: 1.6; }
+.plan-note strong { color: var(--text); font-weight: 600; }
+.plan-had { display: flex; gap: 9px; align-items: baseline; justify-content: space-between; padding: 7px 9px; border: 1px solid var(--line); border-left: 2px solid var(--ok); border-radius: 6px; background: var(--panel); }
+.plan-had-name { font-size: 0.78125rem; line-height: 1.35; }
+.plan-lead { display: flex; flex-direction: column; gap: 10px; padding: 11px 12px; border: 1px solid var(--line-2); border-radius: 10px; background: var(--panel); }
+.plan-lead-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 10px; }
+.plan-name { padding: 0; border: 0; background: none; text-align: left; font: 600 0.84375rem/1.35 var(--font); color: var(--text); cursor: pointer; }
+.plan-name:hover { color: var(--accent); }
+.plan-out { margin: 3px 0 0; font-size: 0.71875rem; color: var(--muted); }
+.plan-cost { flex: 0 0 auto; color: var(--accent); border-color: var(--accent-dim); }
+.plan-adds { display: flex; flex-direction: column; gap: 8px; }
+.plan-foot { margin: 0; padding-top: 9px; border-top: 1px solid var(--line); font-size: 0.71875rem; line-height: 1.6; color: var(--muted); }
+.plan-foot strong { color: var(--text); font-weight: 600; }
+.plan-alts { display: flex; flex-direction: column; }
+.plan-alt { display: grid; grid-template-columns: 24px minmax(0, 1fr) auto; gap: 9px; align-items: center; padding: 7px 2px; border: 0; border-bottom: 1px solid var(--line); background: none; text-align: left; cursor: pointer; }
+.plan-alt:last-child { border-bottom: 0; }
+.plan-alt:hover .plan-alt-name { color: var(--accent); }
+.plan-alt-cost { font: 600 0.6875rem var(--mono); color: var(--accent); }
+.plan-alt-name { font-size: 0.75rem; line-height: 1.35; color: var(--text); }
+.plan-alt-class { font: 500 0.59375rem var(--mono); letter-spacing: .06em; color: var(--faint); }
+
+/* Pairs in this deck (#22). A weaker guarantee than a combo, so the panel leads with what it is
+   rather than with a count, and the rows carry the rule and its paragraphs instead of a score. */
+.syn-guarantee { margin: -4px 0 0; font-size: 0.71875rem; line-height: 1.6; color: var(--muted); }
+#synergy-body { display: flex; flex-direction: column; }
+.syn { border-bottom: 1px solid var(--line); }
+.syn:last-child { border-bottom: 0; }
+.syn-sum { display: flex; flex-direction: column; gap: 5px; padding: 9px 2px; cursor: pointer; list-style: none; }
+.syn-sum::-webkit-details-marker { display: none; }
+.syn-name { font: 600 0.78125rem/1.35 var(--font); color: var(--text); }
+.syn[open] .syn-name, .syn-sum:hover .syn-name { color: var(--accent); }
+.syn-pair { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 6px; }
+.syn-card { padding: 0; border: 0; background: none; font: 400 0.71875rem/1.4 var(--font); color: var(--muted); cursor: pointer; text-align: left; }
+.syn-card:hover { color: var(--text); }
+.syn-n { font: 600 0.65625rem var(--mono); color: var(--faint); }
+.syn-plus { font: 600 0.6875rem var(--mono); color: var(--faint); }
+.syn-open { display: flex; flex-direction: column; gap: 8px; padding: 2px 2px 12px; }
+.syn-why { margin: 0; font-size: 0.75rem; line-height: 1.65; color: var(--muted); }
+.syn-from { display: flex; flex-direction: column; gap: 5px; }
+.syn-alone { margin: 0; font-size: 0.71875rem; line-height: 1.55; color: var(--faint); }
+.syn-from-list { display: flex; flex-direction: column; gap: 4px; margin: 0; padding: 0; list-style: none; }
+.syn-from-list li { display: flex; gap: 6px; }
+.syn-from-list li::before { content: "\2014"; color: var(--faint); font: 400 0.71875rem/1.5 var(--mono); }
+.syn-link { flex: 1; padding: 0; border: 0; background: none; text-align: left; font: 400 0.71875rem/1.5 var(--font); color: var(--muted); cursor: pointer; }
+.syn-link:hover { color: var(--accent); }
+.syn-basis { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 6px; margin: 0; }
+
+/* One card away. Same vocabulary as the pairs above — this is the same rule, one card short — so it
+   borrows .syn wholesale and only adds the shortlist. The accent stays on the card you would buy. */
+.gap-lead { font-size: 0.71875rem; line-height: 1.55; color: var(--muted); }
+.gap-lead strong { color: var(--text); font-weight: 600; }
+.gap-list { display: flex; flex-direction: column; gap: 4px; margin: 2px 0 0; padding: 0; list-style: none; }
+.gap-list li { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 8px; }
+.gap-add { font-weight: 600; color: var(--text); }
+.gap-add::before { content: "+"; margin-right: 4px; font: 600 0.6875rem var(--mono); color: var(--accent); }
+.gap-add:hover { color: var(--accent); }
+.gap-cost { font: 400 0.65625rem var(--mono); color: var(--faint); }
+.gap-tag { font: 500 0.59375rem var(--font); letter-spacing: .12em; text-transform: uppercase; color: var(--faint); }
+.gap-wide { margin: 0; font-size: 0.71875rem; line-height: 1.55; color: var(--faint); }
+.gap-rest { padding-top: 9px; }
+.syn-lab { font: 500 0.59375rem var(--font); letter-spacing: .12em; text-transform: uppercase; color: var(--faint); }
+.syn-ref { font: 500 0.625rem var(--mono); color: var(--muted); padding: 1px 5px; border: 1px solid var(--line); border-radius: 6px; }
+
+/* --- account (#31) ---------------------------------------------------------------------
+   Saved decks. Deliberately the quietest thing in the panel: it is plumbing, not an answer
+   about a deck, so it borrows the panel's own controls rather than introducing a new colour. */
+.acct-top { display: flex; align-items: center; gap: 10px; }
+.ghost.small { padding: 5px 11px; font-size: 0.78125rem; }
+.acct-who { display: flex; align-items: center; gap: 10px; }
+.acct-label { max-width: 160px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 0.78125rem; color: var(--muted); }
+.acct-note { margin: 0; font-size: 0.78125rem; line-height: 1.6; color: var(--muted); }
+.acct-note strong { color: var(--text); font-weight: 600; }
+.acct-msg { margin: 0; font-size: 0.75rem; line-height: 1.5; color: var(--accent); }
+.acct-msg:empty { display: none; }
+.acct-meta { min-width: 0; }
+.acct-name { margin: 0; font-size: 0.8125rem; font-weight: 600; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.acct-sum { margin: 2px 0 0; font-size: 0.71875rem; color: var(--muted); }
+/* The rename field (#178). It borrows the deck-import form's shape — label, one row, one fine print
+   line — rather than inventing a second form idiom for two controls. */
+.acct-name-form { display: flex; flex-direction: column; gap: 7px; }
+/* Save and Cancel are both actions and read as such; the difference in weight is what says which one
+   the form is for. `flex: none` keeps Cancel out of the fight `.url-row input` picks for the width. */
+.acct-name-form .url-row .linklike { flex: none; padding: 0 4px; font-size: 0.8125rem; }
+.acct-name-form .url-row .linklike:hover { color: var(--accent); }
+.acct-foot { margin: 2px 0 0; font-size: 0.71875rem; color: var(--faint); }
+.acct-foot .linklike, .acct-foot a { font-size: 0.71875rem; color: var(--faint); }
+.acct-foot .linklike:hover, .acct-foot a:hover { color: var(--accent); }
+
+/* Entrance (#39): the body carries the auth state and the stylesheet picks what is on screen.
+   "pending" shows neither, so nothing flashes; "open" is a build with no accounts configured. */
+body[data-auth="pending"] .view, body[data-auth="pending"] .topnav, body[data-auth="pending"] .topbar-right,
+body[data-auth="out"] .view, body[data-auth="out"] .topnav, body[data-auth="out"] .topbar-right { display: none; }
+.gate { display: none; }
+body[data-auth="out"] .gate { display: flex; align-items: center; justify-content: center; min-height: calc(100vh - var(--topbar)); padding: 32px 22px; }
+.gate-box { width: min(440px, 100%); padding: 30px 30px 26px; border: 1px solid var(--line); border-radius: 10px; background: var(--panel); display: grid; gap: 14px; justify-items: start; }
+.gate-mark { width: 28px; height: 28px; fill: none; stroke: var(--accent); stroke-width: 1.6; }
+.gate-title { margin: 0; font: 600 1.375rem/1.2 var(--font); letter-spacing: .04em; color: var(--text); }
+.gate-lead { margin: 0; font-size: 0.90625rem; line-height: 1.6; color: var(--text); text-wrap: pretty; }
+.gate-signin { width: 100%; justify-content: center; margin-top: 4px; }
+.gate-note { margin: 0; font-size: 0.78125rem; line-height: 1.55; color: var(--muted); }
+.gate-legal { margin: 6px 0 0; padding-top: 12px; border-top: 1px solid var(--line); font-size: 0.71875rem; line-height: 1.5; color: var(--faint); }
+.gate-links { margin: 0; font-size: 0.78125rem; color: var(--muted); }
+.gate-links a { color: var(--muted); }
+.gate-links a:hover { color: var(--accent); }
+/* Measured at 390px: these were 44x15 and 37x15, under WCAG 2.2 2.5.8's 24x24 floor, and they are
+   the two links Google's OAuth branding page requires us to show. The inline exception does not
+   cover them — this <p> holds nothing but the links, so they are not targets inside a sentence.
+   The padding buys the hit area and the equal negative margin gives the layout back, so nothing
+   moves on screen; the inline padding stays at 4px so the two boxes cannot overlap across the
+   10px separator and a tap near the dot still resolves to the link it looks nearest. */
+.gate-links a { display: inline-block; padding: 15px 4px; margin: -15px -4px; }
+
+/* My decks (#43) — the library and the deck detail. */
+.decks { max-width: 1000px; margin: 0 auto; padding: 30px 24px 44px; display: flex; flex-direction: column; gap: 18px; }
+.decks-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; }
+.decks-title { margin: 0; font-size: 1.375rem; }
+.decks-sub { margin: 4px 0 0; font-size: 0.84375rem; color: var(--muted); }
+.decks-import { display: flex; flex-direction: column; gap: 7px; padding: 14px 16px; border: 1px solid var(--line); border-radius: 10px; background: var(--panel); }
+.decks-import .url-row { max-width: 560px; }
+/* `1fr` rows in an auto-height grid all take the height of the tallest tile, which is what makes the
+   library one rhythm now that the reason line may wrap: the slack lands at the bottom of the shorter
+   tiles instead of as a hole between their rows (#177). */
+.deck-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); grid-auto-rows: 1fr; gap: 12px; }
+/* #177: the legend's art leads the tile, so a library reads as a shelf of champions rather than a
+   wall of the same five lines. A SQUARE, and that is geometry rather than taste: `cover` crops the
+   axis the box has proportionally less of, and the scan is 744x1039 (ratio 0.716), so a box wider
+   than that ratio crops the height — which is the half that carries the frame and the rules box — and
+   a tall column would crop the sides and show the whole card instead. Both dimensions are set here,
+   so the box exists before any image arrives and nothing shifts when one does. Radius 6px and a
+   --line-2 border are the `.card-thumb` idiom the drawer, the graph and the pool already use; the
+   margin is what makes it read as an inset thumbnail rather than as a panel of its own. */
+.deck-card { display: grid; grid-template-columns: auto minmax(0, 1fr); padding: 14px 15px; border: 1px solid var(--line); border-radius: 10px; background: var(--panel); }
+.deck-card:hover { border-color: var(--accent); }
+.deck-card-art { align-self: start; width: 72px; height: 72px; margin-right: 13px; border: 1px solid var(--line-2); border-radius: 6px; background: var(--panel-2); overflow: hidden; }
+/* `legendArt` asks the CDN for the illustration alone, so the file that arrives is already the square
+   window and `cover` has nothing left to trim; the top bias is there for a scan whose size the URL
+   does not name, which comes through whole. NOT `.empty`: that class is taken — line 178 makes it an
+   absolutely positioned page-wide empty state, and using it here threw the box to the top of the
+   viewport. `.pool-noart` is the name this project already gives a card with no picture. */
+.deck-card-art img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: 50% 12%; }
+/* No legend, no art URL, or a URL the CDN answers 404 to (`wireArt` swaps the class in): a dash, the
+   way an empty value is written everywhere else here. A box with nothing in it read as broken art. */
+.deck-card-art.noart { display: flex; align-items: center; justify-content: center; color: var(--faint); font-size: 0.9375rem; }
+.deck-card-body { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+/* The name has the row to itself: the thumbnail costs this column ~98px, and with the badge beside
+   it a twenty-character deck name was clipped. The badge moved down to the verdict row, where it
+   sits next to the reason it belongs to and holds that row open on a legal list. */
+.deck-card-name { min-width: 0; font-weight: 600; font-size: 0.90625rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.deck-card-verdict { display: flex; align-items: flex-start; gap: 8px; min-width: 0; }
+/* `flex-start`, not `center`: once the text can grow (#184) the legend's name wraps, and centred
+   dots float against the whole two-line block, reading as though they belong to the second line
+   rather than to the name. Aligned to the start they stay with the line they label. */
+.deck-card-legend { display: flex; align-items: flex-start; gap: 6px; font-size: 0.8125rem; }
+.deck-card-meta { font-size: 0.71875rem; color: var(--muted); }
+/* The meta line wraps, and at the 250px minimum column it has to: "40 cards · Constructed · 6 combos
+   complete" does not fit one line beside a 72px thumbnail. Breaking is fine, breaking INSIDE the
+   sentence is not — "6 combos" over "complete" reads as a fragment — so the count is one unbreakable
+   run and the line can only break at a separator. */
+.deck-card-count { white-space: nowrap; }
+.deck-card-when { font-size: 0.71875rem; color: var(--faint); }
+/* Why the badge says Illegal (#93). NOT --danger: it measures 3.98:1 on --panel, under AA, and the
+   grey scale here is measured rather than chosen (#81). The badge beside it already carries the red,
+   so the reason is --muted at 6.32:1. Clipped rather than wrapped, so one long detail does not make
+   its card taller than the rest of the row. It WRAPS to two lines rather than clipping to one (#177):
+   the thumbnail costs this column ~98px and the badge another ~68, and on one line the reason read
+   "This list names no …", which is not a reason. Two lines carry the sentence. The badge beside it is
+   what holds the row open on a LEGAL list, so nothing is reserved and left empty. */
+.deck-card-why { flex: 1 1 auto; min-width: 0; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; line-clamp: 2; overflow: hidden; font-size: 0.71875rem; line-height: 1.4; color: var(--muted); }
+/* Centred on the FIRST line rather than on the whole flex row: the line box is 1.5em (the inherited
+   line-height) and the dot is 8px, so half the difference puts it on the line it labels at any font
+   size the reader has set. `flex-start` alone left it hugging the top of a 29px line box. */
+.dom-dot { width: 8px; height: 8px; margin-top: calc((1.5em - 8px) / 2); border-radius: 50%; display: inline-block; flex: 0 0 auto; }
+.dom-fury { background: var(--dom-fury); } .dom-calm { background: var(--dom-calm); }
+.dom-mind { background: var(--dom-mind); } .dom-body { background: var(--dom-body); }
+.dom-chaos { background: var(--dom-chaos); } .dom-order { background: var(--dom-order); }
+.badge { flex: 0 0 auto; padding: 2px 8px; border: 1px solid var(--line-2); border-radius: 6px; font: 500 0.65625rem var(--mono); letter-spacing: .06em; text-transform: uppercase; color: var(--muted); }
+.badge.ok { color: var(--ok); border-color: var(--ok); }
+.badge.bad { color: var(--danger-text); border-color: var(--danger); }
+
+.detail-back { font-size: 0.8125rem; }
+.detail-back a { color: var(--muted); }
+.detail-back a:hover { color: var(--accent); }
+.detail-name { width: 100%; padding: 10px 12px; border: 1px solid var(--line-2); border-radius: 6px; background: var(--panel); color: var(--text); font: 600 1rem var(--font); }
+.detail-name:focus { border-color: var(--accent); }
+.detail-acts { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; }
+
+/* The form's collapsed state (2026-09-07). Measured: the deck panel is 3,409px in a 652px viewport
+   and 860px of that sits above "What to add", so after pressing Find combos the answer was below the
+   fold and the only thing on screen was the form the player had just finished using — 721px, 21.1%
+   of the panel. Collapsed, the answer starts at ~139px. Same shape as `.analyzing` beside it. */
+.deck-collapsed { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; margin: 0; padding: 8px 11px; border-left: 2px solid var(--line-2); font-size: 0.78125rem; color: var(--muted); }
+.deck-collapsed strong { color: var(--text); font-weight: 600; }
+#edit-list { flex: none; font-size: 0.78125rem; }
+#edit-list:hover { color: var(--accent); }
+
+/* The strip that names the saved list Combos is showing, and the way to save a pasted one. */
+.analyzing { margin: 0; padding: 8px 11px; border-left: 2px solid var(--accent); font-size: 0.78125rem; color: var(--muted); }
+.analyzing strong { color: var(--text); font-weight: 600; }
+.analyzing a { color: var(--accent); text-decoration: underline; text-underline-offset: 3px; }
+.save-here { margin: 0; }
+
+
+/* The deckbuilder (#101). Two columns above 900px, two tabs below it. Nothing here is decorative:
+   elevation is a border and a background step, hierarchy is size and weight, and the six domain
+   colours appear on the domain chips and nowhere else. */
+.decks.building { max-width: 1440px; }
+.builder { display: grid; grid-template-columns: minmax(0, 1fr) 372px; gap: 22px; align-items: start; }
+.builder-tabs { display: none; }
+
+/* Pool. Every control in the filter bar is one height (--ctl) in one type family: four heights in
+   four rows read as four instruments, which is what #109 was opened for. */
+.bld-filters { --ctl: 32px; display: flex; flex-direction: column; gap: 12px; margin-bottom: 14px; padding: 14px 16px; border: 1px solid var(--line); border-radius: 10px; background: var(--panel); }
+.bld-top { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+.bld-search { flex: 1 1 220px; min-width: 0; padding: 9px 12px; border: 1px solid var(--line-2); border-radius: 6px; background: var(--bg); color: var(--text); font-size: 0.84375rem; }
+.bld-search:focus { border-color: var(--accent); }
+.bld-rows { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 8px 12px; align-items: center; }
+/* A segmented control is a grid item, so it would stretch across the column and leave a long empty
+   tail; every control in the bar hugs its own labels instead. */
+.bld-rows > * { justify-self: start; max-width: 100%; }
+.bld-lab { font-size: 0.78125rem; color: var(--muted); }
+/* Minus the fieldset's own two border pixels, so a segmented control measures --ctl outside like
+   the chips and the selects beside it. */
+.bld-filters .segmented span { display: flex; align-items: center; height: calc(var(--ctl) - 2px); padding: 0 11px; font-size: 0.78125rem; }
+.dom-chips { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+.dom-chip { display: inline-flex; align-items: center; gap: 7px; height: var(--ctl); padding: 0 11px; border: 1px solid var(--line-2); border-radius: 6px; background: transparent; color: var(--muted); font: 400 0.78125rem var(--font); cursor: pointer; }
+.dom-chip:hover { color: var(--text); }
+/* A filled dot is on, a ring is off — a chip may not carry its state in colour alone — and the
+   selected chip takes the same panel step and weight the segmented controls beside it use. */
+/* `.dom-dot` was taken: the deck library paints the legend's domains with it (line ~516), and a
+   second rule of that name grew those dots and gave them a ring. This one is the chip's own. */
+.chip-dot { width: 11px; height: 11px; flex: 0 0 auto; border: 1.5px solid var(--dom); border-radius: 50%; }
+.dom-chip.on { background: var(--panel-2); color: var(--text); font-weight: 500; }
+.dom-chip.on .chip-dot { background: var(--dom); }
+.dom-chip[data-domain="fury"] { --dom: var(--dom-fury); }
+.dom-chip[data-domain="calm"] { --dom: var(--dom-calm); }
+.dom-chip[data-domain="mind"] { --dom: var(--dom-mind); }
+.dom-chip[data-domain="body"] { --dom: var(--dom-body); }
+.dom-chip[data-domain="chaos"] { --dom: var(--dom-chaos); }
+.dom-chip[data-domain="order"] { --dom: var(--dom-order); }
+.bld-clear { height: var(--ctl); padding: 0 11px; border: 1px solid var(--line-2); border-radius: 6px; background: transparent; color: var(--muted); font: 400 0.78125rem var(--font); cursor: pointer; }
+.bld-clear:hover:not(:disabled) { color: var(--text); }
+.bld-clear:disabled { color: var(--faint); border-color: var(--line); cursor: not-allowed; }
+/* The filters fold on a phone and are always open on a desktop, where the summary is not drawn. */
+.bld-more { display: contents; }
+.bld-more-sum { display: none; }
+.segmented.bld-zones, .segmented.bld-costs { flex-wrap: wrap; max-width: 100%; }
+.bld-selects { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+/* The label rides inside the control, so three selects are three boxes of one height and one width
+   rather than three loose words beside three different boxes. */
+.bld-select { display: inline-flex; align-items: stretch; height: var(--ctl); border: 1px solid var(--line-2); border-radius: 6px; overflow: hidden; font-size: 0.78125rem; color: var(--muted); }
+.bld-select > span { display: flex; align-items: center; padding: 0 9px; border-right: 1px solid var(--line-2); }
+.bld-select select { min-width: 104px; padding: 0 8px; border: 0; background: var(--panel-2); color: var(--text); font: 400 0.78125rem var(--font); cursor: pointer; }
+.bld-select select:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
+
+.pool-count { margin: 0; margin-left: auto; flex: 0 0 auto; font-size: 0.75rem; color: var(--faint); }
+.pool-note { margin: 0 0 10px; font-size: 0.8125rem; color: var(--muted); }
+/* The one note that sits UNDER the grid rather than above it, because it is about the cells
+   that were drawn (design review 2026-09-20, D5). Same class, the margin the other way. */
+#pool-off-note { margin: 12px 0 0; }
+.pool-cells { display: grid; grid-template-columns: repeat(auto-fill, minmax(134px, 1fr)); gap: 14px 12px; }
+.pool-cell { display: flex; flex-direction: column; gap: 3px; min-width: 0; }
+.pool-add { position: relative; display: block; width: 100%; aspect-ratio: 5 / 7; padding: 0; overflow: hidden; border: 1px solid var(--line); border-radius: 9px; background: var(--panel); cursor: pointer; }
+.pool-cell.land .pool-add { aspect-ratio: 7 / 5; }
+.pool-add img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.pool-add:hover { border-color: var(--accent); }
+.pool-add[aria-disabled="true"] { cursor: not-allowed; }
+.pool-add[aria-disabled="true"]:hover { border-color: var(--line-2); }
+.pool-cell.off .pool-add img { opacity: .3; }
+.pool-noart { display: grid; place-items: center; height: 100%; padding: 8px; font-size: 0.71875rem; }
+.pool-n { position: absolute; top: 6px; right: 6px; padding: 1px 6px; border-radius: 6px; background: var(--accent); color: var(--accent-ink); font: 600 0.6875rem var(--mono); }
+.pool-full { position: absolute; left: 0; right: 0; bottom: 0; padding: 3px 6px; background: var(--panel-2); color: var(--text); font: 500 0.65625rem var(--font); text-align: center; }
+/* The name clips; the marks beside it never do — a clipped BANNED is worse than no name at all. */
+.pool-name { display: flex; align-items: center; gap: 2px; min-width: 0; margin: 0; font-size: 0.71875rem; color: var(--muted); }
+.pool-name-txt { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.pool-name .sig-tag, .pool-name .ban-tag { flex: 0 0 auto; }
+/* #672: an announced ban, in text and weight only: neither the banned tag's red nor restricted's accent. */
+.pool-soon { margin: 0; font-size: 0.65625rem; font-weight: 600; color: var(--muted); }
+/* Measured at 390px: 25x17, under WCAG 2.2 2.5.8's 24x24 floor, and it repeats for every card in
+   the pool — 48 failures on one screen. The 2.5.8 "equivalent control" exception does NOT cover it:
+   the cell's other button is .pool-add at 106x76, but that ADDS the card, a different function, so
+   viewing has no large target anywhere. Padding buys the hit area and the equal negative margin
+   gives the layout back. The vertical padding is 11px and not more BY MEASUREMENT: .pool-add ends
+   23px above this, so 11px leaves a 12px gap and a tap meant for View can never land on Add — the
+   two do different things and swapping them is worse than a small target. */
+.pool-view { align-self: flex-start; font-size: 0.6875rem; padding: 11px 10px; margin: -11px -10px; }
+.pool-more { margin-top: 16px; }
+/* Signature is a supertype (133.7.b), not a warning: it reads as a quiet mark, unlike BANNED. */
+.sig-tag { margin-left: 5px; padding: 0 3px; border: 1px solid var(--line-2); border-radius: 4px; font: 500 0.59375rem var(--mono); color: var(--muted); }
+.ban-tag.restricted { color: var(--accent); }
+
+/* Deck */
+.bld-deck { position: sticky; top: 12px; display: flex; flex-direction: column; gap: 14px; max-height: calc(100vh - 32px); overflow-y: auto; scrollbar-width: thin; padding: 16px; border: 1px solid var(--line); border-radius: 10px; background: var(--panel); }
+.bld-totals { margin: 0; font: 500 0.78125rem var(--mono); color: var(--muted); }
+.dzone { display: flex; flex-direction: column; }
+.dzone-head { display: flex; align-items: center; gap: 8px; margin: 0; padding-bottom: 5px; border-bottom: 1px solid var(--line); font-size: 0.8125rem; font-weight: 600; }
+.dzone-n { margin-left: auto; font: 500 0.71875rem var(--mono); color: var(--muted); }
+.dzone-head .ghost.tiny { margin-left: 0; padding: 3px 9px; font-size: 0.71875rem; }
+.dzone-empty { margin: 7px 0 0; font-size: 0.71875rem; color: var(--faint); }
+.drow { display: flex; align-items: center; gap: 7px; padding: 4px 0; }
+.drow + .drow { border-top: 1px solid var(--line); }
+/* The art strip (#113): 52x32 of the card's own art, with a bar in its domain colours down the left
+   edge. Two domains split the bar in half. The colours are attributes rather than an inline style,
+   which the CSP forbids, and they are the same six reserved for the pool's domain chips. */
+.drow-art { position: relative; flex: 0 0 auto; width: 52px; height: 32px; border-radius: 4px; overflow: hidden; background: var(--panel-2); }
+.drow-art img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: top; }
+.drow-art.land img { object-position: center; }
+.drow-art::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 3px; background: var(--dom-a, var(--line-2)); }
+.drow-art[data-dom2]::before { bottom: 50%; }
+.drow-art[data-dom2]::after { content: ""; position: absolute; left: 0; top: 50%; bottom: 0; width: 3px; background: var(--dom-b); }
+.drow [data-dom="fury"] { --dom-a: var(--dom-fury); }
+.drow [data-dom="calm"] { --dom-a: var(--dom-calm); }
+.drow [data-dom="mind"] { --dom-a: var(--dom-mind); }
+.drow [data-dom="body"] { --dom-a: var(--dom-body); }
+.drow [data-dom="chaos"] { --dom-a: var(--dom-chaos); }
+.drow [data-dom="order"] { --dom-a: var(--dom-order); }
+.drow [data-dom2="fury"] { --dom-b: var(--dom-fury); }
+.drow [data-dom2="calm"] { --dom-b: var(--dom-calm); }
+.drow [data-dom2="mind"] { --dom-b: var(--dom-mind); }
+.drow [data-dom2="body"] { --dom-b: var(--dom-body); }
+.drow [data-dom2="chaos"] { --dom-b: var(--dom-chaos); }
+.drow [data-dom2="order"] { --dom-b: var(--dom-order); }
+.drow-cost { flex: 0 0 auto; display: flex; align-items: center; gap: 3px; }
+.drow-pip { display: grid; place-items: center; width: 21px; height: 21px; border-radius: 50%; background: var(--panel-2); color: var(--text); font: 600 0.6875rem var(--font); font-variant-numeric: tabular-nums; }
+/* One dot per Power. Riot's data gives the number but not which domain each symbol asks for, so a
+   card indicating two domains gets neutral dots rather than a guess. */
+.drow-power { display: flex; flex-direction: column; gap: 2px; }
+.drow-power i { width: 5px; height: 5px; border-radius: 50%; background: var(--dom-a, var(--muted)); }
+.drow-power.mixed i { background: var(--muted); }
+.drow-might { flex: 0 0 auto; font: 500 0.65625rem var(--mono); color: var(--faint); }
+/* The Chosen Champion row already spends 70px on its tag, and it is the one row whose name is
+   always a long one. The Might steps out of that row rather than the name. */
+.drow.champ .drow-might { display: none; }
+.drow-name { flex: 1 1 auto; min-width: 0; overflow: hidden; padding: 0; border: 0; background: none; color: var(--text); font-size: 0.78125rem; text-align: left; text-overflow: ellipsis; white-space: nowrap; cursor: pointer; }
+.drow-name:hover { color: var(--accent); text-decoration: underline; text-underline-offset: 3px; }
+.drow-tag { flex: 0 0 auto; font: 500 0.59375rem var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--accent); }
+.drow-champ, .drow-drop { flex: 0 0 auto; font-size: 0.6875rem; }
+.drow-n { flex: 0 0 auto; font: 500 0.71875rem var(--mono); color: var(--muted); }
+/* Drawn at 22px so a deck row stays one line, hit at 26px (measured: -2px gave 24, the floor exactly): the ::before pad lifts it over WCAG
+   2.2 2.5.8's 24x24 floor without moving a pixel of the row (design review 2026-09-20, FINDING-003 —
+   the same remedy .pool-view and .gate-links already carry, and this is the control drawn most often). */
+.icon-btn.tiny { position: relative; width: 22px; height: 22px; font-size: 0.9375rem; }
+.icon-btn.tiny::before { content: ""; position: absolute; inset: -3px; }
+.icon-btn.tiny svg { width: 12px; height: 12px; stroke-width: 2; }
+.icon-btn.tiny[aria-disabled="true"] { color: var(--faint); border-color: var(--line); cursor: not-allowed; }
+.curve { display: block; width: 100%; height: 48px; margin: 8px 0 6px; }
+/* The curve is data, not decoration, so its bars owe the 3:1 WCAG asks of a meaningful graphic.
+   --line-2 measures 2.32:1 on --panel and was the first thing tried; --faint is 5.32. */
+.curve-bar { fill: var(--faint); }
+/* The bar the pointed-at row stands in, so the list and the curve talk to each other (#113). */
+.curve-bar.hot { fill: var(--accent); }
+.curve-tick { fill: var(--faint); font: 500 0.4375rem var(--mono); }
+/* The whole card beside the list while a row is pointed at or focused. Never takes the pointer, and
+   placed through CSSOM: the CSP forbids a style attribute. */
+.row-preview { position: fixed; z-index: 30; border: 1px solid var(--line-2); border-radius: 10px; overflow: hidden; background: var(--panel); pointer-events: none; }
+.row-preview img { display: block; width: 100%; height: 100%; object-fit: cover; }
+
+/* Construction, one <details> per rule */
+.bld-check { display: flex; flex-direction: column; gap: 8px; padding-top: 12px; border-top: 1px solid var(--line); }
+.bld-check-head { display: flex; align-items: baseline; gap: 8px; margin: 0; font-size: 0.8125rem; }
+.bld-check-fmt { font: 500 0.65625rem var(--mono); letter-spacing: .06em; text-transform: uppercase; color: var(--muted); }
+.bld-check-n { margin-left: auto; font: 500 0.71875rem var(--font); }
+.bld-check-n.ok { color: var(--ok); }
+.bld-check-n.bad { color: var(--danger-text); }
+.chk-rows { display: flex; flex-direction: column; }
+.chk-row { border-top: 1px solid var(--line); }
+.chk-row summary { display: flex; align-items: baseline; gap: 8px; padding: 6px 0; font-size: 0.78125rem; color: var(--muted); cursor: pointer; list-style: none; }
+.chk-row summary::-webkit-details-marker { display: none; }
+.chk-mark { flex: 0 0 11px; font: 600 0.75rem var(--mono); }
+.chk-row.pass .chk-mark { color: var(--ok); }
+.chk-row.fail .chk-mark { color: var(--danger-text); }
+.chk-row.unknown .chk-mark { color: var(--faint); }
+.chk-row.fail .chk-label { color: var(--text); }
+.chk-label { flex: 1 1 auto; min-width: 0; }
+.chk-n { flex: 0 0 auto; font: 500 0.6875rem var(--mono); color: var(--faint); }
+.chk-detail { margin: 0 0 4px; padding-left: 19px; font-size: 0.71875rem; line-height: 1.5; color: var(--muted); }
+.chk-rule { margin: 0 0 8px; padding-left: 19px; font: 400 0.65625rem var(--mono); color: var(--faint); }
+
+/* Import */
+.bld-dialog { width: min(560px, 92vw); padding: 20px; border: 1px solid var(--line-2); border-radius: 10px; background: var(--panel); color: var(--text); }
+.bld-dialog::backdrop { background: var(--scrim-2); }
+.bld-dialog-head { display: flex; align-items: center; justify-content: space-between; margin: 0 0 10px; }
+.bld-dialog-title { margin: 0; font-size: 1.0625rem; }
+.bld-dialog textarea { width: 100%; margin: 10px 0; padding: 10px 12px; border: 1px solid var(--line-2); border-radius: 6px; background: var(--bg); color: var(--text); font: 0.78125rem/1.5 var(--mono); resize: vertical; }
+
+/* The name and the format sit above both columns. */
+.detail-top { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+.detail-top .detail-name { flex: 1 1 260px; width: auto; }
+
+/* Below 900px the two columns become two tabs, and the counts follow you down the page. */
+.bld-bar { display: none; }
+@media (max-width: 900px) {
+  .decks.building { padding-bottom: 140px; }
+  /* The fixed bar already carries the three counts; saying them twice is not saying them louder. */
+  .bld-totals { display: none; }
+  .bld-more { display: block; }
+  .bld-more[open] { display: flex; flex-direction: column; gap: 10px; }
+  /* A label column costs 55px of a 390px screen, and the segmented controls need every one of
+     them: below 900px each label sits on its own line above the control it names. */
+  .bld-rows { grid-template-columns: minmax(0, 1fr); gap: 6px; }
+  .bld-lab { margin-top: 4px; }
+  .bld-more-sum { display: block; padding: 6px 0; font-size: 0.78125rem; color: var(--muted); cursor: pointer; list-style: none; }
+  .bld-more-sum::-webkit-details-marker { display: none; }
+  .bld-more-sum::after { content: " ▾"; }
+  .bld-more[open] .bld-more-sum::after { content: " ▴"; }
+  .builder { grid-template-columns: minmax(0, 1fr); }
+  .builder-tabs { display: inline-flex; justify-self: start; }
+  .builder[data-tab="pool"] .bld-deck { display: none; }
+  .builder[data-tab="deck"] .bld-pool { display: none; }
+  .bld-deck { position: static; max-height: none; overflow: visible; }
+  /* #127: below 900px `.bld-deck` is hidden on the Pool tab, so Import, Analyze and Export ride a
+     second row here — one tap from either tab, never behind a switch to Deck. */
+  .bld-bar { position: fixed; left: 0; right: 0; bottom: 0; z-index: 20; display: flex; flex-direction: column; gap: 8px; padding: 10px 16px 12px; border-top: 1px solid var(--line-2); background: var(--bg); }
+  .bld-bar-top { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+  .bld-bar-counts { margin: 0; font: 500 0.75rem var(--mono); color: var(--muted); }
+  .bld-bar-acts { display: flex; gap: 8px; }
+  .bld-bar-acts .ghost { flex: 1 1 0; padding: 7px 6px; font-size: 0.78125rem; text-align: center; }
+  .pool-cells { grid-template-columns: repeat(auto-fill, minmax(104px, 1fr)); }
+  /* 390px of row has to hold the art, the cost, the name and four controls. The strip shrinks and
+     the Might steps out — it is the one thing on the row the card modal answers in full. */
+  .drow-art { width: 44px; height: 28px; }
+  .drow-might { display: none; }
+}
+
+/* The format toggle scopes the combo matcher, so it is only on screen where it changes an answer. */
+body:not([data-view="combos"]) .topbar-right .segmented { display: none; }
+/* A disabled Save is not waiting on anything; the shared .primary:disabled cursor says it is. */
+.detail-acts .primary:disabled { cursor: not-allowed; }

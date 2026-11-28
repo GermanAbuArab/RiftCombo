@@ -1,0 +1,184 @@
+import { readFileSync } from "node:fs";
+import { describe, expect, it } from "vitest";
+import { CLASS_RANK, generateVariants } from "../src/combos.js";
+import { loadDeck } from "../src/deck.js";
+import { CardIndex } from "../src/cards.js";
+import { loadCardIndex, loadCombos } from "../src/load.js";
+import { FIXTURE_DAY } from "./fixture-day.js";
+import { planDeck } from "../src/plan.js";
+
+const cards = loadCardIndex(FIXTURE_DAY);
+const { combos } = loadCombos();
+const variants = generateVariants(combos, cards);
+const fixture = (n: string) => readFileSync(new URL(`./fixtures/${n}`, import.meta.url), "utf8");
+const constructed = { format: "constructed" as const };
+
+describe("deck plan", () => {
+  it("reports the lines the Lux deck already completes and stays inside Mind + Order", () => {
+    const deck = loadDeck(fixture("lux.txt"), cards);
+    const plan = planDeck(deck, variants, cards, constructed);
+
+    expect(plan.domains.sort()).toEqual(["mind", "order"]);
+    expect(plan.have.length).toBeGreaterThan(0);
+    for (const r of plan.have) expect(r.cost).toBe(0);
+    expect(plan.have.map((r) => r.variant.comboIds[0])).toContain("lux-infinite-energy");
+    // Domain Identity (103.1.b): nothing outside the legend's two domains may be suggested.
+    for (const r of [...plan.have, ...plan.routes]) {
+      for (const base of Object.keys(r.variant.cards)) {
+        expect(cards.domainsOf(base).every((d) => plan.domains.includes(d))).toBe(true);
+      }
+    }
+  });
+
+  it("never suggests a card outside a mono-Fury legend's domains", () => {
+    const deck = loadDeck(fixture("fury.txt"), cards);
+    const plan = planDeck(deck, variants, cards, constructed);
+
+    expect(plan.routes.length).toBeGreaterThan(0);
+    for (const r of plan.routes) {
+      for (const a of r.add) {
+        expect(cards.domainsOf(a.card).every((d) => plan.domains.includes(d))).toBe(true);
+      }
+    }
+  });
+
+  it("ranks by cards to add, breaking ties toward the line that wins", () => {
+    const deck = loadDeck(fixture("fury.txt"), cards);
+    const plan = planDeck(deck, variants, cards, constructed);
+
+    for (let i = 1; i < plan.routes.length; i++) {
+      const prev = plan.routes[i - 1]!, cur = plan.routes[i]!;
+      expect(prev.cost).toBeLessThanOrEqual(cur.cost);
+      if (prev.cost === cur.cost) {
+        expect(CLASS_RANK[prev.variant.class]).toBeGreaterThanOrEqual(CLASS_RANK[cur.variant.class]);
+      }
+    }
+  });
+
+  it("lists one route per combo, not one per flattening of the DAG", () => {
+    const deck = loadDeck(fixture("lux.txt"), cards);
+    const plan = planDeck(deck, variants, cards, constructed);
+    const primaries = [...plan.have, ...plan.routes].map((r) => r.variant.comboIds[0]!);
+    expect(primaries.length).toBe(new Set(primaries).size);
+  });
+
+  it("prices the Ornn gear deck at the two cards the L6 hunt named by hand", () => {
+    // docs/phase0/hunt2/L6-equipment-legends.md §C4 worked this deck out card by card and called
+    // for Ahri, Alluring plus Blue Sentinel. The plan has to reach the same pair from the data.
+    const deck = loadDeck(
+      "Legend\n1 Fire Below the Mountain\nMain\n3 Svellsongur\n3 Hwei, Brooding Painter\n3 Time Warp",
+      cards,
+    );
+    const plan = planDeck(deck, variants, cards, constructed);
+    const burst = plan.routes.find((r) => r.variant.comboIds[0] === "svellsongur-copy-hold")!;
+
+    expect(burst).toBeDefined();
+    expect(burst.variant.class).toBe("BURST");
+    expect(burst.add.map((a) => a.card).sort()).toEqual(["OGN-066", "UNL-087"]);
+    expect(burst.cost).toBe(2);
+    expect(burst.havePieces).toBe(1); // Svellsongur is already in the list
+    expect(burst.totalPieces).toBe(3);
+  });
+
+  it("counts a missing battlefield separately, since it costs a battlefield slot", () => {
+    const deck = loadDeck("Legend\n1 Fire Below the Mountain\nMain\n3 Blue Sentinel", cards);
+    const plan = planDeck(deck, variants, cards, constructed);
+    const nexus = plan.routes.find((r) => r.variant.comboIds[0] === "power-nexus-sentinel")!;
+
+    expect(nexus).toBeDefined();
+    expect(nexus.battlefieldCopies).toBe(1); // SFD-214 Power Nexus
+  });
+
+  it("suggests nothing when the list names no legend, because identity is unknown", () => {
+    const deck = loadDeck("Main\n3 Ahri, Alluring\n2 Blue Sentinel", cards);
+    const plan = planDeck(deck, variants, cards, constructed);
+
+    expect(deck.legend).toBeNull();
+    expect(plan.domains).toEqual([]);
+    expect(plan.legalHere).toBe(0);
+    expect(plan.routes).toEqual([]);
+  });
+
+  it("drops a line whose ingredient is banned in the format being matched", () => {
+    const deck = loadDeck(fixture("recruits.txt"), cards);
+    const plan = planDeck(deck, variants, cards, constructed);
+    const ids = [...plan.have, ...plan.routes].map((r) => r.variant.comboIds[0]);
+
+    // Stealthy Pursuer (OGN-177) is banned in constructed, so the loop it anchors is not a
+    // recommendation — even though the deck holds it and the matcher does report the hit.
+    expect(ids).not.toContain("pursuer-herald-recruits");
+  });
+
+  /**
+   * #135: `cards.legality()` answers for banned AND restricted, and the guard was a bare truthiness
+   * test, so a merely restricted ingredient took the whole route off the panel. A restriction is a
+   * cap, not an illegal card — `legalityRule` keeps the two apart, `matchDeck` reports a restricted
+   * hit rather than hiding it, and CLAUDE.md says this panel drops BANNED ingredients. Nothing in
+   * the shipped data reaches it (the one restricted entry is a legend, and legends are not in
+   * `v.cards`), so the restriction is synthesised here on a card a real route uses.
+   */
+  it("keeps a route whose ingredient is merely restricted, and drops it when it is banned", () => {
+    const deck = loadDeck(fixture("lux.txt"), cards);
+    const target = "lux-infinite-energy";
+    const before = planDeck(deck, variants, cards, constructed);
+    const ingredient = [...before.have, ...before.routes]
+      .find((r) => r.variant.comboIds.includes(target))!;
+    const base = Object.keys(ingredient.variant.cards)[0]!;
+    const card = cards.get(base)!;
+
+    const entry = (status: "banned" | "restricted") => ({
+      format: "constructed" as const,
+      entity: card.type[0]!,
+      name: card.name,
+      codes: [base],
+      bases: [base],
+      status,
+      since: "2026-09-06",
+      source: "test",
+    });
+    const seen = (index: CardIndex) =>
+      [...planDeck(deck, variants, index, constructed).have, ...planDeck(deck, variants, index, constructed).routes]
+        .some((r) => r.variant.comboIds.includes(target));
+
+    expect(seen(new CardIndex(cards.cards, [entry("restricted")]))).toBe(true);
+    expect(seen(new CardIndex(cards.cards, [entry("banned")]))).toBe(false);
+  });
+});
+
+/**
+ * #672: What to add never builds toward a line whose card has an announced ban (#670's rows not in
+ * force yet). Stellacorn Herder (SFD-048) is banned from 2026-11-23 in both formats, and
+ * `azir-ascendant-stellacorn-draw` is Azir, Ascendant plus the Herder: a Calm + Order list holding
+ * Azir is one Herder away from it. The day is read in UTC (`banDay`), so the boundary is pinned to
+ * the millisecond.
+ */
+describe("an announced ban (#672)", () => {
+  const target = "azir-ascendant-stellacorn-draw";
+  const ids = (plan: ReturnType<typeof planDeck>) => [...plan.have, ...plan.routes].map((r) => r.variant.comboIds[0]);
+  const eve = cards.current(new Date("2026-11-22T23:59:59.999Z"));
+  const day = cards.current(new Date("2026-11-23T00:00:00Z"));
+
+  for (const format of ["constructed", "2v2"] as const) {
+    it(`never suggests a card whose ban is announced, and still not once it is in force (${format})`, () => {
+      const deck = loadDeck("Legend\n1 Emperor of the Sands\nMain\n3 Azir, Ascendant", cards);
+      // The control: read with no ban list at all, the line is one Herder away.
+      const open = planDeck(deck, variants, new CardIndex(cards.cards, [], "2026-11-22"), { format });
+      expect(open.routes.find((r) => r.variant.comboIds[0] === target)?.add).toEqual([{ card: "SFD-048", quantity: 1 }]);
+
+      expect(eve.asOf).toBe("2026-11-22");
+      expect(eve.upcomingBan("SFD-048", format)?.since).toBe("2026-11-23");
+      const before = planDeck(deck, variants, eve, { format });
+      expect(ids(before)).not.toContain(target);
+      for (const r of before.routes) expect(r.add.map((a) => a.card)).not.toContain("SFD-048");
+
+      expect(day.legality("SFD-048", format)?.status).toBe("banned");
+      expect(ids(planDeck(deck, variants, day, { format }))).not.toContain(target);
+    });
+  }
+
+  it("still says a list completes such a line, because the line is legal until the date", () => {
+    const deck = loadDeck("Legend\n1 Emperor of the Sands\nMain\n3 Azir, Ascendant\n3 Stellacorn Herder", cards);
+    expect(planDeck(deck, variants, eve, constructed).have.map((r) => r.variant.comboIds[0])).toContain(target);
+    expect(ids(planDeck(deck, variants, day, constructed))).not.toContain(target);
+  });
+});

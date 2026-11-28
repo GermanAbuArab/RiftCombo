@@ -1,0 +1,23 @@
+node_modules/
+dist/
+.wrangler/
+.dev.vars
+.env
+.env.*
+*.log
+.DS_Store
+coverage/
+public/
+.playwright-mcp/
+.vercel/
+.vercel
+.scratch/
+
+# archify QA output: regenerable, ~1.7 MB of PNGs and receipts
+docs/architecture/*.visual-check.*
+.scratch-*/
+strix_runs/
+.playwright-cli/
+security_runs/
+.gstack/
+out/

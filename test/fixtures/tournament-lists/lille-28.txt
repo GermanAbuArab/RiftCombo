@@ -1,0 +1,35 @@
+Legend:
+1 Azir, Emperor of the Sands
+Champion:
+1 Azir, Sovereign
+Main Deck:
+3 Arise!
+3 B.F. Sword
+3 Brutalizer
+3 Deathgrip
+2 Defy
+3 Desert's Call
+3 Discipline
+3 Doran's Shield
+2 En Garde
+3 Eye of the Herald
+1 Facebreaker
+1 Guardian Angel
+3 Guards!
+3 Hidden Blade
+2 Sacred Shears
+1 Salvage
+Battlefields:
+1 Hall of Legends
+1 Seat of Power
+1 Trifarian War Camp
+Rune Pool:
+6 Calm Rune
+6 Order Rune
+Sideboard:
+2 Charm
+1 Cull the Weak
+1 Defy
+1 Facebreaker
+1 Salvage
+2 Wind Wall

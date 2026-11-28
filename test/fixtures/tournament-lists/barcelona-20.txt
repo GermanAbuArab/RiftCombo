@@ -1,0 +1,40 @@
+Legend:
+1 Jayce, Defender of Tomorrow
+Champion:
+1 Jayce, Brilliant Inventor
+Main Deck:
+2 Bellows Breath
+3 Catalyst of Aeons
+3 Clairvoyance
+3 Dazzling Aurora
+1 Deadly Flourish
+3 Dredge Up
+3 Elder Dragon
+2 Flurry of Blades
+2 Garbage Grabber
+2 Gutter Palace
+3 Mobilize
+3 Platewyrm Egg
+1 Progress Day
+1 Promising Future
+1 Rocket Barrage
+2 Sabotage
+2 Sprite Burst
+1 Sprite Fountain
+1 Temporal Breach
+Battlefields:
+1 Forgotten Monument
+1 Sigil of the Storm
+1 The Papertree
+Rune Pool:
+6 Body Rune
+6 Mind Rune
+Sideboard:
+1 Bellows Breath
+1 Deadly Flourish
+1 Decree of Strength
+2 Disposal Order
+2 Promising Future
+1 Sabotage
+1 Singularity
+1 Turn to Dust

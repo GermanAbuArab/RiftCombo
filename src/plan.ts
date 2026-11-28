@@ -1,0 +1,141 @@
+import { bodyCheck, type BodyShortfall } from "./bodies.js";
+import type { CardIndex } from "./cards.js";
+import { CLASS_RANK } from "./combos.js";
+import type { Deck, Domain, Format, Variant } from "./types.js";
+
+export interface Addition {
+  /** Base card code to add. */
+  card: string;
+  /** Copies to add on top of what the list already holds. */
+  quantity: number;
+}
+
+/** One catalogued line, priced against this deck: what it would cost to complete. */
+export interface Route {
+  variant: Variant;
+  add: Addition[];
+  /**
+   * Bodies the line needs that no card supplies and this list cannot cover — the whole reason the
+   * panel could not name what was missing. `add` rows are keyed on a base code and this names no
+   * card, so it rides beside them; its `count` IS folded into `cost`, so the ranking below prices
+   * the line at its real distance.
+   */
+  addBodies?: BodyShortfall;
+  /** Total copies to add, bodies included. 0 means the list already has the line. */
+  cost: number;
+  /** Distinct ingredient cards the list already holds. */
+  havePieces: number;
+  totalPieces: number;
+  /** Copies among `add` that are battlefields: they take one of the three battlefield slots. */
+  battlefieldCopies: number;
+}
+
+export interface DeckPlan {
+  /** The legend's two domains, or [] when the list names no legend. */
+  domains: Domain[];
+  /** Catalogued variants that fit inside those domains at all. 0 is a gap in the catalogue. */
+  legalHere: number;
+  /** Lines the list already completes. */
+  have: Route[];
+  /** Lines it does not, cheapest first, one per combo. */
+  routes: Route[];
+  /** Base codes in the list that appear in some line playable under this legend. */
+  pieces: string[];
+}
+
+export interface PlanOptions {
+  format: Format;
+}
+
+/**
+ * Price every catalogued line against one deck and rank what it would take to complete the first
+ * one. Domain Identity (103.1.b) caps a deck at its legend's two domains, so a card outside them
+ * can never be suggested — that filter runs over the whole ingredient list, held pieces included.
+ *
+ * Unlike matchDeck's near-miss buckets there is no distance cap: a six-card route is still shown,
+ * because the count itself says how far away it is, and hiding it would hide a real answer.
+ */
+export function planDeck(deck: Deck, variants: Variant[], cards: CardIndex, opts: PlanOptions): DeckPlan {
+  if (!deck.legend) return { domains: [], legalHere: 0, have: [], routes: [], pieces: [] };
+
+  const domains = cards.domainsOf(deck.legend);
+  const identity = new Set<Domain>(domains);
+  const inIdentity = (base: string) => cards.domainsOf(base).every((d) => identity.has(d));
+
+  // Owned copies by base code, counting alt printings under other numbers as the same card.
+  // The sideboard is excluded, matching what the deck panel says about matching.
+  const owned = new Map<string, number>();
+  for (const bag of [deck.main, deck.battlefields]) {
+    for (const [base, n] of Object.entries(bag)) {
+      for (const eq of cards.equivalents(base)) owned.set(eq, (owned.get(eq) ?? 0) + n);
+    }
+  }
+  owned.set(deck.legend, 1);
+
+  const bodies = bodyCheck(deck, cards);
+  const priced: Route[] = [];
+  const pieces = new Set<string>();
+  for (const v of variants) {
+    const bases = Object.keys(v.cards);
+    if (!bases.every(inIdentity)) continue;
+    // This view never proposes changing legend; the matcher's own buckets already cover that.
+    if (v.legends && !v.legends.includes(deck.legend)) continue;
+    // Never recommend buying a card that cannot be PLAYED in the format being matched. A restricted
+    // card is a cap, not an illegal one (#135), and `cards.legality` answers for either: dropping the
+    // whole route on a restriction hid a line the player may legally build, which is stricter than
+    // `legalityRule`, than `matchDeck`, and than what CLAUDE.md says this panel does.
+    if (bases.some((b) => cards.legality(b, opts.format)?.status === "banned")) continue;
+
+    const add: Addition[] = [];
+    for (const [card, need] of Object.entries(v.cards)) {
+      const have = owned.get(card) ?? 0;
+      if (have < need) add.push({ card, quantity: need - have });
+    }
+    add.sort((a, b) => b.quantity - a.quantity || (cards.get(a.card)?.name ?? a.card).localeCompare(cards.get(b.card)?.name ?? b.card));
+    const short = bodies(v);
+    const addBodies = short && short.count > 0 ? short : undefined;
+    // Bodies count toward the price because they are cards the list has to find room for, and
+    // because `have` below is the `cost === 0` bucket: without this a line the deck cannot run
+    // would still be reported as one it already has, which is the defect in the panel built to
+    // name what is missing.
+    const cost = add.reduce((n, a) => n + a.quantity, 0) + (addBodies?.count ?? 0);
+    // #672: a line holding a card whose ban is announced is never a route to build toward, nor are
+    // its pieces a road. A list that already completes it still says so: the line is legal until the
+    // date, and the Banned and restricted panel above names the card and the day.
+    if (cost > 0 && bases.some((b) => cards.upcomingBan(b, opts.format))) continue;
+
+    for (const b of bases) if ((owned.get(b) ?? 0) > 0) pieces.add(b);
+
+    priced.push({
+      variant: v,
+      add,
+      addBodies,
+      cost,
+      havePieces: bases.length - add.length,
+      totalPieces: bases.length,
+      battlefieldCopies: add.reduce((n, a) => n + (cards.get(a.card)?.type.includes("battlefield") ? a.quantity : 0), 0),
+    });
+  }
+
+  // Cheapest first. Class only breaks a tie, so a line that wins outranks an engine of equal price.
+  priced.sort((a, b) =>
+    a.cost - b.cost ||
+    CLASS_RANK[b.variant.class] - CLASS_RANK[a.variant.class] ||
+    Number(b.variant.status === "verified") - Number(a.variant.status === "verified") ||
+    a.totalPieces - b.totalPieces ||
+    a.variant.id.localeCompare(b.variant.id));
+
+  // One row per combo: the DAG flattens a single line into several variants, and listing each
+  // flattening would fill the panel with the same recommendation at different prices.
+  const have: Route[] = [];
+  const routes: Route[] = [];
+  const seen = new Set<string>();
+  for (const r of priced) {
+    const key = r.variant.comboIds[0]!;
+    if (seen.has(key)) continue;
+    seen.add(key);
+    (r.cost === 0 ? have : routes).push(r);
+  }
+
+  return { domains, legalHere: priced.length, have, routes, pieces: [...pieces] };
+}
