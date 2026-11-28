@@ -1,0 +1,60 @@
+{
+  "note": "One text per tagger predicate (#736). test/engine.test.ts fails when a predicate in src/engine/tags.ts has no row here. Invented card text, worded the way Riot's gallery words it.",
+  "triggers": [
+    { "kind": "play", "subject": "self", "type": "unit", "text": "When you play me, draw 1." },
+    { "kind": "play", "subject": "other", "type": "unit", "text": "When you play a spell, buff me." },
+    { "kind": "attack", "subject": "self", "type": "unit", "text": "When I attack, deal 2 to an enemy unit here." },
+    { "kind": "attack", "subject": "other", "type": "unit", "text": "When a friendly unit attacks, buff it." },
+    { "kind": "defend", "subject": "self", "type": "unit", "text": "When I defend, draw 1." },
+    { "kind": "defend", "subject": "other", "type": "unit", "text": "When a friendly unit defends, buff it." },
+    { "kind": "conquer", "subject": "self", "type": "unit", "text": "When I conquer, draw 1." },
+    { "kind": "conquer", "subject": "other", "type": "unit", "text": "When you conquer, draw 1." },
+    { "kind": "hold", "subject": "self", "type": "unit", "text": "When I hold, you score 1 point." },
+    { "kind": "hold", "subject": "other", "type": "battlefield", "text": "When you hold here, draw 1." },
+    { "kind": "die", "subject": "self", "type": "unit", "text": "[Deathknell] — Draw 1. (When I die, get the effect.)" },
+    { "kind": "die", "subject": "other", "type": "unit", "text": "When a friendly unit dies, draw 1." },
+    { "kind": "draw", "subject": "other", "type": "unit", "text": "When you draw, buff me." },
+    { "kind": "discard", "subject": "other", "type": "unit", "text": "When you discard a card, draw 1." },
+    { "kind": "discard", "subject": "self", "type": "unit", "text": "When you discard me, draw 1." },
+    { "kind": "recycle", "subject": "other", "type": "unit", "text": "When you recycle a card, buff me." },
+    { "kind": "channel", "subject": "other", "type": "unit", "text": "When you channel a rune, buff me." },
+    { "kind": "ready", "subject": "self", "type": "unit", "text": "When I ready, draw 1." },
+    { "kind": "ready", "subject": "other", "type": "unit", "text": "When you ready a rune, buff me." },
+    { "kind": "exhaust", "subject": "self", "type": "unit", "text": "When I exhaust, draw 1." },
+    { "kind": "move", "subject": "self", "type": "unit", "text": "The third time I move in a turn, you score 1 point." },
+    { "kind": "move", "subject": "other", "type": "unit", "text": "When a friendly unit moves from my location, buff it." },
+    { "kind": "gain-point", "subject": "other", "type": "unit", "text": "When you score, draw 1." },
+    { "kind": "spend", "subject": "other", "type": "unit", "text": "When you spend :rb_rune_mind:, draw 1." },
+    { "kind": "mighty", "subject": "other", "type": "unit", "text": "When a unit you control becomes [Mighty], you may pay :rb_rune_order: to ready it." },
+    { "kind": "unit-count", "subject": "other", "type": "battlefield", "text": "When you hold here, if you have 7+ units here, you win the game." },
+    { "kind": "turn-start", "subject": "other", "type": "gear", "text": "At the start of your Main Phase, you may kill 3 other friendly units to score 1 point." }
+  ],
+  "activated": [
+    { "kind": "ready", "type": "gear", "text": ":rb_exhaust:: Play three 1 :rb_might: Recruit unit tokens." },
+    { "kind": "spend", "type": "unit", "text": ":rb_energy_1::rb_rune_mind:: Draw 1." }
+  ],
+  "effects": [
+    { "kind": "ready-rune", "type": "unit", "text": "[Deathknell] — Recycle me to ready your runes." },
+    { "kind": "add-power", "type": "unit", "text": "When I hold, [Add] :rb_rune_rainbow: at the start of your next Main Phase." },
+    { "kind": "draw", "type": "spell", "text": "Draw 2." },
+    { "kind": "create-token", "type": "spell", "text": "Play four 1 :rb_might: Recruit unit tokens." },
+    { "kind": "return-to-hand", "type": "spell", "text": "Return a friendly unit to its owner's hand. Its owner channels 1 rune exhausted." },
+    { "kind": "play-from-trash", "type": "unit", "text": "When you play me, you may play a spell from your trash." },
+    { "kind": "recycle", "type": "gear", "text": "Kill this: Recycle up to 4 cards from trashes." },
+    { "kind": "ready-unit", "type": "unit", "text": "When you play me, ready another friendly Mech." },
+    { "kind": "gain-point", "type": "unit", "text": "When I hold, you score 1 point." },
+    { "kind": "deal-damage", "type": "spell", "text": "Deal 3 to a unit at a battlefield." },
+    { "kind": "buff-might", "type": "unit", "text": "When I conquer, [Buff] a friendly unit." },
+    { "kind": "move", "type": "spell", "text": "Move a friendly unit to a battlefield." },
+    { "kind": "kill", "type": "spell", "text": "Kill a unit with 3 :rb_might: or less." },
+    { "kind": "channel", "type": "spell", "text": "Draw 2 and channel 1 rune exhausted." },
+    { "kind": "win", "type": "battlefield", "text": "When you hold here, if you have 7+ units here, you win the game." },
+    { "kind": "retrigger", "type": "unit", "text": "Your hold effects for holding here trigger an additional time.", "of": ["hold"] },
+    { "kind": "extra-turn", "type": "spell", "text": "Take a turn after this one. Banish this." }
+  ],
+  "limiters": [
+    { "kind": "the first time", "type": "unit", "text": "When you play me for the first time, draw 1." },
+    { "kind": "once per turn", "type": "unit", "text": "When you draw, buff me. Do this only once per turn." },
+    { "kind": "this turn", "type": "spell", "text": "Units you play this turn enter ready. Draw 1." }
+  ]
+}

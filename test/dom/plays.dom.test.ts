@@ -1,0 +1,331 @@
+// @vitest-environment happy-dom
+//
+// The renderer (#206; since #575 only the public page draws it). The plays are the spec, so this
+// renders THEM and not only a fixture: the subset was measured against that corpus, and a fifth play written in something outside it should
+// fail here rather than show a reader a stray `**` in the middle of a sentence.
+//
+// The CSP forbids inline `style=`, and the rule behind it is that document text must never be built
+// into markup. Every assertion about escaping below is about that: the parser is handed hostile text
+// and the result is checked for elements, not for strings.
+import { describe, expect, it, vi } from "vitest";
+import { BUDGET_MS } from "../budget.js";
+import { playArticle, playsIndex } from "../../src/render/play.js";
+// @ts-expect-error plain .mjs shared with scripts/build-web.mjs, which cannot import TypeScript.
+import { loadPlays as readPlays } from "../../scripts/web-plays.mjs";
+
+interface Play { slug: string; date: string; title: string; lede: string; markdown: string }
+const PLAYS = readPlays(".") as Play[];
+
+/**
+ * The app shell has no plays view since #575 (#287 made it unreachable), so a play is drawn in one
+ * place: `playArticle` which is what the build writes to /plays/<slug>. Rendering
+ * it into a DOM here is what lets the escaping assertions check elements rather than strings.
+ */
+const SLUGS = new Set(PLAYS.map((p) => p.slug));
+const render = (play: Play, slugs: ReadonlySet<string> = SLUGS): HTMLElement => {
+  const host = document.createElement("main");
+  host.className = "doc play";
+  host.innerHTML = playArticle(play, slugs);
+  return host;
+};
+const bySlug = (slug: string) => PLAYS.find((p) => p.slug === slug)!;
+
+// Each test renders the real plays; explicit budget, like the 222-list sweeps: a slow test with no
+// explicit timeout is a flake waiting for load (#239).
+vi.setConfig({ testTimeout: BUDGET_MS });
+
+describe("the plays index", () => {
+  it("lists every play with its title, date and lede", () => {
+    const host = document.createElement("main");
+    host.innerHTML = playsIndex(PLAYS);
+    const items = [...host.querySelectorAll(".play-item")];
+    expect(items).toHaveLength(PLAYS.length);
+    for (const p of PLAYS) {
+      const link = host.querySelector<HTMLAnchorElement>(`a[href="/plays/${p.slug}"]`);
+      expect(link, p.slug).not.toBeNull();
+      expect(link!.textContent).toContain(p.title);
+    }
+    // A page of its own: its title is the one h1.
+    expect(host.querySelectorAll("h1.doc-title")).toHaveLength(1);
+  });
+});
+
+describe("a play rendered", () => {
+  // One test per play (#378): a failure names it and each play has its own budget.
+  it.each(PLAYS)("renders every construct the corpus uses, on $slug", (p) => {
+    const host = render(p);
+    // One title, the index's title rather than the file's "Play — " prefix; the sections sit one
+    // level under it.
+    const titles = host.querySelectorAll("h1");
+    expect(titles, p.slug).toHaveLength(1);
+    expect(titles[0]!.textContent, p.slug).toBe(p.title);
+    expect(host.querySelectorAll("h2").length, `${p.slug} h2`).toBeGreaterThan(0);
+    // No skipped levels: every heading is at most one below the last.
+    let last = 0;
+    for (const h of host.querySelectorAll("h1, h2, h3, h4, h5, h6")) {
+      const level = Number(h.tagName[1]);
+      expect(level, `${p.slug} ${h.tagName} "${h.textContent}" after h${last}`).toBeLessThanOrEqual(last + 1);
+      last = level;
+    }
+    expect(host.querySelectorAll("p").length, `${p.slug} p`).toBeGreaterThan(3);
+    expect(host.querySelectorAll(".play-table").length, `${p.slug} tables`).toBeGreaterThan(0);
+    expect(host.querySelectorAll("code").length, `${p.slug} code`).toBeGreaterThan(5);
+    expect(host.querySelectorAll("strong").length, `${p.slug} strong`).toBeGreaterThan(5);
+    expect(host.querySelector<HTMLAnchorElement>(".play-back")?.getAttribute("href"), `${p.slug} back link`).toBe("/plays");
+  });
+
+  /**
+   * The one a reader would see: a marker left in the text is a construct the renderer walked past.
+   *
+   * IT CATCHES A LONE `*`, AND THAT IS THE WHOLE POINT OF IT. `parseInline` closes a `*` emphasis at
+   * the NEXT `*`, which is the first half of a nested `**` — so **bold inside an italic quotation
+   * never parses**, and the italic's own markers reach the reader while the bold's do not. The
+   * rendered text then holds single asterisks and no double ones, which is exactly what a `\*\*`
+   * pattern cannot see. Widened on 2026-09-13 it found four live defects in as many minutes and was
+   * reverted mid-sweep when the session was stood down; finished on 2026-09-14 over a corpus that had
+   * grown from 4 plays to 12, it found exactly ONE more, in
+   * `2026-09-13-the-loop-that-wants-a-contested-board` — `*"… +1 Might **here**."*`, which was also a
+   * quotation with emphasis added inside it, the #202 defect. Both halves were repaired by dropping
+   * the inner bold.
+   *
+   * `code` is removed alongside `pre` as a PRECAUTION with no instance in the corpus today: 45 of the
+   * 1,189 printings in `data/cards.json` are alt-arts whose code ends in `*` (`OGN-299*`), so a play
+   * quoting one would trip a bare-asterisk check correctly and uselessly — and zero plays quote one
+   * yet (measured 2026-09-14). Removing the element cannot blind the check, because a marker only
+   * reaches the text when the renderer FAILED to build the element: a correctly parsed
+   * ``**`code`**`` is `<strong><code>` and carries no asterisk at all, while a leaked one leaves its
+   * `**` outside the span where this still sees it.
+   */
+  it.each(PLAYS)("leaves no raw markdown marker in the rendered text of $slug", (p) => {
+    const host = render(p);
+    // Fenced blocks are verbatim by design and a turn table may legitimately hold any character.
+    // Code spans go with them: 45 printings are alt-arts whose base code ENDS in `*`, so a play
+    // quoting one would trip the single-asterisk check below, correctly and uselessly.
+    for (const el of host.querySelectorAll("pre, code")) el.remove();
+    const text = host.textContent ?? "";
+    expect(text.length, p.slug).toBeGreaterThan(2000);
+    expect(text, `${p.slug} carries a marker`).not.toMatch(/\*|`|\]\(/);
+  });
+
+  it("keeps a fenced turn table's alignment exactly as it was written", () => {
+    const clock = PLAYS.find((p) => p.slug.endsWith("the-unopposed-clock"))!;
+    const pre = render(clock).querySelector("pre")!;
+    expect(pre.textContent).toContain("T1  channel 2 (R=2).");
+    // The leading run of spaces on a continuation line is what makes the column line up.
+    expect(pre.textContent).toMatch(/\n {2,}/);
+  });
+
+  it("turns a cross-link between two plays into a path, and marks no internal link external", () => {
+    const host = render(bySlug("2026-09-12-chaos-fury-yasuo-shuttle"));
+    const links = [...host.querySelectorAll<HTMLAnchorElement>("a")].filter((a) => a.className !== "play-back");
+    expect(links.length).toBeGreaterThan(0);
+    for (const a of links) {
+      expect(a.getAttribute("href"), a.textContent ?? "").toMatch(/^\/plays\//);
+      expect(a.target).toBe("");
+    }
+  });
+
+  it("draws a header row only when the table has one, so an empty header is not a band of nothing", () => {
+    // The "Needs" tables open `| | |`: two empty cells, which is how markdown writes a definition list.
+    const tables = [...render(bySlug("2026-09-12-chaos-order-the-one-answer")).querySelectorAll(".play-table")];
+    expect(tables.length).toBeGreaterThan(1);
+    expect(tables.some((t) => !t.querySelector("thead")), "no headerless table rendered").toBe(true);
+    expect(tables.some((t) => t.querySelector("thead")), "no headed table rendered").toBe(true);
+    for (const t of tables) for (const th of t.querySelectorAll("th")) expect(th.textContent!.trim()).not.toBe("");
+  });
+
+  /**
+   * A play is prose from a file, and the renderer's whole safety argument is that no sentence of it
+   * is ever interpreted as markup. This hands it a play written to break that and checks the result
+   * holds no element it did not create — which is what an `innerHTML` renderer would fail.
+   */
+  it("never lets a play's own text become markup", () => {
+    const hostile: Play = {
+      slug: "2026-09-12-hostile",
+      date: "2026-09-12",
+      title: '<img src=x onerror="alert(1)">',
+      lede: "x",
+      markdown: [
+        "# Play — hostile",
+        "",
+        "A paragraph with <script>alert(1)</script> and an <img src=x onerror=alert(1)> in it.",
+        "",
+        "| a | b |",
+        "|---|---|",
+        "| <b>bold?</b> | `<i>code</i>` |",
+      ].join("\n"),
+    };
+    const host = render(hostile, new Set([hostile.slug]));
+    expect(host.querySelector("script")).toBeNull();
+    expect(host.querySelector("img")).toBeNull();
+    expect(host.querySelector("b")).toBeNull();
+    expect(host.querySelector("i")).toBeNull();
+    // The angle brackets survive as the characters they are, which is what the file actually said.
+    expect(host.textContent).toContain("<script>alert(1)</script>");
+    expect(host.querySelector(".doc-title")!.textContent).toBe('<img src=x onerror="alert(1)">');
+  });
+});
+
+describe("the payload the combo drawer reads", () => {
+  it("is fetched once, at boot, however many times it is asked for", async () => {
+    vi.resetModules();
+    vi.stubGlobal("fetch", vi.fn(async () => ({ ok: true, json: async () => ({ plays: PLAYS }) })));
+    const { loadPlays } = await import("../../web/plays.js");
+    await Promise.all([loadPlays(), loadPlays()]);
+    expect(vi.mocked(fetch)).toHaveBeenCalledTimes(1);
+    expect(vi.mocked(fetch).mock.calls[0]![0]).toBe("/data/plays.json");
+  });
+
+  it("answers no play about any line when the payload fails, so the drawer draws no section", async () => {
+    vi.resetModules();
+    vi.stubGlobal("fetch", vi.fn(async () => ({ ok: false, status: 500, json: async () => ({}) })));
+    const { loadPlays, playsAbout } = await import("../../web/plays.js");
+    await loadPlays({ comboIds: new Set(["time-warp-hold-burst"]) });
+    expect(playsAbout(["time-warp-hold-burst"])).toEqual([]);
+  });
+});
+
+/**
+ * The link from a combo back to the play about it (#206). The id is read out of the play's own prose
+ * rather than carried in a field, so the mapping below is a fact about the corpus and is pinned here:
+ * a reword in `docs/plays/` that moves a link shows up as a test change rather than silently.
+ */
+describe("which entry a play is about", () => {
+  const subjects = async (known: string[]) => {
+    vi.resetModules();
+    vi.stubGlobal("fetch", vi.fn(async () => ({ ok: true, json: async () => ({ plays: PLAYS }) })));
+    const mod = await import("../../web/plays.js");
+    await mod.loadPlays({ comboIds: new Set(known) });
+    return mod;
+  };
+
+  /**
+   * Every id in this list must include the real SUBJECT of each play in the corpus. `subjectOf`
+   * intersects the ids a play names with the ids the catalogue holds and takes the first survivor,
+   * so an under-populated fixture does not merely fail to find a subject - it promotes whichever
+   * DIGRESSION happens to be in the list, which is the exact error the test below exists to catch.
+   */
+  const ALL = [
+    "yasuo-windrider-ride-the-wind-chain",
+    "ivern-ride-the-wind-double-conquer",
+    "tryndamere-brambleback-conquer",
+    "renata-mastermind-points",
+    "gutter-palace",
+    "gutter-palace-keeper-time-warp",
+    "time-warp-hold-burst",
+    "grand-plaza-recruit-vanguard",
+    // The subject of 2026-09-13-the-setup-nobody-prices. A play resolves against THIS list, so a
+    // subject missing from it does not fail to resolve — it silently promotes whichever digression
+    // is in the list instead, which is why every new play adds its subject here.
+    "bottled-constellation-time-warp",
+    "shen-sentinel-time-warp-chain",
+    "keeper-of-masks-flurry-plaza-window",
+    // The subject of the #449 Darius play, which names `tryndamere-brambleback-conquer` as the other
+    // entry of its slice: without its own subject here, that mention would be promoted.
+    "darius-executioner-vanguard-captain-legion-clause-boundary",
+    // The two subjects of the #458 slice. Each play names the other in its "Why this line"
+    // paragraph, so each needs its own subject here or the other's mention would be promoted.
+    "karthus-glasc-mixologist-double-reanimate",
+    "rell-magnetic-recurve-bow-per-attack",
+    // The two subjects of the #466 slice. Each play names the other in its "Why this line"
+    // paragraph, so each needs its own subject here or the other's mention would be promoted.
+    "helm-empowered-spell-tax",
+    "protective-sands-few-runes-fury",
+    // The subject of the #491 Plaza play. Its coverage play names entry ids without backticks, so it
+    // has no subject, and the Tryndamere play of the same slice is about tryndamere-brambleback-conquer.
+    "up-from-the-deep-flow-grand-plaza",
+    // The subject of the #496 Plaza play, which names the slice-1 and the Flurry Plaza entries
+    // without backticks.
+    "frisky-hunter-grand-plaza",
+    // The subject of the #512 Plaza play, which names the slice-1 and slice-2 Plaza entries without
+    // backticks.
+    "towering-combatant-up-from-the-deep-grand-plaza",
+    // The subject of the #524 Plaza play, which names the three earlier Plaza entries without backticks.
+    "towering-combatant-hidden-marai-grand-plaza",
+    // The subject of the #529 Plaza play, which names the four earlier Plaza entries and
+    // vanguard-captain-manufactor-plaza without backticks.
+    "galio-vanguard-captain-grand-plaza",
+    // The subject of the #537 Chaos/Order play, which names its own entry first and the earlier
+    // Yasuo and Ivern lines after it.
+    "yasuo-ride-the-wind-hold-curve-turn-five",
+    // The subject of the #553 Calm/Order play, which names its own entry first and the Svellsongur
+    // BURSTs after it.
+    "ahri-alluring-power-nexus-hold-curve-turn-four",
+  ];
+
+  it("points each play at the one line it is about, and half of them at none", async () => {
+    const { playsAbout } = await subjects(ALL);
+    const at = (id: string) => playsAbout([id]).map((p) => p.slug);
+    expect(at("yasuo-windrider-ride-the-wind-chain")).toEqual(["2026-09-12-chaos-fury-yasuo-shuttle"]);
+    expect(at("ivern-ride-the-wind-double-conquer")).toEqual(["2026-09-12-chaos-order-the-one-answer"]);
+    expect(at("tryndamere-brambleback-conquer")).toEqual([
+      "2026-10-27-seal-of-rage-and-upstage-comedy-bring-tryndameres-nine-to-turn-six-the-turn-the-free-hold-curve-wins-and-one-hextech-ray-holds-it-to-three",
+      "2026-10-24-tryndamere-scores-two-on-turn-five-the-nine-needs-a-garrison-under-four-might-and-eight-might-at-the-battlefield-is-the-free-answer",
+      "2026-09-12-the-unopposed-clock",
+    ]);
+    expect(at("darius-executioner-vanguard-captain-legion-clause-boundary")).toEqual([
+      "2026-10-24-darius-goes-down-first-the-captains-recruits-are-born-twos-and-charm-with-flurry-still-takes-them-for-two-runes",
+    ]);
+    expect(at("karthus-glasc-mixologist-double-reanimate")).toEqual([
+      "2026-10-24-the-blade-and-the-mixologist-land-on-the-same-turn-the-three-come-out-of-a-trash-their-attack-filled-and-one-rune-on-a-karthus-makes-it-two",
+    ]);
+    expect(at("rell-magnetic-recurve-bow-per-attack")).toEqual([
+      "2026-10-24-rell-takes-one-free-equipment-the-bow-fires-only-on-defence-and-decree-of-focus-kills-her-for-one-rune",
+    ]);
+    expect(at("helm-empowered-spell-tax")).toEqual([
+      "2026-10-26-the-helm-costs-your-turn-four-their-two-spells-cost-two-runes-more-and-acceptable-losses-kills-it-for-two",
+    ]);
+    expect(at("protective-sands-few-runes-fury")).toEqual([
+      "2026-10-26-protective-sands-draws-once-on-turn-two-the-sandspinners-three-energy-cost-four-runes-and-the-dragon-cannot-be-cast",
+    ]);
+    expect(at("up-from-the-deep-flow-grand-plaza")).toEqual([
+      "2026-10-27-up-from-the-deep-puts-seven-on-the-plaza-by-turn-three-and-the-two-bodies-they-already-had-kill-five-of-them",
+    ]);
+    expect(at("frisky-hunter-grand-plaza")).toEqual([
+      "2026-10-27-two-frisky-hunters-put-seven-on-the-plaza-by-turn-three-a-tank-raises-the-free-answer-to-three-might-and-their-six-still-kill-four",
+    ]);
+    expect(at("towering-combatant-up-from-the-deep-grand-plaza")).toEqual([
+      "2026-10-27-a-towering-combatant-makes-one-plaza-kill-cost-six-their-six-kill-only-it-and-the-turn-four-rebuild-wins-the-turn-five-hold",
+    ]);
+    expect(at("towering-combatant-hidden-marai-grand-plaza")).toEqual([
+      "2026-10-27-a-hidden-marai-is-the-seventh-unit-for-no-energy-so-a-tank-fits-by-turn-three-and-their-six-still-take-it-to-six",
+    ]);
+    expect(at("galio-vanguard-captain-grand-plaza")).toEqual([
+      "2026-10-31-galio-is-a-six-might-tank-for-three-energy-and-a-vanguard-captain-makes-three-so-eight-hold-the-plaza-and-their-six-kill-nothing",
+    ]);
+    expect(at("yasuo-ride-the-wind-hold-curve-turn-five")).toEqual([
+      "2026-10-31-yasuo-fires-on-turn-four-off-the-hold-curve-so-chaos-order-wins-turn-five-unopposed-and-their-free-turn-three-attack-makes-it-six",
+    ]);
+    expect(at("ahri-alluring-power-nexus-hold-curve-turn-four")).toEqual([
+      "2026-11-16-ahri-lands-on-turn-three-and-a-power-nexus-pays-the-eighth-point-so-calm-order-wins-turn-four-unopposed-and-turn-five-when-they-take-b",
+    ]);
+    expect(at("bottled-constellation-time-warp")).toEqual(["2026-09-13-the-setup-nobody-prices"]);
+    expect(at("shen-sentinel-time-warp-chain")).toEqual(["2026-09-13-the-elegance-is-the-slowness"]);
+    expect(at("keeper-of-masks-flurry-plaza-window")).toEqual(["2026-09-13-the-defenders-chair"]);
+  });
+
+  /**
+   * The three the Chaos/Order play names in a closing paragraph about a defect in one of this
+   * project's own scripts. It is not about any of them, and telling a reader of `time-warp-hold-burst`
+   * that there is a play about their line would be false.
+   */
+  it("does not claim a play is about a line it merely cites in passing", async () => {
+    const { playsAbout } = await subjects(ALL);
+    for (const id of ["gutter-palace-keeper-time-warp", "time-warp-hold-burst", "grand-plaza-recruit-vanguard"]) {
+      expect(playsAbout([id]), id).toEqual([]);
+    }
+  });
+
+  it("finds nothing for a play that names no entry, which is half the corpus", async () => {
+    const { playsAbout, subjectOf } = await subjects(ALL);
+    const idle = PLAYS.find((p) => p.slug.endsWith("what-the-idle-mana-buys"))!;
+    expect(subjectOf(idle)).toBeNull();
+    expect(playsAbout(["no-such-entry"])).toEqual([]);
+  });
+
+  /** A hyphenated phrase in backticks is not an entry id; only ids the catalogue holds count. */
+  it("reads an id only where the catalogue has one", async () => {
+    const { playsAbout } = await subjects([]);
+    for (const id of ALL) expect(playsAbout([id]), id).toEqual([]);
+  });
+});

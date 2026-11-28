@@ -1,0 +1,34 @@
+Legend:
+1 Viktor, Herald of the Arcane
+Champion:
+1 Viktor, Innovator
+Main Deck:
+3 Xin Zhao, Vigilant
+2 Card Sharp
+3 Singularity
+2 Drag Under
+2 Pickpocket
+2 Imperial Decree
+2 Falling Comet
+2 Vengeance
+3 Wages of Pain
+3 Hidden Blade
+3 Cull the Weak
+3 Blood Money
+2 Facebreaker
+1 Salvage
+3 Bellows Breath
+3 Stupefy
+Battlefields:
+Vilemaw's Lair
+Treasure Hoard
+Void Gate
+Rune Pool:
+5 Mind Rune
+7 Order Rune
+Sideboard:
+1 Imperial Decree
+2 Shen, Kinkou
+2 Salvage
+1 Facebreaker
+2 Forge of the Future

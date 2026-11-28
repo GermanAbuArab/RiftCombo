@@ -1,0 +1,32 @@
+Legend:
+1 Rengar, Pridestalker
+Champion:
+1 Rengar, Trophy Hunter
+Main Deck:
+2 Challenge
+2 Darius, Trifarian
+3 Determined Sentry
+3 Grim Apothecary
+3 Inferna
+3 Irresistible Faefolk
+3 Kai'Sa, Survivor
+3 Kinkou Initiate
+3 Nidalee, Cat Form
+3 Pit Rookie
+3 Punch First
+3 Pyke, Dockside Butcher
+2 Sabotage
+3 Thrill of the Hunt
+Battlefields:
+1 Emperor's Dais
+1 Star Spring
+1 The Arena's Greatest
+Rune Pool:
+8 Body Rune
+4 Fury Rune
+Sideboard:
+3 Akshan, Mischievous
+2 Brynhir Thundersong
+1 Challenge
+1 Sabotage
+1 Unyielding Spirit

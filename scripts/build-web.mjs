@@ -1,0 +1,144 @@
+#!/usr/bin/env node
+// Build the static site into public/: bundle web/main.ts (and the landing's web/legacy.ts), copy the
+// hand-written pages + styles, pre-render the public pages, and emit two data files for the browser —
+// a slimmed card index (matching needs codes/names/domains; the drawer shows text) and the run plays,
+// whose markdown in docs/plays/ stays the single source of truth (#206).
+//
+//   node scripts/build-web.mjs           # production build
+//   node scripts/build-web.mjs --watch   # rebuild on change
+
+import { build, context } from "esbuild";
+import { tsImport } from "tsx/esm/api";
+import { copyFileSync, cpSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
+import { join, dirname } from "node:path";
+import { fileURLToPath } from "node:url";
+import { siteConfig } from "./site-config.mjs";
+import { slimCard } from "./web-card-fields.mjs";
+import { loadPlays } from "./web-plays.mjs";
+import { stripInternalDeep, stripProsePlugin } from "./web-combo-prose.mjs";
+import { ADSENSE_PUBLISHER_ID, appShell, publisherId, sitemapEntries, withoutAdStyles, writePages, writeSeo } from "./web-seo.mjs";
+
+const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
+const OUT = join(ROOT, "public");
+const watch = process.argv.includes("--watch");
+
+mkdirSync(join(OUT, "data"), { recursive: true });
+
+const full = JSON.parse(readFileSync(join(ROOT, "data", "cards.json"), "utf8"));
+const slim = {
+  resultsUpdatedAt: full.resultsUpdatedAt,
+  built: full.built,
+  cards: full.cards.map(slimCard),
+};
+writeFileSync(join(OUT, "data", "cards.json"), JSON.stringify(slim));
+// Fetched rather than bundled, and only when the view is first opened: the plays are prose, nobody
+// reading a deck list needs them, and keeping them out of app.js keeps the cost on the page that
+// asks for it. The markdown ships verbatim; web/plays.ts reads it for the combo drawer's Run plays
+// list, and the public /plays pages are rendered from the same payload by src/render/play.ts.
+// The source IS the render, so the only filter is the one on the prose itself: the plays were
+// WITHHELD on 2026-09-19 (15 of 15 carried sentences addressed to another agent — a "For the
+// manager" punch-list rendered under an h1 beside the Riot disclaimer) and republished on 2026-09-20
+// after every one was edited for a reader. `test/plays-reader.test.ts` pins that standard, so the
+// next play written for a colleague fails the suite instead of reaching /data/plays.json.
+const comboNames = new Map(JSON.parse(readFileSync(join(ROOT, "data", "combos.json"), "utf8")).combos.map((e) => [e.id, e.name]));
+const plays = loadPlays(ROOT, (id) => comboNames.get(id) ?? null);
+writeFileSync(join(OUT, "data", "plays.json"), JSON.stringify({ plays }));
+// 404.html is served by Vercel for any address that matches nothing, so it carries no script: it has
+// to work in the case where the bundle is what went wrong (#77).
+// The social card, the icons and the manifest (#269) are rendered once by scripts/build-brand-images.sh
+// and committed, so the build only copies them.
+const STATIC = ["privacy.html", "terms.html", "404.html", "styles.css", "favicon.svg", "og.png", "apple-touch-icon.png", "icon-192.png", "icon-512.png", "manifest.webmanifest", "riot.txt"];
+for (const f of STATIC) copyFileSync(join(ROOT, "web", f), join(OUT, f));
+// The app shell at /app and, through vercel.json's one rewrite, /decks/* (#287): web/index.html with
+// `noindex` in place of the canonical, so a signed-in tool screen never enters an index. It is served
+// nowhere else: public/index.html is the landing `renderSite` writes below (#288).
+writeFileSync(join(OUT, "app.html"), appShell(readFileSync(join(ROOT, "web", "index.html"), "utf8")));
+// The AdSense publisher id (#291): "" ships dark and leaves every document as written. Set, the head
+// of each hand-written page and of the shell carries the `google-adsense-account` tag here, each
+// rendered page gets it from renderSite, and writeSeo writes ads.txt.
+const adsenseId = publisherId(ADSENSE_PUBLISHER_ID);
+// Dark, no page carries an ad slot (#292), so its rules leave public/styles.css too.
+if (!adsenseId) writeFileSync(join(OUT, "styles.css"), withoutAdStyles(readFileSync(join(OUT, "styles.css"), "utf8")));
+if (adsenseId) {
+  const { withAdsenseAccount, withPrivacyChoices } = await tsImport("../src/render/layout.ts", import.meta.url);
+  for (const f of [...STATIC.filter((s) => s.endsWith(".html")), "app.html"]) {
+    writeFileSync(join(OUT, f), withAdsenseAccount(readFileSync(join(OUT, f), "utf8"), adsenseId));
+  }
+  // The "Privacy choices" link (#293) goes on the two public hand-written pages only: 404.html
+  // carries no script (#77), and the app shell carries no ads (#272 §6).
+  for (const f of ["privacy.html", "terms.html"]) {
+    writeFileSync(join(OUT, f), withPrivacyChoices(readFileSync(join(OUT, f), "utf8"), adsenseId));
+  }
+}
+// Inter is served from this origin (#295), so no page asks Google Fonts for it before any consent choice.
+cpSync(join(ROOT, "web", "fonts"), join(OUT, "fonts"), { recursive: true });
+
+// The public pages (#286): one static file per combo, play and prose page, from the same render
+// functions the browser imports. The data goes through the same strip the bundle's copy does
+// (`stripProsePlugin` below), so a page carries no sentence app.js would not. tsx loads the .ts
+// sources, which Node cannot import on its own (they import each other as .js).
+const prerenderStart = performance.now();
+const readData = (f) => stripInternalDeep(JSON.parse(readFileSync(join(ROOT, "data", f), "utf8")));
+const { renderSite } = await tsImport("../src/render/site.ts", import.meta.url);
+const pages = renderSite({
+  combos: readData("combos.json").combos,
+  cards: slim.cards,
+  legality: readData("legality.json").entries,
+  features: readData("features.json").features,
+  plays: plays.map((p) => ({ ...p, file: `docs/plays/${p.slug}.md` })),
+  resultsUpdatedAt: slim.resultsUpdatedAt,
+  adsensePublisherId: adsenseId,
+});
+writePages(OUT, pages);
+// After the copy and the pages, because writeSeo checks every sitemap path against a file in
+// public/ (#268) and the sitemap is generated from the pages written.
+const sitemap = sitemapEntries(ROOT, pages);
+writeSeo(OUT, sitemap, adsenseId);
+const prerenderMs = Math.round(performance.now() - prerenderStart);
+
+// Both values are public by design and are baked in rather than fetched, so the account layer is
+// either present in a build or absent from it — never half-configured at runtime. An empty pair
+// switches the whole thing off and leaves the anonymous app exactly as it was.
+const site = siteConfig(ROOT);
+
+// The combo catalogue is IMPORTED by web/main.ts, not fetched, so esbuild inlines all of it into
+// app.js. This plugin is the only point at which the browser's copy can differ from the audited file,
+// and it exists because `web/main.ts` renders every entry's `notes` in a panel titled "How this entry
+// was audited" — which was showing sentences addressed to another agent ("NOTE FOR THE MANAGER…",
+// "at rc-manager5's direction after this lane raised it…"). 127 of 771 entries, 140 sentences,
+// measured 2026-09-19 and live on the site that day. Filtering in the render path would have hidden
+// the panel and still shipped the bytes; this way they are never in the bundle.
+// `data/combos.json` is untouched on purpose: the audit trail is real provenance for us, and the
+// reader is the one who should not get it. The plays above had the same defect and were edited
+// at the source instead, because a play is written FOR the reader and an audit note is not.
+const stripComboProse = stripProsePlugin(ROOT, readFileSync);
+
+const options = {
+  // public/app.js, public/legacy.js, which only the landing loads (#288), and public/privacy-choices.js,
+  // which only a page with the "Privacy choices" link loads (#293).
+  entryPoints: { app: join(ROOT, "web", "main.ts"), legacy: join(ROOT, "web", "legacy.ts"), "privacy-choices": join(ROOT, "web", "privacy-choices.ts") },
+  bundle: true,
+  format: "esm",
+  target: ["es2022"],
+  minify: !watch,
+  sourcemap: true,
+  outdir: OUT,
+  logLevel: "info",
+  plugins: [stripComboProse],
+  define: {
+    __NEON_AUTH_URL__: JSON.stringify(site.authUrl),
+    __NEON_DATA_API_URL__: JSON.stringify(site.dataUrl),
+  },
+};
+
+if (watch) {
+  const ctx = await context(options);
+  await ctx.watch();
+  console.log("watching web/ …");
+} else {
+  await build(options);
+  const size = (f) => `${(readFileSync(join(OUT, f)).length / 1024).toFixed(0)} KB`;
+  console.log(`pre-rendered ${pages.length} pages (${pages.filter((p) => p.noindex).length} noindex), sitemap ${sitemap.length} URLs, in ${prerenderMs} ms`);
+  console.log(`public/app.js ${size("app.js")} · public/data/cards.json ${size("data/cards.json")} · public/data/plays.json ${size("data/plays.json")} (${plays.length} plays)`);
+  console.log(site.authUrl ? `accounts: ${site.origins.join(" + ")}` : "accounts: off (NEON_AUTH_URL / NEON_DATA_API_URL unset)");
+}

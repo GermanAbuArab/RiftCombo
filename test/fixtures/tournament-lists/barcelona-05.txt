@@ -1,0 +1,38 @@
+Legend:
+1 Renata Glasc, Chem-Baroness
+Champion:
+1 Renata Glasc, Mastermind
+Main Deck:
+1 Cloth Armor
+2 Forge of the Future
+3 Hidden Blade
+3 Honest Broker
+2 Hostile Takeover
+3 Jayce, Man of Progress
+1 Kennen, Keeper of Balance
+1 Mel, Newly Awakened
+3 Patched Porobot
+2 Plundering Poro
+1 Shen, Kinkou
+2 Singularity
+3 Stupefy
+3 Temporal Breach
+1 Thousand-Tailed Watcher
+3 Time Warp
+3 Vanguard Armory
+2 Wages of Pain
+Battlefields:
+1 Rockfall Path
+1 Treasure Hoard
+1 Trifarian War Camp
+Rune Pool:
+7 Mind Rune
+5 Order Rune
+Sideboard:
+2 Bellows Breath
+2 Cull the Weak
+1 Decree of Unity
+1 Imperial Decree
+2 Salvage
+1 Singularity
+1 Thousand-Tailed Watcher

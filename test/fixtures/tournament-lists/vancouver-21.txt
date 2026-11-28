@@ -1,0 +1,33 @@
+Legend:
+Teemo, Swift Scout
+Champion:
+1 Teemo, Strategist
+Main Deck:
+3 Consult the Past
+2 Eclipse
+3 Evelynn, Entrancing
+1 Fizz, Trickster
+3 Nocturne, Horrifying
+3 Ravenbloom Student
+1 Singularity
+3 Sprite Call
+3 Sprite Fountain
+3 Stacked Deck
+2 Star-Crossed
+3 Stupefy
+3 Switcheroo
+2 Teemo, Strategist
+3 Tideturner
+1 Wages of Pain
+Battlefields:
+1 Bandle Tree
+1 Startipped Peak
+1 The Arena's Greatest
+Rune Pool:
+6 Chaos Rune
+6 Mind Rune
+Sideboard:
+2 Gust
+2 Turn to Dust
+2 Unchecked Power
+2 Vex, Apathetic

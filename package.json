@@ -1,0 +1,41 @@
+{
+  "name": "riftcombo",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Combo finder and visualizer for Riftbound TCG",
+  "type": "module",
+  "scripts": {
+    "build:data": "node scripts/build-cards.mjs && node scripts/build-corpus.mjs",
+    "build:legality": "node scripts/build-cards.mjs --legality-only && node scripts/build-corpus.mjs",
+    "test": "vitest run",
+    "typecheck": "tsc --noEmit",
+    "find": "tsx src/cli.ts",
+    "build:web": "node scripts/build-web.mjs && node scripts/check-functions.mjs",
+    "dev": "node scripts/build-web.mjs && node scripts/dev-vercel.mjs",
+    "deploy": "vercel deploy --prod",
+    "deploy:preview": "vercel deploy",
+    "synergies": "tsx src/cli-synergies.ts",
+    "engine": "tsx src/cli-engine.ts",
+    "headers": "node scripts/build-headers.mjs",
+    "check:rls": "node scripts/check-rls-neon.mjs",
+    "scan:rls": "node scripts/scan-rls.mjs",
+    "adversarial": "node scripts/adversarial-check.mjs"
+  },
+  "license": "MIT",
+  "engines": {
+    "node": ">=22"
+  },
+  "dependencies": {
+    "@neondatabase/neon-js": "0.7.0-beta",
+    "@piltoverarchive/riftbound-deck-codes": "^1.4.0"
+  },
+  "devDependencies": {
+    "@types/node": "^26.4.1",
+    "esbuild": "^0.28.2",
+    "happy-dom": "^20.14.0",
+    "playwright-core": "^1.65.1",
+    "tsx": "^4.23.13",
+    "typescript": "^7.0.2",
+    "vitest": "^4.1.11"
+  }
+}

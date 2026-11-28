@@ -1,0 +1,37 @@
+Legend:
+1 Annie, Dark Child
+Champion:
+1 Annie, Stubborn
+Main Deck:
+1 Abandon
+2 Cleave
+3 Ferrous Forerunner
+3 Flash
+2 Grim Apothecary
+1 Hard Bargain
+3 Inferna
+3 Kai'Sa, Survivor
+3 Long Sword
+3 Noxus Hopeful
+2 Overzealous Fan
+3 Rengar, Pouncing
+3 Stacked Deck
+2 Star-Crossed
+3 Traveling Merchant
+2 Vex, Apathetic
+Battlefields:
+1 Seat of Power
+1 The Arena's Greatest
+1 Zaun Warrens
+Rune Pool:
+5 Chaos Rune
+7 Fury Rune
+Sideboard:
+1 Abandon
+1 Against the Odds
+1 Factory Recall
+1 Kha'Zix, Mutating Horror
+1 Rebuke
+1 Star-Crossed
+1 Switcheroo
+1 Thermo Beam

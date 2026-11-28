@@ -1,0 +1,36 @@
+Legend:
+1 Jinx, Loose Cannon
+Champion:
+1 Jinx, Demolitionist
+Main Deck:
+3 Chemtech Enforcer
+3 Flame Chompers
+3 Noxus Hopeful
+3 Seal of Rage
+3 Stacked Deck
+3 Traveling Merchant
+3 Overzealous Fan
+3 Undying Legion
+3 Evershade Stalker
+2 Cleave
+2 Falling Star
+2 Switcheroo
+1 Hextech Ray
+1 Gust
+1 Windsinger
+2 Teemo, Scout
+1 Pyke, Dockside Butcher
+Battlefields:
+Zaun Warrens
+The Arena's Greatest
+Seat of Power
+Rune Pool:
+9 Fury Rune
+3 Chaos Rune
+Sideboard:
+3 Acceptable Losses
+1 Brynhir Thundersong
+1 Falling Star
+1 Gust
+1 Switcheroo
+1 Star-Crossed

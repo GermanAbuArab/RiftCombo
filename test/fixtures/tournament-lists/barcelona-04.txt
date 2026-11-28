@@ -1,0 +1,36 @@
+Legend:
+1 Master Yi, Wuju Master
+Champion:
+1 Master Yi, Tempered
+Main Deck:
+2 Back Off
+2 Concentrate
+3 Defy
+3 Discipline
+2 Emperor's Divide
+3 Gemhand Hunter
+3 Grim Resolve
+2 Herald of Spring
+3 Master Yi, Unstoppable
+2 Punch First
+1 Rampage
+2 Scuttle Crab
+2 Skyward Strike
+3 Voracious Gromp
+3 Wuju Apprentice
+3 Zhonya's Hourglass
+Battlefields:
+1 Amateur Recital
+1 Gardens of Becoming
+1 Seat of Power
+Rune Pool:
+6 Body Rune
+6 Calm Rune
+Sideboard:
+1 Alpha Strike
+1 Concentrate
+2 Disarming Rake
+2 Disposal Order
+1 Rampage
+2 Sabotage
+1 Skyward Strike

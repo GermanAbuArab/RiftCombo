@@ -1,0 +1,207 @@
+#!/usr/bin/env node
+// Generate vercel.json. The response headers are the one part of the app whose configuration cannot
+// live in the bundle, and the Neon origins have to appear in `connect-src` verbatim — a wildcard
+// would let any Neon project on earth be called from this page.
+//
+// Run it after changing NEON_AUTH_URL or NEON_DATA_API_URL, and commit the result: Vercel reads
+// vercel.json from the repository, before the build command runs, so generating it during the build
+// would be too late.
+//
+//   NEON_AUTH_URL=https://<ep>.neonauth.<...>.neon.tech/neondb/auth \
+//   NEON_DATA_API_URL=https://<ep>.apirest.<...>.neon.tech/neondb/rest/v1 node scripts/build-headers.mjs
+
+import { createHash } from "node:crypto";
+import { writeFileSync } from "node:fs";
+import { dirname, join } from "node:path";
+import { fileURLToPath } from "node:url";
+import { tsImport } from "tsx/esm/api";
+import { siteConfig } from "./site-config.mjs";
+
+const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
+const { origins } = siteConfig(ROOT);
+
+// Neon serves Auth (sign-in, session, JWT) and the Data API (every read and write of `public.decks`
+// and `public.profiles`) from two hosts on the same endpoint, so connect-src lists both.
+const connect = ["'self'", ...origins].join(" ");
+
+// The JSON-LD on the landing (#269, on `/` since #288) is an inline <script>, so script-src names its
+// exact hash rather than 'unsafe-inline'. Browsers do not execute a data block, but a hash keeps the
+// policy true to the page and a stale one fails test/social-meta.test.ts. The hash is read from the
+// page as `src/render/pages.ts` renders it, so editing that block means re-running this script.
+function inlineScriptHashes(html) {
+  return [...html.matchAll(/<script\b[^>]*>([\s\S]*?)<\/script>/g)]
+    .filter((m) => m[1].length > 0)
+    .map((m) => `'sha256-${createHash("sha256").update(m[1], "utf8").digest("base64")}'`);
+}
+const { landingPage } = await tsImport("../src/render/pages.ts", import.meta.url);
+const scriptSrc = ["'self'", ...inlineScriptHashes(landingPage())].join(" ");
+
+// The ad surface (#290, #272 §5): `/combos/<id>`, `/plays/<slug>` and `/guide`, the only pages that will
+// carry ad slots. Its one inline script is the loader every ad page carries byte for byte, hashed here
+// from the same constant the renderer writes into those pages (test/headers.test.ts checks every page).
+const { AD_LOADER_SCRIPT, AD_SURFACE } = await tsImport("../src/render/ad-loader.ts", import.meta.url);
+const [loaderHash] = inlineScriptHashes(AD_LOADER_SCRIPT);
+
+// The allowlist policy, on every page. The ad surface's copy differs only in also trusting the loader,
+// so the privacy-choices script it inserts (#293) still runs there while this policy is the enforced one.
+// It names no Google origin, so it still refuses adsbygoogle.js and its frames and images: no ad can run
+// until the strict policy below replaces it as the enforced one (#272 §5, a later change; ads are off in
+// production until then anyway, #285).
+const allowlist = (scripts) => [
+  "default-src 'self'",
+  `script-src ${scripts}`,
+  // Inter is self-hosted (#295): no stylesheet or font comes from another origin, and
+  // test/fonts.test.ts fails if Google Fonts comes back into either directive.
+  "style-src 'self'",
+  "font-src 'self'",
+  "img-src 'self' data: https://cmsassets.rgpub.io",
+  `connect-src ${connect}`,
+  "frame-ancestors 'none'",
+  // `default-src 'self'` would already cover plugin content, but its fallback is 'self', not
+  // 'none'. The app has no <object>, <embed> or <applet> anywhere, so pinning it to 'none'
+  // costs nothing and stays correct if a same-origin file is ever served from this domain.
+  "object-src 'none'",
+  "base-uri 'self'",
+  "form-action 'self'",
+].join("; ");
+
+// Google supports only a strict CSP for AdSense ("Because the domains that the AdSense ad code uses change
+// over time, we only support strict CSP", https://support.google.com/adsense/answer/16283098, read
+// 2026-10-07), and a static page cannot carry a nonce, so the ad surface's is the hash form web.dev's
+// strict-CSP guide gives for static pages. No default-src: frames, images, connections and styles stay
+// open, as Google's policy leaves them. 'unsafe-inline' and `https: http:` are the fallback for browsers
+// without 'strict-dynamic', which ignore it. It ships as Content-Security-Policy-Report-Only first and
+// reports to /api/csp-report; it is enforced after a clean window, by a later change.
+const strict = [
+  `script-src ${loaderHash} 'strict-dynamic' 'unsafe-inline' 'unsafe-eval' https: http:`,
+  "object-src 'none'",
+  "base-uri 'self'",
+  "frame-ancestors 'none'",
+  "form-action 'self'",
+  "upgrade-insecure-requests",
+  "report-uri /api/csp-report",
+].join("; ");
+
+// The headers every page carries after its CSP.
+const common = [
+  // Sign-in uses a full-page redirect, so this stays as it is. A popup flow would need
+  // `same-origin-allow-popups`, and without it the popup never reports back at all.
+  { key: "Cross-Origin-Opener-Policy", value: "same-origin" },
+  // Vercel already sends HSTS for the apex (max-age two years, measured live 2026-09-21);
+  // `includeSubDomains` is the owner's decision of 2026-09-21 and is stated here so the
+  // committed file says what production sends. It commits every future subdomain to HTTPS
+  // for two years after a visitor's first load — no subdomain exists today (`www` only redirects).
+  { key: "Strict-Transport-Security", value: "max-age=63072000; includeSubDomains" },
+  { key: "X-Content-Type-Options", value: "nosniff" },
+  { key: "X-Frame-Options", value: "DENY" },
+  { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
+  { key: "Permissions-Policy", value: "camera=(), microphone=(), geolocation=()" },
+];
+
+const config = {
+  $schema: "https://openapi.vercel.sh/vercel.json",
+  buildCommand: "npm run build:web",
+  // `vercel dev` runs this and proxies to $PORT. Left unset it runs the package.json `dev` script, which calls
+  // `vercel dev` again: DEV_RECURSIVE_INVOCATION (#586). It serves public/ only; vercel dev does the rewrites and api/.
+  devCommand: "node scripts/dev-static.mjs",
+  // Skip the build when a commit touches nothing the bundle reads — CLAUDE.md and walk documents were most of
+  // 2026-09-06's 130 commits. Exit 0 = skip the build, 1 = build.
+  //
+  // This saves build minutes and slot contention, NOT the Hobby plan's 100 deployments a day: Vercel counts a
+  // cancelled build as a full deployment ("any canceled builds initiated using the ignore build step will still
+  // count towards your deployment quotas"). Pushing less often is the only lever on that cap.
+  //
+  // The diff runs from VERCEL_GIT_PREVIOUS_SHA, "the git SHA of the last successful deployment for the project
+  // and branch", which Vercel exposes only when an Ignored Build Step is set. `HEAD^ HEAD` would read just the
+  // TIP of the push, so a push carrying a data/ commit behind a docs/ commit would cancel and never deploy the
+  // data (issue #126). Diffing from what was last deployed cannot miss anything still undeployed; `HEAD^` is
+  // the fallback for the very first deployment, when there is no previous SHA.
+  // 2026-09-06 evening: VERCEL_GIT_PREVIOUS_SHA is not always present in Vercel's shallow clone — every build after
+  // the #126 change died with `fatal: bad object 55e24f3…` and production sat on that commit for hours.
+  //
+  // 2026-09-06 night: falling back to HEAD^ was itself the bug. Sessions push to `work` and the manager promotes a
+  // BATCH to master, so the tip of a promotion is often a docs-only commit — and HEAD^ made the step ask "did the
+  // last commit touch code?" instead of "is anything undeployed?". Promoting 813d5c7..b5230a0, which carried the
+  // whole drawer rewrite, 20 catalogue entries and 21 synergy rules, was Canceled in 1s because its tip commit
+  // touched CLAUDE.md alone. A skipped batch is far worse than a spent build, so there is no fallback now: the
+  // step skips ONLY when Vercel hands us a previous SHA the clone actually holds and nothing deployable changed
+  // since it. Missing, unreadable, or genuinely changed all mean BUILD.
+  // The braces and the `|| exit 1` are load-bearing: Vercel reads 0 as skip and 1 as build, and a bare
+  // `git cat-file` on a missing object exits 128, which #126 measured as NEITHER — the deployment errors.
+  // So every failure path is normalised to 1.
+  // 2026-09-18: `docs/plays` is on this list because #206 made it SHIPPED CONTENT — `web-plays.mjs`
+  // builds `docs/plays/*.md` into `public/data/plays.json` and the site renders it at #/plays. The
+  // list was written when every path under docs/ was prose nobody deployed, the comment above still
+  // uses "a docs/ commit" as its example of the undeployable kind, and nobody widened it when the
+  // fifth view shipped. Measured cost: `b65e57d` added a play, touched that one file, was Canceled,
+  // and production served 15 plays against master's 16 for four days. Only `docs/plays` is listed —
+  // walks, handoffs and status.md genuinely do not ship, and widening to all of `docs` would rebuild
+  // on every walk document. This is the third time this step has skipped something it should have
+  // built (#126, then the HEAD^ fallback): when a new thing starts shipping, it belongs here.
+  ignoreCommand:
+    "base=$VERCEL_GIT_PREVIOUS_SHA; { [ -n \"$base\" ] && git cat-file -e \"$base^{commit}\" 2>/dev/null && git diff --quiet \"$base\" HEAD -- web src data scripts api docs/plays package.json package-lock.json tsconfig.json vercel.json ; } || exit 1",
+  outputDirectory: "public",
+  framework: null,
+  // The Vercel build cap is per ACCOUNT, not per project, and this account carries another project —
+  // measured 2026-09-06. This repo only ever pushes master, so preview deployments are switched off as
+  // insurance against a branch quietly spending the shared cap.
+  //
+  // The slashed globs are the whole trick: minimatch's `*` never crosses a `/`, so `*/*` and `*/**`
+  // match `feature/x` and `feature/a/b` but CANNOT match `master`, which is then enabled explicitly.
+  // Never write `"*": false` or a bare `deploymentEnabled: false` here — both match master and would
+  // switch production off.
+  //
+  // `work` is named on its own because it has no slash for the globs to catch. It is the shared backup
+  // branch every session pushes to; master is promoted from it in batches, so that a day of commits
+  // costs one deployment instead of one each. The cap is "Deployments Created per Day: 100", scoped to
+  // the ACCOUNT over a rolling 86400s, and a build cancelled by the ignore step still counts against it
+  // — which is why the branch has to not deploy at all rather than deploy and skip.
+  //
+  // `issue-*` catches the implementer branches (`issue-<n>-<short>`, no slash): PR #276's branch built a
+  // preview before it was named here (#277). Any other unslashed branch name would still deploy:
+  // Vercel's default for an unmatched branch is enabled, and the only pattern that would catch them all
+  // is `"*": false`, which also catches master.
+  //
+  // `pr-assets` is the orphan branch that holds PR screenshots; its first push built a preview (#281).
+  // Its own tree carries a `vercel.json` with this same key, since Vercel reads the pushed commit's
+  // file; naming it here too keeps it off if master is ever merged into it.
+  git: { deploymentEnabled: { "*/*": false, "*/**": false, work: false, "issue-*": false, "pr-assets": false, master: true } },
+  // /privacy and /terms rather than /privacy.html: Google's OAuth branding page wants both links,
+  // and they are printed in the footer of every page.
+  cleanUrls: true,
+  // The one SPA rewrite (#287): every `/decks` address is the app shell. `/app` itself needs none,
+  // because `cleanUrls` already serves `app.html` there. The destination is `/app`, never `/app.html`:
+  // under `cleanUrls` the `.html` name is not served, so that rewrite 404ed in production (#578).
+  // The file is `index.html` plus `noindex`,
+  // written by `scripts/build-web.mjs`, so the saved-deck screens never enter an index.
+  rewrites: [
+    { source: "/favicon.ico", destination: "/favicon.svg" },
+    { source: "/decks/:path*", destination: "/app" },
+  ],
+  headers: [
+    // The two surfaces are disjoint on purpose: no path matches both rules, so no header depends on how
+    // Vercel combines two rules that set the same key. Every other path (the landing, the indexes, the
+    // prose and legal pages, /app and /decks) keeps the allowlist policy with its pinned Neon connect-src.
+    {
+      source: `/((?!(?:${AD_SURFACE})$).*)`,
+      headers: [{ key: "Content-Security-Policy", value: allowlist(scriptSrc) }, ...common],
+    },
+    {
+      source: `/(${AD_SURFACE})`,
+      headers: [
+        { key: "Content-Security-Policy", value: allowlist(`${scriptSrc} ${loaderHash}`) },
+        { key: "Content-Security-Policy-Report-Only", value: strict },
+        ...common,
+      ],
+    },
+    // Vercel's own type for .webmanifest is not documented, so the manifest's is stated here (#269).
+    { source: "/manifest.webmanifest", headers: [{ key: "Content-Type", value: "application/manifest+json" }] },
+    // ads.txt (#291) is read by ad crawlers as plain text; the charset is stated rather than left to
+    // Vercel's guess, as the IAB spec asks for UTF-8. The build writes the file only once an AdSense
+    // publisher id is set; the rule is harmless while there is none.
+    { source: "/ads.txt", headers: [{ key: "Content-Type", value: "text/plain; charset=utf-8" }] },
+  ],
+};
+
+writeFileSync(join(ROOT, "vercel.json"), `${JSON.stringify(config, null, 2)}\n`);
+console.log(origins.length ? `vercel.json: connect-src ${connect}` : "vercel.json: connect-src 'self' (NEON_* unset — no account layer in this build)");

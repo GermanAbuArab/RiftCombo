@@ -1,0 +1,1421 @@
+import { execFileSync, spawnSync } from "node:child_process";
+import { mkdirSync, mkdtempSync, readFileSync, rmSync, symlinkSync, writeFileSync } from "node:fs";
+import { tmpdir } from "node:os";
+import { join, resolve } from "node:path";
+import { afterAll, beforeAll, describe, expect, it } from "vitest";
+import { BUDGET_MS } from "./budget.js";
+
+/**
+ * The turn clock has no other test, and that is exactly how a defect shipped.
+ *
+ * `scripts/adversarial-check.mjs --turns` decides which turn each finisher comes online, and it is
+ * the engine behind the "N of 54 pay later than doing nothing" headline. On 2026-09-13 the greedy
+ * allocator it used was replaced with an exact search (#205) — and the replacement itself shipped a
+ * bug: the new `unit` flag, which tells the allocator whether a readiness turn is owed, was set in
+ * `costsOf()` and NOT in the `entries` loop that actually feeds the clock. Two places build the cost
+ * objects; only one was patched. `c.unit` was `undefined` in the half that mattered, so the `+1` was
+ * silently dropped for every entry that was not Beginning-Phase gated, and every number moved.
+ *
+ * Nothing caught it. It was found by hand-walking a turn table — the same instrument that found the
+ * original defect. This file is the cheap version of that walk: pinning the two hand-walked reference
+ * points on every commit closes the class.
+ *
+ * Folding the `needs`/`produces` DAG UPWARD as well as downward (2026-09-13, #200) made the biggest
+ * closures much larger, and almost all of the runtime is ONE row,
+ * `dragonstorm-brambleback-trinity-conquer`. Pricing `[Equip]` added a second cost per Equipment and
+ * pushed that row past the state guard; modelling ORDERING later the same day (an `[Equip]` cannot be
+ * paid before its own gear — 818.1 with 380) pruned the search back down, so `--turns` is ~0.2s again
+ * and the allocator is exact on all 80 rows. Quote the header's own line for that count rather than
+ * this comment: a row priced by the greedy fallback is a row priced by the defect #205 removed.
+ *
+ * This comment said "79 of the 80" until 2026-09-14, and so did the header it points at — because the
+ * counter counted every CALL to `deployTurn`, including the candidate closures the needs/produces fold
+ * prices and then discards. Every PUBLISHED row was exact the whole time, so the line understated its
+ * own result and sent a reader to re-derive a row that did not need it. The header now names the rows
+ * it means and reports intermediate fallbacks separately.
+ *
+ * The assertions are deliberately about entries whose turn was established BY HAND against the Core
+ * Rules, not about the headline count, which is perishable and moves with the catalogue.
+ */
+
+const out = execFileSync("node", ["scripts/adversarial-check.mjs", "--turns"], {
+  encoding: "utf8",
+  maxBuffer: 1 << 24,
+});
+
+/** `--engines`, spawned once for every test that reads it: ~6s alone since #528's [Hidden] splits. */
+let engOut: string | undefined;
+const engines = () =>
+  (engOut ??= execFileSync("node", ["scripts/adversarial-check.mjs", "--engines"], { encoding: "utf8", maxBuffer: 1 << 24 }));
+
+/** `  T 6 vs T6 baseline  SLOWER  CHAIN    chaos/order  some-entry-id` */
+const rows = new Map<string, { pays: number; base: number }>();
+for (const line of out.split("\n")) {
+  const m = line.match(
+    /T\s*(\d+|Infinity)\s+vs\s+T(\d+)\s+baseline\s+(?:SLOWER)?\s*(?:INFINITE|BURST|CHAIN|ALT_WIN)\s+\S+\s+(\S+)/,
+  );
+  if (!m) continue;
+  const [, pays, base, id] = m as unknown as [string, string, string, string];
+  rows.set(id, { pays: pays === "Infinity" ? Infinity : Number(pays), base: Number(base) });
+}
+
+describe("the turn clock", () => {
+  // A probe that silently matches nothing prints a clean pass. Assert the population first.
+  it("parses a non-trivial number of rows, so a broken parse cannot read as green", () => {
+    expect(rows.size).toBeGreaterThan(40);
+  });
+
+  it("gives every row a finite, positive turn and a baseline", () => {
+    for (const [id, r] of rows) {
+      expect(r.base, id).toBeGreaterThan(0);
+      expect(r.pays, id).toBeGreaterThan(0);
+    }
+  });
+
+  /**
+   * Hand-walked in `docs/plays/2026-09-12-chaos-order-the-one-answer.md`: T1 Daring Poro, T2 dead
+   * because Ivern is E6 and nothing in the line costs 4, T3-T5 the three Iverns, T6 all three ready
+   * at 315.1.b and moved as ONE action under 144.3. The greedy allocator reported T8 on this.
+   */
+  it("agrees with the hand walk on ivern-ride-the-wind-double-conquer (T6)", () => {
+    expect(rows.get("ivern-ride-the-wind-double-conquer")?.pays).toBe(6);
+  });
+
+  /**
+   * This is the row that caught the `unit`-flag bug, and it is the one that pins the readiness turn:
+   * its last Ivern lands on T5 and enters exhausted (143.4), so it cannot pay 144.2's exhaust to move
+   * until the next Awaken (315.1.b). With the flag dropped the clock said T5, one turn before the
+   * line can physically execute its own second step.
+   */
+  it("charges a readiness turn for a unit that lands last (ivern-bard-four-tag-double-conquer, T6)", () => {
+    expect(rows.get("ivern-bard-four-tag-double-conquer")?.pays).toBe(6);
+  });
+
+  /**
+   * The THIRD hand-walked reference point, and the one that justifies pricing an engine's own output
+   * by default (docs/plays/2026-09-13-the-loop-that-wants-a-contested-board.md §4). The loop is
+   * assembled on T3 and its Energy buys Renata and the Rage Amplifier in the SAME Main Phase, so the
+   * Grand Plaza hold lands on T4. The clock said T5 for as long as it charged every card in the
+   * closure to the rune curve; it says T4 now.
+   */
+  it("agrees with the hand walk on jhin-fiora-facebreaker-recall (T4)", () => {
+    expect(rows.get("jhin-fiora-facebreaker-recall")?.pays).toBe(4);
+  });
+
+  /**
+   * The FOURTH hand-walked reference point, and the one that pins in-chain casts (#339). The walk in
+   * `docs/phase0/walks/2026-10-13-b3-renata-time-warp-anomaly.md` §6 puts the chain on T6 on the play
+   * and T5 on the draw: three Time Warps are cast one per turn INSIDE the chain, each paying its four
+   * Power from the six rainbow two Blue Sentinels Add (R1 = A), and each Additional Turn is taken
+   * before the opponent's next turn, so the chain does not advance the clock. The clock said T11 for
+   * as long as it charged all three Warps to the rune curve before the chain and modelled no Add.
+   */
+  it("agrees with the hand walk on power-nexus-sentinel-renata-time-warp-chain (T5-T6)", () => {
+    const pays = rows.get("power-nexus-sentinel-renata-time-warp-chain")?.pays;
+    expect(pays).toBeGreaterThanOrEqual(5);
+    expect(pays).toBeLessThanOrEqual(6);
+  });
+
+  /**
+   * The same Adds and Additional Turns, on the bare line without Renata. Its walk
+   * (`docs/phase0/walks/2026-10-13-bare-nexus-three-time-warps.md` §5) puts it on T7 on the play,
+   * one turn later than the clock, because the clock prices no Nexus firing and the walk's extra
+   * turn buys the runes those firings recycle. A lower bound may sit under its walk, never over it.
+   */
+  it("stays at or under the hand walk on power-nexus-sentinel-three-time-warps (T7)", () => {
+    expect(rows.get("power-nexus-sentinel-three-time-warps")?.pays).toBeLessThanOrEqual(7);
+  });
+
+  /**
+   * The FIFTH and SIXTH reference points, and the ones that pin `anyBodies` (#494). Neither line names
+   * a unit in `uses`, so until the clock charged the field it priced the spell alone and printed T3.
+   * Up from the Deep (chaos): three E2 bodies on T1-T2 and the spell on T3, Hold on T4
+   * (docs/plays/2026-10-27-up-from-the-deep-*.md §6). Flurry of Feathers (calm): three E1 bodies on
+   * T1-T2, the T2 body leaves 3 of 4 runes so the E4 Reaction waits for their T3, Hold on your T4.
+   */
+  it("charges anyBodies on up-from-the-deep-flow-grand-plaza (T4)", () => {
+    expect(rows.get("up-from-the-deep-flow-grand-plaza")?.pays).toBe(4);
+  });
+
+  it("charges anyBodies on flurry-of-feathers-grand-plaza-win (T4)", () => {
+    expect(rows.get("flurry-of-feathers-grand-plaza-win")?.pays).toBe(4);
+  });
+
+  /**
+   * THE SEVENTH reference point, and the one that pins `pointsAtStart` (#639). The corrected line
+   * (#551) is three points in one turn - a Hold, a Conquer and Yasuo's third move - so it wins only
+   * from 5 at the START of the turn. Its cards are paid by T3 and the clock said T4 for as long as it
+   * read no score. On the unopposed Calm/Chaos curve (two Steel Paws T1, Conquer both T2, Hold 2 a
+   * turn) the start score is 0, 0, 2, 4, 6 on T1-T5: 4 at T4 start is one short, so the line runs on
+   * T5 and TIES the baseline rather than beating it.
+   */
+  it("holds yasuo-windrider-ride-the-wind-chain to the turn its 5-point start is reachable (T5, ties T5)", () => {
+    expect(rows.get("yasuo-windrider-ride-the-wind-chain")).toEqual({ pays: 5, base: 5 });
+  });
+
+  it("prints the pointsAtStart predicate with its members and the rows it moved", () => {
+    const m = out.match(/^# points at turn start \(pointsAtStart\): (\d+) entr(?:y|ies) declares? it: ([^;]+); (\d+) of (\d+) rows moved by it: (.*)$/m);
+    expect(m, out).toBeTruthy();
+    expect(m![2]).toContain("yasuo-windrider-ride-the-wind-chain (5)");
+    // Since #552 orders Ride the Wind after Yasuo, the schedule reaches T5 by itself and the start score
+    // moves no row: the line now prints the start turn it checks, which is where this pin stands.
+    expect(m![5]).toContain("start turn: yasuo-windrider-ride-the-wind-chain T5 (schedule T5)");
+  });
+
+  /**
+   * 143.4 exhausts UNITS only — 359.2.d enters a non-unit gear READY at base and 359.3 makes a spell
+   * linger on the Chain — so the readiness turn must NOT be universal. If some row does not pay it,
+   * the narrowing is live; if every row paid it, the `+1` would be unconditional again.
+   */
+  it("does not charge the readiness turn universally", () => {
+    const atBaseline = [...rows.values()].filter((r) => r.pays <= r.base);
+    expect(atBaseline.length).toBeGreaterThan(0);
+  });
+});
+
+/**
+ * ORDERING, pinned because the result is a NULL.
+ *
+ * An `[Equip]` cost is not merely a second cost but a LATER one: 818.1 makes Equip an Activated
+ * Ability of the gear and 380 says an Activated Ability "can primarily be activated while on the
+ * Board". Modelled exactly in the allocator on 2026-09-13, it moves ZERO of the 80 rows — and a null
+ * from a new constraint is worth nothing unless the instrument can be shown to SEE the thing it says
+ * is absent. `--selftest` is that proof: synthetic cost sets whose answers are hand-derived, two of
+ * them ordered, one of which owes a turn to the constraint (T6 unordered against T7 ordered).
+ *
+ * Pinning a clean state costs nothing now and can only ever be paid for once. These two assertions
+ * close the two ways the null could go quietly false: the constraint being dropped (the self-test
+ * fails) and the LINKING being dropped, which would leave the constraint in place with nothing
+ * attached to it and print "moves nothing" for a vacuous reason.
+ */
+describe("the allocator's ordering constraint", () => {
+  it("passes its own hand-derived self-test, so the null is a result and not a blind spot", () => {
+    const st = execFileSync("node", ["scripts/adversarial-check.mjs", "--selftest"], {
+      encoding: "utf8",
+      maxBuffer: 1 << 22,
+    });
+    expect(st).toContain("# all pass");
+    expect(st).not.toContain("FAIL");
+  });
+
+  /**
+   * The engine-output discount is a RESTRICTION as well as a discount — a post-ignition card may not
+   * be bought before the loop is running — and a restriction can only push a row later than the
+   * truth. `--ignition-nogate` drops the gate while keeping the discount, which can only pull a row
+   * earlier than the truth, so the two bound it.
+   *
+   * They agree on 75 of 80 (80 of 85 on 2026-10-13). The five that differ are NOT a residual: `d.all` is identical under both
+   * arms and only `d.unit` moves, so the entire gap is the readiness `+1` of 143.4, which the nogate
+   * arm dodges by "paying" a free post cost early — something the real game never offers, because
+   * before ignition that unit costs its printed Energy. Settled row by row in
+   * `.scratch-gap/probe-readiness-residual.mjs`. This assertion is the tripwire: if a change widens
+   * the disagreement past that handful, the header's account of it is stale.
+   *
+   * Since #339 a card that queues a turn stays gated in both arms, so the lower arm is not a pure
+   * relaxation for Time Warp. The header's sandwich note names the two rows that holds back and gives
+   * the necessary condition that makes their gated T4 the true one.
+   */
+  it("keeps the ignition sandwich tight on all but a handful of rows", () => {
+    const loose = execFileSync("node", ["scripts/adversarial-check.mjs", "--turns", "--ignition-nogate"], {
+      encoding: "utf8",
+      maxBuffer: 1 << 24,
+    });
+    const other = new Map<string, number>();
+    for (const line of loose.split("\n")) {
+      const m = line.match(/T\s*(\d+|Infinity)\s+vs\s+T(\d+)\s+baseline\s+(?:SLOWER)?\s*(?:INFINITE|BURST|CHAIN|ALT_WIN)\s+\S+\s+(\S+)/);
+      if (!m) continue;
+      other.set(m[3]!, m[1] === "Infinity" ? Infinity : Number(m[1]));
+    }
+    expect(other.size).toBe(rows.size);
+    const differ = [...rows].filter(([id, r]) => other.get(id) !== r.pays);
+    expect(differ.length, differ.map(([id, r]) => `${id} ${r.pays}/${other.get(id)}`).join(" || ")).toBeLessThanOrEqual(6);
+    // and every disagreement is at most one turn, which is what makes "T4 or T5" a statement
+    for (const [id, r] of differ) expect(r.pays - (other.get(id) as number), id).toBeLessThanOrEqual(1);
+  }, BUDGET_MS); // spawns scripts/adversarial-check.mjs: 4.6s in a full run of this file on the Mac at load 40 on 14 cores, 6.3s user alone at load 46 (#739; 15.3s at e7787a9, whose readier memo built a string key per leaf)
+
+  /**
+   * #205 shipped because one of two cost builders was patched. There is one builder now, but three
+   * callers price with it - the closure search, the consumer search and the final row - and a caller
+   * that drops the bodies argument picks its fold as if bodies were free while the row pays for them.
+   * That is how `candlelit-sanctum-known-next-draw` folded `amateur-recital-free-evacuation` at T0.
+   * Since #517 every caller prices through `priceSet`, which chooses the bodies and is the one caller
+   * of `costsOfSet`, so both are read: a `priceSet` call needs the bodies and `costsOfSet` the pick.
+   */
+  it("passes a bodies argument at every costsOfSet and priceSet call, so no fold is chosen bodies-free", () => {
+    const src = readFileSync("scripts/adversarial-check.mjs", "utf8");
+    const callsOf = (name: string) => {
+      const calls: string[] = [];
+      for (let at = src.indexOf(`${name}(`); at >= 0; at = src.indexOf(`${name}(`, at + 1)) {
+        let depth = 0, i = at + name.length, commas = 0;
+        for (; i < src.length; i++) {
+          const ch = src[i];
+          if ("([{".includes(ch!)) depth++;
+          else if (")]}".includes(ch!) && --depth === 0) break;
+          else if (ch === "," && depth === 1) commas++;
+        }
+        calls.push(`${commas}:${src.slice(at, i + 1)}`);
+      }
+      return calls;
+    };
+    const price = callsOf("priceSet");
+    const costs = callsOf("costsOfSet");
+    expect(price.length, "fewer priceSet calls than the five in the script, so this check may be reading the wrong thing").toBeGreaterThanOrEqual(5);
+    expect(costs.length, "costsOfSet has no caller, so this check may be reading the wrong thing").toBeGreaterThanOrEqual(1);
+    for (const c of price) expect(Number(c.split(":")[0]), c).toBeGreaterThanOrEqual(2);
+    for (const c of costs) expect(Number(c.split(":")[0]), c).toBeGreaterThanOrEqual(3);
+  });
+
+  it("prices a body in the identities the baseline calls cheap (--selftest-bodies)", () => {
+    const st = execFileSync("node", ["scripts/adversarial-check.mjs", "--selftest-bodies"], { encoding: "utf8" });
+    expect(st).toContain("# all pass");
+    expect(st).not.toContain("FAIL");
+  });
+
+  it("still has a non-empty linked population, so 'it moves nothing' cannot go vacuous", () => {
+    const m = out.match(/ordering \(\[Equip\] after its own gear[^)]*\): (\d+) of (\d+) rows carry a linked cost/);
+    expect(m, "the ordering non-vacuity line is missing from --turns").toBeTruthy();
+    expect(Number(m![1])).toBeGreaterThan(20);
+    expect(Number(m![1])).toBeLessThan(Number(m![2]));
+  });
+});
+
+/**
+ * POWER INCOME (#501), pinned against REAL card text through `--price`, because the line it rests on
+ * declares no Seal in `data/combos.json` and the clock could not see one until this.
+ *
+ * The cards are the ones PR #500 walked for `tryndamere-brambleback-conquer` - OGN-040 Seal of Rage,
+ * three UNL-029 Red Brambleback (E4 + 1), two OGN-034 Tryndamere (E7 + 2) - with SFD-004 Bushwhack
+ * (E2 + 1, "Friendly units enter ready this turn"), which the issue names as the other T6 route. Hand
+ * walk, going first (2 runes a turn, 315.3.b; a recycled rune leaves the board, 161.2.b):
+ *   T2  4 runes: recycle one for the Seal, which enters ready (359.2.d) and Adds Fury for a Brambleback
+ *   T3  5 runes: a Brambleback, its Power from the Seal, readied at the Awakening (415.3.a)
+ *   T4  7 runes: a Tryndamere, Seal + one recycle
+ *   T5  8 runes: the third Brambleback off the Seal
+ *   T6 10 runes: Bushwhack, then the second Tryndamere, E9 and 3 Power = Seal + two recycles
+ *
+ * THE CONTROL, without the Seal, is T7, and by hand: every Power is then a recycle, 8 of them. A
+ * Tryndamere on T6 needs 7 runes there, so at most 5 recycles before T6, so 3 Power paid on T6 - a
+ * Tryndamere plus a Brambleback or Bushwhack, E9 or more on 7 runes. With both on T4 and T5 instead
+ * (T3 has 6 runes at most), T4 needs at most 1 recycle before it and T5 at most 3, which leaves
+ * E10 or more on T6's 7 or 8 runes. So the Seal is worth exactly one turn here.
+ *
+ * Upstage Comedy, the walk's own route, was NOT the pin here: until #506 the clock paid a readying
+ * spell whenever it was cheapest (T1) rather than with the last unit, so with Comedy the no-Seal
+ * control also read T6 and the pair proved nothing. #506 pins it below.
+ */
+describe("power income (#501)", () => {
+  const price = (set: string) => {
+    const s = execFileSync("node", ["scripts/adversarial-check.mjs", "--price", set], { encoding: "utf8" });
+    const m = s.match(/all T(\d+|Infinity), last unit T(\d+|Infinity), unitLast \w+, pays T(\d+|Infinity)/);
+    expect(m, s).toBeTruthy();
+    return { all: Number(m![1]), unit: Number(m![2]), pays: Number(m![3]) };
+  };
+
+  it("pays the Seal of Rage + Bushwhack Tryndamere line on T6, as walked", () => {
+    expect(price("OGN-040:1,UNL-029:3,OGN-034:2,SFD-004:1").all).toBe(6);
+  });
+
+  it("pays the same cards without the Seal on T7 (the control)", () => {
+    expect(price("UNL-029:3,OGN-034:2,SFD-004:1").all).toBe(7);
+  });
+
+  it("still finds ENGINE rows that hold an income card, so 'it moved no row' cannot go vacuous", () => {
+    const eng = engines();
+    const m = eng.match(/power income \([^)]*\): (\d+) of (\d+) rows hold an income card/);
+    expect(m, "the income non-vacuity line is missing from --engines").toBeTruthy();
+    expect(Number(m![1])).toBeGreaterThan(5);
+  }, BUDGET_MS);
+});
+
+/**
+ * READYING (#506), pinned against REAL card text through `--price`. A readier works on the turn it is
+ * paid and only on the units that land with it, so it waives the last unit's 143.4 readiness turn
+ * when it shares that turn and does nothing on any other. These read `pays`, the turn the last unit
+ * can act, because a readier never moves `all`.
+ *
+ * The cards are #501's: OGN-040 Seal of Rage, three UNL-029 Red Brambleback (E4 + 1), two OGN-034
+ * Tryndamere (E7 + 2), now with UNL-009 Upstage Comedy (E2, "Ready a unit."), PR #500's own route.
+ * Going first, 2 runes a turn (315.3.b), a recycled rune leaves (161.2.b), and one rune can pay its
+ * exhaust for Energy and its recycle for Power on the same turn (164.2.a, 164.2.b).
+ *
+ * SEAL + COMEDY, T6. #501's walk to T5 (Seal and a Brambleback on T2, a Brambleback T3, a Tryndamere
+ * T4, a Brambleback T5) reaches T6 with 10 runes: the second Tryndamere (E7, its 2 Power the Seal's
+ * Add plus one recycle) and Comedy (E2) are E9, and Comedy readies him on the turn he lands, so he
+ * attacks on T6. Not earlier: `all` is already T6 without Comedy (#501).
+ *
+ * NO SEAL, T7 (the control). Every Power is now a recycle, 7 of them, and a Tryndamere needs 7 runes,
+ * which T3 (6 at most) never has, so the two land on T4 and T5 or later. Acting on T6 needs one of:
+ *   (a) every unit landed by T5. A Tryndamere on T4 allows at most 1 recycle before T4, so at most one
+ *       Brambleback lands before T4 (one recycle each). T4's 7 or 8 runes then hold only the
+ *       Tryndamere, which recycles 2, so T5 has at most 10 - 2 = 8 runes: the second Tryndamere and
+ *       no E4 beside it. At most one Brambleback of three by T5.
+ *   (b) the last unit on T6 with Comedy beside it. If a Tryndamere lands on T6 with k Bramblebacks,
+ *       T6 pays E9 + 4k with 2 + k Power, so 5 - k recycles came earlier and T6 has 7 + k runes,
+ *       short by 2 + 3k. If only Bramblebacks land on T6, k of them, T6 pays E2 + 4k on 5 + k runes,
+ *       so k = 1, and both Tryndamere and two Bramblebacks are down by T5 with 6 recycles. T5 then
+ *       holds a Tryndamere (T4 and T5 are the only turns with 7 runes) and, with b Bramblebacks
+ *       beside it, pays E7 + 4b on 4 + (2 + b) runes, which no b affords.
+ * Neither exists, so T7: which is why the Seal, and not Comedy alone, is worth the turn.
+ *
+ * SEAL WITHOUT COMEDY was T7 here, the second Tryndamere landing on T6 exhausted. It is T6 since #510,
+ * because Red Brambleback carries [Accelerate] and the last unit can be a Brambleback instead:
+ *   T2  4 runes: the Seal (one recycle) and a Brambleback, its Power the Seal's Add. 3 left.
+ *   T3  5 runes: a Brambleback off the Seal. 5 left.
+ *   T4  7 runes: Tryndamere, 2 Power = Seal + one recycle. 6 left.
+ *   T5  8 runes: the second Tryndamere the same way. 7 left.
+ *   T6  9 runes: the third Brambleback Accelerated, E5 and 2 Power = Seal + one recycle, so it enters
+ *       ready (805.1.a) and both Tryndameres readied at the Awakening (415.3.a).
+ * So on these cards Comedy is no longer the only route to T6, and the readier needs a witness whose
+ * units have no Accelerate: SEAL + THREE TRYNDAMERES (OGN-034 has none). The Seal on T2, a Tryndamere
+ * on T4 (7 runes) and T5 (8), each paid Seal + one recycle, leave 9 runes on T6: the third Tryndamere
+ * and Comedy are E9 with 2 Power, and Comedy readies him, so T6. Without Comedy he lands exhausted, T7.
+ * Not earlier either way: only T4 and T5 hold the 7 runes a Tryndamere needs by T5, so `all` is T6.
+ */
+describe("readying (#506)", () => {
+  const pays = (set: string) => {
+    const s = execFileSync("node", ["scripts/adversarial-check.mjs", "--price", set], { encoding: "utf8" });
+    const m = s.match(/pays T(\d+|Infinity)/);
+    expect(m, s).toBeTruthy();
+    return Number(m![1]);
+  };
+
+  it("pays the Seal of Rage + Upstage Comedy Tryndamere line on T6, as walked", () => {
+    expect(pays("OGN-040:1,UNL-029:3,OGN-034:2,UNL-009:1")).toBe(6);
+  });
+
+  it("pays the same cards without the Seal on T7 (the control)", () => {
+    expect(pays("UNL-029:3,OGN-034:2,UNL-009:1")).toBe(7);
+  });
+
+  it("pays the Seal line without Comedy on T6 too, through the third Brambleback's [Accelerate] (#510)", () => {
+    expect(pays("OGN-040:1,UNL-029:3,OGN-034:2")).toBe(6);
+  });
+
+  it("pays Seal + three Tryndameres + Comedy on T6, as walked: no unit has Accelerate", () => {
+    expect(pays("OGN-040:1,OGN-034:3,UNL-009:1")).toBe(6);
+  });
+
+  it("pays the same three Tryndameres without Comedy on T7, so the readier is what moved it", () => {
+    expect(pays("OGN-040:1,OGN-034:3")).toBe(7);
+  });
+
+  it("still finds rows that hold a readier, so 'it moved no finisher' cannot go vacuous", () => {
+    const m = out.match(/readying \([^)]*\): (\d+) of (\d+) rows hold a readier/);
+    expect(m, "the readier non-vacuity line is missing from --turns").toBeTruthy();
+    expect(Number(m![1])).toBeGreaterThan(5);
+  });
+});
+
+/**
+ * [ACCELERATE] (#510), pinned against REAL card text through `--price`. 805.1.a: "Accelerate is
+ * functionally short for "As you play me, you may pay [1][C] as an additional cost. If you do, I enter
+ * ready."" 805.2: "Accelerate is an Optional Additional Cost to be paid as a player plays the unit with
+ * the ability." So a unit carrying it can skip 143.4's readiness turn for one more Energy and one more
+ * Power of its domain, and only on the turn it is played. These read `pays`, because Accelerate never
+ * moves `all`: it is an extra cost, and the clock pays it only when it lands the last unit ready.
+ *
+ * Cards: UNL-029 Red Brambleback (Fury, E4 + 1 Fury Power, "[Accelerate] (You may pay
+ * :rb_energy_1::rb_rune_fury: as an additional cost to have me enter ready.)") and OGN-034 Tryndamere
+ * (E7 + 2, no Accelerate). Going first, 2 runes a turn (315.3.b), a recycled rune leaves (161.2.b),
+ * and one rune can pay its exhaust for Energy and its recycle for Power on the same turn (164.2.a,
+ * 164.2.b). An Accelerated Brambleback is E5 + 2 Power.
+ *
+ * TWO BRAMBLEBACKS + TRYNDAMERE, T5: the "T=1, K=2" row of
+ * docs/plays/2026-10-24-tryndamere-scores-two-on-turn-five-*.md ("Brambleback T3, Tryndamere T4, one
+ * Accelerated T5"). T3 6 runes: a Brambleback, one recycle, 5 left. T4 7 runes: Tryndamere, E7 and
+ * two recycles, 5 left. T5 7 runes: the second Brambleback Accelerated, E5 and two recycles, and it
+ * enters ready, so every unit can act on T5. Not earlier: `all` is T5, because a Tryndamere needs 7
+ * runes (T4 at the earliest, 8 at most), which leaves 1 Energy beside him on T4, so both Bramblebacks
+ * would have to land by T3 (T2 then T3 leaves 4 runes on T3 and 6 on T4, short of 7). Without
+ * Accelerate the unit that lands on T5 is exhausted until T6, which is what the clock printed before.
+ *
+ * ONE BRAMBLEBACK, T3 (the control, "the extra rune is not there"). T2 holds 4 runes: the plain E4 +
+ * 1 fits and the Accelerated E5 + 2 does not, so the Brambleback lands exhausted and acts on T3. Paying
+ * Accelerate on T3 instead also acts on T3. Paying it never helps here, and a model that waived the
+ * readiness turn without charging the extra rune would print T2.
+ */
+describe("[Accelerate] (#510)", () => {
+  const pays = (set: string) => {
+    const s = execFileSync("node", ["scripts/adversarial-check.mjs", "--price", set], { encoding: "utf8" });
+    const m = s.match(/pays T(\d+|Infinity)/);
+    expect(m, s).toBeTruthy();
+    return Number(m![1]);
+  };
+
+  it("pays two Red Bramblebacks + Tryndamere on T5, the last Brambleback Accelerated, as walked", () => {
+    expect(pays("UNL-029:2,OGN-034:1")).toBe(5);
+  });
+
+  it("pays one Red Brambleback on T3, because T2 has no rune for Accelerate (the control)", () => {
+    expect(pays("UNL-029:1")).toBe(3);
+  });
+
+  it("prints its predicate and finds units and rows that carry it, so 'it moved nothing' cannot go vacuous", () => {
+    const m = out.match(/# accelerate \((.*)\): (\d+) units carry it; (\d+) of (\d+) rows hold one/);
+    expect(m, "the accelerate non-vacuity line is missing from --turns").toBeTruthy();
+    expect(m![1]).toContain(String.raw`\[Accelerate\]`);
+    // A second instrument, not the predicate itself: every base whose text or effect says
+    // "accelerate" at all, read straight from data/cards.json. The predicate may not miss one, and
+    // each of them is a unit (Rek'Sai's grant sits on a unit that carries the keyword herself).
+    // Comparing sizes is enough: whatever the predicate matches contains "[Accelerate]" and so says
+    // "accelerate", i.e. its set is a SUBSET of this one, and a subset of equal size is the same set.
+    const all = JSON.parse(readFileSync("data/cards.json", "utf8")).cards as {
+      base: string; type: string[]; text?: string; effect?: string;
+    }[];
+    const said = new Map<string, string[]>();
+    for (const c of all) if (/accelerate/i.test(`${c.text || ""} ${c.effect || ""}`)) said.set(c.base, c.type);
+    // Radiance (#664) brought the one non-unit: RAD-162 Firelights' Hideout, a battlefield whose
+    // conquer gives the next unit played [Accelerate]. The clock does not price that grant.
+    const nonUnits = [...said].filter(([, t]) => !t.includes("unit")).map(([b]) => b);
+    expect(nonUnits).toEqual(["RAD-162"]);
+    expect(Number(m![2])).toBe(said.size - nonUnits.length);
+    expect(said.size - nonUnits.length).toBe(34);
+    expect(Number(m![3])).toBeGreaterThan(0);
+  });
+});
+
+/**
+ * READYING RUNES (#513), pinned against REAL card text through `--price`. 164.2.a: "[E]: [Reaction] —
+ * Add [1]." 164.2.b: "Recycle this: [Reaction] — Add [C]." A rune's Energy is its EXHAUST and its
+ * Power is its RECYCLE, whose cost has no exhaust in it, so a readied rune pays one more Energy and no
+ * more Power: an exhausted rune recycles all the same, and a recycled one is gone (161.2.b) and cannot
+ * be readied. 167 empties the pool only "at the start of each player's Main Phase and the end of each
+ * player's turn", so every rune can be exhausted up front and the Energy held while the readier
+ * resolves.
+ *
+ * Cards: VEN-150 Acceleration Gate (Spell, E3 + 1, "Ready up to 4 units, gear, and/or runes."),
+ * UNL-066 Moonlight Affliction (Spell, E7), VEN-090 Cataclysmic Duel (Spell, E8 + 3), OGN-142
+ * Mountain Drake (Unit, E9, no text), SFD-087 Premonition (Spell, E2 + 3). Going first, 2 runes a
+ * turn (315.3.b).
+ *
+ * GATE + AFFLICTION, T3. E10 + 1. T3 holds 6 runes: exhaust all six (pool 6), recycle one for the
+ * Gate's Power (5 left, all exhausted), cast the Gate (pool 3), ready 4 of the 5 and exhaust them
+ * again (pool 7), cast Affliction. Not T2: 4 runes, one recycled for the Gate, give 4 + 3 = 7 of 10.
+ * Without the readying it is T4: the same turn needs 10 runes (T5), and the Gate on T2 leaves 3 runes,
+ * so T3 has 5 and T4 has 7, which is Affliction's 7.
+ *
+ * GATE + DUEL, T4 (the control, "up to 4", not every rune). E11 + 4. T3's 6 runes, one recycled for
+ * the Gate, leave 5 to ready, and the Gate readies 4: 6 + 4 = 10 of 11. T4's 8 runes give 8 + 4 = 12,
+ * and Duel's 3 recycles come after the Gate resolves. A clock that readied every rune would print T3
+ * (6 + 5 = 11); one with no readying prints T5 (the Gate on T2 leaves 3, 5, 7, 9 runes, and Duel's E8
+ * first fits on T5).
+ *
+ * GATE + DRAKE, pays T5 (the "up to 4" is SHARED by units, gear and runes). E12 + 1, so `all` is T4
+ * the same way, 8 + 4. All four readies go to runes, so the Gate has none left for the Drake that
+ * lands with it: he is exhausted (143.4) until T5. A clock that readied 4 runes AND 4 units would say
+ * T4; the clock before #513 said T6 (`all` T5, the Drake landing that turn with the Gate on T2).
+ *
+ * THREE GATES + AFFLICTION, T3 (PR #522's review). E16 + 3. T3's 6 runes: exhaust all six (pool 6),
+ * recycle one for the first Gate (5 left), cast it (pool 3), ready 4 and exhaust them (pool 7); recycle
+ * the fifth, still exhausted, for the second Gate (4 left), cast it (pool 4), ready all 4 (pool 8);
+ * recycle one for the third (3 left), cast it (pool 5), ready 3 (pool 8); Affliction is 7. That is
+ * 4 + 4 + 3 = 11 readied, 6 + 11 = 17 of 16. Not T2: 4 runes give 3 + 2 + 1 = 6 back, 10 of 16. A clock
+ * that charged every Gate's recycle to all three readies 3 + 3 + 3 = 9 and says T4.
+ *
+ * GATE ALONE, T2. It is paid before it resolves, so T1's 2 runes cannot pay its E3 whatever it readies.
+ *
+ * GATE + TWO PREMONITIONS, T4 (the Power control, "no Power comes back"). E7 + 7. Seven recycles need
+ * seven runes channelled, and T3 has channelled six, so T4: the Gate and one Premonition on T3 (E5,
+ * 4 recycles, 2 left), the second on T4's 4 runes. A clock that returned Power with the readied runes
+ * would print T2 (4 + 4 of each). This one passes without #513 too: it guards the model, not the bug.
+ */
+describe("readying runes (#513)", () => {
+  const price = (set: string) => {
+    const s = execFileSync("node", ["scripts/adversarial-check.mjs", "--price", set], { encoding: "utf8" });
+    const m = s.match(/all T(\d+|Infinity).*pays T(\d+|Infinity)/);
+    expect(m, s).toBeTruthy();
+    return { all: Number(m![1]), pays: Number(m![2]) };
+  };
+
+  it("pays Acceleration Gate + Moonlight Affliction on T3, as walked: four readied runes are four Energy", () => {
+    expect(price("VEN-150:1,UNL-066:1").all).toBe(3);
+  });
+
+  it("pays Acceleration Gate + Cataclysmic Duel on T4, not T3: the Gate readies up to 4, not every rune (the control)", () => {
+    expect(price("VEN-150:1,VEN-090:1").all).toBe(4);
+  });
+
+  it("pays Acceleration Gate + Mountain Drake all T4 and pays T5: the 4 readies are shared by units and runes", () => {
+    expect(price("VEN-150:1,OGN-142:1")).toEqual({ all: 4, pays: 5 });
+  });
+
+  it("pays three Acceleration Gates + Moonlight Affliction on T3, as walked: each recycle shrinks only the Gates after it", () => {
+    expect(price("VEN-150:3,UNL-066:1").all).toBe(3);
+  });
+
+  it("pays Acceleration Gate alone on T2, not T1: the runes it readies cannot pay its own cost", () => {
+    expect(price("VEN-150:1").all).toBe(2);
+  });
+
+  it("pays Acceleration Gate + two Premonitions on T4: a readied rune returns no Power", () => {
+    expect(price("VEN-150:1,SFD-087:2").all).toBe(4);
+  });
+
+  it("prints its predicate and every member, each modelled or refused with a reason", () => {
+    const m = out.match(/# readying runes \((.*)\): (\d+) cards say it; modelled (\d+): (.*); refused (\d+): (.*); unclassified (\d+); (\d+) of (\d+) rows hold a modelled one/);
+    expect(m, "the rune-readying line is missing from --turns").toBeTruthy();
+    // A second instrument, not the predicate itself: every base whose text says "ready" and "rune" in
+    // one sentence, icons stripped, read straight from data/cards.json.
+    const all = JSON.parse(readFileSync("data/cards.json", "utf8")).cards as { base: string; text?: string; effect?: string }[];
+    const said = new Set<string>();
+    for (const c of all) {
+      const t = `${c.text || ""} ${c.effect || ""}`.replace(/:rb_[a-z_0-9]+:/g, "");
+      if (t.split(/[.\n]/).some((s) => /\bready\b/i.test(s) && /\brunes?\b/i.test(s))) said.add(c.base);
+    }
+    expect(said.size).toBe(14);
+    expect(Number(m![2])).toBe(said.size);
+    expect(Number(m![3]) + Number(m![5])).toBe(said.size);
+    expect(Number(m![7])).toBe(0);
+    for (const b of said) expect(`${m![4]} ${m![6]}`, b).toContain(b);
+    expect(m![4]).toContain("VEN-150");
+    expect(m![6]).toContain("OGN-110");
+    // #523: the three conditional readiers left the refused list for the modelled one.
+    for (const b of ["SFD-049", "SFD-224", "VEN-145", "VEN-192", "UNL-104"]) {
+      expect(m![4], b).toContain(b);
+      expect(m![6], b).not.toContain(b);
+    }
+    // #664: Radiance's Aphelios reprint is modelled like the other two; Battle Preparations readies
+    // only after a [Show Off], which the clock does not schedule.
+    expect(m![4]).toContain("RAD-179 Aphelios, Exalted (2 on an attach to it, once a turn, NOT Aphelios's reprint: the same)");
+    expect(m![6]).toContain("RAD-032 (Battle Preparations:");
+    expect(Number(m![8])).toBeGreaterThan(0);
+  });
+});
+
+/**
+ * THREE CONDITIONAL RUNE READIERS (#523), pinned against REAL card text through `--price`, each with a
+ * control that a looser model fails. Same rules as #513's block above: a readied rune is one more
+ * Energy and no more Power (164.2.a/b), and a trigger resolves only after the cost that fired it is
+ * paid. Going first, 2 runes a turn (315.3.b).
+ *
+ * Cards: SFD-049 Aphelios, Exalted (Unit, E4 + 1, "When you attach an Equipment to me, choose one that
+ * hasn't been chosen this turn — • Ready 2 runes. • Channel 1 rune exhausted. • Buff a friendly
+ * unit."), UNL-039 Soul Sword (Equipment, E1, "[Equip] [C]"), UNL-066 Moonlight Affliction (Spell, E7),
+ * OGN-129 Confront (Spell, E2), VEN-145 Curator of the Sands (Legend, "When you play a unit, gear, or
+ * activated ability with Energy cost [7] or more, you may exhaust me to ready up to 2 runes."),
+ * OGN-088 Mega-Mech (Unit, E7, no text), VEN-056 Clairvoyance (Spell, E7), UNL-104 Gentle Gemdragon
+ * (Unit, Dragon, E8, "When you play me or another Dragon, ready up to 2 runes."), OGN-131 Dune Drake
+ * (Unit, Dragon, E5), OGN-142 Mountain Drake (Unit, Dragon, E9, no text).
+ *
+ * APHELIOS + SOUL SWORD + AFFLICTION, T3. T1: the Sword (2 runes). T2: Aphelios, 4 runes, one recycled
+ * for his Power (3 left). T3: 5 runes, exhaust all five (pool 5), recycle one for the [Equip] (4 left),
+ * attach to him and choose Ready 2 runes, exhaust them (pool 7), cast Affliction. Not T2: Affliction
+ * wants a pool of 7 and T2's is 4 runes + 2. Without the trigger it is T4: Affliction needs 7 runes, and
+ * the Sword and Aphelios on T1/T2 leave 3, 5, 7 of them, so T4 with the attach's recycle after it.
+ *
+ * THE SAME + A SECOND SWORD + CONFRONT, T4 (the control: Ready is ONE mode, once a turn). E15 + 3. T3
+ * would need a pool of 7 for Affliction out of one Ready, so a board of 5 runes, so at most ONE
+ * recycle before T3, which is Aphelios's own: no attach before T3, nothing readied on T1 or T2, and
+ * those turns' 2 + 4 runes cannot pay the other E8 (Aphelios, two Swords, Confront). T4: Confront T1,
+ * Aphelios T2 (3 runes left), both Swords and one attach on T3 (4 left), the other attach on T4's 6
+ * runes (5 left, pool 6 + 2) and Affliction. A clock that let both attaches choose Ready on T3 says T3
+ * (pool 5 - 2 + 2 + 2 = 7); this one passes without #523 too: it guards the model, not the bug.
+ *
+ * CURATOR + THREE MEGA-MECHS + AFFLICTION, T6. Four E7 cards. T4: 8 runes, a Mech (pool 1), exhaust
+ * Curator to ready 2 (pool 3). T5: 10 runes, a Mech, ready 2. T6: 12 runes, the third Mech (pool 5),
+ * Curator readied at the Awaken (415.3.a) readies 2 (pool 7), Affliction. Not T5: a turn holds two E7s
+ * only with 12 runes + her 2 = 14, she fires only after a 7+ play, and before T4 no turn has 7 runes, so
+ * T4 and T5 take one each. Without her it is T7: no turn ever holds two (161.2.a caps the board at 12),
+ * so the four need T4, T5, T6 and T7.
+ *
+ * CURATOR + FOUR E7 SPELLS, T7 (the control: she reads a unit, gear or activated ability, never a
+ * spell). The same four E7 costs as above, two Afflictions and two Clairvoyances, so she never fires and
+ * the four need four turns of 7 runes. A clock that let a spell fire her prints T6.
+ *
+ * TWO GEMDRAGONS + TWO DUNE DRAKES, T5. T4: 8 runes, a Gemdragon (pool 0), its own trigger readies 2.
+ * T5: 10 runes (pool 10). The second Gemdragon (pool 2): its own trigger and the first one's "another
+ * Dragon" ready 2 each (pool 6). A Drake (pool 1): both Gemdragons ready 2 each (pool 5). The other
+ * Drake (pool 0). Not T4: a Gemdragon is E8, so T4 is the first turn that can land one, and it leaves
+ * 0 + 2 of T4's 8, short of the second. Without the other-Dragon half it is T6: T5's second Gemdragon leaves 2 + 2 = 4,
+ * short of a Drake, so a Drake on T3, the Gemdragons on T4 and T5 and the other Drake on T6.
+ *
+ * TWO GEMDRAGONS + A MOUNTAIN DRAKE, T6 (the control: a trigger comes AFTER the Dragon is paid). T4 the
+ * first Gemdragon. T5's 10 runes: the second (pool 2 + 4 = 6), and the Drake's E9 is not payable out of
+ * 6, whatever its two triggers would return. T6: 12 runes, the Drake (pool 3 + 4). A clock that counted
+ * the Drake's own triggers toward its own cost would say T5 (10 + 4 + 4 = 18 of 17).
+ */
+describe("conditional rune readiers (#523)", () => {
+  const price = (set: string) => {
+    const s = execFileSync("node", ["scripts/adversarial-check.mjs", "--price", set], { encoding: "utf8" });
+    const m = s.match(/all T(\d+|Infinity)/);
+    expect(m, s).toBeTruthy();
+    return Number(m![1]);
+  };
+
+  it("pays Aphelios + Soul Sword + Moonlight Affliction on T3, as walked: the attach to him readies 2 runes", () => {
+    expect(price("SFD-049:1,UNL-039:1,UNL-066:1")).toBe(3);
+  });
+
+  it("pays Aphelios + two Soul Swords + Affliction + Confront on T4, not T3: one Ready a turn (the control)", () => {
+    expect(price("SFD-049:1,UNL-039:2,UNL-066:1,OGN-129:1")).toBe(4);
+  });
+
+  it("pays Curator + three Mega-Mechs + Moonlight Affliction on T6, as walked: an E7 unit fires her", () => {
+    expect(price("VEN-145:1,OGN-088:3,UNL-066:1")).toBe(6);
+  });
+
+  it("pays Curator + four E7 spells on T7: a spell never fires her (the control)", () => {
+    expect(price("VEN-145:1,UNL-066:2,VEN-056:2")).toBe(7);
+  });
+
+  it("pays two Gemdragons + two Dune Drakes on T5, as walked: every Gemdragon on the board readies 2 per Dragon", () => {
+    expect(price("UNL-104:2,OGN-131:2")).toBe(5);
+  });
+
+  it("pays two Gemdragons + a Mountain Drake on T6, not T5: the triggers follow the Dragon's cost (the control)", () => {
+    expect(price("UNL-104:2,OGN-142:1")).toBe(6);
+  });
+
+  // The set #523's security scan found: legal, 3 copies of each, and it walked 195 million leaves
+  // (past 120s) before the work guard. It must finish and SAY its answer is the greedy one.
+  // RC_FB names the guard that tripped, so this fails if the STATE guard took the set instead.
+  it("sends 3 Gemdragons + 21 other Dragons + 2 Aphelios to the greedy fallback instead of hanging, and says so", () => {
+    const r = spawnSync("node", ["scripts/adversarial-check.mjs", "--price",
+      "UNL-104:3,OGN-001:3,OGN-131:3,OGN-038:3,VEN-016:3,OGN-142:3,SFD-006:3,UNL-118:3,SFD-224:2"],
+      { encoding: "utf8", timeout: BUDGET_MS, env: { ...process.env, RC_FB: "1", RC_LEAVES: "", RC_GUARD: "" } });
+    expect(r.status, r.stderr).toBe(0);
+    expect(r.stdout).toContain("GREEDY FALLBACK");
+    expect(r.stderr).toMatch(/FALLBACK leaves>/);
+    expect(r.stderr).not.toMatch(/FALLBACK space=/);
+  }, BUDGET_MS); // ~6s alone: it walks the whole leaf budget before it falls back
+});
+
+/**
+ * WHICH UNIT A BODY IS (#517). An `anyBodies` body was priced only as the cheapest unit in the
+ * identity, which lands exhausted (143.4), never as a dearer one that lands ready, so a row whose last
+ * unit was a body read late. `--price ... --bodies N` prices N bodies chosen as a row's are, and
+ * prints the pick. Hand walks, Body/Fury and Body, runes 2/4 on T1/T2 (161.2.a), and 164.2.a/b: R
+ * runes pay R Energy and R Power in one turn, a recycled rune leaving the board.
+ *
+ * CHEMTECH ENFORCER + PUNCH FIRST + ONE BODY, T2 (the Accelerate body is a turn earlier). OGN-003 is
+ * an E2 unit, SFD-097 an E1 + 2 Power spell. T1: the Enforcer, both runes. T2: 4 runes pay Punch
+ * First and OGN-010 Legion Rearguard Accelerated, E2 + E1 and 1 Fury Power (805.1.a): E4 + 3 Power,
+ * so it enters ready, and the Enforcer readied at T2's Awaken. With UNL-111 Determined Sentry (E1)
+ * every order lands a unit on T2 exhausted: T1 holds the Enforcer, the Sentry, or the Sentry and
+ * Punch First (E2 + 2), and T2 takes the rest, which always holds a unit. So T3, which is what the
+ * clock printed before this.
+ *
+ * TWO DETERMINED SENTRIES + ONE BODY, T2 (the same, inside one domain). T1: two Sentries. T2: UNL-115
+ * Nilah, Joyful Ascetic Accelerated, E3 + 1 and E1 + 1: E4 + 2 Power on 4 runes, ready. Three
+ * Sentries cannot all land on T1's 2 runes, so one lands on T2 exhausted: T3.
+ *
+ * CLEAVE + ONSLAUGHT + ONE BODY, T2 (the control, the cheap body wins). OGN-004 is an E1 spell,
+ * VEN-081 an E4 one. T1: the Sentry and Cleave; T2: Onslaught, and the Sentry is ready. An E2 body
+ * leaves no room for Cleave on T1, and T2's 4 runes cannot pay Onslaught and either of them: T3.
+ */
+describe("anyBodies: which unit a body is (#517)", () => {
+  const price = (set: string, bodies: number) => {
+    const s = execFileSync("node", ["scripts/adversarial-check.mjs", "--price", set, "--bodies", String(bodies)], { encoding: "utf8" });
+    const m = s.match(/pays T(\d+|Infinity), .*, bodies (\S+) of \[/);
+    expect(m, s).toBeTruthy();
+    return { pays: Number(m![1]), bodies: m![2] };
+  };
+
+  it("pays Chemtech Enforcer + Punch First + one body on T2, the body a Legion Rearguard Accelerated, as walked", () => {
+    expect(price("OGN-003:1,SFD-097:1", 1)).toEqual({ pays: 2, bodies: "OGN-010" });
+  });
+
+  it("pays two Determined Sentries + one body on T2, the body a Nilah Accelerated, as walked", () => {
+    expect(price("UNL-111:2", 1)).toEqual({ pays: 2, bodies: "UNL-115" });
+  });
+
+  it("pays Cleave + Onslaught + one body on T2 with the cheap Determined Sentry (the control)", () => {
+    expect(price("OGN-004:1,VEN-081:1", 1)).toEqual({ pays: 2, bodies: "UNL-111" });
+  });
+
+  it.each(["1e0", "01", "9", "-1", ""])("refuses --bodies %j", (n) => {
+    const r = spawnSync("node", ["scripts/adversarial-check.mjs", "--price", "OGN-004:1", "--bodies", n], { encoding: "utf8" });
+    expect(r.status).toBe(2);
+    expect(r.stderr).toContain("# --price: bad --bodies");
+  });
+
+  it("prints the candidates of every identity a row with bodies is priced in", () => {
+    const m = out.match(/# body candidates \(anyBodies, #517[^)]*\): (\d+) of (\d+) rows carry bodies, in (\d+) identities\n((?:#   .*\n)*)/);
+    expect(m, "the body candidates line is missing from --turns").toBeTruthy();
+    expect(Number(m![1])).toBeGreaterThan(0);
+    const lines = m![4]!.trim().split("\n");
+    expect(lines.length).toBe(Number(m![3]));
+    // A second instrument: the identities read off the rows themselves, for the rows that carry bodies.
+    const combos = JSON.parse(readFileSync("data/combos.json", "utf8")).combos as { id: string; anyBodies?: { count: number } }[];
+    const withBodies = new Set(combos.filter((c) => c.anyBodies?.count).map((c) => c.id));
+    const doms = new Set<string>();
+    for (const line of out.split("\n")) {
+      const r = line.match(/T\s*(?:\d+|Infinity)\s+vs\s+T\d+\s+baseline\s+(?:SLOWER)?\s*\S+\s+(\S+)\s+(\S+)/);
+      if (r && withBodies.has(r[2]!)) doms.add(r[1]!);
+    }
+    expect(doms.size).toBeGreaterThan(0);
+    for (const d of doms) expect(lines.some((l) => l.startsWith(`#   ${d} `)), d).toBe(true);
+  });
+});
+
+/**
+ * #528, three ways the clock priced a row it could not have played. Hand walks, runes 2/4/6/8/10/12 on
+ * T1..T6 (161.2.a); R runes pay R Energy and R Power in one turn, a recycled rune leaving the board
+ * (164.2.a/b, 161.2.b).
+ *
+ * [HIDDEN] AT ITS PRINTED COST, T2 (was T3). OGN-057 Block is an E2 Calm spell with [Hidden], OGN-048
+ * Meditation E2, OGN-047 Find Your Center E3: E7 against the 2 + 4 runes of T1 and T2, so T3 when every
+ * card pays its printed cost. 811.1.b: hide it for one Power and play it ignoring its base cost
+ * "Beginning on the next turn". T1: Meditation on both runes, and one of them recycled for the Power
+ * that hides Block. T2: 3 runes pay Find Your Center, and Block is played for nothing. T2.
+ * BLOCK + MEDITATION, T2 (the control). Without the E3 spell the printed cost already fits on T2, and a
+ * hidden copy played on the turn it was hidden would read T1 (Meditation, hide, play), which 811.1.b's
+ * "next turn" forbids.
+ *
+ * THE 3-COPY LIMIT ON BODIES, all T3 (was T2). OGN-133 Flurry of Blades is an E1 Body spell, and the
+ * cheapest Body unit is UNL-111 Determined Sentry E1. Four Sentries and two Flurries are E6 on T1 and
+ * T2's 6 runes, but 103.2.b allows three Sentries, and every other Body unit costs E2 or more (OGN-136
+ * Pit Rookie E2, UNL-115 Nilah E3): E7 or more, so T3. THREE BODIES, T2 (the control): three Sentries
+ * fit the limit and E5 fits T2.
+ *
+ * A LEGEND'S [ADD], pays T6 (was T7). OGN-158 Volibear, Imposing is an E12 + 2 Power Body unit, and
+ * VEN-141 Butcher of the Sands (fury/body) pays two Power and exhausts to Add E2 for units. T5: 10
+ * runes pay E10, Butcher's Add the other E2, and 4 of the 10 recycle for Volibear's 2 Power and
+ * Butcher's 2. Volibear lands exhausted (143.4), so T6. VOLIBEAR ALONE, T7 (the control): E12 needs
+ * T6's 12 runes, and a unit landed on T6 is ready on T7.
+ */
+describe("[Hidden], the copy limit and a legend's [Add] (#528)", () => {
+  const price = (set: string, ...rest: string[]) => {
+    const s = execFileSync("node", ["scripts/adversarial-check.mjs", "--price", set, ...rest], { encoding: "utf8" });
+    const m = s.match(/all T(\d+|Infinity), .*pays T(\d+|Infinity)/);
+    expect(m, s).toBeTruthy();
+    return { all: Number(m![1]), pays: Number(m![2]), line: s.split("\n")[0]! };
+  };
+
+  it("pays Block + Meditation + Find Your Center on T2, as walked: Block is hidden on T1 and played free on T2", () => {
+    const r = price("OGN-057:1,OGN-048:1,OGN-047:1");
+    expect(r.pays).toBe(2);
+    expect(r.line).toContain("hidden OGN-057x1");
+  });
+
+  it("pays Block + Meditation on T2, not T1: a hidden card waits for the next turn (the control)", () => {
+    expect(price("OGN-057:1,OGN-048:1").pays).toBe(2);
+  });
+
+  it("prices four bodies with two Flurries at all T3: three Sentries at most, the fourth a dearer Body unit", () => {
+    const r = price("OGN-133:2", "--bodies", "4");
+    expect(r.all).toBe(3);
+    const bodies = r.line.match(/bodies (\S+) of \[/)![1]!.split("+");
+    expect(bodies.filter((b) => b === "UNL-111")).toHaveLength(3);
+  });
+
+  it("prices three bodies with two Flurries at all T2, three Sentries (the control)", () => {
+    const r = price("OGN-133:2", "--bodies", "3");
+    expect(r.all).toBe(2);
+    expect(r.line).toContain("bodies UNL-111+UNL-111+UNL-111 of [");
+  });
+
+  it.each(["VEN-141", "VEN-190"])("pays %s Butcher of the Sands + Volibear on T6, as walked: the [Add] pays E2 of the unit", (b) => {
+    const r = price(`${b}:1,OGN-158:1`);
+    expect(r.pays).toBe(6);
+    expect(r.line).toContain(`legend ${b} [Add] E2 for units at 2 Power`);
+  });
+
+  it("pays Volibear alone on T7 (the control)", () => {
+    expect(price("OGN-158:1").pays).toBe(7);
+  });
+
+  // #528's security scan: the splits are the product of (copies + 1) over the [Hidden] cards, and this
+  // legal Mind/Chaos set (1,024 splits) took 20s before the split guard; six such cards took minutes.
+  // RC_FB names the guard, so this fails if the set went exact or through another one.
+  it("prices five Hidden cards at 3 copies at the free-copy bound instead of hanging, and says so", () => {
+    const r = spawnSync("node", ["scripts/adversarial-check.mjs", "--price", "OGN-094:3,OGN-097:3,OGN-121:3,UNL-083:3,OGN-168:3"],
+      { encoding: "utf8", timeout: BUDGET_MS, env: { ...process.env, RC_FB: "1", RC_SPLITS: "" } });
+    expect(r.status, r.stderr).toBe(0);
+    expect(r.stdout).toContain("HIDDEN BOUND");
+    expect(r.stderr).toMatch(/FALLBACK hidden splits=1024 mixes=1/);
+    expect(out).toMatch(/split guard \(256\): 0 rows priced at the free-copy bound/);
+  }, BUDGET_MS);
+
+  // The same scan: the guard first BUILT the (copies + 1)^N splits and then counted them, so fourteen
+  // Hidden cards (268M splits) ran out of heap at 4.4 GB before it could act. It counts first now.
+  it("prices fourteen Hidden cards at the bound without building their 268M splits", () => {
+    const set = "OGN-053:3,OGN-057:3,OGN-077:3,OGN-083:3,OGN-094:3,OGN-097:3,OGN-121:3,OGN-135:3,OGN-168:3,OGN-197:3,OGN-199:3,OGN-213:3,OGN-220:3,OGN-256:3";
+    const r = spawnSync("node", ["scripts/adversarial-check.mjs", "--price", set],
+      { encoding: "utf8", timeout: BUDGET_MS, env: { ...process.env, RC_FB: "1", RC_SPLITS: "" } });
+    expect(r.status, r.stderr.slice(-500)).toBe(0);
+    expect(r.stdout).toContain("HIDDEN BOUND");
+    expect(r.stderr).toMatch(/FALLBACK hidden splits=268435456 mixes=1/);
+  }, BUDGET_MS);
+
+  // The same scan: the copy limit's layered fronts gave this legal set 8,451 capped mixes at 8 bodies,
+  // 11s (0.1s before #528). Past the mix guard the bodies come from one front with no copy limit.
+  // 17,205 since Radiance put RAD-086 K'Sante, Courageous and RAD-077 Wrath of the Freljord on the
+  // Body/Calm front (#664); the price, T4 paying T5, did not move.
+  it("prices eight bodies past the mix guard on the uncapped front, says so, and no catalogue row needs it", () => {
+    const r = spawnSync("node", ["scripts/adversarial-check.mjs", "--price", "OGN-136:3,VEN-043:3", "--bodies", "8"],
+      { encoding: "utf8", timeout: BUDGET_MS, env: { ...process.env, RC_FB: "1", RC_MIXES: "" } });
+    expect(r.status, r.stderr).toBe(0);
+    expect(r.stdout).toContain("COPY BOUND");
+    expect(r.stderr).toMatch(/FALLBACK copies mixes=17205/);
+    expect(out).toMatch(/mix guard \(256\): 0 rows priced uncapped\n/);
+  }, BUDGET_MS);
+
+  // The post-commit review of 93514fa: a split searched to `best.pays - 1` lost the 40-turn horizon
+  // when no split before it deployed (Infinity - 1). Twelve E7/P1 and two E8/P2 cards at 3 copies
+  // deploy after T40, so Block's split, searched without a horizon, read T45 while the same set
+  // without Block read never. Both read never now (the control is the set without Block).
+  it("keeps the 40-turn horizon for a hidden split when no other split deploys", () => {
+    const set = "OGN-059:3,OGN-116:3,OGS-009:3,SFD-027:3,SFD-101:3,SFD-168:3,SFD-179:3,UNL-005:3,UNL-050:3,UNL-084:3,UNL-144:3,VEN-089:3,OGN-082:3,OGN-109:3";
+    expect(price(set).pays).toBe(Infinity);
+    expect(price(`${set},OGN-057:1`).pays).toBe(Infinity);
+  }, BUDGET_MS);
+
+  it("errs early past the mix guard: four bodies with two Flurries go back to four Sentries at T2, under the exact T3", () => {
+    const r = spawnSync("node", ["scripts/adversarial-check.mjs", "--price", "OGN-133:2", "--bodies", "4"],
+      { encoding: "utf8", env: { ...process.env, RC_MIXES: "0" } });
+    expect(r.stdout).toMatch(/all T2, .*bodies UNL-111\+UNL-111\+UNL-111\+UNL-111 of \[.*COPY BOUND/);
+  });
+
+  it("prints the copy-limit line with the rows it names, so the limit cannot go vacuous", () => {
+    const m = out.match(/# copy limit \(103\.2\.b[^)]*\): (\d+) of (\d+) rows with bodies ask more than their identity's cheapest units supply;[^\n]*\n((?:#   .*\n)*)/);
+    expect(m, "the copy-limit line is missing from --turns").toBeTruthy();
+    expect(Number(m![1])).toBeGreaterThan(0);
+    expect(m![3]!.trim().split("\n")).toHaveLength(Number(m![1]));
+    // A second instrument: a named row holds more bodies than three copies of anything can supply.
+    const combos = JSON.parse(readFileSync("data/combos.json", "utf8")).combos as { id: string; anyBodies?: { count: number } }[];
+    const named = [...m![3]!.matchAll(/^#   (\S+):/gm)].map((x) => x[1]!);
+    for (const id of named) expect(combos.find((c) => c.id === id)?.anyBodies?.count, id).toBeGreaterThan(3);
+  });
+
+  it("prints the [Hidden] carriers and rows that hide a copy, so 'it moved no row' cannot go vacuous", () => {
+    const m = out.match(/# hidden \([^\n]*?\): (\d+) cards carry it: [^\n]*; (\d+) of (\d+) rows hold one, (\d+) hide a copy in their earliest plan/);
+    expect(m, "the hidden line is missing from --turns").toBeTruthy();
+    expect(Number(m![1])).toBeGreaterThan(30);
+    expect(Number(m![4])).toBeGreaterThan(0);
+    expect(out).toContain("OGN-057 Block");
+  });
+
+  it("prints every legend [Add] modelled or refused by name, and finds the ENGINE row that names Butcher", () => {
+    const m = out.match(/# legend \[Add\] [^\n]*: (\d+) legends print one; modelled (\d+): [^\n]*; refused (\d+): [^\n]*; unclassified (\d+);/);
+    expect(m, "the legend [Add] line is missing from --turns").toBeTruthy();
+    expect(Number(m![2]) + Number(m![3])).toBe(Number(m![1]));
+    expect(Number(m![4])).toBe(0);
+    const e = engines().match(/# legend \[Add\] [^\n]*; (\d+) of (\d+) rows name a modelled one/);
+    expect(e, "the legend [Add] line is missing from --engines").toBeTruthy();
+    expect(Number(e![1])).toBeGreaterThan(0);
+  }, BUDGET_MS);
+});
+
+/**
+ * #541, one facedown card per battlefield held. 107.3.b: "Each Facedown Zone has a maximum occupancy of
+ * one card.", 107.3.c: "Cards can only be placed in or occupy the Facedown Zone if the controller of the
+ * card also controls the associated Battlefield.", and Duel has two (487.4). Hand walks, runes 2/4/6 on
+ * T1..T3; R runes pay R Energy and R Power, a recycled rune leaving the board (164.2.a/b, 161.2.b).
+ *
+ * CONSULT THE PAST x2 (OGN-083, an E4 Mind spell with [Hidden]). Two battlefields, T2: T1's 2 runes hide
+ * both (two Power, both runes recycled), T2's 2 runes play both free. One battlefield, T3: T1 hides one
+ * (1 rune left), T2's 3 runes play it free but cannot pay the other's E4, so it is hidden on T2 and
+ * played on T3, or paid on T3. Before #541 the clock hid both on one battlefield and read T2.
+ * No battlefield, T3 (the control): printed cost, E4 on T2's 4 runes and E4 on T3's.
+ *
+ * HOSTILE TAKEOVER x3 (SFD-202, E5 + 2 Power). Two battlefields, T3: T1 hides two (0 runes), T2 plays
+ * both, which frees both battlefields, and hides the third (1 rune left), T3 plays it. One battlefield,
+ * T4: one copy waits at a time, T1, T2, T3 hide and T2, T3, T4 play. A cap that never freed a
+ * battlefield would read T4 on two: the third would cost E5 + 2 out of T3's 4 runes.
+ *
+ * BANDLE TREE (OGN-278, a battlefield): "You may hide an additional card here." 107.3.b.1: "The maximum
+ * occupancy of a Facedown Zone can increase or decrease." With it, one battlefield holds both Consults.
+ */
+describe("one facedown card per battlefield held (#541)", () => {
+  const price = (set: string, ...rest: string[]) => {
+    const s = execFileSync("node", ["scripts/adversarial-check.mjs", "--price", set, ...rest], { encoding: "utf8" });
+    const m = s.match(/all T(\d+|Infinity), .*pays T(\d+|Infinity)/);
+    expect(m, s).toBeTruthy();
+    return { all: Number(m![1]), pays: Number(m![2]), line: s.split("\n")[0]! };
+  };
+
+  it("hides two Consult the Past on T1 with two battlefields and plays both free on T2", () => {
+    const r = price("OGN-083:2");
+    expect(r.all).toBe(2);
+    expect(r.line).toContain("hidden OGN-083x2");
+  });
+
+  it("reads two Consult the Past LATER with one battlefield held: T3, the second copy waits for the first", () => {
+    const one = price("OGN-083:2", "--battlefields", "1");
+    expect(one.all).toBeGreaterThan(price("OGN-083:2", "--battlefields", "2").all);
+    expect(one.all).toBe(3);
+  });
+
+  it("hides nothing with no battlefield held: both Consults at printed cost, T3 (the control)", () => {
+    const r = price("OGN-083:2", "--battlefields", "0");
+    expect(r.all).toBe(3);
+    expect(r.line).not.toContain("hidden");
+  });
+
+  it("frees a battlefield when its card is played: three Hostile Takeovers T3 on two battlefields, T4 on one", () => {
+    expect(price("SFD-202:3").all).toBe(3);
+    expect(price("SFD-202:3", "--battlefields", "1").all).toBe(4);
+  });
+
+  it("holds a second facedown card at Bandle Tree: two Consults T2 on one battlefield", () => {
+    const r = price("OGN-278:1,OGN-083:2", "--battlefields", "1");
+    expect(r.all).toBe(2);
+    expect(r.line).toContain("hidden OGN-083x2");
+  });
+
+  it.each(["3", "-1", "x", ""])("refuses --battlefields %j", (n) => {
+    const r = spawnSync("node", ["scripts/adversarial-check.mjs", "--price", "OGN-083:2", "--battlefields", n], { encoding: "utf8" });
+    expect(r.status).toBe(2);
+    expect(r.stderr).toContain("bad --battlefields");
+  });
+
+  // Guard 2: past the split guard a row is priced with every hidden copy free, so its turn is only a
+  // lower bound. No catalogue row rests on it, and the day one does this fails.
+  it("prices no --turns or --engines row at the split guard's free-copy bound", () => {
+    for (const [name, text] of [["--turns", out], ["--engines", engines()]] as const) {
+      const m = text.match(/split guard \((\d+)\): (\d+) rows priced at the free-copy bound/);
+      expect(m, `the split guard count is missing from ${name}`).toBeTruthy();
+      expect(Number(m![2]), name).toBe(0);
+      expect(text, name).not.toMatch(/^# split guard/m);
+    }
+  }, BUDGET_MS);
+
+  it("names each row past the split guard on a # split guard line in --turns, as a lower bound", () => {
+    const r = spawnSync("node", ["scripts/adversarial-check.mjs", "--turns"],
+      { encoding: "utf8", timeout: BUDGET_MS, maxBuffer: 1 << 24, env: { ...process.env, RC_SPLITS: "0" } });
+    expect(r.status, r.stderr).toBe(0);
+    const n = Number(r.stdout.match(/split guard \(0\): (\d+) rows priced at the free-copy bound/)![1]);
+    const named = [...r.stdout.matchAll(/^# split guard \(0\): (\S+) T(\d+) is a lower bound/gm)];
+    expect(n).toBeGreaterThan(0);
+    expect(named).toHaveLength(n);
+    for (const [, id, t] of named) expect(r.stdout, id).toMatch(new RegExp(`^  T\\s*${t} vs T\\d+ baseline .* ${id}(\\s|$)`, "m"));
+  }, BUDGET_MS);
+});
+
+/**
+ * #540, the three legend [Add]s #528 refused, each paying only a cost of its own kind, once a turn.
+ * Hand walks, runes 2/4/6/8 on T1..T4 (161.2.a); R runes pay R Energy and R Power, a recycled rune
+ * leaving the board (164.2.a/b, 161.2.b).
+ *
+ * DAUGHTER OF THE VOID, T2 (was T3). SFD-087 Premonition is an E2 + 3 Power Mind spell, and OGN-247
+ * Adds one rainbow "Use only to play spells". T1: 2 runes pay E2, the rainbow and both runes recycled
+ * pay P3. T2: the 2 runes channelled pay the second the same way. Without it P3 needs three runes, so
+ * one copy on T2 (4 runes, 3 recycled) and the other on T3. RIPTIDE REX (the control): a unit's Power,
+ * which the rainbow cannot pay, so the legend moves nothing.
+ *
+ * FIRE BELOW THE MOUNTAIN, all T3 (was T4). SFD-191 Rabadon's Deathcrown is an E4 + 2 Power gear, SFD-058
+ * Ornn an E5 + 1 Power unit. T2: 4 runes pay E4, the gear rainbow and one recycle P2, 3 runes left. T3:
+ * 5 runes pay Ornn. Without it the gear takes two recycles on T2 and T3's 4 runes cannot pay Ornn, so
+ * Ornn goes on T3 (6 runes) and the gear on T4. ORNN AND THREE CHARMS (the control): no gear, no move.
+ *
+ * HAND OF NOXUS, pays T5 (was T6). OGN-254 Noxian Guillotine is an E4 + 1 Power spell, OGN-034
+ * Tryndamere an E7 + 2 Power unit; [Legion] Adds E1 once a card was played this turn. T3: 6 runes pay a
+ * Guillotine, one recycled, 5 left. T4: 7 runes pay Tryndamere, two recycled, 5 left. T5: 7 runes pay
+ * the first Guillotine, the E1 and the 3 runes left the second, two recycles their Power. Tryndamere
+ * landed on T4 and is ready. Without it T5's 7 runes cannot pay E8, so Tryndamere lands last: T6.
+ * TRYNDAMERE ALONE (the control): the E1 comes after the first card, so it never pays that card.
+ */
+describe("a legend's restricted [Add] (#540)", () => {
+  const price = (set: string) => {
+    const s = execFileSync("node", ["scripts/adversarial-check.mjs", "--price", set], { encoding: "utf8" });
+    const m = s.match(/all T(\d+|Infinity), .*pays T(\d+|Infinity)/);
+    expect(m, s).toBeTruthy();
+    return { all: Number(m![1]), pays: Number(m![2]), line: s.split("\n")[0]! };
+  };
+
+  it.each(["OGN-247", "OGN-299"])("pays two Premonitions under %s Daughter of the Void on T2, as walked: the rainbow pays a spell", (b) => {
+    const r = price(`${b}:1,SFD-087:2`);
+    expect(r.pays).toBe(2);
+    expect(r.line).toContain(`legend ${b} [Add] one rainbow for spells`);
+    expect(price("SFD-087:2").pays).toBe(3);
+  });
+
+  it("leaves a unit's Power under Daughter of the Void unpaid (the control)", () => {
+    expect(price("OGN-247:1,OGN-092:1").all).toBe(price("OGN-092:1").all);
+  });
+
+  it.each(["SFD-189", "SFD-244"])("pays Deathcrown and Ornn under %s Fire Below the Mountain at all T3, as walked: the rainbow pays the gear", (b) => {
+    const r = price(`${b}:1,SFD-191:1,SFD-058:1`);
+    expect(r.all).toBe(3);
+    expect(r.line).toContain(`legend ${b} [Add] one rainbow for gear and its abilities`);
+    expect(price("SFD-191:1,SFD-058:1").all).toBe(4);
+  });
+
+  it("leaves a spell's Power under Fire Below the Mountain unpaid (the control)", () => {
+    expect(price("SFD-189:1,SFD-058:1,OGN-043:3").all).toBe(price("SFD-058:1,OGN-043:3").all);
+  });
+
+  it.each(["OGN-253", "OGN-302"])("pays three Guillotines and Tryndamere under %s Hand of Noxus on T5, as walked: [Legion] E1 after the first card", (b) => {
+    const r = price(`${b}:1,OGN-254:3,OGN-034:1`);
+    expect(r.pays).toBe(5);
+    expect(r.line).toContain(`legend ${b} [Add] [Legion] E1 once a card was played`);
+    expect(price("OGN-254:3,OGN-034:1").pays).toBe(6);
+  });
+
+  it("never pays the first card with Hand of Noxus's E1 (the control)", () => {
+    expect(price("OGN-253:1,OGN-034:1").all).toBe(price("OGN-034:1").all);
+  });
+
+  // The prune in `walk` lets a sub-turn reach the leaf `LE` Energy past its runes, for the legend's
+  // own `settle` call; the plain call, with no readier, accepted it too, free and for any cost. So
+  // under VEN-141 three Volibears read all T7: T5 and T6 each paid E12 out of 10 runes without
+  // Butcher's 2 Power. Paid for (T5: 10 runes, E2, four recycles, 6 left), T6's 8 runes + E2 cannot
+  // pay another, and the earliest plan is the one without Butcher: E12 on T6, T7 and T8.
+  it("pays three Volibears under Butcher of the Sands at all T8: the legend's E2 is never free", () => {
+    expect(price("VEN-141:1,OGN-158:3").all).toBe(8);
+  });
+
+  it("refuses by name only the legends still unmodelled, each with the rows it leaves unpriced", () => {
+    const m = out.match(/# legend \[Add\] [^\n]*; refused (\d+): ([^\n]*); unclassified/);
+    expect(m, "the legend [Add] line is missing from --turns").toBeTruthy();
+    for (const b of ["OGN-247", "OGN-299", "OGN-253", "OGN-302", "SFD-189", "SFD-244"]) expect(m![2]).not.toContain(b);
+    expect([...m![2]!.matchAll(/; (\d+) rows priced without it\)/g)]).toHaveLength(Number(m![1]));
+  });
+});
+
+/** --price input validation (#511): Number() read 0x1 and 1e0 as 1 and the destructure dropped a third field. */
+describe("--price refuses malformed specs (#511)", () => {
+  const run = (spec: string) => spawnSync("node", ["scripts/adversarial-check.mjs", "--price", spec], { encoding: "utf8" });
+  it.each([
+    ["", ""],
+    [",", ""],
+    ["OGN-040:0x1", "OGN-040:0x1"],
+    ["OGN-040:1e0", "OGN-040:1e0"],
+    ["OGN-040:1:9", "OGN-040:1:9"],
+    ["OGN-040:0", "OGN-040:0"],
+    ["OGN-040:01", "OGN-040:01"],
+    ["OGN-040", "OGN-040"],
+  ])("refuses %j", (spec, token) => {
+    const r = run(spec);
+    expect(r.status).not.toBe(0);
+    expect(r.stderr).toContain("# --price:");
+    expect(r.stderr).toContain(token);
+  });
+  it("prints the refused token escaped, never as a raw control byte", () => {
+    const r = run("\x1b[31mOGN-040:1");
+    expect(r.status).toBe(2);
+    expect(r.stderr).not.toContain("\x1b");
+    expect(r.stderr).toContain("\\u001b");
+  });
+  it("still prices a valid spec", () => {
+    const r = run("OGN-040:1");
+    expect(r.status, r.stderr).toBe(0);
+    expect(r.stdout).toMatch(/^price OGN-040x1: all T/);
+  });
+});
+
+/**
+ * [EQUIP] IS READ OUTSIDE REMINDER TEXT ONLY (#530). The Weaponmaster reminder, "(When you play me, you
+ * may [Equip] one of your Equipment to me for [rainbow] less, ...)", was parsed as an Equip cost: 1 Power
+ * on ten units and E1 + 1 on SFD-119 Jax, Unrelenting, whose span ran on into "pay [1] to draw 1", so
+ * every row holding one read late. `--equip-costs` prints the predicate, every base `equipCost` returns
+ * a cost for. The control is SFD-090 The Zero Drive, an Equipment whose reminder repeats its cost:
+ * deleting the reminder instead of skipping it would run its span into its banish and charge E4 + 2.
+ *
+ * JAX + THREE ANGLE SHOTS + SERRATED DIRK, T3 (jax-angle-shot-attach-draw, the one --engines row that
+ * moved, T4 before). Runes 2/4/6 on T1-T3 (161.2.a), and 164.2.a/b: a rune exhausts for 1 Energy and
+ * recycles for 1 Power. T1: an Angle Shot (E2). T2: Jax, E4 + 1 Body Power. T3, five runes: the Dirk
+ * (E1) and two Angle Shots (E4), and one rune recycled for the Dirk's [Equip] of one Fury rune. Jax
+ * landed on T2, so no readiness turn is owed. T4 was the phantom.
+ */
+describe("[Equip] outside reminder text (#530)", () => {
+  const eq = execFileSync("node", ["scripts/adversarial-check.mjs", "--equip-costs"], { encoding: "utf8" });
+  const cost = (base: string) => eq.match(new RegExp(`^${base} (E\\d+\\+\\d+) `, "m"))?.[1] ?? null;
+
+  it("charges no Equip cost to a Weaponmaster unit (SFD-119 Jax, Unrelenting)", () => {
+    expect(cost("SFD-119"), eq).toBeNull();
+  });
+
+  it("still charges a real Equipment whose reminder repeats its cost (SFD-090 The Zero Drive, E1 + 1; the control)", () => {
+    expect(cost("SFD-090"), eq).toBe("E1+1");
+  });
+
+  it("returns a cost for Equipment only, and for a non-vacuous number of them", () => {
+    const m = eq.match(/^# equipCost: (\d+) bases, (\d+) not Equipment$/m);
+    expect(m, eq).toBeTruthy();
+    expect(Number(m![1])).toBeGreaterThanOrEqual(30);
+    expect(Number(m![2])).toBe(0);
+  });
+
+  it("pays Jax + three Angle Shots + Serrated Dirk on T3, as walked (jax-angle-shot-attach-draw)", () => {
+    const s = execFileSync("node", ["scripts/adversarial-check.mjs", "--price", "SFD-119:1,SFD-011:3,SFD-009:1"], { encoding: "utf8" });
+    expect(s, s).toMatch(/, pays T3,/);
+  });
+});
+
+/**
+ * A TRIBAL COST REDUCER (#532). OGN-140 Herald of Scales: "Your Dragons' Energy costs are reduced by
+ * [2], to a minimum of [1]." 356.4.e floors each discount on its own, so H Heralds make a Dragon cost
+ * max(1, E - 2H); the Herald itself is tagged Mount Targon, not Dragon. `--turns` prints the predicate
+ * and its members on the `# reducer` line. Runes 2/4/6/8 on T1-T4 going first (161.2.a).
+ *
+ * HERALD + MOUNTAIN DRAKE, T4. T2: the Herald (E4 of 4). T3: six runes, and the Drake's 9 - 2 = 7 is
+ * not payable. T4: eight runes, the Drake at 7. Without the discount the Drake's 9 waits for T5's ten,
+ * which is what master said. The control swaps the Herald for UNL-099 Towering Combatant, a plain E4
+ * Body unit: T5 on both. HERALD + TWO TOWERING COMBATANTS, T4 on both: a non-Dragon pays full price.
+ *
+ * HERALD + GEMDRAGON + THREE EAGER DRAKEHOUNDS, T3 (herald-of-scales-gemdragon-drakehound-net-positive).
+ * T2: the Herald. T3, six runes: the Gemdragon at 8 - 2 = 6 readies 2; each Drakehound (E3 P1, a Dragon)
+ * costs 1 Energy + 1 Power, one rune exhausted and one recycled (164.2.a/b), and readies 2 more. T5
+ * before.
+ *
+ * THE THREE GEMDRAGON ROWS, all T5 / pays T6 (T6 / T7 before): gemdragon-henge-vi-blind-fury and the two
+ * that fold it. T1 Confront, T2 a Herald, T3 the second Herald + Vi (one rune recycled, five left). T4,
+ * seven runes, both Heralds out: three Gemdragons at 4 each, each refunding 2 per Dragon, both Kadregrins,
+ * the Grenade, Detonate, and five E5 Dragons at 1, one rune left. T5: Show of Strength, the last Dragon
+ * and the Henge. That is the clock's own schedule without SFD-117 Ancient Henge's exchange, under which
+ * the nine Power can only come from recycles and eight runes are channelled by T4. By hand the line is
+ * all T4 / pays T5, because the Henge turns the refunded Energy into rainbow Power; #544 models that
+ * and the pin below reads the rows at pays T5.
+ */
+describe("a tribal cost reducer (#532)", () => {
+  const price = (set: string) => {
+    const s = execFileSync("node", ["scripts/adversarial-check.mjs", "--price", set], { encoding: "utf8" });
+    const m = s.match(/all T(\d+|Infinity)/);
+    expect(m, s).toBeTruthy();
+    return Number(m![1]);
+  };
+
+  it("pays Herald of Scales + Mountain Drake on T4, as walked: the Drake costs 9 - 2", () => {
+    expect(price("OGN-140:1,OGN-142:1")).toBe(4);
+  });
+
+  it("pays Towering Combatant + Mountain Drake on T5: no Herald, no discount (the control)", () => {
+    expect(price("UNL-099:1,OGN-142:1")).toBe(5);
+  });
+
+  it("pays Herald + two Towering Combatants on T4: the discount is for Dragons only", () => {
+    expect(price("OGN-140:1,UNL-099:2")).toBe(4);
+  });
+
+  it("pays Herald + Gemdragon + three Eager Drakehounds on T3, as walked", () => {
+    expect(price("OGN-140:1,UNL-104:1,SFD-006:3")).toBe(3);
+  });
+
+  // A Herald bought in the same turn discounts only the Dragons after it, so the readier search
+  // sequences it with them. Charged to every readier, two Heralds and a Gemdragon read T3 (4 + 4 out of
+  // T3's 6 runes, the Gemdragon's refund paying the Herald that discounted it) and three of each with
+  // two Mountain Drakes read T1. An exhaustive search of the same rules gives 4, 4 and 3.
+  it("pays two Heralds + a Gemdragon on T4: a Herald paid after the Gemdragon does not discount it", () => {
+    expect(price("OGN-140:2,UNL-104:1")).toBe(4);
+  });
+
+  it("pays three Heralds + three Gemdragons + two Mountain Drakes on T4, not T1", () => {
+    expect(price("OGN-140:3,UNL-104:3,OGN-142:2")).toBe(4);
+  });
+
+  it("still pays two Heralds + a Gemdragon + two Eager Drakehounds on T3: the Drakehounds' refunds pay", () => {
+    expect(price("OGN-140:2,UNL-104:1,SFD-006:2")).toBe(3);
+  });
+
+  it("prices the three Gemdragon rows at pays T5, not T7 (T6 with the reducer alone, #544 the rest)", () => {
+    for (const id of ["gemdragon-henge-vi-blind-fury", "dragonstorm-confront-grand-plaza", "dragonstorm-brambleback-trinity-conquer"])
+      expect(rows.get(id)?.pays, id).toBe(5);
+  });
+
+  it("prints the reducer predicate with its one member and the rows that hold it", () => {
+    const m = out.match(/^# reducer [^\n]*: 1 card carries it: OGN-140 Herald of Scales \(Dragons -2, min 1\); (\d+) of (\d+) rows hold one$/m);
+    expect(m, out).toBeTruthy();
+    expect(Number(m![1])).toBeGreaterThanOrEqual(3);
+  });
+});
+
+/**
+ * AN ENERGY-TO-POWER EXCHANGE (#544). SFD-117 Ancient Henge, a gear (E2, one Body Power): ":rb_exhaust::
+ * [Reaction] — Pay any amount of Energy to [Add] that much :rb_rune_rainbow:. (Abilities that add
+ * resources can't be reacted to.)" A non-unit gear enters ready (359.2.d), so it exchanges the turn it
+ * lands, once its own cost is paid, and readies at every Awaken (415.3.a). Runes 2/4/6/8/10 on T1-T5
+ * going first (161.2.a); an exhausted rune still recycles for Power (164.2.a/b).
+ *
+ * HENGE + TWO ACCELERATION GATES + TWO COMMANDER LEDROS, T5. VEN-150 Acceleration Gate (E3 + 1 Power):
+ * "Ready up to 4 units, gear, and/or runes." OGN-231 Commander Ledros is E6 + 4 Power. T2: the Henge,
+ * two runes exhausted and one recycled, three left. T3, five runes: a Gate on three runes plus a fourth
+ * whose Energy the Henge turns into the Gate's Power; the Gate readies three runes and the Henge. The
+ * second Gate the same way, readying four runes: two Gates, nothing recycled, five runes. T4, seven:
+ * Ledros on six, the seventh's Energy through the Henge, three recycled, four left. T5, six: the second
+ * Ledros, four recycled. The control swaps the Henge for OGN-063 Spirit's Refuge, an E2 + 1 Power gear
+ * whose text the clock does not read: every Power is a recycle, each Gate costs a rune, and the clock
+ * says T6. The clock counts one exchange a turn where this walk uses two (the Gate readies the Henge);
+ * that looseness is late, so the T5 is a bound the walk meets.
+ *
+ * THE OTHER DIRECTION. Henge + two Gates + ONE Ledros is T4, as the control: T3's five runes cannot pay
+ * Ledros's E6, and a Gate refunds at most the four it costs. Exchanging a readier's own Power read it
+ * T3, so the exchange is offered only for the Power of costs that ready nothing.
+ */
+describe("an Energy-to-Power exchange (#544)", () => {
+  const price = (set: string) => {
+    const s = execFileSync("node", ["scripts/adversarial-check.mjs", "--price", set], { encoding: "utf8" });
+    const m = s.match(/all T(\d+|Infinity)/);
+    expect(m, s).toBeTruthy();
+    return Number(m![1]);
+  };
+
+  it("pays Henge + two Acceleration Gates + two Commander Ledros on T5, as walked", () => {
+    expect(price("SFD-117:1,VEN-150:2,OGN-231:2")).toBe(5);
+  });
+
+  it("pays Spirit's Refuge + two Acceleration Gates + two Commander Ledros on T6: no exchange (the control)", () => {
+    expect(price("OGN-063:1,VEN-150:2,OGN-231:2")).toBe(6);
+  });
+
+  it("does not exchange a readier's own Power: Henge + two Gates + one Ledros reads T4, as the control", () => {
+    expect(price("SFD-117:1,VEN-150:2,OGN-231:1")).toBe(4);
+    expect(price("OGN-063:1,VEN-150:2,OGN-231:1")).toBe(4);
+  });
+
+  it("prints the exchange predicate with its one member and the rows that hold it", () => {
+    const m = out.match(/^# exchange [^\n]*: 1 card carries it: SFD-117 Ancient Henge; (\d+) of (\d+) rows hold one$/m);
+    expect(m, out).toBeTruthy();
+    expect(Number(m![1])).toBeGreaterThanOrEqual(3);
+  });
+});
+
+/**
+ * A SPELL AIMED AT A UNIT THE ROW PLAYS (#552), pinned against REAL card text through `--price ... --aim`.
+ * OGN-173 Ride the Wind: "Move a friendly unit and ready it." It cannot be cast before its target is
+ * on the board. OGN-205 Yasuo is E5 + 1 Power and Ride the Wind E2 + 1 Power, with 2, 4 and 6 runes on
+ * T1-T3. UNORDERED (master's schedule): the spell on T2's 4 runes, Yasuo on T3's 6, so all T3, and a
+ * one-copy Yasuo row printed T4, a turn early. AIMED: Yasuo and the spell together are E7, past T3's 6
+ * runes, so the spell waits for T4: all T4, one turn later. THE SAME TURN STAYS LEGAL (the control):
+ * OGN-036 Vi and Ride the Wind are both paid on T2, and the spell readies her.
+ */
+describe("a spell aimed at a unit the row plays (#552)", () => {
+  const price = (set: string, ...rest: string[]) => {
+    const s = execFileSync("node", ["scripts/adversarial-check.mjs", "--price", set, ...rest], { encoding: "utf8" });
+    const m = s.match(/all T(\d+|Infinity), .*unitLast (true|false), pays T(\d+|Infinity)/);
+    expect(m, s).toBeTruthy();
+    return { all: Number(m![1]), unitLast: m![2] === "true", pays: Number(m![3]) };
+  };
+
+  it("pays Ride the Wind aimed at Yasuo at all T4, one turn later than the unordered schedule", () => {
+    expect(price("OGN-205:1,OGN-173:1", "--aim", "OGN-173@OGN-205")).toEqual({ all: 4, unitLast: false, pays: 4 });
+  });
+
+  it("pays the same cards unordered at all T3, the spell before Yasuo (the control: master's schedule)", () => {
+    expect(price("OGN-205:1,OGN-173:1")).toEqual({ all: 3, unitLast: true, pays: 4 });
+  });
+
+  it("pays Ride the Wind aimed at Vi on T2, the turn Vi lands: the same turn is legal", () => {
+    expect(price("OGN-036:1,OGN-173:1", "--aim", "OGN-173@OGN-036")).toEqual({ all: 2, unitLast: false, pays: 2 });
+  });
+
+  it("refuses an --aim whose cards are not both in the set", () => {
+    const r = spawnSync("node", ["scripts/adversarial-check.mjs", "--price", "OGN-205:1,OGN-173:1", "--aim", "OGN-173@OGN-036"], { encoding: "utf8" });
+    expect(r.status).toBe(2);
+    expect(r.stderr).toContain("# --price: bad --aim");
+  });
+
+  it("holds the two-copy Yasuo Hold-curve CHAIN at T5 and the Windrider CHAIN's schedule at T5", () => {
+    expect(rows.get("yasuo-ride-the-wind-hold-curve-turn-five")?.pays).toBe(5);
+    expect(rows.get("yasuo-windrider-ride-the-wind-chain")?.pays).toBe(5);
+  });
+
+  it("prints the pairs it read from the steps and the rows that carry one, so 'it moved nothing' cannot go vacuous", () => {
+    for (const text of [out, engines()]) {
+      const m = text.match(/^# aimed spells \(a spell no earlier than the unit its steps aim it at, #552\): (\d+) pairs: (.*); (\d+) of (\d+) rows carry one$/m);
+      expect(m, text).toBeTruthy();
+      expect(Number(m![1])).toBeGreaterThan(0);
+      expect(Number(m![3])).toBeGreaterThan(0);
+      expect(m![2]).toContain("OGN-173>OGN-205 (yasuo-ride-the-wind-hold-curve-turn-five)");
+      expect(m![2]).toContain("OGN-173>UNL-177 (ivern-ride-the-wind-double-conquer)");
+    }
+  });
+});
+
+/**
+ * AN ABILITY THAT LIVES ONLY IN `effect` (#548). The script joins a card as `text + " " + effect`, so a
+ * card with an empty `text` starts with a space, and eight regexes anchored with `(?:^|[.)\]]\s*)` (the
+ * whitespace INSIDE the alternation, so it follows a sentence end but never the start) matched none of
+ * them, and so did `selfReady`'s `(?:^|[.)]\s*)`, the same defect without the `\]` that the issue's grep
+ * did not match (found by the review of the PR): the clock priced such a card as if it had no ability.
+ * Nothing is mis-priced today, the data pin
+ * below measures 0 such cards of 1189, so these pins build the card: each takes a real card, moves its
+ * whole text into `effect`, leaves `text` empty, and prices a hand-walked set from a copy of the data in
+ * a temporary directory. The script reads `data/` from its working directory, which is what lets a test
+ * swap one card without a flag the script would carry only for it. Each card is the one whose regex the
+ * walk exercises:
+ *   OGN-040 Seal of Rage       POWER_ADD
+ *   OGN-140 Herald of Scales   REDUCER
+ *   SFD-117 Ancient Henge      HENGE
+ *   VEN-150 Acceleration Gate  runesOf's "units, gear, and/or runes". readiesOf's "Ready up to N units"
+ *                              matches it too, but a `share` readier's `rdy` is not read by the allocator,
+ *                              so that one regex alone moves no price on any set (the only card it matches):
+ *                              its only trace is the `# readying` count of `--engines` rows (2026-11-23: 52 of 688 with
+ *                              the regex, 21 without), which its own pin reads
+ *   VEN-012 Perfect Execution  readiesOf's "Ready a unit", which opens its text. Upstage Comedy's follows a
+ *                              [Repeat] reminder's ")" and matches with or without the start anchor
+ *   UNL-104 Gentle Gemdragon   runesOf's "When you play me" and KIN_READY
+ *   OGN-159 Warwick            selfReady's "I enter ready."
+ * A control blanks the Seal's text instead of moving it, so the equality cannot pass by the script reading
+ * the real `data/` and ignoring the copy.
+ */
+describe("an ability that lives only in effect (#548)", () => {
+  type Card = { base: string; text?: string | null; effect?: string | null };
+  const data = JSON.parse(readFileSync("data/cards.json", "utf8")) as { cards: Card[] };
+  const script = resolve("scripts/adversarial-check.mjs");
+  let tmp = ""; // made in beforeAll, so a run whose filter skips this block leaves no directory behind
+  /** One working directory per card: that card's text moved to `effect`, everything else as shipped. */
+  const dirOf = (base: string) => join(tmp, base);
+
+  /** A working directory whose `data/cards.json` is the shipped one with `base` rewritten by `rewrite`. */
+  const copyWith = (dir: string, base: string, rewrite: (c: Card) => Card) => {
+    const cards = data.cards.map((c) => (c.base === base ? rewrite(c) : c));
+    mkdirSync(join(dir, "data"), { recursive: true });
+    writeFileSync(join(dir, "data", "cards.json"), JSON.stringify({ ...data, cards }));
+    for (const f of ["combos.json", "legality.json"]) symlinkSync(resolve("data", f), join(dir, "data", f));
+  };
+  const moveToEffect = (c: Card): Card => ({ ...c, text: "", effect: [c.text, c.effect].filter(Boolean).join(" ") });
+
+  beforeAll(() => {
+    tmp = mkdtempSync(join(tmpdir(), "rc-548-"));
+    for (const base of ["OGN-040", "OGN-140", "SFD-117", "VEN-150", "VEN-012", "UNL-104", "OGN-159"]) {
+      expect(data.cards.filter((c) => c.base === base && (c.text ?? "").trim()), base).not.toHaveLength(0);
+      copyWith(dirOf(base), base, moveToEffect);
+    }
+    copyWith(dirOf("blank"), "OGN-040", (c) => ({ ...c, text: "", effect: null }));
+  });
+  afterAll(() => rmSync(tmp, { recursive: true }));
+
+  const price = (set: string, cwd?: string) => execFileSync("node", [script, "--price", set], { encoding: "utf8", cwd });
+  const SEAL = "OGN-040:1,UNL-029:3,OGN-034:2,SFD-004:1";
+
+  it("reads the data/ of its working directory: a Seal with no text at all pays T7, not T6", () => {
+    expect(price(SEAL)).toMatch(/all T6,/);
+    expect(price(SEAL, dirOf("blank"))).toMatch(/all T7,/);
+  });
+
+  const pins: [string, string, string, RegExp][] = [
+    ["Seal of Rage + Bushwhack Tryndamere", "OGN-040", SEAL, /all T6,/],
+    ["Herald of Scales + Mountain Drake", "OGN-140", "OGN-140:1,OGN-142:1", /all T4,/],
+    ["Henge + two Acceleration Gates + two Commander Ledros", "SFD-117", "SFD-117:1,VEN-150:2,OGN-231:2", /all T5,/],
+    ["Acceleration Gate + Moonlight Affliction", "VEN-150", "VEN-150:1,UNL-066:1", /all T3,/],
+    ["Acceleration Gate + Mountain Drake", "VEN-150", "VEN-150:1,OGN-142:1", /all T4,.*pays T5,/],
+    ["Perfect Execution + two Dune Drakes", "VEN-012", "VEN-012:1,OGN-131:2", /all T4,.*pays T4,/],
+    ["two Gemdragons + two Dune Drakes", "UNL-104", "UNL-104:2,OGN-131:2", /all T5,/],
+    ["Warwick alone, whose 'I enter ready.' makes it no last unit", "OGN-159", "OGN-159:1", /last unit T0, unitLast false, pays T3/],
+  ];
+  for (const [name, moved, set, line] of pins) {
+    it(`prices ${name} the same with ${moved}'s text in effect`, () => {
+      const inText = price(set);
+      expect(inText).toMatch(line);
+      expect(price(set, dirOf(moved))).toBe(inText);
+    });
+  }
+
+  it("counts the same rows that hold a readier with the Acceleration Gate's text in effect", () => {
+    const readying = (s: string) => s.match(/^# readying .*$/m)?.[0];
+    const real = readying(engines());
+    expect(real).toMatch(/^# readying .*: \d+ of \d+ rows hold a readier$/);
+    const moved = execFileSync("node", [script, "--engines"], { encoding: "utf8", maxBuffer: 1 << 24, cwd: dirOf("VEN-150") });
+    expect(readying(moved)).toBe(real);
+  }, BUDGET_MS); // two --engines runs, ~6s each alone
+
+  // The latent half: a card with an empty `text` is priced now, but one the clock was never walked
+  // against is worth a look. Measured 2026-10-31 (#544) and again 2026-11-23 (#548): 0 of 1189.
+  it("holds no card with an empty text and a non-empty effect, so a new one is noticed", () => {
+    const loose = data.cards.filter((c) => !(c.text ?? "").trim() && (c.effect ?? "").trim()).map((c) => c.base);
+    expect(data.cards.length).toBeGreaterThan(1000);
+    expect(loose).toEqual([]);
+  });
+
+  // The same for the string the regexes read: `text + " " + effect`, which `runesOf` and KIN_READY read with
+  // the `:rb_*:` icons taken out. A text that opens with an icon, or an empty text, leaves a leading space,
+  // which the old `^` refused and the new `^\s*` takes. Measured 2026-11-23 over the 1189 cards: the nine
+  // regexes answer the same old and new. A card with neither field (27 of them) is blank, not leading.
+  it("holds no card whose joined text and effect opens with whitespace once its icons are stripped", () => {
+    const seen = (c: Card) => `${c.text || ""} ${c.effect || ""}`.replace(/:rb_[a-z_0-9]+:/g, "");
+    const lead = data.cards.filter((c) => seen(c).trim() && /^\s/.test(seen(c))).map((c) => c.base);
+    expect(lead).toEqual([]);
+  });
+});

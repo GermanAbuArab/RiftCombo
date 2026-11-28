@@ -1,0 +1,35 @@
+Legend:
+1 Lucian, Purifier
+Champion:
+1 Lucian, Merciless
+Main Deck:
+1 Akshan, Mischievous
+2 Cleave
+3 Doran's Blade
+3 First Mate
+2 Grim Resolve
+3 Kai'Sa, Survivor
+2 Kinkou Initiate
+2 Punch First
+2 Red Brambleback
+3 Relentless Pursuit
+2 Rengar, Trophy Hunter
+2 Repulse
+3 Ruin Runner
+2 Sabotage
+3 Skyfall of Areion
+3 Trinity Force
+1 Unyielding Spirit
+Battlefields:
+1 Sunken Temple
+1 The Candlelit Sanctum
+1 Zaun Warrens
+Rune Pool:
+7 Body Rune
+5 Fury Rune
+Sideboard:
+2 Akshan, Mischievous
+2 Falling Star
+1 Repulse
+1 Sabotage
+2 Unyielding Spirit

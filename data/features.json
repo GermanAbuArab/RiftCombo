@@ -1,0 +1,142 @@
+{
+  "notes": [
+    "Controlled outcome vocabulary. STANDALONE features are shown to users; HELPER features are graph plumbing between combos; HIDDEN are generator internals.",
+    "Keep this list under ~20 entries. Commander Spellbook's 1,310 features forced LOOPLINE to build a second taxonomy on top.",
+    "ONE NAME PER THING (2026-09-06, issues #63 and #64). Two names for one product orphan its producers: infinite-recruits had 7 producers and 0 consumers while token-body-engine held the only consumer. Before adding a name, check that no existing one already denotes the same product; the table of what was merged and what was kept apart, with the reason for each, is in docs/phase0/walks/2026-09-06-issue63-payoff-lens.md section V.",
+    "A feature with no consumer is NOT a defect when the feature IS the payoff: points, wins and removal are outputs of the graph, never inputs to it.",
+    "2026-09-09 (#157): five values added at once - unit-delivery, xp-engine, combat-might, board-protection, tempo-denial - to tag the 90 ENGINEs that fitted nothing. That takes the list to 19 of the ~20 ceiling above, so the next addition has to justify itself against a MERGE. FOUR of the five are OUTPUT ONLY (unit-delivery was corrected to output-only within the hour, before anything consumed it, when the lane re-read all thirteen members and found the maximum delivery is two bodies); xp-engine is the one clean INPUT, because a [Level N] rung reads a BALANCE rather than a quantity of bodies and are pinned as unconsumable by test/combos.test.ts, because a needs: on a protection or a lock would force every deck running the protected line to also run the protection."
+  ],
+  "features": [
+    {
+      "id": "infinite-energy",
+      "name": "Infinite Energy",
+      "status": "STANDALONE",
+      "uncountable": true,
+      "description": "Unbounded Energy within one turn (the Rune Pool empties at end of turn)."
+    },
+    {
+      "id": "infinite-power",
+      "name": "Infinite Power",
+      "status": "STANDALONE",
+      "uncountable": true,
+      "description": "Unbounded Power of the deck's domains within one turn."
+    },
+    {
+      "id": "infinite-recycle",
+      "name": "Infinite recycle / redraw",
+      "status": "HELPER",
+      "uncountable": true,
+      "description": "Any card in the trash can be recycled and redrawn at will (requires an empty Main Deck)."
+    },
+    {
+      "id": "ability-points",
+      "name": "Score arbitrary points",
+      "status": "STANDALONE",
+      "uncountable": true,
+      "description": "Ability-granted points, which rule 470's once-per-battlefield cap does not touch."
+    },
+    {
+      "id": "burst-points",
+      "name": "Burst of points in one scoring event",
+      "status": "STANDALONE",
+      "uncountable": false,
+      "description": "Bounded multiplicative points that can clear the 8-point Victory Score in one Hold or Conquer."
+    },
+    {
+      "id": "win-the-game",
+      "name": "Win the game",
+      "status": "STANDALONE",
+      "uncountable": false,
+      "description": "An effect that says you win (rule 195), or enough points to pass the Victory Score."
+    },
+    {
+      "id": "strip-opponent-hand",
+      "name": "Banish the opponent's hand",
+      "status": "STANDALONE",
+      "uncountable": true
+    },
+    {
+      "id": "repeatable-removal",
+      "name": "Repeatable removal",
+      "status": "STANDALONE",
+      "uncountable": true
+    },
+    {
+      "id": "conquer-engine",
+      "name": "Repeatable Conquers",
+      "status": "STANDALONE",
+      "uncountable": false,
+      "description": "Conquers taken over and over, each carrying whatever rider the entry names — a draw, a ready, a relocation. 470 still caps Scoring at once per battlefield per turn."
+    },
+    {
+      "id": "resource-engine",
+      "name": "Repeatable Energy or Power",
+      "status": "STANDALONE",
+      "uncountable": false,
+      "description": "Bounded Energy or Power returned by moves, readies, attaches, reveals or Gold tokens within a turn, or held ready through the opponent's. An engine, not a loop: the Rune Pool still empties at end of turn (167). Absorbed gold-engine (187.5 makes a Gold token gear that adds Power, and 9 of its 15 producers already carried both names) and attach-engine (its producers price themselves in runes) on 2026-09-06."
+    },
+    {
+      "id": "token-body-engine",
+      "name": "Repeatable bodies",
+      "status": "STANDALONE",
+      "uncountable": true,
+      "description": "Token units made repeatably, or without bound inside a turn, THAT STAY ON THE BOARD. One name for what was split across infinite-recruits, infinite-ready-recruits and token-body-engine until 2026-09-06 (issues #63, #64): the unbounded producers had no consumer at all. Feeds a Hold, The Grand Plaza or a kill-fodder payoff; not a kill by itself, and 143.4 makes tokens enter exhausted unless something like SFD-171 Renata Glasc, Industrialist says otherwise. Bodies that die before the Scoring Step are temporary-body-engine instead."
+    },
+    {
+      "id": "temporary-body-engine",
+      "name": "Repeatable [Temporary] bodies",
+      "status": "STANDALONE",
+      "uncountable": false,
+      "description": "Token units carrying [Temporary], which 816.1.b kills at the start of their controller's Beginning Phase BEFORE scoring. They can move, attack and conquer the turn they are made, and can never be standing there for a Hold — which is why they are not token-body-engine. Only UNL-090 LeBlanc, Everywhere at Once switches the kill off, and only at her battlefield (R10 = A)."
+    },
+    {
+      "id": "card-advantage-engine",
+      "name": "Repeatable card advantage",
+      "status": "STANDALONE",
+      "uncountable": true,
+      "description": "More than one card per turn into hand, by draw, tutor or return from the trash — on a Hold, on a Conquer or on nothing at all. Merged from hold-card-engine and infinite-draw on 2026-09-06, because both name the same product. In Riftbound the unbounded version is a liability, not a win: drawing past an empty Main Deck is Burn Out (431.1.a) and gives an opponent a point (194.1.d)."
+    },
+    {
+      "id": "opponent-deck-pressure",
+      "name": "Pressure on the opponent's deck",
+      "status": "STANDALONE",
+      "uncountable": false,
+      "description": "Makes the opponent burn through their own Main Deck, by milling it or by forcing them to play off the top. Merged from force-opponent-deck and opponent-burn-engine on 2026-09-06. Pressure, never a kill: Burn Out recycles their trash before awarding a point (431.2)."
+    },
+    {
+      "id": "unit-delivery",
+      "name": "Unit delivery",
+      "status": "STANDALONE",
+      "uncountable": false,
+      "description": "A body reaches a battlefield it otherwise could not, or reaches one a turn early: [Ambush] (822.1.b), an effect move (449, with 420.3.a putting the exhaust on the Standard Move alone), granted [Ganking], or a play into an opened combat. OUTPUT ONLY, corrected 2026-09-09 before anything consumed it: all thirteen members were re-read against corpus_flat.txt and the MAXIMUM any of them delivers is TWO bodies (SFD-125 Fae Porter; every other one moves a single body or itself, and SFD-192 Shurelya’s Requiem moves nothing at all - it grants [Ganking]). A needs: unit-delivery on ready-recruits-grand-plaza, which requires SEVEN bodies at the Hold, would be satisfied by a one-body mover and would publish a FALSE ALT_WIN - the exact failure temporary-body-engine was split out to prevent. Consuming this value requires splitting it by CAPACITY first, bulk against single-body, on the token-body/temporary-body precedent. What these cards actually sell is the same-turn arrival 143.4 forbids and the battlefield-to-battlefield consolidation 144.4 charges [Ganking] for - not the base-to-battlefield walk, which 144.3 moves as one action and 315.1.b readies for free."
+    },
+    {
+      "id": "xp-engine",
+      "name": "XP engine",
+      "status": "STANDALONE",
+      "uncountable": false,
+      "description": "Repeatable XP for a [Level N] rung. An input, because 824.1.d makes a Level ability Inactive the moment the balance falls below N and 730.2 makes spending XP your own act - so a Level payoff needs a faucet and no sink. STANDALONE rather than HELPER (corrected 2026-09-09): web/main.ts filters the drawer Payoff pills to STANDALONE, and a status of HELPER would have left the five XP entries with no payoff pill and no outcome node while no consumer exists. A feature may be both shown and consumed - infinite-energy is STANDALONE and is needed sixteen times."
+    },
+    {
+      "id": "combat-might",
+      "name": "Combat Might",
+      "status": "STANDALONE",
+      "uncountable": false,
+      "description": "Might bought onto your own bodies: 702 buff counters, granted [Assault] (807.2 sums it), Empower purchases, doublers (432.1), and \"+N Might this turn\" continuous modifiers that 702.3 never caps. Shown as a payoff. Its one plausible consumer is the excess-damage family (R28 = A, OGN-034 Tryndamere). The same hazard in weaker form: OGN-034 Tryndamere pays on FIVE or more excess damage while 703 fixes a Buff at exactly +1, so any future consumer must measure the threshold per producer rather than reading the tag alone."
+    },
+    {
+      "id": "board-protection",
+      "name": "Board protection",
+      "status": "STANDALONE",
+      "uncountable": false,
+      "description": "A key permanent survives what would remove it: would-die replacements (808.1.d.1 erases the Deathknell with them), [Tank] tolls (815.1.c.2), granted [Shield] (814.2 sums), Prevent (437.4, which generates no kill event at all), untargetability (054.1) and granted [Deflect] (809.2). OUTPUT ONLY - never write needs: board-protection, because a matcher that requires the shield would demand it of every deck running the line it protects."
+    },
+    {
+      "id": "tempo-denial",
+      "name": "Tempo denial",
+      "status": "STANDALONE",
+      "uncountable": false,
+      "description": "The opponent does less on their own turn: counters, play locks, spell taxes, stuns (423.1, cleared at their own cleanup), movement locks, rune denial. OUTPUT ONLY for the reason CLAUDE.md already records - Brynhir’s lockout window is its own entry and not a uses[] of the loop it protects, because adding it would force the matcher to require it."
+    }
+  ]
+}

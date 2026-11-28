@@ -1,0 +1,38 @@
+Legend:
+1 Vex, Gloomist
+Champion:
+1 Vex, Apathetic
+Main Deck:
+2 Boots of Swiftness
+2 Back Off
+2 Existential Dread
+3 Discipline
+2 Gust
+2 Edge of Night
+2 Defy
+3 Emperor's Divide
+3 Mutated Mouser
+3 Evelynn, Entrancing
+2 Ember Monk
+3 Teemo, Scout
+2 Kha'Zix, Mutating Horror
+1 Switcheroo
+2 Pyke, Returned
+1 Star-Crossed
+2 Sona, Harmonious
+2 Treasure Hunter
+Battlefields:
+Bandle Tree
+Star Spring
+Startipped Peak
+Rune Pool:
+5 Calm Rune
+7 Chaos Rune
+Sideboard:
+1 Star-Crossed
+1 Defy
+2 Disarming Rake
+1 Rebuke
+1 Gust
+1 Abandon
+1 Switcheroo

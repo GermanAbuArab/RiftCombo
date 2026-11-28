@@ -1,0 +1,455 @@
+import { readFileSync } from "node:fs";
+import { describe, expect, it } from "vitest";
+import { VIEW_PATHS, VIEWS } from "../web/router.js";
+
+/**
+ * What the keyboard and the screen reader are owed, pinned here because none of it shows up as an
+ * error in a browser: the page looks right while the focus is behind an overlay, while a tab says
+ * nothing about being the current one, and while a result is written into an element nobody is told
+ * about. Every number below was measured against https://riftcombo.app before it was written down
+ * (issues #75-#84); this file is what keeps it measured.
+ */
+const read = (p: string) => readFileSync(new URL(`../${p}`, import.meta.url), "utf8");
+const css = read("web/styles.css");
+const home = read("web/index.html");
+
+// --- contrast (#81) ---------------------------------------------------------------------
+const token = (name: string): string => {
+  const m = new RegExp(`--${name}:\\s*(#[0-9a-f]{6})`, "i").exec(css);
+  expect(m, `--${name} is not a plain hex in :root any more`).not.toBeNull();
+  return m![1]!;
+};
+const channel = (c: number): number => (c <= 0.03928 ? c / 12.92 : ((c + 0.055) / 1.055) ** 2.4);
+const luminance = (hex: string): number => {
+  const [r, g, b] = [1, 3, 5].map((i) => channel(parseInt(hex.slice(i, i + 2), 16) / 255)) as [number, number, number];
+  return 0.2126 * r + 0.7152 * g + 0.0722 * b;
+};
+const contrast = (a: string, b: string): number => {
+  const [x, y] = [luminance(a), luminance(b)];
+  return (Math.max(x, y) + 0.05) / (Math.min(x, y) + 0.05);
+};
+
+describe("the palette against the backgrounds it is actually drawn on", () => {
+  /**
+   * The three grounds text sits on in this app: the page, the cards and rows that stand on it, and
+   * the highlighted tray chip. `--panel-3` is left out on purpose — no text token is drawn on it,
+   * and asking for AA there would cost the whole third tier of the grey scale for nothing.
+   */
+  const grounds = ["bg", "panel", "panel-2"] as const;
+
+  it("keeps every text token at AA (4.5:1) wherever it lands", () => {
+    // --ok is in here for the same reason --danger-text is (#96): it colours letters, not just the
+    // status dot and the left rule of "Already in this list" — the Legal badge on a deck card, the
+    // editor's verdict, and the PASS on each construction rule. Unlike the red it needed no split,
+    // it was already clear on all three; this is what keeps that true.
+    for (const fg of ["text", "muted", "faint", "danger-text", "ok"]) {
+      for (const bg of grounds) {
+        const r = contrast(token(fg), token(bg));
+        expect(r, `--${fg} on --${bg} is ${r.toFixed(2)}:1`).toBeGreaterThanOrEqual(4.5);
+      }
+    }
+  });
+
+  it("keeps the accent readable as text and as a button face", () => {
+    expect(contrast(token("accent"), token("bg"))).toBeGreaterThanOrEqual(4.5);
+    // .primary is accent-ink on accent, which is the one pair where both halves are the brand's.
+    expect(contrast(token("accent-ink"), token("accent"))).toBeGreaterThanOrEqual(4.5);
+  });
+
+  it("keeps --faint a visible step below --muted, which is the only reason it exists", () => {
+    expect(luminance(token("faint"))).toBeLessThan(luminance(token("muted")));
+  });
+
+  /**
+   * The line under the Illegal badge in My decks (#93) is a sentence a player reads, so it is bound by
+   * the rule above and not by the colour of the badge beside it. --danger measures 3.98:1 on --panel,
+   * which is where .deck-card stands, so reaching for the obvious red would have been the first tint
+   * added since #81 that fails AA. This pins the choice rather than the hex: whatever token that line
+   * ends up using has to clear 4.5:1 on the card it is drawn on.
+   */
+  /**
+   * Red is semantic here, not decorative, and it comes in two tokens on purpose (#94): --danger is
+   * the border and the background (the error dot, the ban row's left rule), --danger-text is the one
+   * that carries letters. --danger itself measures 4.43 / 3.98 / 3.37 on --bg / --panel / --panel-2,
+   * so every red word in the app was under AA — .ban-tag worst of all at 10.5px on --panel. These
+   * two pin the split: the tag names itself, and nothing anywhere may paint text with --danger.
+   */
+  it("draws the BANNED tag in a token that clears AA on the row it sits on", () => {
+    const rule = css.split("\n").find((l) => l.trim().startsWith(".ban-tag {"));
+    expect(rule, ".ban-tag is gone — did the ban list change shape?").toBeDefined();
+    const used = /(?<![-a-z])color:\s*var\(--([a-z0-9-]+)\)/.exec(rule!)?.[1];
+    expect(used, `.ban-tag must colour itself from a token, got: ${rule}`).toBeDefined();
+    // .ban-row is background: var(--panel); the same tag also rides the cards, which stand on it too.
+    const r = contrast(token(used!), token("panel"));
+    expect(r, `--${used} on --panel is ${r.toFixed(2)}:1`).toBeGreaterThanOrEqual(4.5);
+  });
+
+  it("keeps --danger off text entirely, borders and fills only", () => {
+    const offenders = [...css.matchAll(/(?<![-a-z])color:\s*var\(--danger\)/g)].map(
+      (m) => css.slice(css.lastIndexOf("\n", m.index!) + 1, css.indexOf("\n", m.index!)).trim(),
+    );
+    expect(offenders, "--danger is a border/background token; text takes --danger-text").toEqual([]);
+  });
+
+  it("draws the reason under the Illegal badge in a token that clears AA on --panel", () => {
+    const rule = css.split("\n").find((l) => l.trim().startsWith(".deck-card-why {"));
+    expect(rule, ".deck-card-why is gone — did the reason line move?").toBeDefined();
+    const used = /color:\s*var\(--([a-z0-9-]+)\)/.exec(rule!)?.[1];
+    expect(used, `.deck-card-why must colour itself from a token, got: ${rule}`).toBeDefined();
+    const r = contrast(token(used!), token("panel"));
+    expect(r, `--${used} on --panel is ${r.toFixed(2)}:1`).toBeGreaterThanOrEqual(4.5);
+  });
+});
+
+// --- focus (#82) ------------------------------------------------------------------------
+describe("the focus ring", () => {
+  it("is declared once, globally, in the site's own accent", () => {
+    expect(css).toMatch(/:focus-visible\s*\{[^}]*outline:\s*2px solid var\(--accent\)/);
+  });
+
+  it("is switched off only where something else draws it", () => {
+    // `outline: none` with no replacement is how a control ends up with no focus state at all. The
+    // two survivors both hand the job to another element: the segmented control paints its label,
+    // the diagram node strokes its own frame.
+    const allowed = [".segmented input:focus-visible", ".node:focus"];
+    for (const rule of css.matchAll(/([^{}]*)\{([^}]*outline:\s*none[^}]*)\}/g)) {
+      const selector = (rule[1] ?? "").trim();
+      expect(allowed.some((a) => selector.startsWith(a)), `${selector} kills the focus ring`).toBe(true);
+    }
+  });
+});
+
+// --- names, landmarks and live regions (#78, #79, #80, #83) -----------------------------
+describe("what a screen reader is told", () => {
+  it("announces the status card, which is the only report a match produces", () => {
+    expect(home).toMatch(/id="status-card"[^>]*aria-live="polite"/);
+    // Title and body change together and read as one sentence.
+    expect(home).toMatch(/id="status-card"[^>]*aria-atomic="true"/);
+  });
+
+  it("gives every kind of diagram node a name", () => {
+    const graph = read("web/graph.ts");
+    // Each node is a tab stop (`tabindex: 0`), so each has to carry a <title>. The outcome column
+    // shipped without one and announced itself as seven anonymous groups.
+    const nodes = [...graph.matchAll(/\baddNode\(/g)].length;
+    const titles = [...graph.matchAll(/el\("title"/g)].length;
+    expect(nodes, "web/graph.ts stopped building nodes the way this test reads it").toBeGreaterThan(0);
+    expect(titles, `${nodes} kinds of node, ${titles} <title>`).toBe(nodes);
+  });
+
+  it("says which tab is the current one, and names the view in the browser tab", () => {
+    const router = read("web/router.ts");
+    expect(router).toContain('aria-current", "page"');
+    expect(router).toContain("removeAttribute(\"aria-current\")");
+    expect(router).toContain("document.title = TITLES[r.view]");
+    // Driven off VIEWS rather than a repeated list, so a sixth view cannot ship without a title (#206).
+    for (const view of VIEWS) expect(router).toMatch(new RegExp(`\\b${view}:\\s*"`));
+  });
+
+  it("carries exactly one h1, the brand in the header, so every view and the entrance share it (#270)", () => {
+    // The app is one document whose views are hidden sections, so an h1 per view put four in the
+    // file (two in hidden sections) and the signed-out entrance a fifth. The page's one h1 names the
+    // site and is the only heading visible in every state; each view's title is an h2 under it.
+    expect((home.match(/<h1[\s>]/g) ?? []).length).toBe(1);
+    const header = /<header class="topbar">([\s\S]*?)<\/header>/.exec(home)?.[1] ?? "";
+    expect(header).toMatch(/<h1 class="brand-name">RIFTCOMBO<\/h1>/);
+    // My decks renders its titles at runtime, so the h1 rule reaches its source too.
+    for (const f of ["web/decks.ts", "web/plays.ts", "web/main.ts", "web/builder.ts"]) {
+      expect(read(f), f).not.toMatch(/<h1[\s>]|el\("h1"/);
+    }
+  });
+
+  it("gives each view a main landmark and headings that never skip a level", () => {
+    const levels = (html: string) => [...html.matchAll(/<h([1-6])[\s>]/g)].map((m) => Number(m[1]));
+    const header = /<header class="topbar">[\s\S]*?<\/header>/.exec(home)?.[0] ?? "";
+    const gate = /<section class="gate"[\s\S]*?<\/section>/.exec(home)?.[0] ?? "";
+    const states: [string, string][] = [["entrance", gate]];
+    for (const view of VIEWS) {
+      const start = home.indexOf(`id="view-${view}"`);
+      expect(start, view).toBeGreaterThan(-1);
+      const end = home.indexOf(`id="view-`, start + 1);
+      const section = home.slice(start, end === -1 ? home.indexOf("</body>") : end);
+      expect(section, `view-${view} has no <main>`).toMatch(/<main[\s>]/);
+      expect((section.match(/<h1[\s>]/g) ?? []).length, `view-${view} h1`).toBe(0);
+      states.push([view, section]);
+    }
+    // Static markup only: the drawer, the dialogs and the rendered views are pinned in their DOM tests.
+    for (const [state, html] of states) {
+      const seq = levels(header + html);
+      expect(seq[0], state).toBe(1);
+      for (let i = 1; i < seq.length; i++) expect(seq[i]!, `${state}: h${seq[i]} after h${seq[i - 1]}`).toBeLessThanOrEqual(seq[i - 1]! + 1);
+    }
+  });
+
+  it("starts the legal pages at h1 as well", () => {
+    for (const f of ["privacy.html", "terms.html", "404.html"]) {
+      const page = read(`web/${f}`);
+      expect(page, f).toMatch(/<main class="doc"/);
+      expect((page.match(/<h1[\s>]/g) ?? []).length, f).toBe(1);
+    }
+  });
+
+  it("carries one navigation across the whole site, pointing at every view", () => {
+    // The legal pages are static and carry a copy of the nav, so a destination added to the app alone
+    // is a dead end from them. Driven off the shell's own nav, which links both of its views and the
+    // three public pages (Run plays, Guide, Sources) that stopped being views in #287 (#206, #575).
+    const navOf = (html: string) => /<nav class="topnav">([\s\S]*?)<\/nav>/.exec(html)?.[1] ?? "";
+    const hrefs = [...navOf(home).matchAll(/href="([^"]+)"/g)].map((m) => m[1]!);
+    for (const view of VIEWS) expect(hrefs, view).toContain(VIEW_PATHS[view]);
+    for (const path of ["/plays", "/guide", "/sources"]) expect(hrefs, path).toContain(path);
+    for (const f of ["privacy.html", "terms.html", "404.html"]) {
+      const nav = navOf(read(`web/${f}`));
+      expect(nav, `${f} has no top nav`).not.toBe("");
+      for (const href of hrefs) expect(nav, `${f} → ${href}`).toContain(`href="${href}"`);
+    }
+  });
+});
+
+// --- the overlays (#75, #76) ------------------------------------------------------------
+describe("the two overlays and the keyboard", () => {
+  const main = read("web/main.ts");
+
+  it("holds the focus inside the card, which aria-modal promises and the browser does not", () => {
+    expect(home).toContain('aria-modal="true"');
+    expect(main).toContain("previewBox.contains(document.activeElement)");
+    expect(main).toMatch(/ev\.key !== "Tab"/);
+  });
+
+  it("lets Escape reach the drawer once the card above it is gone", () => {
+    const handler = /document\.addEventListener\("keydown"[\s\S]*?\n\}\);/.exec(main)?.[0] ?? "";
+    expect(handler).toContain("hideCard()");
+    expect(handler).toContain("closeDetail()");
+    // The card is the top layer: one Escape closes it and leaves the drawer it was opened from.
+    expect(handler.indexOf("hideCard()")).toBeLessThan(handler.indexOf("closeDetail()"));
+  });
+
+  it("gives the card back the focus that opened it", () => {
+    expect(main).toContain("previewReturnFocus?.focus()");
+  });
+
+  /**
+   * #128: the card modal had no keyboard entry point ANYWHERE. Its thumbnail in "Pieces" and in
+   * "What to add" was a bare <img> with a delegated click handler — no tabindex, no role, no
+   * keydown — and the only other route was a double click on a graph node, where Enter and Space
+   * select the node instead. Those two panels are where a player asks what a card does before
+   * buying it. The thumbnail is a real button now, which brings Enter and Space with it.
+   */
+  it("opens the card from the keyboard, because the thumbnail is a button and not an image", () => {
+    expect(main).toContain('<button type="button" class="card-thumb" data-view=');
+    expect(main).toContain('aria-label="Read ${esc(name)}"');
+    // Both delegated handlers read the button. An <img> is not focusable, so testing for one was
+    // the same as saying "mouse only", which the old title attribute said out loud.
+    expect(main.match(/closest<HTMLElement>\("\.card-thumb"\)/g) ?? []).toHaveLength(2);
+    expect(main).not.toContain('t.closest("img")');
+    expect(main).not.toContain("Click to read the card");
+  });
+});
+
+// --- the deckbuilder (#101) -------------------------------------------------------------
+/**
+ * The builder is 1030 buttons and two counters that change under the player's hands, so the three
+ * things it can silently get wrong are all here: a colour that carries meaning alone, a live region
+ * that is destroyed by the very update it announces, and a focus that falls off the page on a click.
+ */
+/**
+ * The corner scale is a decision, not a preference (#131): CLAUDE.md fixes it at 10px containers,
+ * 6px controls, 9-10px diagram nodes, and records that sharp corners were tried and rejected. Three
+ * rules had drifted to 14px. 4px is the small inner one (a row's art strip, a card thumbnail) and
+ * 50% is a dot; anything else is drift and fails here.
+ */
+describe("the corner scale", () => {
+  const ALLOWED = new Set(["4px", "6px", "9px", "10px", "50%", "0 10px 10px 0"]);
+  it("draws every corner from the decided scale", () => {
+    const radii = [...css.matchAll(/border-radius: ([^;]+);/g)].map((m) => m[1]!.trim());
+    expect(radii.length).toBeGreaterThan(20);
+    for (const r of radii) expect(ALLOWED, `border-radius: ${r} is outside the scale`).toContain(r);
+  });
+});
+
+describe("the deckbuilder", () => {
+  const builder = read("web/builder.ts");
+
+  it("draws the cost curve in a tint that clears 3:1 on the panel it stands on", () => {
+    // A curve is data. --line-2 was tried first and measures 2.32:1 on --panel, under the ratio
+    // WCAG asks of a meaningful graphic; whatever token .curve-bar ends up using has to clear it.
+    const rule = css.split("\n").find((l) => l.trim().startsWith(".curve-bar {"));
+    expect(rule, ".curve-bar is gone — did the curve change shape?").toBeDefined();
+    const used = /fill:\s*var\(--([a-z0-9-]+)\)/.exec(rule!)?.[1];
+    expect(used, `.curve-bar must fill from a token, got: ${rule}`).toBeDefined();
+    expect(contrast(token(used!), token("panel"))).toBeGreaterThanOrEqual(3);
+  });
+
+  it("keeps the accent readable as text on a panel, which is where the Champion tag sits", () => {
+    expect(contrast(token("accent"), token("panel"))).toBeGreaterThanOrEqual(4.5);
+  });
+
+  /**
+   * A live region has to survive the update it announces. Both of these were written INSIDE the
+   * container that is replaced on every click, which destroys and rebuilds the element and announces
+   * nothing at all; they are now siblings of it, updated through textContent.
+   */
+  it("keeps the two counters out of the containers that are rebuilt", () => {
+    for (const id of ["pool-count", "bld-totals"]) {
+      expect(builder, `#${id} is not a live region`).toContain(`id="${id}" aria-live="polite"`);
+      expect(builder, `#${id} is rebuilt rather than updated`).toMatch(new RegExp(`#${id}"\\);\\n\\s*if \\(\\w+\\) \\w+\\.textContent`));
+    }
+    // The two containers that ARE replaced wholesale must not be the ones carrying the counters.
+    expect(builder).toContain('innerHTML = gridHtml()');
+    expect(builder).toContain('innerHTML = deckHtml()');
+    expect(builder).not.toMatch(/aria-live[^>]*>\$\{[^}]*gridHtml/);
+  });
+
+  /**
+   * #129: the same defect the two counters above were fixed for, in the two places it was missed.
+   *
+   * A — the Construction verdict ("N to fix" / "Legal") is recomputed on every add and remove, and
+   * it is drawn inside `#deck-zones`, which is replaced wholesale. A screen-reader user had to
+   * re-navigate to the checklist and re-read it after every single edit to learn whether the deck
+   * had just become legal.
+   *
+   * B — every message reporting what a write DID (saved, updated, deleted, imported, copied, or the
+   * network error that says nothing was changed) went into a plain <p> nobody was listening to.
+   * Delete is irreversible; silence there is the worst of the four.
+   */
+  it("announces the Construction verdict, and every line that reports what a write did", () => {
+    expect(builder, "the third counter is not a live region").toContain('id="chk-status" aria-live="polite"');
+    expect(builder, "#chk-status is rebuilt rather than updated").toMatch(/#chk-status"\);\n\s*if \(\w+\) \w+\.textContent/);
+    // It must NOT sit in the subtree that is replaced, or it is the bug it was written to fix.
+    expect(builder.indexOf('id="chk-status"')).toBeLessThan(builder.indexOf('<div id="deck-zones">'));
+
+    const decks = read("web/decks.ts");
+    expect(home).toContain('id="account-msg" role="status" aria-live="polite"');
+    expect(decks.match(/id="decks-msg" role="status" aria-live="polite"/g) ?? []).toHaveLength(2);
+    expect(builder).toContain('id="bld-import-msg" role="status" aria-live="polite"');
+    // And no fifth one appears later without the same treatment.
+    for (const [name, src] of [["index.html", home], ["decks.ts", decks], ["builder.ts", builder]] as const) {
+      for (const tag of src.match(/<p class="acct-msg"[^>]*>/g) ?? []) {
+        expect(tag, `${name}: an .acct-msg with no live region`).toMatch(/aria-live="polite"/);
+      }
+    }
+  });
+
+  it("puts the focus back on the control the click destroyed", () => {
+    // Clicking a pool cell replaces the grid, and with it the button that was pressed. Without this
+    // a keyboard lands on BODY after every single card added.
+    expect(builder).toContain("document.activeElement as HTMLElement | null");
+    expect(builder).toMatch(/if \(was\) \$<HTMLElement>\(was\)\?\.focus\(\)/);
+  });
+
+  it("walks the grid with the arrow keys instead of 1030 tab stops", () => {
+    expect(builder).toContain('ev.key.startsWith("Arrow")');
+    for (const k of ["ArrowRight", "ArrowLeft", "ArrowDown"]) expect(builder, k).toContain(k);
+  });
+
+  /**
+   * A cell at its cap stays focusable and says why — `disabled` would take it out of the tab order
+   * and leave a screen reader with no reason at all. The same attribute is what the click handler
+   * reads, so the two can never disagree.
+   */
+  it("marks a capped or off-domain cell aria-disabled, with the reason in its name", () => {
+    expect(builder).toContain('aria-disabled="${blocked}"');
+    expect(builder).toContain('aria-label="${esc(label)}"');
+    expect(builder).toContain('el.getAttribute("aria-disabled") === "true"');
+    expect(builder).not.toMatch(/class="pool-add"[^`]*\bdisabled\b(?!=)/);
+  });
+
+  /**
+   * 103.2.d.3 — a Signature card is never the Chosen Champion, and Tibbers is the rule's own worked
+   * example. The deck column refuses to offer "Champion" on a Signature row, so the pool's Champion
+   * zone has to refuse it too (#122): the two columns may not disagree about the same card.
+   */
+  /**
+   * This assertion was rewritten on 2026-09-13 because the CONTRACT moved twice in one commit, not
+   * because its lines were reworded. It used to pin three literals here in `web/builder.ts`:
+   * `const noSignatureChampion = setChamp && card.signature`, the 103.2.d.3 sentence, and
+   * `const blocked = off || noSignatureChampion || cap.full`. All three were the editor keeping its
+   * own copies of rules that lived in no model — Domain Identity and the champion tag, which is
+   * exactly the pair #212 was opened about — and the fix moved them into `src/builder.ts`. None of the
+   * three literals has a meaning left to restore.
+   *
+   * What the assertion is FOR is unchanged and is what it now pins: the cell may not answer the
+   * Champion question out of its own head. It asks `championCapOf` and prints the reason it is given,
+   * so the pool's Champion zone and the deck column cannot disagree about the same card (#122). The
+   * paragraph on the button is asserted where it now lives, and the BEHAVIOUR is pinned by a click in
+   * `test/dom/builder.dom.test.ts`, which is the stronger guard of the two.
+   */
+  it("asks one function for the Champion rule, so the two columns cannot disagree", () => {
+    // Pinned as a FRAGMENT and a NEGATIVE, not as a whole statement. Measured 2026-09-13: of the 28
+    // string-needle source pins in this file, 27 pin a fragment — a call, an attribute, a rendered
+    // string — and the one that pinned a whole `const x = ...` was this assertion, written the same
+    // day, which then had to be rewritten twice as the contract moved. A whole-statement needle
+    // breaks on any correct rewording of the right-hand side, so it reports a repair as a defect.
+    expect(builder).toContain("championCapOf(deck, card.base, cards())");
+    // The invariant, stated so that only its violation breaks it: the cell keeps NO second copy of
+    // the Champion rule. `noSignatureChampion` was that copy and #212 moved it into the model.
+    expect(builder).not.toMatch(/\bnoSignatureChampion\b/);
+    expect(read("src/builder.ts")).toContain('"A Signature card is never the Chosen Champion (103.2.d.3)."');
+  });
+
+  it("gives a Construction mark a word beside it, since ✓ and ✗ are a shape and a colour", () => {
+    expect(builder).toContain('<span class="chk-mark" aria-hidden="true">');
+    expect(builder).toContain('<span class="sr-only">${WORD[r.status]}</span>');
+    expect(css).toMatch(/\.sr-only \{[^}]*clip-path/);
+  });
+
+  it("names the domain behind each coloured chip", () => {
+    // Six circles differing only in hue say nothing to a screen reader, and nothing to anyone who
+    // cannot tell Fury from Body — and a name that is only ever read aloud leaves everybody else
+    // guessing too, which is what #109 was opened for. The name is visible text on the chip now.
+    expect(builder).toContain('<span class="chip-dot" aria-hidden="true"></span>${name}');
+    expect(builder).toContain('aria-pressed="${filters.domains.includes(d)}"');
+    // Filled means selected, a ring means not: the state is a shape as well as a colour.
+    expect(css).toMatch(/\.chip-dot \{[^}]*border: [\d.]+px solid var\(--dom\)/);
+    expect(css).toMatch(/\.dom-chip\.on \.chip-dot \{[^}]*background: var\(--dom\)/);
+    // `.dom-dot` belongs to the deck library's legend dots and may not be redefined here (#109).
+    expect(css.split("\n").filter((l) => l.trim().startsWith(".dom-dot {"))).toHaveLength(1);
+  });
+
+  /**
+   * The row preview (#113) is a convenience for a pointer and a keyboard, never a source of
+   * information: the card modal is the accessible route and every row still opens it. So the
+   * preview is out of the accessibility tree, its image carries no alternative text, and it never
+   * takes the pointer — a floating box that ate a click would break the row under it.
+   */
+  it("keeps the deck row preview decorative and out of the way", () => {
+    expect(builder).toContain('id="row-preview" aria-hidden="true" hidden');
+    expect(builder).toContain('<img alt="">');
+    const rule = css.split("\n").find((l) => l.trim().startsWith(".row-preview {"));
+    expect(rule).toMatch(/pointer-events: none/);
+    // Placed through CSSOM, never a style attribute: the CSP forbids the second.
+    expect(builder).toContain("box.style.left =");
+    expect(builder).not.toMatch(/<div class="row-preview"[^>]*style=/);
+  });
+
+  /**
+   * The art strip's domain bar and the Power dots are the only places besides the pool's domain
+   * chips where the six reserved colours appear, and they get there through a data attribute
+   * because the CSP forbids an inline style.
+   */
+  it("colours the deck row's domain bar from the reserved tokens alone", () => {
+    for (const d of ["fury", "calm", "mind", "body", "chaos", "order"]) {
+      expect(css, d).toContain(`.drow [data-dom="${d}"] { --dom-a: var(--dom-${d}); }`);
+      expect(css, d).toContain(`.drow [data-dom2="${d}"] { --dom-b: var(--dom-${d}); }`);
+    }
+    expect(builder).toContain('data-dom="${doms[0]}"');
+    expect(builder).not.toMatch(/class="drow-art[^"]*"[^>]*style=/);
+    // A Might that is not there is not printed as "M" with nothing after it.
+    expect(builder).toContain('card.might !== null ? `<span class="drow-might mono">M${card.might}</span>` : ""');
+  });
+
+  /**
+   * The filter bar carried four control heights in four rows (#109): the Zone segmented at 30.75px,
+   * the selects at 29, the Cost chips at 24 and the domain circles at 22, in two type families. One
+   * token holds the height now, and every control in the bar is measured against it.
+   */
+  it("gives every control in the filter bar one height and one type family", () => {
+    expect(css).toMatch(/\.bld-filters \{ --ctl: \d+px;/);
+    for (const sel of [".bld-filters .segmented span", ".dom-chip", ".bld-clear", ".bld-select"]) {
+      const rule = css.split("\n").find((l) => l.trim().startsWith(`${sel} {`));
+      expect(rule, `${sel} is not in the filter bar's one height`).toMatch(/height: (calc\()?var\(--ctl\)/);
+    }
+    // The Cost row was the one control set in the mono face; it is a segmented control now.
+    expect(css).not.toContain(".cost-chip");
+    expect(builder).toContain('class="segmented small bld-costs"');
+  });
+});

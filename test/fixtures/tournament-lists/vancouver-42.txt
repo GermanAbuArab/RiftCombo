@@ -1,0 +1,37 @@
+Legend:
+1 Diana, Scorn of the Moon
+Champion:
+1 Diana, Lunari
+Main Deck:
+2 Acceptable Losses
+2 Fizz, Trickster
+1 Flash
+3 Gust
+2 Hard Bargain
+3 Hwei, Brooding Painter
+2 Moonfall
+3 Ravenbloom Student
+3 Ride the Wind
+1 Smoke Screen
+3 Stacked Deck
+2 Star-Crossed
+3 Stupefy
+3 Tideturner
+2 Traveling Merchant
+1 Turn to Dust
+2 Vex, Apathetic
+1 Vex, Cheerless
+Battlefields:
+1 Abandoned Hall
+1 Ravenbloom Conservatory
+1 Targon's Peak
+Rune Pool:
+6 Chaos Rune
+6 Mind Rune
+Sideboard:
+2 Baron Nashor
+1 Moonfall
+2 Singularity
+1 Star-Crossed
+1 Turn to Dust
+1 Vex, Cheerless

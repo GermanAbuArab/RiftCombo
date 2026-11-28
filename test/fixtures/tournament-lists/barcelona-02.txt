@@ -1,0 +1,36 @@
+Legend:
+1 Vi, Piltover Enforcer
+Champion:
+1 Vi, Peacekeeper
+Main Deck:
+2 Blighted Battleaxe
+3 Carrion Dredger
+3 Deathgrip
+2 Ferrous Forerunner
+3 Hextech Gauntlets
+2 Hidden Blade
+3 Honest Broker
+3 Jhin, Murderous Artist
+3 Kai'Sa, Survivor
+3 Kennen, Keeper of Balance
+2 Long Sword
+1 Rek'Sai, Breacher
+3 Rengar, Unseen
+1 Seal of Rage
+1 Shen, Kinkou
+2 Tactical Retreat
+2 Unsung Hero
+Battlefields:
+1 Forge of the Fluft
+1 Sunken Temple
+1 Vilemaw's Lair
+Rune Pool:
+7 Fury Rune
+5 Order Rune
+Sideboard:
+2 Ashe, Focused
+1 Brittle Steel
+2 Decree of Unity
+1 Facebreaker
+2 Forge of the Future
+2 Salvage

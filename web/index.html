@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>RiftCombo — Riftbound combo finder</title>
+<meta name="description" content="Paste a Riftbound decklist or deck code and see which known combos it already contains, and which it is a few cards short of.">
+<meta name="color-scheme" content="dark">
+<link rel="canonical" href="https://riftcombo.app/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="RiftCombo">
+<meta property="og:title" content="RiftCombo — Riftbound combo finder">
+<meta property="og:description" content="Paste a Riftbound decklist or deck code and see which known combos it already contains, and which it is a few cards short of.">
+<meta property="og:url" content="https://riftcombo.app/">
+<meta property="og:image" content="https://riftcombo.app/og.png">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="The RiftCombo diamond mark and wordmark on a dark background, captioned Combo finder for the Riftbound TCG.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="RiftCombo — Riftbound combo finder">
+<meta name="twitter:description" content="Paste a Riftbound decklist or deck code and see which known combos it already contains, and which it is a few cards short of.">
+<meta name="twitter:image" content="https://riftcombo.app/og.png">
+<meta name="twitter:image:alt" content="The RiftCombo diamond mark and wordmark on a dark background, captioned Combo finder for the Riftbound TCG.">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/manifest.webmanifest">
+<link rel="preload" href="/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/styles.css">
+</head>
+<body data-auth="pending">
+<header class="topbar">
+  <a class="brand" href="/">
+    <svg class="brand-mark" viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.5 18.5 10 10 18.5 1.5 10Z"/><path d="M10 6.2 13.8 10 10 13.8 6.2 10Z"/></svg>
+    <h1 class="brand-name">RIFTCOMBO</h1>
+  </a>
+  <nav class="topnav">
+    <a href="/app" class="active">Combos</a>
+    <a href="/decks">My decks</a>
+    <a href="/plays">Run plays</a>
+    <a href="/guide">Guide</a>
+    <a href="/sources">Sources</a>
+  </nav>
+  <div class="topbar-right">
+    <fieldset class="segmented small" aria-label="Format">
+      <label><input type="radio" name="format" value="constructed" checked><span>Constructed</span></label>
+      <label><input type="radio" name="format" value="2v2"><span>2v2</span></label>
+    </fieldset>
+    <div class="acct-top" id="account-top" hidden>
+      <span class="acct-who" id="acct-who" hidden>
+        <span class="acct-label" id="acct-label"></span>
+        <button type="button" class="linklike" id="acct-signout">Sign out</button>
+      </span>
+    </div>
+  </div>
+</header>
+
+<section class="gate" id="gate" aria-labelledby="gate-title">
+  <div class="gate-box">
+    <svg class="gate-mark" viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.5 18.5 10 10 18.5 1.5 10Z"/><path d="M10 6.2 13.8 10 10 13.8 6.2 10Z"/></svg>
+    <h2 class="gate-title" id="gate-title">RiftCombo</h2>
+    <p class="gate-lead">Paste a Riftbound deck list or deck code and see which known combos it already contains, and which it is a few cards short of. Every combo in the catalogue was walked by hand against the Core Rules.</p>
+    <button type="button" class="primary gate-signin" id="gate-signin">Sign in with Google</button>
+    <p class="gate-note">Signing in shares the name and email on your Google account with this site, and nothing else. Your lists are matched in your browser and stored only when you press Save.</p>
+    <p class="gate-legal">RiftCombo was created under Riot Games' "Legal Jibber Jabber" policy using assets owned by Riot Games. Riot Games does not endorse or sponsor this project.</p>
+    <p class="gate-links"><a href="/privacy">Privacy</a> · <a href="/terms">Terms</a></p>
+  </div>
+</section>
+
+<section class="view" id="view-combos">
+<div class="app-shell" id="shell">
+  <aside class="deck-panel" id="deck-panel" aria-label="Deck input">
+    <div class="panel-head">
+      <h2>Your deck</h2>
+      <button type="button" class="icon-btn" id="close-panel" aria-label="Hide deck panel">×</button>
+    </div>
+    <!-- What the deck form becomes once a list has been analysed. Never a bare disappearance: it
+         names what is on screen and carries the way back, and the textarea it replaces keeps its
+         text. Hidden until an analyse succeeds; `web/main.ts` owns the switching. -->
+    <p class="deck-collapsed" id="deck-collapsed" hidden>
+      <span id="deck-collapsed-what"></span>
+      <button type="button" class="linklike" id="edit-list" aria-controls="deck-form" aria-expanded="false">Edit list</button>
+    </p>
+    <form id="deck-form">
+      <label class="field-label" for="deck-url">Piltover Archive URL (public deck)</label>
+      <div class="url-row">
+        <input id="deck-url" type="url" inputmode="url" placeholder="https://piltoverarchive.com/decks/view/…" autocomplete="off" spellcheck="false">
+        <button type="button" class="ghost" id="load-url">Load</button>
+      </div>
+      <p class="fine">Public Piltover Archive decks only · sideboards are excluded from matching</p>
+      <div class="or"><span>or</span></div>
+      <div class="field-row">
+        <label class="field-label" for="deck-input">Paste a list</label>
+        <span class="mono muted" id="card-count">0 cards</span>
+      </div>
+      <textarea id="deck-input" rows="10" spellcheck="false" autocomplete="off"
+        placeholder="1 Lady of Luminosity&#10;3 Forge of the Future&#10;3 Ekko, Recurrent&#10;3 Shadow's Call&#10;3 Sacrifice&#10;…&#10;&#10;or a deck code: CMAAAAAAAAAACAQAABM5MAIA…"></textarea>
+      <p class="fine">Plain lists, Piltover Archive exports, TTS dumps and deck codes all work</p>
+      <p class="notice">Your list is matched in your browser. Nothing about it is stored unless you press Save, which copies the list text to your account, where only you can read it. A Piltover Archive link is fetched once through this site's own server and cached for ten minutes.</p>
+      <div class="actions">
+        <button type="button" class="linklike" id="load-example">Load example</button>
+        <button type="submit" class="primary" id="analyze">Find combos <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button>
+      </div>
+    </form>
+    <p class="analyzing" id="analyzing" hidden></p>
+    <p class="save-here" id="save-here" hidden>
+      <button type="button" class="linklike" id="save-to-decks">Save this list to My decks</button>
+    </p>
+    <section class="plan bans" id="bans" hidden>
+      <h3 class="plan-head">Banned and restricted</h3>
+      <div id="bans-body"></div>
+      <p class="bans-foot" id="bans-foot"></p>
+    </section>
+    <!-- The one element that reports what happened when Find combos runs. Announced, because the focus
+         stays on the button and the diagram it draws is nowhere near it (#80). -->
+    <div class="status-card" id="status-card" role="status" aria-live="polite" aria-atomic="true">
+      <div class="status-dot" aria-hidden="true"></div>
+      <div><strong id="status-title">Ready</strong><span id="status-body">Paste a deck list to begin.</span></div>
+    </div>
+    <!-- Below 900px the deck panel stacks ABOVE the diagram and runs to roughly 1,800px of status
+         card, What to add and Pairs, so the thing the page is for is off the bottom of a phone with
+         nothing pointing at it (design review 2026-09-20, D6). Deliberately a SIBLING of the status
+         card and not a child: that card is `aria-live` and `aria-atomic`, so a link inside it would
+         be read out again after every status change. Hidden until there is a diagram to see, and by
+         CSS above 900px, where the stage is already beside the panel. -->
+    <a class="jump-to-diagram" id="jump-to-diagram" href="#stage" hidden>See the diagram<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12l7 7 7-7"/></svg></a>
+    <section class="plan" id="plan" hidden>
+      <h3 class="plan-head">What to add</h3>
+      <div id="plan-body"></div>
+    </section>
+    <section class="plan synergy" id="synergy" hidden>
+      <h3 class="plan-head">Pairs in this deck</h3>
+      <p class="syn-guarantee">Each rule below was walked by hand against the Core Rules. Which cards it pairs with is a text match over the whole card pool, so these are not walked combos and are not counted as any.</p>
+      <div id="synergy-body"></div>
+    </section>
+    <section class="plan synergy" id="gaps" hidden>
+      <h3 class="plan-head">One card away</h3>
+      <p class="syn-guarantee">The same hand-walked rules. Which card would complete one is a text match over the whole card pool, so this is a shortlist to check against your own list, not a combo.</p>
+      <div id="gaps-body"></div>
+    </section>
+    <section class="plan account" id="account" hidden>
+      <h3 class="plan-head">Account</h3>
+      <div id="account-body"></div>
+      <p class="acct-msg" id="account-msg" role="status" aria-live="polite"></p>
+    </section>
+    <p class="legal">RiftCombo was created under Riot Games' "Legal Jibber Jabber" policy using assets owned by Riot Games. Riot Games does not endorse or sponsor this project.</p>
+  </aside>
+
+  <main class="workspace">
+    <div class="ws-head">
+      <div>
+        <h2 class="ws-title">Combos in this deck <span class="count-pill" id="route-count">0</span></h2>
+        <p class="ws-sub" id="ws-sub"></p>
+      </div>
+      <div class="ws-controls">
+        <fieldset class="segmented" aria-label="Which combos to show">
+          <label><input type="radio" name="view" value="network" checked><span>Complete</span></label>
+          <label><input type="radio" name="view" value="suggestions"><span>Near misses</span></label>
+        </fieldset>
+        <!-- The distance qualifies "Near misses" and nothing else, so it lives beside it and is not
+             on screen while "Complete" is: under Complete it changed two words of a status card on
+             the far side of the window and nothing else at all (#163). -->
+        <label class="near-miss" id="near-miss" hidden>Within
+          <select id="max-missing" aria-label="How many cards a near-miss combo may be missing">
+            <option value="1">1 card</option>
+            <option value="2" selected>2 cards</option>
+            <option value="3">3 cards</option>
+          </select>
+        </label>
+        <fieldset class="segmented" aria-label="Diagram shape">
+          <label><input type="radio" name="layout" value="layered" checked><span>Columns</span></label>
+          <label><input type="radio" name="layout" value="circular"><span>Radial</span></label>
+        </fieldset>
+      </div>
+    </div>
+
+    <div class="stage" id="stage" tabindex="-1">
+      <button type="button" class="ghost stage-enter" id="enter-deck" hidden>Edit deck</button>
+      <div class="graph-host" id="graph-host">
+        <div class="empty" id="empty">
+          <div class="empty-glyph" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 12h6M14 12h6M12 4v6M12 14v6"/></svg></div>
+          <p class="empty-title">Nothing to draw yet</p>
+          <p class="empty-body">Paste a deck list in the deck panel to see which combos it contains.</p>
+          <p class="empty-coverage" id="empty-coverage" hidden></p>
+          <p class="empty-note" id="empty-note" hidden></p>
+        </div>
+      </div>
+      <div class="stage-tools">
+        <button type="button" class="icon-btn" id="fit" aria-label="Fit diagram to view" title="Fit to view"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9V4h5M15 4h5v5M20 15v5h-5M9 20H4v-5"/></svg></button>
+        <button type="button" class="icon-btn toggle on" id="dim-toggle" aria-pressed="true" aria-label="Fade unrelated combos when one is selected" title="Fade unrelated"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 12s3.5-6 10-6 10 6 10 6-3.5 6-10 6S2 12 2 12z"/><circle cx="12" cy="12" r="2.5"/></svg></button>
+        <button type="button" class="icon-btn" id="fullscreen" aria-label="Fullscreen" title="Fullscreen"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9V4h5M15 4h5v5M20 15v5h-5M9 20H4v-5"/></svg></button>
+        <!-- Two buttons and not one, and the format is written on each rather than left to a download
+             glyph the reader has to guess at. SVG first because it is the better file: the art is
+             cross-origin with no CORS header, so a canvas that has drawn it cannot be encoded at all
+             and the PNG is rendered from an art-free copy. `web/export.ts` carries the measurement. -->
+        <button type="button" class="icon-btn wide" id="dl-svg" aria-label="Download the diagram as SVG, with the card art" title="Download SVG — vector, with the art" disabled><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11M8 11l4 4 4-4M5 19h14"/></svg><span class="btn-tag">SVG</span></button>
+        <button type="button" class="icon-btn wide" id="dl-png" aria-label="Download the diagram as PNG, with name plates instead of the card art" title="Download PNG — name plates instead of the art" disabled><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11M8 11l4 4 4-4M5 19h14"/></svg><span class="btn-tag">PNG</span></button>
+      </div>
+      <div class="zoom">
+        <button type="button" class="icon-btn" id="zoom-in" aria-label="Zoom in"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 3.5v9M3.5 8h9"/></svg></button>
+        <span class="mono" id="zoom-label">100%</span>
+        <button type="button" class="icon-btn" id="zoom-out" aria-label="Zoom out"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3.5 8h9"/></svg></button>
+      </div>
+      <aside class="drawer" id="detail" hidden></aside>
+    </div>
+
+    <div class="tray" id="tray"><p class="quiet tray-empty">Results appear here.</p></div>
+  </main>
+</div>
+</section>
+
+<section class="view" id="view-decks" hidden>
+  <main class="decks" id="decks-host"></main>
+</section>
+
+<div class="card-preview" id="card-preview" hidden>
+  <div class="card-preview-box" id="card-preview-box" role="dialog" aria-modal="true" aria-label="Card detail"></div>
+</div>
+
+<script type="module" src="/app.js"></script>
+</body>
+</html>

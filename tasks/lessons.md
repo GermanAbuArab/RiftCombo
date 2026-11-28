@@ -1,0 +1,94 @@
+# Lessons
+
+## 2026-08-30 — Don't convert a comprehension problem into a combinatorics problem
+
+**What happened.** R6 established that Riftbound's entire card pool with rules text is ~43k tokens — it fits in one context window. I then designed a pipeline that ignored that: extract primitives → brute-force resource-flow subset search → LLM verify. It produced 19,750 candidates, found **zero** real combos, and clustered 23 around a combo I already knew was broken.
+
+**Why it failed.** Every resource in the model dangled (`RUNE_READY` 10 producers / 0 consumers) because I modeled production and consumption but never the *conversions* that close a loop. And structurally: real combos are 4–5 cards (3×10¹⁰ subsets) with game-state preconditions a static model can't express.
+
+**What worked instead.** The extraction agents — doing mechanical data transformation, never asked about combos — spontaneously surfaced 7 combo findings, all 7 verified correct, including subtle refutations. Comprehension beat arithmetic.
+
+**Rule:** when the whole problem domain fits in a context window, read it. Reach for search when it doesn't.
+
+## 2026-08-30 — Derive the filter from the domain, not from the analogy
+
+**What happened.** I built a "combo primitive" filter to prune 935 cards to 316, porting MTG's primitive list (mana, untap, recursion, tokens). Tested against the validation set, it missed **9 of 20** cards — including `Renata Glasc, Mastermind` (`⟳: Score 1 point`), the actual win condition of the archetype, and `Time Warp`.
+
+**Why.** Riftbound's payoffs are points, extra turns, draw, equip, move, might-buffs. None of those are MTG primitives. The filter would have made the pipeline structurally incapable of finding the combos it was being validated against.
+
+**Rule:** a premature optimization that silently removes the right answer is worse than no optimization. Prune on derived structure, never on a borrowed category list — and check filter *recall against known-good cases* before trusting it.
+
+## 2026-08-30 — Verify pessimistic subagent verdicts before acting on them
+
+**What happened.** A research agent reported that Riot has a Riftbound-specific policy banning third-party card assets — a finding that invalidates a planned dependency. Per the research-discipline rule I fetched `developer.riotgames.com/docs/riftbound` myself and confirmed every quote verbatim.
+
+**Also:** a hunt agent claimed the corpus file's domain column was lossy. Verified — and it was worse than reported: my `"".join(x[0] for x in domains)` collapsed **Calm, Chaos AND Colorless** all to `"C"`. The agent worked around corrupted data I handed it and reported the bug.
+
+**Rule:** pessimistic verdicts are load-bearing — confirm at the source. And when a subagent says your data is wrong, check: it probably is.
+
+## 2026-08-30 — Trailing newlines silently destroy JSONL merges
+
+Eight agents wrote `chunk*.jsonl`; four omitted a trailing newline. Per-file counts summed to **805**, but `cat` yielded **802** — three records fused at chunk boundaries. Fused lines are invalid JSON and a lenient loader (`except JSONDecodeError: pass`) drops them **silently**.
+
+**Rule:** normalize trailing newlines before merging, and verify `sum(per-file) == count(merged)`. Never let a parse-error handler swallow records without counting them.
+
+## 2026-09-04 — A loop is not bounded by the 3-copy limit if it can recycle
+
+**What happened.** Walking `jayce-mesmerize-renata` I saw that its bounce spell goes to the trash and that `103.2.b` caps a Main Deck at 3 copies of a name. I concluded the loop — and, worse, the already-**verified** `renata-mastermind-points` — was overclaimed as INFINITE, and opened issue #19 saying so. Then I read the verified Lux engine's own steps and found `416.1`: Recycle puts cards on the **bottom of the deck**. Forge of the Future recycles 3 of its 4 slots, Ekko's Deathknell recycles itself, and the 4 draws are exactly spent — leaving **one spare Forge recycle slot per pass**, which is precisely what cycles the bounce spell. The entry's own REFUTE R7 note, which I had read as admitting a bound, was the solution. Corrected and closed #19 the same day.
+
+**Rule.** Before declaring a loop bounded by card copies, find the recycle path first. The currency is the recycle-and-draw budget, not the deck-construction limit. And when a note in the catalogue looks like it concedes a problem, read it as the answer before assuming it is the confession — the previous walker usually got there first.
+
+## 2026-09-04 — Catalogue quantities are pinned by the matcher tests
+
+Raising `ahri-blue-sentinel-hold` from 2 Ahri to 3 (the entry's own formula gave 7 points, one short of the 8 its BURST class claims) broke two tests in `test/matcher.test.ts`, which hard-code that combo's multiset shortfall and a deck built to match it exactly.
+
+**Rule.** Editing a `quantity` in `data/combos.json` is a test-visible change. Run `npm test` before committing a data edit, and update the test's numbers while preserving what it actually asserts — never relax the assertion to make it pass.
+
+## 2026-09-04 — Try a different ordering before you file a rules reading
+
+**What happened.** The Lux loop plays Shadow's Call every pass, and it must Choose a friendly unit *without* `[Temporary]` and mark it; `816.1.b` kills marked permanents at the start of the Beginning Phase **before scoring**, which is exactly when The Grand Plaza counts units. So each pass made one clean Recruit and poisoned one, holding the surviving count constant — `grand-plaza-loop-time-warp` could never reach seven. I found the obstacle correctly. Then I proposed pointing Shadow's Call at Ekko and letting it resolve **with a dead target** (Sacrifice kills Ekko as a cost in response), argued the "Draw 2" survives per-instruction mistargeting from `359.3.e.7` / `758.1` / `359.3.e.11`, filed it as **R29** on #11, and left the entry blocked pending a ruling. The user's answer: *"lo correcto sería dejar que Shadow's Call resuelva y después jugar Sacrifice."* Aim at Ekko, let it resolve normally, play Sacrifice afterwards — the mark lands on Ekko and dies with him. No reading required. `813.1.b` gives Reaction every permission of Action, so Sacrifice never needed to be a response. R29 retired unused; the entry went straight to `verified`.
+
+**Rule.** A new numbered reading is the **last** resort, not the first. Before filing one, ask whether a different **legal ordering of the same cards** makes the question disappear — reordering the chain, resolving before responding, choosing a different target, splitting one window into two. The catalogue is worth more when an entry stands on sequencing than when it stands on an unruled interpretation, and every reading filed is a question the user has to answer. Corollary: if the clever line and the plain line reach the same place, the plain line is the entry.
+
+## 2026-09-05 — A tab whose agent died is a shell, and a shell executes what you send it
+
+**What happened.** The orchestrator's agent exited and a new one was started by typing `claude`. That is an alias (`~/.zshrc:104`) which only prints `Use: claude-roku, claude-personal or claude-blend`, so the tab stayed a plain zsh. rc-accounts then reported back with `maestro send`, walk32's prompt arrived the same way, and zsh executed both as commands, dozens of times, as the parked queue flushed (`zsh: command not found: Caminar`). Nothing was lost, but the reports never reached an agent.
+
+**Rule.** Start or restart an agent in a tab with `claude-personal --name <n> --model 'claude-opus-5[1m]' --dangerously-skip-permissions`, never bare `claude`. Before any `maestro send`, confirm the target's `.agent.kind` is `claude`; a tab at `status: shell` will run your message as a command.
+
+## 2026-09-05 — Una URL con fragmento es un secreto hasta que se demuestre lo contrario
+
+**What happened.** rc-mulligan abrió el dashboard de Supabase con Playwright y su helper imprimió `page.url` entera tras el redirect de login. Supabase devuelve los tokens en el FRAGMENTO (`#access_token=…&refresh_token=…&provider_token=gho_…`), así que un JWT, un refresh token y un token OAuth de GitHub quedaron en el transcript de la sesión. Los dos primeros caducan o se invalidan cerrando sesión; el `gho_` no caduca solo y hubo que revocar la autorización de Supabase en GitHub → Settings → Applications (hecho con Playwright, confirmado por GitHub).
+
+**Rule.** Nunca loguear, snapshotear ni pegar una URL de vuelta de un flujo de auth sin cortarla en el `#` (y sin `code=`/`token=` en la query). Si un token cae en un transcript, el remedio es revocarlo en el proveedor, no borrar el texto. El que no caduca es el que se revoca primero.
+
+## 2026-09-05 — Inspeccionar un secreto es filtrarlo
+
+**What happened.** Para saber si el `SUPABASE_AUTH_EXTERNAL_GOOGLE_SECRET` de `.env.local` era real o
+un placeholder, imprimi su largo y sus ultimos 25 caracteres. Un client secret de Google es
+`GOCSPX-` + 28 caracteres: 25 de 28 es el secreto entero a efectos practicos. Despues, buscando el
+boton de rotacion, filtre un SEGUNDO secreto completo — el `aria-label` del boton "Copiar en el
+portapapeles" contiene el valor en claro, y mi filtro de botones lo devolvio tal cual. Los dos
+murieron borrando el cliente OAuth completo (Google no deja borrar un secreto suelto, solo
+inhabilitarlo, y topea en dos), y el cliente nuevo se capturo sin pasar por el transcript: el
+`run_code_unsafe` de Playwright leyo el valor, abrio una pestaña contra un servidor local en
+127.0.0.1 y lo posteo desde ahi a un handler que escribio `.env.local` — la funcion solo devolvio
+`{postStatus, secretLength}`.
+
+**Rule.** Nunca imprimir *ninguna* porcion de un secreto, ni para verificar que existe: el largo
+solo, o `<set>`, alcanza para eso (`sed -E 's/=.*/=<set>/'`). Y antes de devolver atributos del DOM
+—`aria-label`, `title`, `value`— asumir que traen el secreto adentro y redactarlos con una regex
+ANTES del `return`, no despues de leerlos. Cuando haga falta mover un secreto de un browser a un
+archivo, que no toque el transcript: que lo escriba el proceso que ya lo tiene.
+
+## 2026-09-05 — `pkill -f` mata a quien lleve tu patrón en el prompt
+
+**What happened.** Levanté `python3 -m http.server 8788` para mirar la puerta de login y lo bajé con `pkill -f "http.server 8788"`. Los tres agentes hijos (rc-walk36, rc-huntD, rc-huntE) murieron en el acto: su prompt viaja en la línea de comando del proceso `claude`, y el prompt dice, textualmente, *"para ver la UI: `cd public && python3 -m http.server 8788`"*. `pkill -f` matcheó eso. rc-walk36 había terminado las 11 caminatas y estaba por commitear; el trabajo quedó en disco y las tres se recuperaron con `claude --resume <session-id>` en su misma tab, pero fueron veinte minutos de flota parada por un comando de una línea.
+
+**Rule.** Nunca `pkill -f`/`pgrep -f` con un patrón que pueda aparecer en un prompt. Para bajar un servidor propio: `lsof -ti :8788 | xargs kill`, o guardar el PID al lanzarlo (`python3 -m http.server 8788 & echo $! > /tmp/rc-http.pid`) y matar ese PID. Y antes de cualquier kill por patrón, `pgrep -fl <patrón>` y leer QUÉ procesos son.
+
+## 2026-09-06 — El index también es compartido: `git commit --only <rutas>`
+
+**What happened.** Dos sesiones en el mismo working tree. rc-code64 dejó cuatro archivos stageados (`git add` propio, sin commitear). rc-walk62 hizo `git add data/combos.json docs/phase0/walks/<archivo>` — por rutas, como manda la regla — y su `git commit` se llevó también los cuatro archivos ajenos, porque `git commit` commitea todo el index, no lo que acabás de agregar. Ya estaba pusheado cuando se vio; no se reescribió historia. Mi primer diagnóstico ("fue un `git add -A`") fue falso y rc-walk62 lo corrigió con la causa real.
+
+**Rule.** Con varias sesiones en un tree, `git add` por rutas no alcanza. Commitear siempre con `git commit --only <tus rutas> -F -`, que ignora el index. Y cuando una sesión te corrige un diagnóstico, la regla se reescribe con la causa, no se deja la que sonaba bien.

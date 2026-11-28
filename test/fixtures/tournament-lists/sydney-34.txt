@@ -1,0 +1,35 @@
+Legend:
+1 Sett, The Boss
+Champion:
+1 Sett, Kingpin
+Main Deck:
+3 First Mate
+3 Pit Rookie
+3 Sabotage
+3 Call to Glory
+3 Showstopper
+3 Punch First
+3 Irresistible Faefolk
+2 Arena Bar
+2 Challenge
+2 Cithria of Cloudfield
+2 Hidden Blade
+2 Fae Dragon
+1 Kinkou Monk
+1 Repulse
+3 Fiora, Victorious
+2 Lucian, Merciless
+1 Vi, Peacekeeper
+Battlefields:
+Grove of the God-Willow
+Monastery of Hirana
+Valley of Idols
+Rune Pool:
+7 Body Rune
+5 Order Rune
+Sideboard:
+2 Akshan, Mischievous
+2 Repulse
+2 Ashe, Focused
+1 Ruin Runner
+1 Vi, Peacekeeper

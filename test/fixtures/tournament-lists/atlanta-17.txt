@@ -1,0 +1,36 @@
+Legend:
+1 Ahri, Nine-Tailed Fox
+Champion:
+1 Ahri, Inquisitive
+Main Deck:
+1 Blitzcrank, Impassive
+2 Irelia, Fervent
+2 Lecturing Yordle
+3 Lonely Poro
+3 Ravenbloom Student
+2 Tasty Faefolk
+3 Thousand-Tailed Watcher
+2 Charm
+3 Defy
+2 Desert's Call
+3 Discipline
+3 Feral Strength
+2 Find Your Center
+2 Meditation
+1 Singularity
+2 Thwonk!
+2 Time Warp
+1 Zhonya's Hourglass
+Battlefields:
+1 Aspirant's Climb
+1 Grove of the God-Willow
+1 Marai Spire
+Rune Pool:
+6 Calm Rune
+6 Mind Rune
+Sideboard:
+1 Ahri, Alluring
+2 Disarming Rake
+2 Bellows Breath
+2 Not So Fast
+1 Thwonk!
